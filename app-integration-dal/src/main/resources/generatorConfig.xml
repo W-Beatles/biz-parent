@@ -4,7 +4,8 @@
 
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="C:\Users\zhuwei\.m2\repository\mysql\mysql-connector-java\8.0.13\mysql-connector-java-8.0.13.jar"/>
+    <classPathEntry
+            location="D:\mysql-connector-java-8.0.13.jar"/>
 
     <context id="default" targetRuntime="MyBatis3">
         <!-- 指定生成的java文件的编码 -->
@@ -30,7 +31,7 @@
 
         <!--  Model生成器：生成entity及Example类 -->
         <javaModelGenerator targetPackage="cn.waynechu.dal.entity"
-                            targetProject="app-integration-dal/src/main/java">
+                            targetProject="src/main/java">
             <!-- enableSubPackages：是否添加schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否对model添加 构造函数 -->
@@ -43,20 +44,18 @@
 
         <!-- mapper.xml映射文件生成的位置 -->
         <sqlMapGenerator targetPackage="sqlmap"
-                         targetProject="app-integration-dal/src/main/java">
+                         targetProject="src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="cn.waynechu.dal.mapper"
-                             targetProject="app-integration-dal/src/main/java">
+                             targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="useGeneratedKeys" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="user" domainObjectName="User"/>
-        <table tableName="house" domainObjectName="House"/>
-
+        <table tableName="house"/>
     </context>
 </generatorConfiguration>
