@@ -1,4 +1,4 @@
-package com.tuhu.typical.common.enums;
+package com.tuhu.api.common.enums;
 
 /**
  * @author zhuwei

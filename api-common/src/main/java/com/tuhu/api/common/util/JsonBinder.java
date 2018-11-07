@@ -1,4 +1,4 @@
-package com.tuhu.typical.common.util;
+package com.tuhu.api.common.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
@@ -125,6 +125,18 @@ public class JsonBinder {
         if (object != null) {
             try {
                 return mapper.writeValueAsString(object);
+            } catch (IOException e) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public String toPrettyJson(Object object) {
+        if (object != null) {
+            try {
+                return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
             } catch (IOException e) {
                 return null;
             }

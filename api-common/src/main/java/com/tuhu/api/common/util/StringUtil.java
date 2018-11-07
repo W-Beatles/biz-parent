@@ -1,4 +1,4 @@
-package com.tuhu.typical.common.util;
+package com.tuhu.api.common.util;
 
 /**
  * @author zhuwei

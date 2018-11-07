@@ -1,4 +1,4 @@
-package com.tuhu.typical.common.bean;
+package com.tuhu.api.common.bean;
 
 import java.util.HashMap;
 import java.util.Map;

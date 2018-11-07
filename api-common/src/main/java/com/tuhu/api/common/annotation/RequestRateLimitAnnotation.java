@@ -1,4 +1,4 @@
-package com.tuhu.typical.common.annotation;
+package com.tuhu.api.common.annotation;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

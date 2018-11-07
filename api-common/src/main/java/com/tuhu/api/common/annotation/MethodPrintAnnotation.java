@@ -1,4 +1,4 @@
-package com.tuhu.typical.common.annotation;
+package com.tuhu.api.common.annotation;
 
 import java.lang.annotation.*;
 
@@ -42,4 +42,18 @@ public @interface MethodPrintAnnotation {
      * @return default true
      */
     boolean isEndPrompt() default true;
+
+    /**
+     * 参数格式化打印
+     *
+     * @return default false
+     */
+    boolean isParamFormat() default false;
+
+    /**
+     * 打印全称类名
+     *
+     * @return default false
+     */
+    boolean isClassFullName() default false;
 }

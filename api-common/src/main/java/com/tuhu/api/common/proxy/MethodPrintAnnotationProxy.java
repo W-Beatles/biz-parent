@@ -1,6 +1,7 @@
-package cn.waynechu.method.print;
+package com.tuhu.api.common.proxy;
 
-import com.alibaba.fastjson.JSONObject;
+import com.tuhu.api.common.annotation.MethodPrintAnnotation;
+import com.tuhu.api.common.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.InvocationHandler;
@@ -37,28 +38,45 @@ public class MethodPrintAnnotationProxy implements InvocationHandler {
         Object returnValue;
 
         MethodPrintAnnotation printAnnotation = method.getAnnotation(MethodPrintAnnotation.class);
-        String className = targetObj.getClass().getSimpleName();
-        String methodName = method.getName();
 
-        if (printAnnotation != null && printAnnotation.isCallPrompt() && log.isInfoEnabled()) {
+        if (printAnnotation != null) {
+            String className;
+            if (printAnnotation.isClassFullName()) {
+                className = targetObj.getClass().getName();
+            } else {
+                className = targetObj.getClass().getSimpleName();
+            }
 
-            log.info("调用类 " + className + " 的方法 " + methodName + " 成功！");
+            String methodName = method.getName();
+
+            if (printAnnotation.isCallPrompt()) {
+                log.info("开始调用类 {} 的 {}() 方法...", className, methodName);
+            }
+
+            if (printAnnotation.isParameter()) {
+                if (printAnnotation.isParamFormat()) {
+                    log.info("类 {} 的 {}() 方法的参数，parameter = {}", className, methodName, JsonBinder.buildNormalBinder().toPrettyJson(args));
+                } else {
+                    log.info("类 {} 的 {}() 方法的参数，parameter = {}", className, methodName, JsonBinder.buildNormalBinder().toJson(args));
+                }
+            }
+
+            returnValue = method.invoke(this.targetObj, args);
+
+            if (printAnnotation.isReturnValue()) {
+                if (printAnnotation.isParamFormat()) {
+                    log.info("类 {} 的 {}() 方法的返回值，return = {}", className, methodName, JsonBinder.buildNormalBinder().toPrettyJson(returnValue));
+                } else {
+                    log.info("类 {} 的 {}() 方法的返回值，return = {}", className, methodName, JsonBinder.buildNormalBinder().toJson(returnValue));
+                }
+            }
+
+            if (printAnnotation.isEndPrompt()) {
+                log.info("调用类 {} 的 {}() 方法结束。", className, methodName);
+            }
+        } else {
+            returnValue = method.invoke(this.targetObj, args);
         }
-
-        if (printAnnotation != null && printAnnotation.isParameter() && log.isInfoEnabled()) {
-            log.info("类 " + className + " 的方法 " + methodName + " 的参数信息，parameter={}", JSONObject.toJSONString(args));
-        }
-
-        returnValue = method.invoke(this.targetObj, args);
-
-        if (printAnnotation != null && printAnnotation.isReturnValue() && log.isInfoEnabled()) {
-            log.info("类 " + className + " 的方法 " + methodName + " 的返回值，return={}", returnValue);
-        }
-
-        if (printAnnotation != null && printAnnotation.isEndPrompt() && log.isInfoEnabled()) {
-            log.info("类 " + className + " 的方法 " + methodName + " 结束调用");
-        }
-
         return returnValue;
     }
 }

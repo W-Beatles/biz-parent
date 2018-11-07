@@ -1,14 +1,5 @@
-/**
- * CopyRight ShellColr.com 2013.
- */
+package com.tuhu.api.common.http;
 
-package com.tuhu.typical.common.http;
-
-/**
- * Description:
- * Author: <a mailto="yinpengyi@gmail.com">Yin Pengyi</a>
- * DateTime: 10/30/13 4:43 PM
- */
 public interface Callback {
     /**
      * Call back method will be execute when the http request is returned.

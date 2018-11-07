@@ -1,9 +1,7 @@
-package com.tuhu.typical.common.bean;
+package com.tuhu.api.common.bean;
 
-import com.tuhu.typical.common.util.CollectionUtil;
-import com.tuhu.typical.common.util.StringUtil;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.tuhu.api.common.util.CollectionUtil;
+import com.tuhu.api.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

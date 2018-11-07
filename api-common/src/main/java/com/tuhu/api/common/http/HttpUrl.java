@@ -2,10 +2,10 @@
  * CopyRight ShellColr.com 2013.
  */
 
-package com.tuhu.typical.common.http;
+package com.tuhu.api.common.http;
 
-import com.tuhu.typical.common.util.JsonBinder;
-import com.tuhu.typical.common.util.StringUtil;
+import com.tuhu.api.common.util.JsonBinder;
+import com.tuhu.api.common.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

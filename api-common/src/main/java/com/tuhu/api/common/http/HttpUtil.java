@@ -1,7 +1,7 @@
-package com.tuhu.typical.common.http;
+package com.tuhu.api.common.http;
 
-import com.tuhu.typical.common.util.CollectionUtil;
-import com.tuhu.typical.common.util.StringUtil;
+import com.tuhu.api.common.util.CollectionUtil;
+import com.tuhu.api.common.util.StringUtil;
 import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.Cookie;
@@ -24,6 +24,7 @@ import java.util.zip.GZIPOutputStream;
 public class HttpUtil {
     public static final String HEADER_KEY_USER_AGENT = "User-Agent";
     public static final String HEADER_KEY_REFERER = "referer";
+    public static final String HEADER_KEY_CONTENT_TYPE = "Content-Type";
 
     public static final String CHARSET_UTF8 = "utf-8";
     public static final String CONTENT_TYPE_APPLICATION_JSON = "application/json";

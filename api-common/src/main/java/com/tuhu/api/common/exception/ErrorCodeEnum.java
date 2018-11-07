@@ -1,6 +1,6 @@
-package com.tuhu.typical.common.exception;
+package com.tuhu.api.common.exception;
 
-import com.tuhu.typical.common.enums.BaseEnum;
+import com.tuhu.api.common.enums.BaseEnum;
 
 /**
  * @author zhuwei

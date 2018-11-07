@@ -1,4 +1,4 @@
-package com.tuhu.typical.common.util;
+package com.tuhu.api.common.util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.StringTokenizer;
