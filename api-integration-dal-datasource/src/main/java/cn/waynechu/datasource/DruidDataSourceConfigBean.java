@@ -12,7 +12,6 @@ import java.util.List;
  * @author zhuwei
  * @date 2018/11/7 14:29
  */
-@Component
 @ConfigurationProperties(DruidDataSourceConfigBean.PREFIX)
 public class DruidDataSourceConfigBean {
 
@@ -125,7 +124,6 @@ public class DruidDataSourceConfigBean {
      * 是否合并sql, 同一个PreparedStatements但where条件不同会被认为是一个sql
      */
     private boolean mergeSql = true;
-
 
     public String getMasterUrl() {
         return masterUrl;

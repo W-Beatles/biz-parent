@@ -27,6 +27,7 @@
             <groupId>cn.waynechu</groupId>
             <artifactId>api-common</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>app-domain</artifactId>

@@ -24,6 +24,8 @@
     </dependencies>
 
     <build>
+        <finalName>app-integration-dal</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
