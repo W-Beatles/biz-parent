@@ -30,7 +30,7 @@ import java.util.List;
  */
 @Configuration
 @EnableConfigurationProperties({DruidDataSourceConfigBean.class})
-@ConditionalOnProperty(name = "druid.datasource.url")
+@ConditionalOnProperty(name = "druid.datasource.master-url")
 //@MapperScan(value = {"cn.waynechu.dal.mapper"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class DruidDataSourceAutoConfiguration {
     private static final String MAPPER_LOCATION = "classpath*:sqlmap/*Mapper.xml";

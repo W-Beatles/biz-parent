@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>api-integration-dal-datasource</name>
-    <description>Demo project for Spring Boot</description>
+    <description>api integration dal datasource module for dynamic datasource</description>
 
     <parent>
         <groupId>cn.waynechu</groupId>
@@ -16,21 +16,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
         <dependency>

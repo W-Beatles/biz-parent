@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>integration-dal</name>
-    <description>Demo project for Spring Boot</description>
+    <description>integration dal module for crud</description>
 
     <parent>
         <groupId>cn.waynechu</groupId>
@@ -20,7 +20,6 @@
         <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>api-integration-dal-datasource</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
