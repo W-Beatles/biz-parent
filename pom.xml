@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tuhu</groupId>
-    <artifactId>typical-parent</artifactId>
+    <artifactId>api-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>typical-parent</name>
+    <name>api-parent</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -45,6 +45,6 @@
     </dependencyManagement>
 
     <modules>
-        <module>typical-common</module>
+        <module>api-common</module>
     </modules>
 </project>
