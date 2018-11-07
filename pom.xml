@@ -27,7 +27,7 @@
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>
         <fastjson.version>1.2.51</fastjson.version>
-        <druid.version>1.1.12</druid.version>
+        <druid.version>1.1.6</druid.version>
         <pagehelper.spring.boot.version>1.2.9</pagehelper.spring.boot.version>
     </properties>
 
@@ -91,10 +91,18 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.spring.boot.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
         <module>api-common</module>
+        <module>api-integration-dal-datasource</module>
+        <module>app-integration-dal</module>
     </modules>
 </project>
