@@ -8,8 +8,8 @@ import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,10 +28,11 @@ import java.util.List;
  * @author zhuwei
  * @date 2018/11/7 14:28
  */
+
 @Configuration
 @EnableConfigurationProperties({DruidDataSourceConfigBean.class})
 @ConditionalOnBean(DruidDataSourceConfigBean.class)
-//@ConditionalOnProperty(name = "druid.datasource.master-url")
+@ConditionalOnProperty(name = "druid.datasource.master-url")
 //@MapperScan(value = {"cn.waynechu.dal.mapper"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class DruidDataSourceAutoConfiguration {
     private static final String MAPPER_LOCATION = "classpath*:sqlmap/*Mapper.xml";
