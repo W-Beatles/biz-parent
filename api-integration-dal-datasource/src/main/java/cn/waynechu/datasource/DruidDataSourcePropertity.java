@@ -1,7 +1,6 @@
 package cn.waynechu.datasource;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -12,8 +11,8 @@ import java.util.List;
  * @author zhuwei
  * @date 2018/11/7 14:29
  */
-@ConfigurationProperties(DruidDataSourceConfigBean.PREFIX)
-public class DruidDataSourceConfigBean {
+@ConfigurationProperties(DruidDataSourcePropertity.PREFIX)
+public class DruidDataSourcePropertity {
 
     public static final String PREFIX = "druid.datasource";
 

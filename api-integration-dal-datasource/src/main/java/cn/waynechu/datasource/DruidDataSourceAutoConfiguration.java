@@ -3,13 +3,15 @@ package cn.waynechu.datasource;
 import cn.waynechu.datasource.dynamic.DynamicDataSource;
 import cn.waynechu.datasource.dynamic.DynamicDataSourceInterceptor;
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
-import org.springframework.boot.autoconfigure.condition.*;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,22 +32,21 @@ import java.util.List;
  */
 
 @Configuration
-@EnableConfigurationProperties({DruidDataSourceConfigBean.class})
-@ConditionalOnBean(DruidDataSourceConfigBean.class)
-@ConditionalOnProperty(name = "druid.datasource.master-url")
-//@MapperScan(value = {"cn.waynechu.dal.mapper"}, sqlSessionFactoryRef = "sqlSessionFactory")
+@ConditionalOnClass(DruidDataSourcePropertity.class)
+@AutoConfigureBefore(DruidDataSourceAutoConfigure.class)
+@EnableConfigurationProperties({DruidDataSourcePropertity.class})
 public class DruidDataSourceAutoConfiguration {
     private static final String MAPPER_LOCATION = "classpath*:sqlmap/*Mapper.xml";
 
     @Autowired
-    private DruidDataSourceConfigBean druidDataSourceConfigBean;
+    private DruidDataSourcePropertity druidDataSourcePropertity;
 
     @Bean(name = "master", initMethod = "init", destroyMethod = "close")
     public DruidDataSource master() {
         return new DruidDataSourceBuilder()
-                .setUrl(druidDataSourceConfigBean.getMasterUrl())
-                .setUsername(druidDataSourceConfigBean.getUsername())
-                .setPassword(druidDataSourceConfigBean.getPassword())
+                .setUrl(druidDataSourcePropertity.getMasterUrl())
+                .setUsername(druidDataSourcePropertity.getUsername())
+                .setPassword(druidDataSourcePropertity.getPassword())
                 .build();
     }
 
@@ -53,15 +54,15 @@ public class DruidDataSourceAutoConfiguration {
     public List<DruidDataSource> slaves() {
         List<DruidDataSource> slaveDataSources = new ArrayList<>();
 
-        List<String> slaveUrls = druidDataSourceConfigBean.getSlaveUrls();
+        List<String> slaveUrls = druidDataSourcePropertity.getSlaveUrls();
 
         if (!CollectionUtils.isEmpty(slaveUrls)) {
             DruidDataSource slaveDataSource;
             for (String slaveUrl : slaveUrls) {
                 slaveDataSource = new DruidDataSourceBuilder()
                         .setUrl(slaveUrl)
-                        .setUsername(druidDataSourceConfigBean.getUsername())
-                        .setPassword(druidDataSourceConfigBean.getPassword())
+                        .setUsername(druidDataSourcePropertity.getUsername())
+                        .setPassword(druidDataSourcePropertity.getPassword())
                         .build();
                 slaveDataSources.add(slaveDataSource);
             }
