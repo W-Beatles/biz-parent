@@ -1,6 +1,6 @@
 package cn.waynechu.web.controller;
 
-import cn.waynechu.api.common.annotation.ControllerLogAspectAnnotation;
+import cn.waynechu.api.common.annotation.ControllerLogAnnotation;
 import cn.waynechu.core.service.HouseService;
 import cn.waynechu.dal.entity.House;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class HouseController {
     private HouseService houseService;
 
     @GetMapping("/{id}")
-    @ControllerLogAspectAnnotation(description = "获取房屋信息")
+    @ControllerLogAnnotation(description = "获取房屋信息")
     public House getById(@PathVariable Long id, @RequestParam("city") String city) {
         return houseService.getById(id);
     }

@@ -1,6 +1,6 @@
 package cn.waynechu.api.common.aspect;
 
-import cn.waynechu.api.common.annotation.ControllerLogAspectAnnotation;
+import cn.waynechu.api.common.annotation.ControllerLogAnnotation;
 import cn.waynechu.api.common.util.JsonBinder;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -22,7 +22,7 @@ public abstract class AbstractControllerLogAspect {
     public abstract void controllerLog();
 
     @Before(value = "controllerLog()&& @annotation(logAnnotation)")
-    public void doBefore(JoinPoint joinPoint, ControllerLogAspectAnnotation logAnnotation) {
+    public void doBefore(JoinPoint joinPoint, ControllerLogAnnotation logAnnotation) {
         if (log.isInfoEnabled()) {
             if (logAnnotation.isPrintRequestData()) {
                 log.info("{}接口调用开始：requestData = {}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getRequestData(joinPoint)));
@@ -35,12 +35,12 @@ public abstract class AbstractControllerLogAspect {
     }
 
     @After(value = "controllerLog()&& @annotation(logAnnotation)")
-    public void doAfter(JoinPoint joinPoint, ControllerLogAspectAnnotation logAnnotation) {
+    public void doAfter(JoinPoint joinPoint, ControllerLogAnnotation logAnnotation) {
         // do nothing here.
     }
 
     @AfterReturning(returning = "result", value = "controllerLog()&& @annotation(logAnnotation)")
-    public void doAfterReturning(JoinPoint joinPoint, Object result, ControllerLogAspectAnnotation logAnnotation) {
+    public void doAfterReturning(JoinPoint joinPoint, Object result, ControllerLogAnnotation logAnnotation) {
         if (log.isInfoEnabled() && logAnnotation.isPrintResultData()) {
             log.info("{}接口结束调用：resultData = {}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getResultData(result)));
         }
@@ -52,7 +52,7 @@ public abstract class AbstractControllerLogAspect {
     }
 
     @AfterThrowing(value = "controllerLog()&& @annotation(logAnnotation)", throwing = "exception")
-    public void doAfterThrowingAdvice(JoinPoint joinPoint, ControllerLogAspectAnnotation logAnnotation, Throwable exception) {
+    public void doAfterThrowingAdvice(JoinPoint joinPoint, ControllerLogAnnotation logAnnotation, Throwable exception) {
         if (log.isInfoEnabled() && logAnnotation.isPrintThrowing()) {
             log.error("{}接口操作异常：requestData={}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getRequestData(joinPoint)), exception);
         }
