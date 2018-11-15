@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.waynechu.dal.mapper.HouseMapper">
-  <resultMap id="BaseResultMap" type="cn.waynechu.dal.entity.House">
+<mapper namespace="cn.waynechu.app.dal.mapper.HouseMapper">
+  <resultMap id="BaseResultMap" type="cn.waynechu.app.dal.entity.House">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -90,7 +90,7 @@
     create_time, last_update_time, city_en_name, region_en_name, cover, direction, distance_to_subway, 
     parlour, district, admin_id, bathroom, street
   </sql>
-  <select id="selectByExample" parameterType="cn.waynechu.dal.entity.HouseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.waynechu.app.dal.entity.HouseExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -114,13 +114,13 @@
     delete from house
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.waynechu.dal.entity.HouseExample">
+  <delete id="deleteByExample" parameterType="cn.waynechu.app.dal.entity.HouseExample">
     delete from house
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.waynechu.dal.entity.House">
+  <insert id="insert" parameterType="cn.waynechu.app.dal.entity.House">
     insert into house (id, title, price, 
       area, room, floor, 
       total_floor, watch_times, build_year, 
@@ -138,7 +138,7 @@
       #{district,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT}, #{bathroom,jdbcType=INTEGER}, 
       #{street,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.waynechu.dal.entity.House">
+  <insert id="insertSelective" parameterType="cn.waynechu.app.dal.entity.House">
     insert into house
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -277,7 +277,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.waynechu.dal.entity.HouseExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.waynechu.app.dal.entity.HouseExample" resultType="java.lang.Long">
     select count(*) from house
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -385,7 +385,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.waynechu.dal.entity.House">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.waynechu.app.dal.entity.House">
     update house
     <set>
       <if test="title != null">
@@ -454,7 +454,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.waynechu.dal.entity.House">
+  <update id="updateByPrimaryKey" parameterType="cn.waynechu.app.dal.entity.House">
     update house
     set title = #{title,jdbcType=VARCHAR},
       price = #{price,jdbcType=INTEGER},
