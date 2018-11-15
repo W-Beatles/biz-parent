@@ -6,7 +6,7 @@ package cn.waynechu.api.common.enums;
  */
 public enum ValidStatusEnum implements BaseEnum {
     /**
-     * 通用有效/无效状态枚举
+     * 通用 有效/无效 状态枚举
      */
     VALID(0, "valid", "有效"),
     INVALID(1, "invalid", "无效");

@@ -1,26 +1,24 @@
-package cn.waynechu.api.common.exception;
-
-import cn.waynechu.api.common.enums.BaseEnum;
+package cn.waynechu.api.common.enums;
 
 /**
  * @author zhuwei
  * @date 2018/11/6 18:49
  */
-public enum ErrorCodeEnum implements BaseEnum {
+public enum ResultEnum implements BaseEnum {
     /**
      * 响应枚举
      */
     SUCCESS(10000, "success", "操作成功"),
-    SYSTEM_ERROR(10002, "SYSTEM_ERROR", "系统异常"),
+    SYSTEM_ERROR(10002, "system_error", "系统异常"),
 
-    ILLEGAL_ARGUMENT(10010, "ILLEGAL_ARGUMENT", "参数错误"),
-    MISSING_REQUEST_PARAMETER(10011, "MISSING_REQUEST_PARAMETER", "缺少请求参数");
+    ILLEGAL_ARGUMENT(10010, "illegal_argument", "参数错误"),
+    MISSING_REQUEST_PARAMETER(10011, "missing_request_parameter", "缺少请求参数");
 
     private int code;
     private String name;
     private String desc;
 
-    ErrorCodeEnum(int code, String name, String desc) {
+    ResultEnum(int code, String name, String desc) {
         this.code = code;
         this.name = name;
         this.desc = desc;
@@ -43,9 +41,9 @@ public enum ErrorCodeEnum implements BaseEnum {
 
     @Override
     public BaseEnum codeOf(int code) {
-        for (ErrorCodeEnum errorCodeEnum : values()) {
-            if (errorCodeEnum.getCode() == code) {
-                return errorCodeEnum;
+        for (ResultEnum resultEnum : values()) {
+            if (resultEnum.getCode() == code) {
+                return resultEnum;
             }
         }
         return null;
@@ -53,9 +51,9 @@ public enum ErrorCodeEnum implements BaseEnum {
 
     @Override
     public BaseEnum nameOf(String name) {
-        for (ErrorCodeEnum errorCodeEnum : values()) {
-            if (errorCodeEnum.getName().equals(name)) {
-                return errorCodeEnum;
+        for (ResultEnum resultEnum : values()) {
+            if (resultEnum.getName().equals(name)) {
+                return resultEnum;
             }
         }
         return null;

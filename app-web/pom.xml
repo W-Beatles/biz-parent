@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>app-web</name>
-    <description>app web module for web</description>
+    <description>app web module</description>
 
     <parent>
         <groupId>cn.waynechu</groupId>
@@ -34,8 +34,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>app-facade</artifactId>
         </dependency>
 
         <dependency>
@@ -48,18 +48,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
     </dependencies>
 
     <profiles>
+        <!-- 本地开发环境 -->
         <profile>
-            <!-- 生产环境 -->
-            <id>prd</id>
-            <properties>
-                <profiles.active>prd</profiles.active>
-            </properties>
-        </profile>
-        <profile>
-            <!-- 本地开发环境 -->
             <id>local</id>
             <properties>
                 <profiles.active>local</profiles.active>
@@ -68,18 +66,25 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
+        <!-- 测试环境 -->
         <profile>
-            <!-- 测试环境 -->
             <id>test</id>
             <properties>
                 <profiles.active>test</profiles.active>
             </properties>
         </profile>
+        <!-- UT环境 -->
         <profile>
-            <!-- UT环境 -->
             <id>ut</id>
             <properties>
                 <profiles.active>ut</profiles.active>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>prd</id>
+            <properties>
+                <profiles.active>prd</profiles.active>
             </properties>
         </profile>
     </profiles>

@@ -1,7 +1,7 @@
 package cn.waynechu.api.common.proxy;
 
 import cn.waynechu.api.common.exception.BaseException;
-import cn.waynechu.api.common.exception.ErrorCodeEnum;
+import cn.waynechu.api.common.enums.ResultEnum;
 
 /**
  * @author zhuwei
@@ -12,7 +12,7 @@ public class SubImpl implements Sub {
     @Override
     public BaseException print(String arg) {
         System.out.println("call print method, arg is " + arg);
-        return new BaseException(ErrorCodeEnum.SYSTEM_ERROR);
+        return new BaseException(ResultEnum.SYSTEM_ERROR);
     }
 
     public static void main(String[] args) {

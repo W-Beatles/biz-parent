@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class Pagination implements Serializable {
     private static final int DEFAULT_PAGE_SIZE = 20;
-
     private int totalRows;
     private int curPage;
     private int pageSize;
