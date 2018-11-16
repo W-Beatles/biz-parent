@@ -11,10 +11,10 @@ import java.util.List;
  * @author zhuwei
  * @date 2018/11/7 14:29
  */
-@ConfigurationProperties(DruidDataSourcePropertity.PREFIX)
-public class DruidDataSourcePropertity {
+@ConfigurationProperties(DruidDataSourceProperties.PREFIX)
+public class DruidDataSourceProperties {
 
-    public static final String PREFIX = "druid.datasource";
+    public static final String PREFIX = "druid.dynamic.datasource";
 
     /**
      * 数据库连接urls
@@ -136,7 +136,7 @@ public class DruidDataSourcePropertity {
         List<String> returnValue = new ArrayList<>();
 
         if (!StringUtils.isEmpty(slaveUrls)) {
-            final String[] urlsSplit = StringUtils.commaDelimitedListToStringArray(slaveUrls);
+            final String[] urlsSplit = StringUtils.delimitedListToStringArray(slaveUrls, ";");
 
             returnValue = new ArrayList<>(urlsSplit.length);
             for (String url : urlsSplit) {

@@ -17,8 +17,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author zhuwei
  * @date 2018/11/7 14:05
  */
-public class DynamicDataSource extends AbstractRoutingDataSource {
-    private static final Logger log = LoggerFactory.getLogger(DynamicDataSource.class);
+public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
+    private static final Logger log = LoggerFactory.getLogger(DynamicRoutingDataSource.class);
 
     /**
      * 写数据源
@@ -55,14 +55,14 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     @Override
     public void afterPropertiesSet() {
         if (master == null) {
-            throw new IllegalArgumentException("【DynamicDataSource】master is required");
+            throw new IllegalArgumentException("master is required");
         }
         setDefaultTargetDataSource(master);
         Map<Object, Object> targetDataSources = new HashMap<>(slaves.size() + 1);
         targetDataSources.put(DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER, master);
         if (slaves.isEmpty()) {
             readDataSourceSize = 0;
-            log.warn("【DynamicDataSource】slaves is empty");
+            log.warn("slaves is empty");
         } else {
             for (int i = 0; i < slaves.size(); i++) {
                 targetDataSources.put(DynamicDataSourceHolder.DATASOURCE_TYPE_SALVE + i, slaves.get(i));
@@ -83,7 +83,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     protected Object determineCurrentLookupKey() {
         String dynamicKey = DynamicDataSourceHolder.getDataSourceType();
         if (DynamicDataSourceHolder.getDataSourceType() == null) {
-            log.info("【DynamicDataSource】set default datasource [master]");
+            log.info("[DynamicRoutingDataSource] set default datasource [master]");
             return DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
         }
         if (DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER.equals(dynamicKey) || readDataSourceSize <= 0) {
@@ -110,7 +110,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
         } else {
             return DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
         }
-        log.info("【DynamicDataSource】select datasource [{}-{}], select pattern [{}]", dynamicKey, index,
+        log.info("[DynamicRoutingDataSource] select datasource [{}-{}], select pattern [{}]", dynamicKey, index,
                 readDataSourceSelectPattern == 0 ? "polling" : (readDataSourceSelectPattern == 1 ? "random" : "null"));
         return dynamicKey + index;
     }
