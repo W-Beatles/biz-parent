@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE, ElementType.METHOD})
-public @interface ControllerLogAspectAnnotation {
+public @interface ControllerLogAnnotation {
 
     String description() default "";
 
@@ -20,5 +20,4 @@ public @interface ControllerLogAspectAnnotation {
     boolean isPrintThrowing() default true;
 
     boolean isPrintSpendTime() default true;
-
 }

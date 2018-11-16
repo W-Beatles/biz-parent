@@ -20,7 +20,6 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public House getById(Long id) {
-        log.info(id+"----");
         return houseMapper.selectByPrimaryKey(id);
     }
 }
