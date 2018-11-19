@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.waynechu</groupId>
-    <artifactId>api-parent</artifactId>
+    <artifactId>app-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>api-parent</name>
-    <description>Demo project for Spring Boot</description>
+    <name>app-parent</name>
+    <description>App parent for Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,7 +19,7 @@
     </parent>
 
     <properties>
-        <api.version>0.0.1-SNAPSHOT</api.version>
+        <app.version>0.0.1-SNAPSHOT</app.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -55,32 +55,32 @@
             <!-- 项目版本 start -->
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>api-common</artifactId>
-                <version>${api.version}</version>
+                <artifactId>app-common</artifactId>
+                <version>${app.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>api-integration-dal-datasource</artifactId>
-                <version>${api.version}</version>
+                <artifactId>app-dynamic-datasource-starter</artifactId>
+                <version>${app.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-integration-dal</artifactId>
-                <version>${api.version}</version>
+                <artifactId>renting-integration-dal</artifactId>
+                <version>${app.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-domain</artifactId>
-                <version>${api.version}</version>
+                <artifactId>renting-domain</artifactId>
+                <version>${app.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-facade</artifactId>
-                <version>${api.version}</version>
+                <artifactId>renting-facade</artifactId>
+                <version>${app.version}</version>
             </dependency>
             <!-- 项目版本 end -->
 
@@ -155,11 +155,11 @@
     </dependencyManagement>
 
     <modules>
-        <module>api-common</module>
-        <module>api-integration-dal-datasource</module>
-        <module>app-integration-dal</module>
-        <module>app-domain</module>
-        <module>app-facade</module>
-        <module>app-web</module>
+        <module>app-common</module>
+        <module>app-dynamic-datasource-starter</module>
+        <module>renting-integration-dal</module>
+        <module>renting-domain</module>
+        <module>renting-facade</module>
+        <module>renting-web</module>
     </modules>
 </project>
