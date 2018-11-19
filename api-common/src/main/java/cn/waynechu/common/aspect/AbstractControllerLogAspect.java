@@ -23,9 +23,9 @@ public abstract class AbstractControllerLogAspect {
 
     @Before(value = "controllerLog()&& @annotation(logAnnotation)")
     public void doBefore(JoinPoint joinPoint, ControllerLogAnnotation logAnnotation) {
-        if (log.isInfoEnabled()) {
+        if (log.isDebugEnabled()) {
             if (logAnnotation.isPrintRequestData()) {
-                log.info("{}接口调用开始：requestData = {}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getRequestData(joinPoint)));
+                log.debug("{}接口调用开始：requestData = {}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getRequestData(joinPoint)));
             }
 
             if (logAnnotation.isPrintSpendTime()) {
@@ -41,19 +41,21 @@ public abstract class AbstractControllerLogAspect {
 
     @AfterReturning(returning = "result", value = "controllerLog()&& @annotation(logAnnotation)")
     public void doAfterReturning(JoinPoint joinPoint, Object result, ControllerLogAnnotation logAnnotation) {
-        if (log.isInfoEnabled() && logAnnotation.isPrintResultData()) {
-            log.info("{}接口结束调用：resultData = {}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getResultData(result)));
-        }
+        if (log.isDebugEnabled()) {
+            if (logAnnotation.isPrintResultData()) {
+                log.debug("{}接口结束调用：resultData = {}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getResultData(result)));
+            }
 
-        if (log.isInfoEnabled() && logAnnotation.isPrintSpendTime()) {
-            log.info("{}接口调用耗时：{}毫秒", logAnnotation.description(), System.currentTimeMillis() - threadLocal.get());
-            threadLocal.remove();
+            if (logAnnotation.isPrintSpendTime()) {
+                log.debug("{}接口调用耗时：{}毫秒", logAnnotation.description(), System.currentTimeMillis() - threadLocal.get());
+                threadLocal.remove();
+            }
         }
     }
 
     @AfterThrowing(value = "controllerLog()&& @annotation(logAnnotation)", throwing = "exception")
     public void doAfterThrowingAdvice(JoinPoint joinPoint, ControllerLogAnnotation logAnnotation, Throwable exception) {
-        if (log.isInfoEnabled() && logAnnotation.isPrintThrowing()) {
+        if (log.isDebugEnabled() && logAnnotation.isPrintThrowing()) {
             log.error("{}接口操作异常：requestData={}", logAnnotation.description(), JsonBinder.buildNonDefaultBinder().toJson(getRequestData(joinPoint)), exception);
         }
     }

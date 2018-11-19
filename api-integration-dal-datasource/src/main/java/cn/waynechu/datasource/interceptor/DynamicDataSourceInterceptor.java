@@ -1,5 +1,6 @@
-package cn.waynechu.datasource.dynamic;
+package cn.waynechu.datasource.interceptor;
 
+import cn.waynechu.datasource.dynamic.DataSourceTypeHolder;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
 import org.apache.ibatis.mapping.BoundSql;
@@ -45,33 +46,30 @@ public class DynamicDataSourceInterceptor implements Interceptor {
             MappedStatement ms = (MappedStatement) args[0];
             if (ms.getSqlCommandType().equals(SqlCommandType.SELECT)) {
                 if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
-                    lookUpKey = DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
+                    lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
                 } else {
                     BoundSql boundSql = ms.getSqlSource().getBoundSql(args[1]);
                     // 将sql中的制表符、回车符、换行符替换成空格
                     String sql = boundSql.getSql().toLowerCase(Locale.CHINA).replaceAll("\\t\\r\\n", " ");
                     if (sql.matches(REGEX)) {
-                        lookUpKey = DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
+                        lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
                     } else {
-                        lookUpKey = DynamicDataSourceHolder.DATASOURCE_TYPE_SALVE;
+                        lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_SALVE;
                     }
                 }
             }
-            logger.info("[DynamicDataSourceInterceptor] determine to use datasource [{}] ,method [{}], SqlCommandType [{}]", lookUpKey, ms.getId(), ms.getSqlCommandType().name());
+
+            if (logger.isDebugEnabled()) {
+                logger.debug("Determined to use datasource [{}], method [{}], SqlCommandType [{}]", lookUpKey, ms.getId(), ms.getSqlCommandType().name());
+            }
         } else {
-            lookUpKey = DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
-            logger.info("[DynamicDataSourceInterceptor] determine to use datasource [{}]  with transition", lookUpKey);
+            lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
+            logger.debug("Determined to use datasource [{}] with transition", lookUpKey);
         }
-        DynamicDataSourceHolder.setDataSourceType(lookUpKey);
+        DataSourceTypeHolder.setDataSourceType(lookUpKey);
         return invocation.proceed();
     }
 
-    /**
-     * 返回本体还是代理
-     *
-     * @param target 目标对象
-     * @return 代理对象
-     */
     @Override
     public Object plugin(Object target) {
         if (target instanceof Executor) {
@@ -82,6 +80,6 @@ public class DynamicDataSourceInterceptor implements Interceptor {
 
     @Override
     public void setProperties(Properties properties) {
-        // do nothing here
+        //
     }
 }

@@ -55,17 +55,17 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     @Override
     public void afterPropertiesSet() {
         if (master == null) {
-            throw new IllegalArgumentException("master is required");
+            throw new IllegalArgumentException("Missing datasource, master datasource is required");
         }
         setDefaultTargetDataSource(master);
         Map<Object, Object> targetDataSources = new HashMap<>(slaves.size() + 1);
-        targetDataSources.put(DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER, master);
+        targetDataSources.put(DataSourceTypeHolder.DATASOURCE_TYPE_MASTER, master);
         if (slaves.isEmpty()) {
             readDataSourceSize = 0;
-            log.warn("slaves is empty");
+            log.warn("Slaves datasource is empty");
         } else {
             for (int i = 0; i < slaves.size(); i++) {
-                targetDataSources.put(DynamicDataSourceHolder.DATASOURCE_TYPE_SALVE + i, slaves.get(i));
+                targetDataSources.put(DataSourceTypeHolder.DATASOURCE_TYPE_SALVE + i, slaves.get(i));
             }
             readDataSourceSize = slaves.size();
         }
@@ -81,13 +81,13 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
      */
     @Override
     protected Object determineCurrentLookupKey() {
-        String dynamicKey = DynamicDataSourceHolder.getDataSourceType();
-        if (DynamicDataSourceHolder.getDataSourceType() == null) {
-            log.info("[DynamicRoutingDataSource] set default datasource [master]");
-            return DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
+        String dynamicKey = DataSourceTypeHolder.getDataSourceType();
+        if (DataSourceTypeHolder.getDataSourceType() == null) {
+            log.debug("Set default datasource to [master]");
+            return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
-        if (DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER.equals(dynamicKey) || readDataSourceSize <= 0) {
-            return DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
+        if (DataSourceTypeHolder.DATASOURCE_TYPE_MASTER.equals(dynamicKey) || readDataSourceSize <= 0) {
+            return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
         int index;
         if (readDataSourceSelectPattern == 0) {
@@ -108,10 +108,13 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
             // 随机方式
             index = ThreadLocalRandom.current().nextInt(0, readDataSourceSize);
         } else {
-            return DynamicDataSourceHolder.DATASOURCE_TYPE_MASTER;
+            return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
-        log.info("[DynamicRoutingDataSource] select datasource [{}-{}], select pattern [{}]", dynamicKey, index,
-                readDataSourceSelectPattern == 0 ? "polling" : (readDataSourceSelectPattern == 1 ? "random" : "null"));
+
+        if (log.isDebugEnabled()) {
+            log.debug("Select datasource [{}-{}], select pattern [{}]", dynamicKey, index,
+                    readDataSourceSelectPattern == 0 ? "polling" : (readDataSourceSelectPattern == 1 ? "random" : "null"));
+        }
         return dynamicKey + index;
     }
 

@@ -14,12 +14,12 @@ import java.util.List;
 @ConfigurationProperties(DruidDataSourceProperties.PREFIX)
 public class DruidDataSourceProperties {
 
-    public static final String PREFIX = "druid.dynamic.datasource";
+    public static final String PREFIX = "spring.datasource.druid";
 
     /**
      * 数据库连接urls
      */
-    private String masterUrl;
+    private String url;
 
     /**
      * 数据库连接urls
@@ -124,12 +124,12 @@ public class DruidDataSourceProperties {
      */
     private boolean mergeSql = true;
 
-    public String getMasterUrl() {
-        return masterUrl;
+    public String getUrl() {
+        return url;
     }
 
-    public void setMasterUrl(String masterUrl) {
-        this.masterUrl = masterUrl;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public List<String> getSlaveUrls() {
