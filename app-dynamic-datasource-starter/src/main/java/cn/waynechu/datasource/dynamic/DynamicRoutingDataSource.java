@@ -49,17 +49,16 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
      */
     private final Lock lock = new ReentrantLock();
 
-    /**
-     * 在bean加载并且设置完属性之后执行
-     */
     @Override
     public void afterPropertiesSet() {
         if (master == null) {
-            throw new IllegalArgumentException("Missing datasource, master datasource is required");
+            throw new IllegalArgumentException("Missing datasource, master datasource is required!");
         }
+
         setDefaultTargetDataSource(master);
         Map<Object, Object> targetDataSources = new HashMap<>(slaves.size() + 1);
         targetDataSources.put(DataSourceTypeHolder.DATASOURCE_TYPE_MASTER, master);
+
         if (slaves.isEmpty()) {
             readDataSourceSize = 0;
             log.warn("Slaves datasource is empty");
@@ -69,15 +68,16 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
             }
             readDataSourceSize = slaves.size();
         }
+
         // 设置数据源
         setTargetDataSources(targetDataSources);
         super.afterPropertiesSet();
     }
 
     /**
-     * 决定数据源key
+     * 决定数据源Key
      *
-     * @return 数据源key
+     * @return 数据源Key
      */
     @Override
     protected Object determineCurrentLookupKey() {
@@ -93,7 +93,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         int index;
         if (readDataSourceSelectPattern == 0) {
             // 轮询方式
-            long currValue = counter.incrementAndGet();
+            long currValue = counter.getAndIncrement();
             if ((currValue + 1) >= MAX_POOL) {
                 try {
                     lock.lock();

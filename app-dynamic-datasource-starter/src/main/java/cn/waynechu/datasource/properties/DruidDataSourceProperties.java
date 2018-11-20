@@ -1,10 +1,11 @@
-package cn.waynechu.datasource;
+package cn.waynechu.datasource.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -13,7 +14,6 @@ import java.util.List;
  */
 @ConfigurationProperties(DruidDataSourceProperties.PREFIX)
 public class DruidDataSourceProperties {
-
     public static final String PREFIX = "spring.datasource.druid";
 
     /**
@@ -132,16 +132,14 @@ public class DruidDataSourceProperties {
         this.url = url;
     }
 
-    public List<String> getSlaveUrls() {
-        List<String> returnValue = new ArrayList<>();
+    public Set<String> getSlaveUrls() {
+        Set<String> returnValue = new HashSet<>();
 
         if (!StringUtils.isEmpty(slaveUrls)) {
             final String[] urlsSplit = StringUtils.delimitedListToStringArray(slaveUrls, ";");
 
-            returnValue = new ArrayList<>(urlsSplit.length);
-            for (String url : urlsSplit) {
-                returnValue.add(url.trim());
-            }
+            returnValue = new HashSet<>(urlsSplit.length);
+            returnValue.addAll(Arrays.asList(urlsSplit));
         }
         return returnValue;
     }

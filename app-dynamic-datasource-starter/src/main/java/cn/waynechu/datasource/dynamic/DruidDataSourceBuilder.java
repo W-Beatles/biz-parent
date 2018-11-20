@@ -1,6 +1,10 @@
-package cn.waynechu.datasource;
+package cn.waynechu.datasource.dynamic;
 
+import cn.waynechu.datasource.properties.DruidDataSourceProperties;
 import com.alibaba.druid.pool.DruidDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -12,6 +16,7 @@ import java.util.List;
  * @date 2018/11/7 14:02
  */
 public class DruidDataSourceBuilder {
+    private static final Logger log = LoggerFactory.getLogger(DruidDataSourceBuilder.class);
     private DruidDataSourceProperties properties;
 
     public DruidDataSourceBuilder(DruidDataSourceProperties properties) {
@@ -19,6 +24,7 @@ public class DruidDataSourceBuilder {
     }
 
     public DataSource buildMaster() {
+        log.debug("Prepared master dataSource，url: {}", properties.getUrl());
         return build(properties.getUrl());
     }
 
@@ -27,8 +33,11 @@ public class DruidDataSourceBuilder {
 
         DruidDataSource slaveDataSource;
         for (String slaveUrl : properties.getSlaveUrls()) {
-            slaveDataSource = build(slaveUrl);
-            slavesDataSource.add(slaveDataSource);
+            if (!StringUtils.isEmpty(slaveUrl)) {
+                slaveDataSource = build(slaveUrl);
+                slavesDataSource.add(slaveDataSource);
+                log.debug("Prepared slave dataSource，url: {}", slaveUrl);
+            }
         }
         return slavesDataSource;
     }
