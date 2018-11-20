@@ -51,15 +51,15 @@
         </dependency>
 
         <!--<dependency>-->
-        <!--<groupId>com.alibaba</groupId>-->
-        <!--<artifactId>druid-spring-boot-starter</artifactId>-->
-        <!--<version>1.1.10</version>-->
+            <!--<groupId>com.alibaba</groupId>-->
+            <!--<artifactId>druid-spring-boot-starter</artifactId>-->
+            <!--<version>1.1.10</version>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
-        <!--<groupId>com.tuhu.finance</groupId>-->
-        <!--<artifactId>spring-boot-starter-finance-utils</artifactId>-->
-        <!--<version>1.0.2018102601</version>-->
+            <!--<groupId>com.tuhu.finance</groupId>-->
+            <!--<artifactId>spring-boot-starter-finance-utils</artifactId>-->
+            <!--<version>1.0.2018102601</version>-->
         <!--</dependency>-->
     </dependencies>
 </project>

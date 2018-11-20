@@ -17,12 +17,12 @@ public class DruidDataSourceProperties {
     public static final String PREFIX = "spring.datasource.druid";
 
     /**
-     * druid datasource url
+     * 主数据库地址
      */
     private String url;
 
     /**
-     * 数据库连接urls
+     * 从数据库地址，多个请使用;分割
      */
     private String slaveUrls;
 
@@ -42,12 +42,12 @@ public class DruidDataSourceProperties {
     private String publicKey;
 
     /**
-     * 连接池初始连接数
+     * 初始化时建立物理连接的个数
      */
     private int initialSize = 5;
 
     /**
-     * 连接池最大连接数
+     * 最大连接池数量
      */
     private int maxActive = 50;
 
@@ -57,63 +57,69 @@ public class DruidDataSourceProperties {
     private int minIdle = 5;
 
     /**
-     * 获取连接时最大等待时间,毫秒
+     * 获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁
      */
     private int maxWait = 60000;
 
     /**
-     * 配置间隔多久才进行一次检测需要关闭的空闲连接，单位是毫秒 ,默认1分钟
+     * Destroy线程会检测需要关闭空闲连接的时间间隔，单位毫秒，默认1分钟
      */
     private int timeBetweenEvictionRunsMillis = 60000;
 
     /**
-     * 配置一个连接在池中最小生存的时间，超过该时间的空闲链接将被关闭,默认5分钟
+     * 连接保持空闲而不被驱逐的最小时间，默认5分钟
      */
     private int minEvictableIdleTimeMillis = 300000;
 
     /**
-     * 验证链接是否有效的sql
+     * 验证链接是否有效的sql。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
      */
     private String validationQuery = "SELECT 'x'";
 
     /**
-     * 检测连接是否有效的超时时间
+     * 检测连接是否有效的超时时间，单位秒
      */
-    private int validationQueryTimeout = 3000;
+    private int validationQueryTimeout;
 
     /**
-     * 空闲时检测链接是否有效
+     * 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
      */
     private boolean testWhileIdle = true;
 
     /**
-     * 链接被借出时检查是否有效,影响性能,默认关闭
+     * 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
      */
     private boolean testOnBorrow = false;
 
     /**
-     * 当链接返还时检查连接是否有效,影响性能,默认关闭
+     * 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
      */
     private boolean testOnReturn = false;
 
     /**
-     * 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle,在mysql下建议关闭。
+     * 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle，在mysql下建议关闭。
      */
     private boolean poolPreparedStatements = false;
 
     /**
-     * poolPreparedStatements为false的情况,该值不起作用
+     * poolPreparedStatements为false的情况，该值不起作用
      */
     private int maxOpenPreparedStatements = 20;
-    /**
-     * 是否启用数据源的监控,spring-web应用建议打开
-     */
-    private boolean enableMonitor = true;
+
+//    /**
+//     * 使用的过滤器插件，常用的有：
+//     * <p>
+//     * 监控统计用的filter:stat
+//     * 日志用的filter:log4j
+//     * 防御sql注入的filter:wall
+//     */
+//    private String filters;
 
     /**
      * 当启用监控后, 是否打印慢sql
      */
     private boolean logSlowSql = true;
+
     /**
      * 多少毫秒的sql认为是慢sql, 默认1秒
      */
@@ -276,13 +282,13 @@ public class DruidDataSourceProperties {
         this.maxOpenPreparedStatements = maxOpenPreparedStatements;
     }
 
-    public boolean isEnableMonitor() {
-        return enableMonitor;
-    }
-
-    public void setEnableMonitor(boolean enableMonitor) {
-        this.enableMonitor = enableMonitor;
-    }
+//    public String getFilters() {
+//        return filters;
+//    }
+//
+//    public void setFilters(String filters) {
+//        this.filters = filters;
+//    }
 
     public boolean isLogSlowSql() {
         return logSlowSql;

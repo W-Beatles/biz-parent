@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,20 +43,16 @@ public class DruidDataSourceBuilder {
 
     private DruidDataSource build(String url) {
         DruidDataSource druidDataSource = new DruidDataSource();
-
         druidDataSource.setUrl(url);
         druidDataSource.setUsername(properties.getUsername());
         druidDataSource.setPassword(properties.getPassword());
-        druidDataSource.setConnectionProperties("config.decrypt=true;config.decrypt.key=" + properties.getPublicKey());
-        try {
-            druidDataSource.setFilters("stat,wall");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (!StringUtils.isEmpty(properties.getPublicKey())) {
+            druidDataSource.setConnectionProperties("config.decrypt=true;config.decrypt.key=" + properties.getPublicKey());
         }
-        druidDataSource.setMaxActive(properties.getMaxActive());
         druidDataSource.setInitialSize(properties.getInitialSize());
-        druidDataSource.setMinIdle(properties.getMinIdle());
+        druidDataSource.setMaxActive(properties.getMaxActive());
         druidDataSource.setMaxWait(properties.getMaxWait());
+        druidDataSource.setMinIdle(properties.getMinIdle());
         druidDataSource.setTimeBetweenEvictionRunsMillis(properties.getTimeBetweenEvictionRunsMillis());
         druidDataSource.setMinEvictableIdleTimeMillis(properties.getMinEvictableIdleTimeMillis());
         druidDataSource.setValidationQuery(properties.getValidationQuery());
