@@ -24,11 +24,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>app-common</artifactId>
         </dependency>

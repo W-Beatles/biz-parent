@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="false" scanPeriod="60 seconds" debug="false">
     <!-- 配置日志位置 -->
-    <property name="LOG_HOME" value="/data/webroot/app/logs"/>
+    <property name="LOG_HOME" value="/data/webroot/renting/logs"/>
 
     <include resource="org/springframework/boot/logging/logback/base.xml" />
 

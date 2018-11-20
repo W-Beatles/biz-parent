@@ -17,7 +17,7 @@ public class DruidDataSourceProperties {
     public static final String PREFIX = "spring.datasource.druid";
 
     /**
-     * 数据库连接urls
+     * druid datasource url
      */
     private String url;
 
@@ -39,7 +39,7 @@ public class DruidDataSourceProperties {
     /**
      * 用来解密的密码公钥
      */
-    private String pwdPublicKey;
+    private String publicKey;
 
     /**
      * 连接池初始连接数
@@ -166,12 +166,12 @@ public class DruidDataSourceProperties {
         this.password = password;
     }
 
-    public String getPwdPublicKey() {
-        return pwdPublicKey;
+    public String getPublicKey() {
+        return publicKey;
     }
 
-    public void setPwdPublicKey(String pwdPublicKey) {
-        this.pwdPublicKey = pwdPublicKey;
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
     }
 
     public int getInitialSize() {

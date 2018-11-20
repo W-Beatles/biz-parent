@@ -6,7 +6,6 @@ import cn.waynechu.renting.dal.mapper.HouseMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhuwei
@@ -19,7 +18,6 @@ public class HouseServiceImpl implements HouseService {
     @Autowired
     private HouseMapper houseMapper;
 
-    @Transactional
     @Override
     public House getById(Long id) {
         return houseMapper.selectByPrimaryKey(id);

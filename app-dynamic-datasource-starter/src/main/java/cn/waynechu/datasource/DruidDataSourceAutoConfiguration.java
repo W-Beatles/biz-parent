@@ -1,7 +1,12 @@
 package cn.waynechu.datasource;
 
 import cn.waynechu.datasource.dynamic.DynamicRoutingDataSource;
-import com.alibaba.druid.pool.DruidDataSource;
+import cn.waynechu.datasource.interceptor.DynamicDataSourceInterceptor;
+import cn.waynechu.datasource.properties.DruidStatProperties;
+import cn.waynechu.datasource.stat.DruidFilterConfiguration;
+import cn.waynechu.datasource.stat.DruidSpringAopConfiguration;
+import cn.waynechu.datasource.stat.DruidStatViewServletConfiguration;
+import cn.waynechu.datasource.stat.DruidWebStatFilterConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,12 +15,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
-import org.springframework.util.CollectionUtils;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +28,11 @@ import java.util.List;
  */
 @Configuration
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-@EnableConfigurationProperties({DruidDataSourceProperties.class})
+@EnableConfigurationProperties({DruidDataSourceProperties.class, DruidStatProperties.class})
+@Import({DruidSpringAopConfiguration.class,
+        DruidStatViewServletConfiguration.class,
+        DruidWebStatFilterConfiguration.class,
+        DruidFilterConfiguration.class})
 @ConditionalOnProperty(name = "spring.datasource.druid.url", matchIfMissing = false)
 public class DruidDataSourceAutoConfiguration {
 
@@ -33,32 +41,13 @@ public class DruidDataSourceAutoConfiguration {
 
     @Bean(name = "master")
     public DataSource master() {
-        return new DruidDataSourceBuilder()
-                .setUrl(druidDataSourceProperties.getUrl())
-                .setUsername(druidDataSourceProperties.getUsername())
-                .setPassword(druidDataSourceProperties.getPassword())
-                .build();
+        return new DruidDataSourceBuilder(druidDataSourceProperties).buildMaster();
     }
 
     @Bean("slaves")
     @ConditionalOnProperty(name = "spring.datasource.druid.slave-urls")
     public List<DataSource> slaves() {
-        List<DataSource> slaveDataSources = new ArrayList<>();
-
-        List<String> slaveUrls = druidDataSourceProperties.getSlaveUrls();
-
-        if (!CollectionUtils.isEmpty(slaveUrls)) {
-            DruidDataSource slaveDataSource;
-            for (String slaveUrl : slaveUrls) {
-                slaveDataSource = new DruidDataSourceBuilder()
-                        .setUrl(slaveUrl)
-                        .setUsername(druidDataSourceProperties.getUsername())
-                        .setPassword(druidDataSourceProperties.getPassword())
-                        .build();
-                slaveDataSources.add(slaveDataSource);
-            }
-        }
-        return slaveDataSources;
+        return new DruidDataSourceBuilder(druidDataSourceProperties).buildSlaves();
     }
 
     @Bean("dynamicRoutingDataSource")
@@ -77,5 +66,11 @@ public class DruidDataSourceAutoConfiguration {
         LazyConnectionDataSourceProxy dataSource = new LazyConnectionDataSourceProxy();
         dataSource.setTargetDataSource(dynamicRoutingDataSource);
         return dataSource;
+    }
+
+    @Bean("dynamicDataSourceInterceptor")
+    @ConditionalOnProperty("spring.datasource.druid.slave-urls")
+    public DynamicDataSourceInterceptor dynamicDataSourceInterceptor() {
+        return new DynamicDataSourceInterceptor();
     }
 }

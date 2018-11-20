@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerLogAspect extends AbstractControllerLogAspect {
 
-    @Pointcut("execution(* cn.waynechu.app.web.controller.*Controller.*(..))")
+    @Pointcut("execution(* cn.waynechu.renting.web.controller.*Controller.*(..))")
     @Override
     public void controllerLog() {
         //

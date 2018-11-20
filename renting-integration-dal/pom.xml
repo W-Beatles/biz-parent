@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>renting-integration-dal</name>
-    <description>renting integration dal module</description>
+    <description>Renting integration dal module</description>
 
     <parent>
         <groupId>cn.waynechu</groupId>

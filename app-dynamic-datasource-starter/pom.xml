@@ -39,20 +39,27 @@
             <artifactId>druid</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>com.tuhu.finance</groupId>
-            <artifactId>spring-boot-starter-finance-utils</artifactId>
-            <version>1.0.2018102601</version>
-        </dependency>-->
-
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
 
-        <!--<dependency>
-             <groupId>com.github.pagehelper</groupId>
-             <artifactId>pagehelper-spring-boot-starter</artifactId>
-        </dependency>-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>druid-spring-boot-starter</artifactId>-->
+        <!--<version>1.1.10</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>com.tuhu.finance</groupId>-->
+        <!--<artifactId>spring-boot-starter-finance-utils</artifactId>-->
+        <!--<version>1.0.2018102601</version>-->
+        <!--</dependency>-->
     </dependencies>
 </project>

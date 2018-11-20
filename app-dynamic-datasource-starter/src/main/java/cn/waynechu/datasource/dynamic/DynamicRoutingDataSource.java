@@ -87,6 +87,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
             return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
         if (DataSourceTypeHolder.DATASOURCE_TYPE_MASTER.equals(dynamicKey) || readDataSourceSize <= 0) {
+            log.debug("Determine target dataSource [master], readDataSourceSize: [{}]", readDataSourceSize);
             return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
         int index;
