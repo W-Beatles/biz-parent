@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.datasource.properties;
+package com.tuhu.datasource.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,6 +1,6 @@
-package cn.waynechu.datasource.dynamic;
+package com.tuhu.datasource.dynamic;
 
-import cn.waynechu.datasource.properties.DruidDataSourceProperties;
+import com.tuhu.datasource.properties.DruidDataSourceProperties;
 import com.alibaba.druid.filter.Filter;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;

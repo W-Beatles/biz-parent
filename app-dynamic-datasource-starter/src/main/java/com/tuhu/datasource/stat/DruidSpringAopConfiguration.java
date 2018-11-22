@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.datasource.stat;
+package com.tuhu.datasource.stat;
 
 import com.tuhu.datasource.properties.DruidStatProperties;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;

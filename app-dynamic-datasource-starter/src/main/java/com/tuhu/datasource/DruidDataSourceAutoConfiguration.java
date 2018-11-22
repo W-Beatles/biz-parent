@@ -1,14 +1,14 @@
-package cn.waynechu.datasource;
+package com.tuhu.datasource;
 
 import com.tuhu.datasource.dynamic.DruidDataSourceBuilder;
 import com.tuhu.datasource.dynamic.DynamicRoutingDataSource;
 import com.tuhu.datasource.interceptor.DynamicDataSourceInterceptor;
-import cn.waynechu.datasource.properties.DruidDataSourceProperties;
-import cn.waynechu.datasource.properties.DruidStatProperties;
-import cn.waynechu.datasource.stat.DruidFilterConfiguration;
-import cn.waynechu.datasource.stat.DruidSpringAopConfiguration;
-import cn.waynechu.datasource.stat.DruidStatViewServletConfiguration;
-import cn.waynechu.datasource.stat.DruidWebStatFilterConfiguration;
+import com.tuhu.datasource.properties.DruidDataSourceProperties;
+import com.tuhu.datasource.properties.DruidStatProperties;
+import com.tuhu.datasource.stat.DruidFilterConfiguration;
+import com.tuhu.datasource.stat.DruidSpringAopConfiguration;
+import com.tuhu.datasource.stat.DruidStatViewServletConfiguration;
+import com.tuhu.datasource.stat.DruidWebStatFilterConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

@@ -1,4 +1,4 @@
-package cn.waynechu.datasource.interceptor;
+package com.tuhu.datasource.interceptor;
 
 import com.tuhu.datasource.dynamic.DataSourceTypeHolder;
 import org.apache.ibatis.cache.CacheKey;
