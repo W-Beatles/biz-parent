@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tuhu.datasource.stat;
+package com.tuhu.shop.datasource.stat;
 
-import com.tuhu.datasource.properties.DruidStatProperties;
+import com.tuhu.shop.datasource.properties.DruidStatProperties;
 import com.alibaba.druid.support.http.WebStatFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;

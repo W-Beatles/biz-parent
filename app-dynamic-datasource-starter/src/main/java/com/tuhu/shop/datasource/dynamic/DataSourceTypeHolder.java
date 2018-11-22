@@ -1,4 +1,4 @@
-package com.tuhu.datasource.dynamic;
+package com.tuhu.shop.datasource.dynamic;
 
 /**
  * @author zhuwei
