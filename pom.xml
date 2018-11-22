@@ -154,7 +154,6 @@
 
     <modules>
         <module>app-common</module>
-        <module>app-dynamic-datasource-starter</module>
         <module>renting-integration-dal</module>
         <module>renting-domain</module>
         <module>renting-facade</module>
