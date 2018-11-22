@@ -1,5 +1,6 @@
 package cn.waynechu.datasource.properties;
 
+import cn.waynechu.datasource.dynamic.RoutingPatternEnum;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.StringUtils;
 
@@ -7,24 +8,28 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-
 /**
- * @author zhuwei
- * @date 2018/11/7 14:29
+ * Code from com.tuhu.finance:spring-boot-starter-finance-utils:1.0.2018102601
+ *
+ * @author liuhaoyong 2017年6月27日 下午3:45:02
  */
-@ConfigurationProperties(DruidDataSourceProperties.PREFIX)
+@ConfigurationProperties(prefix = "spring.datasource.druid")
 public class DruidDataSourceProperties {
-    public static final String PREFIX = "spring.datasource.druid";
 
     /**
-     * 主数据库地址
+     * 数据库连接url
      */
     private String url;
 
     /**
-     * 从数据库地址，多个请使用;分割
+     * 从库连接url
      */
     private String slaveUrls;
+
+    /**
+     * 读数据源路由方式：0轮询，1随机。默认0
+     */
+    private Integer routingPattern = RoutingPatternEnum.POLLING.getCode();
 
     /**
      * 数据库用户名
@@ -39,15 +44,15 @@ public class DruidDataSourceProperties {
     /**
      * 用来解密的密码公钥
      */
-    private String publicKey;
+    private String pwdPublicKey;
 
     /**
-     * 初始化时建立物理连接的个数
+     * 连接池初始连接数
      */
     private int initialSize = 5;
 
     /**
-     * 最大连接池数量
+     * 连接池最大连接数
      */
     private int maxActive = 50;
 
@@ -57,69 +62,63 @@ public class DruidDataSourceProperties {
     private int minIdle = 5;
 
     /**
-     * 获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁
+     * 获取连接时最大等待时间,毫秒
      */
     private int maxWait = 60000;
 
     /**
-     * Destroy线程会检测需要关闭空闲连接的时间间隔，单位毫秒，默认1分钟
+     * 配置间隔多久才进行一次检测需要关闭的空闲连接，单位是毫秒 ,默认1分钟
      */
     private int timeBetweenEvictionRunsMillis = 60000;
 
     /**
-     * 连接保持空闲而不被驱逐的最小时间，默认5分钟
+     * 配置一个连接在池中最小生存的时间，超过该时间的空闲链接将被关闭,默认5分钟
      */
     private int minEvictableIdleTimeMillis = 300000;
 
     /**
-     * 验证链接是否有效的sql。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
+     * 验证链接是否有效的sql
      */
     private String validationQuery = "SELECT 'x'";
 
     /**
-     * 检测连接是否有效的超时时间，单位秒
+     * 检测连接是否有效的超时时间
      */
-    private int validationQueryTimeout;
+    private int validationQueryTimeout = 3000;
 
     /**
-     * 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+     * 空闲时检测链接是否有效
      */
     private boolean testWhileIdle = true;
 
     /**
-     * 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+     * 链接被借出时检查是否有效,影响性能,默认关闭
      */
     private boolean testOnBorrow = false;
 
     /**
-     * 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+     * 当链接返还时检查连接是否有效,影响性能,默认关闭
      */
     private boolean testOnReturn = false;
 
     /**
-     * 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle，在mysql下建议关闭。
+     * 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle,在mysql下建议关闭。
      */
     private boolean poolPreparedStatements = false;
 
     /**
-     * poolPreparedStatements为false的情况，该值不起作用
+     * poolPreparedStatements为false的情况,该值不起作用
      */
     private int maxOpenPreparedStatements = 20;
-
-//    /**
-//     * 使用的过滤器插件，常用的有：
-//     * <p>
-//     * 监控统计用的filter:stat
-//     * 日志用的filter:log4j
-//     * 防御sql注入的filter:wall
-//     */
-//    private String filters;
+    /**
+     * 是否启用数据源的监控,spring-web应用建议打开
+     */
+    private boolean enableMonitor = true;
 
     /**
      * 当启用监控后, 是否打印慢sql
      */
     private boolean logSlowSql = true;
-
     /**
      * 多少毫秒的sql认为是慢sql, 默认1秒
      */
@@ -129,6 +128,22 @@ public class DruidDataSourceProperties {
      * 是否合并sql, 同一个PreparedStatements但where条件不同会被认为是一个sql
      */
     private boolean mergeSql = true;
+
+    public String getPwdPublicKey() {
+        return pwdPublicKey;
+    }
+
+    public void setPwdPublicKey(String pwdPublicKey) {
+        this.pwdPublicKey = pwdPublicKey;
+    }
+
+    public boolean isEnableMonitor() {
+        return enableMonitor;
+    }
+
+    public void setEnableMonitor(boolean enableMonitor) {
+        this.enableMonitor = enableMonitor;
+    }
 
     public String getUrl() {
         return url;
@@ -154,6 +169,14 @@ public class DruidDataSourceProperties {
         this.slaveUrls = slaveUrls;
     }
 
+    public Integer getRoutingPattern() {
+        return routingPattern;
+    }
+
+    public void setRoutingPattern(Integer routingPattern) {
+        this.routingPattern = routingPattern;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -170,12 +193,12 @@ public class DruidDataSourceProperties {
         this.password = password;
     }
 
-    public String getPublicKey() {
-        return publicKey;
+    public int getMaxActive() {
+        return maxActive;
     }
 
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
+    public void setMaxActive(int maxActive) {
+        this.maxActive = maxActive;
     }
 
     public int getInitialSize() {
@@ -186,12 +209,12 @@ public class DruidDataSourceProperties {
         this.initialSize = initialSize;
     }
 
-    public int getMaxActive() {
-        return maxActive;
+    public int getMaxWait() {
+        return maxWait;
     }
 
-    public void setMaxActive(int maxActive) {
-        this.maxActive = maxActive;
+    public void setMaxWait(int maxWait) {
+        this.maxWait = maxWait;
     }
 
     public int getMinIdle() {
@@ -202,16 +225,16 @@ public class DruidDataSourceProperties {
         this.minIdle = minIdle;
     }
 
-    public int getMaxWait() {
-        return maxWait;
-    }
-
-    public void setMaxWait(int maxWait) {
-        this.maxWait = maxWait;
-    }
-
     public int getTimeBetweenEvictionRunsMillis() {
         return timeBetweenEvictionRunsMillis;
+    }
+
+    public int getValidationQueryTimeout() {
+        return validationQueryTimeout;
+    }
+
+    public void setValidationQueryTimeout(int validationQueryTimeout) {
+        this.validationQueryTimeout = validationQueryTimeout;
     }
 
     public void setTimeBetweenEvictionRunsMillis(int timeBetweenEvictionRunsMillis) {
@@ -232,14 +255,6 @@ public class DruidDataSourceProperties {
 
     public void setValidationQuery(String validationQuery) {
         this.validationQuery = validationQuery;
-    }
-
-    public int getValidationQueryTimeout() {
-        return validationQueryTimeout;
-    }
-
-    public void setValidationQueryTimeout(int validationQueryTimeout) {
-        this.validationQueryTimeout = validationQueryTimeout;
     }
 
     public boolean isTestWhileIdle() {
@@ -281,14 +296,6 @@ public class DruidDataSourceProperties {
     public void setMaxOpenPreparedStatements(int maxOpenPreparedStatements) {
         this.maxOpenPreparedStatements = maxOpenPreparedStatements;
     }
-
-//    public String getFilters() {
-//        return filters;
-//    }
-//
-//    public void setFilters(String filters) {
-//        this.filters = filters;
-//    }
 
     public boolean isLogSlowSql() {
         return logSlowSql;

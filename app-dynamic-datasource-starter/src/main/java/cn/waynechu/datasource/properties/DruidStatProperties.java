@@ -18,7 +18,7 @@ package cn.waynechu.datasource.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * From druid-spring-boot-starter-1.1.10.jar
+ * Code from com.alibaba:druid-spring-boot-starter:1.1.10
  *
  * @author lihengming [89921218@qq.com]
  */

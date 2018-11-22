@@ -25,7 +25,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
      */
     private DataSource master;
     /**
-     * 多个读数据源
+     * 读数据源
      */
     private List<DataSource> slaves;
     /**
@@ -33,11 +33,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
      */
     private int readDataSourceSize;
     /**
-     * 读数据源选择方式，默认0轮询，1随机
+     * 读数据源路由方式：0轮询，1随机。默认0
      */
-    private int readDataSourceSelectPattern = 0;
+    private int routingPattern = RoutingPatternEnum.POLLING.getCode();
     /**
-     * 原子计数器
+     * 并发计数
      **/
     private AtomicLong counter = new AtomicLong(0);
     /**
@@ -71,6 +71,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
 
         // 设置数据源
         setTargetDataSources(targetDataSources);
+        log.debug("[slave] datasource quantity: [{}]", slaves.size());
         super.afterPropertiesSet();
     }
 
@@ -87,11 +88,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
             return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
         if (DataSourceTypeHolder.DATASOURCE_TYPE_MASTER.equals(dynamicKey) || readDataSourceSize <= 0) {
-            log.debug("Determine target dataSource [master], readDataSourceSize: [{}]", readDataSourceSize);
+            log.debug("Determine target dataSource [master]");
             return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
         int index;
-        if (readDataSourceSelectPattern == 0) {
+        if (RoutingPatternEnum.POLLING.getCode() == routingPattern) {
             // 轮询方式
             long currValue = counter.getAndIncrement();
             if ((currValue + 1) >= MAX_POOL) {
@@ -105,7 +106,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
                 }
             }
             index = (int) (currValue % readDataSourceSize);
-        } else if (readDataSourceSelectPattern == 1) {
+        } else if (RoutingPatternEnum.RANDOM.getCode() == routingPattern) {
             // 随机方式
             index = ThreadLocalRandom.current().nextInt(0, readDataSourceSize);
         } else {
@@ -113,8 +114,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         }
 
         if (log.isDebugEnabled()) {
-            log.debug("Determine target dataSource [{}-{}], routing pattern [{}]", dynamicKey, index,
-                    readDataSourceSelectPattern == 0 ? "polling" : (readDataSourceSelectPattern == 1 ? "random" : "null"));
+            log.debug("Determine target dataSource [{}-{}], routing pattern [{}]", dynamicKey, index, RoutingPatternEnum.codeOf(routingPattern).getName());
         }
         return dynamicKey + index;
     }
@@ -127,7 +127,14 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         this.slaves = slaves;
     }
 
-    public void setReadDataSourceSelectPattern(int readDataSourceSelectPattern) {
-        this.readDataSourceSelectPattern = readDataSourceSelectPattern;
+    public void setRoutingPattern(int routingPattern) {
+        RoutingPatternEnum routingPatternEnum = RoutingPatternEnum.codeOf(routingPattern);
+
+        if (routingPatternEnum != null) {
+            this.routingPattern = routingPattern;
+            log.debug("Set routing pattern to [{}]", routingPatternEnum.getName());
+        } else {
+            log.debug("Unknown routing pattern, set to default [{}]", RoutingPatternEnum.POLLING.getName());
+        }
     }
 }

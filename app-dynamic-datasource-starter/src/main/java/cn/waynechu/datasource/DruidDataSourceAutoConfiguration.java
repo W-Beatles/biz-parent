@@ -56,7 +56,7 @@ public class DruidDataSourceAutoConfiguration {
     public DynamicRoutingDataSource dynamicDataSource(@Qualifier("master") DataSource master,
                                                       @Qualifier("slaves") List<DataSource> slaves) {
         DynamicRoutingDataSource dynamic = new DynamicRoutingDataSource();
-        dynamic.setReadDataSourceSelectPattern(0);
+        dynamic.setRoutingPattern(druidDataSourceProperties.getRoutingPattern());
         dynamic.setMaster(master);
         dynamic.setSlaves(slaves);
         return dynamic;

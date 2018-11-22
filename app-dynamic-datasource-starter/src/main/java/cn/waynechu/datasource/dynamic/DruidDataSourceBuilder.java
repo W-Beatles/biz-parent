@@ -1,12 +1,15 @@
 package cn.waynechu.datasource.dynamic;
 
 import cn.waynechu.datasource.properties.DruidDataSourceProperties;
+import com.alibaba.druid.filter.Filter;
+import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,22 +19,22 @@ import java.util.List;
  */
 public class DruidDataSourceBuilder {
     private static final Logger log = LoggerFactory.getLogger(DruidDataSourceBuilder.class);
-    private DruidDataSourceProperties properties;
+    private DruidDataSourceProperties druidDataSourceProperties;
 
     public DruidDataSourceBuilder(DruidDataSourceProperties properties) {
-        this.properties = properties;
+        this.druidDataSourceProperties = properties;
     }
 
     public DataSource buildMaster() {
-        log.debug("Prepared master dataSource，url: {}", properties.getUrl());
-        return build(properties.getUrl());
+        log.debug("Prepared master dataSource，url: {}", druidDataSourceProperties.getUrl());
+        return build(druidDataSourceProperties.getUrl());
     }
 
     public List<DataSource> buildSlaves() {
         List<DataSource> slavesDataSource = new ArrayList<>();
 
         DruidDataSource slaveDataSource;
-        for (String slaveUrl : properties.getSlaveUrls()) {
+        for (String slaveUrl : druidDataSourceProperties.getSlaveUrls()) {
             if (!StringUtils.isEmpty(slaveUrl)) {
                 slaveDataSource = build(slaveUrl);
                 slavesDataSource.add(slaveDataSource);
@@ -42,27 +45,43 @@ public class DruidDataSourceBuilder {
     }
 
     private DruidDataSource build(String url) {
-        DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setUrl(url);
-        druidDataSource.setUsername(properties.getUsername());
-        druidDataSource.setPassword(properties.getPassword());
-        if (!StringUtils.isEmpty(properties.getPublicKey())) {
-            druidDataSource.setConnectionProperties("config.decrypt=true;config.decrypt.key=" + properties.getPublicKey());
+        DruidDataSource result = new DruidDataSource();
+        result.setUrl(url);
+        result.setUsername(druidDataSourceProperties.getUsername());
+        result.setPassword(druidDataSourceProperties.getPassword());
+        if (!StringUtils.isEmpty(druidDataSourceProperties.getPwdPublicKey())) {
+            result.setConnectionProperties(
+                    "config.decrypt=true;config.decrypt.key=" + druidDataSourceProperties.getPwdPublicKey());
+            try {
+                result.setFilters("config");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        druidDataSource.setInitialSize(properties.getInitialSize());
-        druidDataSource.setMaxActive(properties.getMaxActive());
-        druidDataSource.setMaxWait(properties.getMaxWait());
-        druidDataSource.setMinIdle(properties.getMinIdle());
-        druidDataSource.setTimeBetweenEvictionRunsMillis(properties.getTimeBetweenEvictionRunsMillis());
-        druidDataSource.setMinEvictableIdleTimeMillis(properties.getMinEvictableIdleTimeMillis());
-        druidDataSource.setValidationQuery(properties.getValidationQuery());
-        druidDataSource.setValidationQueryTimeout(properties.getValidationQueryTimeout());
-        druidDataSource.setTestWhileIdle(properties.isTestWhileIdle());
-        druidDataSource.setTestOnBorrow(properties.isTestOnBorrow());
-        druidDataSource.setTestOnReturn(properties.isTestOnReturn());
-        druidDataSource.setPoolPreparedStatements(properties.isPoolPreparedStatements());
-        druidDataSource.setMaxOpenPreparedStatements(properties.getMaxOpenPreparedStatements());
+        result.setMaxActive(druidDataSourceProperties.getMaxActive());
+        result.setInitialSize(druidDataSourceProperties.getInitialSize());
+        result.setMaxWait(druidDataSourceProperties.getMaxWait());
+        result.setMinIdle(druidDataSourceProperties.getMinIdle());
+        result.setTimeBetweenEvictionRunsMillis(druidDataSourceProperties.getTimeBetweenEvictionRunsMillis());
+        result.setMinEvictableIdleTimeMillis(druidDataSourceProperties.getMinEvictableIdleTimeMillis());
+        result.setValidationQuery(druidDataSourceProperties.getValidationQuery());
+        result.setValidationQueryTimeout(druidDataSourceProperties.getValidationQueryTimeout());
+        result.setTestWhileIdle(druidDataSourceProperties.isTestWhileIdle());
+        result.setTestOnBorrow(druidDataSourceProperties.isTestOnBorrow());
+        result.setTestOnReturn(druidDataSourceProperties.isTestOnReturn());
+        result.setPoolPreparedStatements(druidDataSourceProperties.isPoolPreparedStatements());
+        result.setMaxOpenPreparedStatements(druidDataSourceProperties.getMaxOpenPreparedStatements());
 
-        return druidDataSource;
+        if (druidDataSourceProperties.isEnableMonitor()) {
+            StatFilter filter = new StatFilter();
+            filter.setLogSlowSql(druidDataSourceProperties.isLogSlowSql());
+            filter.setMergeSql(druidDataSourceProperties.isMergeSql());
+            filter.setSlowSqlMillis(druidDataSourceProperties.getSlowSqlMillis());
+
+            List<Filter> list = new ArrayList<>();
+            list.add(filter);
+            result.setProxyFilters(list);
+        }
+        return result;
     }
 }
