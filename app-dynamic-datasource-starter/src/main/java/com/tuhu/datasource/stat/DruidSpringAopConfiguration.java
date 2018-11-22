@@ -15,7 +15,7 @@
  */
 package cn.waynechu.datasource.stat;
 
-import cn.waynechu.datasource.properties.DruidStatProperties;
+import com.tuhu.datasource.properties.DruidStatProperties;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Advisor;
