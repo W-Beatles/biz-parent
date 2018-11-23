@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.tuhu.shop.datasource.DruidDataSourceAutoConfiguration
+cn.waynechu.datasource.DruidDataSourceAutoConfiguration

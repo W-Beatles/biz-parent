@@ -1,14 +1,14 @@
-package com.tuhu.shop.datasource;
+package cn.waynechu.datasource;
 
-import com.tuhu.shop.datasource.dynamic.DruidDataSourceBuilder;
-import com.tuhu.shop.datasource.dynamic.DynamicRoutingDataSource;
-import com.tuhu.shop.datasource.interceptor.DynamicDataSourceInterceptor;
-import com.tuhu.shop.datasource.properties.DruidDataSourceProperties;
-import com.tuhu.shop.datasource.properties.DruidStatProperties;
-import com.tuhu.shop.datasource.stat.DruidFilterConfiguration;
-import com.tuhu.shop.datasource.stat.DruidSpringAopConfiguration;
-import com.tuhu.shop.datasource.stat.DruidStatViewServletConfiguration;
-import com.tuhu.shop.datasource.stat.DruidWebStatFilterConfiguration;
+import cn.waynechu.datasource.dynamic.DruidDataSourceBuilder;
+import cn.waynechu.datasource.dynamic.DynamicRoutingDataSource;
+import cn.waynechu.datasource.interceptor.DynamicDataSourceInterceptor;
+import cn.waynechu.datasource.properties.DruidDataSourceProperties;
+import cn.waynechu.datasource.properties.DruidStatProperties;
+import cn.waynechu.datasource.stat.DruidFilterConfiguration;
+import cn.waynechu.datasource.stat.DruidSpringAopConfiguration;
+import cn.waynechu.datasource.stat.DruidStatViewServletConfiguration;
+import cn.waynechu.datasource.stat.DruidWebStatFilterConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

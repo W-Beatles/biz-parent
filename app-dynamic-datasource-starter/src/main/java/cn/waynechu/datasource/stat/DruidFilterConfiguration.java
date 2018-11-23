@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tuhu.shop.datasource.stat;
+package cn.waynechu.datasource.stat;
 
 import com.alibaba.druid.filter.config.ConfigFilter;
 import com.alibaba.druid.filter.encoding.EncodingConvertFilter;

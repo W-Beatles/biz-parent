@@ -1,6 +1,6 @@
-package com.tuhu.shop.datasource.interceptor;
+package cn.waynechu.datasource.interceptor;
 
-import com.tuhu.shop.datasource.dynamic.DataSourceTypeHolder;
+import cn.waynechu.datasource.dynamic.DataSourceTypeHolder;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;

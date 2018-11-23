@@ -1,6 +1,6 @@
-package com.tuhu.shop.datasource.properties;
+package cn.waynechu.datasource.properties;
 
-import com.tuhu.shop.datasource.dynamic.RoutingPatternEnum;
+import cn.waynechu.datasource.dynamic.RoutingPatternEnum;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.StringUtils;
 
