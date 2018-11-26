@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class ControllerLogAspect extends AbstractMethodPrintAspect {
-    private static final String POINTCUT_METHOD_EXPRESSION = "execution(* cn.waynechu.renting.web.controller.*Controller.*(..))";
+public class ServiceLogAspect extends AbstractMethodPrintAspect {
+    private static final String POINTCUT_METHOD_EXPRESSION = "execution(* cn.waynechu.renting.core.service.impl.*Impl.*(..))";
 
     @Pointcut(POINTCUT_METHOD_EXPRESSION)
     @Override

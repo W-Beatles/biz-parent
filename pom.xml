@@ -38,14 +38,16 @@
 
     <repositories>
         <repository>
-            <id>nexus_public</id>
-            <url>http://maven.tuhu.work:8081/nexus/content/groups/public/</url>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <id>nexus_public</id>
-            <url>http://maven.tuhu.work:8081/nexus/content/groups/public/</url>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
         </pluginRepository>
     </pluginRepositories>
 

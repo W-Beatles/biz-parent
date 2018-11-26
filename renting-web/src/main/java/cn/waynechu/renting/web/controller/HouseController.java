@@ -19,14 +19,14 @@ public class HouseController {
     private HouseService houseService;
 
     @GetMapping("/{id}")
-    @MethodPrintAnnotation(isClassFullName = true)
+    @MethodPrintAnnotation(isFormat = true)
     public House getById(@PathVariable Long id, @RequestParam String city) {
         House house = houseService.getById(id);
         return house;
     }
 
     @PostMapping
-    @MethodPrintAnnotation
+    @MethodPrintAnnotation(isFormat = true)
     public Result<Boolean> createHouse(@RequestBody HouseCreateRequest houseCreateRequest) {
         Result<Boolean> returnValue = new Result<>();
         returnValue.setData(true);

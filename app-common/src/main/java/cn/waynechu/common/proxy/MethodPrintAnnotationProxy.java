@@ -50,7 +50,7 @@ public class MethodPrintAnnotationProxy implements InvocationHandler {
             String methodName = method.getName();
 
             if (printAnnotation.isPrintParameter()) {
-                if (printAnnotation.isParamFormat()) {
+                if (printAnnotation.isFormat()) {
                     log.info("类: {}, 方法: {}(), 参数: {}", className, methodName, JsonBinder.buildNormalBinder().toPrettyJson(args));
                 } else {
                     log.info("类: {}, 方法: {}(), 参数: {}", className, methodName, JsonBinder.buildNormalBinder().toJson(args));
@@ -59,8 +59,8 @@ public class MethodPrintAnnotationProxy implements InvocationHandler {
 
             returnValue = method.invoke(this.targetObj, args);
 
-            if (printAnnotation.isReturnValue()) {
-                if (printAnnotation.isParamFormat()) {
+            if (printAnnotation.isPrintReturn()) {
+                if (printAnnotation.isFormat()) {
                     log.info("类: {}, 方法: {}(), 返回值: {}", className, methodName, JsonBinder.buildNormalBinder().toPrettyJson(returnValue));
                 } else {
                     log.info("类: {}, 方法: {}(), 返回值: {}", className, methodName, JsonBinder.buildNormalBinder().toJson(returnValue));

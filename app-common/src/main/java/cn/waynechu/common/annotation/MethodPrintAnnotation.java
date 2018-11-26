@@ -21,6 +21,7 @@ public @interface MethodPrintAnnotation {
      *
      * @return default ""
      */
+    @AliasFor("value")
     String description() default "";
 
     /**
@@ -31,18 +32,18 @@ public @interface MethodPrintAnnotation {
     boolean isPrintParameter() default true;
 
     /**
-     * 参数格式化打印
+     * Json格式化打印
      *
      * @return default false
      */
-    boolean isParamFormat() default false;
+    boolean isFormat() default false;
 
     /**
      * 打印返回值
      *
      * @return default true
      */
-    boolean isReturnValue() default true;
+    boolean isPrintReturn() default true;
 
     /**
      * 打印全称类名
@@ -56,12 +57,12 @@ public @interface MethodPrintAnnotation {
      *
      * @return default true
      */
-    boolean isCostTime() default true;
+    boolean isPrintCostTime() default true;
 
     /**
      * 打印方法抛出的异常
      *
      * @return default true
      */
-    boolean isException() default true;
+    boolean isPrintException() default true;
 }
