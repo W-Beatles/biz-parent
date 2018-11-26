@@ -13,37 +13,22 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD})
 public @interface MethodPrintAnnotation {
 
+    @AliasFor("description")
     String value() default "";
 
-    String description() default "";
-
     /**
-     * 打印调用开始
+     * 方法描述
      *
-     * @return default true
+     * @return default ""
      */
-    boolean isCallPrompt() default true;
+    String description() default "";
 
     /**
      * 打印参数
      *
      * @return default true
      */
-    boolean isParameter() default true;
-
-    /**
-     * 打印返回值
-     *
-     * @return default true
-     */
-    boolean isReturnValue() default true;
-
-    /**
-     * 打印调用结束
-     *
-     * @return default true
-     */
-    boolean isEndPrompt() default true;
+    boolean isPrintParameter() default true;
 
     /**
      * 参数格式化打印
@@ -53,9 +38,30 @@ public @interface MethodPrintAnnotation {
     boolean isParamFormat() default false;
 
     /**
+     * 打印返回值
+     *
+     * @return default true
+     */
+    boolean isReturnValue() default true;
+
+    /**
      * 打印全称类名
      *
      * @return default false
      */
     boolean isClassFullName() default false;
+
+    /**
+     * 打印方法调用时间
+     *
+     * @return default true
+     */
+    boolean isCostTime() default true;
+
+    /**
+     * 打印方法抛出的异常
+     *
+     * @return default true
+     */
+    boolean isException() default true;
 }

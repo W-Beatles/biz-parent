@@ -9,6 +9,6 @@ import cn.waynechu.common.exception.BaseException;
  */
 public interface Sub {
 
-    @MethodPrintAnnotation(isParamFormat = true)
+    @MethodPrintAnnotation
     BaseException print(String arg);
 }

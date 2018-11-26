@@ -1,6 +1,6 @@
 package cn.waynechu.renting.web.aspect;
 
-import cn.waynechu.common.aspect.AbstractControllerLogAspect;
+import cn.waynechu.common.aspect.AbstractMethodPrintAspect;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -12,21 +12,21 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class ControllerLogAspect extends AbstractControllerLogAspect {
+public class ControllerLogAspect extends AbstractMethodPrintAspect {
 
     @Pointcut("execution(* cn.waynechu.renting.web.controller.*Controller.*(..))")
     @Override
-    public void controllerLog() {
+    public void methodPrint() {
         //
     }
 
     @Override
-    protected Object getRequestData(JoinPoint joinPoint) {
+    protected Object getArgs(JoinPoint joinPoint) {
         return joinPoint.getArgs();
     }
 
     @Override
-    protected Object getResultData(Object result) {
+    protected Object getReturn(Object result) {
         return result;
     }
 }

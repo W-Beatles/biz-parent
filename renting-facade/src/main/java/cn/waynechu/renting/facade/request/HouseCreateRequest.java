@@ -15,5 +15,7 @@ import lombok.EqualsAndHashCode;
 public class HouseCreateRequest extends AbstractRequest {
     private static final long serialVersionUID = -2283304138049180155L;
 
+    private String name;
 
+    private String city;
 }

@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel(description = "请求返回对象")
-public class Result<T extends AbstractModel> implements Serializable {
+public class Result<T> implements Serializable {
     private static final long serialVersionUID = -9151575407714770162L;
 
     @ApiModelProperty(value = "返回状态码，备注:10000为正常调用", allowableValues = "10000,....")
