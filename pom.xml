@@ -24,6 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.test.skip>true</maven.test.skip>
+        <tuhu.boot.starter.dynamic.datasource.version>1.0.0-SNAPSHOT</tuhu.boot.starter.dynamic.datasource.version>
 
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>
@@ -33,7 +34,6 @@
         <mybatis.spring.boot.version>1.3.2</mybatis.spring.boot.version>
         <logstash.logback.encoder.version>4.7</logstash.logback.encoder.version>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
-        <dynamic.datasource.starter.version>1.0.0-SNAPSHOT</dynamic.datasource.starter.version>
     </properties>
 
     <!--<repositories>-->
@@ -67,9 +67,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.tuhu.shop</groupId>
-                <artifactId>dynamic-datasource-starter</artifactId>
-                <version>${dynamic.datasource.starter.version}</version>
+                <groupId>com.tuhu</groupId>
+                <artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>
+                <version>${tuhu.boot.starter.dynamic.datasource.version}</version>
             </dependency>
 
             <dependency>
