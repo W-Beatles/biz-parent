@@ -19,7 +19,7 @@ public class HouseController {
     private HouseService houseService;
 
     @GetMapping("/{id}")
-    @MethodPrintAnnotation(isFormat = true)
+    @MethodPrintAnnotation
     public House getById(@PathVariable Long id, @RequestParam String city) {
         House house = houseService.getById(id);
         return house;
