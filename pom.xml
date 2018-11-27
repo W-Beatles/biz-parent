@@ -36,20 +36,20 @@
         <dynamic.datasource.starter.version>1.0.0-SNAPSHOT</dynamic.datasource.starter.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>Aliyun</id>
-            <name>Nexus Aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>Aliyun</id>
-            <name>Nexus Aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-        </pluginRepository>
-    </pluginRepositories>
+    <!--<repositories>-->
+    <!--<repository>-->
+    <!--<id>Aliyun</id>-->
+    <!--<name>Nexus Aliyun</name>-->
+    <!--<url>http://maven.aliyun.com/nexus/content/groups/public</url>-->
+    <!--</repository>-->
+    <!--</repositories>-->
+    <!--<pluginRepositories>-->
+    <!--<pluginRepository>-->
+    <!--<id>Aliyun</id>-->
+    <!--<name>Nexus Aliyun</name>-->
+    <!--<url>http://maven.aliyun.com/nexus/content/groups/public</url>-->
+    <!--</pluginRepository>-->
+    <!--</pluginRepositories>-->
 
     <dependencyManagement>
         <dependencies>
@@ -57,6 +57,12 @@
             <dependency>
                 <groupId>cn.waynechu</groupId>
                 <artifactId>app-common</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>app-boot-starter-dynamic-datasource</artifactId>
                 <version>${app.version}</version>
             </dependency>
 
@@ -157,6 +163,7 @@
 
     <modules>
         <module>app-common</module>
+        <module>app-boot-starter-dynamic-datasource</module>
         <module>renting-integration-dal</module>
         <module>renting-domain</module>
         <module>renting-facade</module>

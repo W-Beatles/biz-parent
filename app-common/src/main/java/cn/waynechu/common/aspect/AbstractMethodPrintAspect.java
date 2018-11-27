@@ -117,14 +117,14 @@ public abstract class AbstractMethodPrintAspect {
     }
 
     private String getPrintArgsStr(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
-        return generatePrintStr(this.getArgs(joinPoint), printAnnotation.isFormat());
+        return toJsonString(this.getArgs(joinPoint), printAnnotation.isFormat());
     }
 
     private String getPrintReturnStr(Object result, MethodPrintAnnotation printAnnotation) {
-        return generatePrintStr(this.getReturn(result), printAnnotation.isFormat());
+        return toJsonString(this.getReturn(result), printAnnotation.isFormat());
     }
 
-    private String generatePrintStr(Object obj, boolean isFormat) {
+    private String toJsonString(Object obj, boolean isFormat) {
         String printStr;
         if (isFormat) {
             printStr = JsonBinder.buildNormalBinder().toPrettyJson(obj);

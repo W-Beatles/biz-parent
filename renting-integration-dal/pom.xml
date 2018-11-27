@@ -24,9 +24,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.tuhu.shop</groupId>
-            <artifactId>dynamic-datasource-starter</artifactId>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>app-boot-starter-dynamic-datasource</artifactId>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.tuhu.shop</groupId>-->
+            <!--<artifactId>dynamic-datasource-starter</artifactId>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
