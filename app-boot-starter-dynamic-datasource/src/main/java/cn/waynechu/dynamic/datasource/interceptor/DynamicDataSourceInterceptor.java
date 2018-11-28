@@ -44,7 +44,7 @@ public class DynamicDataSourceInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         String lookUpKey;
-        String logType;
+        String sqlType;
 
         if (QUERY_METHOD_NAME.equals(invocation.getMethod().getName())) {
             boolean isTransactionActive = TransactionSynchronizationManager.isActualTransactionActive();
@@ -54,22 +54,22 @@ public class DynamicDataSourceInterceptor implements Interceptor {
                 MappedStatement ms = (MappedStatement) args[0];
 
                 if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
-                    logType = SQL_TYPE_SELECT_KEY;
+                    sqlType = SQL_TYPE_SELECT_KEY;
                     lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
                 } else {
-                    logType = SQL_TYPE_READ_ONLY;
+                    sqlType = SQL_TYPE_READ_ONLY;
                     lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_SALVE;
                 }
             } else {
-                logType = SQL_TYPE_TRANSITION;
+                sqlType = SQL_TYPE_TRANSITION;
                 lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
             }
         } else {
-            logType = SQL_TYPE_DATA_MODIFY;
+            sqlType = SQL_TYPE_DATA_MODIFY;
             lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
 
-        logger.debug("Intercept and determine target dataSource [{}] for [{}]", lookUpKey, logType);
+        logger.debug("Intercept and determine target dataSource [{}] for [{}]", lookUpKey, sqlType);
         DataSourceTypeHolder.setDataSourceType(lookUpKey);
         return invocation.proceed();
     }
