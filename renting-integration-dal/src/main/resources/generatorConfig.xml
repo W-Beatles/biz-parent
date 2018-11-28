@@ -30,7 +30,7 @@
         </javaTypeResolver>
 
         <!--  Model生成器：生成entity及Example类 -->
-        <javaModelGenerator targetPackage="cn.waynechu.dal.entity"
+        <javaModelGenerator targetPackage="cn.waynechu.renting.dal.entity"
                             targetProject="src/main/java">
             <!-- enableSubPackages：是否添加schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -50,12 +50,14 @@
 
         <!-- mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="cn.waynechu.dal.mapper"
+                             targetPackage="cn.waynechu.renting.dal.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="useGeneratedKeys" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="house"/>
+        <table tableName="house">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
     </context>
 </generatorConfiguration>

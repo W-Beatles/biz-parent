@@ -121,29 +121,32 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.waynechu.renting.dal.entity.House">
-    insert into house (id, title, price, 
-      area, room, floor, 
-      total_floor, watch_times, build_year, 
-      status, create_time, last_update_time, 
-      city_en_name, region_en_name, cover, 
-      direction, distance_to_subway, parlour, 
-      district, admin_id, bathroom, 
-      street)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
-      #{area,jdbcType=INTEGER}, #{room,jdbcType=INTEGER}, #{floor,jdbcType=INTEGER}, 
-      #{totalFloor,jdbcType=INTEGER}, #{watchTimes,jdbcType=INTEGER}, #{buildYear,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{cityEnName,jdbcType=VARCHAR}, #{regionEnName,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, 
-      #{direction,jdbcType=INTEGER}, #{distanceToSubway,jdbcType=INTEGER}, #{parlour,jdbcType=INTEGER}, 
-      #{district,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT}, #{bathroom,jdbcType=INTEGER}, 
-      #{street,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into house (title, price, area, 
+      room, floor, total_floor, 
+      watch_times, build_year, status, 
+      create_time, last_update_time, city_en_name, 
+      region_en_name, cover, direction, 
+      distance_to_subway, parlour, district, 
+      admin_id, bathroom, street
+      )
+    values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{area,jdbcType=INTEGER}, 
+      #{room,jdbcType=INTEGER}, #{floor,jdbcType=INTEGER}, #{totalFloor,jdbcType=INTEGER}, 
+      #{watchTimes,jdbcType=INTEGER}, #{buildYear,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{cityEnName,jdbcType=VARCHAR}, 
+      #{regionEnName,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{direction,jdbcType=INTEGER}, 
+      #{distanceToSubway,jdbcType=INTEGER}, #{parlour,jdbcType=INTEGER}, #{district,jdbcType=VARCHAR}, 
+      #{adminId,jdbcType=BIGINT}, #{bathroom,jdbcType=INTEGER}, #{street,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.waynechu.renting.dal.entity.House">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into house
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="title != null">
         title,
       </if>
@@ -209,9 +212,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>

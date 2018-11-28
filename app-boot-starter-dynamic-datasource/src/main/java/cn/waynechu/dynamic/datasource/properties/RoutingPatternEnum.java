@@ -8,8 +8,8 @@ public enum RoutingPatternEnum {
     /**
      * 从库负载均衡方式，默认轮询
      */
-    POLLING(0, "polling", "轮询"),
-    RANDOM(1, "random", "随机"),;
+    POLLING(0, "POLLING_PATTERN", "轮询"),
+    RANDOM(1, "RANDOM_PATTERN", "随机"),;
 
     private int code;
     private String name;
@@ -36,15 +36,6 @@ public enum RoutingPatternEnum {
     public static RoutingPatternEnum codeOf(int code) {
         for (RoutingPatternEnum resultEnum : values()) {
             if (resultEnum.getCode() == code) {
-                return resultEnum;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public static RoutingPatternEnum nameOf(String name) {
-        for (RoutingPatternEnum resultEnum : values()) {
-            if (resultEnum.getName().equals(name)) {
                 return resultEnum;
             }
         }

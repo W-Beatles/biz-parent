@@ -1,8 +1,7 @@
 package cn.waynechu.renting.dal.mapper;
 
-import cn.waynechu.renting.dal.entity.HouseExample;
 import cn.waynechu.renting.dal.entity.House;
-
+import cn.waynechu.renting.dal.entity.HouseExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
