@@ -1,9 +1,9 @@
 package cn.waynechu.dynamic.datasource.dynamic;
 
+import cn.waynechu.dynamic.datasource.properties.DruidDataSourceProperties;
 import com.alibaba.druid.filter.Filter;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
-import cn.waynechu.dynamic.datasource.properties.DruidDataSourceProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;

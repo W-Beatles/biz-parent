@@ -26,9 +26,9 @@ public class DruidDataSourceProperties {
     private String slaveUrls;
 
     /**
-     * 读数据源路由方式：0轮询，1随机。默认0
+     * 读数据源路由方式：POLLING 轮询，RANDOM 随机。默认 POLLING
      */
-    private Integer routingPattern = RoutingPatternEnum.POLLING.getCode();
+    private RoutingPatternEnum routingPattern;
 
     /**
      * 数据库用户名
@@ -168,11 +168,11 @@ public class DruidDataSourceProperties {
         this.slaveUrls = slaveUrls;
     }
 
-    public Integer getRoutingPattern() {
+    public RoutingPatternEnum getRoutingPattern() {
         return routingPattern;
     }
 
-    public void setRoutingPattern(Integer routingPattern) {
+    public void setRoutingPattern(RoutingPatternEnum routingPattern) {
         this.routingPattern = routingPattern;
     }
 

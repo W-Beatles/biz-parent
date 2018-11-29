@@ -34,9 +34,9 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
      */
     private int readDataSourceSize;
     /**
-     * 读数据源路由方式：0轮询，1随机。默认0
+     * 读数据源路由方式：POLLING 轮询，RANDOM 随机。默认 POLLING
      */
-    private int routingPattern = RoutingPatternEnum.POLLING.getCode();
+    private RoutingPatternEnum routingPattern = RoutingPatternEnum.POLLING;
     /**
      * 并发计数
      **/
@@ -93,7 +93,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
             return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
         int index;
-        if (RoutingPatternEnum.POLLING.getCode() == routingPattern) {
+        if (RoutingPatternEnum.POLLING == routingPattern) {
             // 轮询方式
             long currValue = counter.getAndIncrement();
             if ((currValue + 1) >= MAX_POOL) {
@@ -107,7 +107,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
                 }
             }
             index = (int) (currValue % readDataSourceSize);
-        } else if (RoutingPatternEnum.RANDOM.getCode() == routingPattern) {
+        } else if (RoutingPatternEnum.RANDOM == routingPattern) {
             // 随机方式
             index = ThreadLocalRandom.current().nextInt(0, readDataSourceSize);
         } else {
@@ -115,7 +115,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         }
 
         if (log.isDebugEnabled()) {
-            log.debug("Determine target dataSource [{}-{}], routing pattern [{}]", dynamicKey, index, RoutingPatternEnum.codeOf(routingPattern).getName());
+            log.debug("Determine target dataSource [{}-{}], routing pattern [{}]", dynamicKey, index, routingPattern);
         }
         return dynamicKey + index;
     }
@@ -128,14 +128,13 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         this.slaves = slaves;
     }
 
-    public void setRoutingPattern(int routingPattern) {
-        RoutingPatternEnum routingPatternEnum = RoutingPatternEnum.codeOf(routingPattern);
+    public void setRoutingPattern(RoutingPatternEnum routingPattern) {
 
-        if (routingPatternEnum != null) {
+        if (routingPattern != null) {
             this.routingPattern = routingPattern;
-            log.debug("Set routing pattern to [{}]", routingPatternEnum.getName());
+            log.debug("Set routing pattern to [{}]", routingPattern);
         } else {
-            log.debug("Unknown routing pattern, set to default [{}]", RoutingPatternEnum.POLLING.getName());
+            log.debug("Unknown routing pattern, set to default [{}]", RoutingPatternEnum.POLLING);
         }
     }
 }
