@@ -51,9 +51,9 @@ public class MethodPrintAnnotationProxy implements InvocationHandler {
 
             if (printAnnotation.isPrintParameter()) {
                 if (printAnnotation.isFormat()) {
-                    log.info("类: {}, 方法: {}(), 参数: {}", className, methodName, JsonBinder.buildNormalBinder().toPrettyJson(args));
+                    log.info("类: {}, 方法: {}(), 参数: {}", className, methodName, JsonBinder.buildAlwaysBinder().toPrettyJson(args));
                 } else {
-                    log.info("类: {}, 方法: {}(), 参数: {}", className, methodName, JsonBinder.buildNormalBinder().toJson(args));
+                    log.info("类: {}, 方法: {}(), 参数: {}", className, methodName, JsonBinder.buildAlwaysBinder().toJson(args));
                 }
             }
 
@@ -61,9 +61,9 @@ public class MethodPrintAnnotationProxy implements InvocationHandler {
 
             if (printAnnotation.isPrintReturn()) {
                 if (printAnnotation.isFormat()) {
-                    log.info("类: {}, 方法: {}(), 返回值: {}", className, methodName, JsonBinder.buildNormalBinder().toPrettyJson(returnValue));
+                    log.info("类: {}, 方法: {}(), 返回值: {}", className, methodName, JsonBinder.buildAlwaysBinder().toPrettyJson(returnValue));
                 } else {
-                    log.info("类: {}, 方法: {}(), 返回值: {}", className, methodName, JsonBinder.buildNormalBinder().toJson(returnValue));
+                    log.info("类: {}, 方法: {}(), 返回值: {}", className, methodName, JsonBinder.buildAlwaysBinder().toJson(returnValue));
                 }
             }
         } else {

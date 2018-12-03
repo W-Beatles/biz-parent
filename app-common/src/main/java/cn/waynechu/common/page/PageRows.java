@@ -36,7 +36,7 @@ public class PageRows<T> implements Serializable {
 
     @Override
     public String toString() {
-        return JsonBinder.buildNormalBinder().toPrettyJson(this);
+        return JsonBinder.buildAlwaysBinder().toPrettyJson(this);
     }
 }
 

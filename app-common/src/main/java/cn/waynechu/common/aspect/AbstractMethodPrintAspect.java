@@ -127,9 +127,9 @@ public abstract class AbstractMethodPrintAspect {
     private String toJsonString(Object obj, boolean isFormat) {
         String printStr;
         if (isFormat) {
-            printStr = JsonBinder.buildNormalBinder().toPrettyJson(obj);
+            printStr = JsonBinder.buildAlwaysBinder().toPrettyJson(obj);
         } else {
-            printStr = JsonBinder.buildNormalBinder().toJson(obj);
+            printStr = JsonBinder.buildAlwaysBinder().toJson(obj);
         }
         return printStr;
     }

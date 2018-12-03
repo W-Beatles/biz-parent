@@ -3,12 +3,14 @@ package cn.waynechu.common.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,37 +18,31 @@ import java.util.Map;
  * Jackson的简单封装.
  */
 public class JsonBinder {
-    private static Map<JsonInclude.Include, JsonBinder> mappers = new HashMap<>();
+    private static Map<JsonInclude.Include, JsonBinder> mappers = new EnumMap<>(JsonInclude.Include.class);
 
     private ObjectMapper mapper;
 
     public JsonBinder(JsonInclude.Include inclusion) {
         mapper = new ObjectMapper();
 
-        // 设置输出包含的属性
-        SerializationConfig config = mapper.getSerializationConfig();
-        config.withPropertyInclusion(config.getDefaultPropertyInclusion().withValueInclusion(inclusion));
-
-        // 设置输入时忽略JSON字符串中存在而Java对象实际没有的属性
+        // 设置序列化策略
+        mapper.setSerializationInclusion(inclusion);
+        // 设置反序列化时存在未知属性是否抛出异常
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // 设置解析器支持解析单引号
+        mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        // 设置解析器支持解析结束符
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
-        mapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES, false);
     }
 
     private static synchronized JsonBinder createBinder(JsonInclude.Include inclusion) {
-        JsonBinder returnValue = mappers.get(inclusion);
-        if (returnValue == null) {
-            returnValue = new JsonBinder(inclusion);
-            mappers.put(inclusion, returnValue);
-        }
-
-        return returnValue;
+        return mappers.computeIfAbsent(inclusion, JsonBinder::new);
     }
 
     /**
      * 创建输出全部属性到Json字符串的Binder.
      */
-    public static JsonBinder buildNormalBinder() {
+    public static JsonBinder buildAlwaysBinder() {
         return createBinder(JsonInclude.Include.ALWAYS);
     }
 

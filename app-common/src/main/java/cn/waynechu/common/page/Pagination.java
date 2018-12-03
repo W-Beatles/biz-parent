@@ -138,6 +138,6 @@ public class Pagination implements Serializable {
 
     @Override
     public String toString() {
-        return JsonBinder.buildNormalBinder().toPrettyJson(this);
+        return JsonBinder.buildAlwaysBinder().toPrettyJson(this);
     }
 }
