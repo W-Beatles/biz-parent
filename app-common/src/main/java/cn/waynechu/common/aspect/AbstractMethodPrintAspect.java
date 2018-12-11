@@ -33,7 +33,7 @@ public abstract class AbstractMethodPrintAspect {
                 String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
                 String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
 
-                log.info("[{}] 开始调用: {}, 参数: {}", applicationName, methodName, argsStr);
+                log.info("[{}] {} 开始调用, 参数: {}", applicationName, methodName, argsStr);
             }
 
             // 记录调用开始时间
@@ -56,12 +56,12 @@ public abstract class AbstractMethodPrintAspect {
             if (printAnnotation.isPrintReturn()) {
                 String argsStr = this.getPrintReturnStr(result, printAnnotation);
 
-                log.debug("[{}] 结束调用: {}, 返回值: {}", applicationName, methodName, argsStr);
+                log.debug("[{}] {} 结束调用，返回值: {}", applicationName, methodName, argsStr);
             }
 
             // 打印调用耗时
             if (printAnnotation.isPrintCostTime()) {
-                log.debug("[{}] 方法 {} 调用耗时: {} 毫秒", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
+                log.debug("[{}] {} 调用耗时: {} 毫秒", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
                 threadLocal.remove();
             }
         }
@@ -70,7 +70,7 @@ public abstract class AbstractMethodPrintAspect {
     @AfterThrowing(value = "methodPrint() && @annotation(printAnnotation)", throwing = "exception")
     public void doAfterThrowingAdvice(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation, Throwable exception) {
         if (log.isDebugEnabled() && printAnnotation.isPrintException()) {
-            log.error("[{}] 方法 {} 调用异常: {}", applicationName, joinPoint.getSignature(), exception);
+            log.error("[{}] {} 调用异常: {}", applicationName, joinPoint.getSignature(), exception);
         }
     }
 
