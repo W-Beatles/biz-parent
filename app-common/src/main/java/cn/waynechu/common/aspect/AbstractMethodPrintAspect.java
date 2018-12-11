@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 
 /**
@@ -20,6 +21,9 @@ public abstract class AbstractMethodPrintAspect {
 
     private ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
+    @Value("${spring.application.name}")
+    private String applicationName;
+
     public abstract void methodPrint();
 
     @Before(value = "methodPrint() && @annotation(printAnnotation)")
@@ -29,7 +33,7 @@ public abstract class AbstractMethodPrintAspect {
                 String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
                 String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
 
-                log.info("开始调用: {}, 参数: {}", methodName, argsStr);
+                log.info("[{}] 开始调用: {}, 参数: {}", applicationName, methodName, argsStr);
             }
 
             // 记录调用开始时间
@@ -47,16 +51,17 @@ public abstract class AbstractMethodPrintAspect {
     @AfterReturning(value = "methodPrint() && @annotation(printAnnotation)", returning = "result")
     public void doAfterReturning(JoinPoint joinPoint, Object result, MethodPrintAnnotation printAnnotation) {
         if (log.isDebugEnabled()) {
+            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
+
             if (printAnnotation.isPrintReturn()) {
-                String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
                 String argsStr = this.getPrintReturnStr(result, printAnnotation);
 
-                log.debug("结束调用: {}, 返回值: {}", methodName, argsStr);
+                log.debug("[{}] 结束调用: {}, 返回值: {}", applicationName, methodName, argsStr);
             }
 
             // 打印调用耗时
             if (printAnnotation.isPrintCostTime()) {
-                log.debug("调用耗时: {} 毫秒", System.currentTimeMillis() - threadLocal.get());
+                log.debug("[{}] 方法 {} 调用耗时: {} 毫秒", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
                 threadLocal.remove();
             }
         }
@@ -65,7 +70,7 @@ public abstract class AbstractMethodPrintAspect {
     @AfterThrowing(value = "methodPrint() && @annotation(printAnnotation)", throwing = "exception")
     public void doAfterThrowingAdvice(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation, Throwable exception) {
         if (log.isDebugEnabled() && printAnnotation.isPrintException()) {
-            log.error("{} 调用异常: {}", joinPoint.getSignature(), exception);
+            log.error("[{}] 方法 {} 调用异常: {}", applicationName, joinPoint.getSignature(), exception);
         }
     }
 
@@ -106,7 +111,7 @@ public abstract class AbstractMethodPrintAspect {
         } else {
             // 否则打印类全名
             if (printAnnotation.isClassFullName()) {
-                methodName = joinPoint.getSignature().toLongString();
+                methodName = joinPoint.getSignature().toString();
             }
             // 或者类简单名
             else {
@@ -127,7 +132,7 @@ public abstract class AbstractMethodPrintAspect {
     private String toJsonString(Object obj, boolean isFormat) {
         String printStr;
         if (isFormat) {
-            printStr = JsonBinder.buildAlwaysBinder().toPrettyJson(obj);
+            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJson(obj);
         } else {
             printStr = JsonBinder.buildAlwaysBinder().toJson(obj);
         }

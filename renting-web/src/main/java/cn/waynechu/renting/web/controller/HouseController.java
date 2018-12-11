@@ -3,7 +3,6 @@ package cn.waynechu.renting.web.controller;
 import cn.waynechu.common.annotation.MethodPrintAnnotation;
 import cn.waynechu.renting.core.service.HouseService;
 import cn.waynechu.renting.dal.entity.House;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +23,8 @@ public class HouseController {
     private ProxyFactoryBean proxyFactoryBean;
 
     @GetMapping("/{id}")
-    @MethodPrintAnnotation
+    @MethodPrintAnnotation(isFormat = true)
     public House getById(@PathVariable Long id) {
-
-        Object object = proxyFactoryBean.getObject();
         return houseService.getById(id);
     }
 
