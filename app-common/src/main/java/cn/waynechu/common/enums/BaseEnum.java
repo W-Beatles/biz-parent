@@ -32,7 +32,7 @@ public interface BaseEnum {
      * @param code code
      * @return 枚举对象
      */
-    BaseEnum codeOf(int code);
+    BaseEnum getByCode(int code);
 
     /**
      * 通过name获取枚举对象
@@ -40,5 +40,5 @@ public interface BaseEnum {
      * @param name name
      * @return 枚举对象
      */
-    BaseEnum nameOf(String name);
+    BaseEnum getByName(String name);
 }

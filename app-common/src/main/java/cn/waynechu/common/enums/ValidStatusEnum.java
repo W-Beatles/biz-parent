@@ -37,7 +37,7 @@ public enum ValidStatusEnum implements BaseEnum {
     }
 
     @Override
-    public BaseEnum codeOf(int code) {
+    public BaseEnum getByCode(int code) {
         for (ValidStatusEnum validStatusEnum : values()) {
             if (validStatusEnum.getCode() == code) {
                 return validStatusEnum;
@@ -47,7 +47,7 @@ public enum ValidStatusEnum implements BaseEnum {
     }
 
     @Override
-    public BaseEnum nameOf(String name) {
+    public BaseEnum getByName(String name) {
         for (ValidStatusEnum validStatusEnum : values()) {
             if (validStatusEnum.getName().equals(name)) {
                 return validStatusEnum;

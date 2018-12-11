@@ -1,6 +1,7 @@
 package cn.waynechu.renting.core.service;
 
 import cn.waynechu.renting.dal.entity.House;
+import cn.waynechu.renting.facade.model.ModelHouse;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 
@@ -10,7 +11,7 @@ import com.github.pagehelper.PageInfo;
  */
 public interface HouseService {
 
-    House getById(Long id);
+    ModelHouse getById(Long id);
 
     boolean create(House house);
 

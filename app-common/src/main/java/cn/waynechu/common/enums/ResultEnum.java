@@ -11,8 +11,8 @@ public enum ResultEnum implements BaseEnum {
     SUCCESS(10000, "success", "操作成功"),
     SYSTEM_ERROR(10002, "system_error", "系统异常"),
 
-    ILLEGAL_ARGUMENT(10010, "illegal_argument", "参数错误"),
-    MISSING_REQUEST_PARAMETER(10011, "missing_request_parameter", "缺少请求参数");
+    MISSING_REQUEST_PARAMETER(10010, "missing_request_parameter", "缺少请求参数"),
+    ILLEGAL_ARGUMENT(10011, "illegal_argument", "参数错误");
 
     private int code;
     private String name;
@@ -40,7 +40,7 @@ public enum ResultEnum implements BaseEnum {
     }
 
     @Override
-    public BaseEnum codeOf(int code) {
+    public BaseEnum getByCode(int code) {
         for (ResultEnum resultEnum : values()) {
             if (resultEnum.getCode() == code) {
                 return resultEnum;
@@ -50,7 +50,7 @@ public enum ResultEnum implements BaseEnum {
     }
 
     @Override
-    public BaseEnum nameOf(String name) {
+    public BaseEnum getByName(String name) {
         for (ResultEnum resultEnum : values()) {
             if (resultEnum.getName().equals(name)) {
                 return resultEnum;

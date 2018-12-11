@@ -5,6 +5,7 @@ import cn.waynechu.renting.core.service.HouseService;
 import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.dal.entity.HouseExample;
 import cn.waynechu.renting.dal.mapper.HouseMapper;
+import cn.waynechu.renting.facade.model.ModelHouse;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,8 @@ public class HouseServiceImpl implements HouseService {
     private HouseMapper houseMapper;
 
     @Override
-    public House getById(Long id) {
-        return houseMapper.selectByPrimaryKey(id);
+    public ModelHouse getById(Long id) {
+        return BeanUtil.beanTransfer(houseMapper.selectByPrimaryKey(id), ModelHouse.class);
     }
 
     @Override

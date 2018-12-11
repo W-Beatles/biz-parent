@@ -1,4 +1,4 @@
-package cn.waynechu.renting.facade.model.common;
+package cn.waynechu.common.facade.model;
 
 import cn.waynechu.common.page.Pagination;
 import io.swagger.annotations.ApiModel;
