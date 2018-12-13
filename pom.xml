@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.test.skip>true</maven.test.skip>
-        <tuhu.boot.starter.dynamic.datasource.version>1.0.1-SNAPSHOT</tuhu.boot.starter.dynamic.datasource.version>
+        <tuhu.boot.starter.dynamic.datasource.version>1.0.2-SNAPSHOT</tuhu.boot.starter.dynamic.datasource.version>
 
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>

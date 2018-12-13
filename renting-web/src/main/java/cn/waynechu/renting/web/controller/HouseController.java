@@ -25,7 +25,7 @@ public class HouseController {
     private ProxyFactoryBean proxyFactoryBean;
 
     @GetMapping("/{id}")
-    @MethodPrintAnnotation(isFormat = true)
+    @MethodPrintAnnotation
     public Result<ModelHouse> getById(@PathVariable Long id, @RequestParam String city) {
         return Result.success(houseService.getById(id));
     }

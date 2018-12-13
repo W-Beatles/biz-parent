@@ -61,7 +61,7 @@ public abstract class AbstractMethodPrintAspect {
 
             // 打印调用耗时
             if (printAnnotation.isPrintCostTime()) {
-                log.debug("[{}] {} 调用耗时: {} 毫秒", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
+                log.debug("[{}] {} 调用耗时: {}ms", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
                 threadLocal.remove();
             }
         }

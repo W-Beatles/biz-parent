@@ -84,14 +84,13 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
         String dynamicKey = DataSourceTypeHolder.getDataSourceType();
-        if (DataSourceTypeHolder.getDataSourceType() == null) {
-            log.debug("Set default datasource to [master]");
-            return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
-        }
-        if (DataSourceTypeHolder.DATASOURCE_TYPE_MASTER.equals(dynamicKey) || readDataSourceSize <= 0) {
+        if (DataSourceTypeHolder.DATASOURCE_TYPE_MASTER.equals(dynamicKey)
+                || readDataSourceSize <= 0
+                || DataSourceTypeHolder.getDataSourceType() == null) {
             log.debug("Determine target dataSource [master]");
             return DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
         }
+
         int index;
         if (RoutingPatternEnum.POLLING == routingPattern) {
             // 轮询方式

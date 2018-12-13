@@ -44,7 +44,7 @@ public class DruidDataSourceAutoConfiguration {
     }
 
     @Bean("slaves")
-    @ConditionalOnProperty(name = "spring.datasource.druid.slave-urls")
+    @ConditionalOnProperty(name = "spring.datasource.druid.slave-urls", matchIfMissing = true)
     public List<DataSource> slaves() {
         return new DruidDataSourceBuilder(druidDataSourceProperties).buildSlaves();
     }
