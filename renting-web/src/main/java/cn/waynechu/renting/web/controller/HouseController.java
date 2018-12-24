@@ -45,6 +45,7 @@ public class HouseController {
     }
 
     @PostMapping("/search")
+    @MethodPrintAnnotation
     public Result<PageInfo<House>> search(@RequestBody House house, @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
         return Result.success(houseService.search(house, pageNum, pageSize));
     }

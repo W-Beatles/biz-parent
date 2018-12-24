@@ -38,12 +38,15 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public boolean update(House house) {
-        return houseMapper.updateByPrimaryKey(house) > 0;
+        return houseMapper.updateByPrimaryKeySelective(house) > 0;
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return houseMapper.deleteByPrimaryKey(id) > 0;
+        House house = new House();
+        house.setId(id);
+        house.setIsDeleted(true);
+        return houseMapper.updateByPrimaryKeySelective(house) > 0;
     }
 
     @Transactional(rollbackFor = Exception.class)

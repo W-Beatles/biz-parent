@@ -47,7 +47,17 @@ public class House {
 
     private String street;
 
-    public House(Long id, String title, Integer price, Integer area, Integer room, Integer floor, Integer totalFloor, Integer watchTimes, Integer buildYear, Integer status, Date createTime, Date lastUpdateTime, String cityEnName, String regionEnName, String cover, Integer direction, Integer distanceToSubway, Integer parlour, String district, Long adminId, Integer bathroom, String street) {
+    private String createdUser;
+
+    private Date createdTime;
+
+    private String updatedUser;
+
+    private Date updatedTime;
+
+    private Boolean isDeleted;
+
+    public House(Long id, String title, Integer price, Integer area, Integer room, Integer floor, Integer totalFloor, Integer watchTimes, Integer buildYear, Integer status, Date createTime, Date lastUpdateTime, String cityEnName, String regionEnName, String cover, Integer direction, Integer distanceToSubway, Integer parlour, String district, Long adminId, Integer bathroom, String street, String createdUser, Date createdTime, String updatedUser, Date updatedTime, Boolean isDeleted) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -70,6 +80,11 @@ public class House {
         this.adminId = adminId;
         this.bathroom = bathroom;
         this.street = street;
+        this.createdUser = createdUser;
+        this.createdTime = createdTime;
+        this.updatedUser = updatedUser;
+        this.updatedTime = updatedTime;
+        this.isDeleted = isDeleted;
     }
 
     public House() {
@@ -250,5 +265,45 @@ public class House {
 
     public void setStreet(String street) {
         this.street = street == null ? null : street.trim();
+    }
+
+    public String getCreatedUser() {
+        return createdUser;
+    }
+
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser == null ? null : createdUser.trim();
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public String getUpdatedUser() {
+        return updatedUser;
+    }
+
+    public void setUpdatedUser(String updatedUser) {
+        this.updatedUser = updatedUser == null ? null : updatedUser.trim();
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

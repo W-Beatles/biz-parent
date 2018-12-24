@@ -1,18 +1,15 @@
 package cn.waynechu.renting.web.interceptor;
 
 
-import org.apache.ibatis.cache.CacheKey;
+import cn.waynechu.common.bean.BeanUtil;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.*;
-import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.session.RowBounds;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -20,30 +17,22 @@ import java.util.Properties;
  * @date 2018/12/14 17:56
  */
 @Component
-@Intercepts({
-        @Signature(
-                type = Executor.class, method = "update",
-                args = {MappedStatement.class, Object.class}),
-        @Signature(
-                type = Executor.class, method = "query",
-                args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
-        @Signature(
-                type = Executor.class, method = "query",
-                args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class}),
-})
+@Intercepts(@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}))
 public class DataModifiedInterceptor implements Interceptor {
-    private static final Logger logger = LoggerFactory.getLogger(DataModifiedInterceptor.class);
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         Object[] args = invocation.getArgs();
         MappedStatement ms = (MappedStatement) args[0];
         BoundSql boundSql = ms.getSqlSource().getBoundSql(args[1]);
-        String sql = boundSql.getSql();
-        if (ms.getSqlCommandType().equals(SqlCommandType.UPDATE)) {
+        Object parameterObject = boundSql.getParameterObject();
 
-        } else if (ms.getSqlCommandType().equals(SqlCommandType.INSERT)) {
-
+        if (ms.getSqlCommandType().equals(SqlCommandType.INSERT)) {
+            BeanUtil.setPropertyValue(parameterObject, "createdUser", SessionHolder.getAccountSession().getUserName());
+            BeanUtil.setPropertyValue(parameterObject, "createdTime", new Date());
+        } else if (ms.getSqlCommandType().equals(SqlCommandType.UPDATE)) {
+            BeanUtil.setPropertyValue(parameterObject, "updatedUser", SessionHolder.getAccountSession().getUserName());
+            BeanUtil.setPropertyValue(parameterObject, "updatedTime", new Date());
         }
         return invocation.proceed();
     }
