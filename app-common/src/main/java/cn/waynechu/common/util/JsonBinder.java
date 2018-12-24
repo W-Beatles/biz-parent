@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -94,14 +95,13 @@ public class JsonBinder {
         try {
             return mapper.readValue(jsonString, typeReference);
         } catch (IOException e) {
-
             return null;
         }
     }
 
     public <T> List<T> fromJsonList(String jsonString, Class<T> clazz) {
         if (StringUtil.isNullOrEmpty(jsonString)) {
-            return null;
+            return Collections.emptyList();
         }
 
         try {
@@ -110,7 +110,7 @@ public class JsonBinder {
         } catch (Exception e) {
             //
         }
-        return null;
+        return Collections.emptyList();
     }
 
     /**

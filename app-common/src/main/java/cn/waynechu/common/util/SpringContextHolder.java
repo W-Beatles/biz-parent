@@ -11,9 +11,9 @@ public class SpringContextHolder implements ApplicationContextAware {
     private static ApplicationContext applicationContext = null;
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) {
+    public void setApplicationContext(ApplicationContext context) {
         if (SpringContextHolder.applicationContext == null) {
-            SpringContextHolder.applicationContext = applicationContext;
+            applicationContext = context;
         }
     }
 
@@ -22,7 +22,7 @@ public class SpringContextHolder implements ApplicationContextAware {
     }
 
     public static Object getBean(String name) {
-        return getApplicationContext().getBean(name);
+        return applicationContext.getBean(name);
     }
 
     public static <T> T getBean(Class<T> clazz) {
@@ -30,7 +30,7 @@ public class SpringContextHolder implements ApplicationContextAware {
     }
 
     public static <T> T getBean(String name, Class<T> clazz) {
-        return getApplicationContext().getBean(name, clazz);
+        return applicationContext.getBean(name, clazz);
     }
 
     public static void clearHolder() {

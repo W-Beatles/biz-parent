@@ -1,7 +1,8 @@
 package cn.waynechu.renting.web.advice;
 
-import cn.waynechu.common.enums.ResultEnum;
-import cn.waynechu.common.facade.Result;
+import cn.waynechu.common.enums.CommonResultEnum;
+import cn.waynechu.common.web.Result;
+import cn.waynechu.renting.facade.exception.RentingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,12 +19,16 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = {MissingServletRequestParameterException.class})
     public Result missingServletRequestParameterException(MissingServletRequestParameterException e) {
         // 缺少请求参数
-        return Result.error(ResultEnum.MISSING_REQUEST_PARAMETER.getCode(), e.getMessage());
+        return Result.error(CommonResultEnum.MISSING_REQUEST_PARAMETER.getCode(), e.getMessage());
     }
 
-    @ExceptionHandler(value = Exception.class)
-    public Result unknownException(Exception e) {
-        log.error("[系统异常]", e);
-        return Result.error("[系统异常] " + e.toString());
+    @ExceptionHandler(RentingException.class)
+    public Result rentingException(RentingException e) {
+        return Result.error(e.getErrorCode(), e.getErrorMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public Result unknownException() {
+        return Result.error();
     }
 }

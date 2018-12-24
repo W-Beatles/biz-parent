@@ -29,6 +29,10 @@ public class HttpUtil {
     public static final String CHARSET_UTF8 = "utf-8";
     public static final String CONTENT_TYPE_APPLICATION_JSON = "application/json";
 
+    private HttpUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static Object getSession(HttpServletRequest request, String key) {
         Object returnValue = null;
 
@@ -105,7 +109,7 @@ public class HttpUtil {
         return returnValue;
     }
 
-    public static String URLEncode(String url, String charset) {
+    public static String UrlEncode(String url, String charset) {
         if (url != null) {
             try {
                 return URLEncoder.encode(url, charset);
@@ -116,11 +120,11 @@ public class HttpUtil {
         return "";
     }
 
-    public static String URLEncode(String url) {
-        return URLEncode(url, CHARSET_UTF8);
+    public static String UrlEncode(String url) {
+        return UrlEncode(url, CHARSET_UTF8);
     }
 
-    public static String URLDecode(String url, String charset) {
+    public static String UrlDecode(String url, String charset) {
         if (url != null) {
             try {
                 return URLDecoder.decode(url, charset);
@@ -131,8 +135,8 @@ public class HttpUtil {
         return "";
     }
 
-    public static String URLDecode(String url) {
-        return URLDecode(url, CHARSET_UTF8);
+    public static String UrlDecode(String url) {
+        return UrlDecode(url, CHARSET_UTF8);
     }
 
     public static String getRequestedUrl(HttpServletRequest request) {
@@ -215,7 +219,7 @@ public class HttpUtil {
                         value = "";
                     }
 
-                    returnValue.put(key, URLDecode(value));
+                    returnValue.put(key, UrlDecode(value));
                 }
             }
         }
@@ -233,7 +237,7 @@ public class HttpUtil {
             returnValue.append(entry.getKey()).append("=");
 
             if (entry.getValue() != null) {
-                returnValue.append(URLEncode(entry.getValue()));
+                returnValue.append(UrlEncode(entry.getValue()));
             }
             i++;
         }

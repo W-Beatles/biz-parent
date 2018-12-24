@@ -24,6 +24,9 @@ public abstract class AbstractMethodPrintAspect {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    /**
+     * 切点配置
+     */
     public abstract void methodPrint();
 
     @Before(value = "methodPrint() && @annotation(printAnnotation)")
@@ -54,9 +57,9 @@ public abstract class AbstractMethodPrintAspect {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
 
             if (printAnnotation.isPrintReturn()) {
-                String argsStr = this.getPrintReturnStr(result, printAnnotation);
+                String returnStr = this.getPrintReturnStr(result, printAnnotation);
 
-                log.debug("[{}] {} 结束调用，返回值: {}", applicationName, methodName, argsStr);
+                log.debug("[{}] {} 结束调用，返回值: {}", applicationName, methodName, returnStr);
             }
 
             // 打印调用耗时
@@ -70,7 +73,9 @@ public abstract class AbstractMethodPrintAspect {
     @AfterThrowing(value = "methodPrint() && @annotation(printAnnotation)", throwing = "exception")
     public void doAfterThrowingAdvice(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation, Throwable exception) {
         if (log.isDebugEnabled() && printAnnotation.isPrintException()) {
-            log.error("[{}] {} 调用异常: {}", applicationName, joinPoint.getSignature(), exception);
+            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
+
+            log.error("[{}] {} 调用异常:", applicationName, methodName, exception);
         }
     }
 

@@ -1,4 +1,4 @@
-package cn.waynechu.common.facade.model;
+package cn.waynechu.common.web.model;
 
 import io.swagger.annotations.ApiModel;
 

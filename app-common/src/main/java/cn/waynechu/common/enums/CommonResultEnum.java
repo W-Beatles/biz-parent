@@ -4,7 +4,7 @@ package cn.waynechu.common.enums;
  * @author zhuwei
  * @date 2018/11/6 18:49
  */
-public enum ResultEnum implements BaseEnum {
+public enum CommonResultEnum implements IBaseEnum {
     /**
      * 响应枚举
      */
@@ -18,7 +18,7 @@ public enum ResultEnum implements BaseEnum {
     private String name;
     private String desc;
 
-    ResultEnum(int code, String name, String desc) {
+    CommonResultEnum(int code, String name, String desc) {
         this.code = code;
         this.name = name;
         this.desc = desc;
@@ -40,20 +40,20 @@ public enum ResultEnum implements BaseEnum {
     }
 
     @Override
-    public BaseEnum getByCode(int code) {
-        for (ResultEnum resultEnum : values()) {
-            if (resultEnum.getCode() == code) {
-                return resultEnum;
+    public IBaseEnum getByCode(int code) {
+        for (CommonResultEnum baseResultEnum : values()) {
+            if (baseResultEnum.getCode() == code) {
+                return baseResultEnum;
             }
         }
         return null;
     }
 
     @Override
-    public BaseEnum getByName(String name) {
-        for (ResultEnum resultEnum : values()) {
-            if (resultEnum.getName().equals(name)) {
-                return resultEnum;
+    public IBaseEnum getByName(String name) {
+        for (CommonResultEnum baseResultEnum : values()) {
+            if (baseResultEnum.getName().equals(name)) {
+                return baseResultEnum;
             }
         }
         return null;

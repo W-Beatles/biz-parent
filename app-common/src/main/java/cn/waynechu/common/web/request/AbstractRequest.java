@@ -1,4 +1,4 @@
-package cn.waynechu.common.facade.request;
+package cn.waynechu.common.web.request;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package cn.waynechu.common.facade.model;
+package cn.waynechu.common.web.model;
 
 import cn.waynechu.common.page.Pagination;
 import io.swagger.annotations.ApiModel;

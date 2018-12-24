@@ -4,7 +4,7 @@ package cn.waynechu.common.enums;
  * @author zhuwei
  * @date 2018/11/6 17:31
  */
-public interface BaseEnum {
+public interface IBaseEnum {
     /**
      * 获取枚举值
      *
@@ -32,7 +32,7 @@ public interface BaseEnum {
      * @param code code
      * @return 枚举对象
      */
-    BaseEnum getByCode(int code);
+    IBaseEnum getByCode(int code);
 
     /**
      * 通过name获取枚举对象
@@ -40,5 +40,5 @@ public interface BaseEnum {
      * @param name name
      * @return 枚举对象
      */
-    BaseEnum getByName(String name);
+    IBaseEnum getByName(String name);
 }

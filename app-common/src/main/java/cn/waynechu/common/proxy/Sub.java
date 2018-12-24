@@ -1,7 +1,7 @@
 package cn.waynechu.common.proxy;
 
 import cn.waynechu.common.annotation.MethodPrintAnnotation;
-import cn.waynechu.common.exception.BaseException;
+import cn.waynechu.common.web.Result;
 
 /**
  * @author zhuwei
@@ -9,6 +9,12 @@ import cn.waynechu.common.exception.BaseException;
  */
 public interface Sub {
 
-    @MethodPrintAnnotation
-    BaseException print(String arg);
+    /**
+     * 打印方法
+     *
+     * @param str str
+     * @return Result
+     */
+    @MethodPrintAnnotation(isClassFullName = true, isFormat = true)
+    Result print(String str);
 }

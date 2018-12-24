@@ -9,6 +9,10 @@ import java.util.StringTokenizer;
  */
 public class IpUtil {
 
+    private IpUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     private static final String[] HEADERS_TO_TRY = {
             "X-Forwarded-For",
             "Proxy-Client-IP",
@@ -22,7 +26,6 @@ public class IpUtil {
             "HTTP_VIA",
             "REMOTE_ADDR",
             "X-Real-IP"};
-
 
     /***
      * 获取客户端ip地址(可以穿透代理)

@@ -1,21 +1,22 @@
-package cn.waynechu.common.enums;
+package cn.waynechu.renting.facade.enums;
+
+import cn.waynechu.common.enums.IBaseEnum;
 
 /**
  * @author zhuwei
- * @date 2018/11/6 17:24
+ * @date 2018/12/24 9:35
  */
-public enum ValidStatusEnum implements IBaseEnum {
+public enum ErrorCodeEnum implements IBaseEnum {
     /**
-     * 通用 有效/无效 状态枚举
+     * 错误码
      */
-    VALID(0, "valid", "有效"),
-    INVALID(1, "invalid", "无效");
+    HOUSE_NOT_EXIST(11000, "HOUSE_NOT_EXIST", "房源不存在");
 
     private int code;
     private String name;
     private String desc;
 
-    ValidStatusEnum(int code, String name, String desc) {
+    ErrorCodeEnum(int code, String name, String desc) {
         this.code = code;
         this.name = name;
         this.desc = desc;
@@ -38,9 +39,9 @@ public enum ValidStatusEnum implements IBaseEnum {
 
     @Override
     public IBaseEnum getByCode(int code) {
-        for (ValidStatusEnum validStatusEnum : values()) {
-            if (validStatusEnum.getCode() == code) {
-                return validStatusEnum;
+        for (ErrorCodeEnum errorCodeEnum : values()) {
+            if (errorCodeEnum.getCode() == code) {
+                return errorCodeEnum;
             }
         }
         return null;
@@ -48,9 +49,9 @@ public enum ValidStatusEnum implements IBaseEnum {
 
     @Override
     public IBaseEnum getByName(String name) {
-        for (ValidStatusEnum validStatusEnum : values()) {
-            if (validStatusEnum.getName().equals(name)) {
-                return validStatusEnum;
+        for (ErrorCodeEnum errorCodeEnum : values()) {
+            if (errorCodeEnum.getName().equals(name)) {
+                return errorCodeEnum;
             }
         }
         return null;

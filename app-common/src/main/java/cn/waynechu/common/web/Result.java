@@ -1,6 +1,6 @@
-package cn.waynechu.common.facade;
+package cn.waynechu.common.web;
 
-import cn.waynechu.common.enums.ResultEnum;
+import cn.waynechu.common.enums.CommonResultEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -48,27 +48,27 @@ public class Result<T> implements Serializable {
     }
 
     public static Result success() {
-        return new Result<>(ResultEnum.SUCCESS.getCode());
+        return new Result<>(CommonResultEnum.SUCCESS.getCode());
     }
 
     public static <T> Result<T> success(T data) {
-        return new Result<>(ResultEnum.SUCCESS.getCode(), data);
+        return new Result<>(CommonResultEnum.SUCCESS.getCode(), data);
     }
 
     public static Result successWithMessage(String message) {
-        return new Result<>(ResultEnum.SUCCESS.getCode(), message);
+        return new Result<>(CommonResultEnum.SUCCESS.getCode(), message);
     }
 
     public static <T> Result<T> successWithData(String message, T data) {
-        return new Result<>(ResultEnum.SUCCESS.getCode(), message, data);
+        return new Result<>(CommonResultEnum.SUCCESS.getCode(), message, data);
     }
 
     public static <T> Result<T> error() {
-        return new Result<>(ResultEnum.SYSTEM_ERROR.getCode(), ResultEnum.SYSTEM_ERROR.getDesc());
+        return new Result<>(CommonResultEnum.SYSTEM_ERROR.getCode(), CommonResultEnum.SYSTEM_ERROR.getDesc());
     }
 
     public static <T> Result<T> error(String errorMessage) {
-        return new Result<>(ResultEnum.SYSTEM_ERROR.getCode(), errorMessage);
+        return new Result<>(CommonResultEnum.SYSTEM_ERROR.getCode(), errorMessage);
     }
 
     public static <T> Result<T> error(int errorCode, String errorMessage) {

@@ -1,7 +1,7 @@
 package cn.waynechu.renting.web.controller;
 
 import cn.waynechu.common.annotation.MethodPrintAnnotation;
-import cn.waynechu.common.facade.Result;
+import cn.waynechu.common.web.Result;
 import cn.waynechu.renting.core.service.HouseService;
 import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.facade.model.ModelHouse;
@@ -21,7 +21,7 @@ public class HouseController {
     private HouseService houseService;
 
     @GetMapping("/{id}")
-    @MethodPrintAnnotation
+    @MethodPrintAnnotation(isClassFullName = true)
     public Result<ModelHouse> getById(@PathVariable Long id, @RequestParam String city) {
         return Result.success(houseService.getById(id));
     }
