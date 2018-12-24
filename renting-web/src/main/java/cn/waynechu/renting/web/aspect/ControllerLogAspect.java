@@ -1,6 +1,6 @@
 package cn.waynechu.renting.web.aspect;
 
-import cn.waynechu.common.aspect.AbstractMethodPrintAspect;
+import cn.waynechu.webcommon.aspect.AbstractMethodPrintAspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package cn.waynechu.common.web.request;
+package cn.waynechu.webcommon.facade.request;
 
 import cn.waynechu.common.page.Pagination;
 import com.fasterxml.jackson.annotation.JsonIgnore;

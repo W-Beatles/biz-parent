@@ -25,6 +25,11 @@
     <dependencies>
         <dependency>
             <groupId>cn.waynechu</groupId>
+            <artifactId>app-web-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
             <artifactId>renting-domain</artifactId>
         </dependency>
 

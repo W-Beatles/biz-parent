@@ -1,6 +1,6 @@
 package cn.waynechu.renting.facade.model;
 
-import cn.waynechu.common.web.model.AbstractModel;
+import cn.waynechu.webcommon.facade.model.AbstractModel;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

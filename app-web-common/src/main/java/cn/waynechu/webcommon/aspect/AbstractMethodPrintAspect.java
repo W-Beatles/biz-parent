@@ -1,4 +1,4 @@
-package cn.waynechu.common.aspect;
+package cn.waynechu.webcommon.aspect;
 
 import cn.waynechu.common.annotation.MethodPrintAnnotation;
 import cn.waynechu.common.util.JsonBinder;

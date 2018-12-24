@@ -2,6 +2,7 @@ package cn.waynechu.renting.web.interceptor;
 
 
 import cn.waynechu.common.bean.BeanUtil;
+import cn.waynechu.webcommon.session.SessionHolder;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;

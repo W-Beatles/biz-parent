@@ -1,7 +1,6 @@
 package cn.waynechu.common.proxy;
 
 import cn.waynechu.common.annotation.MethodPrintAnnotation;
-import cn.waynechu.common.web.Result;
 
 /**
  * @author zhuwei
@@ -16,5 +15,5 @@ public interface Sub {
      * @return Result
      */
     @MethodPrintAnnotation(isClassFullName = true, isFormat = true)
-    Result print(String str);
+    String print(String str);
 }

@@ -63,6 +63,12 @@
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
+                <artifactId>app-web-common</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>app-boot-starter-dynamic-datasource</artifactId>
                 <version>${app.version}</version>
             </dependency>
@@ -204,6 +210,7 @@
 
     <modules>
         <module>app-common</module>
+        <module>app-web-common</module>
         <module>app-boot-starter-dynamic-datasource</module>
         <module>renting-integration-dal</module>
         <module>renting-domain</module>

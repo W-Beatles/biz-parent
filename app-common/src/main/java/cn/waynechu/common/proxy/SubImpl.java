@@ -1,6 +1,5 @@
 package cn.waynechu.common.proxy;
 
-import cn.waynechu.common.web.Result;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,9 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 public class SubImpl implements Sub {
 
     @Override
-    public Result print(String str) {
+    public String print(String str) {
         log.info("call print method, arg is {}", str);
-        return Result.success();
+        return "print";
     }
 
     public static void main(String[] args) {

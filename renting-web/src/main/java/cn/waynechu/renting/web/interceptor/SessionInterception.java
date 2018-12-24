@@ -1,5 +1,7 @@
 package cn.waynechu.renting.web.interceptor;
 
+import cn.waynechu.webcommon.session.AccountSession;
+import cn.waynechu.webcommon.session.SessionHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +21,7 @@ public class SessionInterception implements HandlerInterceptor {
         if (accountSession == null) {
             // TODO: 2018/12/24 get from db
             accountSession = new AccountSession();
-            accountSession.setUserName("waynechu");
+            accountSession.setUserName("admin");
 
             SessionHolder.setAccountSession(accountSession);
         }

@@ -1,4 +1,4 @@
-package cn.waynechu.renting.web.interceptor;
+package cn.waynechu.webcommon.session;
 
 /**
  * @author zhuwei
