@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.facade;
+package cn.waynechu.webcommon.web;
 
 import cn.waynechu.common.enums.CommonResultEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;

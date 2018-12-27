@@ -19,11 +19,13 @@
     </parent>
 
     <properties>
-        <app.version>0.0.1-SNAPSHOT</app.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.test.skip>true</maven.test.skip>
+
+        <app.version>0.0.1-SNAPSHOT</app.version>
+        <rabbitmq-logback-appender.version>1.0.2017080801</rabbitmq-logback-appender.version>
         <tuhu.boot.starter.dynamic.datasource.version>1.0.2-SNAPSHOT</tuhu.boot.starter.dynamic.datasource.version>
 
         <poi.version>3.9</poi.version>
@@ -71,6 +73,12 @@
                 <groupId>cn.waynechu</groupId>
                 <artifactId>app-boot-starter-dynamic-datasource</artifactId>
                 <version>${app.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>rabbitmq-logback-appender</artifactId>
+                <version>${rabbitmq-logback-appender.version}</version>
             </dependency>
 
             <dependency>
@@ -212,6 +220,8 @@
         <module>app-common</module>
         <module>app-web-common</module>
         <module>app-boot-starter-dynamic-datasource</module>
+        <module>rabbitmq-logback-appender</module>
+
         <module>renting-integration-dal</module>
         <module>renting-domain</module>
         <module>renting-facade</module>

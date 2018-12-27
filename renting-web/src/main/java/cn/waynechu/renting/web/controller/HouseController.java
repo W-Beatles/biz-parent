@@ -5,7 +5,7 @@ import cn.waynechu.renting.core.service.HouseService;
 import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.facade.model.ModelHouse;
 import cn.waynechu.webcommon.AbstractController;
-import cn.waynechu.webcommon.facade.Result;
+import cn.waynechu.webcommon.web.Result;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

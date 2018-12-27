@@ -31,18 +31,16 @@ public abstract class AbstractMethodPrintAspect {
 
     @Before(value = "methodPrint() && @annotation(printAnnotation)")
     public void doBefore(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
-        if (log.isDebugEnabled()) {
-            if (printAnnotation.isPrintParameter()) {
-                String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-                String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
+        if (printAnnotation.isPrintParameter()) {
+            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
+            String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
 
-                log.info("[{}] {} 开始调用, 参数: {}", applicationName, methodName, argsStr);
-            }
+            log.info("[{}] {} 开始调用, 参数: {}", applicationName, methodName, argsStr);
+        }
 
-            // 记录调用开始时间
-            if (printAnnotation.isPrintCostTime()) {
-                threadLocal.set(System.currentTimeMillis());
-            }
+        // 记录调用开始时间
+        if (printAnnotation.isPrintCostTime()) {
+            threadLocal.set(System.currentTimeMillis());
         }
     }
 
@@ -53,26 +51,24 @@ public abstract class AbstractMethodPrintAspect {
 
     @AfterReturning(value = "methodPrint() && @annotation(printAnnotation)", returning = "result")
     public void doAfterReturning(JoinPoint joinPoint, Object result, MethodPrintAnnotation printAnnotation) {
-        if (log.isDebugEnabled()) {
-            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
+        String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
 
-            if (printAnnotation.isPrintReturn()) {
-                String returnStr = this.getPrintReturnStr(result, printAnnotation);
+        if (printAnnotation.isPrintReturn()) {
+            String returnStr = this.getPrintReturnStr(result, printAnnotation);
 
-                log.debug("[{}] {} 结束调用，返回值: {}", applicationName, methodName, returnStr);
-            }
+            log.info("[{}] {} 结束调用，返回值: {}", applicationName, methodName, returnStr);
+        }
 
-            // 打印调用耗时
-            if (printAnnotation.isPrintCostTime()) {
-                log.debug("[{}] {} 调用耗时: {}ms", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
-                threadLocal.remove();
-            }
+        // 打印调用耗时
+        if (printAnnotation.isPrintCostTime()) {
+            log.info("[{}] {} 调用耗时: {}ms", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
+            threadLocal.remove();
         }
     }
 
     @AfterThrowing(value = "methodPrint() && @annotation(printAnnotation)", throwing = "exception")
     public void doAfterThrowingAdvice(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation, Throwable exception) {
-        if (log.isDebugEnabled() && printAnnotation.isPrintException()) {
+        if (printAnnotation.isPrintException()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
 
             log.error("[{}] {} 调用异常:", applicationName, methodName, exception);
