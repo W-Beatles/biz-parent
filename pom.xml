@@ -25,8 +25,9 @@
         <maven.test.skip>true</maven.test.skip>
 
         <app.version>0.0.1-SNAPSHOT</app.version>
-        <rabbitmq-logback-appender.version>1.0.2017080801</rabbitmq-logback-appender.version>
-        <tuhu.boot.starter.dynamic.datasource.version>1.0.2-SNAPSHOT</tuhu.boot.starter.dynamic.datasource.version>
+        <tuhu-boot-starter-common.version>1.0.2018082802</tuhu-boot-starter-common.version>
+        <tuhu-boot-starter-dynamic-datasource.version>1.0.2-SNAPSHOT</tuhu-boot-starter-dynamic-datasource.version>
+        <rabbitmq-logback-appender.version>1.0.2018112101</rabbitmq-logback-appender.version>
 
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>
@@ -56,7 +57,38 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- star project-->
+            <dependency>
+                <groupId>com.tuhu</groupId>
+                <artifactId>tuhu-boot-starter-common</artifactId>
+                <version>${tuhu-boot-starter-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tuhu</groupId>
+                <artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>
+                <version>${tuhu-boot-starter-dynamic-datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tuhu.finance</groupId>
+                <artifactId>rabbitmq-logback-appender</artifactId>
+                <version>${rabbitmq-logback-appender.version}</version>
+            </dependency>
+
             <!-- 项目版本 start -->
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>app-boot-starter-common</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>cn.waynechu</groupId>
                 <artifactId>app-common</artifactId>
@@ -78,19 +110,7 @@
             <dependency>
                 <groupId>cn.waynechu</groupId>
                 <artifactId>rabbitmq-logback-appender</artifactId>
-                <version>${rabbitmq-logback-appender.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.tuhu</groupId>
-                <artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>
-                <version>${tuhu.boot.starter.dynamic.datasource.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <version>${app.version}</version>
             </dependency>
 
             <dependency>
@@ -219,6 +239,7 @@
     <modules>
         <module>app-common</module>
         <module>app-web-common</module>
+        <module>app-boot-starter-common</module>
         <module>app-boot-starter-dynamic-datasource</module>
         <module>rabbitmq-logback-appender</module>
 

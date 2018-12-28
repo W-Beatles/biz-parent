@@ -1,7 +1,7 @@
 package cn.waynechu.renting.web.controller;
 
 import cn.waynechu.common.annotation.MethodPrintAnnotation;
-import cn.waynechu.renting.core.service.HouseService;
+import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.facade.model.ModelHouse;
 import cn.waynechu.webcommon.AbstractController;
@@ -42,7 +42,7 @@ public class HouseController extends AbstractController {
     @DeleteMapping("/{id}")
     @MethodPrintAnnotation
     public Result<Boolean> deleteById(@PathVariable Long id) {
-        return Result.success(houseService.deleteById(id));
+        return Result.success(houseService.removeById(id));
     }
 
     @PostMapping("/search")

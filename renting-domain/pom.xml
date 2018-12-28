@@ -25,7 +25,12 @@
     <dependencies>
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-common</artifactId>
+            <artifactId>app-boot-starter-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>app-web-common</artifactId>
         </dependency>
 
         <dependency>
@@ -43,9 +48,6 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-        </dependency>
+
     </dependencies>
 </project>

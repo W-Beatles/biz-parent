@@ -1,68 +1,54 @@
 package cn.waynechu.renting.core.service.impl;
 
-import cn.waynechu.common.bean.BeanUtil;
-import cn.waynechu.renting.core.service.HouseService;
+import cn.waynechu.renting.core.convert.HouseConvert;
+import cn.waynechu.renting.core.repository.HouseRepository;
 import cn.waynechu.renting.dal.entity.House;
-import cn.waynechu.renting.dal.entity.HouseExample;
-import cn.waynechu.renting.dal.mapper.HouseMapper;
-import cn.waynechu.renting.facade.model.ModelHouse;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import cn.waynechu.renting.facade.dto.HouseDTO;
+import cn.waynechu.renting.facade.service.HouseService;
+import cn.waynechu.webcommon.page.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * @author zhuwei
  * @date 2018/11/14 16:33
  */
 @Slf4j
-@Service
+@Service("houseService")
 public class HouseServiceImpl implements HouseService {
 
     @Autowired
-    private HouseMapper houseMapper;
+    private HouseRepository houseRepository;
 
     @Override
-    public ModelHouse getById(Long id) {
-        return BeanUtil.beanTransfer(houseMapper.selectByPrimaryKey(id), ModelHouse.class);
+    public HouseDTO getById(Long id) {
+
+        return HouseConvert.convertHouseDTO(houseRepository.getById(id));
     }
 
     @Override
-    public boolean create(House house) {
-        return houseMapper.insertSelective(house) > 0;
+    public boolean create(HouseDTO house) {
+        return false;
     }
 
     @Override
-    public boolean update(House house) {
-        return houseMapper.updateByPrimaryKeySelective(house) > 0;
+    public boolean update(HouseDTO houseDTO) {
+        return false;
     }
 
     @Override
-    public boolean deleteById(Long id) {
-        House house = new House();
-        house.setId(id);
-        house.setIsDeleted(true);
-        return houseMapper.updateByPrimaryKeySelective(house) > 0;
+    public boolean removeById(Long id) {
+        return false;
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean copyByIdTransition(Long id) {
-        House selectHouse = houseMapper.selectByPrimaryKey(id);
-        selectHouse.setId(null);
-        return houseMapper.insert(selectHouse) > 0;
+        return false;
     }
 
     @Override
-    public PageInfo<House> search(House house, Integer pageNum, Integer pageSize) {
-        HouseExample example = BeanUtil.beanTransfer(house, HouseExample.class);
-
-        PageHelper.startPage(pageNum, pageSize);
-        List<House> houses = houseMapper.selectByExample(example);
-        return new PageInfo<>(houses);
+    public PageInfo<HouseDTO> search(HouseDTO houseDTO, int pageNum, int pageSize) {
+        return null;
     }
 }

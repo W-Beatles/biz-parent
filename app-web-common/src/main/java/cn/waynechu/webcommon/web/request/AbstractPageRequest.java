@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.web.request;
 
-import cn.waynechu.common.page.Pagination;
+import cn.waynechu.webcommon.page.Pagination;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

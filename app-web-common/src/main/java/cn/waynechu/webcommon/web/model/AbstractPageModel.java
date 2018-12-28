@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.web.model;
 
-import cn.waynechu.common.page.Pagination;
+import cn.waynechu.webcommon.page.Pagination;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

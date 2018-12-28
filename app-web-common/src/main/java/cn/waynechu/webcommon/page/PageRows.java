@@ -1,4 +1,4 @@
-package cn.waynechu.common.page;
+package cn.waynechu.webcommon.page;
 
 import cn.waynechu.common.util.JsonBinder;
 
@@ -10,6 +10,7 @@ import java.util.List;
  * @author zhuwei
  * @date 2018/11/7 11:43
  */
+@Deprecated
 public class PageRows<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     private Pagination page;
