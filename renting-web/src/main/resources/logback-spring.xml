@@ -22,16 +22,14 @@
                     source="elk.username" defaultValue="guest"/>
     <springProperty scope="context" name="elkPassword"
                     source="elk.password" defaultValue="guest"/>
+    <springProperty scope="context" name="elkApplicationId"
+                    source="elk.applicationId" defaultValue="anonymous"/>
     <springProperty scope="context" name="elkVirtualHost"
                     source="elk.virtualHost" defaultValue="/"/>
     <springProperty scope="context" name="elkExchange"
                     source="elk.exchange" defaultValue="topic.loggingExchange"/>
-    <springProperty scope="context" name="elkQueue" source="elk.queue"
-                    defaultValue="logback"/>
     <springProperty scope="context" name="elkRoutingKey"
-                    source="elk.routingKey" defaultValue="logback"/>
-    <springProperty scope="context" name="elkApplicationId"
-                    source="elk.applicationId" defaultValue="anonymous"/>
+                    source="elk.routingKey" defaultValue="logback.#"/>
     <springProperty scope="context" name="elkClientProvidedName"
                     source="elk.clientProvidedName" defaultValue="UNDEFINED"/>
 
@@ -85,57 +83,32 @@
         <appender-ref ref="INFO"/>
     </appender>
 
+
     <if condition='property("elkEnable").contains("true")'>
         <then>
-            <appender name="ELK" class="cn.waynechu.appender.rabbitmq.logback.RabbitmqAppender">
+            <appender name="ELK" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                     <level>INFO</level>
                 </filter>
-                <!--<filter class="com.tuhu.finance.utils.common.filter.ELKSwitchFilter"/>-->
                 <host>${elkHost}</host>
                 <port>${elkPort}</port>
                 <username>${elkUsername}</username>
                 <password>${elkPassword}</password>
+                <applicationId>${applicationId}</applicationId>
                 <virtualHost>${elkVirtualHost}</virtualHost>
-                <exchange>${elkExchange}</exchange>
-                <queue>${elkQueue}</queue>
-                <routingKey>${elkRoutingKey}</routingKey>
-                <type>topic</type>
-                <exchangeDurable>true</exchangeDurable>
-                <queueDurable>true</queueDurable>
-                <applicationId>${elkApplicationId}</applicationId>
-                <clientProvidedName>${elkClientProvidedName}</clientProvidedName>
+                <exchangeName>${elkExchange}</exchangeName>
+                <exchangeType>topic</exchangeType>
+                <declareExchange>true</declareExchange>
+                <routingKeyPattern>${elkRoutingKey}</routingKeyPattern>
+                <autoDelete>false</autoDelete>
+                <generateId>true</generateId>
+                <durable>true</durable>
+                <deliveryMode>PERSISTENT</deliveryMode>
+                <charset>${charset}</charset>
+                <layout class="cn.waynechu.appender.rabbitmq.logback.RabbitmqLayout"/>
             </appender>
         </then>
     </if>
-
-    <!--<if condition='property("elkEnable").contains("true")'>-->
-    <!--<then>-->
-    <!--<appender name="ELK" class="org.springframework.amqp.rabbit.logback.AmqpAppender">-->
-    <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
-    <!--<level>INFO</level>-->
-    <!--</filter>-->
-    <!--<host>${elkHost}</host>-->
-    <!--<port>${elkPort}</port>-->
-    <!--<username>${elkUsername}</username>-->
-    <!--<password>${elkPassword}</password>-->
-    <!--<applicationId>${applicationId}</applicationId>-->
-    <!--<virtualHost>${elkVirtualHost}</virtualHost>-->
-    <!--<exchangeName>${elkExchange}</exchangeName>-->
-    <!--<exchangeType>topic</exchangeType>-->
-    <!--<declareExchange>true</declareExchange>-->
-    <!--<routingKeyPattern>${elkRoutingKey}</routingKeyPattern>-->
-    <!--<autoDelete>false</autoDelete>-->
-    <!--<generateId>true</generateId>-->
-    <!--<durable>true</durable>-->
-    <!--<deliveryMode>PERSISTENT</deliveryMode>-->
-    <!--<charset>${charset}</charset>-->
-    <!--<layout>-->
-    <!--<pattern>${pattern}</pattern>-->
-    <!--</layout>-->
-    <!--</appender>-->
-    <!--</then>-->
-    <!--</if>-->
 
     <!--<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
     <!--<destination>localhost:5044</destination>-->
