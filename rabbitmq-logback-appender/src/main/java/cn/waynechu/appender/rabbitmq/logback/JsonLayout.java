@@ -1,9 +1,8 @@
-package cn.waynechu.logback.appender.rabbitmq;
+package cn.waynechu.appender.rabbitmq.logback;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
-import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +18,7 @@ import java.util.List;
  * @date 2018/12/27 18:52
  */
 @Slf4j
-public class JSONLayout {
+public class JsonLayout {
 
     protected SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
@@ -27,39 +26,31 @@ public class JSONLayout {
 
     protected String localAddress = "";
 
-    public JSONLayout() {
-        // TODO Auto-generated constructor stub
+    public JsonLayout() {
         try {
             InetAddress address = InetAddress.getLocalHost();
             machineName = address.getHostName();
             localAddress = address.getHostAddress();
         } catch (UnknownHostException e) {
-            log.error("JSONLayout��ȡ������Ϣ�쳣", e);
+            log.error("JsonLayout UnknownHost", e);
         }
     }
 
     /**
      * format a given LoggingEvent to a string, in this case JSONified string
      *
-     * @param iLoggingEvent
+     * @param iLoggingEvent iLoggingEvent
      * @return String representation of LoggingEvent
      */
     public String format(ILoggingEvent iLoggingEvent) {
         JSONObject root = new JSONObject();
 
-        try {
-            //== write MDC fields
-            writeMdc(root, iLoggingEvent);
-
-            //== write basic fields
-            writeBasic(root, iLoggingEvent);
-
-            //== write throwable fields
-            writeThrowable(root, iLoggingEvent);
-
-        } catch (JSONException e) {
-            log.error("JSONLayout��ʽ���쳣", e);
-        }
+        //== write MDC fields
+        writeMdc(root, iLoggingEvent);
+        //== write basic fields
+        writeBasic(root, iLoggingEvent);
+        //== write throwable fields
+        writeThrowable(root, iLoggingEvent);
 
         return root.toString();
     }
@@ -67,11 +58,10 @@ public class JSONLayout {
     /**
      * Converts LoggingEvent MDCProperties to JSON object
      *
-     * @param json
-     * @param event
-     * @throws JSONException
+     * @param json  json
+     * @param event event
      */
-    protected void writeMdc(JSONObject json, ILoggingEvent event) throws JSONException {
+    protected void writeMdc(JSONObject json, ILoggingEvent event) {
         if (event.getMDCPropertyMap() != null) {
             json.putAll(event.getMDCPropertyMap());
         }
@@ -80,20 +70,20 @@ public class JSONLayout {
     /**
      * Converts LoggingEvent Throwable to JSON object
      *
-     * @param json
-     * @param event
-     * @throws JSONException
+     * @param json  json
+     * @param event event
      */
-    protected void writeThrowable(JSONObject json, ILoggingEvent event) throws JSONException {
+    protected void writeThrowable(JSONObject json, ILoggingEvent event) {
         IThrowableProxy iThrowableProxy = event.getThrowableProxy();
-        if (iThrowableProxy != null && iThrowableProxy instanceof ThrowableProxy) {
+        if (iThrowableProxy instanceof ThrowableProxy) {
             ThrowableProxy throwableProxy = (ThrowableProxy) iThrowableProxy;
             Throwable t = throwableProxy.getThrowable();
             JSONObject throwable = new JSONObject();
 
             throwable.put("message", t.getMessage());
             throwable.put("className", t.getClass().getCanonicalName());
-            List<JSONObject> traceObjects = new ArrayList<JSONObject>();
+
+            List<JSONObject> traceObjects = new ArrayList<>();
             for (StackTraceElement ste : t.getStackTrace()) {
                 JSONObject element = new JSONObject();
                 element.put("class", ste.getClassName());
@@ -102,27 +92,24 @@ public class JSONLayout {
                 element.put("file", ste.getFileName());
                 traceObjects.add(element);
             }
-
             json.put("stackTrace", traceObjects);
             json.put("throwable", throwable);
         }
     }
 
-
     /**
-     * Converts basic LogginEvent properties to JSON object
+     * Converts basic LoggingEvent properties to JSON object
      *
-     * @param json
-     * @param event
-     * @throws JSONException
+     * @param json  json
+     * @param event event
      */
-    protected void writeBasic(JSONObject json, ILoggingEvent event) throws JSONException {
+    protected void writeBasic(JSONObject json, ILoggingEvent event) {
         json.put("machineName", machineName);
         json.put("localAddress", localAddress);
         json.put("threadName", event.getThreadName());
         json.put("level", event.getLevel().toString());
         json.put("time", dateFormat.format(new Date(event.getTimeStamp())));
         json.put("message", event.getFormattedMessage());
-        json.put("log", event.getLoggerName());
+        json.put("logger", event.getLoggerName());
     }
 }

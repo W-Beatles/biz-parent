@@ -23,15 +23,15 @@
     <springProperty scope="context" name="elkPassword"
                     source="elk.password" defaultValue="guest"/>
     <springProperty scope="context" name="elkVirtualHost"
-                    source="elk.virtualHost" defaultValue="/dev"/>
+                    source="elk.virtualHost" defaultValue="/"/>
     <springProperty scope="context" name="elkExchange"
                     source="elk.exchange" defaultValue="topic.loggingExchange"/>
     <springProperty scope="context" name="elkQueue" source="elk.queue"
                     defaultValue="logback"/>
     <springProperty scope="context" name="elkRoutingKey"
-                    source="elk.routingKey" defaultValue=""/>
-    <springProperty scope="context" name="elkIdentifier"
-                    source="elk.identifier" defaultValue="waynechu"/>
+                    source="elk.routingKey" defaultValue="logback"/>
+    <springProperty scope="context" name="elkApplicationId"
+                    source="elk.applicationId" defaultValue="anonymous"/>
     <springProperty scope="context" name="elkClientProvidedName"
                     source="elk.clientProvidedName" defaultValue="UNDEFINED"/>
 
@@ -87,7 +87,7 @@
 
     <if condition='property("elkEnable").contains("true")'>
         <then>
-            <appender name="ELK" class="cn.waynechu.logback.appender.rabbitmq.RabbitMQAppender">
+            <appender name="ELK" class="cn.waynechu.appender.rabbitmq.logback.RabbitmqAppender">
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                     <level>INFO</level>
                 </filter>
@@ -103,9 +103,8 @@
                 <type>topic</type>
                 <exchangeDurable>true</exchangeDurable>
                 <queueDurable>true</queueDurable>
-                <identifier>${elkIdentifier}</identifier>
+                <applicationId>${elkApplicationId}</applicationId>
                 <clientProvidedName>${elkClientProvidedName}</clientProvidedName>
-                <layout class="cn.waynechu.logback.appender.rabbitmq.JSONLayout"/>
             </appender>
         </then>
     </if>
