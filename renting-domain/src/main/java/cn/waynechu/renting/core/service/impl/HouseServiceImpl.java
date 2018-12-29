@@ -1,5 +1,6 @@
 package cn.waynechu.renting.core.service.impl;
 
+import cn.waynechu.app.boot.starter.common.util.RedisCache;
 import cn.waynechu.renting.core.convert.HouseConvert;
 import cn.waynechu.renting.core.repository.HouseRepository;
 import cn.waynechu.renting.dal.entity.House;
@@ -21,13 +22,22 @@ public class HouseServiceImpl implements HouseService {
     @Autowired
     private HouseRepository houseRepository;
 
+    @Autowired
+    private RedisCache redisCache;
+
     @Override
     public HouseDTO getById(Long id) {
         HouseDTO returnValue = null;
 
-        House house = houseRepository.getById(id);
-        if (house != null) {
-            returnValue = HouseConvert.convertHouseDTO(house);
+        HouseDTO houseDTO = redisCache.get(String.valueOf(id), HouseDTO.class);
+        if (houseDTO == null) {
+            House house = houseRepository.getById(id);
+            if (house != null) {
+                returnValue = HouseConvert.convertHouseDTO(house);
+            }
+            redisCache.set(String.valueOf(id), returnValue, 3600);
+        } else {
+            return houseDTO;
         }
         return returnValue;
     }

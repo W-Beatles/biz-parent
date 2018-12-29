@@ -1,6 +1,6 @@
 package cn.waynechu.renting.web.controller;
 
-import cn.waynechu.common.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.request.HouseCreateReq;
 import cn.waynechu.renting.facade.request.HouseSearchReq;

@@ -1,4 +1,4 @@
-package cn.waynechu.common.proxy;
+package cn.waynechu.webcommon.proxy;
 
 import lombok.extern.slf4j.Slf4j;
 

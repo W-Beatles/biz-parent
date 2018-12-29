@@ -1,6 +1,6 @@
 package cn.waynechu.renting.core.repository;
 
-import cn.waynechu.common.bean.BeanUtil;
+import cn.waynechu.webcommon.bean.BeanUtil;
 import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.dal.entity.HouseExample;
 import cn.waynechu.renting.dal.mapper.HouseMapper;

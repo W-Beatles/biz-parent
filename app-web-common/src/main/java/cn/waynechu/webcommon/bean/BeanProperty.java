@@ -1,4 +1,4 @@
-package cn.waynechu.common.bean;
+package cn.waynechu.webcommon.bean;
 
 import java.lang.reflect.Method;
 

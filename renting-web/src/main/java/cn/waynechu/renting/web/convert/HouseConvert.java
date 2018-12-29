@@ -1,6 +1,6 @@
 package cn.waynechu.renting.web.convert;
 
-import cn.waynechu.common.bean.BeanUtil;
+import cn.waynechu.webcommon.bean.BeanUtil;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.request.HouseCreateReq;
 import cn.waynechu.renting.facade.vo.HouseVO;

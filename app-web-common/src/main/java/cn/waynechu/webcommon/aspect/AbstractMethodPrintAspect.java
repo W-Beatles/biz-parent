@@ -1,7 +1,7 @@
 package cn.waynechu.webcommon.aspect;
 
-import cn.waynechu.common.annotation.MethodPrintAnnotation;
-import cn.waynechu.common.util.JsonBinder;
+import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.util.JsonBinder;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

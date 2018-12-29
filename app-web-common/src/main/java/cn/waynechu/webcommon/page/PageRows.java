@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.page;
 
-import cn.waynechu.common.util.JsonBinder;
+import cn.waynechu.webcommon.util.JsonBinder;
 
 import java.io.Serializable;
 import java.util.ArrayList;

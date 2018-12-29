@@ -1,10 +1,8 @@
-package cn.waynechu.common.bean;
+package cn.waynechu.webcommon.bean;
 
 import cn.waynechu.common.util.CollectionUtil;
 import cn.waynechu.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -16,9 +14,6 @@ import java.util.*;
  */
 @Slf4j
 public class BeanUtil {
-
-    private static final Logger logger = LoggerFactory.getLogger(BeanUtil.class);
-
     private static final String NEW_INSTANCE_INSTANTIATION_ERROR = "New instance error. Is it an abstract class?";
     private static final String NEW_INSTANCE_ILLEGAL_ACCESS_ERROR = "New instance error. Is the constructor accessible?";
 
@@ -33,9 +28,9 @@ public class BeanUtil {
 
                 copyProperties(srcObject, returnValue);
             } catch (InstantiationException e) {
-                logger.error(NEW_INSTANCE_INSTANTIATION_ERROR, e);
+                log.error(NEW_INSTANCE_INSTANTIATION_ERROR, e);
             } catch (IllegalAccessException e) {
-                logger.error(NEW_INSTANCE_ILLEGAL_ACCESS_ERROR, e);
+                log.error(NEW_INSTANCE_ILLEGAL_ACCESS_ERROR, e);
             }
         }
         return returnValue;
@@ -52,9 +47,9 @@ public class BeanUtil {
                     setPropertyValueWithCast(returnValue, entry.getKey(), entry.getValue());
                 }
             } catch (InstantiationException e) {
-                logger.error(NEW_INSTANCE_INSTANTIATION_ERROR, e);
+                log.error(NEW_INSTANCE_INSTANTIATION_ERROR, e);
             } catch (IllegalAccessException e) {
-                logger.error(NEW_INSTANCE_ILLEGAL_ACCESS_ERROR, e);
+                log.error(NEW_INSTANCE_ILLEGAL_ACCESS_ERROR, e);
             }
         }
         return returnValue;
@@ -76,16 +71,16 @@ public class BeanUtil {
                 }
             }
         } catch (InstantiationException e) {
-            logger.error(NEW_INSTANCE_INSTANTIATION_ERROR, e);
+            log.error(NEW_INSTANCE_INSTANTIATION_ERROR, e);
         } catch (IllegalAccessException e) {
-            logger.error(NEW_INSTANCE_ILLEGAL_ACCESS_ERROR, e);
+            log.error(NEW_INSTANCE_ILLEGAL_ACCESS_ERROR, e);
         }
         return returnValue;
     }
 
     public static void copyProperties(Object srcObject, Object targetObject) {
         if (srcObject == null || targetObject == null) {
-            logger.error("The coping source or target objects is null.");
+            log.error("The coping source or target objects is null.");
             return;
         }
 
@@ -102,7 +97,7 @@ public class BeanUtil {
                     targetBeanProperty.getSetterMethod().invoke(targetObject,
                             srcBeanProperty.getGetterMethod().invoke(srcObject));
                 } catch (Exception e) {
-                    logger.error("copyProperties error.", e);
+                    log.error("copyProperties error.", e);
                 }
             }
         }
@@ -110,7 +105,7 @@ public class BeanUtil {
 
     public static void copyMapToObject(Map<String, Object> srcData, Object targetObject) {
         if (CollectionUtil.isNullOrEmpty(srcData) || targetObject == null) {
-            logger.error("The coping src data or target objects is null.");
+            log.error("The coping src data or target objects is null.");
         } else {
             for (Map.Entry<String, Object> entry : srcData.entrySet()) {
                 setPropertyValue(targetObject, entry.getKey(), entry.getValue());
@@ -120,7 +115,7 @@ public class BeanUtil {
 
     public static void setPropertyValue(Object targetObject, String propertyName, Object value) {
         if (targetObject == null || StringUtil.isNullOrEmpty(propertyName)) {
-            logger.error("The target object or property is null.");
+            log.error("The target object or property is null.");
         } else {
             BeanStructure targetBeanStructure = getBeanStructure(targetObject.getClass());
 
@@ -133,7 +128,7 @@ public class BeanUtil {
                         targetBeanProperty.getSetterMethod().invoke(targetObject, castValue);
                     }
                 } catch (Exception e) {
-                    logger.error("setProperty error.", e);
+                    log.error("setProperty error.", e);
                 }
             }
         }
@@ -141,7 +136,7 @@ public class BeanUtil {
 
     public static void setPropertyValueWithCast(Object targetObject, String propertyName, String value) {
         if (targetObject == null || StringUtil.isNullOrEmpty(propertyName)) {
-            logger.error("The target object or property is null.");
+            log.error("The target object or property is null.");
         } else {
             BeanStructure targetBeanStructure = getBeanStructure(targetObject.getClass());
 
@@ -153,7 +148,7 @@ public class BeanUtil {
                     try {
                         targetBeanProperty.getSetterMethod().invoke(targetObject, castValue);
                     } catch (Exception e) {
-                        logger.error("setProperty error.", e);
+                        log.error("setProperty error.", e);
                     }
                 }
             }
@@ -174,7 +169,7 @@ public class BeanUtil {
         T returnValue = null;
 
         if (object == null || propertyName == null) {
-            logger.error("The object or property name is null.");
+            log.error("The object or property name is null.");
         } else {
             BeanStructure srcBeanStructure = getBeanStructure(object.getClass());
 
@@ -185,7 +180,7 @@ public class BeanUtil {
                     try {
                         returnValue = (T) getterMethod.invoke(object);
                     } catch (Exception e) {
-                        logger.error("getPropertyValue error.", e);
+                        log.error("getPropertyValue error.", e);
                     }
                 }
             }
@@ -273,7 +268,7 @@ public class BeanUtil {
                 }
             }
         } catch (Exception e) {
-            logger.error("getPropertySetFromList error", e);
+            log.error("getPropertySetFromList error", e);
         }
         return returnValue;
     }
@@ -295,7 +290,7 @@ public class BeanUtil {
                 }
             }
         } catch (Exception e) {
-            logger.error("getPropertyListFromList error", e);
+            log.error("getPropertyListFromList error", e);
         }
         return returnValue;
     }
@@ -312,7 +307,7 @@ public class BeanUtil {
                     }
                 }
             } catch (Exception e) {
-                logger.error("listToMapTransfer error", e);
+                log.error("listToMapTransfer error", e);
             }
         }
         return returnValue;
@@ -343,7 +338,7 @@ public class BeanUtil {
                     }
                 }
             } catch (Exception e) {
-                logger.error("filterObjectsByPropertyValues error", e);
+                log.error("filterObjectsByPropertyValues error", e);
             }
         }
         return returnValue;

@@ -2,9 +2,9 @@
  * CopyRight ShellColr.com 2013.
  */
 
-package cn.waynechu.common.http;
+package cn.waynechu.webcommon.http;
 
-import cn.waynechu.common.util.JsonBinder;
+import cn.waynechu.webcommon.util.JsonBinder;
 import cn.waynechu.common.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

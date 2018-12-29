@@ -17,6 +17,11 @@ public class CommonProperties {
     private String redisKeyPrefix;
 
     /**
+     * 打印redis操作详情
+     */
+    private boolean redisPrintOps = false;
+
+    /**
      * MDC前缀
      */
     private String mdcPrefix;

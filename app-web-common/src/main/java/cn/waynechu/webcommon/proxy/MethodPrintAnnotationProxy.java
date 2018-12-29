@@ -1,7 +1,7 @@
-package cn.waynechu.common.proxy;
+package cn.waynechu.webcommon.proxy;
 
-import cn.waynechu.common.annotation.MethodPrintAnnotation;
-import cn.waynechu.common.util.JsonBinder;
+import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 

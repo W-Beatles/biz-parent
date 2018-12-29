@@ -1,4 +1,4 @@
-package cn.waynechu.common.util;
+package cn.waynechu.webcommon.util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.StringTokenizer;

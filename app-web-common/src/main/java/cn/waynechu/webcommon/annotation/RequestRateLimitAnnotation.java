@@ -1,4 +1,4 @@
-package cn.waynechu.common.annotation;
+package cn.waynechu.webcommon.annotation;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

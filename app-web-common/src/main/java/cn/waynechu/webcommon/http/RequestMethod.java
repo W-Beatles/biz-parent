@@ -1,4 +1,4 @@
-package cn.waynechu.common.http;
+package cn.waynechu.webcommon.http;
 
 public enum RequestMethod {
     POST, GET, DELETE, PUT

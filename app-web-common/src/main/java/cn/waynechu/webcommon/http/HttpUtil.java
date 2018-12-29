@@ -1,4 +1,4 @@
-package cn.waynechu.common.http;
+package cn.waynechu.webcommon.http;
 
 import cn.waynechu.common.util.CollectionUtil;
 import cn.waynechu.common.util.StringUtil;

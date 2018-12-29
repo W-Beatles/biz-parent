@@ -1,6 +1,6 @@
-package cn.waynechu.common.proxy;
+package cn.waynechu.webcommon.proxy;
 
-import cn.waynechu.common.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 
 /**
  * @author zhuwei
