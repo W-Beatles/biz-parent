@@ -55,9 +55,6 @@ public class PageInfo<T> extends PageSerializable<T> {
     @ApiModelProperty("导航条上的最后一页")
     private int navigateLastPage;
 
-    public PageInfo() {
-    }
-
     /**
      * 包装Page对象
      *

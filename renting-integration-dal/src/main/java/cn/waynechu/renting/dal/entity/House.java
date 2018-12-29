@@ -23,10 +23,6 @@ public class House {
 
     private Integer status;
 
-    private Date createTime;
-
-    private Date lastUpdateTime;
-
     private String cityEnName;
 
     private String regionEnName;
@@ -57,7 +53,7 @@ public class House {
 
     private Boolean isDeleted;
 
-    public House(Long id, String title, Integer price, Integer area, Integer room, Integer floor, Integer totalFloor, Integer watchTimes, Integer buildYear, Integer status, Date createTime, Date lastUpdateTime, String cityEnName, String regionEnName, String cover, Integer direction, Integer distanceToSubway, Integer parlour, String district, Long adminId, Integer bathroom, String street, String createdUser, Date createdTime, String updatedUser, Date updatedTime, Boolean isDeleted) {
+    public House(Long id, String title, Integer price, Integer area, Integer room, Integer floor, Integer totalFloor, Integer watchTimes, Integer buildYear, Integer status, String cityEnName, String regionEnName, String cover, Integer direction, Integer distanceToSubway, Integer parlour, String district, Long adminId, Integer bathroom, String street, String createdUser, Date createdTime, String updatedUser, Date updatedTime, Boolean isDeleted) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -68,8 +64,6 @@ public class House {
         this.watchTimes = watchTimes;
         this.buildYear = buildYear;
         this.status = status;
-        this.createTime = createTime;
-        this.lastUpdateTime = lastUpdateTime;
         this.cityEnName = cityEnName;
         this.regionEnName = regionEnName;
         this.cover = cover;
@@ -169,22 +163,6 @@ public class House {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastUpdateTime() {
-        return lastUpdateTime;
-    }
-
-    public void setLastUpdateTime(Date lastUpdateTime) {
-        this.lastUpdateTime = lastUpdateTime;
     }
 
     public String getCityEnName() {

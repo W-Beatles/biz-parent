@@ -3,14 +3,20 @@ package cn.waynechu.webcommon.aspect;
 import cn.waynechu.common.annotation.MethodPrintAnnotation;
 import cn.waynechu.common.util.JsonBinder;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 
 /**
  * @author zhuwei
@@ -138,5 +144,40 @@ public abstract class AbstractMethodPrintAspect {
             printStr = JsonBinder.buildAlwaysBinder().toJson(obj);
         }
         return printStr;
+    }
+
+    /**
+     * 获得切点处指定类型的注解
+     *
+     * @param joinPoint       切点
+     * @param annotationClass 注解类型
+     * @return 注解
+     */
+    public <T extends Annotation> T getAnnotation(JoinPoint joinPoint, Class<T> annotationClass) {
+        Signature signature = joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        Method method = methodSignature.getMethod();
+
+        if (method != null) {
+            return method.getAnnotation(annotationClass);
+        }
+        return null;
+    }
+
+    /**
+     * 获得切点处注解列表
+     *
+     * @param joinPoint 切点
+     * @return 注解列表
+     */
+    public Annotation[] getDeclearAnnotation(JoinPoint joinPoint) {
+        Signature signature = joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        Method method = methodSignature.getMethod();
+
+        if (method != null) {
+            return method.getDeclaredAnnotations();
+        }
+        return new Annotation[0];
     }
 }

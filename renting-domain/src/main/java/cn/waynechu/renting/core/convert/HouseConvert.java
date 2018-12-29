@@ -9,9 +9,14 @@ import cn.waynechu.renting.facade.dto.HouseDTO;
  * @date 2018/12/28 20:15
  */
 public class HouseConvert {
-    private HouseConvert(){}
+    private HouseConvert() {
+    }
 
     public static HouseDTO convertHouseDTO(House house) {
         return BeanUtil.beanTransfer(house, HouseDTO.class);
+    }
+
+    public static House convertHouse(HouseDTO houseDTO) {
+        return BeanUtil.beanTransfer(houseDTO, House.class);
     }
 }

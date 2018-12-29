@@ -23,13 +23,24 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public HouseDTO getById(Long id) {
+        HouseDTO returnValue = null;
 
-        return HouseConvert.convertHouseDTO(houseRepository.getById(id));
+        House house = houseRepository.getById(id);
+        if (house != null) {
+            returnValue = HouseConvert.convertHouseDTO(house);
+        }
+        return returnValue;
     }
 
     @Override
-    public boolean create(HouseDTO house) {
-        return false;
+    public boolean create(HouseDTO houseDTO) {
+        boolean returnValue = false;
+
+        House house = HouseConvert.convertHouse(houseDTO);
+        if (house != null) {
+            returnValue = houseRepository.create(house);
+        }
+        return returnValue;
     }
 
     @Override

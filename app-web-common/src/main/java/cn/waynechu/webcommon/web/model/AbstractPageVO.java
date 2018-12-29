@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "分页返回对象")
-public abstract class AbstractPageModel<T extends AbstractModel> extends AbstractModel implements Serializable {
+public abstract class AbstractPageVO<T extends AbstractVO> extends AbstractVO implements Serializable {
 
     @ApiModelProperty(value = "分页信息")
     private Pagination page;
