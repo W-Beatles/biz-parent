@@ -1,5 +1,7 @@
 package cn.waynechu.common.util;
 
+import lombok.experimental.UtilityClass;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.Map;
  * @author zhuwei
  * @date 2018/11/6 16:18
  */
+@UtilityClass
 public class CollectionUtil {
     public static boolean isNotNullOrEmpty(Collection<? extends Object> collection) {
         return !isNullOrEmpty(collection);

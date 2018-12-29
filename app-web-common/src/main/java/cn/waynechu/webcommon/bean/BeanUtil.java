@@ -2,6 +2,7 @@ package cn.waynechu.webcommon.bean;
 
 import cn.waynechu.common.util.CollectionUtil;
 import cn.waynechu.common.util.StringUtil;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
@@ -13,6 +14,7 @@ import java.util.*;
  * @date 2018/11/6 16:13
  */
 @Slf4j
+@UtilityClass
 public class BeanUtil {
     private static final String NEW_INSTANCE_INSTANTIATION_ERROR = "New instance error. Is it an abstract class?";
     private static final String NEW_INSTANCE_ILLEGAL_ACCESS_ERROR = "New instance error. Is the constructor accessible?";

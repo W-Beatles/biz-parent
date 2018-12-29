@@ -1,12 +1,16 @@
 package cn.waynechu.common.util;
 
+import lombok.experimental.UtilityClass;
+
 import java.math.BigDecimal;
 
 /**
  * @author zhuwei
  * @date 2018/11/7 11:18
  */
+@UtilityClass
 public class BigDecimalUtil {
+
     public static BigDecimal add(BigDecimal value1, BigDecimal value2, int scale, int roundingMode) {
         if (value1 == null) {
             value1 = new BigDecimal(0);

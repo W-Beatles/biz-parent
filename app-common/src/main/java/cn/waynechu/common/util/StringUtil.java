@@ -1,9 +1,12 @@
 package cn.waynechu.common.util;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * @author zhuwei
  * @date 2018/11/6 16:21
  */
+@UtilityClass
 public class StringUtil {
     public static boolean isNullOrEmpty(String str) {
         return str == null || "".equals(str.trim());

@@ -7,14 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DateTimeUtil {
-
-    //
     public static final String FMT_DATE_TIME_LONG = "yyyy-MM-dd HH:mm:ss SSS";
     public static final String FMT_DATE_TIME_DEFAULT = "yyyy-MM-dd HH:mm:ss";
     public static final String FMT_DATE_TIME_MINITE = "yyyy-MM-dd HH:mm";
     public static final String FMT_DATE_TIME_HOUR = "yyyy-MM-dd HH";
 
-    //
     public static final String FMT_DATE_DEFAULT = "yyyy-MM-dd";
     public static final String FMT_DATE_SHOT = "yyyyMMdd";
     public static final String FMT_DATE_MONTH = "yyyy-MM";
@@ -23,14 +20,8 @@ public class DateTimeUtil {
     public static final String FMT_YEAR_MONTH_DAY = "yyyy年MM月dd日";
     public static final String FMT_MONTH_DAY_HOUR = "MM月dd日HH点";
     public static final String FMT_MONTH_DAY = "MM月dd日";
-//
-    public static final String FMT_DATE_TIME_DEFAULT_abbr = "yyyyMMddHHmmss";
-//
-//    public final static SimpleDateFormat SHORT_SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-//    public final static SimpleDateFormat LONG_SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final String FMT_DATE_TIME_DEFAULT_ABBR = "yyyyMMddHHmmss";
 
-
-    //adjust the src date.
     public static Date adjustDate(Date srcDate, int calendarType, int amount) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(srcDate);
@@ -179,7 +170,7 @@ public class DateTimeUtil {
 
             SimpleDateFormat longSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat longSimpleDateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             c.setTime(longSimpleDateFormat.parse(longSimpleDateFormat2.format(c.getTime()) + " 00:00:00"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,7 +190,7 @@ public class DateTimeUtil {
 
             SimpleDateFormat longSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat shortSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            		
+
             c.setTime(longSimpleDateFormat.parse(shortSimpleDateFormat.format(c.getTime()) + " 00:00:00"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -320,8 +311,6 @@ public class DateTimeUtil {
 
         return false;
     }
-
-
 
 
 }

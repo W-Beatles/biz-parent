@@ -1,5 +1,7 @@
 package cn.waynechu.webcommon.util;
 
+import lombok.experimental.UtilityClass;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.StringTokenizer;
 
@@ -7,11 +9,8 @@ import java.util.StringTokenizer;
  * @author zhuwei
  * @date 2018/11/6 20:42
  */
+@UtilityClass
 public class IpUtil {
-
-    private IpUtil() {
-        throw new IllegalStateException("Utility class");
-    }
 
     private static final String[] HEADERS_TO_TRY = {
             "X-Forwarded-For",

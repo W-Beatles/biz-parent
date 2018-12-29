@@ -11,7 +11,6 @@ import java.util.List;
  * @author zhuwei
  * @date 2018/11/7 11:38
  */
-@Deprecated
 public class Pagination implements Serializable {
     private static final int DEFAULT_PAGE_SIZE = 20;
     private int totalRows;
