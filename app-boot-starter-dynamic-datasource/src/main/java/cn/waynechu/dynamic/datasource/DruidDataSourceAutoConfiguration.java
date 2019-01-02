@@ -31,8 +31,8 @@ import java.util.List;
 @Import({DruidSpringAopConfiguration.class,
         DruidStatViewServletConfiguration.class,
         DruidWebStatFilterConfiguration.class,
-        DruidFilterConfiguration.class,})
-@ConditionalOnProperty(name = "spring.datasource.druid.url", matchIfMissing = false)
+        DruidFilterConfiguration.class})
+@ConditionalOnProperty(name = "spring.datasource.druid.url")
 public class DruidDataSourceAutoConfiguration {
 
     @Autowired

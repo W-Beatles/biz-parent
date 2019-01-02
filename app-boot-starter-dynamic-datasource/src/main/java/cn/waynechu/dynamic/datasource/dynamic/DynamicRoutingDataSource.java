@@ -128,7 +128,6 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     }
 
     public void setRoutingPattern(RoutingPatternEnum routingPattern) {
-
         if (routingPattern != null) {
             this.routingPattern = routingPattern;
             log.debug("Set routing pattern to [{}]", routingPattern);

@@ -26,7 +26,7 @@
 
         <app.version>0.0.1-SNAPSHOT</app.version>
         <tuhu-boot-starter-common.version>1.0.2018082802</tuhu-boot-starter-common.version>
-        <tuhu-boot-starter-dynamic-datasource.version>1.0.2-SNAPSHOT</tuhu-boot-starter-dynamic-datasource.version>
+        <tuhu-boot-starter-dynamic-datasource.version>1.0.3-SNAPSHOT</tuhu-boot-starter-dynamic-datasource.version>
         <rabbitmq-logback-appender.version>1.0.2018112101</rabbitmq-logback-appender.version>
 
         <poi.version>3.9</poi.version>

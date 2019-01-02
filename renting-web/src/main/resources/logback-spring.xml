@@ -30,8 +30,6 @@
                     source="elk.exchange" defaultValue="topic.loggingExchange"/>
     <springProperty scope="context" name="elkRoutingKey"
                     source="elk.routingKey" defaultValue="logback.#"/>
-    <springProperty scope="context" name="elkClientProvidedName"
-                    source="elk.clientProvidedName" defaultValue="UNDEFINED"/>
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
@@ -118,7 +116,7 @@
 
     <springProfile name="prd,test,ut">
         <logger name="com" level="INFO" additivity="false">
-            <appender-ref ref="ASYNC_INFO"/>
+            <!--<appender-ref ref="ASYNC_INFO"/>-->
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
 
@@ -130,7 +128,7 @@
         </logger>
 
         <logger name="cn" level="INFO" additivity="false">
-            <appender-ref ref="ASYNC_INFO"/>
+            <!--<appender-ref ref="ASYNC_INFO"/>-->
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
 
@@ -142,7 +140,7 @@
         </logger>
 
         <logger name="org" level="INFO" additivity="false">
-            <appender-ref ref="ASYNC_INFO"/>
+            <!--<appender-ref ref="ASYNC_INFO"/>-->
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
 

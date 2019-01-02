@@ -28,7 +28,6 @@ public class DruidStatProperties {
     private StatViewServlet statViewServlet = new StatViewServlet();
     private WebStatFilter webStatFilter = new WebStatFilter();
 
-
     public String[] getAopPatterns() {
         return aopPatterns;
     }

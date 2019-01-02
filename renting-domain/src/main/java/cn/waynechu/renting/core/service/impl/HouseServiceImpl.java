@@ -34,8 +34,9 @@ public class HouseServiceImpl implements HouseService {
             House house = houseRepository.getById(id);
             if (house != null) {
                 returnValue = HouseConvert.convertHouseDTO(house);
+                
+                redisCache.set(String.valueOf(id), returnValue, 3600);
             }
-            redisCache.set(String.valueOf(id), returnValue, 3600);
         } else {
             return houseDTO;
         }
