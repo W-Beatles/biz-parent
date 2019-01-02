@@ -26,11 +26,6 @@
         <!-- star project -->
         <!--<dependency>-->
         <!--<groupId>com.tuhu</groupId>-->
-        <!--<artifactId>tuhu-boot-starter-common</artifactId>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--<groupId>com.tuhu</groupId>-->
         <!--<artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>-->
         <!--</dependency>-->
 

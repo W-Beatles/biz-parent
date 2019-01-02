@@ -1,6 +1,6 @@
 package cn.waynechu.renting.web.advice;
 
-import cn.waynechu.common.enums.CommonResultEnum;
+import cn.waynechu.webcommon.enums.CommonResultEnum;
 import cn.waynechu.webcommon.web.Result;
 import cn.waynechu.renting.facade.exception.RentingException;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package cn.waynechu.common.enums;
+package cn.waynechu.webcommon.enums;
 
 /**
  * @author zhuwei

@@ -5,7 +5,7 @@
 package cn.waynechu.webcommon.http;
 
 import cn.waynechu.webcommon.util.JsonBinder;
-import cn.waynechu.common.util.StringUtil;
+import cn.waynechu.webcommon.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,6 @@
 package cn.waynechu.renting.facade.vo;
 
-import cn.waynechu.webcommon.web.model.AbstractVO;
+import cn.waynechu.webcommon.web.response.AbstractResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "房屋信息返回对象")
-public class HouseVO extends AbstractVO {
+public class HouseResponse extends AbstractResponse {
     @ApiModelProperty("房屋ID")
     private Long id;
 

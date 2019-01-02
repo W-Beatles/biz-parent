@@ -1,7 +1,7 @@
 package cn.waynechu.webcommon.bean;
 
-import cn.waynechu.common.util.CollectionUtil;
-import cn.waynechu.common.util.StringUtil;
+import cn.waynechu.webcommon.util.CollectionUtil;
+import cn.waynechu.webcommon.util.StringUtil;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 

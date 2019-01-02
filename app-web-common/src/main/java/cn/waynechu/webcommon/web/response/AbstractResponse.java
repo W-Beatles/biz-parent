@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.web.model;
+package cn.waynechu.webcommon.web.response;
 
 import io.swagger.annotations.ApiModel;
 
@@ -9,6 +9,6 @@ import java.io.Serializable;
  * @date 2018/11/15 13:38
  */
 @ApiModel(description = "返回对象")
-public abstract class AbstractVO implements Serializable {
+public abstract class AbstractResponse implements Serializable {
     private static final long serialVersionUID = 9111238562185215154L;
 }

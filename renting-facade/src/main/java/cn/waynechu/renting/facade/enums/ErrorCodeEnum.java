@@ -1,6 +1,6 @@
 package cn.waynechu.renting.facade.enums;
 
-import cn.waynechu.common.enums.IBaseEnum;
+import cn.waynechu.webcommon.enums.IBaseEnum;
 
 /**
  * @author zhuwei

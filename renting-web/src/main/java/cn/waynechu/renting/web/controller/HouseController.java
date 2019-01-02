@@ -1,10 +1,10 @@
 package cn.waynechu.renting.web.controller;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
-import cn.waynechu.renting.facade.request.HouseCreateReq;
+import cn.waynechu.renting.facade.request.HouseCreateRequest;
 import cn.waynechu.renting.facade.request.HouseSearchReq;
 import cn.waynechu.renting.facade.request.HouseUpdateReq;
-import cn.waynechu.renting.facade.vo.HouseVO;
+import cn.waynechu.renting.facade.vo.HouseResponse;
 import cn.waynechu.renting.web.convert.HouseConvert;
 import cn.waynechu.renting.web.convert.dto.HouseDtoConvert;
 import cn.waynechu.renting.web.service.HouseWebService;
@@ -39,13 +39,13 @@ public class HouseController extends AbstractController {
             @ApiImplicitParam(name = "city", value = "城市名称", required = true, paramType = "query")
     })
     @MethodPrintAnnotation(isFormat = true)
-    public Result<HouseVO> getById(@PathVariable Long id, @RequestParam String city) {
+    public Result<HouseResponse> getById(@PathVariable Long id, @RequestParam String city) {
         return Result.success(houseWebService.getById(id));
     }
 
     @PostMapping
     @MethodPrintAnnotation
-    public Result<Boolean> createHouse(@RequestBody HouseCreateReq houseCreateReq) {
+    public Result<Boolean> createHouse(@RequestBody HouseCreateRequest houseCreateReq) {
         HouseDTO houseDTO = HouseConvert.convertHouseDTO(houseCreateReq);
         return Result.success(houseWebService.create(houseDTO));
     }
@@ -66,8 +66,8 @@ public class HouseController extends AbstractController {
 
     @PostMapping("/search")
     @MethodPrintAnnotation
-    public Result<PageInfo<HouseVO>> search(@RequestBody HouseSearchReq houseSearchReq,
-                                            @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+    public Result<PageInfo<HouseResponse>> search(@RequestBody HouseSearchReq houseSearchReq,
+                                                  @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
         HouseDTO houseDTO = HouseDtoConvert.convertHouseDTO(houseSearchReq);
         return Result.success(houseWebService.search(houseDTO, pageNum, pageSize));
     }

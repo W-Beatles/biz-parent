@@ -1,7 +1,7 @@
 package cn.waynechu.webcommon.http;
 
-import cn.waynechu.common.util.CollectionUtil;
-import cn.waynechu.common.util.StringUtil;
+import cn.waynechu.webcommon.util.CollectionUtil;
+import cn.waynechu.webcommon.util.StringUtil;
 import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.Cookie;

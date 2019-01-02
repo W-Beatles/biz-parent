@@ -1,6 +1,6 @@
-package cn.waynechu.common.exception;
+package cn.waynechu.webcommon.exception;
 
-import cn.waynechu.common.enums.IBaseEnum;
+import cn.waynechu.webcommon.enums.IBaseEnum;
 
 /**
  * @author zhuwei
@@ -12,10 +12,10 @@ public class BaseException extends RuntimeException {
 
     private final String errorMessage;
 
-    public BaseException(IBaseEnum iBaseEnum) {
-        super(iBaseEnum.getDesc());
-        this.errorCode = iBaseEnum.getCode();
-        this.errorMessage = iBaseEnum.getDesc();
+    public BaseException(IBaseEnum baseEnum) {
+        super(baseEnum.getDesc());
+        this.errorCode = baseEnum.getCode();
+        this.errorMessage = baseEnum.getDesc();
     }
 
     public BaseException(Integer errorCode, String errorMessage) {

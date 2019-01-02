@@ -85,12 +85,6 @@
             <!-- 项目版本 start -->
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-common</artifactId>
-                <version>${app.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
                 <artifactId>app-web-common</artifactId>
                 <version>${app.version}</version>
             </dependency>
@@ -237,7 +231,6 @@
     </profiles>
 
     <modules>
-        <module>app-common</module>
         <module>app-web-common</module>
         <module>app-boot-starter-common</module>
         <module>app-boot-starter-dynamic-datasource</module>

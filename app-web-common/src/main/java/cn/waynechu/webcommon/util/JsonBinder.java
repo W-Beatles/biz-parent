@@ -1,12 +1,12 @@
 package cn.waynechu.webcommon.util;
 
-import cn.waynechu.common.util.StringUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -19,6 +19,7 @@ import java.util.Map;
 /**
  * Jackson的简单封装.
  */
+@Slf4j
 public class JsonBinder {
     private static Map<JsonInclude.Include, JsonBinder> mappers = new EnumMap<>(JsonInclude.Include.class);
 
@@ -76,7 +77,7 @@ public class JsonBinder {
      * 如需读取集合如List/Map,且不是List<String>这种简单类型时使用如下语句:
      * List<MyBean> beanList = binder.getMapper().readValue(listString, new TypeReference<List<MyBean>>() {});
      */
-    public <T> T fromJson(String jsonString, Class<T> clazz) {
+    public <T> T toJavaObjectFromJson(String jsonString, Class<T> clazz) {
         if (StringUtil.isNullOrEmpty(jsonString)) {
             return null;
         }
@@ -84,11 +85,12 @@ public class JsonBinder {
         try {
             return mapper.readValue(jsonString, clazz);
         } catch (IOException e) {
+            log.error("Json字符串转换Java对象失败，源[" + jsonString + "]", e);
             return null;
         }
     }
 
-    public <T> T fromJson(String jsonString, TypeReference<T> typeReference) {
+    public <T> T toJavaObjectFromJson(String jsonString, TypeReference<T> typeReference) {
         if (StringUtil.isNullOrEmpty(jsonString)) {
             return null;
         }
@@ -96,45 +98,68 @@ public class JsonBinder {
         try {
             return mapper.readValue(jsonString, typeReference);
         } catch (IOException e) {
+            log.error("Json字符串转换Java对象失败，源[" + jsonString + "]", e);
             return null;
         }
     }
 
-    public <T> List<T> fromJsonList(String jsonString, Class<T> clazz) {
+    public <T> List<T> toJavaListFromJson(String jsonString, Class<T> clazz) {
         if (StringUtil.isNullOrEmpty(jsonString)) {
             return Collections.emptyList();
         }
 
         try {
             JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, clazz);
-            return mapper.readValue(jsonString, javaType);
+            // return mapper.readValue(jsonString, javaType);
+            return mapper.readValue(mapper.getFactory().createParser(jsonString), javaType);
         } catch (Exception e) {
-            //
+            log.error("Json字符串转换Java列表失败，源[" + jsonString + "]", e);
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
     }
 
     /**
-     * 如果对象为Null,返回"null".
-     * 如果集合为空集合,返回"[]".
+     * Java对象转化为jsonStr
+     * <p>
+     * 如果对象为null，返回null
+     * 如果集合为空集合，返回[]
+     *
+     * @param object 源对象
+     * @return jsonStr
      */
     public String toJson(Object object) {
-        if (object != null) {
-            try {
-                return mapper.writeValueAsString(object);
-            } catch (IOException e) {
-                return null;
-            }
-        } else {
-            return null;
-        }
+        return toJson(object, false);
     }
 
+    /**
+     * Java对象转化为格式化的jsonStr
+     * <p>
+     * 如果对象为null，返回null
+     * 如果集合为空集合，返回[]
+     *
+     * @param object 源对象
+     * @return 格式化的jsonStr
+     */
     public String toPrettyJson(Object object) {
+        return toJson(object, true);
+    }
+
+    /**
+     * Java对象转化为JsonStr
+     * <p>
+     * 如果对象为null，返回null
+     * 如果集合为空集合，返回[]
+     */
+    private String toJson(Object object, boolean isFormat) {
         if (object != null) {
             try {
-                return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
+                if (!isFormat) {
+                    return mapper.writeValueAsString(object);
+                } else {
+                    return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
+                }
             } catch (IOException e) {
+                log.error("Java对象转换JsonStr失败", e);
                 return null;
             }
         } else {

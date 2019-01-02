@@ -1,7 +1,7 @@
 package cn.waynechu.renting.facade.exception;
 
-import cn.waynechu.common.enums.IBaseEnum;
-import cn.waynechu.common.exception.BaseException;
+import cn.waynechu.webcommon.enums.IBaseEnum;
+import cn.waynechu.webcommon.exception.BaseException;
 
 /**
  * @author zhuwei
