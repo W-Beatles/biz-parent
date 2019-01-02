@@ -30,11 +30,6 @@
 
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-web-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.waynechu</groupId>
             <artifactId>renting-facade</artifactId>
         </dependency>
 
@@ -42,12 +37,5 @@
             <groupId>cn.waynechu</groupId>
             <artifactId>renting-integration-dal</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-
     </dependencies>
 </project>

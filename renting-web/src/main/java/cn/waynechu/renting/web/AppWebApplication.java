@@ -11,7 +11,6 @@ import java.net.UnknownHostException;
 
 @ComponentScan(basePackages = {"cn.waynechu"})
 @MapperScan("cn.waynechu.renting.dal.mapper")
-@EnableSwagger2
 @EnableAspectJAutoProxy
 @SpringBootApplication
 public class AppWebApplication {

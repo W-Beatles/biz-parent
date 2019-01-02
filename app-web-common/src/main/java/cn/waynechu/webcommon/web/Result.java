@@ -14,13 +14,13 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel(description = "请求返回对象")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = -9151575407714770162L;
 
     @ApiModelProperty(value = "返回状态码，备注:10000为正常调用", allowableValues = "10000,....")
     private int code;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(value = "返回提示信息")
     private String message;
 
