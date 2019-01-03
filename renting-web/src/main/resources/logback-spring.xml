@@ -12,12 +12,14 @@
     <property name="pattern"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{30}.%method:%line [%X{reqKey}] %X{user} %X{ip} - %msg%n"/>
 
-    <springProperty scope="context" name="elkEnable" source="elk.enable"
-                    defaultValue="false"/>
-    <springProperty scope="context" name="elkHost" source="elk.host"
-                    defaultValue="localhost"/>
-    <springProperty scope="context" name="elkPort" source="elk.port"
-                    defaultValue="5672"/>
+    <springProperty scope="context" name="sentryEnable"
+                    source="sentry.enable" defaultValue="false"/>
+    <springProperty scope="context" name="elkEnable"
+                    source="elk.enable" defaultValue="false"/>
+    <springProperty scope="context" name="elkHost"
+                    source="elk.host" defaultValue="localhost"/>
+    <springProperty scope="context" name="elkPort"
+                    source="elk.port" defaultValue="5672"/>
     <springProperty scope="context" name="elkUsername"
                     source="elk.username" defaultValue="guest"/>
     <springProperty scope="context" name="elkPassword"
@@ -31,7 +33,12 @@
     <springProperty scope="context" name="elkRoutingKey"
                     source="elk.routingKey" defaultValue="logback.#"/>
 
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
 
     <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/info/info.log</file>
@@ -81,6 +88,15 @@
         <appender-ref ref="INFO"/>
     </appender>
 
+    <if condition='property("sentryEnable").contains("true")'>
+        <then>
+            <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>WARN</level>
+                </filter>
+            </appender>
+        </then>
+    </if>
 
     <if condition='property("elkEnable").contains("true")'>
         <then>
@@ -108,6 +124,7 @@
         </then>
     </if>
 
+    <!-- 如果不走rabbitmq可以使用以下配置 -->
     <!--<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
     <!--<destination>localhost:5044</destination>-->
     <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
@@ -119,7 +136,11 @@
             <!--<appender-ref ref="ASYNC_INFO"/>-->
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
-
+            <if condition='property("sentryEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="Sentry"/>
+                </then>
+            </if>
             <if condition='property("elkEnable").contains("true")'>
                 <then>
                     <appender-ref ref="ELK"/>
@@ -131,7 +152,11 @@
             <!--<appender-ref ref="ASYNC_INFO"/>-->
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
-
+            <if condition='property("sentryEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="Sentry"/>
+                </then>
+            </if>
             <if condition='property("elkEnable").contains("true")'>
                 <then>
                     <appender-ref ref="ELK"/>
@@ -143,7 +168,11 @@
             <!--<appender-ref ref="ASYNC_INFO"/>-->
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
-
+            <if condition='property("sentryEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="Sentry"/>
+                </then>
+            </if>
             <if condition='property("elkEnable").contains("true")'>
                 <then>
                     <appender-ref ref="ELK"/>

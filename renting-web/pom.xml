@@ -42,11 +42,6 @@
         <!-- begin -->
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>rabbitmq-logback-appender</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.waynechu</groupId>
             <artifactId>app-web-common</artifactId>
         </dependency>
 
@@ -72,8 +67,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>rabbitmq-logback-appender</artifactId>
         </dependency>
 
         <dependency>
@@ -82,8 +77,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
+            <groupId>io.sentry</groupId>
+            <artifactId>sentry-logback</artifactId>
         </dependency>
     </dependencies>
 

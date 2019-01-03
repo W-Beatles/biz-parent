@@ -31,13 +31,13 @@ public class RedisCache {
     }
 
     public <T> T get(String key, Class<T> clazz) {
-        String keyWithPrefix = getRedisKeyWithPrefix(key);
-        if (redisPrintOps) {
-            log.info("开始从redis取得数据并封成对象返回:key={}", keyWithPrefix);
-        }
-
         if (!StringUtils.hasText(key)) {
             return null;
+        }
+
+        String keyWithPrefix = getRedisKeyWithPrefix(key);
+        if (redisPrintOps) {
+            log.info("开始从redis取得数据并封成对象返回: key={}", keyWithPrefix);
         }
 
         T result = null;
@@ -49,13 +49,13 @@ public class RedisCache {
             result = JsonBinder.buildAlwaysBinder().toJavaObjectFromJson(resultStr, clazz);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis取得数据失败:key={}", keyWithPrefix);
+                log.error("从redis取得数据失败: key={}", keyWithPrefix, e);
             }
             return null;
         }
 
         if (redisPrintOps) {
-            log.info("从redis取得数据并封成对象返回结束:key={},result={}", keyWithPrefix, result);
+            log.info("从redis取得数据并封成对象返回结束: key={}, result={}", keyWithPrefix, result);
         }
         return result;
     }
@@ -63,7 +63,7 @@ public class RedisCache {
     public String get(String key) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         if (redisPrintOps) {
-            log.info("开始从redis取得数据并封成对象返回:key={}", keyWithPrefix);
+            log.info("开始从redis取得数据并封成对象返回: key={}", keyWithPrefix);
         }
 
         String result = null;
@@ -71,13 +71,13 @@ public class RedisCache {
             result = valueOperations.get(keyWithPrefix);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis取得数据失败:key={}", keyWithPrefix, e);
+                log.error("从redis取得数据失败: key={}", keyWithPrefix, e);
             }
             return null;
         }
 
         if (redisPrintOps) {
-            log.info("开始从redis取得数据并封成对象返回: key={},result={}", keyWithPrefix, result);
+            log.info("开始从redis取得数据并封成对象返回: key={}, result={}", keyWithPrefix, result);
         }
         return result;
     }
@@ -86,18 +86,18 @@ public class RedisCache {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         try {
             if (redisPrintOps) {
-                log.info("开始向redis存储数据:key={},value={}", keyWithPrefix, json);
+                log.info("开始向redis存储数据: key={}, value={}", keyWithPrefix, json);
             }
             valueOperations.set(keyWithPrefix, json);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("向redis存储数据失败:key={},value={}", keyWithPrefix, json);
+                log.error("向redis存储数据失败: key={}, value={}", keyWithPrefix, json, e);
             }
             return;
         }
 
         if (redisPrintOps) {
-            log.info("向redis存储数据结束:key={},value={}", keyWithPrefix, json);
+            log.info("向redis存储数据结束: key={}, value={}", keyWithPrefix, json);
         }
     }
 
@@ -109,18 +109,18 @@ public class RedisCache {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         try {
             if (redisPrintOps) {
-                log.info("开始向redis存储数据:key={},value={},timeout={},unit={}", keyWithPrefix, json, timeout, unit);
+                log.info("开始向redis存储数据: key={}, value={}, timeout={}, unit={}", keyWithPrefix, json, timeout, unit);
             }
             valueOperations.set(keyWithPrefix, json, timeout, unit);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("向redis存储数据失败:key={},value={},timeout={},unit={}", keyWithPrefix, json, timeout, unit);
+                log.error("向redis存储数据失败: key={}, value={}, timeout={}, unit={}", keyWithPrefix, json, timeout, unit, e);
             }
             return;
         }
 
         if (redisPrintOps) {
-            log.info("向redis存储数据结束:key={},value={},timeout={},unit={}", keyWithPrefix, json, timeout, unit);
+            log.info("向redis存储数据结束: key={}, value={}, timeout={}, unit={}", keyWithPrefix, json, timeout, unit);
         }
     }
 
@@ -128,17 +128,17 @@ public class RedisCache {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         try {
             if (redisPrintOps) {
-                log.info("开始向redis存储数据:key={},value={}", keyWithPrefix, obj);
+                log.info("开始向redis存储数据: key={}, value={}", keyWithPrefix, obj);
             }
             valueOperations.set(keyWithPrefix, JsonBinder.buildAlwaysBinder().toJson(obj));
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("向redis存储数据失败:key={},value={}", keyWithPrefix, obj);
+                log.error("向redis存储数据失败: key={}, value={}", keyWithPrefix, obj, e);
             }
             return;
         }
         if (redisPrintOps) {
-            log.info("向redis存储数据结束:key={},value={}", keyWithPrefix, obj);
+            log.info("向redis存储数据结束: key={},value={}", keyWithPrefix, obj);
         }
     }
 
@@ -150,17 +150,17 @@ public class RedisCache {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         try {
             if (redisPrintOps) {
-                log.info("开始向redis存储数据:key={},value={},timeout={},unit={}", keyWithPrefix, obj, timeout, unit);
+                log.info("开始向redis存储数据: key={}, value={}, timeout={}, unit={}", keyWithPrefix, obj, timeout, unit);
             }
             valueOperations.set(keyWithPrefix, JsonBinder.buildAlwaysBinder().toJson(obj), timeout, unit);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("向redis存储数据失败:key={},value={},timeout={},unit={}", keyWithPrefix, obj, timeout, unit);
+                log.error("向redis存储数据失败: key={}, value={}, timeout={}, unit={}", keyWithPrefix, obj, timeout, unit, e);
             }
             return;
         }
         if (redisPrintOps) {
-            log.info("向redis存储数据结束:key={},value={},timeout={},unit={}", keyWithPrefix, obj, timeout, unit);
+            log.info("向redis存储数据结束: key={}, value={}, timeout={}, unit={}", keyWithPrefix, obj, timeout, unit);
         }
     }
 
@@ -168,17 +168,17 @@ public class RedisCache {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         try {
             if (redisPrintOps) {
-                log.info("开始向redis存储数据:key={},hashKey={},value={}", keyWithPrefix, hashKey, json);
+                log.info("开始向redis存储数据: key={}, hashKey={}, value={}", keyWithPrefix, hashKey, json);
             }
             hashOperations.put(keyWithPrefix, hashKey, json);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("向redis存储数据失败:key={},hashKey={},value={}", keyWithPrefix, hashKey, json);
+                log.error("向redis存储数据失败: key={}, hashKey={}, value={}", keyWithPrefix, hashKey, json, e);
             }
             return;
         }
         if (redisPrintOps) {
-            log.info("向redis存储数据结束:key={},hashKey={},value={}", keyWithPrefix, hashKey, json);
+            log.info("向redis存储数据结束: key={}, hashKey={}, value={}", keyWithPrefix, hashKey, json);
         }
     }
 
@@ -186,24 +186,24 @@ public class RedisCache {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         try {
             if (redisPrintOps) {
-                log.info("开始向redis存储数据:key={},hashKey={},value={}", keyWithPrefix, hashKey, obj);
+                log.info("开始向redis存储数据: key={}, hashKey={}, value={}", keyWithPrefix, hashKey, obj);
             }
             hashOperations.put(keyWithPrefix, hashKey, JsonBinder.buildAlwaysBinder().toJson(obj));
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("向redis存储数据失败:key={},hashKey={},value={}", keyWithPrefix, hashKey, obj, e);
+                log.error("向redis存储数据失败: key={}, hashKey={}, value={}", keyWithPrefix, hashKey, obj, e);
             }
             return;
         }
         if (redisPrintOps) {
-            log.info("向redis存储数据结束:key={},hashKey={},value={}", keyWithPrefix, hashKey, obj);
+            log.info("向redis存储数据结束: key={}, hashKey={}, value={}", keyWithPrefix, hashKey, obj);
         }
     }
 
     public Object get(String key, String hashKey) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         if (redisPrintOps) {
-            log.info("开始从redis取得数据:key={},hashKey={}", keyWithPrefix, hashKey);
+            log.info("开始从redis取得数据: key={}, hashKey={}", keyWithPrefix, hashKey);
         }
 
         Object result = null;
@@ -211,53 +211,51 @@ public class RedisCache {
             result = hashOperations.get(keyWithPrefix, hashKey);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis取得数据异常:key={},hashKey={}", keyWithPrefix, hashKey, e);
+                log.error("从redis取得数据失败: key={}, hashKey={}", keyWithPrefix, hashKey, e);
             }
             return null;
         }
 
         if (redisPrintOps) {
-            log.info("从redis取得数据并封成对象结束:key={},hashKey={},result={}", keyWithPrefix, hashKey, result);
+            log.info("从redis取得数据并封成对象结束: key={}, hashKey={}, result={}", keyWithPrefix, hashKey, result);
         }
         return result;
     }
 
     public <T> T getWithInstance(String key, String hashKey, Class<? extends T> clazz) {
-        String keyWithPrefix = getRedisKeyWithPrefix(key);
-        if (redisPrintOps) {
-            log.info("开始从redis取得数据:key={},hashKey={}", keyWithPrefix, hashKey);
-        }
-
         if (!StringUtils.hasText(hashKey)) {
             return null;
+        }
+
+        String keyWithPrefix = getRedisKeyWithPrefix(key);
+        if (redisPrintOps) {
+            log.info("开始从redis取得数据: key={}, hashKey={}", keyWithPrefix, hashKey);
         }
 
         T result = null;
         try {
             Object resultStr = hashOperations.get(keyWithPrefix, hashKey);
-            //如果为空,直接返回null
+            // 如果为空,直接返回null
             if (resultStr == null || !StringUtils.hasText(resultStr + "")) {
                 return null;
             }
             result = JsonBinder.buildAlwaysBinder().toJavaObjectFromJson(resultStr + "", clazz);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis取得数据失败:key={},hashKey={}", keyWithPrefix, hashKey, e);
+                log.error("从redis取得数据失败: key={}, hashKey={}", keyWithPrefix, hashKey, e);
             }
             return null;
         }
-
         if (redisPrintOps) {
-            log.info("从redis取得数据并封成对象结束:key={},hashKey={},result={}", keyWithPrefix, hashKey, result);
+            log.info("从redis取得数据并封成对象结束: key={}, hashKey={}, result={}", keyWithPrefix, hashKey, result);
         }
-
         return result;
     }
 
     public void hashDelete(String key, String hashKey) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         if (redisPrintOps) {
-            log.info("开始删除redis缓存数据:key={},hashKey={}", keyWithPrefix, hashKey);
+            log.info("开始删除redis缓存数据: key={}, hashKey={}", keyWithPrefix, hashKey);
         }
 
         boolean flag = false;
@@ -268,39 +266,39 @@ public class RedisCache {
             }
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("删除redis缓存数据失败:key={},hashKey={}", keyWithPrefix, hashKey);
+                log.error("删除redis缓存数据失败: key={}, hashKey={}", keyWithPrefix, hashKey, e);
             }
             return;
         }
 
         if (redisPrintOps) {
-            log.info("删除redis缓存数据结束:key={},hashKey={}", keyWithPrefix, hashKey);
+            log.info("删除redis缓存数据结束: key={}, hashKey={}", keyWithPrefix, hashKey);
         }
     }
 
     public void append(String key, String json) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         if (redisPrintOps) {
-            log.info("开始向redis中追加数据:key={}", keyWithPrefix);
+            log.info("开始向redis中追加数据: key={}", keyWithPrefix);
         }
 
         try {
             valueOperations.append(keyWithPrefix, json);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("向redis中追加数据失败:key={}", keyWithPrefix, e);
+                log.error("向redis中追加数据失败: key={}", keyWithPrefix, e);
             }
             return;
         }
         if (redisPrintOps) {
-            log.info("向redis中追加数据结束:key={}", keyWithPrefix);
+            log.info("向redis中追加数据结束: key={}", keyWithPrefix);
         }
     }
 
     public void delete(String key) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         if (redisPrintOps) {
-            log.info("开始从redis删除数据:key={}", keyWithPrefix);
+            log.info("开始从redis删除数据: key={}", keyWithPrefix);
         }
 
         boolean flag = false;
@@ -311,20 +309,20 @@ public class RedisCache {
             }
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis删除数据异常:key={}", keyWithPrefix, e);
+                log.error("从redis删除数据失败: key={}", keyWithPrefix, e);
             }
             return;
         }
 
         if (redisPrintOps) {
-            log.info("从redis删除数据结束:key={}", keyWithPrefix);
+            log.info("从redis删除数据结束: key={}", keyWithPrefix);
         }
     }
 
     public <T> List<T> getToList(String key, Class<T> clazz) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         if (redisPrintOps) {
-            log.info("开始从redis取得数据并封成list返回:key={}", keyWithPrefix);
+            log.info("开始从redis取得数据并封成list返回: key={}", keyWithPrefix);
         }
 
         List<T> result = null;
@@ -336,13 +334,13 @@ public class RedisCache {
             result = JsonBinder.buildAlwaysBinder().toJavaListFromJson(resultstr, clazz);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis取得数据失败:key={}", keyWithPrefix, e);
+                log.error("从redis取得数据失败: key={}", keyWithPrefix, e);
             }
             return null;
         }
 
         if (redisPrintOps) {
-            log.info("开始从redis取得数据并封成对象返回结束:key={},result={}", keyWithPrefix, result);
+            log.info("开始从redis取得数据并封成对象返回结束: key={}, result={}", keyWithPrefix, result);
         }
         return result;
     }
@@ -350,7 +348,7 @@ public class RedisCache {
     public <T> List<T> hashGetToList(String key, String hashKey, Class<T> clazz) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         if (redisPrintOps) {
-            log.info("开始从redis取得数据:key={},hashKey={}", keyWithPrefix, hashKey);
+            log.info("开始从redis取得数据: key={}, hashKey={}", keyWithPrefix, hashKey);
         }
 
         if (!StringUtils.hasText(key) || !StringUtils.hasText(hashKey)) {
@@ -364,13 +362,13 @@ public class RedisCache {
             result = JsonBinder.buildAlwaysBinder().toJavaListFromJson(resultObj + "", clazz);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis取得数据失败:key={},hashKey={}", keyWithPrefix, hashKey, e);
+                log.error("从redis取得数据失败: key={}, hashKey={}", keyWithPrefix, hashKey, e);
             }
             return null;
         }
 
         if (redisPrintOps) {
-            log.info("从redis取得数据结束:key={},hashKey={}", keyWithPrefix, hashKey);
+            log.info("从redis取得数据结束: key={}, hashKey={}", keyWithPrefix, hashKey);
         }
         return result;
     }
@@ -381,7 +379,7 @@ public class RedisCache {
             return redisTemplate.hasKey(key);
         } catch (Exception e) {
             if (redisPrintOps) {
-                log.info("从redis取得数据失败:key={},hashKey={}", keyWithPrefix, e);
+                log.error("从redis取得数据失败: key={}, hashKey={}", keyWithPrefix, e);
             }
             return false;
         }
