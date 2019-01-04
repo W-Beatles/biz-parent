@@ -57,14 +57,14 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
 
     private String buildELKFormat(ILoggingEvent iLoggingEvent) {
         JSONObject root = new JSONObject();
+
+        // write mdc fields
         writeMdc(root, iLoggingEvent);
-
-        //== write basic fields
+        // write basic fields
         writeBasic(root, iLoggingEvent);
-
-        //== write throwable fields
+        // write throwable fields
         writeThrowable(root, iLoggingEvent);
-
+        // write timeToken fields
         writeTimeToken(root, iLoggingEvent);
 
         return root.toString();

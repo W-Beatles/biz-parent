@@ -15,8 +15,6 @@ public class CommonProperties {
     @NestedConfigurationProperty
     private RedisCacheProperties redisCache;
 
-    /**
-     * MDC前缀
-     */
-    private String mdcPrefix;
+    @NestedConfigurationProperty
+    private MDCProperties mdc;
 }

@@ -11,7 +11,6 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 
 import java.lang.annotation.Annotation;
@@ -26,9 +25,6 @@ public abstract class AbstractMethodPrintAspect {
 
     private ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
-    @Value("${spring.application.name}")
-    private String applicationName;
-
     /**
      * 切点配置
      */
@@ -40,7 +36,7 @@ public abstract class AbstractMethodPrintAspect {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
 
-            log.info("[{}] {} 开始调用, 参数: {}", applicationName, methodName, argsStr);
+            log.info("{} 开始调用, 参数: {}", methodName, argsStr);
         }
 
         // 记录调用开始时间
@@ -61,12 +57,12 @@ public abstract class AbstractMethodPrintAspect {
         if (printAnnotation.isPrintReturn()) {
             String returnStr = this.getPrintReturnStr(result, printAnnotation);
 
-            log.info("[{}] {} 结束调用，返回值: {}", applicationName, methodName, returnStr);
+            log.info("{} 结束调用，返回值: {}", methodName, returnStr);
         }
 
         // 打印调用耗时
         if (printAnnotation.isPrintCostTime()) {
-            log.info("[{}] {} 调用耗时: {}ms", applicationName, methodName, System.currentTimeMillis() - threadLocal.get());
+            log.info("{} 调用耗时: {}ms", methodName, System.currentTimeMillis() - threadLocal.get());
             threadLocal.remove();
         }
     }
@@ -76,7 +72,7 @@ public abstract class AbstractMethodPrintAspect {
         if (printAnnotation.isPrintException()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
 
-            log.error("[{}] {} 调用异常:", applicationName, methodName, exception);
+            log.error("{} 调用异常:", methodName, exception);
         }
     }
 
