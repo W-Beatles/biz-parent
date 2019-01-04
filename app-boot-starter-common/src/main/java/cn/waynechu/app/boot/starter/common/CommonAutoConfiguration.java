@@ -24,11 +24,11 @@ public class CommonAutoConfiguration {
     private CommonProperties commonProperties;
 
     @Bean(name = "commonRedisCache")
-    @ConditionalOnProperty("common.redis-key-prefix")
+    @ConditionalOnProperty(value = "common.redis-cache.enable", havingValue = "true")
     public RedisCache redisCache(StringRedisTemplate redisTemplate) {
-        if (!StringUtils.hasText(commonProperties.getRedisKeyPrefix())) {
+        if (!StringUtils.hasText(commonProperties.getRedisCache().getKeyPrefix())) {
             log.warn("[RedisCache] ****** Redis key prefix not found, consider setting one. ******");
         }
-        return new RedisCache(commonProperties.getRedisKeyPrefix(), commonProperties.isRedisPrintOps(), redisTemplate);
+        return new RedisCache(commonProperties.getRedisCache().getKeyPrefix(), commonProperties.getRedisCache().isPrintOps(), redisTemplate);
     }
 }

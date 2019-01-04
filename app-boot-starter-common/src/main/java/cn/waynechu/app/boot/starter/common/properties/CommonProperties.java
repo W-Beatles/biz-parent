@@ -2,6 +2,7 @@ package cn.waynechu.app.boot.starter.common.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * @author zhuwei
@@ -11,15 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "common")
 public class CommonProperties {
 
-    /**
-     * redis存储前缀
-     */
-    private String redisKeyPrefix;
-
-    /**
-     * 打印redis操作详情
-     */
-    private boolean redisPrintOps = false;
+    @NestedConfigurationProperty
+    private RedisCacheProperties redisCache;
 
     /**
      * MDC前缀
