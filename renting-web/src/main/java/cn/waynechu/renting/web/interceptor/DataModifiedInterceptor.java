@@ -25,8 +25,7 @@ public class DataModifiedInterceptor implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {
         Object[] args = invocation.getArgs();
         MappedStatement ms = (MappedStatement) args[0];
-        BoundSql boundSql = ms.getSqlSource().getBoundSql(args[1]);
-        Object parameterObject = boundSql.getParameterObject();
+        Object parameterObject = args[1];
 
         if (ms.getSqlCommandType().equals(SqlCommandType.INSERT)) {
             BeanUtil.setPropertyValue(parameterObject, "createdUser", SessionHolder.getAccountSession().getUserName());

@@ -34,7 +34,7 @@ public class HouseServiceImpl implements HouseService {
             House house = houseRepository.getById(id);
             if (house != null) {
                 returnValue = HouseConvert.convertHouseDTO(house);
-                
+
                 redisCache.set(String.valueOf(id), returnValue, 3600);
             }
         } else {
@@ -56,7 +56,13 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public boolean update(HouseDTO houseDTO) {
-        return false;
+        boolean returnValue = false;
+
+        House house = HouseConvert.convertHouse(houseDTO);
+        if (house != null) {
+            returnValue = houseRepository.updateSelective(house);
+        }
+        return returnValue;
     }
 
     @Override

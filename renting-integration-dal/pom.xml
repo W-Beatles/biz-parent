@@ -23,14 +23,14 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-        <!--<groupId>cn.waynechu</groupId>-->
-        <!--<artifactId>app-boot-starter-dynamic-datasource</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
-            <groupId>com.tuhu</groupId>
-            <artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>app-boot-starter-dynamic-datasource</artifactId>
         </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>com.tuhu</groupId>-->
+        <!--<artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>-->
+        <!--</dependency>-->
     </dependencies>
 </project>
