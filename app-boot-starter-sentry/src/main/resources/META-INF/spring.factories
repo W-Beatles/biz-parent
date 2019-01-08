@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.waynechu.boot.starter.common.CommonAutoConfiguration
+cn.waynechu.boot.starter.sentry.SentryAutoConfiguration

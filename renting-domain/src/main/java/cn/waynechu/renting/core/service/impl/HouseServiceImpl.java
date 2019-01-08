@@ -1,6 +1,6 @@
 package cn.waynechu.renting.core.service.impl;
 
-import cn.waynechu.app.boot.starter.common.util.RedisCache;
+import cn.waynechu.boot.starter.common.util.RedisCache;
 import cn.waynechu.renting.core.convert.HouseConvert;
 import cn.waynechu.renting.core.repository.HouseRepository;
 import cn.waynechu.renting.dal.entity.House;
@@ -67,7 +67,7 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public boolean removeById(Long id) {
-        return false;
+        return houseRepository.removeById(id);
     }
 
     @Override

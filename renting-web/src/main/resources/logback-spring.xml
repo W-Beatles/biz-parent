@@ -124,13 +124,6 @@
         </then>
     </if>
 
-    <!-- 如果不走rabbitmq可以使用以下配置 -->
-    <!--<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-    <!--<destination>localhost:5044</destination>-->
-    <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
-    <!--<keepAliveDuration>5 minutes</keepAliveDuration>-->
-    <!--</appender>-->
-
     <springProfile name="prd,test,ut">
         <logger name="com" level="INFO" additivity="false">
             <!--<appender-ref ref="ASYNC_INFO"/>-->

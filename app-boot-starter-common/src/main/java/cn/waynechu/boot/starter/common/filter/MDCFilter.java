@@ -1,6 +1,6 @@
-package cn.waynechu.app.boot.starter.common.filter;
+package cn.waynechu.boot.starter.common.filter;
 
-import cn.waynechu.app.boot.starter.common.util.MDCUtil;
+import cn.waynechu.boot.starter.common.util.MDCUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;

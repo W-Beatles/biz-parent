@@ -1,4 +1,4 @@
-package cn.waynechu.app.boot.starter.common.properties;
+package cn.waynechu.boot.starter.common.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -16,5 +16,8 @@ public class CommonProperties {
     private RedisCacheProperties redisCache;
 
     @NestedConfigurationProperty
-    private MDCProperties mdc;
+    private MDCProperties mdcFilter;
+
+    @NestedConfigurationProperty
+    private DataModifiedProperties dataModifiedInterceptor;
 }

@@ -1,4 +1,4 @@
-package cn.waynechu.app.boot.starter.common.properties;
+package cn.waynechu.boot.starter.common.properties;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import lombok.Data;
 public class MDCProperties {
 
     /**
-     * 开启MDC
+     * 是否开启MDC
      */
     private boolean enable;
 

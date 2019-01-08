@@ -1,4 +1,4 @@
-package cn.waynechu.app.boot.starter.common.properties;
+package cn.waynechu.boot.starter.common.properties;
 
 import lombok.Data;
 

@@ -1,5 +1,6 @@
 package cn.waynechu.renting.web.interceptor;
 
+import cn.waynechu.boot.starter.common.holder.IDataModifiedHolder;
 import cn.waynechu.webcommon.session.AccountSession;
 import cn.waynechu.webcommon.session.SessionHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author zhuwei
  * @date 2018/12/24 13:49
  */
-public class SessionInterception implements HandlerInterceptor {
+public class SessionInterception implements HandlerInterceptor, IDataModifiedHolder {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -21,7 +22,7 @@ public class SessionInterception implements HandlerInterceptor {
         if (accountSession == null) {
             // TODO: 2018/12/24 get from db
             accountSession = new AccountSession();
-            accountSession.setUserName("admin");
+            accountSession.setUserName("waynechu");
 
             SessionHolder.setAccountSession(accountSession);
         }
@@ -36,5 +37,10 @@ public class SessionInterception implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         SessionHolder.removeAccountSession();
+    }
+
+    @Override
+    public String getModifierName() {
+        return SessionHolder.getAccountSession().getUserName();
     }
 }

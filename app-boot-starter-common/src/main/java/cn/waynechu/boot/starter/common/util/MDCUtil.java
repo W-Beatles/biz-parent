@@ -1,4 +1,4 @@
-package cn.waynechu.app.boot.starter.common.util;
+package cn.waynechu.boot.starter.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

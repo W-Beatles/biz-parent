@@ -110,6 +110,12 @@
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
+                <artifactId>app-boot-starter-sentry</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>renting-integration-dal</artifactId>
                 <version>${app.version}</version>
             </dependency>
@@ -177,12 +183,6 @@
                 <version>${mybatis.spring.boot.version}</version>
             </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>net.logstash.logback</groupId>-->
-                <!--<artifactId>logstash-logback-encoder</artifactId>-->
-                <!--<version>${logstash.logback.encoder.version}</version>-->
-            <!--</dependency>-->
-
             <dependency>
                 <groupId>io.sentry</groupId>
                 <artifactId>sentry-logback</artifactId>
@@ -241,6 +241,7 @@
         <module>app-web-common</module>
         <module>app-boot-starter-common</module>
         <module>app-boot-starter-dynamic-datasource</module>
+        <module>app-boot-starter-sentry</module>
         <module>rabbitmq-logback-appender</module>
 
         <module>renting-integration-dal</module>

@@ -1,10 +1,14 @@
-package cn.waynechu.app.boot.starter.common;
+package cn.waynechu.boot.starter.common;
 
-import cn.waynechu.app.boot.starter.common.properties.CommonProperties;
-import cn.waynechu.app.boot.starter.common.filter.MDCFilter;
-import cn.waynechu.app.boot.starter.common.util.RedisCache;
+import cn.waynechu.boot.starter.common.filter.MDCFilter;
+import cn.waynechu.boot.starter.common.holder.DefaultDataModifiedHolder;
+import cn.waynechu.boot.starter.common.holder.IDataModifiedHolder;
+import cn.waynechu.boot.starter.common.interceptor.DataModifiedInterceptor;
+import cn.waynechu.boot.starter.common.properties.CommonProperties;
+import cn.waynechu.boot.starter.common.util.RedisCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -35,15 +39,28 @@ public class CommonAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(value = "common.mdc.enable", havingValue = "true")
+    @ConditionalOnProperty(value = "common.mdc-filter.enable", havingValue = "true")
     @SuppressWarnings("unchecked")
     public FilterRegistrationBean mdcFilterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         MDCFilter mdcFilter = new MDCFilter();
-        mdcFilter.setMdcPrefix(commonProperties.getMdc().getPrefix());
+        mdcFilter.setMdcPrefix(commonProperties.getMdcFilter().getPrefix());
 
         registrationBean.setFilter(mdcFilter);
         registrationBean.setOrder(1);
         return registrationBean;
+    }
+
+    @Bean
+    @ConditionalOnProperty(value = "common.data-modified-interceptor.enable", havingValue = "true")
+    public DataModifiedInterceptor dataModifiedInterceptor(IDataModifiedHolder dataModifiedHolder) {
+        return new DataModifiedInterceptor(dataModifiedHolder, commonProperties.getDataModifiedInterceptor());
+    }
+
+    @Bean("defaultDataModifiedHolder")
+    @ConditionalOnMissingBean(IDataModifiedHolder.class)
+    public IDataModifiedHolder defaultDataModifiedHolder() {
+        log.warn("[DataModifiedInterceptor] Missing dataModifiedHolder bean, using defaultDataModifiedHolder. You may consider initializing one!");
+        return new DefaultDataModifiedHolder();
     }
 }
