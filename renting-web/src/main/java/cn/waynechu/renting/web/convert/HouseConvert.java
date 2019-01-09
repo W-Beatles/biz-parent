@@ -1,9 +1,9 @@
 package cn.waynechu.renting.web.convert;
 
-import cn.waynechu.webcommon.bean.BeanUtil;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.request.HouseCreateRequest;
 import cn.waynechu.renting.facade.vo.HouseResponse;
+import cn.waynechu.webcommon.bean.BeanUtil;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class HouseConvert {
         return BeanUtil.beanTransfer(houseCreateReq, HouseDTO.class);
     }
 
-    public static List<HouseResponse> convertHouseVOS(List<HouseDTO> list) {
+    public static List<HouseResponse> convertHouseVOList(List<HouseDTO> list) {
         return BeanUtil.beanListTransfer(list, HouseResponse.class);
     }
 }

@@ -1,6 +1,5 @@
 package cn.waynechu.renting.core.repository;
 
-import cn.waynechu.webcommon.bean.BeanUtil;
 import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.dal.entity.HouseExample;
 import cn.waynechu.renting.dal.mapper.HouseMapper;
@@ -8,6 +7,7 @@ import cn.waynechu.webcommon.page.PageInfo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -40,10 +40,17 @@ public class HouseRepository {
         return houseMapper.updateByPrimaryKeySelective(house) > 0;
     }
 
-    public PageInfo<House> queryByExample(House house, int pageNum, int pageSize) {
+    public PageInfo<House> query(House house, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
 
-        HouseExample example = BeanUtil.beanTransfer(house, HouseExample.class);
+        HouseExample example = new HouseExample();
+        HouseExample.Criteria criteria = example.createCriteria();
+        if (StringUtils.hasText(house.getTitle())) {
+            criteria.andTitleEqualTo(house.getTitle());
+        }
+        if (house.getStatus() != null) {
+            criteria.andStatusEqualTo(house.getStatus());
+        }
         List<House> houses = houseMapper.selectByExample(example);
         return PageInfo.of(houses);
     }

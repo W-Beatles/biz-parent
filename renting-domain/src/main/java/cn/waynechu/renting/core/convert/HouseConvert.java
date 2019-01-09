@@ -1,8 +1,10 @@
 package cn.waynechu.renting.core.convert;
 
-import cn.waynechu.webcommon.bean.BeanUtil;
 import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.facade.dto.HouseDTO;
+import cn.waynechu.webcommon.bean.BeanUtil;
+
+import java.util.List;
 
 /**
  * @author zhuwei
@@ -18,5 +20,9 @@ public class HouseConvert {
 
     public static House convertHouse(HouseDTO houseDTO) {
         return BeanUtil.beanTransfer(houseDTO, House.class);
+    }
+
+    public static List<HouseDTO> convertHouseDTOList(List<House> houseList) {
+        return BeanUtil.beanListTransfer(houseList, HouseDTO.class);
     }
 }
