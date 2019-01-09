@@ -7,9 +7,13 @@ import cn.waynechu.renting.dal.entity.House;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.webcommon.page.PageInfo;
+import cn.waynechu.webcommon.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author zhuwei
@@ -70,13 +74,32 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.removeById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean copyByIdTransition(Long id) {
-        return false;
+        boolean returnValue = false;
+
+        House copyHouse = houseRepository.getById(id);
+        if (copyHouse != null) {
+            copyHouse.setId(null);
+            returnValue = houseRepository.create(copyHouse);
+        }
+        return returnValue;
     }
 
     @Override
     public PageInfo<HouseDTO> search(HouseDTO houseDTO, int pageNum, int pageSize) {
-        return null;
+        PageInfo<HouseDTO> returnValue = new PageInfo<>(pageNum, pageSize);
+
+        if (houseDTO != null) {
+            House house = HouseConvert.convertHouse(houseDTO);
+            PageInfo<House> housePageInfo = houseRepository.query(house, pageNum, pageSize);
+
+            if (CollectionUtil.isNotNullOrEmpty(housePageInfo.getList())) {
+                List<HouseDTO> houseDTOS = HouseConvert.convertHouseDTOList(housePageInfo.getList());
+                returnValue = housePageInfo.replace(houseDTOS);
+            }
+        }
+        return returnValue;
     }
 }

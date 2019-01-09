@@ -1,8 +1,8 @@
 package cn.waynechu.renting.web.advice;
 
+import cn.waynechu.renting.facade.exception.RentingException;
 import cn.waynechu.webcommon.enums.CommonResultEnum;
 import cn.waynechu.webcommon.web.Result;
-import cn.waynechu.renting.facade.exception.RentingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,7 +28,8 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public Result unknownException() {
+    public Result unknownException(Exception e) {
+        log.error("[SYSTEM_ERROR] " + e.getMessage());
         return Result.error();
     }
 }

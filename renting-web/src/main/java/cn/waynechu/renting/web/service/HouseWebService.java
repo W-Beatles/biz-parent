@@ -1,11 +1,11 @@
 package cn.waynechu.renting.web.service;
 
-import cn.waynechu.webcommon.util.CollectionUtil;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.renting.facade.vo.HouseResponse;
 import cn.waynechu.renting.web.convert.HouseConvert;
 import cn.waynechu.webcommon.page.PageInfo;
+import cn.waynechu.webcommon.util.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,13 +44,13 @@ public class HouseWebService {
     }
 
     public PageInfo<HouseResponse> search(HouseDTO houseDTO, Integer pageNum, Integer pageSize) {
-        PageInfo<HouseResponse> returnValue = null;
+        PageInfo<HouseResponse> returnValue = new PageInfo<>(pageNum, pageSize);
 
-        PageInfo<HouseDTO> search = houseService.search(houseDTO, pageNum, pageSize);
-        List<HouseDTO> list = search.getList();
-        if ( CollectionUtil.isNotNullOrEmpty(list)) {
-            List<HouseResponse> houseVOS = HouseConvert.convertHouseVOS(list);
-            returnValue = PageInfo.of(houseVOS);
+        PageInfo<HouseDTO> houseDTOPageInfo = houseService.search(houseDTO, pageNum, pageSize);
+        List<HouseDTO> list = houseDTOPageInfo.getList();
+        if (CollectionUtil.isNotNullOrEmpty(list)) {
+            List<HouseResponse> houseVOList = HouseConvert.convertHouseVOList(list);
+            returnValue = houseDTOPageInfo.replace(houseVOList);
         }
         return returnValue;
     }
