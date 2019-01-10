@@ -3,6 +3,7 @@ package cn.waynechu.renting.facade.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author zhuwei
@@ -49,4 +50,14 @@ public class HouseDTO implements Serializable {
     private Integer bathroom;
 
     private String street;
+
+    private String createdUser;
+
+    private Date createdTime;
+
+    private String updatedUser;
+
+    private Date updatedTime;
+
+    private Boolean isDeleted;
 }

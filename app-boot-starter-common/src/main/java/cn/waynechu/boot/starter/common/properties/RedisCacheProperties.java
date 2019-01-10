@@ -30,7 +30,7 @@ public class RedisCacheProperties {
     private SerializerEnum serializer = SerializerEnum.JACKSON;
 
     /**
-     * Cache超时时间，单位秒。默认 172800秒/2天
+     * 配置全局Cache超时时间，单位秒。默认 172800秒/2天
      */
     private long ttl = 172800;
 
