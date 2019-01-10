@@ -5,17 +5,13 @@ import cn.waynechu.boot.starter.common.holder.DefaultDataModifiedHolder;
 import cn.waynechu.boot.starter.common.holder.IDataModifiedHolder;
 import cn.waynechu.boot.starter.common.interceptor.DataModifiedInterceptor;
 import cn.waynechu.boot.starter.common.properties.CommonProperties;
-import cn.waynechu.boot.starter.common.util.RedisCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.util.StringUtils;
 
 /**
  * @author zhuwei
@@ -28,15 +24,6 @@ public class CommonAutoConfiguration {
 
     @Autowired
     private CommonProperties commonProperties;
-
-    @Bean(name = "commonRedisCache")
-    @ConditionalOnProperty(value = "common.redis-cache.enable", havingValue = "true")
-    public RedisCache redisCache(StringRedisTemplate redisTemplate) {
-        if (!StringUtils.hasText(commonProperties.getRedisCache().getKeyPrefix())) {
-            log.warn("[RedisCache] ****** Redis key prefix not found, consider setting one. ******");
-        }
-        return new RedisCache(commonProperties.getRedisCache().getKeyPrefix(), commonProperties.getRedisCache().isPrintOps(), redisTemplate);
-    }
 
     @Bean
     @ConditionalOnProperty(value = "common.mdc-filter.enable", havingValue = "true")
@@ -54,13 +41,10 @@ public class CommonAutoConfiguration {
     @Bean
     @ConditionalOnProperty(value = "common.data-modified-interceptor.enable", havingValue = "true")
     public DataModifiedInterceptor dataModifiedInterceptor(IDataModifiedHolder dataModifiedHolder) {
+        if (dataModifiedHolder == null) {
+            log.warn("[DataModifiedInterceptor] Missing dataModifiedHolder bean, using defaultDataModifiedHolder. You may consider initializing one!");
+            dataModifiedHolder = new DefaultDataModifiedHolder();
+        }
         return new DataModifiedInterceptor(dataModifiedHolder, commonProperties.getDataModifiedInterceptor());
-    }
-
-    @Bean("defaultDataModifiedHolder")
-    @ConditionalOnMissingBean(IDataModifiedHolder.class)
-    public IDataModifiedHolder defaultDataModifiedHolder() {
-        log.warn("[DataModifiedInterceptor] Missing dataModifiedHolder bean, using defaultDataModifiedHolder. You may consider initializing one!");
-        return new DefaultDataModifiedHolder();
     }
 }

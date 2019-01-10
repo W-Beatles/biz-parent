@@ -8,7 +8,6 @@ import cn.waynechu.renting.facade.vo.HouseResponse;
 import cn.waynechu.renting.web.convert.HouseConvert;
 import cn.waynechu.renting.web.convert.dto.HouseDtoConvert;
 import cn.waynechu.renting.web.service.HouseWebService;
-import cn.waynechu.webcommon.AbstractController;
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.web.Result;
@@ -27,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/houses")
 @Api(tags = "房屋信息")
-public class HouseController extends AbstractController {
+public class HouseController {
 
     @Autowired
     private HouseWebService houseWebService;

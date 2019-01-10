@@ -10,6 +10,7 @@ import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,20 +30,32 @@ public class HouseServiceImpl implements HouseService {
     @Autowired
     private RedisCache redisCache;
 
+//    @Override
+//    public HouseDTO getById(Long id) {
+//        HouseDTO returnValue = null;
+//
+//        HouseDTO houseDTO = redisCache.get(String.valueOf(id), HouseDTO.class);
+//        if (houseDTO == null) {
+//            House house = houseRepository.getById(id);
+//            if (house != null) {
+//                returnValue = HouseConvert.convertHouseDTO(house);
+//
+//                redisCache.set(String.valueOf(id), returnValue, 3600);
+//            }
+//        } else {
+//            return houseDTO;
+//        }
+//        return returnValue;
+//    }
+
+    @Cacheable(cacheNames = "house", key = "#id")
     @Override
     public HouseDTO getById(Long id) {
         HouseDTO returnValue = null;
 
-        HouseDTO houseDTO = redisCache.get(String.valueOf(id), HouseDTO.class);
-        if (houseDTO == null) {
-            House house = houseRepository.getById(id);
-            if (house != null) {
-                returnValue = HouseConvert.convertHouseDTO(house);
-
-                redisCache.set(String.valueOf(id), returnValue, 3600);
-            }
-        } else {
-            return houseDTO;
+        House house = houseRepository.getById(id);
+        if (house != null) {
+            returnValue = HouseConvert.convertHouseDTO(house);
         }
         return returnValue;
     }
