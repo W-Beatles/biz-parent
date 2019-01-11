@@ -86,8 +86,6 @@ public class RedisCacheAutoConfiguration {
         // 设置value的序列化方式
         redisTemplate.setValueSerializer(redisSerializer);
         redisTemplate.setHashValueSerializer(redisSerializer);
-        // 开启事务支持
-        redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }

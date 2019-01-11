@@ -2,11 +2,15 @@ package cn.waynechu.renting.web;
 
 import cn.waynechu.boot.starter.common.util.RedisCache;
 import cn.waynechu.renting.facade.dto.HouseDTO;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author zhuwei
@@ -18,13 +22,20 @@ public class RedisCacheTest extends RentingWebApplicationTests {
     private RedisCache redisCache;
 
     @Test
-    public void get() {
-        List<HouseDTO> list = redisCache.getFromList("houses:1", HouseDTO.class);
-        System.out.println(list);
+    public void set() {
+        HouseDTO houseDTO = new HouseDTO();
+        houseDTO.setAdminId(1L);
+        redisCache.set("house:1", houseDTO);
     }
 
     @Test
-    public void set() {
+    public void get() {
+        HouseDTO houseDTO = redisCache.get("house:12", HouseDTO.class);
+        Assert.assertEquals(Long.valueOf(1), houseDTO.getAdminId());
+    }
+
+    @Test
+    public void setList() {
         ArrayList<HouseDTO> houseDTOS = new ArrayList<>();
         HouseDTO houseDTO;
         for (int i = 0; i < 9; i++) {
@@ -34,6 +45,106 @@ public class RedisCacheTest extends RentingWebApplicationTests {
             houseDTO.setBuildYear(i);
             houseDTOS.add(houseDTO);
         }
-        redisCache.set("houses:1", houseDTOS);
+        redisCache.set("houses", houseDTOS);
+    }
+
+    @Test
+    public void getFromList() {
+        List<HouseDTO> houseDTOS = redisCache.getFromList("houses", HouseDTO.class);
+        Assert.assertEquals(9, houseDTOS.size());
+    }
+
+    @Test
+    public void setWithTimeOut() {
+        HouseDTO houseDTO = new HouseDTO();
+        houseDTO.setAdminId(1L);
+        redisCache.set("house:2", houseDTO, 60);
+    }
+
+    @Test
+    public void setIfAbsent() {
+        HouseDTO houseDTO = new HouseDTO();
+        houseDTO.setAdminId(1L);
+        Boolean flag = redisCache.setIfAbsent("house:1", houseDTO);
+        Boolean flag2 = redisCache.setIfAbsent("house:2", houseDTO);
+        Assert.assertEquals(false, flag);
+        Assert.assertEquals(true, flag2);
+    }
+
+    @Test
+    public void increment() {
+        Long increment = redisCache.increment("index:count");
+        Assert.assertEquals(Long.valueOf(2), increment);
+    }
+
+    @Test
+    public void incrementLongDelta() {
+        Long increment = redisCache.increment("index:count", 5L);
+        Assert.assertEquals(Long.valueOf(7), increment);
+    }
+
+    @Test
+    public void incrementDoubleDelta() {
+        Double increment = redisCache.increment("index:count", 1.8);
+        Assert.assertEquals(Double.valueOf(8.8), increment);
+    }
+
+    @Test
+    public void getAndSet() {
+        HouseDTO houseDTO = new HouseDTO();
+        houseDTO.setAdminId(3L);
+        HouseDTO oldHouseDTO = redisCache.getAndSet("house:4", houseDTO, HouseDTO.class);
+        Assert.assertNull(oldHouseDTO);
+    }
+
+    @Test
+    public void delete() {
+        boolean delete3 = redisCache.delete("house:3");
+        boolean delete2 = redisCache.delete("house:2");
+        Assert.assertFalse(delete3);
+        Assert.assertFalse(delete2);
+    }
+
+    @Test
+    public void deleteBatch() {
+        Long count = redisCache.delete(new ArrayList<String>() {{
+            add("house:1");
+            add("house:2");
+            add("house:3");
+            add("house:4");
+        }});
+        Assert.assertEquals(Long.valueOf(2), count);
+    }
+
+    @Test
+    public void testGetLock() throws InterruptedException {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        int threadNum = 999;
+        CountDownLatch countDownLatch = new CountDownLatch(threadNum);
+        for (int i = 0; i < threadNum; i++) {
+            executorService.submit(() -> {
+                String requestId = Thread.currentThread().getName();
+                boolean getLock = redisCache.getLock("test:lock", requestId, 9999999L);
+                if (getLock) {
+                    System.out.println(requestId + ": get lock");
+                    boolean delSuccess = redisCache.delLock("test:lock", requestId);
+                    System.out.println(requestId + ": del lock - " + delSuccess);
+                }
+                countDownLatch.countDown();
+            });
+        }
+        countDownLatch.await();
+    }
+
+    @Test
+    public void isExist() {
+        boolean exist = redisCache.isExist("house:1");
+        Assert.assertFalse(exist);
+    }
+
+    @Test
+    public void delLock() {
+        boolean exist = redisCache.delLock("test:lock", "pool-5-thread-283");
+        System.out.println(exist);
     }
 }

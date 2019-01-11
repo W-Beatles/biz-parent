@@ -2,9 +2,11 @@ package cn.waynechu.boot.starter.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -124,12 +126,12 @@ public class RedisCache {
     /**
      * 添加键值对
      *
-     * @param key     k
-     * @param value   v
-     * @param timeout 过期时间，单位秒
+     * @param key    k
+     * @param value  v
+     * @param second 过期时间，单位秒
      */
-    public void set(String key, Object value, long timeout) {
-        this.set(key, value, timeout, TimeUnit.SECONDS);
+    public void set(String key, Object value, long second) {
+        this.set(key, value, second, TimeUnit.SECONDS);
     }
 
     /**
@@ -165,7 +167,7 @@ public class RedisCache {
      *
      * @param key   k
      * @param value v
-     * @return 1 如果key被设置了; 0 如果key没有被设置
+     * @return true 如果key被设置成功; false 如果key被设置失败
      */
     public Boolean setIfAbsent(String key, Object value) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
@@ -177,11 +179,25 @@ public class RedisCache {
      * 当key存在时，什么也不做
      * 如果key不存在，这种情况下等同SET命令
      *
+     * @param key    k
+     * @param value  v
+     * @param second 有效时间，单位秒
+     * @return true 如果key被设置成功; false 如果key被设置失败
+     */
+    public Boolean setIfAbsent(String key, Object value, long second) {
+        return this.setIfAbsent(key, value, second, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 添加指定键值对(SET if Not exists)
+     * 当key存在时，什么也不做
+     * 如果key不存在，这种情况下等同SET命令
+     *
      * @param key     k
      * @param value   v
-     * @param timeout k
-     * @param unit    v
-     * @return 1 如果key被设置了; 0 如果key没有被设置
+     * @param timeout 有效时间
+     * @param unit    单位
+     * @return true 如果key被设置成功; false 如果key被设置失败
      */
     public Boolean setIfAbsent(String key, Object value, long timeout, TimeUnit unit) {
         return valueOperations.setIfAbsent(getRedisKeyWithPrefix(key), value, timeout, unit);
@@ -207,7 +223,7 @@ public class RedisCache {
      * 这个操作最多支持64位有符号的正型数字
      *
      * @param key   k
-     * @param delta decrement
+     * @param delta 步长
      * @return decrement后的key
      */
     public Long increment(String key, long delta) {
@@ -296,6 +312,95 @@ public class RedisCache {
     public boolean isExist(String key) {
         String keyWithPrefix = getRedisKeyWithPrefix(key);
         return redisTemplate.hasKey(keyWithPrefix);
+    }
+
+    /**
+     * 获取分布式锁
+     *
+     * @param lockName     锁名
+     * @param requestId    解锁标识，会将它作为value来存储。
+     *                     可使用UUID.randomUUID().toString()或者其它唯一值标识
+     * @param milliseconds 锁定有效期，单位毫秒
+     *                     它不仅是key自动失效时间，还是一个客户端持有锁多长时间后
+     *                     可以被另外一个客户端重新获得的时间
+     * @return 加锁成功：true
+     */
+    public boolean getLock(String lockName, String requestId, long milliseconds) {
+        String lockNameWithPrefix = getRedisKeyWithPrefix(lockName);
+        return redisTemplate.opsForValue().setIfAbsent(lockNameWithPrefix, requestId, milliseconds, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * 移除分布式锁
+     * <p>
+     * 使用lua脚本实现分布式锁的移除，这种方式释放锁可以避免删除别的客户端获取成功的锁。
+     * 脚本仅会删除requestId等于获取琐时传入的requestId
+     *
+     * @param lockName  锁名
+     * @param requestId 解锁标识
+     * @return 移除成功：true
+     */
+    public boolean delLock(String lockName, String requestId) {
+        DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>();
+        defaultRedisScript.setResultType(Long.class);
+        defaultRedisScript.setScriptText(
+                "if redis.call(\"get\",KEYS[1]) == ARGV[1] then\n" +
+                        "    return redis.call(\"del\",KEYS[1])\n" +
+                        "else\n" +
+                        "    return 0\n" +
+                        "end");
+
+        List<String> keyList = Collections.singletonList(getRedisKeyWithPrefix(lockName));
+
+        Long execute = redisTemplate.execute(defaultRedisScript, keyList, requestId);
+        return Long.valueOf(1).equals(execute);
+    }
+
+    /**
+     * 获取分布式锁
+     *
+     * @param lockName    锁名
+     * @param lockTimeout 过期时间，单位毫秒
+     * @return 获取到锁返回锁过期的时间戳，未获取到返回-1
+     */
+    @Deprecated
+    public long getRedisLock(String lockName, long lockTimeout) {
+        long expireTime = System.currentTimeMillis() + lockTimeout + 1;
+        String lockNameWithPrefix = getRedisKeyWithPrefix(lockName);
+        // 尝试获取锁
+        Boolean getLock = valueOperations.setIfAbsent(lockNameWithPrefix, String.valueOf(expireTime));
+        if (getLock) {
+            // 获取锁成功
+            return expireTime;
+        } else {
+            // 未获取到锁。继续获取锁的过期时间
+            String lockValue = (String) valueOperations.get(lockNameWithPrefix);
+            if (lockValue != null && System.currentTimeMillis() > Long.parseLong(lockValue)) {
+                // 该锁已超时，设置新值并返回旧值
+                long newExpireTime = System.currentTimeMillis() + lockTimeout + 1;
+                String getSetValue = (String) valueOperations.getAndSet(lockNameWithPrefix, String.valueOf(newExpireTime));
+                if (getSetValue == null || (getSetValue != null && lockValue.equals(getSetValue))) {
+                    // 已过期的旧值仍然存在。只有最先执行getAndSet()的应用进程才能获取到锁
+                    return newExpireTime;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 移除分布式锁
+     *
+     * @param lockName   锁名
+     * @param expireTime 锁过期的时间戳
+     */
+    @Deprecated
+    public void delRedisLock(String lockName, long expireTime) {
+        if (System.currentTimeMillis() < expireTime) {
+            // 保证使用DEL释放锁之前不会过期
+            String lockNameWithPrefix = getRedisKeyWithPrefix(lockName);
+            redisTemplate.delete(lockNameWithPrefix);
+        }
     }
 
     /**
