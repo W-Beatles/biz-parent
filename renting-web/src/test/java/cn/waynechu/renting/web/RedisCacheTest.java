@@ -5,6 +5,7 @@ import cn.waynechu.renting.facade.dto.HouseDTO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class RedisCacheTest extends RentingWebApplicationTests {
 
     @Test
     public void get() {
-        HouseDTO houseDTO = redisCache.get("house:12", HouseDTO.class);
+        HouseDTO houseDTO = redisCache.get("house:1", HouseDTO.class);
         Assert.assertEquals(Long.valueOf(1), houseDTO.getAdminId());
     }
 
@@ -99,10 +100,19 @@ public class RedisCacheTest extends RentingWebApplicationTests {
 
     @Test
     public void delete() {
-        boolean delete3 = redisCache.delete("house:3");
-        boolean delete2 = redisCache.delete("house:2");
-        Assert.assertFalse(delete3);
-        Assert.assertFalse(delete2);
+        boolean delete3 = redisCache.delete("house:1");
+        boolean delete2 = redisCache.delete("houses");
+        Assert.assertTrue(delete3);
+        Assert.assertTrue(delete2);
+    }
+
+    @Transactional
+    @Test
+    public void deleteTransaction() {
+        boolean delete3 = redisCache.delete("house:1");
+        boolean delete2 = redisCache.delete("houses");
+        Assert.assertTrue(delete3);
+        Assert.assertTrue(delete2);
     }
 
     @Test
@@ -119,12 +129,13 @@ public class RedisCacheTest extends RentingWebApplicationTests {
     @Test
     public void testGetLock() throws InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
-        int threadNum = 999;
+
+        int threadNum = 2000;
         CountDownLatch countDownLatch = new CountDownLatch(threadNum);
         for (int i = 0; i < threadNum; i++) {
             executorService.submit(() -> {
                 String requestId = Thread.currentThread().getName();
-                boolean getLock = redisCache.getLock("test:lock", requestId, 9999999L);
+                boolean getLock = redisCache.getLock("test:lock", requestId, 1000L);
                 if (getLock) {
                     System.out.println(requestId + ": get lock");
                     boolean delSuccess = redisCache.delLock("test:lock", requestId);

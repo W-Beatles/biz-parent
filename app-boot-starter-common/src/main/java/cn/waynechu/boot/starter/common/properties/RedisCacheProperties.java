@@ -2,6 +2,9 @@ package cn.waynechu.boot.starter.common.properties;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author zhuwei
  * @date 2019/1/4 10:14
@@ -28,6 +31,11 @@ public class RedisCacheProperties {
      * Cache序列化方式，默认JACKSON
      */
     private SerializerEnum serializer = SerializerEnum.JACKSON;
+
+    /**
+     * 当序列化方式为FastJSON时，需指定autoType白名单，否则反序列化时会抛出异常
+     */
+    private List<String> autoTypes = new ArrayList<>();
 
     /**
      * 配置全局Cache超时时间，单位秒。默认 172800秒/2天

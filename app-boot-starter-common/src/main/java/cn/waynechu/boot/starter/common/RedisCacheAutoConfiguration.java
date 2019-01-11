@@ -66,7 +66,9 @@ public class RedisCacheAutoConfiguration {
             log.info("[RedisCache] Using fastJsonSerializer for cache");
 
             // FastJson需指定AutoType序列化白名单
-            ParserConfig.getGlobalInstance().addAccept("cn.waynechu.");
+            for (String autoType : commonProperties.getRedisCache().getAutoTypes()) {
+                ParserConfig.getGlobalInstance().addAccept(autoType);
+            }
         } else {
             redisSerializer = new GenericJackson2JsonRedisSerializer();
             log.info("[RedisCache] Missing default redisSerializer, using Jackson2JsonRedisSerializer for cache");
@@ -86,6 +88,9 @@ public class RedisCacheAutoConfiguration {
         // 设置value的序列化方式
         redisTemplate.setValueSerializer(redisSerializer);
         redisTemplate.setHashValueSerializer(redisSerializer);
+
+        // 开启事务支持
+        redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
