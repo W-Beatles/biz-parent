@@ -1,11 +1,9 @@
 package cn.waynechu.dynamic.datasource.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Code from com.tuhu.finance:spring-boot-starter-finance-utils:1.0.2018102601
@@ -23,12 +21,12 @@ public class DruidDataSourceProperties {
     /**
      * 从库连接url
      */
-    private String slaveUrls;
+    private List<String> slaveUrls = new ArrayList<>();
 
     /**
      * 读数据源路由方式：POLLING 轮询，RANDOM 随机。默认 POLLING
      */
-    private RoutingPatternEnum routingPattern;
+    private RoutingPatternEnum routingPattern = RoutingPatternEnum.POLLING;
 
     /**
      * 数据库用户名
@@ -152,19 +150,11 @@ public class DruidDataSourceProperties {
         this.url = url;
     }
 
-    public Set<String> getSlaveUrls() {
-        Set<String> returnValue = new HashSet<>();
-
-        if (!StringUtils.isEmpty(slaveUrls)) {
-            final String[] urlsSplit = StringUtils.delimitedListToStringArray(slaveUrls, ";");
-
-            returnValue = new HashSet<>(urlsSplit.length);
-            returnValue.addAll(Arrays.asList(urlsSplit));
-        }
-        return returnValue;
+    public List<String> getSlaveUrls() {
+        return slaveUrls;
     }
 
-    public void setSlaveUrls(String slaveUrls) {
+    public void setSlaveUrls(List<String> slaveUrls) {
         this.slaveUrls = slaveUrls;
     }
 

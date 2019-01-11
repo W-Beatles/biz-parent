@@ -44,7 +44,7 @@ public class DruidDataSourceAutoConfiguration {
     }
 
     @Bean("slaves")
-    @ConditionalOnProperty(name = "spring.datasource.druid.slave-urls", matchIfMissing = true)
+    @ConditionalOnProperty(name = "spring.datasource.druid.slave-urls[0]", matchIfMissing = true)
     public List<DataSource> slaves() {
         return new DruidDataSourceBuilder(druidDataSourceProperties).buildSlaves();
     }
@@ -70,7 +70,7 @@ public class DruidDataSourceAutoConfiguration {
     }
 
     @Bean("dynamicDataSourceInterceptor")
-    @ConditionalOnProperty("spring.datasource.druid.slave-urls")
+    @ConditionalOnProperty("spring.datasource.druid.slave-urls[0]")
     public DynamicDataSourceInterceptor dynamicDataSourceInterceptor() {
         return new DynamicDataSourceInterceptor();
     }
