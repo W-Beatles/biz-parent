@@ -60,10 +60,10 @@ public class RedisCacheAutoConfiguration {
         RedisSerializer<Object> redisSerializer;
         if (RedisCacheProperties.SerializerEnum.JDK.equals(commonProperties.getRedisCache().getSerializer())) {
             redisSerializer = new JdkSerializationRedisSerializer();
-            log.info("[RedisCache] Using jdkSerializationRedisSerializer for cache");
+            log.info("[RedisCache] Using JdkSerializationRedisSerializer.class for cache");
         } else if (RedisCacheProperties.SerializerEnum.FAST_JSON.equals(commonProperties.getRedisCache().getSerializer())) {
             redisSerializer = new FastJsonSerializer<>(Object.class);
-            log.info("[RedisCache] Using fastJsonSerializer for cache");
+            log.info("[RedisCache] Using FastJsonSerializer.class for cache");
 
             // FastJson需指定AutoType序列化白名单
             for (String autoType : commonProperties.getRedisCache().getAutoTypes()) {
@@ -71,7 +71,7 @@ public class RedisCacheAutoConfiguration {
             }
         } else {
             redisSerializer = new GenericJackson2JsonRedisSerializer();
-            log.info("[RedisCache] Missing default redisSerializer, using Jackson2JsonRedisSerializer for cache");
+            log.info("[RedisCache] Missing default redisSerializer, using Jackson2JsonRedisSerializer.class for cache");
         }
         return redisSerializer;
     }
