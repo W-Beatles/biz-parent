@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.proxy;
+package cn.waynechu.webcommon.aop.jdk;
 
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.util.JsonBinder;
