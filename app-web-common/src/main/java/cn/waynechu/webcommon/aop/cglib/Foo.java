@@ -1,5 +1,6 @@
 package cn.waynechu.webcommon.aop.cglib;
 
+import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -9,18 +10,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Foo {
 
+    @MethodPrintAnnotation
     public String printOne(String str) {
         log.info("call printOne method, arg is {}", str);
-        return "print";
+        return "printOne";
     }
 
+    @MethodPrintAnnotation
     public String printTwo(String str) {
         log.info("call printTwo method, arg is {}", str);
-        return "print";
+        return "printTwo";
     }
 
+    @MethodPrintAnnotation
     public String threePrint(String str) {
         log.info("call printThree method, arg is {}", str);
-        return "print";
+        return "threePrint";
     }
 }

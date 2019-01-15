@@ -14,15 +14,15 @@ import java.lang.reflect.Proxy;
  * Created 2018-08-22 23:34
  */
 @Slf4j
-public class MethodPrintAnnotationProxy implements InvocationHandler {
-    private static MethodPrintAnnotationProxy instance = null;
+public class MethodPrintProxy implements InvocationHandler {
+    private static MethodPrintProxy instance = null;
 
-    private MethodPrintAnnotationProxy() {
+    private MethodPrintProxy() {
     }
 
-    public static synchronized MethodPrintAnnotationProxy getInstance() {
+    public static synchronized MethodPrintProxy getInstance() {
         if (instance == null) {
-            instance = new MethodPrintAnnotationProxy();
+            instance = new MethodPrintProxy();
         }
         return instance;
     }
@@ -43,12 +43,12 @@ public class MethodPrintAnnotationProxy implements InvocationHandler {
         if (printAnnotation != null) {
             String methodName = this.getPrintMethodName(printAnnotation, targetObj);
             String argsStr = this.getJsonStr(args, printAnnotation.isFormat());
-            log.info("{} 开始调用, 参数: {}", methodName, argsStr);
+            log.info("[MethodPrintProxy] {} 开始调用, 参数: {}", methodName, argsStr);
 
             returnValue = method.invoke(this.targetObj, args);
 
             String returnStr = this.getJsonStr(returnValue, printAnnotation.isFormat());
-            log.debug("{} 结束调用，返回值: {}", methodName, returnStr);
+            log.debug("[MethodPrintProxy] {} 结束调用，返回值: {}", methodName, returnStr);
         } else {
             returnValue = method.invoke(this.targetObj, args);
         }
