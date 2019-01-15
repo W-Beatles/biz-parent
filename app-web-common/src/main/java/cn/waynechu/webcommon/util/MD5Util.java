@@ -15,13 +15,34 @@ public class MD5Util {
     private static final String[] HEX_DIGITS = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
     /**
+     * 获取MD5摘要
+     *
+     * @param origin 原始字符串
+     * @return MD5摘要
+     */
+    private static String md5Encode(String origin) {
+        return md5Encode(origin, "UTF-8", 0);
+    }
+
+    /**
      * 获取大写MD5摘要
+     *
+     * @param origin 原始字符串
+     * @return 大写MD5摘要
+     */
+    private static String md5EncodeWithUpperCase(String origin) {
+        return md5Encode(origin, "UTF-8", 1);
+    }
+
+    /**
+     * 获取MD5摘要
      *
      * @param origin      原始字符串
      * @param charsetName 字符集
+     * @param showCase    摘要大小写 0: 小写 1：大写
      * @return 大写MD5摘要
      */
-    private static String md5Encode(String origin, String charsetName) {
+    private static String md5Encode(String origin, String charsetName, int showCase) {
         String resultString = null;
         try {
             resultString = origin;
@@ -34,19 +55,19 @@ public class MD5Util {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        return resultString.toUpperCase();
+        return showCase == 0 ? resultString : resultString.toUpperCase();
     }
 
     /**
-     * 获取加盐后的大写MD5摘要
+     * 获取加盐后的MD5摘要
      *
      * @param origin 原始字符串
      * @param salt   盐值
-     * @return 大写MD5摘要
+     * @return MD5摘要
      */
     public static String md5EncodeWithSalt(String origin, String salt) {
         origin = origin + salt;
-        return md5Encode(origin, "utf-8");
+        return md5Encode(origin, "utf-8", 0);
     }
 
     private static String byteArrayToHexString(byte[] bytes) {
