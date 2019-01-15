@@ -14,7 +14,7 @@
  * limitations under the License.
  * <pre/>
  */
-package cn.waynechu.dynamic.datasource.stat;
+package cn.waynechu.dynamic.datasource.autoconfig.druid.stat;
 
 import cn.waynechu.dynamic.datasource.properties.DruidStatProperties;
 import com.alibaba.druid.support.http.StatViewServlet;

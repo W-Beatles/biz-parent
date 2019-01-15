@@ -14,29 +14,26 @@
  * limitations under the License.
  * <pre/>
  */
-package cn.waynechu.dynamic.datasource.dynamic;
+package cn.waynechu.dynamic.datasource.strategy;
+
+import javax.sql.DataSource;
+import java.util.List;
 
 /**
+ * 多数据源选择策略
+ * <p>
+ * 默认为负载均衡策略，使用轮询算法
+ *
  * @author zhuwei
- * @date 2018/11/7 14:03
+ * @date 2019/1/15 16:47
  */
-public class DataSourceTypeHolder {
-    private static ThreadLocal<String> contextHolder = new ThreadLocal<>();
-    public static final String DATASOURCE_TYPE_MASTER = "master";
-    public static final String DATASOURCE_TYPE_SALVE = "salve";
+public interface DynamicDataSourceStrategy {
 
-    private DataSourceTypeHolder() {
-    }
-
-    public static String getDataSourceType() {
-        return contextHolder.get();
-    }
-
-    public static void setDataSourceType(String type) {
-        contextHolder.set(type);
-    }
-
-    public static void clearDataSourceType() {
-        contextHolder.remove();
-    }
+    /**
+     * 决定当前数据源
+     *
+     * @param dataSources 数据源选择库
+     * @return dataSource 所选择的数据源
+     */
+    DataSource determineDataSource(List<DataSource> dataSources);
 }

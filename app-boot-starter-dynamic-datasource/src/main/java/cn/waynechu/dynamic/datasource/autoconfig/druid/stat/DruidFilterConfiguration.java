@@ -14,7 +14,7 @@
  * limitations under the License.
  * <pre/>
  */
-package cn.waynechu.dynamic.datasource.stat;
+package cn.waynechu.dynamic.datasource.autoconfig.druid.stat;
 
 import com.alibaba.druid.filter.config.ConfigFilter;
 import com.alibaba.druid.filter.encoding.EncodingConvertFilter;

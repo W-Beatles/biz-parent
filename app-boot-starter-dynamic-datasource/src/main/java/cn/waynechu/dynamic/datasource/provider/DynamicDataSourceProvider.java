@@ -14,20 +14,23 @@
  * limitations under the License.
  * <pre/>
  */
-package cn.waynechu.dynamic.datasource.properties;
+package cn.waynechu.dynamic.datasource.provider;
+
+import javax.sql.DataSource;
+import java.util.Map;
 
 /**
+ * 动态数据源加载接口
+ *
  * @author zhuwei
- * @date 2018/11/22 15:28
+ * @date 2019/1/15 17:22
  */
-public enum RoutingPatternEnum {
-    /**
-     * 轮询
-     */
-    POLLING,
+public interface DynamicDataSourceProvider {
 
     /**
-     * 随机
+     * 加载所有数据源
+     *
+     * @return 所有数据源，其中key为数据源名称
      */
-    RANDOM
+    Map<String, DataSource> loadDataSources();
 }

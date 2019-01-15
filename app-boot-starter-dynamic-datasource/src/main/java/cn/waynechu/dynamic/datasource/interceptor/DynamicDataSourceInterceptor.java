@@ -16,7 +16,7 @@
  */
 package cn.waynechu.dynamic.datasource.interceptor;
 
-import cn.waynechu.dynamic.datasource.dynamic.DataSourceTypeHolder;
+import cn.waynechu.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
@@ -71,22 +71,22 @@ public class DynamicDataSourceInterceptor implements Interceptor {
 
                 if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
                     sqlType = SQL_TYPE_SELECT_KEY;
-                    lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
+                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
                 } else {
                     sqlType = SQL_TYPE_READ_ONLY;
-                    lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_SALVE;
+                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_SALVE;
                 }
             } else {
                 sqlType = SQL_TYPE_TRANSITION;
-                lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
+                lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
             }
         } else {
             sqlType = SQL_TYPE_DATA_MODIFY;
-            lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
+            lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
         }
 
-        logger.debug("Intercept and determine target dataSource [{}] for [{}]", lookUpKey, sqlType);
-        DataSourceTypeHolder.setDataSourceType(lookUpKey);
+        logger.info("SQL类型为 [{}]，将使用 [{}] 数据源", sqlType, lookUpKey);
+        DynamicDataSourceContextHolder.push(lookUpKey);
         return invocation.proceed();
     }
 
