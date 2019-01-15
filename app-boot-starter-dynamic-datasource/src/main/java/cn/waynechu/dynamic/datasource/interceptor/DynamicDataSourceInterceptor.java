@@ -1,6 +1,22 @@
+/**
+ * Copyright © 2018 organization waynechu
+ * <pre>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * <pre/>
+ */
 package cn.waynechu.dynamic.datasource.interceptor;
 
-import cn.waynechu.dynamic.datasource.dynamic.DataSourceTypeHolder;
+import cn.waynechu.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
@@ -55,22 +71,22 @@ public class DynamicDataSourceInterceptor implements Interceptor {
 
                 if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
                     sqlType = SQL_TYPE_SELECT_KEY;
-                    lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
+                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
                 } else {
                     sqlType = SQL_TYPE_READ_ONLY;
-                    lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_SALVE;
+                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_SALVE;
                 }
             } else {
                 sqlType = SQL_TYPE_TRANSITION;
-                lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
+                lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
             }
         } else {
             sqlType = SQL_TYPE_DATA_MODIFY;
-            lookUpKey = DataSourceTypeHolder.DATASOURCE_TYPE_MASTER;
+            lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
         }
 
-        logger.debug("Intercept and determine target dataSource [{}] for [{}]", lookUpKey, sqlType);
-        DataSourceTypeHolder.setDataSourceType(lookUpKey);
+        logger.info("SQL类型为 [{}]，将使用 [{}] 数据源", sqlType, lookUpKey);
+        DynamicDataSourceContextHolder.push(lookUpKey);
         return invocation.proceed();
     }
 

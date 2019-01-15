@@ -10,13 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 public class SubImpl implements Sub {
 
     @Override
-    public String print(String str) {
-        log.info("call print method, arg is {}", str);
-        return "print";
-    }
-
-    public static void main(String[] args) {
-        Sub sub = (Sub) MethodPrintAnnotationProxy.getInstance().bind(new SubImpl());
-        sub.print("sub");
+    public String printOne(String str) {
+        log.info("call printOne method, arg is {}", str);
+        return "printOne";
     }
 }

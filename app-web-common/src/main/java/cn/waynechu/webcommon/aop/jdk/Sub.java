@@ -8,12 +8,6 @@ import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
  */
 public interface Sub {
 
-    /**
-     * 打印方法
-     *
-     * @param str str
-     * @return Result
-     */
-    @MethodPrintAnnotation(isClassFullName = true, isFormat = true)
-    String print(String str);
+    @MethodPrintAnnotation
+    String printOne(String str);
 }
