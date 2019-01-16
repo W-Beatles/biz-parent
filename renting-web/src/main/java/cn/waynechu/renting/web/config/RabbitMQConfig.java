@@ -22,31 +22,25 @@ public class RabbitMQConfig {
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
         RabbitAdmin rabbitAdmin = new RabbitAdmin(connectionFactory);
-        rabbitAdmin.setAutoStartup(false);
+        rabbitAdmin.setAutoStartup(true);
         return rabbitAdmin;
     }
 
     @Bean
-    DirectExchange directExchange(RabbitAdmin rabbitAdmin) {
+    public DirectExchange directExchange() {
         log.info("声明Direct交换机: {}", RabbitMQConst.Exchange.DIRECT_RENTING);
-        DirectExchange directExchange = new DirectExchange(RabbitMQConst.Exchange.DIRECT_RENTING, true, true);
-        rabbitAdmin.declareExchange(directExchange);
-        return directExchange;
+        return new DirectExchange(RabbitMQConst.Exchange.DIRECT_RENTING);
     }
 
     @Bean
-    Queue directQueue(RabbitAdmin rabbitAdmin) {
+    public Queue directQueue() {
         log.info("声明Direct队列: {}", RabbitMQConst.Queue.DIRECT_RENTING);
-        Queue queue = new Queue(RabbitMQConst.Queue.DIRECT_RENTING, true, true, true);
-        rabbitAdmin.declareQueue(queue);
-        return queue;
+        return new Queue(RabbitMQConst.Queue.DIRECT_RENTING);
     }
 
     @Bean
-    Binding bindingDirectQueue(Queue directQueue, DirectExchange directExchange, RabbitAdmin rabbitAdmin) {
-        Binding binding = BindingBuilder.bind(directQueue).to(directExchange).with(RabbitMQConst.RoutingKey.DIRECT_RENTING);
-        rabbitAdmin.declareBinding(binding);
-        log.info("完成directExchange: {} 与directQueue: {} 的绑定", RabbitMQConst.Exchange.DIRECT_RENTING, RabbitMQConst.Queue.DIRECT_RENTING);
-        return binding;
+    public Binding bindingDirectQueue(Queue directQueue, DirectExchange directExchange) {
+        log.info("完成 {} 与 {} 的绑定", RabbitMQConst.Exchange.DIRECT_RENTING, RabbitMQConst.Queue.DIRECT_RENTING);
+        return BindingBuilder.bind(directQueue).to(directExchange).with(RabbitMQConst.RoutingKey.DIRECT_RENTING);
     }
 }

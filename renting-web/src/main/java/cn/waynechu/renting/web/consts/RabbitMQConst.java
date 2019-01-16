@@ -7,14 +7,14 @@ package cn.waynechu.renting.web.consts;
 public class RabbitMQConst {
 
     public interface Exchange {
-        String DIRECT_RENTING = "direct.renting";
+        String DIRECT_RENTING = "test.direct.renting";
     }
 
     public interface Queue {
-        String DIRECT_RENTING = "direct.renting";
+        String DIRECT_RENTING = "test.direct.renting";
     }
 
     public interface RoutingKey {
-        String DIRECT_RENTING = "direct.renting";
+        String DIRECT_RENTING = "test.direct.renting";
     }
 }
