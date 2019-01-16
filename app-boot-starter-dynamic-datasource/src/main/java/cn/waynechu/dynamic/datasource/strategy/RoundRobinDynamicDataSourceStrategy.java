@@ -16,16 +16,19 @@
  */
 package cn.waynechu.dynamic.datasource.strategy;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 多数据源选择 - 轮询策略
+ * 动态数据源选择策略 - 轮询策略
  *
  * @author zhuwei
  * @date 2019/1/15 16:48
  */
+@Slf4j
 public class RoundRobinDynamicDataSourceStrategy implements DynamicDataSourceStrategy {
 
     /**
@@ -35,6 +38,7 @@ public class RoundRobinDynamicDataSourceStrategy implements DynamicDataSourceStr
 
     @Override
     public DataSource determineDataSource(List<DataSource> dataSources) {
-        return dataSources.get(Math.abs(index.getAndAdd(1) % dataSources.size()));
+        int i = Math.abs(index.getAndAdd(1) % dataSources.size());
+        return dataSources.get(i);
     }
 }

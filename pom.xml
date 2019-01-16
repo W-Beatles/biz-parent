@@ -26,12 +26,12 @@
 
         <app.version>0.0.1-SNAPSHOT</app.version>
         <tuhu-boot-starter-common.version>1.0.2018082802</tuhu-boot-starter-common.version>
-        <tuhu-boot-starter-dynamic-datasource.version>1.0.4-SNAPSHOT</tuhu-boot-starter-dynamic-datasource.version>
+        <tuhu-boot-starter-dynamic-datasource.version>1.0.5-SNAPSHOT</tuhu-boot-starter-dynamic-datasource.version>
         <rabbitmq-logback-appender.version>1.0.2018112101</rabbitmq-logback-appender.version>
 
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>
-        <druid.version>1.1.6</druid.version>
+        <druid.version>1.1.12</druid.version>
         <fastjson.version>1.2.51</fastjson.version>
         <mybatis-plus-boot-starter.version>3.0.6</mybatis-plus-boot-starter.version>
         <sentry.logback.version>1.7.16</sentry.logback.version>

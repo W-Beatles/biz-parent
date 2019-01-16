@@ -52,6 +52,7 @@ public class DynamicDataSourceInterceptor implements Interceptor {
     private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceInterceptor.class);
 
     private static final String QUERY_METHOD_NAME = "query";
+
     private static final String SQL_TYPE_SELECT_KEY = "SELECT_KEY";
     private static final String SQL_TYPE_READ_ONLY = "READ_ONLY";
     private static final String SQL_TYPE_TRANSITION = "TRANSITION";
@@ -85,9 +86,13 @@ public class DynamicDataSourceInterceptor implements Interceptor {
             lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
         }
 
-        logger.info("SQL类型为 [{}]，将使用 [{}] 数据源", sqlType, lookUpKey);
-        DynamicDataSourceContextHolder.push(lookUpKey);
-        return invocation.proceed();
+        logger.debug("SQL类型为 [{}]，将使用 [{}] 数据源", sqlType, lookUpKey);
+        try {
+            DynamicDataSourceContextHolder.push(lookUpKey);
+            return invocation.proceed();
+        } finally {
+            DynamicDataSourceContextHolder.poll();
+        }
     }
 
     /**

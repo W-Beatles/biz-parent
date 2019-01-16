@@ -16,13 +16,10 @@
  */
 package cn.waynechu.dynamic.datasource.properties;
 
-import cn.waynechu.dynamic.datasource.autoconfig.druid.DruidConfig;
-import cn.waynechu.dynamic.datasource.autoconfig.hikari.HikariCpConfig;
+import cn.waynechu.dynamic.datasource.autoconfig.DruidConfig;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
-
-import javax.sql.DataSource;
 
 /**
  * @author zhuwei
@@ -35,10 +32,6 @@ public class DataSourceProperty {
      * 数据源名称，如果需要添加分组以_分割组名和数据源名。如slave_1
      */
     private String dataSourceName;
-    /**
-     * 连接池类型，如果不配置自动查找 Druid > HikariCp
-     */
-    private Class<? extends DataSource> type;
     /**
      * JDBC driver
      */
@@ -60,9 +53,4 @@ public class DataSourceProperty {
      */
     @NestedConfigurationProperty
     private DruidConfig druid = new DruidConfig();
-    /**
-     * HikariCp参数配置
-     */
-    @NestedConfigurationProperty
-    private HikariCpConfig hikari = new HikariCpConfig();
 }

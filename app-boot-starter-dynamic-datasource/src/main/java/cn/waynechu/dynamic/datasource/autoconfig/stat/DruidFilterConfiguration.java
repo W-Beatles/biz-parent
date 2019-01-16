@@ -14,7 +14,7 @@
  * limitations under the License.
  * <pre/>
  */
-package cn.waynechu.dynamic.datasource.autoconfig.druid.stat;
+package cn.waynechu.dynamic.datasource.autoconfig.stat;
 
 import com.alibaba.druid.filter.config.ConfigFilter;
 import com.alibaba.druid.filter.encoding.EncodingConvertFilter;
@@ -121,6 +121,4 @@ public class DruidFilterConfiguration {
     private static final String FILTER_COMMONS_LOG_PREFIX = "spring.datasource.druid.filter.commons-log";
     private static final String FILTER_WALL_PREFIX = "spring.datasource.druid.filter.wall";
     private static final String FILTER_WALL_CONFIG_PREFIX = FILTER_WALL_PREFIX + ".config";
-
-
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  * <pre/>
  */
-package cn.waynechu.dynamic.datasource.autoconfig.druid;
+package cn.waynechu.dynamic.datasource.autoconfig;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -71,8 +71,6 @@ public class DruidConfig {
     private Boolean sharePreparedStatements;
     private Integer connectionErrorRetryAttempts;
     private Boolean breakAfterAcquireFailure;
-
-    private String publicKey;
 
     public Properties toProperties(DruidConfig globalConfig) {
         Properties properties = new Properties();
@@ -146,13 +144,10 @@ public class DruidConfig {
             properties.setProperty("druid.asyncInit", "true");
         }
 
-        //filters单独处理，默认了stat,wall
+        // filters单独处理，默认了stat,wall
         String tempFilters = filters == null ? globalConfig.getFilters() : filters;
         if (tempFilters == null) {
             tempFilters = "stat,wall";
-        }
-        if (publicKey != null && publicKey.length() > 0 && !tempFilters.contains("config")) {
-            tempFilters += ",config";
         }
         properties.setProperty("druid.filters", tempFilters);
 
@@ -215,18 +210,6 @@ public class DruidConfig {
         if (tempKillWhenSocketReadTimeout != null && tempKillWhenSocketReadTimeout.equals(Boolean.TRUE)) {
             properties.setProperty("druid.killWhenSocketReadTimeout", "true");
         }
-
-        Properties tempConnectProperties = connectionProperties == null ? globalConfig.getConnectionProperties() : connectionProperties;
-
-        if (publicKey != null && publicKey.length() > 0) {
-            if (tempConnectProperties == null) {
-                tempConnectProperties = new Properties();
-            }
-            log.info("Druid数据源密码已加密");
-            tempConnectProperties.setProperty("config.decrypt", "true");
-            tempConnectProperties.setProperty("config.decrypt.key", publicKey);
-        }
-        connectionProperties = tempConnectProperties;
 
         Integer tempMaxPoolPreparedStatementPerConnectionSize = maxPoolPreparedStatementPerConnectionSize == null ? globalConfig.getMaxPoolPreparedStatementPerConnectionSize() : maxPoolPreparedStatementPerConnectionSize;
         if (tempMaxPoolPreparedStatementPerConnectionSize != null && !tempMaxPoolPreparedStatementPerConnectionSize.equals(10)) {

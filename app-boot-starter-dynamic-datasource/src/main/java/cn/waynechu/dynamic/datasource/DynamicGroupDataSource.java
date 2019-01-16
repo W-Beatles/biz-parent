@@ -17,6 +17,7 @@
 package cn.waynechu.dynamic.datasource;
 
 import cn.waynechu.dynamic.datasource.strategy.DynamicDataSourceStrategy;
+import lombok.Data;
 
 import javax.sql.DataSource;
 import java.util.LinkedList;
@@ -28,6 +29,7 @@ import java.util.List;
  * @author zhuwei
  * @date 2019/1/15 19:20
  */
+@Data
 public class DynamicGroupDataSource {
 
     /**

@@ -32,10 +32,5 @@
         <!--<groupId>com.tuhu</groupId>-->
         <!--<artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>-->
         <!--</dependency>-->
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
     </dependencies>
 </project>

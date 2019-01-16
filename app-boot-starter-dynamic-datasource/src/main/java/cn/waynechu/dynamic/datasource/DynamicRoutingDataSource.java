@@ -19,6 +19,7 @@ package cn.waynechu.dynamic.datasource;
 import cn.waynechu.dynamic.datasource.provider.DynamicDataSourceProvider;
 import cn.waynechu.dynamic.datasource.strategy.DynamicDataSourceStrategy;
 import cn.waynechu.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
+import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -36,6 +37,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
+    /**
+     * 分组前缀。如slave_1，slave_2会划分为一组
+     */
     private static final String UNDERLINE = "_";
     @Setter
     protected DynamicDataSourceProvider provider;
@@ -61,30 +65,34 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     /**
      * 获取数据源
      *
-     * @param ds 数据源名称
+     * @param groupName 数据源组名
      * @return 数据源
      */
-    public DataSource getDataSource(String ds) {
-        if (StringUtils.isEmpty(ds)) {
-            return determinePrimaryDataSource();
-        } else if (!groupDataSources.isEmpty() && groupDataSources.containsKey(ds)) {
-            log.debug("从 [{}] 组数据源中返回数据源", ds);
-            return groupDataSources.get(ds).determineDataSource();
-        } else if (dataSourceMap.containsKey(ds)) {
-            log.debug("从 [{}] 单数据源中返回数据源", ds);
-            return dataSourceMap.get(ds);
+    public DataSource getDataSource(String groupName) {
+        DataSource dataSource;
+        if (StringUtils.isEmpty(groupName)) {
+            dataSource = determinePrimaryDataSource();
+        } else if (!groupDataSources.isEmpty() && groupDataSources.containsKey(groupName)) {
+            dataSource = groupDataSources.get(groupName).determineDataSource();
+        } else if (dataSourceMap.containsKey(groupName)) {
+            dataSource = dataSourceMap.get(groupName);
+        } else {
+            dataSource = determinePrimaryDataSource();
         }
-        return determinePrimaryDataSource();
+        if (dataSource instanceof DruidDataSource) {
+            String dataSourceName = ((DruidDataSource) dataSource).getName();
+            log.debug("使用动态数据源 [{}]", dataSourceName);
+        }
+        return dataSource;
     }
 
     private DataSource determinePrimaryDataSource() {
-        log.debug("从默认数据源中返回数据");
         return dataSourceMap.containsKey(primary) ? dataSourceMap.get(primary) : groupDataSources.get(primary).determineDataSource();
     }
 
     public void init() {
         Map<String, DataSource> dataSources = provider.loadDataSources();
-        log.info("读取到 {} 个数据源，开始加载...", dataSources.size());
+        log.info("读取到 [{}] 个数据源，开始动态数据源分组...", dataSources.size());
         // 添加并分组数据源
         for (Map.Entry<String, DataSource> entry : dataSources.entrySet()) {
             addDataSource(entry.getKey(), entry.getValue());
@@ -103,11 +111,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
                     groupDatasource.addDatasource(dataSource);
                     groupDataSources.put(group, groupDatasource);
                 } catch (Exception e) {
-                    log.error("加载数据源失败", e);
+                    log.error("数据源分组 [{}] 失败", name, e);
                     dataSourceMap.remove(name);
                 }
             }
         }
-        log.info("加载数据源 {} 成功", name);
+        log.info("数据源 [{}] 分组成功", name);
     }
 }

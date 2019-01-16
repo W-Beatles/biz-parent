@@ -16,12 +16,9 @@
  */
 package cn.waynechu.dynamic.datasource;
 
-import cn.waynechu.dynamic.datasource.autoconfig.druid.DruidConfig;
-import cn.waynechu.dynamic.datasource.autoconfig.hikari.HikariCpConfig;
+import cn.waynechu.dynamic.datasource.autoconfig.DruidConfig;
 import cn.waynechu.dynamic.datasource.properties.DataSourceProperty;
 import com.alibaba.druid.pool.DruidDataSource;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,85 +34,8 @@ import java.sql.SQLException;
 @Slf4j
 public class DynamicDataSourceCreator {
 
-    /**
-     * Druid数据源类名
-     */
-    private static final String DRUID_DATASOURCE_CLAZZ = "com.alibaba.druid.pool.DruidDataSource";
-    /**
-     * HikariCp数据源类名
-     */
-    private static final String HIKARI_DATASOURCE_CLAZZ = "com.zaxxer.hikari.HikariDataSource";
-    /**
-     * 是否存在Druid依赖
-     */
-    private Boolean druidExists = false;
-    /**
-     * 是否存在Hikari依赖
-     */
-    private Boolean hikariExists = false;
-
     @Setter
     private DruidConfig druidGlobalConfig;
-
-    @Setter
-    private HikariCpConfig hikariGlobalConfig;
-
-    public DynamicDataSourceCreator() {
-        try {
-            Class.forName(DRUID_DATASOURCE_CLAZZ);
-            log.info("检测到Druid依赖，如配置中未指定type，将优先使用Druid连接池");
-            druidExists = true;
-        } catch (ClassNotFoundException e) {
-            // do nothing here.
-        }
-        try {
-            Class.forName(HIKARI_DATASOURCE_CLAZZ);
-            hikariExists = true;
-        } catch (ClassNotFoundException e) {
-            // do nothing here.
-        }
-    }
-
-    /**
-     * 创建数据源
-     *
-     * @param dataSourceProperty 数据源配置
-     * @return 数据源
-     */
-    public DataSource createDataSource(DataSourceProperty dataSourceProperty) {
-        Class<? extends DataSource> type = dataSourceProperty.getType();
-        if (type == null) {
-            if (druidExists) {
-                return createDruidDataSource(dataSourceProperty);
-            } else if (hikariExists) {
-                return createHikariDataSource(dataSourceProperty);
-            }
-        } else if (DRUID_DATASOURCE_CLAZZ.equals(type.getName())) {
-            return createDruidDataSource(dataSourceProperty);
-        } else if (HIKARI_DATASOURCE_CLAZZ.equals(type.getName())) {
-            return createHikariDataSource(dataSourceProperty);
-        } else {
-            log.error("不支持的数据源类型: {}", type.getName());
-        }
-        return null;
-    }
-
-    /**
-     * 创建Hikari数据源
-     *
-     * @param dataSourceProperty 数据源参数
-     * @return Hikari数据源
-     */
-    public DataSource createHikariDataSource(DataSourceProperty dataSourceProperty) {
-        HikariCpConfig hikariCpConfig = dataSourceProperty.getHikari();
-        HikariConfig config = hikariCpConfig.toHikariConfig(hikariGlobalConfig);
-        config.setUsername(dataSourceProperty.getUsername());
-        config.setPassword(dataSourceProperty.getPassword());
-        config.setJdbcUrl(dataSourceProperty.getUrl());
-        config.setDriverClassName(dataSourceProperty.getDriverClassName());
-        config.setPoolName(dataSourceProperty.getDataSourceName());
-        return new HikariDataSource(config);
-    }
 
     /**
      * 创建Druid数据源
@@ -123,7 +43,7 @@ public class DynamicDataSourceCreator {
      * @param dataSourceProperty 数据源参数
      * @return Druid数据源
      */
-    public DataSource createDruidDataSource(DataSourceProperty dataSourceProperty) {
+    public DataSource createDataSource(DataSourceProperty dataSourceProperty) {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername(dataSourceProperty.getUsername());
         dataSource.setPassword(dataSourceProperty.getPassword());
@@ -133,7 +53,7 @@ public class DynamicDataSourceCreator {
 
         DruidConfig config = dataSourceProperty.getDruid();
         dataSource.configFromPropety(config.toProperties(druidGlobalConfig));
-        // 连接参数单独设置
+        // 连接参数(publicKey)单独设置
         dataSource.setConnectProperties(config.getConnectionProperties());
         // 设置druid内置properties不支持的的参数
         Boolean testOnReturn = config.getTestOnReturn() == null ? druidGlobalConfig.getTestOnReturn() : config.getTestOnReturn();

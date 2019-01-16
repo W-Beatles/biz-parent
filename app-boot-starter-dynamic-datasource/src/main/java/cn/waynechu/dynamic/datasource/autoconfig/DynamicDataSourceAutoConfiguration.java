@@ -18,7 +18,6 @@ package cn.waynechu.dynamic.datasource.autoconfig;
 
 import cn.waynechu.dynamic.datasource.DynamicDataSourceCreator;
 import cn.waynechu.dynamic.datasource.DynamicRoutingDataSource;
-import cn.waynechu.dynamic.datasource.autoconfig.druid.DruidDynamicDataSourceConfiguration;
 import cn.waynechu.dynamic.datasource.interceptor.DynamicDataSourceInterceptor;
 import cn.waynechu.dynamic.datasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.dynamic.datasource.provider.DefaultDynamicDataSourceProvider;
@@ -71,7 +70,6 @@ public class DynamicDataSourceAutoConfiguration {
     public DynamicDataSourceCreator dynamicDataSourceCreator() {
         DynamicDataSourceCreator dynamicDataSourceCreator = new DynamicDataSourceCreator();
         dynamicDataSourceCreator.setDruidGlobalConfig(properties.getDruid());
-        dynamicDataSourceCreator.setHikariGlobalConfig(properties.getHikari());
         return dynamicDataSourceCreator;
     }
 

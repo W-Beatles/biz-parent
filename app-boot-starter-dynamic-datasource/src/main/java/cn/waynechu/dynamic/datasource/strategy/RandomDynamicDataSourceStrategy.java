@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * 多数据源选择 - 随机策略
+ * 多数据源选择策略 - 随机策略
  *
  * @author zhuwei
  * @date 2019/1/15 16:50

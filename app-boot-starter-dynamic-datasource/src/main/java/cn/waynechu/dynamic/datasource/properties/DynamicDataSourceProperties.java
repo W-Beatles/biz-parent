@@ -16,8 +16,7 @@
  */
 package cn.waynechu.dynamic.datasource.properties;
 
-import cn.waynechu.dynamic.datasource.autoconfig.druid.DruidConfig;
-import cn.waynechu.dynamic.datasource.autoconfig.hikari.HikariCpConfig;
+import cn.waynechu.dynamic.datasource.autoconfig.DruidConfig;
 import cn.waynechu.dynamic.datasource.strategy.DynamicDataSourceStrategy;
 import cn.waynechu.dynamic.datasource.strategy.RoundRobinDynamicDataSourceStrategy;
 import lombok.Data;
@@ -53,9 +52,4 @@ public class DynamicDataSourceProperties {
      */
     @NestedConfigurationProperty
     private DruidConfig druid = new DruidConfig();
-    /**
-     * HikariCp全局参数配置
-     */
-    @NestedConfigurationProperty
-    private HikariCpConfig hikari = new HikariCpConfig();
 }

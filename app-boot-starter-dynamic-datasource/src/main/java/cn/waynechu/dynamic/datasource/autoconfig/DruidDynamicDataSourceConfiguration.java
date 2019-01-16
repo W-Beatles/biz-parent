@@ -14,12 +14,12 @@
  * limitations under the License.
  * <pre/>
  */
-package cn.waynechu.dynamic.datasource.autoconfig.druid;
+package cn.waynechu.dynamic.datasource.autoconfig;
 
-import cn.waynechu.dynamic.datasource.autoconfig.druid.stat.DruidFilterConfiguration;
-import cn.waynechu.dynamic.datasource.autoconfig.druid.stat.DruidSpringAopConfiguration;
-import cn.waynechu.dynamic.datasource.autoconfig.druid.stat.DruidStatViewServletConfiguration;
-import cn.waynechu.dynamic.datasource.autoconfig.druid.stat.DruidWebStatFilterConfiguration;
+import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidFilterConfiguration;
+import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidSpringAopConfiguration;
+import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidStatViewServletConfiguration;
+import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidWebStatFilterConfiguration;
 import cn.waynechu.dynamic.datasource.properties.DruidStatProperties;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
