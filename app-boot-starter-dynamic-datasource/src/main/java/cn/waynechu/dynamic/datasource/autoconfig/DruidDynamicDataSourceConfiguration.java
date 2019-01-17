@@ -16,7 +16,6 @@
  */
 package cn.waynechu.dynamic.datasource.autoconfig;
 
-import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidFilterConfiguration;
 import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidSpringAopConfiguration;
 import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidStatViewServletConfiguration;
 import cn.waynechu.dynamic.datasource.autoconfig.stat.DruidWebStatFilterConfiguration;
@@ -35,9 +34,8 @@ import org.springframework.context.annotation.Import;
 @ConditionalOnClass(DruidDataSource.class)
 @EnableConfigurationProperties({DruidStatProperties.class})
 @Import({
-        DruidSpringAopConfiguration.class,
         DruidStatViewServletConfiguration.class,
-        DruidWebStatFilterConfiguration.class,
-        DruidFilterConfiguration.class})
+        DruidSpringAopConfiguration.class,
+        DruidWebStatFilterConfiguration.class})
 public class DruidDynamicDataSourceConfiguration {
 }

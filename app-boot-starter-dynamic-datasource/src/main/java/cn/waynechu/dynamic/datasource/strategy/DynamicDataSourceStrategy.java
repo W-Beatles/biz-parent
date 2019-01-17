@@ -20,9 +20,10 @@ import javax.sql.DataSource;
 import java.util.List;
 
 /**
- * 多数据源选择策略
+ * 动态数据源选择策略
  * <p>
- * 默认为负载均衡策略，使用轮询算法
+ * 默认为负载均衡策略，使用轮询算法。
+ * 你可以实现该接口自定义动态数据源切换策略
  *
  * @author zhuwei
  * @date 2019/1/15 16:47

@@ -53,7 +53,7 @@ public class DynamicDataSourceCreator {
 
         DruidConfig config = dataSourceProperty.getDruid();
         dataSource.configFromPropety(config.toProperties(druidGlobalConfig));
-        // 连接参数(publicKey)单独设置
+        // connectProperties连接参数单独设置
         dataSource.setConnectProperties(config.getConnectionProperties());
         // 设置druid内置properties不支持的的参数
         Boolean testOnReturn = config.getTestOnReturn() == null ? druidGlobalConfig.getTestOnReturn() : config.getTestOnReturn();

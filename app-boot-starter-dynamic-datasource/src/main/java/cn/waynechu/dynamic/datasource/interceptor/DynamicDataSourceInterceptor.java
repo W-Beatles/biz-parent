@@ -72,18 +72,18 @@ public class DynamicDataSourceInterceptor implements Interceptor {
 
                 if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
                     sqlType = SQL_TYPE_SELECT_KEY;
-                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
+                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_MASTER_PREFIX;
                 } else {
                     sqlType = SQL_TYPE_READ_ONLY;
-                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_SALVE;
+                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_SALVE_PREFIX;
                 }
             } else {
                 sqlType = SQL_TYPE_TRANSITION;
-                lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
+                lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_MASTER_PREFIX;
             }
         } else {
             sqlType = SQL_TYPE_DATA_MODIFY;
-            lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_TYPE_MASTER;
+            lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_MASTER_PREFIX;
         }
 
         logger.debug("SQL类型为 [{}]，将使用 [{}] 数据源", sqlType, lookUpKey);

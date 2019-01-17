@@ -62,6 +62,14 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         return getDataSource(DynamicDataSourceContextHolder.peek());
     }
 
+    public void init() {
+        Map<String, DataSource> dataSources = provider.loadDataSources();
+        log.info("读取到 [{}] 个数据源，开始动态数据源分组...", dataSources.size());
+        for (Map.Entry<String, DataSource> entry : dataSources.entrySet()) {
+            addDataSource(entry.getKey(), entry.getValue());
+        }
+    }
+
     /**
      * 获取数据源
      *
@@ -88,15 +96,6 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
 
     private DataSource determinePrimaryDataSource() {
         return dataSourceMap.containsKey(primary) ? dataSourceMap.get(primary) : groupDataSources.get(primary).determineDataSource();
-    }
-
-    public void init() {
-        Map<String, DataSource> dataSources = provider.loadDataSources();
-        log.info("读取到 [{}] 个数据源，开始动态数据源分组...", dataSources.size());
-        // 添加并分组数据源
-        for (Map.Entry<String, DataSource> entry : dataSources.entrySet()) {
-            addDataSource(entry.getKey(), entry.getValue());
-        }
     }
 
     private void addDataSource(String name, DataSource dataSource) {

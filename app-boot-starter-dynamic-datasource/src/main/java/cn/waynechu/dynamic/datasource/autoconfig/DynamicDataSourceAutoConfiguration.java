@@ -32,8 +32,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import javax.sql.DataSource;
-
 /**
  * @author zhuwei
  * @date 2018/11/7 14:28
@@ -48,14 +46,13 @@ public class DynamicDataSourceAutoConfiguration {
     @Autowired
     private DynamicDataSourceProperties properties;
 
-    @Bean
+    @Bean(initMethod = "init")
     @ConditionalOnMissingBean
-    public DataSource dataSource(DynamicDataSourceProvider dynamicDataSourceProvider) {
+    public DynamicRoutingDataSource dataSource(DynamicDataSourceProvider dynamicDataSourceProvider) {
         DynamicRoutingDataSource dataSource = new DynamicRoutingDataSource();
         dataSource.setPrimary(properties.getPrimary());
         dataSource.setStrategy(properties.getStrategy());
         dataSource.setProvider(dynamicDataSourceProvider);
-        dataSource.init();
         return dataSource;
     }
 

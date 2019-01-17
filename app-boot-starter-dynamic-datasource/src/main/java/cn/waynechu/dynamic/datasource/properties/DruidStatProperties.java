@@ -23,7 +23,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author lihengming [89921218@qq.com]
  */
-@ConfigurationProperties("spring.datasource.druid")
+@ConfigurationProperties("spring.datasource.dynamic.druid")
 public class DruidStatProperties {
     private String[] aopPatterns;
     private StatViewServlet statViewServlet = new StatViewServlet();

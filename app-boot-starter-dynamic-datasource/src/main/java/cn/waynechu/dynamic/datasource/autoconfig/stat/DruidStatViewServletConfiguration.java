@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Bean;
  * @author lihengming [89921218@qq.com]
  */
 @ConditionalOnWebApplication
-@ConditionalOnProperty(name = "spring.datasource.druid.stat-view-servlet.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "spring.datasource.dynamic.druid.stat-view-servlet.enabled", havingValue = "true")
 public class DruidStatViewServletConfiguration {
 
     @Bean

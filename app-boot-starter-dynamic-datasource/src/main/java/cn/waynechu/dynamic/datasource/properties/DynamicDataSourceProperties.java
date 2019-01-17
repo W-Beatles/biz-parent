@@ -27,7 +27,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 多数据源配置
+ * 动态数据源配置
  *
  * @author zhuwei
  * @date 2019/1/15 16:42

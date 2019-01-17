@@ -49,7 +49,7 @@ public class DataSourceProperty {
      */
     private String password;
     /**
-     * Druid参数配置
+     * 当前数据源Druid参数配置
      */
     @NestedConfigurationProperty
     private DruidConfig druid = new DruidConfig();

@@ -30,8 +30,8 @@ import java.util.Deque;
 public class DynamicDataSourceContextHolder {
     private static final ThreadLocal<Deque<String>> LOOKUP_KEY_HOLDER = ThreadLocal.withInitial(ArrayDeque::new);
 
-    public static final String DATASOURCE_TYPE_MASTER = "master";
-    public static final String DATASOURCE_TYPE_SALVE = "slave";
+    public static final String DATASOURCE_GROUP_MASTER_PREFIX = "master";
+    public static final String DATASOURCE_GROUP_SALVE_PREFIX = "slave";
 
     private DynamicDataSourceContextHolder() {
     }
