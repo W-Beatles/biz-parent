@@ -21,7 +21,6 @@ import lombok.Data;
 
 import javax.sql.DataSource;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * 分组数据源
@@ -45,14 +44,18 @@ public class DynamicGroupDataSource {
     /**
      * 当前组下所有数据源
      */
-    private List<DataSource> dataSources = new LinkedList<>();
+    private LinkedList<DataSource> dataSources = new LinkedList<>();
 
     public DynamicGroupDataSource(String groupName, DynamicDataSourceStrategy dynamicDataSourceStrategy) {
         this.groupName = groupName;
         this.dynamicDataSourceStrategy = dynamicDataSourceStrategy;
     }
 
-    public void addDatasource(DataSource dataSource) {
+    public void addMasterDatasource(DataSource dataSource) {
+        dataSources.addFirst(dataSource);
+    }
+
+    public void addSlaveDatasource(DataSource dataSource) {
         dataSources.add(dataSource);
     }
 

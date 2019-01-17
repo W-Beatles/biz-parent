@@ -17,7 +17,7 @@
 package cn.waynechu.dynamic.datasource.strategy;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * 动态数据源选择策略
@@ -36,5 +36,5 @@ public interface DynamicDataSourceStrategy {
      * @param dataSources 数据源选择库
      * @return dataSource 所选择的数据源
      */
-    DataSource determineDataSource(List<DataSource> dataSources);
+    DataSource determineDataSource(LinkedList<DataSource> dataSources);
 }

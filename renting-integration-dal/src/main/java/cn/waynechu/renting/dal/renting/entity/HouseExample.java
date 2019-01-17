@@ -1,4 +1,4 @@
-package cn.waynechu.renting.dal.entity;
+package cn.waynechu.renting.dal.renting.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

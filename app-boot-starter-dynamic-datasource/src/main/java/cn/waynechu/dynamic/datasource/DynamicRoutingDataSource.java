@@ -73,7 +73,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     /**
      * 获取数据源
      *
-     * @param groupName 数据源组名
+     * @param groupName 主从.数据源组名 比如订单库从库  slave.order
      * @return 数据源
      */
     public DataSource getDataSource(String groupName) {
@@ -103,11 +103,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
         if (name.contains(UNDERLINE)) {
             String group = name.split(UNDERLINE)[0];
             if (groupDataSources.containsKey(group)) {
-                groupDataSources.get(group).addDatasource(dataSource);
+                groupDataSources.get(group).addSlaveDatasource(dataSource);
             } else {
                 try {
                     DynamicGroupDataSource groupDatasource = new DynamicGroupDataSource(group, strategy.newInstance());
-                    groupDatasource.addDatasource(dataSource);
+                    groupDatasource.addSlaveDatasource(dataSource);
                     groupDataSources.put(group, groupDatasource);
                 } catch (Exception e) {
                     log.error("数据源分组 [{}] 失败", name, e);

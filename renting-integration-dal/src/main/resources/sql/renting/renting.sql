@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80012
  Source Host           : localhost:3306
- Source Schema         : app_parent
+ Source Schema         : renting
 
  Target Server Type    : MySQL
  Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 07/01/2019 16:00:30
+ Date: 17/01/2019 18:20:19
 */
 
 SET NAMES utf8mb4;
@@ -48,7 +48,7 @@ CREATE TABLE `house`  (
   `updated_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   `is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除：0否，1是。默认0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '房屋信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 165 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '房屋信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of house
@@ -67,7 +67,7 @@ INSERT INTO `house` VALUES (31, '古美西路', 6000, 72, 12, 6, 6, 0, 2016, 1, 
 INSERT INTO `house` VALUES (32, '本市直招士官工作全面启动', 8000, 80, 2, 6, 2, 0, 2018, 1, 'bj', 'dcq', 'FqBlTq8sQQOat6wrT7rNOoknASwL', 1, 800, 2, '小区', 2, 0, '街道', 'waynechu', '2018-12-24 11:21:06', NULL, '2018-12-24 11:49:48', 0);
 INSERT INTO `house` VALUES (33, '本市直招士官工作全面启动', 7000, 80, 6, 2, 2, 0, 2016, 1, 'bj', 'dcq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 200, 6, '小区', 2, 0, '街道', 'waynechu', '2018-12-24 11:21:06', NULL, '2018-12-24 11:49:48', 0);
 INSERT INTO `house` VALUES (34, '古美西路316弄整租', 5200, 75, 2, 6, 6, 0, 2017, 1, 'sh', 'mhq', 'FqSmBXOMAsQTBMAosl4TxZgzvtx7', 3, -1, 1, '316弄', 2, 0, '古美西路', 'waynechu', '2018-12-24 11:21:06', NULL, '2018-12-24 11:49:48', 0);
-INSERT INTO `house` VALUES (35, '测试1', 45, 45, 1, 45, 45, 0, 2016, 3, 'bj', 'dcq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 45, 45, '45', 2, 0, '45', 'waynechu', '2018-12-24 11:21:06', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (35, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2018-12-24 11:21:06', 'waynechu', '2019-01-17 08:49:44', 0);
 INSERT INTO `house` VALUES (36, '两室一厅', 5200, 75, 2, 6, 6, 0, 2017, 3, 'sh', 'mhq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 500, 1, '316弄112', 2, 0, '古美西路', 'waynechu', '2018-12-24 11:21:06', NULL, '2018-12-24 11:49:48', 0);
 INSERT INTO `house` VALUES (37, '这里是下架的房源', 1, 1, 1, 1, 1, 0, 2017, 2, 'sh', 'mhq', 'FvyV665Yqk-MRGA4hClLxgwDusbq', 2, -1, 1, '标题', 2, 0, '标题', 'waynechu', '2018-12-24 11:21:06', NULL, '2018-12-24 11:49:48', 0);
 INSERT INTO `house` VALUES (38, '已下架的房源', 2, 2, 2, 2, 2, 0, 2016, 2, 'sh', 'mhq', 'Fv4zStKn-dmSN1EPQfAgPXCgN3Rw', 5, 2, 2, '已下架的房源', 2, 0, '已下架的房源', 'waynechu', '2018-12-24 11:21:06', NULL, '2018-12-24 11:49:48', 0);
@@ -125,14 +125,76 @@ INSERT INTO `house` VALUES (90, '富力城 国贸CBD 时尚休闲 商务办公',
 INSERT INTO `house` VALUES (91, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2018-12-24 07:09:04', NULL, NULL, 0);
 INSERT INTO `house` VALUES (92, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2018-12-24 07:09:05', NULL, NULL, 0);
 INSERT INTO `house` VALUES (93, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2018-12-24 07:09:05', 'waynechu', '2018-12-24 07:13:35', 1);
-INSERT INTO `house` VALUES (95, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 07:45:58', 'admin', '2018-12-28 05:30:52', 1);
+INSERT INTO `house` VALUES (95, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 07:45:58', 'waynechu', '2019-01-08 06:53:02', 1);
 INSERT INTO `house` VALUES (96, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 07:45:59', 'admin', '2018-12-24 07:46:32', 0);
-INSERT INTO `house` VALUES (97, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 07:46:00', 'admin', '2018-12-28 05:30:24', 0);
+INSERT INTO `house` VALUES (97, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 07:46:00', 'waynechu', '2019-01-08 04:39:12', 0);
 INSERT INTO `house` VALUES (98, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 09:42:27', NULL, NULL, 0);
 INSERT INTO `house` VALUES (99, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 09:42:35', NULL, NULL, 0);
 INSERT INTO `house` VALUES (100, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-24 09:42:38', NULL, NULL, 0);
 INSERT INTO `house` VALUES (101, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2018-12-28 05:29:23', NULL, NULL, 0);
 INSERT INTO `house` VALUES (102, '两室一厅', 5200, 75, 2, 6, 6, 0, 2017, 3, 'sh', 'mhq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 500, 1, '316弄112', 2, 0, '古美西路', 'admin', '2018-12-28 05:33:08', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (103, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2019-01-08 02:50:48', NULL, NULL, 0);
+INSERT INTO `house` VALUES (104, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:29:40', NULL, NULL, 0);
+INSERT INTO `house` VALUES (105, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'admin', '2019-01-08 04:30:40', NULL, NULL, 0);
+INSERT INTO `house` VALUES (106, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:38:54', NULL, NULL, 0);
+INSERT INTO `house` VALUES (107, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:38:56', NULL, NULL, 0);
+INSERT INTO `house` VALUES (108, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:38:57', NULL, NULL, 0);
+INSERT INTO `house` VALUES (109, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:38:59', NULL, NULL, 0);
+INSERT INTO `house` VALUES (110, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:39:00', NULL, NULL, 0);
+INSERT INTO `house` VALUES (111, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:39:01', NULL, NULL, 0);
+INSERT INTO `house` VALUES (112, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:39:03', NULL, NULL, 0);
+INSERT INTO `house` VALUES (113, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-08 04:39:04', 'waynechu', '2019-01-17 08:20:28', 1);
+INSERT INTO `house` VALUES (114, '两室一厅', 5200, 75, 2, 6, 6, 0, 2017, 3, 'sh', 'mhq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 500, 1, '316弄112', 2, 0, '古美西路', 'waynechu', '2019-01-09 05:12:36', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (115, '测试1', 45, 45, 1, 45, 45, 0, 2016, 3, 'bj', 'dcq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 45, 45, '45', 2, 0, '45', 'waynechu', '2019-01-09 05:13:16', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (116, '测试1', 45, 45, 1, 45, 45, 0, 2016, 3, 'bj', 'dcq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 45, 45, '45', 2, 0, '45', 'waynechu', '2019-01-09 05:18:17', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (117, '测试1', 45, 45, 1, 45, 45, 0, 2016, 3, 'bj', 'dcq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 45, 45, '45', 2, 0, '45', 'waynechu', '2019-01-09 06:37:09', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (118, 'string', 0, 0, 0, 0, 0, 0, 0, 0, 'string', 'string', 'string', 0, 0, 0, 'string', 0, 0, 'string', 'waynechu', '2019-01-11 09:38:17', NULL, NULL, 0);
+INSERT INTO `house` VALUES (119, 'string', 0, 0, 0, 0, 0, 0, 0, 0, 'string', 'string', 'string', 0, 0, 0, 'string', 0, 0, 'string', 'waynechu', '2019-01-11 09:39:51', NULL, NULL, 0);
+INSERT INTO `house` VALUES (120, 'string', 0, 0, 0, 0, 0, 0, 0, 0, 'string', 'string', 'string', 0, 0, 0, 'string', 0, 0, 'string', 'waynechu', '2019-01-11 09:39:52', NULL, NULL, 0);
+INSERT INTO `house` VALUES (121, 'string', 0, 0, 0, 0, 0, 0, 0, 0, 'string', 'string', 'string', 0, 0, 0, 'string', 0, 0, 'string', 'waynechu', '2019-01-11 09:50:30', NULL, NULL, 0);
+INSERT INTO `house` VALUES (122, 'string', 0, 0, 0, 0, 0, 0, 0, 0, 'string', 'string', 'string', 0, 0, 0, 'string', 0, 0, 'string', 'waynechu', '2019-01-11 09:50:32', NULL, NULL, 0);
+INSERT INTO `house` VALUES (123, 'string', 0, 0, 0, 0, 0, 0, 0, 0, 'string', 'string', 'string', 0, 0, 0, 'string', 0, 0, 'string', 'waynechu', '2019-01-11 09:50:33', NULL, NULL, 0);
+INSERT INTO `house` VALUES (124, 'string', 0, 0, 0, 0, 0, 0, 0, 0, 'string', 'string', 'string', 0, 0, 0, 'string', 0, 0, 'string', 'waynechu', '2019-01-11 09:50:35', NULL, NULL, 0);
+INSERT INTO `house` VALUES (125, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-15 06:38:12', NULL, NULL, 0);
+INSERT INTO `house` VALUES (126, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-15 12:30:28', NULL, NULL, 0);
+INSERT INTO `house` VALUES (127, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-15 12:31:39', NULL, NULL, 0);
+INSERT INTO `house` VALUES (128, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-15 12:43:44', NULL, NULL, 0);
+INSERT INTO `house` VALUES (129, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-15 12:43:54', NULL, NULL, 0);
+INSERT INTO `house` VALUES (130, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 07:02:09', NULL, NULL, 0);
+INSERT INTO `house` VALUES (131, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 11:08:29', NULL, NULL, 0);
+INSERT INTO `house` VALUES (132, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:05:17', NULL, NULL, 0);
+INSERT INTO `house` VALUES (133, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:15:41', NULL, NULL, 0);
+INSERT INTO `house` VALUES (134, '测试1', 45, 45, 1, 45, 45, 0, 2016, 3, 'bj', 'dcq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 45, 45, '45', 2, 0, '45', 'waynechu', '2019-01-16 12:16:12', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (135, '测试1', 45, 45, 1, 45, 45, 0, 2016, 3, 'bj', 'dcq', 'FsD_mbPatrAAbJ3D_5gRjumhOyEA', 2, 45, 45, '45', 2, 0, '45', 'waynechu', '2019-01-16 12:16:19', NULL, '2018-12-24 11:49:48', 0);
+INSERT INTO `house` VALUES (136, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:49:57', NULL, NULL, 0);
+INSERT INTO `house` VALUES (137, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:50:01', NULL, NULL, 0);
+INSERT INTO `house` VALUES (138, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:50:02', NULL, NULL, 0);
+INSERT INTO `house` VALUES (139, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:50:03', NULL, NULL, 0);
+INSERT INTO `house` VALUES (140, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:50:03', NULL, NULL, 0);
+INSERT INTO `house` VALUES (141, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:50:04', NULL, NULL, 0);
+INSERT INTO `house` VALUES (142, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-16 12:50:05', NULL, NULL, 0);
+INSERT INTO `house` VALUES (143, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:00:05', NULL, NULL, 0);
+INSERT INTO `house` VALUES (144, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:00:07', NULL, NULL, 0);
+INSERT INTO `house` VALUES (145, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:14:27', NULL, NULL, 0);
+INSERT INTO `house` VALUES (146, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:15:37', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (147, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:36:36', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (148, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:37:01', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (149, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:37:02', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (150, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:38:55', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (151, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:42:41', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (152, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:42:44', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (153, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:43:41', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (154, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:43:43', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (155, '富力城 国贸CBD 时尚休闲 商务办公', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 06:43:52', 'waynechu', '2019-01-17 05:50:42', 0);
+INSERT INTO `house` VALUES (156, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 08:16:36', NULL, NULL, 0);
+INSERT INTO `house` VALUES (157, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 08:16:37', NULL, NULL, 0);
+INSERT INTO `house` VALUES (158, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 08:24:11', NULL, NULL, 0);
+INSERT INTO `house` VALUES (159, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 08:28:23', NULL, NULL, 0);
+INSERT INTO `house` VALUES (160, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 08:28:24', NULL, NULL, 0);
+INSERT INTO `house` VALUES (161, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 08:49:19', NULL, NULL, 0);
+INSERT INTO `house` VALUES (162, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 08:49:22', NULL, NULL, 0);
+INSERT INTO `house` VALUES (163, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 09:17:29', NULL, NULL, 0);
+INSERT INTO `house` VALUES (164, 'insert', 6200, 70, 2, 10, 20, 2, 2005, 1, 'bj', 'dcq', 'FmHMPaaBfN6qBpwh_TtuyZxcUewL', 2, 10, 1, '融泽嘉园', 2, 0, '龙域西二路', 'waynechu', '2019-01-17 09:17:31', NULL, NULL, 0);
 
 -- ----------------------------
 -- Table structure for house_detail
@@ -145,24 +207,5 @@ CREATE TABLE `house_detail`  (
   `layout_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '户型介绍',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '房屋详情表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for sys_dicitionary
--- ----------------------------
-DROP TABLE IF EXISTS `sys_dicitionary`;
-CREATE TABLE `sys_dicitionary`  (
-  `id` bigint(20) UNSIGNED NOT NULL COMMENT '字典ID',
-  `type_code` int(10) NOT NULL COMMENT '字典类型Code',
-  `type_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '字典类型Name',
-  `code` int(10) NOT NULL COMMENT '字典Code',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '字典Name',
-  `parent_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '父节点ID。默认0，无父节点',
-  `created_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '创建人',
-  `created_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `updated_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '更新人',
-  `updated_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
-  `is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除：0否，1是。默认0',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

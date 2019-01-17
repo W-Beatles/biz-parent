@@ -1,6 +1,6 @@
 package cn.waynechu.renting.core.convert;
 
-import cn.waynechu.renting.dal.entity.House;
+import cn.waynechu.renting.dal.renting.entity.House;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.webcommon.bean.BeanUtil;
 

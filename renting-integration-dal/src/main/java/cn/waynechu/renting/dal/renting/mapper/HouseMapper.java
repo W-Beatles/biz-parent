@@ -1,9 +1,10 @@
-package cn.waynechu.renting.dal.mapper;
+package cn.waynechu.renting.dal.renting.mapper;
 
-import cn.waynechu.renting.dal.entity.House;
-import cn.waynechu.renting.dal.entity.HouseExample;
-import java.util.List;
+import cn.waynechu.renting.dal.renting.entity.House;
+import cn.waynechu.renting.dal.renting.entity.HouseExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface HouseMapper {
     int countByExample(HouseExample example);

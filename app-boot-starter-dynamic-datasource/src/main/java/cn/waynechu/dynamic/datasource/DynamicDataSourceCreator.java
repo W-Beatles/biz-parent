@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * 多数据源创建器
+ * 动态数据源创建器
  *
  * @author zhuwei
  * @date 2019/1/15 15:45

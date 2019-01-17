@@ -1,8 +1,8 @@
 package cn.waynechu.renting.core.repository;
 
-import cn.waynechu.renting.dal.entity.House;
-import cn.waynechu.renting.dal.entity.HouseExample;
-import cn.waynechu.renting.dal.mapper.HouseMapper;
+import cn.waynechu.renting.dal.renting.entity.House;
+import cn.waynechu.renting.dal.renting.entity.HouseExample;
+import cn.waynechu.renting.dal.renting.mapper.HouseMapper;
 import cn.waynechu.webcommon.page.PageInfo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

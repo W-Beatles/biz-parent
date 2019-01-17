@@ -17,11 +17,11 @@
 package cn.waynechu.dynamic.datasource.strategy;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * 多数据源选择策略 - 随机策略
+ * 动态数据源选择策略 - 随机策略
  *
  * @author zhuwei
  * @date 2019/1/15 16:50
@@ -29,7 +29,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomDynamicDataSourceStrategy implements DynamicDataSourceStrategy {
 
     @Override
-    public DataSource determineDataSource(List<DataSource> dataSources) {
+    public DataSource determineDataSource(LinkedList<DataSource> dataSources) {
         return dataSources.get(ThreadLocalRandom.current().nextInt(dataSources.size()));
     }
 }

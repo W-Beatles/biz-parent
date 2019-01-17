@@ -2,7 +2,7 @@ package cn.waynechu.renting.core.service.impl;
 
 import cn.waynechu.renting.core.convert.HouseConvert;
 import cn.waynechu.renting.core.repository.HouseRepository;
-import cn.waynechu.renting.dal.entity.House;
+import cn.waynechu.renting.dal.renting.entity.House;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.webcommon.page.PageInfo;

@@ -16,6 +16,7 @@
  */
 package cn.waynechu.dynamic.datasource.toolkit;
 
+import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayDeque;
@@ -27,14 +28,12 @@ import java.util.Deque;
  * @author zhuwei
  * @date 2018/11/7 14:03
  */
+@UtilityClass
 public class DynamicDataSourceContextHolder {
     private static final ThreadLocal<Deque<String>> LOOKUP_KEY_HOLDER = ThreadLocal.withInitial(ArrayDeque::new);
 
     public static final String DATASOURCE_GROUP_MASTER_PREFIX = "master";
     public static final String DATASOURCE_GROUP_SALVE_PREFIX = "slave";
-
-    private DynamicDataSourceContextHolder() {
-    }
 
     /**
      * 获得当前线程数据源
