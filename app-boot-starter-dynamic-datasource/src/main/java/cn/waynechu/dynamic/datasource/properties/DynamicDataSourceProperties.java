@@ -35,10 +35,7 @@ import java.util.Map;
 @Data
 @ConfigurationProperties(prefix = "spring.datasource.dynamic")
 public class DynamicDataSourceProperties {
-    /**
-     * 主数据源名称，默认master
-     */
-    private String primary = "master";
+
     /**
      * 配置所有数据源
      */

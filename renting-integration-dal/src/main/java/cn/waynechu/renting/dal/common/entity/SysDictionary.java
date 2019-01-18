@@ -2,7 +2,7 @@ package cn.waynechu.renting.dal.common.entity;
 
 import java.util.Date;
 
-public class SysDicitionary {
+public class SysDictionary {
     private Long id;
 
     private Integer typeCode;
@@ -25,7 +25,7 @@ public class SysDicitionary {
 
     private Boolean isDeleted;
 
-    public SysDicitionary(Long id, Integer typeCode, String typeName, Integer code, String name, Long parentId, String createdUser, Date createdTime, String updatedUser, Date updatedTime, Boolean isDeleted) {
+    public SysDictionary(Long id, Integer typeCode, String typeName, Integer code, String name, Long parentId, String createdUser, Date createdTime, String updatedUser, Date updatedTime, Boolean isDeleted) {
         this.id = id;
         this.typeCode = typeCode;
         this.typeName = typeName;
@@ -39,7 +39,7 @@ public class SysDicitionary {
         this.isDeleted = isDeleted;
     }
 
-    public SysDicitionary() {
+    public SysDictionary() {
         super();
     }
 

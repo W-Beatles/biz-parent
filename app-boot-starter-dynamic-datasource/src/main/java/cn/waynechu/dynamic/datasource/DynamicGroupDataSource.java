@@ -24,6 +24,7 @@ import java.util.LinkedList;
 
 /**
  * 分组数据源
+ * 取组内第一个数据源为主数据源
  *
  * @author zhuwei
  * @date 2019/1/15 19:20
@@ -51,11 +52,11 @@ public class DynamicGroupDataSource {
         this.dynamicDataSourceStrategy = dynamicDataSourceStrategy;
     }
 
-    public void addMasterDatasource(DataSource dataSource) {
+    public void addMaster(DataSource dataSource) {
         dataSources.addFirst(dataSource);
     }
 
-    public void addSlaveDatasource(DataSource dataSource) {
+    public void addSlave(DataSource dataSource) {
         dataSources.add(dataSource);
     }
 
@@ -63,8 +64,12 @@ public class DynamicGroupDataSource {
         dataSources.remove(dataSource);
     }
 
-    public DataSource determineDataSource() {
-        return dynamicDataSourceStrategy.determineDataSource(dataSources);
+    public DataSource determineMaster() {
+        return dynamicDataSourceStrategy.determineMaster(dataSources);
+    }
+
+    public DataSource determineSlave() {
+        return dynamicDataSourceStrategy.determineSlave(dataSources);
     }
 
     public int size() {

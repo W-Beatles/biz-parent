@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class SysDicitionaryExample {
+public class SysDictionaryExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SysDicitionaryExample() {
+    public SysDictionaryExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

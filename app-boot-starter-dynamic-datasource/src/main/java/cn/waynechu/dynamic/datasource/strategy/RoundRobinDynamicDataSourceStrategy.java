@@ -19,7 +19,7 @@ package cn.waynechu.dynamic.datasource.strategy;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2019/1/15 16:48
  */
 @Slf4j
-public class RoundRobinDynamicDataSourceStrategy implements DynamicDataSourceStrategy {
+public class RoundRobinDynamicDataSourceStrategy extends AbstractDynamicDataSourceStrategy {
 
     /**
      * 原子计数器
@@ -37,8 +37,7 @@ public class RoundRobinDynamicDataSourceStrategy implements DynamicDataSourceStr
     private AtomicInteger index = new AtomicInteger(0);
 
     @Override
-    public DataSource determineDataSource(List<DataSource> dataSources) {
-        int i = Math.abs(index.getAndAdd(1) % dataSources.size());
-        return dataSources.get(i);
+    public DataSource determineSlave(LinkedList<DataSource> dataSources) {
+        return dataSources.get(Math.abs(index.getAndAdd(1) % (dataSources.size() - 1)) + 1);
     }
 }

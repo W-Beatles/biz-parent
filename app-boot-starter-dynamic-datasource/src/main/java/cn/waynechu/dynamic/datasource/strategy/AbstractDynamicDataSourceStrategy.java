@@ -18,18 +18,21 @@ package cn.waynechu.dynamic.datasource.strategy;
 
 import javax.sql.DataSource;
 import java.util.LinkedList;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * 动态数据源选择策略 - 随机策略
- *
  * @author zhuwei
- * @date 2019/1/15 16:50
+ * @date 2019/1/18 9:57
  */
-public class RandomDynamicDataSourceStrategy extends AbstractDynamicDataSourceStrategy {
+public abstract class AbstractDynamicDataSourceStrategy implements DynamicDataSourceStrategy {
 
+    /**
+     * 选择当前LinkedList中的第一个作为主数据源
+     *
+     * @param dataSources 数据源选择库
+     * @return 主数据源
+     */
     @Override
-    public DataSource determineSlave(LinkedList<DataSource> dataSources) {
-        return dataSources.get(ThreadLocalRandom.current().nextInt(dataSources.size() - 1) + 1);
+    public DataSource determineMaster(LinkedList<DataSource> dataSources) {
+        return dataSources.getFirst();
     }
 }

@@ -1,5 +1,6 @@
 package cn.waynechu.renting.facade.request;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 /**
@@ -7,7 +8,9 @@ import lombok.Data;
  * @date 2018/12/29 12:46
  */
 @Data
-public class HouseSearchReq {
+@ApiModel(description = "搜索房屋信息请求对象")
+public class HouseSearchRequest {
+
     private String title;
 
     private Integer price;

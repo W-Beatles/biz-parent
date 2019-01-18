@@ -28,9 +28,8 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
+import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
 /**
  * @author zhuwei
@@ -46,14 +45,22 @@ public class DynamicDataSourceAutoConfiguration {
     @Autowired
     private DynamicDataSourceProperties properties;
 
-    @Bean(initMethod = "init")
+    @Bean("dataSource")
+    @Primary
+    @DependsOn("dynamicRoutingDataSource")
+    public LazyConnectionDataSourceProxy dataSource(DynamicRoutingDataSource dynamicRoutingDataSource) {
+        LazyConnectionDataSourceProxy dataSourceProxy = new LazyConnectionDataSourceProxy();
+        dataSourceProxy.setTargetDataSource(dynamicRoutingDataSource);
+        return dataSourceProxy;
+    }
+
+    @Bean
     @ConditionalOnMissingBean
-    public DynamicRoutingDataSource dataSource(DynamicDataSourceProvider dynamicDataSourceProvider) {
-        DynamicRoutingDataSource dataSource = new DynamicRoutingDataSource();
-        dataSource.setPrimary(properties.getPrimary());
-        dataSource.setStrategy(properties.getStrategy());
-        dataSource.setProvider(dynamicDataSourceProvider);
-        return dataSource;
+    public DynamicRoutingDataSource dynamicRoutingDataSource(DynamicDataSourceProvider dynamicDataSourceProvider) {
+        DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
+        dynamicRoutingDataSource.setStrategy(properties.getStrategy());
+        dynamicRoutingDataSource.setProvider(dynamicDataSourceProvider);
+        return dynamicRoutingDataSource;
     }
 
     @Bean

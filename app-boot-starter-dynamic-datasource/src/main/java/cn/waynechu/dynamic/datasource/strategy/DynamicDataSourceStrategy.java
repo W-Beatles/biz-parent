@@ -31,10 +31,18 @@ import java.util.LinkedList;
 public interface DynamicDataSourceStrategy {
 
     /**
-     * 决定当前数据源
+     * 决定主数据源
      *
      * @param dataSources 数据源选择库
-     * @return dataSource 所选择的数据源
+     * @return 主数据源
      */
-    DataSource determineDataSource(LinkedList<DataSource> dataSources);
+    DataSource determineMaster(LinkedList<DataSource> dataSources);
+
+    /**
+     * 决定从数据源
+     *
+     * @param dataSources 数据源选择库
+     * @return 从数据源
+     */
+    DataSource determineSlave(LinkedList<DataSource> dataSources);
 }

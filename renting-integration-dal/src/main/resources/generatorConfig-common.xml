@@ -57,7 +57,7 @@
             <property name="useGeneratedKeys" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="sys_dicitionary">
+        <table tableName="sys_dictionary">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
     </context>

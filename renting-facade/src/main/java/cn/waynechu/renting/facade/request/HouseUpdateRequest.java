@@ -1,15 +1,16 @@
 package cn.waynechu.renting.facade.request;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * @author zhuwei
  * @date 2018/12/29 10:32
  */
 @Data
-public class HouseUpdateReq implements Serializable {
+@ApiModel(description = "更新房屋信息请求对象")
+public class HouseUpdateRequest {
+
     private Long id;
 
     private String title;

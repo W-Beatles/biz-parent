@@ -32,8 +32,8 @@ import java.util.Deque;
 public class DynamicDataSourceContextHolder {
     private static final ThreadLocal<Deque<String>> LOOKUP_KEY_HOLDER = ThreadLocal.withInitial(ArrayDeque::new);
 
-    public static final String DATASOURCE_GROUP_MASTER_PREFIX = "master";
-    public static final String DATASOURCE_GROUP_SALVE_PREFIX = "slave";
+    public static final String DATASOURCE_MASTER_FLAG = "master";
+    public static final String DATASOURCE_SALVE_FLAG = "slave";
 
     /**
      * 获得当前线程数据源

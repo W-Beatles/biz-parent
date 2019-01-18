@@ -16,6 +16,7 @@
  */
 package cn.waynechu.dynamic.datasource.interceptor;
 
+import cn.waynechu.dynamic.datasource.DynamicRoutingDataSource;
 import cn.waynechu.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
@@ -60,34 +61,40 @@ public class DynamicDataSourceInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        String lookUpKey;
+        String dataSourceType;
         String sqlType;
+
+        Object[] args = invocation.getArgs();
+        MappedStatement ms = (MappedStatement) args[0];
+
+        String resource = ms.getResource();
+        String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
+        String groupName = splitResource[splitResource.length - 2];
 
         if (QUERY_METHOD_NAME.equals(invocation.getMethod().getName())) {
             boolean isTransactionActive = TransactionSynchronizationManager.isActualTransactionActive();
 
             if (!isTransactionActive) {
-                Object[] args = invocation.getArgs();
-                MappedStatement ms = (MappedStatement) args[0];
-
                 if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
                     sqlType = SQL_TYPE_SELECT_KEY;
-                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_MASTER_PREFIX;
+                    dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
                 } else {
                     sqlType = SQL_TYPE_READ_ONLY;
-                    lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_SALVE_PREFIX;
+                    dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_SALVE_FLAG;
                 }
             } else {
                 sqlType = SQL_TYPE_TRANSITION;
-                lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_MASTER_PREFIX;
+                dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
             }
         } else {
             sqlType = SQL_TYPE_DATA_MODIFY;
-            lookUpKey = DynamicDataSourceContextHolder.DATASOURCE_GROUP_MASTER_PREFIX;
+            dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
         }
 
-        logger.debug("SQL类型为 [{}]，将使用 [{}] 数据源", sqlType, lookUpKey);
+        logger.debug("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
         try {
+            // lookupKey格式：组名_数据源类型。比如：订单库主库 order_master
+            String lookUpKey = groupName + DynamicRoutingDataSource.UNDERLINE + dataSourceType;
             DynamicDataSourceContextHolder.push(lookUpKey);
             return invocation.proceed();
         } finally {

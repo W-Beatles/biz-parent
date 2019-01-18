@@ -1,9 +1,9 @@
 package cn.waynechu.renting.web.service;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
+import cn.waynechu.renting.facade.model.ModelHouse;
 import cn.waynechu.renting.facade.service.HouseService;
-import cn.waynechu.renting.facade.vo.HouseResponse;
-import cn.waynechu.renting.web.convert.HouseConvert;
+import cn.waynechu.renting.web.convert.dto.HouseDtoConvert;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +21,12 @@ public class HouseWebService {
     @Autowired
     private HouseService houseService;
 
-    public HouseResponse getById(Long id) {
-        HouseResponse returnValue = null;
+    public ModelHouse getById(Long id) {
+        ModelHouse returnValue = null;
 
         HouseDTO houseDTO = houseService.getById(id);
         if (houseDTO != null) {
-            returnValue = HouseConvert.convertHouseVO(houseDTO);
+            returnValue = HouseDtoConvert.toHouseResp(houseDTO);
         }
         return returnValue;
     }
@@ -43,13 +43,13 @@ public class HouseWebService {
         return houseService.removeById(id);
     }
 
-    public PageInfo<HouseResponse> search(HouseDTO houseDTO, Integer pageNum, Integer pageSize) {
-        PageInfo<HouseResponse> returnValue = new PageInfo<>(pageNum, pageSize);
+    public PageInfo<ModelHouse> search(HouseDTO houseDTO, Integer pageNum, Integer pageSize) {
+        PageInfo<ModelHouse> returnValue = new PageInfo<>(pageNum, pageSize);
 
         PageInfo<HouseDTO> houseDTOPageInfo = houseService.search(houseDTO, pageNum, pageSize);
         List<HouseDTO> list = houseDTOPageInfo.getList();
         if (CollectionUtil.isNotNullOrEmpty(list)) {
-            List<HouseResponse> houseVOList = HouseConvert.convertHouseVOList(list);
+            List<ModelHouse> houseVOList = HouseDtoConvert.toHouseRespList(list);
             returnValue = houseDTOPageInfo.replace(houseVOList);
         }
         return returnValue;

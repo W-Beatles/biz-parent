@@ -1,4 +1,4 @@
-package cn.waynechu.renting.facade.vo;
+package cn.waynechu.renting.facade.model;
 
 import cn.waynechu.webcommon.web.response.AbstractResponse;
 import io.swagger.annotations.ApiModel;
@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "房屋信息返回对象")
-public class HouseResponse extends AbstractResponse {
+public class ModelHouse extends AbstractResponse {
     @ApiModelProperty("房屋ID")
     private Long id;
 
