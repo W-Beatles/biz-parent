@@ -20,6 +20,8 @@ import javax.sql.DataSource;
 import java.util.LinkedList;
 
 /**
+ * 默认使用组数据源中的第一个作为主数据源
+ *
  * @author zhuwei
  * @date 2019/1/18 9:57
  */

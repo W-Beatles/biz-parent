@@ -28,26 +28,32 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 @Data
 @Accessors(chain = true)
 public class DataSourceProperty {
+
     /**
      * 数据源名称，如果需要添加分组以_分割组名和数据源名。如slave_1
      */
     private String dataSourceName;
+
     /**
      * JDBC driver
      */
     private String driverClassName;
+
     /**
      * JDBC url
      */
     private String url;
+
     /**
      * JDBC 用户名
      */
     private String username;
+
     /**
      * JDBC 密码
      */
     private String password;
+
     /**
      * 当前数据源Druid参数配置
      */

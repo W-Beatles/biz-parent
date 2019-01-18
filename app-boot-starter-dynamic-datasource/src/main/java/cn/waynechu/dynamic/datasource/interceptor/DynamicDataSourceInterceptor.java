@@ -18,6 +18,7 @@ package cn.waynechu.dynamic.datasource.interceptor;
 
 import cn.waynechu.dynamic.datasource.DynamicRoutingDataSource;
 import cn.waynechu.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
@@ -26,8 +27,6 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.Properties;
@@ -49,9 +48,8 @@ import java.util.Properties;
                 type = Executor.class, method = "query",
                 args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class}),
 })
+@Slf4j
 public class DynamicDataSourceInterceptor implements Interceptor {
-    private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceInterceptor.class);
-
     private static final String QUERY_METHOD_NAME = "query";
 
     private static final String SQL_TYPE_SELECT_KEY = "SELECT_KEY";
@@ -91,10 +89,10 @@ public class DynamicDataSourceInterceptor implements Interceptor {
             dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
         }
 
-        logger.debug("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
+        log.debug("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
         try {
             // lookupKey格式：组名_数据源类型。比如：订单库主库 order_master
-            String lookUpKey = groupName + DynamicRoutingDataSource.UNDERLINE + dataSourceType;
+            String lookUpKey = groupName + DynamicRoutingDataSource.GROUP_FLAG + dataSourceType;
             DynamicDataSourceContextHolder.push(lookUpKey);
             return invocation.proceed();
         } finally {

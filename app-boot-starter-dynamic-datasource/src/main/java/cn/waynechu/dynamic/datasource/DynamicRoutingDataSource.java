@@ -39,9 +39,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource implements InitializingBean {
     /**
-     * 分组前缀。如slave_1，slave_2会划分为一组
+     * 分组标识。如 order-slave1，order-slave2 会划分到 order 组中
      */
-    public static final String UNDERLINE = "_";
+    public static final String GROUP_FLAG = "-";
 
     /**
      * 主数据源，该数据源用于当拦截器未生效时，选择该数据源
@@ -87,7 +87,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      * @param dataSource     数据源
      */
     private void addDataSource(String dataSourceName, DataSource dataSource) {
-        if (dataSourceName.contains(UNDERLINE)) {
+        if (dataSourceName.contains(GROUP_FLAG)) {
             addGroupDataSource(dataSourceName, dataSource);
         } else {
             singleDataSource.put(dataSourceName, dataSource);
@@ -103,7 +103,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      */
     private void addGroupDataSource(String dataSourceName, DataSource dataSource) {
         String dataSourceType = "";
-        String groupName = dataSourceName.split(UNDERLINE)[0];
+        String groupName = dataSourceName.split(GROUP_FLAG)[0];
         if (groupDataSources.containsKey(groupName)) {
             if (dataSourceName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
                 groupDataSources.get(groupName).addMaster(dataSource);
@@ -141,7 +141,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         DataSource dataSource;
         if (StringUtils.isEmpty(lookUpKey)) {
             dataSource = primaryDataSource;
-        } else if (lookUpKey.contains(UNDERLINE)) {
+        } else if (lookUpKey.contains(GROUP_FLAG)) {
             dataSource = getFromGroupDataSource(lookUpKey);
         } else {
             dataSource = singleDataSource.get(lookUpKey);
@@ -163,7 +163,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      */
     private DataSource getFromGroupDataSource(String lookUpKey) {
         DataSource dataSource;
-        String[] splitStr = lookUpKey.split(UNDERLINE);
+        String[] splitStr = lookUpKey.split(GROUP_FLAG);
         String groupName = splitStr[0];
         String dataSourceType = splitStr[1];
         if (DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG.equals(dataSourceType)) {
