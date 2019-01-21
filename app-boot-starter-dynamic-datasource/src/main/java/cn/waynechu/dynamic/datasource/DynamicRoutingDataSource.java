@@ -78,6 +78,16 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
             }
             addDataSource(entry.getKey(), entry.getValue());
         }
+
+        // 当数据源全部为单数据源类型时，选择第一个作为主数据源
+        if (primaryDataSource == null) {
+            for (Map.Entry<String, DataSource> entry : singleDataSource.entrySet()) {
+                if (entry != null) {
+                    primaryDataSource = entry.getValue();
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -141,10 +151,16 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         DataSource dataSource;
         if (StringUtils.isEmpty(lookUpKey)) {
             dataSource = primaryDataSource;
-        } else if (lookUpKey.contains(GROUP_FLAG)) {
-            dataSource = getFromGroupDataSource(lookUpKey);
         } else {
-            dataSource = singleDataSource.get(lookUpKey);
+            String[] splitStr = lookUpKey.split(GROUP_FLAG);
+            String groupName = splitStr[0];
+            String dataSourceType = splitStr[1];
+
+            if (groupDataSources.get(groupName) != null) {
+                dataSource = getFromGroupDataSource(groupName, dataSourceType);
+            } else {
+                dataSource = singleDataSource.get(groupName);
+            }
         }
 
         if (dataSource instanceof DruidDataSource) {
@@ -157,15 +173,12 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     /**
      * 从组数据源中获取数据源
      *
-     * @param lookUpKey 获取数据源的key <br>
-     *                  格式：“组名_数据源类型”
+     * @param groupName      组名
+     * @param dataSourceType 数据源类型 master|slave
      * @return 数据源
      */
-    private DataSource getFromGroupDataSource(String lookUpKey) {
+    private DataSource getFromGroupDataSource(String groupName, String dataSourceType) {
         DataSource dataSource;
-        String[] splitStr = lookUpKey.split(GROUP_FLAG);
-        String groupName = splitStr[0];
-        String dataSourceType = splitStr[1];
         if (DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG.equals(dataSourceType)) {
             dataSource = groupDataSources.get(groupName).determineMaster();
         } else if (DynamicDataSourceContextHolder.DATASOURCE_SALVE_FLAG.equals(dataSourceType)) {

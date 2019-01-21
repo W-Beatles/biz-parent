@@ -11,29 +11,40 @@
  Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 17/01/2019 18:20:11
+ Date: 21/01/2019 10:31:07
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for sys_dicitionary
+-- Table structure for sys_dictionary
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_dicitionary`;
-CREATE TABLE `sys_dicitionary`  (
-  `id` bigint(20) UNSIGNED NOT NULL COMMENT '字典ID',
+DROP TABLE IF EXISTS `sys_dictionary`;
+CREATE TABLE `sys_dictionary`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '字典ID',
   `type_code` int(10) NOT NULL COMMENT '字典类型Code',
   `type_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '字典类型Name',
   `code` int(10) NOT NULL COMMENT '字典Code',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '字典Name',
   `parent_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '父节点ID。默认0，无父节点',
-  `created_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '创建人',
+  `created_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '创建人',
   `created_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `updated_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '更新人',
-  `updated_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  `updated_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '更新人',
+  `updated_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   `is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除：0否，1是。默认0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_dictionary
+-- ----------------------------
+INSERT INTO `sys_dictionary` VALUES (1, 1, '订单', 0, '未采购', 0, 'waynechu', '2019-01-18 07:40:41', 'waynechu', '2019-01-18 07:58:04', 1);
+INSERT INTO `sys_dictionary` VALUES (2, 1, '订单', 1, '采购中', 0, 'waynechu', '2019-01-18 07:41:41', NULL, NULL, 0);
+INSERT INTO `sys_dictionary` VALUES (3, 1, '订单', 2, '已采购', 0, 'waynechu', '2019-01-18 07:42:11', NULL, NULL, 0);
+INSERT INTO `sys_dictionary` VALUES (4, 1, '订单', 3, '采购失败', 0, 'waynechu', '2019-01-18 07:42:31', NULL, NULL, 0);
+INSERT INTO `sys_dictionary` VALUES (5, 1, '订单', 8, '采购XX', 0, 'waynechu', '2019-01-18 07:50:19', 'waynechu', '2019-01-18 08:52:48', 1);
+INSERT INTO `sys_dictionary` VALUES (6, 1, '订单', 0, '未采购', 0, 'waynechu', '2019-01-18 08:22:23', 'waynechu', '2019-01-18 07:58:04', 1);
+INSERT INTO `sys_dictionary` VALUES (7, 1, '订单', 3, '采购失败', 0, 'waynechu', '2019-01-18 08:52:42', NULL, NULL, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
