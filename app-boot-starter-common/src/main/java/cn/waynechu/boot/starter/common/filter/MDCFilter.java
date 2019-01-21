@@ -20,8 +20,13 @@ public class MDCFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         try {
-            HttpServletRequest httpReq = (HttpServletRequest) request;
-            String traceNo = httpReq.getHeader(TRACE_NO);
+            HttpServletRequest servletRequest = (HttpServletRequest) request;
+            // 1. parameter
+            String traceNo = request.getParameter(TRACE_NO);
+            if (StringUtils.isBlank(traceNo)) {
+                // 2. header
+                traceNo = servletRequest.getHeader(TRACE_NO);
+            }
 
             // reqKey格式：traceNo_mdcPrefix-shortJavaUUID-localHostName
             this.initMDC(traceNo);
