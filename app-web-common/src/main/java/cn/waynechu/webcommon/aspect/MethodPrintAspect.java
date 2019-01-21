@@ -2,15 +2,12 @@ package cn.waynechu.webcommon.aspect;
 
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.util.JsonBinder;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.lang.annotation.Annotation;
@@ -20,15 +17,15 @@ import java.lang.reflect.Method;
  * @author zhuwei
  * @date 2018/11/14 14:16
  */
-public abstract class AbstractMethodPrintAspect {
-    private static final Logger log = LoggerFactory.getLogger(AbstractMethodPrintAspect.class);
+@Slf4j
+@Aspect
+@Component
+public class MethodPrintAspect {
 
-    private ThreadLocal<Long> threadLocal = new ThreadLocal<>();
-
-    /**
-     * 切点配置
-     */
-    public abstract void methodPrint();
+    @Pointcut("@annotation(cn.waynechu.webcommon.annotation.MethodPrintAnnotation)")
+    public void methodPrint() {
+        // do nothing here.
+    }
 
     @Before(value = "methodPrint() && @annotation(printAnnotation)")
     public void doBefore(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
@@ -41,7 +38,7 @@ public abstract class AbstractMethodPrintAspect {
 
         // 记录调用开始时间
         if (printAnnotation.isPrintCostTime()) {
-            threadLocal.set(System.currentTimeMillis());
+            DequeThreadLocalUtil.offerFirst(System.currentTimeMillis());
         }
     }
 
@@ -62,8 +59,7 @@ public abstract class AbstractMethodPrintAspect {
 
         // 打印调用耗时
         if (printAnnotation.isPrintCostTime()) {
-            log.info("{} 调用耗时: {}ms", methodName, System.currentTimeMillis() - threadLocal.get());
-            threadLocal.remove();
+            log.info("{} 调用耗时: {}ms", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst());
         }
     }
 
