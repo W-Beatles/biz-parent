@@ -78,7 +78,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
             addDataSource(entry.getKey(), entry.getValue());
         }
 
-        // 当数据源全部为单数据源类型时，选择第一个作为主数据源
+        // 当数据源全部为单数据源类型时，默认选择第一个作为主数据源
         if (primaryDataSource == null) {
             for (Map.Entry<String, DataSource> entry : singleDataSource.entrySet()) {
                 if (entry != null) {
@@ -95,9 +95,10 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      * @param dataSourceName 数据源名称
      * @param dataSource     数据源
      */
-    private void addDataSource(String dataSourceName, DataSource dataSource) {
+    public void addDataSource(String dataSourceName, DataSource dataSource) {
         if (dataSourceName.contains(GROUP_FLAG)) {
-            addGroupDataSource(dataSourceName, dataSource);
+            String groupName = dataSourceName.split(GROUP_FLAG)[0];
+            addGroupDataSource(groupName, dataSource);
         } else {
             singleDataSource.put(dataSourceName, dataSource);
             log.info("添加单数据源 [{}]", dataSourceName);
@@ -107,14 +108,13 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     /**
      * 添加组数据源
      *
-     * @param dataSourceName 数据源名称
-     * @param dataSource     数据源
+     * @param groupName  数据源名称
+     * @param dataSource 数据源
      */
-    private void addGroupDataSource(String dataSourceName, DataSource dataSource) {
+    private void addGroupDataSource(String groupName, DataSource dataSource) {
         String dataSourceType = "";
-        String groupName = dataSourceName.split(GROUP_FLAG)[0];
         if (groupDataSources.containsKey(groupName)) {
-            if (dataSourceName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
+            if (groupName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
                 groupDataSources.get(groupName).addMaster(dataSource);
                 dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
             } else {
@@ -124,7 +124,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         } else {
             try {
                 DynamicGroupDataSource groupDatasource = new DynamicGroupDataSource(groupName, strategy.newInstance());
-                if (dataSourceName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
+                if (groupName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
                     groupDatasource.addMaster(dataSource);
                     dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
                 } else {
@@ -133,11 +133,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
                 }
                 groupDataSources.put(groupName, groupDatasource);
             } catch (Exception e) {
-                log.error("数据源 [{}] 分组失败", dataSourceName, e);
-                singleDataSource.remove(dataSourceName);
+                log.error("数据源 [{}] 分组失败", groupName, e);
+                singleDataSource.remove(groupName);
             }
         }
-        log.info("添加数据源 [{}] 至 [{}] 分组，该数据源类型为 [{}]", dataSourceName, groupName, dataSourceType);
+        log.info("添加数据源 [{}] 至 [{}] 分组，该数据源类型为 [{}]", groupName, groupName, dataSourceType);
     }
 
     /**
@@ -155,7 +155,8 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
             String groupName = splitStr[0];
             String dataSourceType = splitStr[1];
 
-            if (groupDataSources.get(groupName) != null) {
+            DynamicGroupDataSource getFromGroup = groupDataSources.get(groupName);
+            if (getFromGroup != null) {
                 dataSource = getFromGroupDataSource(groupName, dataSourceType);
             } else {
                 dataSource = singleDataSource.get(groupName);
@@ -178,10 +179,12 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      */
     private DataSource getFromGroupDataSource(String groupName, String dataSourceType) {
         DataSource dataSource;
-        if (DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG.equals(dataSourceType)) {
-            dataSource = groupDataSources.get(groupName).determineMaster();
+        DynamicGroupDataSource groupDataSource = groupDataSources.get(groupName);
+        if (DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG.equals(dataSourceType)
+                || groupDataSource.getSlavesSize() == 0) {
+            dataSource = groupDataSource.determineMaster();
         } else if (DynamicDataSourceContextHolder.DATASOURCE_SALVE_FLAG.equals(dataSourceType)) {
-            dataSource = groupDataSources.get(groupName).determineSlave();
+            dataSource = groupDataSource.determineSlave();
         } else {
             throw new IllegalArgumentException("Unknown datasource type.");
         }

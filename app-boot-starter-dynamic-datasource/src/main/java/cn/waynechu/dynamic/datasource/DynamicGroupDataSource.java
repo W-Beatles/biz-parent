@@ -74,4 +74,8 @@ public class DynamicGroupDataSource {
     public int size() {
         return dataSources.size();
     }
+
+    public int getSlavesSize() {
+        return dataSources.isEmpty() ? 0 : dataSources.size() - 1;
+    }
 }
