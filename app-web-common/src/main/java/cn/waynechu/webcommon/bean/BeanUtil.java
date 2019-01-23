@@ -116,7 +116,7 @@ public class BeanUtil {
     }
 
     public static void setPropertyValue(Object targetObject, String propertyName, Object value) {
-        if (targetObject == null || StringUtil.isNullOrEmpty(propertyName)) {
+        if (targetObject == null || StringUtil.isEmpty(propertyName)) {
             log.error("The target object or property is null.");
         } else {
             BeanStructure targetBeanStructure = getBeanStructure(targetObject.getClass());
@@ -137,7 +137,7 @@ public class BeanUtil {
     }
 
     public static void setPropertyValueWithCast(Object targetObject, String propertyName, String value) {
-        if (targetObject == null || StringUtil.isNullOrEmpty(propertyName)) {
+        if (targetObject == null || StringUtil.isEmpty(propertyName)) {
             log.error("The target object or property is null.");
         } else {
             BeanStructure targetBeanStructure = getBeanStructure(targetObject.getClass());
@@ -261,7 +261,7 @@ public class BeanUtil {
         Set<X> returnValue = new LinkedHashSet<>();
 
         try {
-            if (CollectionUtil.isNotNullOrEmpty(list) && StringUtil.isNotNullOrEmpty(propertyName)) {
+            if (CollectionUtil.isNotNullOrEmpty(list) && StringUtil.isNotEmpty(propertyName)) {
                 for (Y item : list) {
                     X attributeValue = getPropertyValue(item, propertyName);
                     if (attributeValue != null) {
@@ -283,7 +283,7 @@ public class BeanUtil {
         List<X> returnValue = new ArrayList<>();
 
         try {
-            if (CollectionUtil.isNotNullOrEmpty(list) && StringUtil.isNotNullOrEmpty(propertyName)) {
+            if (CollectionUtil.isNotNullOrEmpty(list) && StringUtil.isNotEmpty(propertyName)) {
                 for (Y item : list) {
                     X attributeValue = getPropertyValue(item, propertyName);
                     if (attributeValue != null) {
@@ -300,7 +300,7 @@ public class BeanUtil {
     public static <K, V> Map<K, V> listToMapTransfer(final Collection<V> list, final String mapKeyPropertyName) {
         Map<K, V> returnValue = new HashMap<>();
 
-        if (!CollectionUtil.isNullOrEmpty(list) || StringUtil.isNullOrEmpty(mapKeyPropertyName)) {
+        if (!CollectionUtil.isNullOrEmpty(list) || StringUtil.isEmpty(mapKeyPropertyName)) {
             try {
                 for (V item : list) {
                     K propertyValue = getPropertyValue(item, mapKeyPropertyName);
@@ -318,8 +318,8 @@ public class BeanUtil {
     public static <V, F> List<V> filterObjectListByObjectValues(final Collection<V> srcObjects, final String srcPropertyName, final Collection<F> filterObjects, final String filterPropertyName) {
         List<V> returnValue = new ArrayList<>();
 
-        if (!CollectionUtil.isNullOrEmpty(srcObjects) && !StringUtil.isNullOrEmpty(srcPropertyName)
-                && !CollectionUtil.isNullOrEmpty(filterObjects) && !StringUtil.isNullOrEmpty(filterPropertyName)) {
+        if (!CollectionUtil.isNullOrEmpty(srcObjects) && !StringUtil.isEmpty(srcPropertyName)
+                && !CollectionUtil.isNullOrEmpty(filterObjects) && !StringUtil.isEmpty(filterPropertyName)) {
             Set<V> filterValues = getPropertySetFromList(filterObjects, filterPropertyName);
 
             returnValue.addAll(filterObjectsByPropertyValues(srcObjects, srcPropertyName, filterValues));
@@ -330,7 +330,7 @@ public class BeanUtil {
     public static <V, F> List<V> filterObjectsByPropertyValues(final Collection<V> srcObjects, final String srcPropertyName, final Set<F> filterPropertyValues) {
         List<V> returnValue = new LinkedList<>();
 
-        if (!CollectionUtil.isNullOrEmpty(srcObjects) && !CollectionUtil.isNullOrEmpty(filterPropertyValues) && !StringUtil.isNullOrEmpty(srcPropertyName)) {
+        if (!CollectionUtil.isNullOrEmpty(srcObjects) && !CollectionUtil.isNullOrEmpty(filterPropertyValues) && !StringUtil.isEmpty(srcPropertyName)) {
             try {
                 for (V srcObject : srcObjects) {
                     F propertyValue = getPropertyValue(srcObject, srcPropertyName);
