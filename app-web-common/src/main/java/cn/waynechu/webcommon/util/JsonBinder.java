@@ -78,7 +78,7 @@ public class JsonBinder {
      * List<MyBean> beanList = binder.getMapper().readValue(listString, new TypeReference<List<MyBean>>() {});
      */
     public <T> T toJavaObjectFromJson(String jsonString, Class<T> clazz) {
-        if (StringUtil.isNullOrEmpty(jsonString)) {
+        if (StringUtil.isEmpty(jsonString)) {
             return null;
         }
 
@@ -91,7 +91,7 @@ public class JsonBinder {
     }
 
     public <T> T toJavaObjectFromJson(String jsonString, TypeReference<T> typeReference) {
-        if (StringUtil.isNullOrEmpty(jsonString)) {
+        if (StringUtil.isEmpty(jsonString)) {
             return null;
         }
 
@@ -104,7 +104,7 @@ public class JsonBinder {
     }
 
     public <T> List<T> toJavaListFromJson(String jsonString, Class<T> clazz) {
-        if (StringUtil.isNullOrEmpty(jsonString)) {
+        if (StringUtil.isEmpty(jsonString)) {
             return Collections.emptyList();
         }
 
@@ -171,7 +171,7 @@ public class JsonBinder {
      * 设置转换日期类型的format pattern,如果不设置默认打印Timestamp毫秒数.
      */
     public void setDateFormat(String pattern) {
-        if (!StringUtil.isNullOrEmpty(pattern)) {
+        if (!StringUtil.isEmpty(pattern)) {
             DateFormat dateFormat = new SimpleDateFormat(pattern);
 
             mapper.getSerializationConfig().with(dateFormat);

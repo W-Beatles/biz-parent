@@ -1,5 +1,6 @@
 package cn.waynechu.webcommon.util;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
  * @date 2018/11/5 16:18
  */
 @Slf4j
+@UtilityClass
 public class FileUploadUtil {
 
     /**

@@ -87,7 +87,7 @@ public class HttpUrl {
             query = url.getQuery();
             ref = url.getRef();
 
-            path = StringUtil.isNullOrEmpty(path) ? "/" : path;
+            path = StringUtil.isEmpty(path) ? "/" : path;
             queryParams = HttpUtil.getQueryParameters(query);
         } catch (Exception e) {
             logger.error("parse url error.", e);
@@ -110,7 +110,7 @@ public class HttpUrl {
             stringBuilder.append("?").append(HttpUtil.generateQueryString(queryParams));
         }
 
-        if (!StringUtil.isNullOrEmpty(ref)) {
+        if (!StringUtil.isEmpty(ref)) {
             stringBuilder.append("#").append(ref);
         }
 

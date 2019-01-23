@@ -103,7 +103,7 @@ public class HttpUtil {
         String returnValue = null;
 
         returnValue = request.getParameter(key);
-        if (StringUtil.isNullOrEmpty(returnValue)) {
+        if (StringUtil.isEmpty(returnValue)) {
             returnValue = request.getHeader(key);
         }
         return returnValue;
@@ -144,7 +144,7 @@ public class HttpUtil {
 
         stringBuilder.append(request.getRequestURL());
 
-        if (!StringUtil.isNullOrEmpty(request.getQueryString())) {
+        if (!StringUtil.isEmpty(request.getQueryString())) {
             stringBuilder.append("?").append(request.getQueryString());
         }
         return stringBuilder.toString();
@@ -155,7 +155,7 @@ public class HttpUtil {
 
         stringBuilder.append(request.getRequestURI());
 
-        if (!StringUtil.isNullOrEmpty(request.getQueryString())) {
+        if (!StringUtil.isEmpty(request.getQueryString())) {
             stringBuilder.append("?").append(request.getQueryString());
         }
         return stringBuilder.toString();
@@ -259,7 +259,7 @@ public class HttpUtil {
     public static String addParamsToUrl(HttpServletRequest request, String url, Map<String, String> params) {
         String returnValue = null;
 
-        if (!StringUtil.isNullOrEmpty(url)) {
+        if (!StringUtil.isEmpty(url)) {
             HttpUrl httpUrl = null;
 
             String formattedUrl = url.toLowerCase();
@@ -284,7 +284,7 @@ public class HttpUtil {
     public static String removeParamsFromUrl(HttpServletRequest request, String url, Map<String, String> params) {
         String returnValue = null;
 
-        if (!StringUtil.isNullOrEmpty(url)) {
+        if (!StringUtil.isEmpty(url)) {
             HttpUrl httpUrl = null;
 
             String formattedUrl = url.toLowerCase();
@@ -367,11 +367,11 @@ public class HttpUtil {
         boolean returnValue = false;
 
         String userAgent = HttpUtil.getValueFromRequest(request, HEADER_KEY_USER_AGENT);
-        if (StringUtil.isNullOrEmpty(userAgent)) {
+        if (StringUtil.isEmpty(userAgent)) {
             userAgent = HttpUtil.getValueFromRequest(request, HEADER_KEY_USER_AGENT.toLowerCase());
         }
 
-        if (!StringUtil.isNullOrEmpty(userAgent)) {
+        if (!StringUtil.isEmpty(userAgent)) {
             userAgent = userAgent.toLowerCase();
 
             for (Pattern userAgentPattern : specialUserAgentPatterns) {
