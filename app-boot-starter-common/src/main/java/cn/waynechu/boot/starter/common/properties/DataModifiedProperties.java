@@ -10,7 +10,7 @@ import lombok.Data;
 public class DataModifiedProperties {
 
     /**
-     * 是否开启数据库修改拦截器
+     * 是否开启数据库修改拦截器。默认关闭
      */
     private boolean enable = false;
 

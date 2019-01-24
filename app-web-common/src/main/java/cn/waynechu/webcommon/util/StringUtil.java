@@ -11,12 +11,13 @@ public class StringUtil {
 
     /**
      * Checks if a CharSequence is empty ("") or null.
-     * <p>
+     * <pre>
      * StringUtils.isEmpty(null)      = true
      * StringUtils.isEmpty("")        = true
      * StringUtils.isEmpty(" ")       = false
      * StringUtils.isEmpty("bob")     = false
      * StringUtils.isEmpty("  bob  ") = false
+     * </pre>
      *
      * @param cs the CharSequence to check, may be null
      * @return {@code true} if the CharSequence is empty or null
@@ -31,12 +32,13 @@ public class StringUtil {
 
     /**
      * Checks if a CharSequence is empty (""), null or whitespace only.
-     * <p>
+     * <pre>
      * StringUtils.isBlank(null)      = true
      * StringUtils.isBlank("")        = true
      * StringUtils.isBlank(" ")       = true
      * StringUtils.isBlank("bob")     = false
      * StringUtils.isBlank("  bob  ") = false
+     * </pre>
      *
      * @param cs the CharSequence to check, may be null
      * @return {@code true} if the CharSequence is null, empty or whitespace only

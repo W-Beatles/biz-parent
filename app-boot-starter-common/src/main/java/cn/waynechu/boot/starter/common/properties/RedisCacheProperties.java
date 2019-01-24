@@ -13,7 +13,7 @@ import java.util.List;
 public class RedisCacheProperties {
 
     /**
-     * 是否开启RedisCache
+     * 是否开启RedisCache。默认false
      */
     private boolean enable = false;
 
@@ -23,12 +23,12 @@ public class RedisCacheProperties {
     private String keyPrefix = "";
 
     /**
-     * 打印Redis操作详情
+     * 打印Redis操作详情。默认false
      */
     private boolean printOps = false;
 
     /**
-     * Cache序列化方式，默认JACKSON
+     * Cache序列化方式。默认JACKSON
      */
     private SerializerEnum serializer = SerializerEnum.JACKSON;
 
@@ -38,9 +38,9 @@ public class RedisCacheProperties {
     private List<String> autoTypes = new ArrayList<>();
 
     /**
-     * 配置全局Cache超时时间，单位秒。默认 172800秒/2天
+     * 配置全局Cache超时时间，单位秒。默认 86400秒/1天
      */
-    private long ttl = 172800;
+    private long ttl = 86400;
 
     public enum SerializerEnum {
         /**

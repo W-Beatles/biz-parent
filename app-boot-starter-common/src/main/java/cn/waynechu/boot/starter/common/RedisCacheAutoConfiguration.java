@@ -5,6 +5,11 @@ import cn.waynechu.boot.starter.common.properties.RedisCacheProperties;
 import cn.waynechu.boot.starter.common.serializer.FastJsonSerializer;
 import cn.waynechu.boot.starter.common.util.RedisCache;
 import com.alibaba.fastjson.parser.ParserConfig;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -46,7 +51,7 @@ public class RedisCacheAutoConfiguration {
     @Bean
     public RedisCacheConfiguration cacheConfiguration(RedisSerializer<Object> redisSerializer) {
         return RedisCacheConfiguration.defaultCacheConfig()
-                // 设置默认cache超时时间为： 172800秒/2天
+                // 设置默认cache超时时间为：86400秒/1天
                 .entryTtl(Duration.ofSeconds(commonProperties.getRedisCache().getTtl()))
                 // 设置cache前缀格式为："prefix:cacheName:key"
                 .computePrefixWith(cacheName -> commonProperties.getRedisCache().getKeyPrefix() + ":" + cacheName + ":")
@@ -70,8 +75,20 @@ public class RedisCacheAutoConfiguration {
                 ParserConfig.getGlobalInstance().addAccept(autoType);
             }
         } else {
-            redisSerializer = new GenericJackson2JsonRedisSerializer();
-            log.info("[RedisCache] Missing default redisSerializer, using Jackson2JsonRedisSerializer.class for cache");
+            ObjectMapper objectMapper = new ObjectMapper();
+            // 序列化时使用@type字段存储非final类型对象的类信息
+            TypeResolverBuilder<?> typer = new ObjectMapper.DefaultTypeResolverBuilder(ObjectMapper.DefaultTyping.NON_FINAL);
+            typer = typer.init(JsonTypeInfo.Id.CLASS, null);
+            typer = typer.inclusion(JsonTypeInfo.As.PROPERTY);
+            typer.typeProperty("@type");
+            objectMapper.setDefaultTyping(typer);
+            // 设置只序列化非空字段
+            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            // 设置反序列化时存在未知属性不抛出异常
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+            redisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+            log.info("[RedisCache] Using Jackson2JsonRedisSerializer.class for cache");
         }
         return redisSerializer;
     }

@@ -10,9 +10,9 @@ import lombok.Data;
 public class MDCProperties {
 
     /**
-     * 是否开启MDC
+     * 是否开启MDC。默认关闭
      */
-    private boolean enable;
+    private boolean enable = false;
 
     /**
      * MDC前缀

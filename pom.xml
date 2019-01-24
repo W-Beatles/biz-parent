@@ -206,9 +206,9 @@
     <profiles>
         <!-- 本地开发环境 -->
         <profile>
-            <id>local</id>
+            <id>dev</id>
             <properties>
-                <profiles.active>local</profiles.active>
+                <profiles.active>dev</profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

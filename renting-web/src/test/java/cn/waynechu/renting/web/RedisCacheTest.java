@@ -24,9 +24,11 @@ public class RedisCacheTest extends RentingWebApplicationTests {
 
     @Test
     public void set() {
-        HouseDTO houseDTO = new HouseDTO();
-        houseDTO.setAdminId(1L);
-        redisCache.set("house:1", houseDTO);
+        for (int i = 1; i <= 8; i++) {
+            HouseDTO houseDTO = new HouseDTO();
+            houseDTO.setAdminId((long) i);
+            redisCache.set("house:" + i, houseDTO);
+        }
     }
 
     @Test
@@ -50,9 +52,19 @@ public class RedisCacheTest extends RentingWebApplicationTests {
     }
 
     @Test
-    public void getFromList() {
-        List<HouseDTO> houseDTOS = redisCache.getFromList("houses", HouseDTO.class);
+    public void getToList() {
+        List<HouseDTO> houseDTOS = redisCache.getToList("houses", HouseDTO.class);
         Assert.assertEquals(9, houseDTOS.size());
+    }
+
+    @Test
+    public void multiGet() {
+        ArrayList<String> keys = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            keys.add("house:" + i);
+        }
+        List<HouseDTO> houseDTOS = redisCache.multiGet(keys, HouseDTO.class);
+        System.out.println(houseDTOS);
     }
 
     @Test
