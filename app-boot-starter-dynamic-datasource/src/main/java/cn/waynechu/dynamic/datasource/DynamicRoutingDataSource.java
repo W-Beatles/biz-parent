@@ -72,20 +72,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         Map<String, DataSource> dataSources = provider.loadDataSources();
         log.info("读取到 [{}] 个数据源, 开始动态数据源分组...", dataSources.size());
         for (Map.Entry<String, DataSource> entry : dataSources.entrySet()) {
-            if (primaryDataSource == null && entry.getKey().contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
+            // 选择读取到的第一个数据源作为主数据源
+            if (primaryDataSource == null) {
                 primaryDataSource = entry.getValue();
             }
             addDataSource(entry.getKey(), entry.getValue());
-        }
-
-        // 当数据源全部为单数据源类型时，默认选择第一个作为主数据源
-        if (primaryDataSource == null) {
-            for (Map.Entry<String, DataSource> entry : singleDataSource.entrySet()) {
-                if (entry != null) {
-                    primaryDataSource = entry.getValue();
-                    break;
-                }
-            }
         }
     }
 
@@ -97,8 +88,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      */
     public void addDataSource(String dataSourceName, DataSource dataSource) {
         if (dataSourceName.contains(GROUP_FLAG)) {
-            String groupName = dataSourceName.split(GROUP_FLAG)[0];
-            addGroupDataSource(groupName, dataSource);
+            addGroupDataSource(dataSourceName, dataSource);
         } else {
             singleDataSource.put(dataSourceName, dataSource);
             log.info("添加单数据源 [{}]", dataSourceName);
@@ -108,13 +98,14 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     /**
      * 添加组数据源
      *
-     * @param groupName  数据源名称
-     * @param dataSource 数据源
+     * @param dataSourceName 数据源名称
+     * @param dataSource     数据源
      */
-    private void addGroupDataSource(String groupName, DataSource dataSource) {
+    private void addGroupDataSource(String dataSourceName, DataSource dataSource) {
         String dataSourceType = "";
+        String groupName = dataSourceName.split(GROUP_FLAG)[0];
         if (groupDataSources.containsKey(groupName)) {
-            if (groupName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
+            if (dataSourceName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
                 groupDataSources.get(groupName).addMaster(dataSource);
                 dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
             } else {
@@ -124,7 +115,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         } else {
             try {
                 DynamicGroupDataSource groupDatasource = new DynamicGroupDataSource(groupName, strategy.newInstance());
-                if (groupName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
+                if (dataSourceName.contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
                     groupDatasource.addMaster(dataSource);
                     dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
                 } else {
@@ -133,11 +124,10 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
                 }
                 groupDataSources.put(groupName, groupDatasource);
             } catch (Exception e) {
-                log.error("数据源 [{}] 分组失败", groupName, e);
-                singleDataSource.remove(groupName);
+                log.error("数据源 [{}] 分组失败", dataSourceName, e);
             }
         }
-        log.info("添加数据源 [{}] 至 [{}] 分组, 该数据源类型为 [{}]", groupName, groupName, dataSourceType);
+        log.info("添加数据源 [{}] 至 [{}] 分组, 该数据源类型为 [{}]", dataSourceName, groupName, dataSourceType);
     }
 
     /**

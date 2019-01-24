@@ -26,7 +26,7 @@ public class SysDictionaryServiceImpl implements SysDictionaryService {
     @Autowired
     private SysDictionaryRepository sysDictionaryRepository;
 
-    @Cacheable(cacheNames = "dictionary", key = "#id")
+//    @Cacheable(cacheNames = "dictionary", key = "#id")
     @Override
     public SysDictionaryDTO getById(Long id) {
         SysDictionaryDTO returnValue = null;
