@@ -51,15 +51,11 @@ public class MethodPrintAspect {
     public void doAfterReturning(JoinPoint joinPoint, Object result, MethodPrintAnnotation printAnnotation) {
         String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
 
+        // 打印调用耗时及返回值
         if (printAnnotation.isPrintReturn()) {
             String returnStr = this.getPrintReturnStr(result, printAnnotation);
 
-            log.info("{} 结束调用，返回值: {}", methodName, returnStr);
-        }
-
-        // 打印调用耗时
-        if (printAnnotation.isPrintCostTime()) {
-            log.info("{} 调用耗时: {}ms", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst());
+            log.info("{} 结束调用，耗时: {}ms，返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
         }
     }
 
