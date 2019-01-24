@@ -55,7 +55,7 @@ public class MethodPrintAspect {
         if (printAnnotation.isPrintReturn()) {
             String returnStr = this.getPrintReturnStr(result, printAnnotation);
 
-            log.info("{} 结束调用，耗时: {}ms，返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
+            log.info("{} 结束调用, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
         }
     }
 
@@ -64,7 +64,7 @@ public class MethodPrintAspect {
         if (printAnnotation.isPrintException()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
 
-            log.error("{} 调用异常:", methodName, exception);
+            log.error("{} 调用异常: ", methodName, exception);
         }
     }
 

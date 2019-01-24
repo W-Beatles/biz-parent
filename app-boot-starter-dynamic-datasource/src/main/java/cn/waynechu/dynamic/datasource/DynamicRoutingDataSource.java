@@ -70,7 +70,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     @Override
     public void afterPropertiesSet() {
         Map<String, DataSource> dataSources = provider.loadDataSources();
-        log.info("读取到 [{}] 个数据源，开始动态数据源分组...", dataSources.size());
+        log.info("读取到 [{}] 个数据源, 开始动态数据源分组...", dataSources.size());
         for (Map.Entry<String, DataSource> entry : dataSources.entrySet()) {
             if (primaryDataSource == null && entry.getKey().contains(DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG)) {
                 primaryDataSource = entry.getValue();
@@ -137,7 +137,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
                 singleDataSource.remove(groupName);
             }
         }
-        log.info("添加数据源 [{}] 至 [{}] 分组，该数据源类型为 [{}]", groupName, groupName, dataSourceType);
+        log.info("添加数据源 [{}] 至 [{}] 分组, 该数据源类型为 [{}]", groupName, groupName, dataSourceType);
     }
 
     /**

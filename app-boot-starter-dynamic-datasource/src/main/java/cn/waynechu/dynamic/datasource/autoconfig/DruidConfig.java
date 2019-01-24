@@ -173,7 +173,7 @@ public class DruidConfig {
             if (tempConnectProperties == null) {
                 tempConnectProperties = new Properties();
             }
-            log.info("Druid数据源密码已加密");
+            log.info("Druid 数据源密码已加密");
             tempConnectProperties.setProperty("config.decrypt", "true");
             tempConnectProperties.setProperty("config.decrypt.key", tempPublicKey);
         }
