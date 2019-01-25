@@ -12,7 +12,7 @@ public enum CommonResultEnum implements IBaseEnum {
     SYSTEM_ERROR(10002, "system_error", "系统异常"),
 
     MISSING_REQUEST_PARAMETER(10010, "missing_request_parameter", "缺少请求参数"),
-    ILLEGAL_ARGUMENT(10011, "illegal_argument", "参数错误");
+    ARGUMENT_NOT_VALID(10011, "argument_not_valid", "请求参数不合法");
 
     private int code;
     private String name;
