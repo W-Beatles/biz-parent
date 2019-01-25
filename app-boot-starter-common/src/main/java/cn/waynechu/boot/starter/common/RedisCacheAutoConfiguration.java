@@ -31,6 +31,9 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+import static cn.waynechu.boot.starter.common.properties.RedisCacheProperties.SerializerEnum.FAST_JSON;
+import static cn.waynechu.boot.starter.common.properties.RedisCacheProperties.SerializerEnum.JDK;
+
 /**
  * @author zhuwei
  * @date 2019/1/10 12:46
@@ -67,10 +70,10 @@ public class RedisCacheAutoConfiguration {
     public RedisSerializer<Object> redisSerializer() {
         RedisSerializer<Object> redisSerializer;
         RedisCacheProperties redisCacheConfig = commonProperties.getRedisCache();
-        if (RedisCacheProperties.SerializerEnum.JDK.equals(redisCacheConfig.getSerializer())) {
+        if (JDK.equals(redisCacheConfig.getSerializer())) {
             redisSerializer = new JdkSerializationRedisSerializer();
             log.info("[RedisCache] Using JdkSerializationRedisSerializer.class for redis cache");
-        } else if (RedisCacheProperties.SerializerEnum.FAST_JSON.equals(redisCacheConfig.getSerializer())) {
+        } else if (FAST_JSON.equals(redisCacheConfig.getSerializer())) {
             redisSerializer = new FastJsonSerializer<>(Object.class);
             log.info("[RedisCache] Using FastJsonSerializer.class for redis cache");
 
@@ -81,10 +84,10 @@ public class RedisCacheAutoConfiguration {
         } else {
             ObjectMapper objectMapper = new ObjectMapper();
             // 序列化时使用 @type 字段存储非 final 类型对象的类信息
-            TypeResolverBuilder<?> typer = new ObjectMapper.DefaultTypeResolverBuilder(ObjectMapper.DefaultTyping.NON_FINAL);
-            typer = typer.init(JsonTypeInfo.Id.CLASS, null);
-            typer = typer.inclusion(JsonTypeInfo.As.PROPERTY);
-            typer.typeProperty("@type");
+            TypeResolverBuilder<?> typer = new ObjectMapper.DefaultTypeResolverBuilder(ObjectMapper.DefaultTyping.NON_FINAL)
+                    .init(JsonTypeInfo.Id.CLASS, null)
+                    .inclusion(JsonTypeInfo.As.PROPERTY)
+                    .typeProperty("@type");
             objectMapper.setDefaultTyping(typer);
             // 设置只序列化非空字段
             objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
