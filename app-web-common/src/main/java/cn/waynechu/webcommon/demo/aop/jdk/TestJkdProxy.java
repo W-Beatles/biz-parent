@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.aop.jdk;
+package cn.waynechu.webcommon.demo.aop.jdk;
 
 /**
  * @author zhuwei

@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.aop.jdk;
+package cn.waynechu.webcommon.demo.aop.jdk;
 
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.util.JsonBinder;

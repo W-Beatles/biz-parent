@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.aop.cglib;
+package cn.waynechu.webcommon.demo.aop.cglib;
 
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.util.JsonBinder;
