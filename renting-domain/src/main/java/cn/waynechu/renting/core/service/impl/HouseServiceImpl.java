@@ -32,7 +32,7 @@ public class HouseServiceImpl implements HouseService {
     @Autowired
     private SysDictionaryRepository sysDictionaryRepository;
 
-    @Cacheable(cacheNames = "houses", key = "#id")
+    @Cacheable(cacheNames = "house", key = "#id")
     @Override
     public HouseDTO getById(Long id) {
         HouseDTO returnValue = null;

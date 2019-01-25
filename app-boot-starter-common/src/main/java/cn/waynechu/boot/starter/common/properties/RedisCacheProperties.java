@@ -2,8 +2,11 @@ package cn.waynechu.boot.starter.common.properties;
 
 import lombok.Data;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhuwei
@@ -23,11 +26,6 @@ public class RedisCacheProperties {
     private String keyPrefix = "";
 
     /**
-     * 打印Redis操作详情。默认false
-     */
-    private boolean printOps = false;
-
-    /**
      * Cache序列化方式。默认JACKSON
      */
     private SerializerEnum serializer = SerializerEnum.JACKSON;
@@ -38,9 +36,19 @@ public class RedisCacheProperties {
     private List<String> autoTypes = new ArrayList<>();
 
     /**
-     * 配置全局Cache超时时间，单位秒。默认 86400秒/1天
+     * 配置全局Cache超时时间。默认1天
      */
-    private long ttl = 86400;
+    private Duration globalTtl = Duration.ofDays(1);
+
+    /**
+     * 单独配置指定Cache的超时时间。key: cacheName, value: ttl
+     */
+    private Map<String, Duration> customTtl = new HashMap<>();
+
+    /**
+     * 打印Redis操作详情。默认false
+     */
+    private boolean printOps = false;
 
     public enum SerializerEnum {
         /**

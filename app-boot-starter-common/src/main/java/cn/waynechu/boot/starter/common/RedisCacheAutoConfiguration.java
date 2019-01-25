@@ -28,6 +28,8 @@ import org.springframework.data.redis.serializer.*;
 import org.springframework.util.StringUtils;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zhuwei
@@ -44,40 +46,41 @@ public class RedisCacheAutoConfiguration {
     private CommonProperties commonProperties;
 
     @Bean
-    public CacheManager cacheManager(RedisConnectionFactory connectionFactory, RedisCacheConfiguration cacheConfiguration) {
+    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(connectionFactory);
-        return new RedisCacheManager(redisCacheWriter, cacheConfiguration);
-    }
 
-    @Bean
-    public RedisCacheConfiguration cacheConfiguration(RedisSerializer<Object> redisSerializer) {
-        return RedisCacheConfiguration.defaultCacheConfig()
-                // 设置默认cache超时时间为：86400秒/1天
-                .entryTtl(Duration.ofSeconds(commonProperties.getRedisCache().getTtl()))
-                // 设置cache前缀格式为："prefix:cacheName:key"
-                .computePrefixWith(cacheName -> commonProperties.getRedisCache().getKeyPrefix() + ":" + cacheName + ":")
-                // 设置cache-value序列化方式
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer));
+        // 全局RedisCache配置
+        RedisCacheProperties redisCacheConfig = commonProperties.getRedisCache();
+        RedisCacheConfiguration globalCacheConfiguration = createCacheConfig(redisSerializer(),
+                redisCacheConfig.getGlobalTtl(), redisCacheConfig.getKeyPrefix());
+
+        // 用户自定义缓存配置
+        Map<String, Duration> customCacheTtlMap = redisCacheConfig.getCustomTtl();
+        Map<String, RedisCacheConfiguration> cacheConfigurationMap = new HashMap<>(customCacheTtlMap.size());
+        customCacheTtlMap.forEach((cacheName, ttl) -> cacheConfigurationMap.put(cacheName,
+                createCacheConfig(redisSerializer(), ttl, redisCacheConfig.getKeyPrefix())));
+        return new RedisCacheManager(redisCacheWriter, globalCacheConfiguration, cacheConfigurationMap);
     }
 
     @Bean("defaultRedisSerializer")
     @ConditionalOnMissingBean(RedisSerializer.class)
     public RedisSerializer<Object> redisSerializer() {
         RedisSerializer<Object> redisSerializer;
-        if (RedisCacheProperties.SerializerEnum.JDK.equals(commonProperties.getRedisCache().getSerializer())) {
+        RedisCacheProperties redisCacheConfig = commonProperties.getRedisCache();
+        if (RedisCacheProperties.SerializerEnum.JDK.equals(redisCacheConfig.getSerializer())) {
             redisSerializer = new JdkSerializationRedisSerializer();
-            log.info("[RedisCache] Using JdkSerializationRedisSerializer.class for cache");
-        } else if (RedisCacheProperties.SerializerEnum.FAST_JSON.equals(commonProperties.getRedisCache().getSerializer())) {
+            log.info("[RedisCache] Using JdkSerializationRedisSerializer.class for redis cache");
+        } else if (RedisCacheProperties.SerializerEnum.FAST_JSON.equals(redisCacheConfig.getSerializer())) {
             redisSerializer = new FastJsonSerializer<>(Object.class);
-            log.info("[RedisCache] Using FastJsonSerializer.class for cache");
+            log.info("[RedisCache] Using FastJsonSerializer.class for redis cache");
 
             // FastJson需指定AutoType序列化白名单
-            for (String autoType : commonProperties.getRedisCache().getAutoTypes()) {
+            for (String autoType : redisCacheConfig.getAutoTypes()) {
                 ParserConfig.getGlobalInstance().addAccept(autoType);
             }
         } else {
             ObjectMapper objectMapper = new ObjectMapper();
-            // 序列化时使用@type字段存储非final类型对象的类信息
+            // 序列化时使用 @type 字段存储非 final 类型对象的类信息
             TypeResolverBuilder<?> typer = new ObjectMapper.DefaultTypeResolverBuilder(ObjectMapper.DefaultTyping.NON_FINAL);
             typer = typer.init(JsonTypeInfo.Id.CLASS, null);
             typer = typer.inclusion(JsonTypeInfo.As.PROPERTY);
@@ -89,7 +92,7 @@ public class RedisCacheAutoConfiguration {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
             redisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
-            log.info("[RedisCache] Using Jackson2JsonRedisSerializer.class for cache");
+            log.info("[RedisCache] Using Jackson2JsonRedisSerializer.class for redis cache");
         }
         return redisSerializer;
     }
@@ -119,5 +122,24 @@ public class RedisCacheAutoConfiguration {
             log.warn("[RedisCache] Redis key prefix not found, consider setting one");
         }
         return new RedisCache(commonProperties.getRedisCache().getKeyPrefix(), commonProperties.getRedisCache().isPrintOps(), redisTemplate);
+    }
+
+    /**
+     * 生成RedisCache配置
+     *
+     * @param redisSerializer 序列化策略
+     * @param entryTtl        过期时间
+     * @param cachePrefix     key前缀
+     * @return RedisCacheConfiguration
+     */
+    private static RedisCacheConfiguration createCacheConfig(RedisSerializer<Object> redisSerializer,
+                                                             Duration entryTtl, String cachePrefix) {
+        return RedisCacheConfiguration.defaultCacheConfig()
+                // 设置默认cache超时时间为：86400秒/1天
+                .entryTtl(entryTtl)
+                // 设置cache前缀格式为："prefix:cacheName:key"
+                .computePrefixWith(cacheName -> cachePrefix + ":" + cacheName + ":")
+                // 设置cache-value序列化方式
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer));
     }
 }
