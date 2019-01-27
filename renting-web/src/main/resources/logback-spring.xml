@@ -5,12 +5,13 @@
      scanPeriod: 监测配置文件是否有修改的时间间隔，如果没有给出时间单位则默认是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
 	 debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+
     <!-- 配置日志位置 -->
     <property name="LOG_HOME" value="/data/webroot/renting/logs"/>
-
-    <property name="charset" value="UTF-8"/>
-    <property name="pattern"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{30}.%method:%line [%X{reqKey}] %X{user} %X{ip} - %msg%n"/>
+    <property name="CHARSET" value="UTF-8"/>
+    <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN:-%5p}) [%thread] %clr(%logger{30}){cyan}.%method:%line %clr([%X{reqKey}]){magenta} - %msg%n"/>
+    <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{30}.%method:%line [%X{reqKey}] - %msg%n"/>
 
     <springProperty scope="context" name="sentryEnable"
                     source="sentry.enable" defaultValue="false"/>
@@ -33,10 +34,9 @@
     <springProperty scope="context" name="elkRoutingKey"
                     source="elk.routingKey" defaultValue="logback.#"/>
 
-    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>${pattern}</pattern>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
@@ -53,7 +53,7 @@
             <totalSizeCap>3GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
-            <pattern>${pattern}</pattern>
+            <pattern>${PATTERN}</pattern>
             <immediateFlush>true</immediateFlush>
         </encoder>
     </appender>
@@ -73,7 +73,7 @@
             <totalSizeCap>3GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
-            <pattern>${pattern}</pattern>
+            <pattern>${PATTERN}</pattern>
             <immediateFlush>true</immediateFlush>
         </encoder>
     </appender>
@@ -118,7 +118,7 @@
                 <generateId>true</generateId>
                 <durable>true</durable>
                 <deliveryMode>PERSISTENT</deliveryMode>
-                <charset>${charset}</charset>
+                <charset>${CHARSET}</charset>
                 <layout class="cn.waynechu.appender.rabbitmq.logback.RabbitmqLayout"/>
             </appender>
         </then>
