@@ -13,22 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.strategy;
+package cn.waynechu.boot.starter.dynamicdatasource.provider;
 
 import javax.sql.DataSource;
-import java.util.LinkedList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Map;
 
 /**
- * 动态数据源选择策略 - 随机策略
+ * 动态数据源加载接口
  *
  * @author zhuwei
- * @date 2019/1/15 16:50
+ * @date 2019/1/15 17:22
  */
-public class RandomDynamicDataSourceStrategy extends AbstractDynamicDataSourceStrategy {
+public interface DynamicDataSourceProvider {
 
-    @Override
-    public DataSource determineSlave(LinkedList<DataSource> dataSources) {
-        return dataSources.get(ThreadLocalRandom.current().nextInt(dataSources.size() - 1) + 1);
-    }
+    /**
+     * 加载所有数据源
+     *
+     * @return 所有数据源，其中key为数据源名称
+     */
+    Map<String, DataSource> loadDataSources();
 }

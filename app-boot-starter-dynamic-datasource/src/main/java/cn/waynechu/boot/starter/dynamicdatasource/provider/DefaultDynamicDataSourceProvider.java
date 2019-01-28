@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.provider;
+package cn.waynechu.boot.starter.dynamicdatasource.provider;
 
-import cn.waynechu.dynamic.datasource.DynamicDataSourceCreator;
-import cn.waynechu.dynamic.datasource.properties.DataSourceProperty;
-import cn.waynechu.dynamic.datasource.properties.DynamicDataSourceProperties;
+import cn.waynechu.boot.starter.dynamicdatasource.DynamicDataSourceCreator;
+import cn.waynechu.boot.starter.dynamicdatasource.properties.DataSourceProperty;
+import cn.waynechu.boot.starter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.strategy;
+package cn.waynechu.boot.starter.dynamicdatasource.strategy;
 
 import javax.sql.DataSource;
 import java.util.LinkedList;

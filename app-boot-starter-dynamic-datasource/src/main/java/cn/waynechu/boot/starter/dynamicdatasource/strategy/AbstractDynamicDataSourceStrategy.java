@@ -13,23 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.provider;
+package cn.waynechu.boot.starter.dynamicdatasource.strategy;
 
 import javax.sql.DataSource;
-import java.util.Map;
+import java.util.LinkedList;
 
 /**
- * 动态数据源加载接口
+ * 默认使用组数据源中的第一个作为主数据源
  *
  * @author zhuwei
- * @date 2019/1/15 17:22
+ * @date 2019/1/18 9:57
  */
-public interface DynamicDataSourceProvider {
+public abstract class AbstractDynamicDataSourceStrategy implements DynamicDataSourceStrategy {
 
     /**
-     * 加载所有数据源
+     * 选择当前LinkedList中的第一个作为主数据源
      *
-     * @return 所有数据源，其中key为数据源名称
+     * @param dataSources 数据源选择库
+     * @return 主数据源
      */
-    Map<String, DataSource> loadDataSources();
+    @Override
+    public DataSource determineMaster(LinkedList<DataSource> dataSources) {
+        return dataSources.getFirst();
+    }
 }

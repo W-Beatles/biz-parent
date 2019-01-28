@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.properties;
+package cn.waynechu.boot.starter.dynamicdatasource.properties;
 
-import cn.waynechu.dynamic.datasource.autoconfig.DruidConfig;
+import cn.waynechu.boot.starter.dynamicdatasource.autoconfig.DruidConfig;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
@@ -29,7 +29,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 public class DataSourceProperty {
 
     /**
-     * 数据源名称，如果需要添加分组以_分割组名和数据源名。如slave_1
+     * 数据源名称，如果需要添加分组以-分割组名和数据源名。如slave-1
      */
     private String dataSourceName;
 

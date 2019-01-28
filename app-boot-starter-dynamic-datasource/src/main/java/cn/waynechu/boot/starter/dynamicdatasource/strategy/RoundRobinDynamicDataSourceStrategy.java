@@ -13,27 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.strategy;
+package cn.waynechu.boot.starter.dynamicdatasource.strategy;
+
+import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 默认使用组数据源中的第一个作为主数据源
+ * 动态数据源选择策略 - 轮询策略
  *
  * @author zhuwei
- * @date 2019/1/18 9:57
+ * @date 2019/1/15 16:48
  */
-public abstract class AbstractDynamicDataSourceStrategy implements DynamicDataSourceStrategy {
+@Slf4j
+public class RoundRobinDynamicDataSourceStrategy extends AbstractDynamicDataSourceStrategy {
 
     /**
-     * 选择当前LinkedList中的第一个作为主数据源
-     *
-     * @param dataSources 数据源选择库
-     * @return 主数据源
+     * 原子计数器
      */
+    private AtomicInteger index = new AtomicInteger(0);
+
     @Override
-    public DataSource determineMaster(LinkedList<DataSource> dataSources) {
-        return dataSources.getFirst();
+    public DataSource determineSlave(LinkedList<DataSource> dataSources) {
+        return dataSources.get(Math.abs(index.getAndAdd(1) % (dataSources.size() - 1)) + 1);
     }
 }

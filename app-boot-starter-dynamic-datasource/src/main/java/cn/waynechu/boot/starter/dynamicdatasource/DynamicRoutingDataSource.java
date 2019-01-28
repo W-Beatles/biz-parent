@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource;
+package cn.waynechu.boot.starter.dynamicdatasource;
 
-import cn.waynechu.dynamic.datasource.provider.DynamicDataSourceProvider;
-import cn.waynechu.dynamic.datasource.strategy.DynamicDataSourceStrategy;
-import cn.waynechu.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
+import cn.waynechu.boot.starter.dynamicdatasource.provider.DynamicDataSourceProvider;
+import cn.waynechu.boot.starter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
+import cn.waynechu.boot.starter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
 import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

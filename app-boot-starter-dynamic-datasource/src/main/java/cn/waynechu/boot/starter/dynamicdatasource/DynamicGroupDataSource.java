@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource;
+package cn.waynechu.boot.starter.dynamicdatasource;
 
-import cn.waynechu.dynamic.datasource.strategy.DynamicDataSourceStrategy;
+import cn.waynechu.boot.starter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
 import lombok.Data;
 
 import javax.sql.DataSource;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.toolkit;
+package cn.waynechu.boot.starter.dynamicdatasource.toolkit;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;

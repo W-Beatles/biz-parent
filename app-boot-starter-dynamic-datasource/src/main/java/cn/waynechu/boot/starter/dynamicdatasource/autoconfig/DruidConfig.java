@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.autoconfig;
+package cn.waynechu.boot.starter.dynamicdatasource.autoconfig;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

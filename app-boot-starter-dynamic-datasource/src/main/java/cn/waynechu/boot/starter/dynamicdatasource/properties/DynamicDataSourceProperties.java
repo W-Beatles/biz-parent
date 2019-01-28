@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.properties;
+package cn.waynechu.boot.starter.dynamicdatasource.properties;
 
-import cn.waynechu.dynamic.datasource.autoconfig.DruidConfig;
-import cn.waynechu.dynamic.datasource.strategy.DynamicDataSourceStrategy;
-import cn.waynechu.dynamic.datasource.strategy.RoundRobinDynamicDataSourceStrategy;
+import cn.waynechu.boot.starter.dynamicdatasource.autoconfig.DruidConfig;
+import cn.waynechu.boot.starter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
+import cn.waynechu.boot.starter.dynamicdatasource.strategy.RoundRobinDynamicDataSourceStrategy;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

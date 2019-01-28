@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.autoconfig.stat;
+package cn.waynechu.boot.starter.dynamicdatasource.autoconfig.stat;
 
-import cn.waynechu.dynamic.datasource.properties.DruidStatProperties;
+import cn.waynechu.boot.starter.dynamicdatasource.properties.DruidStatProperties;
 import com.alibaba.druid.support.http.WebStatFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;

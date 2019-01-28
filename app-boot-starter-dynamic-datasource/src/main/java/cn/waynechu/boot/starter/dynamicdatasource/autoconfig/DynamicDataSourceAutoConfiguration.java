@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.dynamic.datasource.autoconfig;
+package cn.waynechu.boot.starter.dynamicdatasource.autoconfig;
 
-import cn.waynechu.dynamic.datasource.DynamicDataSourceCreator;
-import cn.waynechu.dynamic.datasource.DynamicRoutingDataSource;
-import cn.waynechu.dynamic.datasource.interceptor.DynamicDataSourceInterceptor;
-import cn.waynechu.dynamic.datasource.properties.DynamicDataSourceProperties;
-import cn.waynechu.dynamic.datasource.provider.DefaultDynamicDataSourceProvider;
-import cn.waynechu.dynamic.datasource.provider.DynamicDataSourceProvider;
+import cn.waynechu.boot.starter.dynamicdatasource.DynamicDataSourceCreator;
+import cn.waynechu.boot.starter.dynamicdatasource.DynamicRoutingDataSource;
+import cn.waynechu.boot.starter.dynamicdatasource.interceptor.DynamicDataSourceInterceptor;
+import cn.waynechu.boot.starter.dynamicdatasource.properties.DynamicDataSourceProperties;
+import cn.waynechu.boot.starter.dynamicdatasource.provider.DefaultDynamicDataSourceProvider;
+import cn.waynechu.boot.starter.dynamicdatasource.provider.DynamicDataSourceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
