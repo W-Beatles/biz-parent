@@ -31,6 +31,7 @@
 
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>
+        <protostuff.version>1.5.9</protostuff.version>
         <druid.version>1.1.12</druid.version>
         <fastjson.version>1.2.51</fastjson.version>
         <mybatis-plus-boot-starter.version>3.0.6</mybatis-plus-boot-starter.version>
@@ -158,6 +159,18 @@
                 <version>${xmlbeans.version}</version>
             </dependency>
             <!-- excel依赖 end -->
+
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-core</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-runtime</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
