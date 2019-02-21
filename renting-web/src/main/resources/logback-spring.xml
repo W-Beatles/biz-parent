@@ -6,6 +6,7 @@
 	 debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!-- Pattern -->
     <property name="CONSOLE_LOG_PATTERN"
               value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr([%X{reqKey}]){magenta} %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"/>
     <property name="FILE_LOG_PATTERN"
@@ -13,7 +14,6 @@
 
     <!-- 配置日志位置 -->
     <property name="LOG_HOME" value="/data/webroot/renting/logs"/>
-    <property name="CHARSET" value="UTF-8"/>
 
     <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
     <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>
@@ -110,15 +110,15 @@
                 <generateId>true</generateId>
                 <durable>true</durable>
                 <deliveryMode>PERSISTENT</deliveryMode>
-                <charset>${CHARSET}</charset>
-                <layout class="cn.waynechu.appender.rabbitmq.logback.RabbitmqLayout"/>
+                <charset>UTF-8</charset>
+                <layout class="cn.waynechu.boot.starter.common.logback.layout.RabbitmqLayout"/>
             </appender>
         </then>
     </if>
 
     <springProfile name="prd,test,ut">
         <logger name="com" level="INFO" additivity="false">
-            <!--<appender-ref ref="ASYNC_INFO"/>-->
+            <appender-ref ref="ASYNC_INFO"/>
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
             <if condition='property("sentryEnable").contains("true")'>
@@ -134,7 +134,7 @@
         </logger>
 
         <logger name="cn" level="INFO" additivity="false">
-            <!--<appender-ref ref="ASYNC_INFO"/>-->
+            <appender-ref ref="ASYNC_INFO"/>
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
             <if condition='property("sentryEnable").contains("true")'>
@@ -150,7 +150,7 @@
         </logger>
 
         <logger name="org" level="INFO" additivity="false">
-            <!--<appender-ref ref="ASYNC_INFO"/>-->
+            <appender-ref ref="ASYNC_INFO"/>
             <appender-ref ref="ERROR"/>
             <appender-ref ref="CONSOLE"/>
             <if condition='property("sentryEnable").contains("true")'>

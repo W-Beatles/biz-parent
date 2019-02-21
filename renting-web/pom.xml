@@ -23,23 +23,6 @@
     </properties>
 
     <dependencies>
-        <!-- star project -->
-        <!--<dependency>-->
-        <!--<groupId>com.tuhu</groupId>-->
-        <!--<artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--<groupId>com.baomidou</groupId>-->
-        <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--<groupId>com.tuhu.finance</groupId>-->
-        <!--<artifactId>rabbitmq-logback-appender</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- begin -->
         <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>app-web-common</artifactId>
@@ -64,11 +47,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.waynechu</groupId>
-            <artifactId>rabbitmq-logback-appender</artifactId>
         </dependency>
 
         <dependency>

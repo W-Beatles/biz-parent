@@ -1,4 +1,4 @@
-package cn.waynechu.appender.rabbitmq.logback;
+package cn.waynechu.boot.starter.common.logback.layout;
 
 import ch.qos.logback.classic.pattern.ThrowableProxyConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
