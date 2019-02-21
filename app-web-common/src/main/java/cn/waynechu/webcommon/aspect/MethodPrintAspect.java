@@ -10,8 +10,10 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * @author zhuwei
@@ -74,7 +76,7 @@ public class MethodPrintAspect {
      * @param joinPoint 切点
      * @return 方法参数
      */
-    protected Object getArgs(JoinPoint joinPoint) {
+    protected Object[] getArgs(JoinPoint joinPoint) {
         return joinPoint.getArgs();
     }
 
@@ -116,7 +118,15 @@ public class MethodPrintAspect {
     }
 
     private String getPrintArgsStr(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
-        return toJsonString(this.getArgs(joinPoint), printAnnotation.isFormat());
+        ArrayList<Object> args = new ArrayList<>();
+        for (Object arg : this.getArgs(joinPoint)) {
+            // 不打印入参为 HttpServletResponse 类型
+            if (arg instanceof HttpServletResponse) {
+                continue;
+            }
+            args.add(arg);
+        }
+        return toJsonString(args, printAnnotation.isFormat());
     }
 
     private String getPrintReturnStr(Object result, MethodPrintAnnotation printAnnotation) {

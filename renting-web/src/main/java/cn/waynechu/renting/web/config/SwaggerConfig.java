@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @EnableSwagger2
 @Configuration
-@ConditionalOnProperty(value = "spring.profiles.active", havingValue = "local")
+@ConditionalOnProperty(value = "spring.profiles.active", havingValue = "dev")
 public class SwaggerConfig {
     private static final String API_TITLE = "房源API";
     private static final String API_DESCRIPTION = "房源信息接口";
