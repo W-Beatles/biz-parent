@@ -60,5 +60,9 @@
         <table tableName="sys_dictionary">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
+
+        <table tableName="shop_config_log">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
     </context>
 </generatorConfiguration>

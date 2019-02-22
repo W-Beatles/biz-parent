@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "搜索房屋信息请求对象")
-public class HouseSearchRequest {
+public class HouseSearchReq {
 
     private String title;
 

@@ -2,9 +2,9 @@ package cn.waynechu.renting.web.controller;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
 import cn.waynechu.renting.facade.model.ModelSysDictionary;
-import cn.waynechu.renting.facade.request.SysDictionaryCreateRequest;
-import cn.waynechu.renting.facade.request.SysDictionarySearchRequest;
-import cn.waynechu.renting.facade.request.SysDictionaryUpdateRequest;
+import cn.waynechu.renting.facade.request.SysDictionaryCreateReq;
+import cn.waynechu.renting.facade.request.SysDictionarySearchReq;
+import cn.waynechu.renting.facade.request.SysDictionaryUpdateReq;
 import cn.waynechu.renting.web.convert.requset.SysDictionaryRequestConvert;
 import cn.waynechu.renting.web.service.SysDictionaryWebService;
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
@@ -42,15 +42,15 @@ public class SysDictionaryController {
 
     @PostMapping
     @MethodPrintAnnotation
-    public Result<Boolean> createSysDictionary(@RequestBody SysDictionaryCreateRequest sysDictionaryCreateRequest) {
-        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryCreateRequest);
+    public Result<Boolean> createSysDictionary(@RequestBody SysDictionaryCreateReq sysDictionaryCreateReq) {
+        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryCreateReq);
         return Result.success(sysDictionaryWebService.create(sysDictionaryDTO));
     }
 
     @PutMapping
     @MethodPrintAnnotation
-    public Result<Boolean> updateSysDictionary(@RequestBody SysDictionaryUpdateRequest sysDictionaryUpdateRequest) {
-        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryUpdateRequest);
+    public Result<Boolean> updateSysDictionary(@RequestBody SysDictionaryUpdateReq sysDictionaryUpdateReq) {
+        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryUpdateReq);
         return Result.success(sysDictionaryWebService.update(sysDictionaryDTO));
     }
 
@@ -63,9 +63,9 @@ public class SysDictionaryController {
 
     @PostMapping("/search")
     @MethodPrintAnnotation
-    public Result<PageInfo<ModelSysDictionary>> search(@RequestBody SysDictionarySearchRequest sysDictionarySearchRequest,
+    public Result<PageInfo<ModelSysDictionary>> search(@RequestBody SysDictionarySearchReq sysDictionarySearchReq,
                                                        @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionarySearchRequest);
+        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionarySearchReq);
         return Result.success(sysDictionaryWebService.search(sysDictionaryDTO, pageNum, pageSize));
     }
 }

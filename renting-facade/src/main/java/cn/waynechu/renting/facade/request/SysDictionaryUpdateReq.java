@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "更新字典信息请求对象")
-public class SysDictionaryUpdateRequest {
+public class SysDictionaryUpdateReq {
 
     private Long id;
 

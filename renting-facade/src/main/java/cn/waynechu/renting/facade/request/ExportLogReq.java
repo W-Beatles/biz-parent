@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * @author zhuwei
@@ -12,13 +13,13 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @ApiModel(description = "日志导出请求对象")
-public class ExportLogRequest {
+public class ExportLogReq {
 
     @ApiModelProperty(name = "开始日期")
     @NotNull(message = "开始日期不能为空")
-    private String startDate;
+    private Date startDate;
 
     @ApiModelProperty(name = "结束日期")
     @NotNull(message = "结束日期不能为空")
-    private String endDate;
+    private Date endDate;
 }

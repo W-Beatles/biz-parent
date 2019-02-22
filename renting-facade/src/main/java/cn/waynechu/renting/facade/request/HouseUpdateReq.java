@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @ApiModel(description = "更新房屋信息请求对象")
-public class HouseUpdateRequest {
+public class HouseUpdateReq {
 
     @NotNull(message = "房屋ID不能为空")
     private Long id;
