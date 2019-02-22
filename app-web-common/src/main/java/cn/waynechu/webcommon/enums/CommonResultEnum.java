@@ -12,7 +12,8 @@ public enum CommonResultEnum implements IBaseEnum {
     SYSTEM_ERROR(10002, "system_error", "系统异常"),
 
     MISSING_REQUEST_PARAMETER(10010, "missing_request_parameter", "缺少请求参数"),
-    ARGUMENT_NOT_VALID(10011, "argument_not_valid", "请求参数不合法");
+    ARGUMENT_IS_INCORRECT(10011, "argument_is_incorrect", "请求参数格式不正确"),
+    ARGUMENT_NOT_VALID(10012, "argument_not_valid", "请求参数校验不合法");
 
     private int code;
     private String name;

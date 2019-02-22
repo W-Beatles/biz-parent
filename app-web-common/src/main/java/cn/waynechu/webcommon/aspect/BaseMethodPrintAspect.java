@@ -2,31 +2,29 @@ package cn.waynechu.webcommon.aspect;
 
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.util.JsonBinder;
+import cn.waynechu.webcommon.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
-import javax.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * @author zhuwei
  * @date 2018/11/14 14:16
  */
 @Slf4j
-@Aspect
-@Component
-public class MethodPrintAspect {
+public abstract class BaseMethodPrintAspect {
 
     @Pointcut("@annotation(cn.waynechu.webcommon.annotation.MethodPrintAnnotation)")
     public void methodPrint() {
-        // do nothing here.
+        // NOPE
     }
 
     @Before(value = "methodPrint() && @annotation(printAnnotation)")
@@ -34,29 +32,25 @@ public class MethodPrintAspect {
         if (printAnnotation.isPrintParameter()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
-
             log.info("{} 开始调用, 参数: {}", methodName, argsStr);
         }
 
         // 记录调用开始时间
-        if (printAnnotation.isPrintCostTime()) {
+        if (printAnnotation.isPrintReturn() && printAnnotation.isPrintCostTime()) {
             DequeThreadLocalUtil.offerFirst(System.currentTimeMillis());
         }
     }
 
     @After(value = "methodPrint() && @annotation(printAnnotation)")
     public void doAfter(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
-        // do nothing here.
+        // NOPE
     }
 
     @AfterReturning(value = "methodPrint() && @annotation(printAnnotation)", returning = "result")
     public void doAfterReturning(JoinPoint joinPoint, Object result, MethodPrintAnnotation printAnnotation) {
-        String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-
-        // 打印调用耗时及返回值
         if (printAnnotation.isPrintReturn()) {
+            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String returnStr = this.getPrintReturnStr(result, printAnnotation);
-
             log.info("{} 结束调用, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
         }
     }
@@ -65,23 +59,21 @@ public class MethodPrintAspect {
     public void doAfterThrowingAdvice(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation, Throwable exception) {
         if (printAnnotation.isPrintException()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-
             log.error("{} 调用异常: ", methodName, exception);
         }
     }
 
     /**
-     * 获取方法参数，覆写该方法可过滤指定类型的方法参数
+     * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
      *
-     * @param joinPoint 切点
-     * @return 方法参数
+     * @return 不打印的入参类型
      */
-    protected Object[] getArgs(JoinPoint joinPoint) {
-        return joinPoint.getArgs();
+    protected Collection<Class> excludePrintClass() {
+        return Collections.emptyList();
     }
 
     /**
-     * 获取方法返回值，覆写该方法可过滤指定类型的方法参数
+     * 获取方法返回值。覆写该方法可过滤指定类型的方法返回值
      *
      * @param result 返回值
      * @return result
@@ -99,10 +91,10 @@ public class MethodPrintAspect {
      */
     private String getPrintMethodName(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
         String methodName;
-        // 默认打印方法描述字段
-        if (!StringUtils.isEmpty(printAnnotation.value())) {
+        // 默认打印自定义的方法描述字段
+        if (StringUtil.isNotEmpty(printAnnotation.value())) {
             methodName = printAnnotation.value();
-        } else if (!StringUtils.isEmpty(printAnnotation.description())) {
+        } else if (StringUtil.isNotEmpty(printAnnotation.description())) {
             methodName = printAnnotation.description();
         } else {
             // 否则打印类全名
@@ -119,12 +111,18 @@ public class MethodPrintAspect {
 
     private String getPrintArgsStr(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
         ArrayList<Object> args = new ArrayList<>();
-        for (Object arg : this.getArgs(joinPoint)) {
-            // 不打印入参为 HttpServletResponse 类型
-            if (arg instanceof HttpServletResponse) {
-                continue;
+        for (Object arg : joinPoint.getArgs()) {
+            boolean isInstance = false;
+            for (Class clazz : this.excludePrintClass()) {
+                if (clazz.isInstance(arg)) {
+                    isInstance = true;
+                    break;
+                }
             }
-            args.add(arg);
+
+            if (!isInstance) {
+                args.add(arg);
+            }
         }
         return toJsonString(args, printAnnotation.isFormat());
     }

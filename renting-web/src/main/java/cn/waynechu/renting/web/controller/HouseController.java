@@ -37,8 +37,8 @@ public class HouseController {
             @ApiImplicitParam(name = "id", value = "房屋ID", required = true, paramType = "path"),
             @ApiImplicitParam(name = "city", value = "城市名称", required = true, paramType = "query")
     })
-    @MethodPrintAnnotation
-    public Result<ModelHouse> getById(@PathVariable Long id, @RequestParam String city) {
+    @MethodPrintAnnotation(description = "根据房屋ID获取房屋详情")
+    public Result<ModelHouse> getById(@PathVariable Long id) {
         return Result.success(houseWebService.getById(id));
     }
 

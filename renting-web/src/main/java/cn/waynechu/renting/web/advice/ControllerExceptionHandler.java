@@ -4,6 +4,7 @@ import cn.waynechu.renting.facade.exception.RentingException;
 import cn.waynechu.webcommon.enums.CommonResultEnum;
 import cn.waynechu.webcommon.web.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -25,15 +26,23 @@ public class ControllerExceptionHandler {
                 CommonResultEnum.MISSING_REQUEST_PARAMETER.getDesc() + ": " + e.getParameterName());
     }
 
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public Result httpMessageNotReadableException(HttpMessageNotReadableException e) {
+        // 请求参数格式不正确
+        return Result.error(CommonResultEnum.ARGUMENT_IS_INCORRECT.getCode(),
+                CommonResultEnum.ARGUMENT_IS_INCORRECT.getDesc());
+    }
+
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Result methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        // 请求参数不合法
+        // 请求参数校验不合法
         ObjectError firstError = e.getBindingResult().getAllErrors().get(0);
         return Result.error(CommonResultEnum.ARGUMENT_NOT_VALID.getCode(), firstError.getDefaultMessage());
     }
 
     @ExceptionHandler(RentingException.class)
     public Result rentingException(RentingException e) {
+        // 自定义异常
         return Result.error(e.getErrorCode(), e.getErrorMessage());
     }
 
