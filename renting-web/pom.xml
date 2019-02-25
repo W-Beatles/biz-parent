@@ -58,6 +58,11 @@
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>app-boot-starter-elastic-job</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -38,22 +38,23 @@
         <pagehelper.spring.boot.version>1.2.9</pagehelper.spring.boot.version>
         <sentry.logback.version>1.7.16</sentry.logback.version>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+        <elastic-job-lite-spring.version>2.1.5</elastic-job-lite-spring.version>
     </properties>
 
-    <!--<repositories>-->
-    <!--<repository>-->
-    <!--<id>Aliyun</id>-->
-    <!--<name>Nexus Aliyun</name>-->
-    <!--<url>http://maven.aliyun.com/nexus/content/groups/public</url>-->
-    <!--</repository>-->
-    <!--</repositories>-->
-    <!--<pluginRepositories>-->
-    <!--<pluginRepository>-->
-    <!--<id>Aliyun</id>-->
-    <!--<name>Nexus Aliyun</name>-->
-    <!--<url>http://maven.aliyun.com/nexus/content/groups/public</url>-->
-    <!--</pluginRepository>-->
-    <!--</pluginRepositories>-->
+    <repositories>
+        <repository>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>
@@ -93,6 +94,12 @@
             <dependency>
                 <groupId>cn.waynechu</groupId>
                 <artifactId>app-boot-starter-sentry</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>app-boot-starter-elastic-job</artifactId>
                 <version>${app.version}</version>
             </dependency>
 
@@ -182,6 +189,12 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${springfox.swagger2.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.dangdang</groupId>
+                <artifactId>elastic-job-lite-spring</artifactId>
+                <version>${elastic-job-lite-spring.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -224,6 +237,7 @@
         <module>app-boot-starter-common</module>
         <module>app-boot-starter-dynamic-datasource</module>
         <module>app-boot-starter-sentry</module>
+        <module>app-boot-starter-elastic-job</module>
 
         <module>renting-integration-dal</module>
         <module>renting-domain</module>
