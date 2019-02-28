@@ -2,7 +2,7 @@ package cn.waynechu.renting.core.convert.entity;
 
 import cn.waynechu.renting.dal.renting.entity.House;
 import cn.waynechu.renting.facade.dto.HouseDTO;
-import cn.waynechu.webcommon.bean.BeanUtil;
+import cn.waynechu.webcommon.util.BeanUtil;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

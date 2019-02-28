@@ -4,7 +4,7 @@ import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.request.HouseCreateRequest;
 import cn.waynechu.renting.facade.request.HouseSearchRequest;
 import cn.waynechu.renting.facade.request.HouseUpdateRequest;
-import cn.waynechu.webcommon.bean.BeanUtil;
+import cn.waynechu.webcommon.util.BeanUtil;
 import lombok.experimental.UtilityClass;
 
 /**
