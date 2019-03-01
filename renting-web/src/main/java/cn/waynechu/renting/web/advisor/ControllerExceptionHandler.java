@@ -1,4 +1,4 @@
-package cn.waynechu.renting.web.advice;
+package cn.waynechu.renting.web.advisor;
 
 import cn.waynechu.renting.facade.exception.RentingException;
 import cn.waynechu.webcommon.enums.CommonResultEnum;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
+ * 统一异常处理切面
+ *
  * @author zhuwei
  * @date 2018/11/15 10:45
  */
@@ -42,12 +44,13 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(RentingException.class)
     public Result rentingException(RentingException e) {
-        // 自定义异常
+        // 自定义业务异常
         return Result.error(e.getErrorCode(), e.getErrorMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public Result unknownException(Exception e) {
+        // 系统异常
         log.error("[SYSTEM_ERROR] " + e.getMessage());
         return Result.error();
     }

@@ -2,7 +2,7 @@ package cn.waynechu.renting.core.convert.entity;
 
 import cn.waynechu.renting.dal.common.entity.ShopConfigLog;
 import cn.waynechu.renting.facade.dto.ShopConfigLogDTO;
-import cn.waynechu.webcommon.bean.BeanUtil;
+import cn.waynechu.webcommon.util.BeanUtil;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

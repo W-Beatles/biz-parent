@@ -1,4 +1,4 @@
-package cn.waynechu.renting.web.aspect;
+package cn.waynechu.renting.web.advisor;
 
 import cn.waynechu.webcommon.aspect.BaseMethodPrintAspect;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
+ * Controller层日志切面实现
+ * 过滤HttpServletResponse、MultipartFile类型参数
+ *
  * @author zhuwei
  * @date 2019/2/22 10:05
  */
@@ -18,10 +21,10 @@ import java.util.Collection;
 @Component
 public class ControllerLogAspect extends BaseMethodPrintAspect {
 
-    @Pointcut("execution(* cn.waynechu.renting.web.controller.*Controller.*(..))")
+    @Pointcut("@annotation(cn.waynechu.webcommon.annotation.MethodPrintAnnotation)")
     @Override
     public void methodPrint() {
-        // NOPE
+        // do nothing here.
     }
 
     @Override

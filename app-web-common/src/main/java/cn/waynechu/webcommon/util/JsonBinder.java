@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Jackson的简单封装.
+ * Jackson的简单封装
+ *
+ * @author zhuwei
+ * @date 2019/1/2 17:53
  */
 @Slf4j
 public class JsonBinder {
@@ -25,7 +28,7 @@ public class JsonBinder {
 
     private ObjectMapper mapper;
 
-    public JsonBinder(JsonInclude.Include inclusion) {
+    private JsonBinder(JsonInclude.Include inclusion) {
         mapper = new ObjectMapper();
 
         // 设置序列化策略

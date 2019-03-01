@@ -1,6 +1,7 @@
 package cn.waynechu.webcommon.aspect;
 
 import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.util.DequeThreadLocalUtil;
 import cn.waynechu.webcommon.util.JsonBinder;
 import cn.waynechu.webcommon.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ public abstract class BaseMethodPrintAspect {
 
     @Pointcut("@annotation(cn.waynechu.webcommon.annotation.MethodPrintAnnotation)")
     public void methodPrint() {
-        // NOPE
+        // do nothing here.
     }
 
     @Before(value = "methodPrint() && @annotation(printAnnotation)")
@@ -43,7 +44,7 @@ public abstract class BaseMethodPrintAspect {
 
     @After(value = "methodPrint() && @annotation(printAnnotation)")
     public void doAfter(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
-        // NOPE
+        // do nothing here.
     }
 
     @AfterReturning(value = "methodPrint() && @annotation(printAnnotation)", returning = "result")
@@ -65,6 +66,7 @@ public abstract class BaseMethodPrintAspect {
 
     /**
      * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
+     * 比如 HttpServletResponse、MultipartFile 或者 包含密码等私密数据 的对象等
      *
      * @return 不打印的入参类型
      */

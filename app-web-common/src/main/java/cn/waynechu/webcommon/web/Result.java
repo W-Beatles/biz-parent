@@ -1,7 +1,7 @@
 package cn.waynechu.webcommon.web;
 
 import cn.waynechu.webcommon.enums.CommonResultEnum;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import cn.waynechu.webcommon.enums.IBaseEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,25 +20,20 @@ public class Result<T> implements Serializable {
     @ApiModelProperty(value = "返回状态码，备注:10000为正常调用", allowableValues = "10000,....")
     private int code;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(value = "返回提示信息")
     private String message;
 
     @ApiModelProperty(value = "返回对象")
     private T data;
 
-    private Result(int code) {
-        this.code = code;
+    private Result(IBaseEnum baseEnum) {
+        this.code = baseEnum.getCode();
+        this.message = baseEnum.getName();
     }
 
-    private Result(int code, T data) {
-        this.code = code;
-        this.data = data;
-    }
-
-    private Result(int code, String message, T data) {
-        this.code = code;
-        this.message = message;
+    private Result(IBaseEnum baseEnum, T data) {
+        this.code = baseEnum.getCode();
+        this.message = baseEnum.getName();
         this.data = data;
     }
 
@@ -47,19 +42,21 @@ public class Result<T> implements Serializable {
         this.message = message;
     }
 
+    private Result(int code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
     public static Result success() {
-        return new Result<>(CommonResultEnum.SUCCESS.getCode());
+        return new Result<>(CommonResultEnum.SUCCESS);
     }
 
     public static <T> Result<T> success(T data) {
-        return new Result<>(CommonResultEnum.SUCCESS.getCode(), data);
+        return new Result<>(CommonResultEnum.SUCCESS, data);
     }
 
-    public static Result successWithMessage(String message) {
-        return new Result<>(CommonResultEnum.SUCCESS.getCode(), message);
-    }
-
-    public static <T> Result<T> successWithData(String message, T data) {
+    public static <T> Result<T> success(String message, T data) {
         return new Result<>(CommonResultEnum.SUCCESS.getCode(), message, data);
     }
 

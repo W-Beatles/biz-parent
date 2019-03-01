@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.aspect;
+package cn.waynechu.webcommon.util;
 
 import lombok.experimental.UtilityClass;
 
@@ -6,6 +6,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
+ * 后进先出本地线程工具类，用于嵌套ThreadLocal嵌套设值的情况
+ *
  * @author zhuwei
  * @date 2018/1/21 14:03
  */
