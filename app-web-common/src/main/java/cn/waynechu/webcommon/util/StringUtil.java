@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 public class StringUtil {
 
     /**
-     * Checks if a CharSequence is empty ("") or null.
+     * 判断字符序列是否为 "" 或 null
      * <pre>
      * StringUtils.isEmpty(null)      = true
      * StringUtils.isEmpty("")        = true
@@ -19,19 +19,22 @@ public class StringUtil {
      * StringUtils.isEmpty("  bob  ") = false
      * </pre>
      *
-     * @param cs the CharSequence to check, may be null
-     * @return {@code true} if the CharSequence is empty or null
+     * @param cs 待检查的字符序列
+     * @return {@code true} 字符序列是 "" 或 null
      */
     public static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
     }
 
+    /**
+     * See isEmpty(final CharSequence cs)
+     */
     public static boolean isNotEmpty(final CharSequence cs) {
         return !isEmpty(cs);
     }
 
     /**
-     * Checks if a CharSequence is empty (""), null or whitespace only.
+     * 判断字符序列是否为 "" 或 null 或 空格
      * <pre>
      * StringUtils.isBlank(null)      = true
      * StringUtils.isBlank("")        = true
@@ -40,8 +43,8 @@ public class StringUtil {
      * StringUtils.isBlank("  bob  ") = false
      * </pre>
      *
-     * @param cs the CharSequence to check, may be null
-     * @return {@code true} if the CharSequence is null, empty or whitespace only
+     * @param cs 待检查的字符序列
+     * @return {@code true} 字符序列是 "" 或 null 或 空格
      */
     public static boolean isBlank(final CharSequence cs) {
         int strLen;
@@ -56,30 +59,22 @@ public class StringUtil {
         return true;
     }
 
+    /**
+     * See isBlank(final CharSequence cs)
+     */
     public static boolean isNotBlank(final CharSequence cs) {
         return !isBlank(cs);
     }
 
-
     /**
-     * @param value
-     * @param tClass
-     * @return
+     * 字符串首字母小写转化为大写
+     *
+     * @param str 首字母小写的字符串
+     * @return 首字母大写的字符串
      */
-    public static Object castToBaseObject(String value, Class<?> tClass) {
-        if (isNotEmpty(value)) {
-            tClass.cast(value);
-        }
-        return null;
-    }
-
-    /**
-     * @param name
-     * @return
-     */
-    public static String capitalize(String name) {
-        if (isNotEmpty(name)) {
-            char[] cs = name.toCharArray();
+    public static String capitalize(String str) {
+        if (isNotEmpty(str)) {
+            char[] cs = str.toCharArray();
             cs[0] -= 32;
             return String.valueOf(cs);
         }

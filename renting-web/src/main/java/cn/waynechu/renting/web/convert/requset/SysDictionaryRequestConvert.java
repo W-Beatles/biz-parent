@@ -4,7 +4,7 @@ import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
 import cn.waynechu.renting.facade.request.SysDictionaryCreateReq;
 import cn.waynechu.renting.facade.request.SysDictionarySearchReq;
 import cn.waynechu.renting.facade.request.SysDictionaryUpdateReq;
-import cn.waynechu.webcommon.bean.BeanUtil;
+import cn.waynechu.webcommon.util.BeanUtil;
 import lombok.experimental.UtilityClass;
 
 /**

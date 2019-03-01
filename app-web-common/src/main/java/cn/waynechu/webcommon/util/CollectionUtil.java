@@ -13,6 +13,7 @@ import java.util.Map;
  */
 @UtilityClass
 public class CollectionUtil {
+
     public static boolean isNotNullOrEmpty(Collection<? extends Object> collection) {
         return !isNullOrEmpty(collection);
     }
@@ -29,6 +30,14 @@ public class CollectionUtil {
         return map == null || map.isEmpty();
     }
 
+    /**
+     * 拆分list为多个指定长度的list
+     *
+     * @param list 源list
+     * @param len  拆分的长度
+     * @param <T>  源list类型
+     * @return 多个list
+     */
     public static <T> List<List<T>> splitList(List<T> list, int len) {
         List<List<T>> result = new ArrayList<>();
 
