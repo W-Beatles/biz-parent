@@ -6,7 +6,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * 后进先出本地线程工具类，用于嵌套ThreadLocal嵌套设值的情况
+ *  本地线程工具类。使用LIFO队列，用于嵌套ThreadLocal嵌套设值的情况
  *
  * @author zhuwei
  * @date 2018/1/21 14:03
