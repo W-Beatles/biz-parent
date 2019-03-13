@@ -51,7 +51,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result unknownException(Exception e) {
         // 系统异常
-        log.error("[SYSTEM_ERROR] " + e.getMessage());
+        log.error(CommonResultEnum.SYSTEM_ERROR.getDesc(), e);
         return Result.error();
     }
 }

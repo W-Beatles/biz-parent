@@ -4,20 +4,18 @@ package cn.waynechu.webcommon.enums;
  * @author zhuwei
  * @date 2018/11/6 17:24
  */
-public enum ValidStatusEnum implements IBaseEnum {
+public enum ValidStatusEnum implements BaseEnum {
     /**
      * 通用 有效/无效 状态枚举
      */
-    VALID(0, "valid", "有效"),
-    INVALID(1, "invalid", "无效");
+    INVALID(0, "无效"),
+    VALID(1, "有效");
 
     private int code;
-    private String name;
     private String desc;
 
-    ValidStatusEnum(int code, String name, String desc) {
+    ValidStatusEnum(int code, String desc) {
         this.code = code;
-        this.name = name;
         this.desc = desc;
     }
 
@@ -27,29 +25,14 @@ public enum ValidStatusEnum implements IBaseEnum {
     }
 
     @Override
-    public String getName() {
-        return this.name;
-    }
-
-    @Override
     public String getDesc() {
         return this.desc;
     }
 
     @Override
-    public IBaseEnum getByCode(int code) {
+    public BaseEnum getByCode(int code) {
         for (ValidStatusEnum validStatusEnum : values()) {
             if (validStatusEnum.getCode() == code) {
-                return validStatusEnum;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public IBaseEnum getByName(String name) {
-        for (ValidStatusEnum validStatusEnum : values()) {
-            if (validStatusEnum.getName().equals(name)) {
                 return validStatusEnum;
             }
         }

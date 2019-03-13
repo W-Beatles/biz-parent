@@ -13,9 +13,13 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
+ * MyBatis拦截器，insert和update操作会自动在model上添加操作人和操作时间
+ *
  * @author zhuwei
  * @date 2018/12/14 17:56
+ * @deprecated 该拦截器已不推荐使用。业务代码手动设置操作人和时间比较灵活，并且容易控制
  */
+@Deprecated
 @Intercepts(@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}))
 public class DataModifiedInterceptor implements Interceptor {
 

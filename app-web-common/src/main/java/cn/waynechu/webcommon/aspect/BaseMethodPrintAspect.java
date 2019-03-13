@@ -33,7 +33,7 @@ public abstract class BaseMethodPrintAspect {
         if (printAnnotation.isPrintParameter()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
-            log.info("{} 开始调用, 参数: {}", methodName, argsStr);
+            log.info("{}开始调用, 参数: {}", methodName, argsStr);
         }
 
         // 记录调用开始时间
@@ -52,7 +52,7 @@ public abstract class BaseMethodPrintAspect {
         if (printAnnotation.isPrintReturn()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String returnStr = this.getPrintReturnStr(result, printAnnotation);
-            log.info("{} 结束调用, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
+            log.info("{}结束调用, 耗时: timeToken={}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
         }
     }
 
@@ -60,7 +60,7 @@ public abstract class BaseMethodPrintAspect {
     public void doAfterThrowingAdvice(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation, Throwable exception) {
         if (printAnnotation.isPrintException()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-            log.error("{} 调用异常: ", methodName, exception);
+            log.error("{}调用异常: ", methodName, exception);
         }
     }
 

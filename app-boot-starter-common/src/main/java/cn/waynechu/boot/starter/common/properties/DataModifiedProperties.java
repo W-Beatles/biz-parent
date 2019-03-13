@@ -7,6 +7,7 @@ import lombok.Data;
  * @date 2019/1/8 10:59
  */
 @Data
+@Deprecated
 public class DataModifiedProperties {
 
     /**

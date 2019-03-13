@@ -8,7 +8,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <!-- Pattern -->
     <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr([%t]){faint} %clr(%logger{30}){cyan} : %m%n"/>
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr([%X{reqKey}]){magenta} %clr([%t]){faint} %clr(%logger{30}){cyan} : %m%n"/>
     <property name="FILE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{reqKey}] %logger{30}:%line - %msg%n"/>
 

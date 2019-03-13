@@ -8,7 +8,6 @@ import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.LayoutBase;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,6 +17,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author zhuwei
@@ -26,6 +27,8 @@ import java.util.List;
 @Slf4j
 public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
     public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+
+    Pattern pattern = Pattern.compile("timeToken=(.*?)ms");
 
     private static List<String> optionList = Collections.singletonList("full");
 
@@ -46,7 +49,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
             machineName = address.getHostName();
             localAddress = address.getHostAddress();
         } catch (UnknownHostException e) {
-            this.addError("RabbitMQLayout无法获取machineName和localAddress", e);
+            this.addError("RabbitmqLayout无法获取machineName和localAddress", e);
         }
     }
 
@@ -86,8 +89,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         json.put("time", dateTimeFormatter.format(localDateTime));
         json.put("message", event.getFormattedMessage());
         json.put("logger", event.getLoggerName());
-        json.put("uri", "");
-        json.put("timetoken", 0);
+        json.put("timeToken", 0);
     }
 
     private void writeThrowable(JSONObject json, ILoggingEvent event) {
@@ -117,15 +119,10 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
     private void writeTimeToken(JSONObject json, ILoggingEvent event) {
         try {
             String formattedMessage = event.getFormattedMessage();
-            JSONObject parseObject = new JSONObject();
-            if (formattedMessage.contains("uri") && formattedMessage.contains("timetoken")) {
-                String jsonStr = formattedMessage.substring(formattedMessage.indexOf("{"));
-                if (StringUtils.isNotBlank(jsonStr)) {
-                    parseObject = JSONObject.parseObject(jsonStr);
-                }
+            Matcher matcher = pattern.matcher(formattedMessage);
+            if (matcher.find()) {
+                json.put("timeToken", matcher.group(1));
             }
-            json.put("uri", parseObject.get("uri") == null ? "" : parseObject.get("uri"));
-            json.put("timetoken", parseObject.get("timetoken") == null ? 0 : parseObject.get("timetoken"));
         } catch (Exception e) {
             // do nothing here.
         }

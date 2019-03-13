@@ -4,20 +4,14 @@ package cn.waynechu.webcommon.enums;
  * @author zhuwei
  * @date 2018/11/6 17:31
  */
-public interface IBaseEnum {
+public interface BaseEnum {
+
     /**
-     * 获取枚举值
+     * 获取枚举code
      *
      * @return code
      */
     int getCode();
-
-    /**
-     * 获取枚举名称
-     *
-     * @return name
-     */
-    String getName();
 
     /**
      * 获取枚举描述信息
@@ -32,13 +26,5 @@ public interface IBaseEnum {
      * @param code code
      * @return 枚举对象
      */
-    IBaseEnum getByCode(int code);
-
-    /**
-     * 通过name获取枚举对象
-     *
-     * @param name name
-     * @return 枚举对象
-     */
-    IBaseEnum getByName(String name);
+    BaseEnum getByCode(int code);
 }

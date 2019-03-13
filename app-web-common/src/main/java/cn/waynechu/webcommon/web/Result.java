@@ -1,7 +1,7 @@
 package cn.waynechu.webcommon.web;
 
+import cn.waynechu.webcommon.enums.BaseEnum;
 import cn.waynechu.webcommon.enums.CommonResultEnum;
-import cn.waynechu.webcommon.enums.IBaseEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -26,14 +26,14 @@ public class Result<T> implements Serializable {
     @ApiModelProperty(value = "返回对象")
     private T data;
 
-    private Result(IBaseEnum baseEnum) {
+    private Result(BaseEnum baseEnum) {
         this.code = baseEnum.getCode();
-        this.message = baseEnum.getName();
+        this.message = baseEnum.getDesc();
     }
 
-    private Result(IBaseEnum baseEnum, T data) {
+    private Result(BaseEnum baseEnum, T data) {
         this.code = baseEnum.getCode();
-        this.message = baseEnum.getName();
+        this.message = baseEnum.getDesc();
         this.data = data;
     }
 
