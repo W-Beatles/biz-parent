@@ -3,13 +3,16 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry
-            location="D:\mysql-connector-java-5.1.46.jar"/>
+    <!-- MySQL连接数据库jar -->
+    <classPathEntry location="D:\mysql-connector-java-5.1.46.jar"/>
 
     <context id="default" targetRuntime="MyBatis3">
         <!-- 指定生成的java文件的编码 -->
         <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化Java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
         <!-- 不生成注释和时间戳 -->
         <commentGenerator>
@@ -31,7 +34,7 @@
 
         <!--  Model生成器：生成entity及Example类 -->
         <javaModelGenerator targetPackage="cn.waynechu.renting.dal.common.entity"
-                            targetProject="src/main/java">
+                            targetProject="../../../src/main/java">
             <!-- enableSubPackages：是否添加schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否对model添加 构造函数 -->
@@ -44,7 +47,7 @@
 
         <!-- mapper.xml映射文件生成的位置 -->
         <sqlMapGenerator targetPackage="sqlmap.common"
-                         targetProject="src/main/resources">
+                         targetProject="../../../src/main/resources">
             <!-- 是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
@@ -52,9 +55,8 @@
         <!-- mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="cn.waynechu.renting.dal.common.mapper"
-                             targetProject="src/main/java">
+                             targetProject="../../../src/main/java">
             <property name="enableSubPackages" value="false"/>
-            <property name="useGeneratedKeys" value="true"/>
         </javaClientGenerator>
 
         <table tableName="sys_dictionary">
