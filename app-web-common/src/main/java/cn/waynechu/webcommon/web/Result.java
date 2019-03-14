@@ -60,6 +60,10 @@ public class Result<T> implements Serializable {
         return new Result<>(CommonResultEnum.SUCCESS.getCode(), message, data);
     }
 
+    public static <T> Result<T> error(BaseEnum baseEnum) {
+        return new Result<>(baseEnum.getCode(), baseEnum.getDesc());
+    }
+
     public static <T> Result<T> error() {
         return new Result<>(CommonResultEnum.SYSTEM_ERROR.getCode(), CommonResultEnum.SYSTEM_ERROR.getDesc());
     }
