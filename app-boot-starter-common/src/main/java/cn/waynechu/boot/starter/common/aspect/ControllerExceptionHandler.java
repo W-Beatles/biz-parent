@@ -1,7 +1,7 @@
-package cn.waynechu.renting.web.advisor;
+package cn.waynechu.boot.starter.common.aspect;
 
-import cn.waynechu.renting.facade.exception.RentingException;
 import cn.waynechu.webcommon.enums.CommonResultEnum;
+import cn.waynechu.webcommon.exception.BaseBizException;
 import cn.waynechu.webcommon.web.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -21,20 +21,20 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(value = MissingServletRequestParameterException.class)
+    @ExceptionHandler(MissingServletRequestParameterException.class)
     public Result missingServletRequestParameterException(MissingServletRequestParameterException e) {
         log.info("缺少请求参数: {}", e.getParameterName(), e);
         return Result.error(CommonResultEnum.MISSING_REQUEST_PARAMETER.getCode(),
                 CommonResultEnum.MISSING_REQUEST_PARAMETER.getDesc() + ": " + e.getParameterName());
     }
 
-    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.info("请求参数格式不正确: {}", e.getMessage(), e);
         return Result.error(CommonResultEnum.ARGUMENT_IS_INCORRECT);
     }
 
-    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result methodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.info("请求参数校验不合法: {}", e.getMessage(), e);
         BindingResult bindingResult = e.getBindingResult();
@@ -44,8 +44,8 @@ public class ControllerExceptionHandler {
         return Result.error(CommonResultEnum.ARGUMENT_NOT_VALID.getCode(), bindingResult.getFieldError().getDefaultMessage());
     }
 
-    @ExceptionHandler(RentingException.class)
-    public Result rentingException(RentingException e) {
+    @ExceptionHandler(BaseBizException.class)
+    public Result rentingException(BaseBizException e) {
         log.info("[业务异常] {}", e.getErrorMessage(), e);
         return Result.error(e.getErrorCode(), e.getErrorMessage());
     }
