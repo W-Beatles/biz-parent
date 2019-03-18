@@ -7,7 +7,10 @@ import cn.waynechu.webcommon.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
 import java.lang.annotation.Annotation;
@@ -53,14 +56,6 @@ public abstract class BaseMethodPrintAspect {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String returnStr = this.getPrintReturnStr(result, printAnnotation);
             log.info("{}结束调用, 耗时: timeToken={}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
-        }
-    }
-
-    @AfterThrowing(value = "methodPrint() && @annotation(printAnnotation)", throwing = "exception")
-    public void doAfterThrowingAdvice(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation, Throwable exception) {
-        if (printAnnotation.isPrintException()) {
-            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-            log.error("{}调用异常: ", methodName, exception);
         }
     }
 

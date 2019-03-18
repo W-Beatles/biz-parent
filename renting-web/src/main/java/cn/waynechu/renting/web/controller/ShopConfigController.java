@@ -3,7 +3,6 @@ package cn.waynechu.renting.web.controller;
 import cn.waynechu.renting.facade.dto.ShopConfigLogDTO;
 import cn.waynechu.renting.facade.request.ExportLogReq;
 import cn.waynechu.renting.web.service.ShopConfigWebService;
-import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.util.ExcelUtil;
 import cn.waynechu.webcommon.web.ModelExcel;
 import io.swagger.annotations.Api;
@@ -32,7 +31,6 @@ public class ShopConfigController {
 
     @PostMapping(value = "/exportLog")
     @ApiOperation(value = "导出变更日志")
-    @MethodPrintAnnotation(description = "导出变更日志")
     public void exportLog(@Validated @RequestBody ExportLogReq request, HttpServletResponse response) {
         ModelExcel<ShopConfigLogDTO> modelExcel = shopConfigService.exportLog(request.getStartDate(), request.getEndDate());
         ExcelUtil.exportExcel(response, modelExcel);

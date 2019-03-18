@@ -2,11 +2,14 @@ package cn.waynechu.webcommon.exception;
 
 import cn.waynechu.webcommon.enums.BaseEnum;
 
+import java.io.Serializable;
+
 /**
  * @author zhuwei
  * @date 2018/11/6 19:27
  */
-public class BaseBizException extends RuntimeException {
+public class BaseBizException extends RuntimeException implements Serializable {
+    private static final long serialVersionUID = 771762126749223759L;
 
     private final Integer errorCode;
 

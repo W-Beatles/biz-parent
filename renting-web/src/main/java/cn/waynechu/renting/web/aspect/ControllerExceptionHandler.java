@@ -1,4 +1,4 @@
-package cn.waynechu.boot.starter.common.aspect;
+package cn.waynechu.renting.web.aspect;
 
 import cn.waynechu.webcommon.enums.CommonResultEnum;
 import cn.waynechu.webcommon.exception.BaseBizException;

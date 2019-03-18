@@ -1,8 +1,7 @@
-package cn.waynechu.boot.starter.common.aspect;
+package cn.waynechu.renting.web.aspect;
 
 import cn.waynechu.webcommon.aspect.BaseMethodPrintAspect;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

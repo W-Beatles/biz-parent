@@ -1,9 +1,6 @@
 package cn.waynechu.boot.starter.common;
 
 import cn.waynechu.boot.starter.common.filter.MDCFilter;
-import cn.waynechu.boot.starter.common.holder.DefaultDataModifiedHolder;
-import cn.waynechu.boot.starter.common.holder.IDataModifiedHolder;
-import cn.waynechu.boot.starter.common.interceptor.DataModifiedInterceptor;
 import cn.waynechu.boot.starter.common.properties.CommonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +33,5 @@ public class CommonAutoConfiguration {
         registrationBean.setFilter(mdcFilter);
         registrationBean.setOrder(1);
         return registrationBean;
-    }
-
-    @Bean
-    @ConditionalOnProperty(value = "common.data-modified-interceptor.enable", havingValue = "true")
-    public DataModifiedInterceptor dataModifiedInterceptor(IDataModifiedHolder dataModifiedHolder) {
-        if (dataModifiedHolder == null) {
-            log.warn("[DataModifiedInterceptor] Missing dataModifiedHolder bean, using defaultDataModifiedHolder. You may consider initializing one!");
-            dataModifiedHolder = new DefaultDataModifiedHolder();
-        }
-        return new DataModifiedInterceptor(dataModifiedHolder, commonProperties.getDataModifiedInterceptor());
     }
 }

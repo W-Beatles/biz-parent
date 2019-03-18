@@ -17,7 +17,4 @@ public class CommonProperties {
 
     @NestedConfigurationProperty
     private MDCProperties mdcFilter;
-
-    @NestedConfigurationProperty
-    private DataModifiedProperties dataModifiedInterceptor;
 }

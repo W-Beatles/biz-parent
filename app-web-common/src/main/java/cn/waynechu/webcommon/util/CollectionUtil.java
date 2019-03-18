@@ -14,20 +14,20 @@ import java.util.Map;
 @UtilityClass
 public class CollectionUtil {
 
-    public static boolean isNotNullOrEmpty(Collection<? extends Object> collection) {
-        return !isNullOrEmpty(collection);
-    }
-
-    public static boolean isNotNullOrEmpty(Map<? extends Object, ? extends Object> map) {
-        return !isNullOrEmpty(map);
-    }
-
     public static boolean isNullOrEmpty(Collection<? extends Object> collection) {
         return collection == null || collection.isEmpty();
     }
 
     public static boolean isNullOrEmpty(Map<? extends Object, ? extends Object> map) {
         return map == null || map.isEmpty();
+    }
+
+    public static boolean isNotNullOrEmpty(Collection<? extends Object> collection) {
+        return !isNullOrEmpty(collection);
+    }
+
+    public static boolean isNotNullOrEmpty(Map<? extends Object, ? extends Object> map) {
+        return !isNullOrEmpty(map);
     }
 
     /**

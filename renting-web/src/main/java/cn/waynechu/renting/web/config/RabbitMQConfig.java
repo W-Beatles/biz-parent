@@ -9,14 +9,13 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author waynechu
  * @date 2019-01-12 15:26
  */
 @Slf4j
-@Configuration
+//@Configuration
 public class RabbitMQConfig {
 
     @Bean

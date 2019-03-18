@@ -37,34 +37,30 @@ public class HouseController {
             @ApiImplicitParam(name = "id", value = "房屋ID", required = true, paramType = "path"),
             @ApiImplicitParam(name = "city", value = "城市名称", required = true, paramType = "query")
     })
-    @MethodPrintAnnotation(description = "根据房屋ID获取房屋详情")
+    @MethodPrintAnnotation
     public Result<ModelHouse> getById(@PathVariable Long id) {
         return Result.success(houseWebService.getById(id));
     }
 
     @PostMapping
-    @MethodPrintAnnotation
     public Result<Boolean> createHouse(@RequestBody HouseCreateReq houseCreateReq) {
         HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseCreateReq);
         return Result.success(houseWebService.create(houseDTO));
     }
 
     @PutMapping
-    @MethodPrintAnnotation
     public Result<Boolean> updateHouse(@Validated @RequestBody HouseUpdateReq houseUpdateReq) {
         HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseUpdateReq);
         return Result.success(houseWebService.update(houseDTO));
     }
 
     @DeleteMapping("/{id}")
-    @MethodPrintAnnotation
     public Result<Boolean> removeById(@PathVariable Long id) {
         return Result.success(houseWebService.removeById(id));
     }
 
 
     @PostMapping("/search")
-    @MethodPrintAnnotation
     public Result<PageInfo<ModelHouse>> search(@RequestBody HouseSearchReq houseSearchReq,
                                                @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
         HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseSearchReq);
@@ -72,7 +68,6 @@ public class HouseController {
     }
 
     @PostMapping("/{id}")
-    @MethodPrintAnnotation
     public Result<Boolean> copyByIdTransition(@PathVariable Long id) {
         return Result.success(houseWebService.copyByIdTransition(id));
     }

@@ -7,7 +7,6 @@ import cn.waynechu.renting.facade.request.SysDictionarySearchReq;
 import cn.waynechu.renting.facade.request.SysDictionaryUpdateReq;
 import cn.waynechu.renting.web.convert.requset.SysDictionaryRequestConvert;
 import cn.waynechu.renting.web.service.SysDictionaryWebService;
-import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.web.Result;
 import io.swagger.annotations.Api;
@@ -35,34 +34,29 @@ public class SysDictionaryController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "字典ID", required = true, paramType = "path")
     })
-    @MethodPrintAnnotation
     public Result<ModelSysDictionary> getById(@PathVariable Long id) {
         return Result.success(sysDictionaryWebService.getById(id));
     }
 
     @PostMapping
-    @MethodPrintAnnotation
     public Result<Boolean> createSysDictionary(@RequestBody SysDictionaryCreateReq sysDictionaryCreateReq) {
         SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryCreateReq);
         return Result.success(sysDictionaryWebService.create(sysDictionaryDTO));
     }
 
     @PutMapping
-    @MethodPrintAnnotation
     public Result<Boolean> updateSysDictionary(@RequestBody SysDictionaryUpdateReq sysDictionaryUpdateReq) {
         SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryUpdateReq);
         return Result.success(sysDictionaryWebService.update(sysDictionaryDTO));
     }
 
     @DeleteMapping("/{id}")
-    @MethodPrintAnnotation
     public Result<Boolean> removeById(@PathVariable Long id) {
         return Result.success(sysDictionaryWebService.removeById(id));
     }
 
 
     @PostMapping("/search")
-    @MethodPrintAnnotation
     public Result<PageInfo<ModelSysDictionary>> search(@RequestBody SysDictionarySearchReq sysDictionarySearchReq,
                                                        @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
         SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionarySearchReq);
