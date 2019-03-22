@@ -1,7 +1,7 @@
 package cn.waynechu.renting.web.convert.dto;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
-import cn.waynechu.renting.facade.model.ModelSysDictionary;
+import cn.waynechu.renting.web.model.ModelSysDictionary;
 import cn.waynechu.webcommon.util.BeanUtil;
 import lombok.experimental.UtilityClass;
 

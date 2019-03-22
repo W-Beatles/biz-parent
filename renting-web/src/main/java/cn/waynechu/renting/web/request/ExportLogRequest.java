@@ -1,4 +1,4 @@
-package cn.waynechu.renting.facade.request;
+package cn.waynechu.renting.web.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 @ApiModel(description = "日志导出请求对象")
-public class ExportLogReq {
+public class ExportLogRequest {
 
     @ApiModelProperty(name = "开始日期")
     @NotNull(message = "开始日期不能为空")

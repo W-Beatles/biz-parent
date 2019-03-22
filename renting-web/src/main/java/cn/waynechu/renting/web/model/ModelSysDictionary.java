@@ -1,4 +1,4 @@
-package cn.waynechu.renting.facade.model;
+package cn.waynechu.renting.web.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

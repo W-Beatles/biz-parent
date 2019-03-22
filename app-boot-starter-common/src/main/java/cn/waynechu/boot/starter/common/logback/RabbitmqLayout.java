@@ -1,4 +1,4 @@
-package cn.waynechu.boot.starter.common.logback.layout;
+package cn.waynechu.boot.starter.common.logback;
 
 import ch.qos.logback.classic.pattern.ThrowableProxyConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -6,6 +6,7 @@ import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.LayoutBase;
+import cn.waynechu.webcommon.aspect.BaseControllerLogAspect;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,8 +18,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Map;
 
 /**
  * @author zhuwei
@@ -26,9 +26,6 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
-    public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-
-    Pattern pattern = Pattern.compile("timeToken=(.*?)ms");
 
     private static List<String> optionList = Collections.singletonList("full");
 
@@ -67,15 +64,21 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         writeBasic(root, iLoggingEvent);
         // write throwable fields
         writeThrowable(root, iLoggingEvent);
-        // write timeToken fields
-        writeTimeToken(root, iLoggingEvent);
 
         return root.toString();
     }
 
     private void writeMdc(JSONObject json, ILoggingEvent event) {
         if (event.getMDCPropertyMap() != null) {
-            json.putAll(event.getMDCPropertyMap());
+            Map<String, String> mdcPropertyMap = event.getMDCPropertyMap();
+            for (Map.Entry<String, String> entry : mdcPropertyMap.entrySet()) {
+                if (BaseControllerLogAspect.TIME_TAKEN_KEY.equals(entry.getKey())) {
+                    // timeTaken 转化为int类型
+                    json.put(entry.getKey(), Integer.parseInt(entry.getValue()));
+                } else {
+                    json.put(entry.getKey(), entry.getValue());
+                }
+            }
         }
     }
 
@@ -86,10 +89,9 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         json.put("level", event.getLevel().toString());
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(event.getTimeStamp()),
                 ZoneId.systemDefault());
-        json.put("time", dateTimeFormatter.format(localDateTime));
+        json.put("time", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS").format(localDateTime));
         json.put("message", event.getFormattedMessage());
         json.put("logger", event.getLoggerName());
-        json.put("timeToken", 0);
     }
 
     private void writeThrowable(JSONObject json, ILoggingEvent event) {
@@ -114,17 +116,5 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
             stringBuilder.append(CoreConstants.LINE_SEPARATOR);
         }
         return stringBuilder.toString();
-    }
-
-    private void writeTimeToken(JSONObject json, ILoggingEvent event) {
-        try {
-            String formattedMessage = event.getFormattedMessage();
-            Matcher matcher = pattern.matcher(formattedMessage);
-            if (matcher.find()) {
-                json.put("timeToken", matcher.group(1));
-            }
-        } catch (Exception e) {
-            // do nothing here.
-        }
     }
 }

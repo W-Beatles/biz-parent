@@ -1,11 +1,11 @@
 package cn.waynechu.renting.web.controller;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
-import cn.waynechu.renting.facade.model.ModelSysDictionary;
-import cn.waynechu.renting.facade.request.SysDictionaryCreateRequest;
-import cn.waynechu.renting.facade.request.SysDictionarySearchRequest;
-import cn.waynechu.renting.facade.request.SysDictionaryUpdateRequest;
 import cn.waynechu.renting.web.convert.requset.SysDictionaryRequestConvert;
+import cn.waynechu.renting.web.model.ModelSysDictionary;
+import cn.waynechu.renting.web.request.SysDictionaryCreateRequest;
+import cn.waynechu.renting.web.request.SysDictionarySearchRequest;
+import cn.waynechu.renting.web.request.SysDictionaryUpdateRequest;
 import cn.waynechu.renting.web.service.SysDictionaryWebService;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.web.Result;

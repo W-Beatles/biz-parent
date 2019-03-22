@@ -25,11 +25,6 @@
     <dependencies>
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-web-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.waynechu</groupId>
             <artifactId>renting-domain</artifactId>
         </dependency>
 
@@ -52,16 +47,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.waynechu</groupId>
-            <artifactId>app-boot-starter-sentry</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.codehaus.janino</groupId>
-            <artifactId>janino</artifactId>
         </dependency>
 
         <!--<dependency>-->

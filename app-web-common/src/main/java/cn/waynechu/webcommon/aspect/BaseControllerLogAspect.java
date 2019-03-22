@@ -26,6 +26,8 @@ import java.util.Collection;
 @Slf4j
 public abstract class BaseControllerLogAspect {
 
+    public static final String TIME_TAKEN_KEY = "timeTaken";
+
     private ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
     public void controllerLog() {
@@ -55,7 +57,7 @@ public abstract class BaseControllerLogAspect {
     public void doAfterReturning(JoinPoint joinPoint, ApiOperation logAnnotation, Object result) {
         Long timeTaken = System.currentTimeMillis() - threadLocal.get();
         // 添加MDC记录 timeTaken:调用耗时
-        MDC.put("timeTaken", String.valueOf(timeTaken));
+        MDC.put(TIME_TAKEN_KEY, String.valueOf(timeTaken));
 
         String jsonResult = JsonBinder.buildAlwaysBinder().toJson(result);
         log.info("{}结束调用, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, jsonResult);

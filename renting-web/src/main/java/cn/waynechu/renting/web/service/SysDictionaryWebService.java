@@ -1,9 +1,9 @@
 package cn.waynechu.renting.web.service;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
-import cn.waynechu.renting.facade.model.ModelSysDictionary;
 import cn.waynechu.renting.facade.service.SysDictionaryService;
 import cn.waynechu.renting.web.convert.dto.SysDictionaryDtoConvert;
+import cn.waynechu.renting.web.model.ModelSysDictionary;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;

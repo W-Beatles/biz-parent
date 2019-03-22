@@ -1,9 +1,9 @@
 package cn.waynechu.renting.web.convert.requset;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
-import cn.waynechu.renting.facade.request.SysDictionaryCreateRequest;
-import cn.waynechu.renting.facade.request.SysDictionarySearchRequest;
-import cn.waynechu.renting.facade.request.SysDictionaryUpdateRequest;
+import cn.waynechu.renting.web.request.SysDictionaryCreateRequest;
+import cn.waynechu.renting.web.request.SysDictionarySearchRequest;
+import cn.waynechu.renting.web.request.SysDictionaryUpdateRequest;
 import cn.waynechu.webcommon.util.BeanUtil;
 import lombok.experimental.UtilityClass;
 

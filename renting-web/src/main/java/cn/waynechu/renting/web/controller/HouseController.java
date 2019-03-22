@@ -1,11 +1,11 @@
 package cn.waynechu.renting.web.controller;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
-import cn.waynechu.renting.facade.model.ModelHouse;
-import cn.waynechu.renting.facade.request.HouseCreateRequest;
-import cn.waynechu.renting.facade.request.HouseSearchRequest;
-import cn.waynechu.renting.facade.request.HouseUpdateRequest;
 import cn.waynechu.renting.web.convert.requset.HouseRequestConvert;
+import cn.waynechu.renting.web.model.ModelHouse;
+import cn.waynechu.renting.web.request.HouseCreateRequest;
+import cn.waynechu.renting.web.request.HouseSearchRequest;
+import cn.waynechu.renting.web.request.HouseUpdateRequest;
 import cn.waynechu.renting.web.service.HouseWebService;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.web.Result;

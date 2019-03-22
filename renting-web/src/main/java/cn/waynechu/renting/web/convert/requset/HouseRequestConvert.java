@@ -1,9 +1,9 @@
 package cn.waynechu.renting.web.convert.requset;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
-import cn.waynechu.renting.facade.request.HouseCreateRequest;
-import cn.waynechu.renting.facade.request.HouseSearchRequest;
-import cn.waynechu.renting.facade.request.HouseUpdateRequest;
+import cn.waynechu.renting.web.request.HouseCreateRequest;
+import cn.waynechu.renting.web.request.HouseSearchRequest;
+import cn.waynechu.renting.web.request.HouseUpdateRequest;
 import cn.waynechu.webcommon.util.BeanUtil;
 import lombok.experimental.UtilityClass;
 

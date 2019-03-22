@@ -1,9 +1,9 @@
 package cn.waynechu.renting.web.service;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
-import cn.waynechu.renting.facade.model.ModelHouse;
 import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.renting.web.convert.dto.HouseDtoConvert;
+import cn.waynechu.renting.web.model.ModelHouse;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;

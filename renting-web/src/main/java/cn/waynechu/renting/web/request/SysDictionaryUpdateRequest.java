@@ -1,15 +1,17 @@
-package cn.waynechu.renting.facade.request;
+package cn.waynechu.renting.web.request;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2019/1/18 15:07
+ * @date 2019/1/18 15:09
  */
 @Data
-@ApiModel(description = "添加字典信息请求对象")
-public class SysDictionaryCreateRequest {
+@ApiModel(description = "更新字典信息请求对象")
+public class SysDictionaryUpdateRequest {
+
+    private Long id;
 
     private Integer typeCode;
 

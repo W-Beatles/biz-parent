@@ -1,21 +1,16 @@
-package cn.waynechu.renting.facade.request;
+package cn.waynechu.renting.web.request;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * @author zhuwei
- * @date 2018/11/15 11:54
+ * @date 2018/12/29 12:46
  */
 @Data
-@ApiModel(description = "添加房屋信息请求对象")
-public class HouseCreateRequest {
+@ApiModel(description = "搜索房屋信息请求对象")
+public class HouseSearchRequest {
 
-    @ApiModelProperty("名称")
-    @NotNull(message = "名称不能为空")
     private String title;
 
     private Integer price;
