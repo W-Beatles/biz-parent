@@ -5,13 +5,15 @@ import org.springframework.core.annotation.AliasFor;
 import java.lang.annotation.*;
 
 /**
+ * 方法调用情况监控注解
+ *
  * @author zhuwei
  * @date 2018/08/22 23:25
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD})
-public @interface MethodPrintAnnotation {
+public @interface MethodLogAnnotation {
 
     @AliasFor("description")
     String value() default "";

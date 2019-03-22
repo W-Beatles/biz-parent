@@ -17,5 +17,5 @@ public class MDCProperties {
     /**
      * MDC前缀
      */
-    private String prefix;
+    private String prefix = "";
 }

@@ -2,8 +2,8 @@ package cn.waynechu.boot.starter.common;
 
 import cn.waynechu.boot.starter.common.properties.CommonProperties;
 import cn.waynechu.boot.starter.common.properties.RedisCacheProperties;
-import cn.waynechu.boot.starter.common.serializer.FastJsonSerializer;
 import cn.waynechu.boot.starter.common.util.RedisCache;
+import cn.waynechu.webcommon.serializer.FastJsonSerializer;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

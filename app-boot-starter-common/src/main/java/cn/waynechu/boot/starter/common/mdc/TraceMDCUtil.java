@@ -1,4 +1,4 @@
-package cn.waynechu.boot.starter.common.util;
+package cn.waynechu.boot.starter.common.mdc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
  * @date 2019/1/4 15:10
  */
 @Slf4j
-public class MDCUtil implements AutoCloseable {
+public class TraceMDCUtil implements AutoCloseable {
     private static final String REQ_KEY = "reqKey";
     private static String localHostName = null;
 

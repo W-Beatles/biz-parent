@@ -1,7 +1,10 @@
 package cn.waynechu.renting.facade.request;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @author zhuwei
@@ -9,8 +12,10 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "添加房屋信息请求对象")
-public class HouseCreateReq {
+public class HouseCreateRequest {
 
+    @ApiModelProperty("名称")
+    @NotNull(message = "名称不能为空")
     private String title;
 
     private Integer price;

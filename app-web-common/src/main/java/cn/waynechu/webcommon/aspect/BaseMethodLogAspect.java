@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.aspect;
 
-import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.annotation.MethodLogAnnotation;
 import cn.waynechu.webcommon.util.DequeThreadLocalUtil;
 import cn.waynechu.webcommon.util.JsonBinder;
 import cn.waynechu.webcommon.util.StringUtil;
@@ -17,22 +17,23 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 /**
+ * 方法调用情况监控切面
+ *
  * @author zhuwei
  * @date 2018/11/14 14:16
  */
 @Slf4j
-public abstract class BaseMethodPrintAspect {
+public abstract class BaseMethodLogAspect {
 
-    @Pointcut("@annotation(cn.waynechu.webcommon.annotation.MethodPrintAnnotation)")
+    @Pointcut("@annotation(cn.waynechu.webcommon.annotation.MethodLogAnnotation)")
     public void methodPrint() {
         // do nothing here.
     }
 
     @Before(value = "methodPrint() && @annotation(printAnnotation)")
-    public void doBefore(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
+    public void doBefore(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
         if (printAnnotation.isPrintParameter()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
@@ -46,27 +47,31 @@ public abstract class BaseMethodPrintAspect {
     }
 
     @After(value = "methodPrint() && @annotation(printAnnotation)")
-    public void doAfter(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
+    public void doAfter(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
         // do nothing here.
     }
 
     @AfterReturning(value = "methodPrint() && @annotation(printAnnotation)", returning = "result")
-    public void doAfterReturning(JoinPoint joinPoint, Object result, MethodPrintAnnotation printAnnotation) {
+    public void doAfterReturning(JoinPoint joinPoint, Object result, MethodLogAnnotation printAnnotation) {
         if (printAnnotation.isPrintReturn()) {
-            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-            String returnStr = this.getPrintReturnStr(result, printAnnotation);
+            String methodName = getPrintMethodName(joinPoint, printAnnotation);
+            String returnStr = getPrintReturnStr(result, printAnnotation);
             log.info("{}结束调用, 耗时: timeToken={}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
         }
     }
 
     /**
      * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
-     * 比如 HttpServletResponse、MultipartFile 或者 包含密码等私密数据 的对象等
+     * <p>
+     * 比如：包含密码等私密数据类型<br>
+     * 默认提供 {@code Invisible} 类型
      *
      * @return 不打印的入参类型
      */
     protected Collection<Class> excludePrintClass() {
-        return Collections.emptyList();
+        ArrayList<Class> excludePrintClass = new ArrayList<>(1);
+        excludePrintClass.add(Invisible.class);
+        return excludePrintClass;
     }
 
     /**
@@ -86,7 +91,7 @@ public abstract class BaseMethodPrintAspect {
      * @param printAnnotation 注解
      * @return 方法名
      */
-    private String getPrintMethodName(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
+    private String getPrintMethodName(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
         String methodName;
         // 默认打印自定义的方法描述字段
         if (StringUtil.isNotEmpty(printAnnotation.value())) {
@@ -106,7 +111,7 @@ public abstract class BaseMethodPrintAspect {
         return methodName;
     }
 
-    private String getPrintArgsStr(JoinPoint joinPoint, MethodPrintAnnotation printAnnotation) {
+    private String getPrintArgsStr(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
         ArrayList<Object> args = new ArrayList<>();
         for (Object arg : joinPoint.getArgs()) {
             boolean isInstance = false;
@@ -124,7 +129,7 @@ public abstract class BaseMethodPrintAspect {
         return toJsonString(args, printAnnotation.isFormat());
     }
 
-    private String getPrintReturnStr(Object result, MethodPrintAnnotation printAnnotation) {
+    private String getPrintReturnStr(Object result, MethodLogAnnotation printAnnotation) {
         return toJsonString(this.getReturn(result), printAnnotation.isFormat());
     }
 

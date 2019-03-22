@@ -1,7 +1,7 @@
-package cn.waynechu.renting.web.aspect;
+package cn.waynechu.boot.starter.common.aspect;
 
 import cn.waynechu.webcommon.enums.CommonResultEnum;
-import cn.waynechu.webcommon.exception.BaseBizException;
+import cn.waynechu.webcommon.exception.BizException;
 import cn.waynechu.webcommon.web.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -21,13 +21,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public Result missingServletRequestParameterException(MissingServletRequestParameterException e) {
-        log.info("缺少请求参数: {}", e.getParameterName(), e);
-        return Result.error(CommonResultEnum.MISSING_REQUEST_PARAMETER.getCode(),
-                CommonResultEnum.MISSING_REQUEST_PARAMETER.getDesc() + ": " + e.getParameterName());
-    }
-
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.info("请求参数格式不正确: {}", e.getMessage(), e);
@@ -38,14 +31,19 @@ public class ControllerExceptionHandler {
     public Result methodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.info("请求参数校验不合法: {}", e.getMessage(), e);
         BindingResult bindingResult = e.getBindingResult();
-        if (bindingResult == null || bindingResult.getFieldError() == null) {
-            return Result.error(CommonResultEnum.ARGUMENT_NOT_VALID);
-        }
         return Result.error(CommonResultEnum.ARGUMENT_NOT_VALID.getCode(), bindingResult.getFieldError().getDefaultMessage());
     }
 
-    @ExceptionHandler(BaseBizException.class)
-    public Result rentingException(BaseBizException e) {
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public Result missingServletRequestParameterException(MissingServletRequestParameterException e) {
+        log.info("缺少请求参数: ({}) {}", e.getParameterType(), e.getParameterName(), e);
+        return Result.error(CommonResultEnum.MISSING_REQUEST_PARAMETER.getCode(),
+                CommonResultEnum.MISSING_REQUEST_PARAMETER.getDesc()
+                        + ": (" + e.getParameterType() + ") " + e.getParameterName());
+    }
+
+    @ExceptionHandler(BizException.class)
+    public Result bizException(BizException e) {
         log.info("[业务异常] {}", e.getErrorMessage(), e);
         return Result.error(e.getErrorCode(), e.getErrorMessage());
     }

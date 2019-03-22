@@ -1,6 +1,5 @@
-package cn.waynechu.boot.starter.common.filter;
+package cn.waynechu.boot.starter.common.mdc;
 
-import cn.waynechu.boot.starter.common.util.MDCUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
@@ -33,7 +32,7 @@ public class MDCFilter implements Filter {
 
             chain.doFilter(request, response);
         } finally {
-            MDCUtil.clear();
+            TraceMDCUtil.clear();
         }
     }
 
@@ -50,8 +49,8 @@ public class MDCFilter implements Filter {
         // append shortJavaUUID
         builder.append(generateShortJavaUUID());
 
-        MDCUtil.addObjects(builder.toString());
-        MDCUtil.addLocalHostName();
+        TraceMDCUtil.addObjects(builder.toString());
+        TraceMDCUtil.addLocalHostName();
     }
 
     public void setMdcPrefix(String mdcPrefix) {

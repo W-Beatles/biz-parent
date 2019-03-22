@@ -2,12 +2,11 @@ package cn.waynechu.renting.web.controller;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.model.ModelHouse;
-import cn.waynechu.renting.facade.request.HouseCreateReq;
-import cn.waynechu.renting.facade.request.HouseSearchReq;
-import cn.waynechu.renting.facade.request.HouseUpdateReq;
+import cn.waynechu.renting.facade.request.HouseCreateRequest;
+import cn.waynechu.renting.facade.request.HouseSearchRequest;
+import cn.waynechu.renting.facade.request.HouseUpdateRequest;
 import cn.waynechu.renting.web.convert.requset.HouseRequestConvert;
 import cn.waynechu.renting.web.service.HouseWebService;
-import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.web.Result;
 import io.swagger.annotations.Api;
@@ -37,37 +36,41 @@ public class HouseController {
             @ApiImplicitParam(name = "id", value = "房屋ID", required = true, paramType = "path"),
             @ApiImplicitParam(name = "city", value = "城市名称", required = true, paramType = "query")
     })
-    @MethodPrintAnnotation
-    public Result<ModelHouse> getById(@PathVariable Long id) {
+    public Result<ModelHouse> getById(@PathVariable Long id, @RequestParam String city) {
         return Result.success(houseWebService.getById(id));
     }
 
     @PostMapping
-    public Result<Boolean> createHouse(@RequestBody HouseCreateReq houseCreateReq) {
-        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseCreateReq);
+    @ApiOperation(value = "新增房屋信息")
+    public Result<Boolean> createHouse(@Validated @RequestBody HouseCreateRequest houseCreateRequest) {
+        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseCreateRequest);
         return Result.success(houseWebService.create(houseDTO));
     }
 
     @PutMapping
-    public Result<Boolean> updateHouse(@Validated @RequestBody HouseUpdateReq houseUpdateReq) {
-        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseUpdateReq);
+    @ApiOperation(value = "更新房屋详情")
+    public Result<Boolean> updateHouse(@Validated @RequestBody HouseUpdateRequest houseUpdateRequest) {
+        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseUpdateRequest);
         return Result.success(houseWebService.update(houseDTO));
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除指定房屋")
     public Result<Boolean> removeById(@PathVariable Long id) {
         return Result.success(houseWebService.removeById(id));
     }
 
 
     @PostMapping("/search")
-    public Result<PageInfo<ModelHouse>> search(@RequestBody HouseSearchReq houseSearchReq,
+    @ApiOperation(value = "分页查询房屋信息")
+    public Result<PageInfo<ModelHouse>> search(@Validated @RequestBody HouseSearchRequest houseSearchRequest,
                                                @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseSearchReq);
+        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseSearchRequest);
         return Result.success(houseWebService.search(houseDTO, pageNum, pageSize));
     }
 
     @PostMapping("/{id}")
+    @ApiOperation(value = "复制房屋信息并创建", notes = "不支持分布式事务")
     public Result<Boolean> copyByIdTransition(@PathVariable Long id) {
         return Result.success(houseWebService.copyByIdTransition(id));
     }

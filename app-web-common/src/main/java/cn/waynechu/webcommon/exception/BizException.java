@@ -5,29 +5,33 @@ import cn.waynechu.webcommon.enums.BaseEnum;
 import java.io.Serializable;
 
 /**
+ * 业务异常
+ * <p>
+ * 继承该类的异常都会以info级别日志打印
+ *
  * @author zhuwei
  * @date 2018/11/6 19:27
  */
-public class BaseBizException extends RuntimeException implements Serializable {
+public class BizException extends RuntimeException implements Serializable {
     private static final long serialVersionUID = 771762126749223759L;
 
     private final Integer errorCode;
 
     private final String errorMessage;
 
-    public BaseBizException(BaseEnum baseEnum) {
+    public BizException(BaseEnum baseEnum) {
         super(baseEnum.getDesc());
         this.errorCode = baseEnum.getCode();
         this.errorMessage = baseEnum.getDesc();
     }
 
-    public BaseBizException(Integer errorCode, String errorMessage) {
+    public BizException(Integer errorCode, String errorMessage) {
         super(errorMessage);
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
 
-    public BaseBizException(Integer errorCode, String errorMessage, Throwable errorCause) {
+    public BizException(Integer errorCode, String errorMessage, Throwable errorCause) {
         super(errorMessage, errorCause);
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;

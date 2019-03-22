@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.demo.aop.jdk;
 
-import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.annotation.MethodLogAnnotation;
 
 /**
  * @author zhuwei
@@ -8,6 +8,6 @@ import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
  */
 public interface Sub {
 
-    @MethodPrintAnnotation
+    @MethodLogAnnotation
     String printOne(String str);
 }

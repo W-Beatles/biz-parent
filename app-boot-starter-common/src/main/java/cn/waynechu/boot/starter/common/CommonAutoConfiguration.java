@@ -1,6 +1,6 @@
 package cn.waynechu.boot.starter.common;
 
-import cn.waynechu.boot.starter.common.filter.MDCFilter;
+import cn.waynechu.boot.starter.common.mdc.MDCFilter;
 import cn.waynechu.boot.starter.common.properties.CommonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

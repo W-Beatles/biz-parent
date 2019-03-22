@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.demo.aop.jdk;
 
-import cn.waynechu.webcommon.annotation.MethodPrintAnnotation;
+import cn.waynechu.webcommon.annotation.MethodLogAnnotation;
 import cn.waynechu.webcommon.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -38,7 +38,7 @@ public class MethodPrintProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object returnValue;
 
-        MethodPrintAnnotation printAnnotation = method.getAnnotation(MethodPrintAnnotation.class);
+        MethodLogAnnotation printAnnotation = method.getAnnotation(MethodLogAnnotation.class);
 
         if (printAnnotation != null) {
             String methodName = this.getPrintMethodName(printAnnotation, targetObj);
@@ -55,7 +55,7 @@ public class MethodPrintProxy implements InvocationHandler {
         return returnValue;
     }
 
-    private String getPrintMethodName(MethodPrintAnnotation printAnnotation, Object targetObj) {
+    private String getPrintMethodName(MethodLogAnnotation printAnnotation, Object targetObj) {
         String methodName;
         // 默认打印方法描述字段
         if (!StringUtils.isEmpty(printAnnotation.value())) {

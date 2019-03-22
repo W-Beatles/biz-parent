@@ -5,11 +5,12 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2019/1/18 15:17
+ * @date 2019/1/18 15:07
  */
 @Data
-@ApiModel(description = "搜索字典信息请求对象")
-public class SysDictionarySearchReq {
+@ApiModel(description = "添加字典信息请求对象")
+public class SysDictionaryCreateRequest {
+
     private Integer typeCode;
 
     private String typeName;

@@ -1,4 +1,4 @@
-package cn.waynechu.boot.starter.common.serializer;
+package cn.waynechu.webcommon.serializer;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
