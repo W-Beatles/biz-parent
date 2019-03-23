@@ -1,8 +1,9 @@
 package cn.waynechu.renting.dal.renting.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class House {
+public class House implements Serializable {
     private Long id;
 
     private String title;
@@ -43,17 +44,17 @@ public class House {
 
     private String street;
 
-    private String createdUser;
+    private String createUser;
 
-    private Date createdTime;
+    private Date createTime;
 
-    private String updatedUser;
+    private String updateUser;
 
-    private Date updatedTime;
+    private Date updateTime;
 
     private Boolean isDeleted;
 
-    public House(Long id, String title, Integer price, Integer area, Integer room, Integer floor, Integer totalFloor, Integer watchTimes, Integer buildYear, Integer status, String cityEnName, String regionEnName, String cover, Integer direction, Integer distanceToSubway, Integer parlour, String district, Long adminId, Integer bathroom, String street, String createdUser, Date createdTime, String updatedUser, Date updatedTime, Boolean isDeleted) {
+    public House(Long id, String title, Integer price, Integer area, Integer room, Integer floor, Integer totalFloor, Integer watchTimes, Integer buildYear, Integer status, String cityEnName, String regionEnName, String cover, Integer direction, Integer distanceToSubway, Integer parlour, String district, Long adminId, Integer bathroom, String street, String createUser, Date createTime, String updateUser, Date updateTime, Boolean isDeleted) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -74,10 +75,10 @@ public class House {
         this.adminId = adminId;
         this.bathroom = bathroom;
         this.street = street;
-        this.createdUser = createdUser;
-        this.createdTime = createdTime;
-        this.updatedUser = updatedUser;
-        this.updatedTime = updatedTime;
+        this.createUser = createUser;
+        this.createTime = createTime;
+        this.updateUser = updateUser;
+        this.updateTime = updateTime;
         this.isDeleted = isDeleted;
     }
 
@@ -245,36 +246,36 @@ public class House {
         this.street = street == null ? null : street.trim();
     }
 
-    public String getCreatedUser() {
-        return createdUser;
+    public String getCreateUser() {
+        return createUser;
     }
 
-    public void setCreatedUser(String createdUser) {
-        this.createdUser = createdUser == null ? null : createdUser.trim();
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser == null ? null : createUser.trim();
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public String getUpdatedUser() {
-        return updatedUser;
+    public String getUpdateUser() {
+        return updateUser;
     }
 
-    public void setUpdatedUser(String updatedUser) {
-        this.updatedUser = updatedUser == null ? null : updatedUser.trim();
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser == null ? null : updateUser.trim();
     }
 
-    public Date getUpdatedTime() {
-        return updatedTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Boolean getIsDeleted() {

@@ -19,11 +19,11 @@ public class ShopConfigLogDTO {
 
     private Integer afterValue;
 
-    private String createdUser;
+    private String createUser;
 
-    private Date createdTime;
+    private Date createTime;
 
-    private String updatedUser;
+    private String updateUser;
 
-    private Date updatedTime;
+    private Date updateTime;
 }

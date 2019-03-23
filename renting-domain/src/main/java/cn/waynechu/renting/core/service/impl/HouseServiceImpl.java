@@ -32,7 +32,6 @@ public class HouseServiceImpl implements HouseService {
     @Autowired
     private SysDictionaryRepository sysDictionaryRepository;
 
-    @Cacheable(cacheNames = "house", key = "#id")
     @Override
     public HouseDTO getById(Long id) {
         HouseDTO returnValue = null;
@@ -71,7 +70,6 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.removeById(id);
     }
 
-    // TODO: 2019/1/18 不支持跨库事务，寻找分布式事务解决方案
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean copyByIdTransition(Long id) {
@@ -83,11 +81,10 @@ public class HouseServiceImpl implements HouseService {
             returnValue = houseRepository.create(copyHouse);
         }
 
+        // TODO: 2019/1/18 不支持跨库事务，寻找分布式事务解决方案
         SysDictionary sysDictionary = sysDictionaryRepository.getById(1L);
         sysDictionary.setId(null);
         sysDictionaryRepository.create(sysDictionary);
-
-        int a = 1 / 0;
         return returnValue;
     }
 

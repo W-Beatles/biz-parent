@@ -1,6 +1,8 @@
 package cn.waynechu.renting.dal.renting.entity;
 
-public class HouseDetail {
+import java.io.Serializable;
+
+public class HouseDetail implements Serializable {
     private Long id;
 
     private Long houseId;

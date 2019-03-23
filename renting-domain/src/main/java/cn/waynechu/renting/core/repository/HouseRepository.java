@@ -1,9 +1,11 @@
 package cn.waynechu.renting.core.repository;
 
+import cn.waynechu.renting.core.constant.RedisPrefix;
 import cn.waynechu.renting.dal.renting.entity.House;
 import cn.waynechu.renting.dal.renting.entity.HouseExample;
 import cn.waynechu.renting.dal.renting.mapper.HouseMapper;
 import cn.waynechu.webcommon.page.PageInfo;
+import com.alicp.jetcache.anno.*;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,23 +23,42 @@ public class HouseRepository {
     @Autowired
     private HouseMapper houseMapper;
 
+    @Cached(expire = 3600, name = RedisPrefix.REDIS_HOUSE_PREFIX, key = "#id", cacheType = CacheType.REMOTE)
+    @CacheRefresh(refresh = 1800, stopRefreshAfterLastAccess = 3600)
+    @CachePenetrationProtect
     public House getById(Long id) {
-        return houseMapper.selectByPrimaryKey(id);
+        HouseExample example = new HouseExample();
+        HouseExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        criteria.andIsDeletedEqualTo(false);
+        List<House> houses = houseMapper.selectByExample(example);
+        return houses.isEmpty() ? null : houses.get(0);
     }
 
     public boolean create(House house) {
         return houseMapper.insertSelective(house) > 0;
     }
 
+    @CacheInvalidate(name = RedisPrefix.REDIS_HOUSE_PREFIX, key = "#house.id")
     public boolean updateSelective(House house) {
-        return houseMapper.updateByPrimaryKeySelective(house) > 0;
+        HouseExample example = new HouseExample();
+        HouseExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(house.getId());
+        criteria.andIsDeletedEqualTo(false);
+        return houseMapper.updateByExampleSelective(house, example) > 0;
     }
 
+    @CacheInvalidate(name = RedisPrefix.REDIS_HOUSE_PREFIX, key = "#id")
     public boolean removeById(Long id) {
+        HouseExample example = new HouseExample();
+        HouseExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        criteria.andIsDeletedEqualTo(false);
+
         House house = new House();
         house.setId(id);
         house.setIsDeleted(true);
-        return houseMapper.updateByPrimaryKeySelective(house) > 0;
+        return houseMapper.updateByExampleSelective(house, example) > 0;
     }
 
     public PageInfo<House> query(House house, int pageNum, int pageSize) {
@@ -51,6 +72,7 @@ public class HouseRepository {
         if (house.getStatus() != null) {
             criteria.andStatusEqualTo(house.getStatus());
         }
+        criteria.andIsDeletedEqualTo(false);
         List<House> houses = houseMapper.selectByExample(example);
         return PageInfo.of(houses);
     }

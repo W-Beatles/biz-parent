@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 @ApiModel(description = "搜索字典信息请求对象")
 public class SysDictionarySearchRequest {
+
     private Integer typeCode;
 
     private String typeName;

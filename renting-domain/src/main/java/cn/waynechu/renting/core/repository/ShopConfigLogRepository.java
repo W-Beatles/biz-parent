@@ -22,7 +22,7 @@ public class ShopConfigLogRepository {
     public List<ShopConfigLog> getByTime(Date startTime, Date endTime) {
         ShopConfigLogExample example = new ShopConfigLogExample();
         ShopConfigLogExample.Criteria criteria = example.createCriteria();
-        criteria.andCreatedTimeBetween(startTime, endTime);
+        criteria.andCreateTimeBetween(startTime, endTime);
         return shopConfigLogMapper.selectByExample(example);
     }
 }

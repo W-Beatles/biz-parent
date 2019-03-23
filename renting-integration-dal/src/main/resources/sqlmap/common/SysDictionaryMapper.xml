@@ -9,10 +9,10 @@
             <arg column="code" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="parent_id" jdbcType="BIGINT" javaType="java.lang.Long"/>
-            <arg column="created_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="created_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="updated_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="updated_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="create_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
             <arg column="is_deleted" jdbcType="BIT" javaType="java.lang.Boolean"/>
         </constructor>
     </resultMap>
@@ -77,8 +77,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, type_code, type_name, code, name, parent_id, created_user, created_time, updated_user, 
-    updated_time, is_deleted
+    id, type_code, type_name, code, name, parent_id, create_user, create_time, update_user,
+    update_time, is_deleted
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap"
             parameterType="cn.waynechu.renting.dal.common.entity.SysDictionaryExample">
@@ -116,12 +116,12 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into sys_dictionary (type_code, type_name, code,
-        name, parent_id, created_user,
-        created_time, updated_user, updated_time,
+        name, parent_id, create_user,
+        create_time, update_user, update_time,
         is_deleted)
         values (#{typeCode,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER},
-        #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{createdUser,jdbcType=VARCHAR},
-        #{createdTime,jdbcType=TIMESTAMP}, #{updatedUser,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP},
+        #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
         #{isDeleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="cn.waynechu.renting.dal.common.entity.SysDictionary">
@@ -145,17 +145,17 @@
             <if test="parentId != null">
                 parent_id,
             </if>
-            <if test="createdUser != null">
-                created_user,
+            <if test="createUser != null">
+                create_user,
             </if>
-            <if test="createdTime != null">
-                created_time,
+            <if test="createTime != null">
+                create_time,
             </if>
-            <if test="updatedUser != null">
-                updated_user,
+            <if test="updateUser != null">
+                update_user,
             </if>
-            <if test="updatedTime != null">
-                updated_time,
+            <if test="updateTime != null">
+                update_time,
             </if>
             <if test="isDeleted != null">
                 is_deleted,
@@ -177,17 +177,17 @@
             <if test="parentId != null">
                 #{parentId,jdbcType=BIGINT},
             </if>
-            <if test="createdUser != null">
-                #{createdUser,jdbcType=VARCHAR},
+            <if test="createUser != null">
+                #{createUser,jdbcType=VARCHAR},
             </if>
-            <if test="createdTime != null">
-                #{createdTime,jdbcType=TIMESTAMP},
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updatedUser != null">
-                #{updatedUser,jdbcType=VARCHAR},
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="updatedTime != null">
-                #{updatedTime,jdbcType=TIMESTAMP},
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="isDeleted != null">
                 #{isDeleted,jdbcType=BIT},
@@ -222,17 +222,17 @@
             <if test="record.parentId != null">
                 parent_id = #{record.parentId,jdbcType=BIGINT},
             </if>
-            <if test="record.createdUser != null">
-                created_user = #{record.createdUser,jdbcType=VARCHAR},
+            <if test="record.createUser != null">
+                create_user = #{record.createUser,jdbcType=VARCHAR},
             </if>
-            <if test="record.createdTime != null">
-                created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.updatedUser != null">
-                updated_user = #{record.updatedUser,jdbcType=VARCHAR},
+            <if test="record.updateUser != null">
+                update_user = #{record.updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="record.updatedTime != null">
-                updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="record.isDeleted != null">
                 is_deleted = #{record.isDeleted,jdbcType=BIT},
@@ -250,10 +250,10 @@
         code = #{record.code,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         parent_id = #{record.parentId,jdbcType=BIGINT},
-        created_user = #{record.createdUser,jdbcType=VARCHAR},
-        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
-        updated_user = #{record.updatedUser,jdbcType=VARCHAR},
-        updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
         is_deleted = #{record.isDeleted,jdbcType=BIT}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -277,17 +277,17 @@
             <if test="parentId != null">
                 parent_id = #{parentId,jdbcType=BIGINT},
             </if>
-            <if test="createdUser != null">
-                created_user = #{createdUser,jdbcType=VARCHAR},
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=VARCHAR},
             </if>
-            <if test="createdTime != null">
-                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updatedUser != null">
-                updated_user = #{updatedUser,jdbcType=VARCHAR},
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="updatedTime != null">
-                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="isDeleted != null">
                 is_deleted = #{isDeleted,jdbcType=BIT},
@@ -302,10 +302,10 @@
       code = #{code,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
-      created_user = #{createdUser,jdbcType=VARCHAR},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      updated_user = #{updatedUser,jdbcType=VARCHAR},
-      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>

@@ -29,10 +29,10 @@ public class ShopConfigWebService {
             add("changeItem");
             add("beforeValue");
             add("afterValue");
-            add("createdUser");
-            add("createdTime");
-            add("updatedUser");
-            add("updatedTime");
+            add("createUser");
+            add("createTime");
+            add("updateUser");
+            add("updateTime");
         }});
         modelExcel.setZhTitles(new ArrayList<String>() {{
             add("门店ID");

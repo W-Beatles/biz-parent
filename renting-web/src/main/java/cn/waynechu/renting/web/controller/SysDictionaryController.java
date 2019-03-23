@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -39,18 +40,21 @@ public class SysDictionaryController {
     }
 
     @PostMapping
-    public Result<Boolean> createSysDictionary(@RequestBody SysDictionaryCreateRequest sysDictionaryCreateReq) {
+    @ApiOperation(value = "添加字典项")
+    public Result<Boolean> createSysDictionary(@Validated @RequestBody SysDictionaryCreateRequest sysDictionaryCreateReq) {
         SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryCreateReq);
         return Result.success(sysDictionaryWebService.create(sysDictionaryDTO));
     }
 
     @PutMapping
-    public Result<Boolean> updateSysDictionary(@RequestBody SysDictionaryUpdateRequest sysDictionaryUpdateRequest) {
+    @ApiOperation(value = "更新字典项")
+    public Result<Boolean> updateSysDictionary(@Validated @RequestBody SysDictionaryUpdateRequest sysDictionaryUpdateRequest) {
         SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryUpdateRequest);
         return Result.success(sysDictionaryWebService.update(sysDictionaryDTO));
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除指定字典项")
     public Result<Boolean> removeById(@PathVariable Long id) {
         return Result.success(sysDictionaryWebService.removeById(id));
     }

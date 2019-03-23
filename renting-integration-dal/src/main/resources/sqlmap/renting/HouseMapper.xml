@@ -23,10 +23,10 @@
             <arg column="admin_id" jdbcType="BIGINT" javaType="java.lang.Long"/>
             <arg column="bathroom" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="street" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="created_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="created_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="updated_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="updated_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="create_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_user" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
             <arg column="is_deleted" jdbcType="BIT" javaType="java.lang.Boolean"/>
         </constructor>
     </resultMap>
@@ -93,7 +93,7 @@
     <sql id="Base_Column_List">
     id, title, price, area, room, floor, total_floor, watch_times, build_year, status, 
     city_en_name, region_en_name, cover, direction, distance_to_subway, parlour, district, 
-    admin_id, bathroom, street, created_user, created_time, updated_user, updated_time, 
+    admin_id, bathroom, street, create_user, create_time, update_user, update_time,
     is_deleted
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap"
@@ -137,8 +137,8 @@
         city_en_name, region_en_name, cover,
         direction, distance_to_subway, parlour,
         district, admin_id, bathroom,
-        street, created_user, created_time,
-        updated_user, updated_time, is_deleted
+        street, create_user, create_time,
+        update_user, update_time, is_deleted
         )
         values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{area,jdbcType=INTEGER},
         #{room,jdbcType=INTEGER}, #{floor,jdbcType=INTEGER}, #{totalFloor,jdbcType=INTEGER},
@@ -146,8 +146,8 @@
         #{cityEnName,jdbcType=VARCHAR}, #{regionEnName,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR},
         #{direction,jdbcType=INTEGER}, #{distanceToSubway,jdbcType=INTEGER}, #{parlour,jdbcType=INTEGER},
         #{district,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT}, #{bathroom,jdbcType=INTEGER},
-        #{street,jdbcType=VARCHAR}, #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP},
-        #{updatedUser,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+        #{street,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
         )
     </insert>
     <insert id="insertSelective" parameterType="cn.waynechu.renting.dal.renting.entity.House">
@@ -213,17 +213,17 @@
             <if test="street != null">
                 street,
             </if>
-            <if test="createdUser != null">
-                created_user,
+            <if test="createUser != null">
+                create_user,
             </if>
-            <if test="createdTime != null">
-                created_time,
+            <if test="createTime != null">
+                create_time,
             </if>
-            <if test="updatedUser != null">
-                updated_user,
+            <if test="updateUser != null">
+                update_user,
             </if>
-            <if test="updatedTime != null">
-                updated_time,
+            <if test="updateTime != null">
+                update_time,
             </if>
             <if test="isDeleted != null">
                 is_deleted,
@@ -287,17 +287,17 @@
             <if test="street != null">
                 #{street,jdbcType=VARCHAR},
             </if>
-            <if test="createdUser != null">
-                #{createdUser,jdbcType=VARCHAR},
+            <if test="createUser != null">
+                #{createUser,jdbcType=VARCHAR},
             </if>
-            <if test="createdTime != null">
-                #{createdTime,jdbcType=TIMESTAMP},
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updatedUser != null">
-                #{updatedUser,jdbcType=VARCHAR},
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="updatedTime != null">
-                #{updatedTime,jdbcType=TIMESTAMP},
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="isDeleted != null">
                 #{isDeleted,jdbcType=BIT},
@@ -374,17 +374,17 @@
             <if test="record.street != null">
                 street = #{record.street,jdbcType=VARCHAR},
             </if>
-            <if test="record.createdUser != null">
-                created_user = #{record.createdUser,jdbcType=VARCHAR},
+            <if test="record.createUser != null">
+                create_user = #{record.createUser,jdbcType=VARCHAR},
             </if>
-            <if test="record.createdTime != null">
-                created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.updatedUser != null">
-                updated_user = #{record.updatedUser,jdbcType=VARCHAR},
+            <if test="record.updateUser != null">
+                update_user = #{record.updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="record.updatedTime != null">
-                updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="record.isDeleted != null">
                 is_deleted = #{record.isDeleted,jdbcType=BIT},
@@ -416,10 +416,10 @@
         admin_id = #{record.adminId,jdbcType=BIGINT},
         bathroom = #{record.bathroom,jdbcType=INTEGER},
         street = #{record.street,jdbcType=VARCHAR},
-        created_user = #{record.createdUser,jdbcType=VARCHAR},
-        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
-        updated_user = #{record.updatedUser,jdbcType=VARCHAR},
-        updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
         is_deleted = #{record.isDeleted,jdbcType=BIT}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -485,17 +485,17 @@
             <if test="street != null">
                 street = #{street,jdbcType=VARCHAR},
             </if>
-            <if test="createdUser != null">
-                created_user = #{createdUser,jdbcType=VARCHAR},
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=VARCHAR},
             </if>
-            <if test="createdTime != null">
-                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updatedUser != null">
-                updated_user = #{updatedUser,jdbcType=VARCHAR},
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="updatedTime != null">
-                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="isDeleted != null">
                 is_deleted = #{isDeleted,jdbcType=BIT},
@@ -524,10 +524,10 @@
       admin_id = #{adminId,jdbcType=BIGINT},
       bathroom = #{bathroom,jdbcType=INTEGER},
       street = #{street,jdbcType=VARCHAR},
-      created_user = #{createdUser,jdbcType=VARCHAR},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      updated_user = #{updatedUser,jdbcType=VARCHAR},
-      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>

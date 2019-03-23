@@ -21,7 +21,12 @@ public class SysDictionaryRepository {
     private SysDictionaryMapper sysDictionaryMapper;
 
     public SysDictionary getById(Long id) {
-        return sysDictionaryMapper.selectByPrimaryKey(id);
+        SysDictionaryExample example = new SysDictionaryExample();
+        SysDictionaryExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        criteria.andIsDeletedEqualTo(false);
+        List<SysDictionary> sysDictionaries = sysDictionaryMapper.selectByExample(example);
+        return sysDictionaries.isEmpty() ? null : sysDictionaries.get(0);
     }
 
     public boolean create(SysDictionary sysDictionary) {
@@ -29,14 +34,23 @@ public class SysDictionaryRepository {
     }
 
     public boolean updateSelective(SysDictionary sysDictionary) {
-        return sysDictionaryMapper.updateByPrimaryKeySelective(sysDictionary) > 0;
+        SysDictionaryExample example = new SysDictionaryExample();
+        SysDictionaryExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(sysDictionary.getId());
+        criteria.andIsDeletedEqualTo(false);
+        return sysDictionaryMapper.updateByExampleSelective(sysDictionary, example) > 0;
     }
 
     public boolean removeById(Long id) {
+        SysDictionaryExample example = new SysDictionaryExample();
+        SysDictionaryExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        criteria.andIsDeletedEqualTo(false);
+
         SysDictionary sysDictionary = new SysDictionary();
         sysDictionary.setId(id);
         sysDictionary.setIsDeleted(true);
-        return sysDictionaryMapper.updateByPrimaryKeySelective(sysDictionary) > 0;
+        return sysDictionaryMapper.updateByExampleSelective(sysDictionary, example) > 0;
     }
 
     public PageInfo<SysDictionary> query(SysDictionary sysDictionary, int pageNum, int pageSize) {
@@ -47,6 +61,7 @@ public class SysDictionaryRepository {
         if (sysDictionary.getTypeCode() != null) {
             criteria.andTypeCodeEqualTo(sysDictionary.getTypeCode());
         }
+        criteria.andIsDeletedEqualTo(false);
         List<SysDictionary> houses = sysDictionaryMapper.selectByExample(example);
         return PageInfo.of(houses);
     }

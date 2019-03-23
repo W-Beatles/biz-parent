@@ -37,8 +37,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public Result missingServletRequestParameterException(MissingServletRequestParameterException e) {
         log.info("缺少请求参数: ({}) {}", e.getParameterType(), e.getParameterName(), e);
-        return Result.error(CommonResultEnum.MISSING_REQUEST_PARAMETER.getCode(),
-                CommonResultEnum.MISSING_REQUEST_PARAMETER.getDesc()
+        return Result.error(CommonResultEnum.MISSING_REQUEST_PARAM.getCode(),
+                CommonResultEnum.MISSING_REQUEST_PARAM.getDesc()
                         + ": (" + e.getParameterType() + ") " + e.getParameterName());
     }
 

@@ -51,13 +51,13 @@ public class HouseDTO implements Serializable {
 
     private String street;
 
-    private String createdUser;
+    private String createUser;
 
-    private Date createdTime;
+    private Date createTime;
 
-    private String updatedUser;
+    private String updateUser;
 
-    private Date updatedTime;
+    private Date updateTime;
 
     private Boolean isDeleted;
 }

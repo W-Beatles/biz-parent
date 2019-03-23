@@ -1,8 +1,9 @@
 package cn.waynechu.renting.dal.common.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ShopConfigLog {
+public class ShopConfigLog implements Serializable {
     private Long id;
 
     private Long shopId;
@@ -13,26 +14,26 @@ public class ShopConfigLog {
 
     private Integer afterValue;
 
-    private String createdUser;
+    private String createUser;
 
-    private Date createdTime;
+    private Date createTime;
 
-    private String updatedUser;
+    private String updateUser;
 
-    private Date updatedTime;
+    private Date updateTime;
 
     private Boolean isDelete;
 
-    public ShopConfigLog(Long id, Long shopId, String changeItem, Integer beforeValue, Integer afterValue, String createdUser, Date createdTime, String updatedUser, Date updatedTime, Boolean isDelete) {
+    public ShopConfigLog(Long id, Long shopId, String changeItem, Integer beforeValue, Integer afterValue, String createUser, Date createTime, String updateUser, Date updateTime, Boolean isDelete) {
         this.id = id;
         this.shopId = shopId;
         this.changeItem = changeItem;
         this.beforeValue = beforeValue;
         this.afterValue = afterValue;
-        this.createdUser = createdUser;
-        this.createdTime = createdTime;
-        this.updatedUser = updatedUser;
-        this.updatedTime = updatedTime;
+        this.createUser = createUser;
+        this.createTime = createTime;
+        this.updateUser = updateUser;
+        this.updateTime = updateTime;
         this.isDelete = isDelete;
     }
 
@@ -80,36 +81,36 @@ public class ShopConfigLog {
         this.afterValue = afterValue;
     }
 
-    public String getCreatedUser() {
-        return createdUser;
+    public String getCreateUser() {
+        return createUser;
     }
 
-    public void setCreatedUser(String createdUser) {
-        this.createdUser = createdUser == null ? null : createdUser.trim();
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser == null ? null : createUser.trim();
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public String getUpdatedUser() {
-        return updatedUser;
+    public String getUpdateUser() {
+        return updateUser;
     }
 
-    public void setUpdatedUser(String updatedUser) {
-        this.updatedUser = updatedUser == null ? null : updatedUser.trim();
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser == null ? null : updateUser.trim();
     }
 
-    public Date getUpdatedTime() {
-        return updatedTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Boolean getIsDelete() {
