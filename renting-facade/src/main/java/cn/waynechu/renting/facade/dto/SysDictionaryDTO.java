@@ -2,6 +2,7 @@ package cn.waynechu.renting.facade.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * @date 2019/1/18 14:08
  */
 @Data
-public class SysDictionaryDTO {
+public class SysDictionaryDTO implements Serializable {
     private Long id;
 
     private Integer typeCode;

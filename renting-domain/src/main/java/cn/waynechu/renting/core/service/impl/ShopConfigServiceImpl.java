@@ -6,8 +6,8 @@ import cn.waynechu.renting.dal.common.entity.ShopConfigLog;
 import cn.waynechu.renting.facade.dto.ShopConfigLogDTO;
 import cn.waynechu.renting.facade.service.ShopConfigService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019/2/22 14:27
  */
 @Slf4j
-@Service("shopConfigService")
+@Service(version = "1.0.0")
 public class ShopConfigServiceImpl implements ShopConfigService {
 
     @Autowired

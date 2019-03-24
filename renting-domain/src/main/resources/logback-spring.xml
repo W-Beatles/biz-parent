@@ -13,7 +13,7 @@
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{reqKey}] %logger{30}:%line - %msg%n"/>
 
     <!-- 配置日志位置 -->
-    <property name="LOG_HOME" value="/data/webroot/renting-web/logs"/>
+    <property name="LOG_HOME" value="/data/webroot/renting-core/logs"/>
 
     <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
     <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>

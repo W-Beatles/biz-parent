@@ -2,6 +2,7 @@ package cn.waynechu.renting.facade.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * @date 2019/2/21 16:43
  */
 @Data
-public class ShopConfigLogDTO {
+public class ShopConfigLogDTO implements Serializable {
 
     private Long shopId;
 

@@ -3,18 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>renting-facade</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
-    <name>renting-facade</name>
-    <description>renting facade module</description>
-
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>app-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
+    <artifactId>renting-facade</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>renting-facade</name>
+    <description>renting facade module</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -9,9 +9,8 @@ import cn.waynechu.renting.facade.service.SysDictionaryService;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ import java.util.List;
  * @date 2019/1/18 14:11
  */
 @Slf4j
-@Service("sysDictionaryService")
+@Service(version = "1.0.0")
 public class SysDictionaryServiceImpl implements SysDictionaryService {
 
     @Autowired

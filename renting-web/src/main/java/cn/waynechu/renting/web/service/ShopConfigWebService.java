@@ -4,6 +4,7 @@ import cn.waynechu.renting.facade.dto.ShopConfigLogDTO;
 import cn.waynechu.renting.facade.service.ShopConfigService;
 import cn.waynechu.webcommon.util.DateUtil;
 import cn.waynechu.webcommon.web.ModelExcel;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.Date;
 @Service
 public class ShopConfigWebService {
 
-    @Autowired
+    @Reference(version = "1.0.0")
     private ShopConfigService shopConfigService;
 
     public ModelExcel<ShopConfigLogDTO> exportLog(Date startDate, Date endDate) {

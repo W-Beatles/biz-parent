@@ -2,12 +2,12 @@ package cn.waynechu.webcommon.page;
 
 import cn.waynechu.webcommon.util.JsonBinder;
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageSerializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,7 +17,10 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "分页返回对象")
-public class PageInfo<T> extends PageSerializable<T> {
+public class PageInfo<T> implements Serializable {
+    private long total;
+    private List<T> list;
+
     @ApiModelProperty("当前页数")
     private int pageNum;
     @ApiModelProperty("分页大小")
@@ -36,7 +39,13 @@ public class PageInfo<T> extends PageSerializable<T> {
      * @param list page对象
      */
     public PageInfo(List<T> list) {
-        super(list);
+        this.list = list;
+        if (list instanceof Page) {
+            this.total = ((Page) list).getTotal();
+        } else {
+            this.total = (long) list.size();
+        }
+
         if (list instanceof Page) {
             Page page = (Page) list;
             this.pageNum = page.getPageNum();

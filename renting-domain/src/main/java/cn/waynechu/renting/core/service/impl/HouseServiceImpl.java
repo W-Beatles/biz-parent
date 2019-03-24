@@ -11,9 +11,8 @@ import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,7 +22,7 @@ import java.util.List;
  * @date 2018/11/14 16:33
  */
 @Slf4j
-@Service("houseService")
+@Service(version = "1.0.0")
 public class HouseServiceImpl implements HouseService {
 
     @Autowired

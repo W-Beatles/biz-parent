@@ -6,7 +6,7 @@ import cn.waynechu.renting.web.convert.dto.HouseDtoConvert;
 import cn.waynechu.renting.web.model.ModelHouse;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class HouseWebService {
 
-    @Autowired
+    @Reference(version = "1.0.0")
     private HouseService houseService;
 
     public ModelHouse getById(Long id) {

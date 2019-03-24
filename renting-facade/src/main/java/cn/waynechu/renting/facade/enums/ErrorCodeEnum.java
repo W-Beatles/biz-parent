@@ -2,11 +2,13 @@ package cn.waynechu.renting.facade.enums;
 
 import cn.waynechu.webcommon.enums.BaseEnum;
 
+import java.io.Serializable;
+
 /**
  * @author zhuwei
  * @date 2018/12/24 9:35
  */
-public enum ErrorCodeEnum implements BaseEnum {
+public enum ErrorCodeEnum implements BaseEnum, Serializable {
     /**
      * 错误码
      */

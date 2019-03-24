@@ -6,6 +6,7 @@ import cn.waynechu.renting.web.convert.dto.SysDictionaryDtoConvert;
 import cn.waynechu.renting.web.model.ModelSysDictionary;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @Service
 public class SysDictionaryWebService {
 
-    @Autowired
+    @Reference(version = "1.0.0")
     private SysDictionaryService sysDictionaryService;
 
     public ModelSysDictionary getById(Long id) {

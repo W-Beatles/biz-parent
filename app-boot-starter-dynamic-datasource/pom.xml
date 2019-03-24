@@ -10,8 +10,6 @@
 
     <artifactId>app-boot-starter-dynamic-datasource</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
     <name>app-boot-starter-dynamic-datasource</name>
     <description>App boot starter dynamic datasource module</description>
 
