@@ -3,6 +3,7 @@ package cn.waynechu.renting.core.repository;
 import cn.waynechu.renting.dal.common.entity.SysDictionary;
 import cn.waynechu.renting.dal.common.entity.SysDictionaryExample;
 import cn.waynechu.renting.dal.common.mapper.SysDictionaryMapper;
+import cn.waynechu.renting.facade.dto.condition.SysDictionarySearchCondition;
 import cn.waynechu.webcommon.page.PageInfo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,16 +54,19 @@ public class SysDictionaryRepository {
         return sysDictionaryMapper.updateByExampleSelective(sysDictionary, example) > 0;
     }
 
-    public PageInfo<SysDictionary> query(SysDictionary sysDictionary, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
+    public PageInfo<SysDictionary> query(SysDictionarySearchCondition condition) {
+        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
 
         SysDictionaryExample example = new SysDictionaryExample();
         SysDictionaryExample.Criteria criteria = example.createCriteria();
-        if (sysDictionary.getTypeCode() != null) {
-            criteria.andTypeCodeEqualTo(sysDictionary.getTypeCode());
+        if (condition.getId() != null) {
+            criteria.andIdEqualTo(condition.getId());
+        }
+        if (condition.getParentId() != null) {
+            criteria.andParentIdEqualTo(condition.getParentId());
         }
         criteria.andIsDeletedEqualTo(false);
-        List<SysDictionary> houses = sysDictionaryMapper.selectByExample(example);
-        return PageInfo.of(houses);
+        List<SysDictionary> sysDictionaryList = sysDictionaryMapper.selectByExample(example);
+        return PageInfo.of(sysDictionaryList);
     }
 }

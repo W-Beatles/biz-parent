@@ -1,7 +1,5 @@
 package cn.waynechu.renting.web.controller;
 
-import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
-import cn.waynechu.renting.web.convert.requset.SysDictionaryRequestConvert;
 import cn.waynechu.renting.web.model.ModelSysDictionary;
 import cn.waynechu.renting.web.request.SysDictionaryCreateRequest;
 import cn.waynechu.renting.web.request.SysDictionarySearchRequest;
@@ -24,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = "系统字典")
 @RestController
-@RequestMapping(value = "/dictionary", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/dictionaries", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class SysDictionaryController {
 
     @Autowired
@@ -41,16 +39,14 @@ public class SysDictionaryController {
 
     @PostMapping
     @ApiOperation(value = "添加字典项")
-    public Result<Boolean> createSysDictionary(@Validated @RequestBody SysDictionaryCreateRequest sysDictionaryCreateReq) {
-        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryCreateReq);
-        return Result.success(sysDictionaryWebService.create(sysDictionaryDTO));
+    public Result<Boolean> createSysDictionary(@Validated @RequestBody SysDictionaryCreateRequest request) {
+        return Result.success(sysDictionaryWebService.create(request));
     }
 
     @PutMapping
     @ApiOperation(value = "更新字典项")
-    public Result<Boolean> updateSysDictionary(@Validated @RequestBody SysDictionaryUpdateRequest sysDictionaryUpdateRequest) {
-        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionaryUpdateRequest);
-        return Result.success(sysDictionaryWebService.update(sysDictionaryDTO));
+    public Result<Boolean> updateSysDictionary(@Validated @RequestBody SysDictionaryUpdateRequest request) {
+        return Result.success(sysDictionaryWebService.update(request));
     }
 
     @DeleteMapping("/{id}")
@@ -59,11 +55,9 @@ public class SysDictionaryController {
         return Result.success(sysDictionaryWebService.removeById(id));
     }
 
-
     @PostMapping("/search")
-    public Result<PageInfo<ModelSysDictionary>> search(@RequestBody SysDictionarySearchRequest sysDictionarySearchRequest,
-                                                       @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        SysDictionaryDTO sysDictionaryDTO = SysDictionaryRequestConvert.toSysDictionaryDTO(sysDictionarySearchRequest);
-        return Result.success(sysDictionaryWebService.search(sysDictionaryDTO, pageNum, pageSize));
+    @ApiOperation(value = "分页搜索字典项")
+    public Result<PageInfo<ModelSysDictionary>> search(@RequestBody SysDictionarySearchRequest request) {
+        return Result.success(sysDictionaryWebService.search(request));
     }
 }

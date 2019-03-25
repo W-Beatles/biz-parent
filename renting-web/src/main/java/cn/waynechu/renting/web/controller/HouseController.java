@@ -1,7 +1,5 @@
 package cn.waynechu.renting.web.controller;
 
-import cn.waynechu.renting.facade.dto.HouseDTO;
-import cn.waynechu.renting.web.convert.requset.HouseRequestConvert;
 import cn.waynechu.renting.web.model.ModelHouse;
 import cn.waynechu.renting.web.request.HouseCreateRequest;
 import cn.waynechu.renting.web.request.HouseSearchRequest;
@@ -42,16 +40,14 @@ public class HouseController {
 
     @PostMapping
     @ApiOperation(value = "新增房屋信息")
-    public Result<Boolean> createHouse(@Validated @RequestBody HouseCreateRequest houseCreateRequest) {
-        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseCreateRequest);
-        return Result.success(houseWebService.create(houseDTO));
+    public Result<Boolean> createHouse(@Validated @RequestBody HouseCreateRequest request) {
+        return Result.success(houseWebService.create(request));
     }
 
     @PutMapping
     @ApiOperation(value = "更新房屋详情")
-    public Result<Boolean> updateHouse(@Validated @RequestBody HouseUpdateRequest houseUpdateRequest) {
-        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseUpdateRequest);
-        return Result.success(houseWebService.update(houseDTO));
+    public Result<Boolean> updateHouse(@Validated @RequestBody HouseUpdateRequest request) {
+        return Result.success(houseWebService.update(request));
     }
 
     @DeleteMapping("/{id}")
@@ -63,10 +59,8 @@ public class HouseController {
 
     @PostMapping("/search")
     @ApiOperation(value = "分页查询房屋信息")
-    public Result<PageInfo<ModelHouse>> search(@Validated @RequestBody HouseSearchRequest houseSearchRequest,
-                                               @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        HouseDTO houseDTO = HouseRequestConvert.toHouseDTO(houseSearchRequest);
-        return Result.success(houseWebService.search(houseDTO, pageNum, pageSize));
+    public Result<PageInfo<ModelHouse>> search(@Validated @RequestBody HouseSearchRequest request) {
+        return Result.success(houseWebService.search(request));
     }
 
     @PostMapping("/{id}")

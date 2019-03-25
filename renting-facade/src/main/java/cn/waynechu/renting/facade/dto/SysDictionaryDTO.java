@@ -11,17 +11,18 @@ import java.util.Date;
  */
 @Data
 public class SysDictionaryDTO implements Serializable {
+
     private Long id;
 
-    private Integer typeCode;
-
-    private String typeName;
-
-    private Integer code;
-
-    private String name;
-
     private Long parentId;
+
+    private String type;
+
+    private String code;
+
+    private String displayName;
+
+    private String description;
 
     private String createUser;
 

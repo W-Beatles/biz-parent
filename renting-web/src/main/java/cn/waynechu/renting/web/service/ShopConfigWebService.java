@@ -3,9 +3,8 @@ package cn.waynechu.renting.web.service;
 import cn.waynechu.renting.facade.dto.ShopConfigLogDTO;
 import cn.waynechu.renting.facade.service.ShopConfigService;
 import cn.waynechu.webcommon.util.DateUtil;
-import cn.waynechu.webcommon.web.ModelExcel;
+import cn.waynechu.webcommon.web.excel.ModelExcel;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

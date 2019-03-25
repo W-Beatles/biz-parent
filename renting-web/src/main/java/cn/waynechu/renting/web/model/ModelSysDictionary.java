@@ -17,18 +17,18 @@ public class ModelSysDictionary {
     @ApiModelProperty("字典ID")
     private Long id;
 
-    @ApiModelProperty("字典类型Code")
-    private Integer typeCode;
-
-    @ApiModelProperty("字典类型Name")
-    private String typeName;
-
-    @ApiModelProperty("字典Code")
-    private Integer code;
-
-    @ApiModelProperty("字典Name")
-    private String name;
-
     @ApiModelProperty("父节点ID。0，无父节点")
     private Long parentId;
+
+    @ApiModelProperty("类型")
+    private String type;
+
+    @ApiModelProperty("值")
+    private String code;
+
+    @ApiModelProperty("显示值")
+    private String displayName;
+
+    @ApiModelProperty("描述")
+    private String description;
 }

@@ -1,13 +1,16 @@
 package cn.waynechu.renting.web.service;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
+import cn.waynechu.renting.facade.dto.condition.SysDictionarySearchCondition;
 import cn.waynechu.renting.facade.service.SysDictionaryService;
 import cn.waynechu.renting.web.convert.dto.SysDictionaryDtoConvert;
 import cn.waynechu.renting.web.model.ModelSysDictionary;
+import cn.waynechu.renting.web.request.SysDictionaryCreateRequest;
+import cn.waynechu.renting.web.request.SysDictionarySearchRequest;
+import cn.waynechu.renting.web.request.SysDictionaryUpdateRequest;
 import cn.waynechu.webcommon.page.PageInfo;
-import cn.waynechu.webcommon.util.CollectionUtil;
+import cn.waynechu.webcommon.util.BeanUtil;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,11 +35,13 @@ public class SysDictionaryWebService {
         return returnValue;
     }
 
-    public boolean create(SysDictionaryDTO sysDictionaryDTO) {
+    public boolean create(SysDictionaryCreateRequest request) {
+        SysDictionaryDTO sysDictionaryDTO = BeanUtil.beanTransfer(request, SysDictionaryDTO.class);
         return sysDictionaryService.create(sysDictionaryDTO);
     }
 
-    public boolean update(SysDictionaryDTO sysDictionaryDTO) {
+    public boolean update(SysDictionaryUpdateRequest request) {
+        SysDictionaryDTO sysDictionaryDTO = BeanUtil.beanTransfer(request, SysDictionaryDTO.class);
         return sysDictionaryService.update(sysDictionaryDTO);
     }
 
@@ -44,15 +49,12 @@ public class SysDictionaryWebService {
         return sysDictionaryService.removeById(id);
     }
 
-    public PageInfo<ModelSysDictionary> search(SysDictionaryDTO sysDictionaryDTO, Integer pageNum, Integer pageSize) {
-        PageInfo<ModelSysDictionary> returnValue = new PageInfo<>(pageNum, pageSize);
+    public PageInfo<ModelSysDictionary> search(SysDictionarySearchRequest request) {
+        SysDictionarySearchCondition condition = BeanUtil.beanTransfer(request, SysDictionarySearchCondition.class);
+        PageInfo<SysDictionaryDTO> houseDTOPageInfo = sysDictionaryService.search(condition);
 
-        PageInfo<SysDictionaryDTO> houseDTOPageInfo = sysDictionaryService.search(sysDictionaryDTO, pageNum, pageSize);
         List<SysDictionaryDTO> list = houseDTOPageInfo.getList();
-        if (CollectionUtil.isNotNullOrEmpty(list)) {
-            List<ModelSysDictionary> houseVOList = SysDictionaryDtoConvert.toSysDictionaryRespList(list);
-            returnValue = houseDTOPageInfo.replace(houseVOList);
-        }
-        return returnValue;
+        List<ModelSysDictionary> houseVOList = SysDictionaryDtoConvert.toSysDictionaryRespList(list);
+        return houseDTOPageInfo.replace(houseVOList);
     }
 }

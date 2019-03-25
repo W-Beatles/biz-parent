@@ -11,6 +11,7 @@ import java.util.Date;
  */
 @Data
 public class HouseDTO implements Serializable {
+
     private Long id;
 
     private String title;

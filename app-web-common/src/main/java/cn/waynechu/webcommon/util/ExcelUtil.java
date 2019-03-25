@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.util;
 
-import cn.waynechu.webcommon.web.ModelExcel;
+import cn.waynechu.webcommon.web.excel.ModelExcel;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;

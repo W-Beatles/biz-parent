@@ -7,6 +7,7 @@ import cn.waynechu.renting.core.repository.SysDictionaryRepository;
 import cn.waynechu.renting.dal.common.entity.SysDictionary;
 import cn.waynechu.renting.dal.renting.entity.House;
 import cn.waynechu.renting.facade.dto.HouseDTO;
+import cn.waynechu.renting.facade.dto.condition.HouseSearchCondition;
 import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
@@ -88,12 +89,11 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public PageInfo<HouseDTO> search(HouseDTO houseDTO, int pageNum, int pageSize) {
-        PageInfo<HouseDTO> returnValue = new PageInfo<>(pageNum, pageSize);
+    public PageInfo<HouseDTO> search(HouseSearchCondition condition) {
+        PageInfo<HouseDTO> returnValue = null;
 
-        if (houseDTO != null) {
-            House house = HouseDtoConvert.toHouse(houseDTO);
-            PageInfo<House> housePageInfo = houseRepository.query(house, pageNum, pageSize);
+        if (condition != null) {
+            PageInfo<House> housePageInfo = houseRepository.query(condition);
 
             if (CollectionUtil.isNotNullOrEmpty(housePageInfo.getList())) {
                 List<HouseDTO> houseDTOS = HouseConvert.toHouseDTOList(housePageInfo.getList());

@@ -1,18 +1,18 @@
-package cn.waynechu.renting.web.request;
+package cn.waynechu.renting.facade.dto.condition;
 
-import cn.waynechu.webcommon.web.request.BasePageRequest;
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author zhuwei
- * @date 2018/12/29 12:46
+ * @date 2019/3/25 14:19
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@ApiModel(description = "分页搜索房屋信息请求对象")
-public class HouseSearchRequest extends BasePageRequest {
+public class HouseSearchCondition implements Serializable {
+
+    private Long id;
 
     private String title;
 
@@ -51,4 +51,18 @@ public class HouseSearchRequest extends BasePageRequest {
     private Integer bathroom;
 
     private String street;
+
+    private String createUser;
+
+    private Date createTime;
+
+    private String updateUser;
+
+    private Date updateTime;
+
+    private Boolean isDeleted;
+
+    private Integer pageNum = 1;
+
+    private Integer pageSize = 10;
 }

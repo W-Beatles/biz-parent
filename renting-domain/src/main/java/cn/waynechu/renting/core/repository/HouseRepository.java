@@ -4,6 +4,7 @@ import cn.waynechu.renting.core.constant.RedisPrefix;
 import cn.waynechu.renting.dal.renting.entity.House;
 import cn.waynechu.renting.dal.renting.entity.HouseExample;
 import cn.waynechu.renting.dal.renting.mapper.HouseMapper;
+import cn.waynechu.renting.facade.dto.condition.HouseSearchCondition;
 import cn.waynechu.webcommon.page.PageInfo;
 import com.alicp.jetcache.anno.*;
 import com.github.pagehelper.PageHelper;
@@ -61,16 +62,19 @@ public class HouseRepository {
         return houseMapper.updateByExampleSelective(house, example) > 0;
     }
 
-    public PageInfo<House> query(House house, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
+    public PageInfo<House> query(HouseSearchCondition condition) {
+        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
 
         HouseExample example = new HouseExample();
         HouseExample.Criteria criteria = example.createCriteria();
-        if (StringUtils.hasText(house.getTitle())) {
-            criteria.andTitleEqualTo(house.getTitle());
+        if (condition.getId() != null) {
+            criteria.andIdEqualTo(condition.getId());
         }
-        if (house.getStatus() != null) {
-            criteria.andStatusEqualTo(house.getStatus());
+        if (StringUtils.hasText(condition.getTitle())) {
+            criteria.andTitleEqualTo(condition.getTitle());
+        }
+        if (condition.getPrice() != null) {
+            criteria.andPriceEqualTo(condition.getPrice());
         }
         criteria.andIsDeletedEqualTo(false);
         List<House> houses = houseMapper.selectByExample(example);

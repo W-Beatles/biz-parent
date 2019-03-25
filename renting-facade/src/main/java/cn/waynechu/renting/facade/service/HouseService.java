@@ -1,6 +1,7 @@
 package cn.waynechu.renting.facade.service;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
+import cn.waynechu.renting.facade.dto.condition.HouseSearchCondition;
 import cn.waynechu.webcommon.page.PageInfo;
 
 /**
@@ -19,5 +20,5 @@ public interface HouseService {
 
     boolean copyByIdTransition(Long id);
 
-    PageInfo<HouseDTO> search(HouseDTO houseDTO, int pageNum, int pageSize);
+    PageInfo<HouseDTO> search(HouseSearchCondition condition);
 }

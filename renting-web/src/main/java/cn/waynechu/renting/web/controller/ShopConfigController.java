@@ -4,7 +4,7 @@ import cn.waynechu.renting.facade.dto.ShopConfigLogDTO;
 import cn.waynechu.renting.web.request.ExportLogRequest;
 import cn.waynechu.renting.web.service.ShopConfigWebService;
 import cn.waynechu.webcommon.util.ExcelUtil;
-import cn.waynechu.webcommon.web.ModelExcel;
+import cn.waynechu.webcommon.web.excel.ModelExcel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

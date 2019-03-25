@@ -7,70 +7,6 @@
 3. 集成Druid数据源监控多数据源，支持原生SQL监控、防火墙监控、慢查询日志、Url监控、Spring监控等
 4. 可实现 **DynamicDataSourceStrategy** 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
 
-### 约定与说明
-
-比如：
-
-```
-spring.datasource.dynamic.datasource.order-master.balalala...
-spring.datasource.dynamic.datasource.order-slave1.balalala...
-spring.datasource.dynamic.datasource.order-slave2.balalala...
-spring.datasource.dynamic.datasource.order-slave3.balalala...
-```
-
-1. 其中 **order-master**、**order-slave1**、**order-slave2** 代表数据源的名称，动态数据源会将 **-** 之前字符相同的数据源划分到同一组数据源中
-
-2. 减号 **-** 后面的部分为数据源名称，你可以起任何有意义的名称。要想配置某个组内的某个数据源为主数据源，只需要数据源名称中包含 **master** 字符标记即可
-
-3. 如果不使用 **master** 标记主数据源，会使用添加到该组的第一个数据源作为主数据源。有时候这将会因为从数据源的只读设置带来读写失败异常的情况发生。所以最好给主数据源名称加个 **master** 字符标记哦！
-
-### 当前版本局限
-
-1. 不支持跨库事务/分布式事务
-
-    比如以下事务方法中同时操作两个数据源的情况：
-    
-    ```
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public boolean transitionTest() {
-        ...
-        // 先操作产品库 (192.168.2.100:3306)
-        productRepository.create(product);
-        
-        // 再操作订单库 (192.168.1.100:3306)
-        orderRepository.create(order);
-        ...
-    }
-    ```
-    
-    当方法执行到创建订单时，因为此时操作的还是产品库，会抛出异常。在事务控制下，无法实现数据源的切换。
-
-2. 限制了 **mapper(xml)** 文件放置的位置。目前切换不同数据库的逻辑是使用MyBatis拦截器拿到
- **MappedStatement** 对象的 **resource** 字符串。其中 **resource** 代表了当前查询的mapper方法对应的xml的存放路径。
-     
-     关键代码如下：
-     ```
-     MappedStatement ms = (MappedStatement) args[0];
-     String resource = ms.getResource(); // resource = "file [C:\Users\zhuwei\workspace\tuhu-parent\order-integration-dal\target\classes\sqlmap\gungnir\OrderMapper.xml]";
-     String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
-     String groupName = splitResource[splitResource.length - 2]; // groupName = "gungnir"
-     ```
-    这样拦截器就可以获取到当前要操作的数据库属于 **gungnir** 数据源组。
-    
-    所以，**关键！关键！关键！**
-    把属于不同数据库的mapper.xml文件放在 **对应数据库组名** 的文件夹下
-    
-    比如：
-    - resource
-       - sqlmap
-          - gungnir
-             - temp.xml
-             - temp1.xml
-          - tuhu_order
-             - test.xml
-             - test1.xml
-
 ### 使用方法
 
 1. 添加pom依赖
@@ -78,7 +14,7 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
     ```
     <dependency>
         <groupId>cn.waynechu</groupId>
-        <artifactId>tuhu-boot-starter-dynamic-datasource</artifactId>
+        <artifactId>app-boot-starter-dynamic-datasource</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </dependency>
     ```
@@ -143,3 +79,67 @@ spring.datasource.dynamic.datasource.product-slave2.username=root
 spring.datasource.dynamic.datasource.product-slave2.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
 spring.datasource.dynamic.datasource.product-slave2.url=jdbc:mysql://192.168.2.102:3306:3308/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 ```
+
+### 约定与说明
+
+比如：
+
+```
+spring.datasource.dynamic.datasource.order-master.balalala...
+spring.datasource.dynamic.datasource.order-slave1.balalala...
+spring.datasource.dynamic.datasource.order-slave2.balalala...
+spring.datasource.dynamic.datasource.order-slave3.balalala...
+```
+
+1. 其中 **order-master**、**order-slave1**、**order-slave2** 代表数据源的名称，动态数据源会将 **-** 之前字符相同的数据源划分到同一组数据源中
+
+2. 减号 **-** 后面的部分为数据源名称，你可以起任何有意义的名称。要想配置某个组内的某个数据源为主数据源，只需要数据源名称中包含 **master** 字符标记即可
+
+3. 如果不使用 **master** 标记主数据源，会使用添加到该组的第一个数据源作为主数据源。有时候这将会因为从数据源的只读设置带来读写失败异常的情况发生。所以最好给主数据源名称加个 **master** 字符标记哦！
+
+### 当前版本局限
+
+1. 不支持跨库事务/分布式事务
+
+    比如以下事务方法中同时操作两个数据源的情况：
+    
+    ```
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean transitionTest() {
+        ...
+        // 先操作产品库 (192.168.2.100:3306)
+        productRepository.create(product);
+        
+        // 再操作订单库 (192.168.1.100:3306)
+        orderRepository.create(order);
+        ...
+    }
+    ```
+    
+    当方法执行到创建订单时，因为此时操作的还是产品库，会抛出异常。在事务控制下，无法实现数据源的切换。
+
+2. 限制了 **mapper(xml)** 文件放置的位置。目前切换不同数据库的逻辑是使用MyBatis拦截器拿到
+ **MappedStatement** 对象的 **resource** 字符串。其中 **resource** 代表了当前查询的mapper方法对应的xml的存放路径。
+     
+     关键代码如下：
+     ```
+     MappedStatement ms = (MappedStatement) args[0];
+     String resource = ms.getResource(); // resource = "file [C:\Users\zhuwei\workspace\tuhu-parent\order-integration-dal\target\classes\sqlmap\gungnir\OrderMapper.xml]";
+     String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
+     String groupName = splitResource[splitResource.length - 2]; // groupName = "gungnir"
+     ```
+    这样拦截器就可以获取到当前要操作的数据库属于 **gungnir** 数据源组。
+    
+    所以，**关键！关键！关键！**
+    把属于不同数据库的mapper.xml文件放在 **对应数据库组名** 的文件夹下
+    
+    比如：
+    - resource
+       - sqlmap
+          - gungnir
+             - temp.xml
+             - temp1.xml
+          - tuhu_order
+             - test.xml
+             - test1.xml

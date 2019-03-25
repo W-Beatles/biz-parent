@@ -5,6 +5,7 @@ import cn.waynechu.renting.core.convert.entity.SysDictionaryConvert;
 import cn.waynechu.renting.core.repository.SysDictionaryRepository;
 import cn.waynechu.renting.dal.common.entity.SysDictionary;
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
+import cn.waynechu.renting.facade.dto.condition.SysDictionarySearchCondition;
 import cn.waynechu.renting.facade.service.SysDictionaryService;
 import cn.waynechu.webcommon.page.PageInfo;
 import cn.waynechu.webcommon.util.CollectionUtil;
@@ -64,12 +65,10 @@ public class SysDictionaryServiceImpl implements SysDictionaryService {
     }
 
     @Override
-    public PageInfo<SysDictionaryDTO> search(SysDictionaryDTO sysDictionaryDTO, int pageNum, int pageSize) {
-        PageInfo<SysDictionaryDTO> returnValue = new PageInfo<>(pageNum, pageSize);
-
-        if (sysDictionaryDTO != null) {
-            SysDictionary sysDictionary = SysDictionaryDtoConvert.toSysDictionary(sysDictionaryDTO);
-            PageInfo<SysDictionary> sysDictionaryPageInfo = sysDictionaryRepository.query(sysDictionary, pageNum, pageSize);
+    public PageInfo<SysDictionaryDTO> search(SysDictionarySearchCondition condition) {
+        PageInfo<SysDictionaryDTO> returnValue = null;
+        if (condition != null) {
+            PageInfo<SysDictionary> sysDictionaryPageInfo = sysDictionaryRepository.query(condition);
 
             if (CollectionUtil.isNotNullOrEmpty(sysDictionaryPageInfo.getList())) {
                 List<SysDictionaryDTO> sysDictionaryDTOS = SysDictionaryConvert.toSysDictionaryDTOList(sysDictionaryPageInfo.getList());

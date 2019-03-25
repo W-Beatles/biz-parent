@@ -15,25 +15,24 @@ import java.util.Date;
 @ApiModel(description = "添加字典信息请求对象")
 public class SysDictionaryCreateRequest {
 
-    @ApiModelProperty("字典类型Code")
-    @NotNull(message = "字典类型Code不能为空")
-    private Integer typeCode;
-
-    @ApiModelProperty("字典类型Name")
-    @NotNull(message = "字典类型Name不能为空")
-    private String typeName;
-
-    @ApiModelProperty("字典Code")
-    @NotNull(message = "字典Code不能为空")
-    private Integer code;
-
-    @ApiModelProperty("字典Name")
-    @NotNull(message = "字典Name不能为空")
-    private String name;
-
-    @ApiModelProperty("父节点ID。默认0，无父节点")
+    @ApiModelProperty("父节点ID。0，无父节点")
     @NotNull(message = "父节点ID不能为空")
     private Long parentId;
+
+    @ApiModelProperty("类型")
+    @NotNull(message = "类型不能为空")
+    private String type;
+
+    @ApiModelProperty("值")
+    @NotNull(message = "值不能为空")
+    private String code;
+
+    @ApiModelProperty("显示值")
+    @NotNull(message = "显示值不能为空")
+    private String displayName;
+
+    @ApiModelProperty("描述")
+    private String description;
 
     @ApiModelProperty("创建人")
     @NotNull(message = "创建人不能为空")

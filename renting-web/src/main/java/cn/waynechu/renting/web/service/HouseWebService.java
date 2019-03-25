@@ -1,11 +1,15 @@
 package cn.waynechu.renting.web.service;
 
 import cn.waynechu.renting.facade.dto.HouseDTO;
+import cn.waynechu.renting.facade.dto.condition.HouseSearchCondition;
 import cn.waynechu.renting.facade.service.HouseService;
 import cn.waynechu.renting.web.convert.dto.HouseDtoConvert;
 import cn.waynechu.renting.web.model.ModelHouse;
+import cn.waynechu.renting.web.request.HouseCreateRequest;
+import cn.waynechu.renting.web.request.HouseSearchRequest;
+import cn.waynechu.renting.web.request.HouseUpdateRequest;
 import cn.waynechu.webcommon.page.PageInfo;
-import cn.waynechu.webcommon.util.CollectionUtil;
+import cn.waynechu.webcommon.util.BeanUtil;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +35,13 @@ public class HouseWebService {
         return returnValue;
     }
 
-    public boolean create(HouseDTO houseDTO) {
+    public boolean create(HouseCreateRequest request) {
+        HouseDTO houseDTO = BeanUtil.beanTransfer(request, HouseDTO.class);
         return houseService.create(houseDTO);
     }
 
-    public boolean update(HouseDTO houseDTO) {
+    public boolean update(HouseUpdateRequest request) {
+        HouseDTO houseDTO = BeanUtil.beanTransfer(request, HouseDTO.class);
         return houseService.update(houseDTO);
     }
 
@@ -43,19 +49,18 @@ public class HouseWebService {
         return houseService.removeById(id);
     }
 
-    public PageInfo<ModelHouse> search(HouseDTO houseDTO, Integer pageNum, Integer pageSize) {
-        PageInfo<ModelHouse> returnValue = new PageInfo<>(pageNum, pageSize);
-
-        PageInfo<HouseDTO> houseDTOPageInfo = houseService.search(houseDTO, pageNum, pageSize);
+    public PageInfo<ModelHouse> search(HouseSearchRequest request) {
+        HouseSearchCondition condition = BeanUtil.beanTransfer(request, HouseSearchCondition.class);
+        PageInfo<HouseDTO> houseDTOPageInfo = houseService.search(condition);
         List<HouseDTO> list = houseDTOPageInfo.getList();
-        if (CollectionUtil.isNotNullOrEmpty(list)) {
-            List<ModelHouse> houseVOList = HouseDtoConvert.toHouseRespList(list);
-            returnValue = houseDTOPageInfo.replace(houseVOList);
-        }
-        return returnValue;
+
+        List<ModelHouse> houseVOList = HouseDtoConvert.toHouseRespList(list);
+        return houseDTOPageInfo.replace(houseVOList);
     }
 
     public boolean copyByIdTransition(Long id) {
         return houseService.copyByIdTransition(id);
     }
+
+
 }

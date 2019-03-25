@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -15,9 +16,12 @@ import java.util.List;
  * @date 2019/1/9 14:04
  */
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "分页详情返回对象")
 public class PageDetail<T> extends PageSerializable<T> {
+    private static final long serialVersionUID = 4173165387592228326L;
+
     @ApiModelProperty("当前页数")
     private int pageNum;
     @ApiModelProperty("分页大小")

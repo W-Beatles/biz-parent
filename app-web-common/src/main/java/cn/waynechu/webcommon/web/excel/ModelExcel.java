@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.web;
+package cn.waynechu.webcommon.web.excel;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

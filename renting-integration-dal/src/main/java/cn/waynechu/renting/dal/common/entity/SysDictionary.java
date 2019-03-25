@@ -6,15 +6,15 @@ import java.util.Date;
 public class SysDictionary implements Serializable {
     private Long id;
 
-    private Integer typeCode;
-
-    private String typeName;
-
-    private Integer code;
-
-    private String name;
-
     private Long parentId;
+
+    private String type;
+
+    private String code;
+
+    private String displayName;
+
+    private String description;
 
     private String createUser;
 
@@ -26,13 +26,13 @@ public class SysDictionary implements Serializable {
 
     private Boolean isDeleted;
 
-    public SysDictionary(Long id, Integer typeCode, String typeName, Integer code, String name, Long parentId, String createUser, Date createTime, String updateUser, Date updateTime, Boolean isDeleted) {
+    public SysDictionary(Long id, Long parentId, String type, String code, String displayName, String description, String createUser, Date createTime, String updateUser, Date updateTime, Boolean isDeleted) {
         this.id = id;
-        this.typeCode = typeCode;
-        this.typeName = typeName;
-        this.code = code;
-        this.name = name;
         this.parentId = parentId;
+        this.type = type;
+        this.code = code;
+        this.displayName = displayName;
+        this.description = description;
         this.createUser = createUser;
         this.createTime = createTime;
         this.updateUser = updateUser;
@@ -52,44 +52,44 @@ public class SysDictionary implements Serializable {
         this.id = id;
     }
 
-    public Integer getTypeCode() {
-        return typeCode;
-    }
-
-    public void setTypeCode(Integer typeCode) {
-        this.typeCode = typeCode;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName == null ? null : typeName.trim();
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
     public Long getParentId() {
         return parentId;
     }
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName == null ? null : displayName.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getCreateUser() {

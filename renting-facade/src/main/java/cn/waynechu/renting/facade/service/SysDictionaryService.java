@@ -1,6 +1,7 @@
 package cn.waynechu.renting.facade.service;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
+import cn.waynechu.renting.facade.dto.condition.SysDictionarySearchCondition;
 import cn.waynechu.webcommon.page.PageInfo;
 
 /**
@@ -17,5 +18,5 @@ public interface SysDictionaryService {
 
     boolean removeById(Long id);
 
-    PageInfo<SysDictionaryDTO> search(SysDictionaryDTO sysDictionaryDTO, int pageNum, int pageSize);
+    PageInfo<SysDictionaryDTO> search(SysDictionarySearchCondition condition);
 }
