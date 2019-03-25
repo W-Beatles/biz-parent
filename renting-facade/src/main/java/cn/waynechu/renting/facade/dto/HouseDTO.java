@@ -1,7 +1,9 @@
 package cn.waynechu.renting.facade.dto;
 
+import cn.waynechu.renting.facade.service.HouseService;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,11 @@ import java.util.Date;
 @Data
 public class HouseDTO implements Serializable {
 
+    /**
+     * 房屋ID
+     * 更新时不允许为空，添加时允许为空
+     */
+    @NotNull(groups = HouseService.Update.class)
     private Long id;
 
     private String title;

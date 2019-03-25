@@ -40,13 +40,13 @@ public class HouseController {
 
     @PostMapping
     @ApiOperation(value = "新增房屋信息")
-    public Result<Boolean> createHouse(@Validated @RequestBody HouseCreateRequest request) {
+    public Result<Boolean> createHouse(@RequestBody HouseCreateRequest request) {
         return Result.success(houseWebService.create(request));
     }
 
     @PutMapping
     @ApiOperation(value = "更新房屋详情")
-    public Result<Boolean> updateHouse(@Validated @RequestBody HouseUpdateRequest request) {
+    public Result<Boolean> updateHouse(@RequestBody HouseUpdateRequest request) {
         return Result.success(houseWebService.update(request));
     }
 

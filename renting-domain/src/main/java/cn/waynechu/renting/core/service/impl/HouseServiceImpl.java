@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2018/11/14 16:33
  */
 @Slf4j
-@Service(version = "1.0.0")
+@Service(version = "1.0.0", validation = "true")
 public class HouseServiceImpl implements HouseService {
 
     @Autowired
