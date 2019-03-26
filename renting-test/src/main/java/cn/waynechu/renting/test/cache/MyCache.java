@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.demo.cache;
+package cn.waynechu.renting.test.cache;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;

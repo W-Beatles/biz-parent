@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.demo.cache;
+package cn.waynechu.renting.test.cache;
 
 import org.springframework.cache.support.AbstractCacheManager;
 

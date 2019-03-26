@@ -1,9 +1,9 @@
-package cn.waynechu.webcommon.demo.aop;
+package cn.waynechu.renting.test.aop;
 
-import cn.waynechu.webcommon.demo.aop.cglib.Foo;
-import cn.waynechu.webcommon.demo.aop.cglib.MethodPrintAdvice;
-import cn.waynechu.webcommon.demo.aop.jdk.Sub;
-import cn.waynechu.webcommon.demo.aop.jdk.SubImpl;
+import cn.waynechu.renting.test.aop.cglib.Foo;
+import cn.waynechu.renting.test.aop.cglib.MethodPrintAdvice;
+import cn.waynechu.renting.test.aop.jdk.Sub;
+import cn.waynechu.renting.test.aop.jdk.SubImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.framework.ProxyFactory;

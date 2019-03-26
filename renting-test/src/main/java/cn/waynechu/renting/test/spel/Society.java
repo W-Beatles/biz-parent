@@ -1,4 +1,4 @@
-package cn.waynechu.renting.web.spel;
+package cn.waynechu.renting.test.spel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

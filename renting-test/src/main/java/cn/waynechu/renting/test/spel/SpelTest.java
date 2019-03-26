@@ -1,4 +1,4 @@
-package cn.waynechu.renting.web.spel;
+package cn.waynechu.renting.test.spel;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.expression.Expression;
@@ -49,7 +49,7 @@ public class SpelTest {
         log.info(String.valueOf(result));
 
         // 构造调用 参数仅限于原始类型及String
-        Inventor einstein = parser.parseExpression("new cn.waynechu.renting.web.spel.Inventor()").getValue(Inventor.class);
+        Inventor einstein = parser.parseExpression("new cn.waynechu.renting.test.spel.Inventor()").getValue(Inventor.class);
         log.info(einstein.toString());
 
         // 模板解析
@@ -57,6 +57,6 @@ public class SpelTest {
                 "My name is #{name}, i'm from #{nationality}, and my birthdate is #{birthdate}",
                 new TemplateParserContext()
         ).getValue(inventor);
-        System.out.println(template);
+        log.info(template);
     }
 }

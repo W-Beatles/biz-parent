@@ -1,4 +1,4 @@
-package cn.waynechu.webcommon.demo.aop.cglib;
+package cn.waynechu.renting.test.aop.cglib;
 
 import cn.waynechu.webcommon.annotation.MethodLogAnnotation;
 import cn.waynechu.webcommon.util.JsonBinder;

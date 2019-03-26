@@ -42,6 +42,20 @@
         <xxl-job-core.version>2.0.1</xxl-job-core.version>
     </properties>
 
+    <modules>
+        <module>app-web-common</module>
+        <module>app-boot-starter-common</module>
+        <module>app-boot-starter-dynamic-datasource</module>
+        <module>app-boot-starter-sentry</module>
+        <module>app-boot-starter-elastic-job</module>
+
+        <module>renting-integration-dal</module>
+        <module>renting-domain</module>
+        <module>renting-facade</module>
+        <module>renting-web</module>
+        <module>renting-test</module>
+    </modules>
+
     <repositories>
         <repository>
             <id>Aliyun</id>
@@ -290,17 +304,4 @@
             </properties>
         </profile>
     </profiles>
-
-    <modules>
-        <module>app-web-common</module>
-        <module>app-boot-starter-common</module>
-        <module>app-boot-starter-dynamic-datasource</module>
-        <module>app-boot-starter-sentry</module>
-        <module>app-boot-starter-elastic-job</module>
-
-        <module>renting-integration-dal</module>
-        <module>renting-domain</module>
-        <module>renting-facade</module>
-        <module>renting-web</module>
-    </modules>
 </project>
