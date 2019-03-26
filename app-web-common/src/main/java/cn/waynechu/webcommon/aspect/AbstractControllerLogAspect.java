@@ -24,7 +24,7 @@ import java.util.Collection;
  * @date 2019/03/22 14:16
  */
 @Slf4j
-public abstract class BaseControllerLogAspect {
+public abstract class AbstractControllerLogAspect {
 
     public static final String TIME_TAKEN_KEY = "timeTaken";
 

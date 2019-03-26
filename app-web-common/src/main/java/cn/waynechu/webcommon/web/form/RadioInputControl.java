@@ -11,7 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class RadioInputControl extends BaseFormControl {
+public class RadioInputControl extends AbstarctFormControl {
 
     private String value;
 

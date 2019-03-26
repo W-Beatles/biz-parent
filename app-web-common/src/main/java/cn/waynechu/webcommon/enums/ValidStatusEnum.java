@@ -4,7 +4,7 @@ package cn.waynechu.webcommon.enums;
  * @author zhuwei
  * @date 2018/11/6 17:24
  */
-public enum ValidStatusEnum implements BaseEnum {
+public enum ValidStatusEnum implements AbstractEnum {
     /**
      * 通用 有效/无效 状态枚举
      */
@@ -30,7 +30,7 @@ public enum ValidStatusEnum implements BaseEnum {
     }
 
     @Override
-    public BaseEnum getByCode(int code) {
+    public AbstractEnum getByCode(int code) {
         for (ValidStatusEnum validStatusEnum : values()) {
             if (validStatusEnum.getCode() == code) {
                 return validStatusEnum;

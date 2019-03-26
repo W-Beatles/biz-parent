@@ -11,6 +11,6 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel(description = "请求对象")
-public abstract class BaseRequest implements Serializable {
+public abstract class AbstractRequest implements Serializable {
     private static final long serialVersionUID = 2688827622955322894L;
 }

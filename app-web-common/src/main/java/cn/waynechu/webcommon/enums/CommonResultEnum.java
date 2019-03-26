@@ -4,7 +4,7 @@ package cn.waynechu.webcommon.enums;
  * @author zhuwei
  * @date 2018/11/6 18:49
  */
-public enum CommonResultEnum implements BaseEnum {
+public enum CommonResultEnum implements AbstractEnum {
     /**
      * 响应枚举
      */
@@ -34,7 +34,7 @@ public enum CommonResultEnum implements BaseEnum {
     }
 
     @Override
-    public BaseEnum getByCode(int code) {
+    public AbstractEnum getByCode(int code) {
         for (CommonResultEnum baseResultEnum : values()) {
             if (baseResultEnum.getCode() == code) {
                 return baseResultEnum;

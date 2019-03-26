@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.web;
 
-import cn.waynechu.webcommon.enums.BaseEnum;
+import cn.waynechu.webcommon.enums.AbstractEnum;
 import cn.waynechu.webcommon.enums.CommonResultEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -26,14 +26,14 @@ public class Result<T> implements Serializable {
     @ApiModelProperty(value = "返回对象")
     private T data;
 
-    private Result(BaseEnum baseEnum) {
-        this.code = baseEnum.getCode();
-        this.message = baseEnum.getDesc();
+    private Result(AbstractEnum abstractEnum) {
+        this.code = abstractEnum.getCode();
+        this.message = abstractEnum.getDesc();
     }
 
-    private Result(BaseEnum baseEnum, T data) {
-        this.code = baseEnum.getCode();
-        this.message = baseEnum.getDesc();
+    private Result(AbstractEnum abstractEnum, T data) {
+        this.code = abstractEnum.getCode();
+        this.message = abstractEnum.getDesc();
         this.data = data;
     }
 
@@ -60,8 +60,8 @@ public class Result<T> implements Serializable {
         return new Result<>(CommonResultEnum.SUCCESS.getCode(), message, data);
     }
 
-    public static <T> Result<T> error(BaseEnum baseEnum) {
-        return new Result<>(baseEnum.getCode(), baseEnum.getDesc());
+    public static <T> Result<T> error(AbstractEnum abstractEnum) {
+        return new Result<>(abstractEnum.getCode(), abstractEnum.getDesc());
     }
 
     public static <T> Result<T> error() {

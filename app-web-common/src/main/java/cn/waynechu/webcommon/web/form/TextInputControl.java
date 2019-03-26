@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class TextInputControl extends BaseFormControl {
+public class TextInputControl extends AbstarctFormControl {
 
     private String value;
 

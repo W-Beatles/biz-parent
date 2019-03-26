@@ -1,6 +1,6 @@
 package cn.waynechu.webcommon.exception;
 
-import cn.waynechu.webcommon.enums.BaseEnum;
+import cn.waynechu.webcommon.enums.AbstractEnum;
 
 import java.io.Serializable;
 
@@ -19,10 +19,10 @@ public class BizException extends RuntimeException implements Serializable {
 
     private final String errorMessage;
 
-    public BizException(BaseEnum baseEnum) {
-        super(baseEnum.getDesc());
-        this.errorCode = baseEnum.getCode();
-        this.errorMessage = baseEnum.getDesc();
+    public BizException(AbstractEnum abstractEnum) {
+        super(abstractEnum.getDesc());
+        this.errorCode = abstractEnum.getCode();
+        this.errorMessage = abstractEnum.getDesc();
     }
 
     public BizException(Integer errorCode, String errorMessage) {

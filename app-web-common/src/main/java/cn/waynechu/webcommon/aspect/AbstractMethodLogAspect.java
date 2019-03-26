@@ -25,7 +25,7 @@ import java.util.Collection;
  * @date 2018/11/14 14:16
  */
 @Slf4j
-public abstract class BaseMethodLogAspect {
+public abstract class AbstractMethodLogAspect {
 
     @Pointcut("@annotation(cn.waynechu.webcommon.annotation.MethodLogAnnotation)")
     public void methodPrint() {

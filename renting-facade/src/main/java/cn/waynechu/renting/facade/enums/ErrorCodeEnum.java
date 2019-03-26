@@ -1,6 +1,6 @@
 package cn.waynechu.renting.facade.enums;
 
-import cn.waynechu.webcommon.enums.BaseEnum;
+import cn.waynechu.webcommon.enums.AbstractEnum;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author zhuwei
  * @date 2018/12/24 9:35
  */
-public enum ErrorCodeEnum implements BaseEnum, Serializable {
+public enum ErrorCodeEnum implements AbstractEnum, Serializable {
     /**
      * 错误码
      */
@@ -33,7 +33,7 @@ public enum ErrorCodeEnum implements BaseEnum, Serializable {
     }
 
     @Override
-    public BaseEnum getByCode(int code) {
+    public AbstractEnum getByCode(int code) {
         for (ErrorCodeEnum errorCodeEnum : values()) {
             if (errorCodeEnum.getCode() == code) {
                 return errorCodeEnum;

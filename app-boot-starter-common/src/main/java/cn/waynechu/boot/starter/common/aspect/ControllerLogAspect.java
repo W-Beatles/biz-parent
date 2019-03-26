@@ -1,6 +1,6 @@
 package cn.waynechu.boot.starter.common.aspect;
 
-import cn.waynechu.webcommon.aspect.BaseControllerLogAspect;
+import cn.waynechu.webcommon.aspect.AbstractControllerLogAspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class ControllerLogAspect extends BaseControllerLogAspect {
+public class ControllerLogAspect extends AbstractControllerLogAspect {
 
     @Pointcut("execution(* cn.waynechu..*.*(..))")
     @Override

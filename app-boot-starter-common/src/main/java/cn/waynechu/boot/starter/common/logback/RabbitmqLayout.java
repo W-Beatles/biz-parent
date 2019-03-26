@@ -6,7 +6,7 @@ import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.LayoutBase;
-import cn.waynechu.webcommon.aspect.BaseControllerLogAspect;
+import cn.waynechu.webcommon.aspect.AbstractControllerLogAspect;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
@@ -72,7 +72,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         if (event.getMDCPropertyMap() != null) {
             Map<String, String> mdcPropertyMap = event.getMDCPropertyMap();
             for (Map.Entry<String, String> entry : mdcPropertyMap.entrySet()) {
-                if (BaseControllerLogAspect.TIME_TAKEN_KEY.equals(entry.getKey())) {
+                if (AbstractControllerLogAspect.TIME_TAKEN_KEY.equals(entry.getKey())) {
                     // timeTaken 转化为int类型
                     json.put(entry.getKey(), Integer.parseInt(entry.getValue()));
                 } else {

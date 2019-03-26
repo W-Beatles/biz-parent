@@ -4,7 +4,7 @@ package cn.waynechu.webcommon.enums;
  * @author zhuwei
  * @date 2018/11/6 17:31
  */
-public interface BaseEnum {
+public interface AbstractEnum {
 
     /**
      * 获取枚举code
@@ -26,5 +26,5 @@ public interface BaseEnum {
      * @param code code
      * @return 枚举对象
      */
-    BaseEnum getByCode(int code);
+    AbstractEnum getByCode(int code);
 }
