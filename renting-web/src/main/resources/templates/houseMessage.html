@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>房屋信息</title>
+</head>
+
+<body>
+<hr style="border:gray dashed 1px"/>
+<br/>
+<div align="center">
+    <h3>房屋信息</h3>
+    房屋标题：
+    <th th:text="${modelHouse.title}"></th>
+    房屋价格：
+    <th th:text="${modelHouse.price}"></th>
+    房屋面积：
+    <th th:text="${modelHouse.area}"></th>
+    所在城市：
+    <th th:text="${modelHouse.cityEnName}"></th>
+    所在地区：
+    <th th:text="${modelHouse.regionEnName}"></th>
+</div>
+<br/>
+<hr style="border:gray dashed 1px"/>
+</body>
+</html>
