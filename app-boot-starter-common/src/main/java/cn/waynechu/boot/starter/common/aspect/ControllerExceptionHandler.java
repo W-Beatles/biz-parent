@@ -31,6 +31,9 @@ public class ControllerExceptionHandler {
     public Result methodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.info("请求参数校验不合法: {}", e.getMessage(), e);
         BindingResult bindingResult = e.getBindingResult();
+        if (bindingResult == null || bindingResult.getFieldError() == null) {
+            return Result.error(CommonResultEnum.ARGUMENT_NOT_VALID);
+        }
         return Result.error(CommonResultEnum.ARGUMENT_NOT_VALID.getCode(), bindingResult.getFieldError().getDefaultMessage());
     }
 
