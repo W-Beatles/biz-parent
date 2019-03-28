@@ -3,7 +3,7 @@ package cn.waynechu.renting.web.service;
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
 import cn.waynechu.renting.facade.dto.condition.SysDictionarySearchCondition;
 import cn.waynechu.renting.facade.service.SysDictionaryService;
-import cn.waynechu.renting.web.convert.dto.SysDictionaryDtoConvert;
+import cn.waynechu.renting.web.convert.SysDictionaryDtoConvert;
 import cn.waynechu.renting.web.model.ModelSysDictionary;
 import cn.waynechu.renting.web.request.SysDictionaryCreateRequest;
 import cn.waynechu.renting.web.request.SysDictionarySearchRequest;

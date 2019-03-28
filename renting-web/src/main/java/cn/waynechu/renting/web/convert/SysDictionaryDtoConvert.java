@@ -1,4 +1,4 @@
-package cn.waynechu.renting.web.convert.dto;
+package cn.waynechu.renting.web.convert;
 
 import cn.waynechu.renting.facade.dto.SysDictionaryDTO;
 import cn.waynechu.renting.web.model.ModelSysDictionary;

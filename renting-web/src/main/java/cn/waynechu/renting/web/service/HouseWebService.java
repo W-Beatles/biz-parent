@@ -3,7 +3,7 @@ package cn.waynechu.renting.web.service;
 import cn.waynechu.renting.facade.dto.HouseDTO;
 import cn.waynechu.renting.facade.dto.condition.HouseSearchCondition;
 import cn.waynechu.renting.facade.service.HouseService;
-import cn.waynechu.renting.web.convert.dto.HouseDtoConvert;
+import cn.waynechu.renting.web.convert.HouseDtoConvert;
 import cn.waynechu.renting.web.model.ModelHouse;
 import cn.waynechu.renting.web.request.HouseCreateRequest;
 import cn.waynechu.renting.web.request.HouseSearchRequest;
@@ -61,6 +61,4 @@ public class HouseWebService {
     public boolean copyByIdTransition(Long id) {
         return houseService.copyByIdTransition(id);
     }
-
-
 }

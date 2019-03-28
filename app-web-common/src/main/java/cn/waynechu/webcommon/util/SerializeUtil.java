@@ -27,6 +27,7 @@ public class SerializeUtil {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> T deserialize(byte[] bytes, Class<T> clazz) {
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
