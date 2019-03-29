@@ -47,6 +47,18 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!--<dependency>-->
         <!--<groupId>cn.waynechu</groupId>-->
         <!--<artifactId>app-boot-starter-elastic-job</artifactId>-->

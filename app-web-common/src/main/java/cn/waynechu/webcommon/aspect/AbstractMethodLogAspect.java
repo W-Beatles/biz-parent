@@ -41,7 +41,7 @@ public abstract class AbstractMethodLogAspect {
         }
 
         // 记录调用开始时间
-        if (printAnnotation.isPrintReturn() && printAnnotation.isPrintCostTime()) {
+        if (printAnnotation.isPrintReturn()) {
             DequeThreadLocalUtil.offerFirst(System.currentTimeMillis());
         }
     }
@@ -56,7 +56,7 @@ public abstract class AbstractMethodLogAspect {
         if (printAnnotation.isPrintReturn()) {
             String methodName = getPrintMethodName(joinPoint, printAnnotation);
             String returnStr = getPrintReturnStr(result, printAnnotation);
-            log.info("{}结束调用, 耗时: timeToken={}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
+            log.info("{}结束调用, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocalUtil.pollFirst(), returnStr);
         }
     }
 
@@ -68,7 +68,7 @@ public abstract class AbstractMethodLogAspect {
      *
      * @return 不打印的入参类型
      */
-    protected Collection<Class> excludePrintClass() {
+    protected static Collection<Class> excludePrintClass() {
         ArrayList<Class> excludePrintClass = new ArrayList<>(1);
         excludePrintClass.add(Invisible.class);
         return excludePrintClass;
@@ -115,7 +115,7 @@ public abstract class AbstractMethodLogAspect {
         ArrayList<Object> args = new ArrayList<>();
         for (Object arg : joinPoint.getArgs()) {
             boolean isInstance = false;
-            for (Class clazz : this.excludePrintClass()) {
+            for (Class clazz : excludePrintClass()) {
                 if (clazz.isInstance(arg)) {
                     isInstance = true;
                     break;

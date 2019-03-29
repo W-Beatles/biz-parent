@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.waynechu.renting.dal.renting.mapper.HouseMapper">
-    <resultMap id="BaseResultMap" type="cn.waynechu.renting.dal.renting.entity.House">
+<mapper namespace="com.waynechu.renting.dal.renting.mapper.HouseMapper">
+    <resultMap id="BaseResultMap" type="com.waynechu.renting.dal.renting.entity.House">
         <constructor>
             <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long"/>
             <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -97,7 +97,7 @@
     is_deleted
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap"
-            parameterType="cn.waynechu.renting.dal.renting.entity.HouseExample">
+            parameterType="com.waynechu.renting.dal.renting.entity.HouseExample">
         select
         <if test="distinct">
             distinct
@@ -121,13 +121,13 @@
     delete from house
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <delete id="deleteByExample" parameterType="cn.waynechu.renting.dal.renting.entity.HouseExample">
+    <delete id="deleteByExample" parameterType="com.waynechu.renting.dal.renting.entity.HouseExample">
         delete from house
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="cn.waynechu.renting.dal.renting.entity.House">
+    <insert id="insert" parameterType="com.waynechu.renting.dal.renting.entity.House">
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -150,7 +150,7 @@
         #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="cn.waynechu.renting.dal.renting.entity.House">
+    <insert id="insertSelective" parameterType="com.waynechu.renting.dal.renting.entity.House">
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -304,7 +304,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="cn.waynechu.renting.dal.renting.entity.HouseExample"
+    <select id="countByExample" parameterType="com.waynechu.renting.dal.renting.entity.HouseExample"
             resultType="java.lang.Integer">
         select count(*) from house
         <if test="_parameter != null">
@@ -425,7 +425,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="cn.waynechu.renting.dal.renting.entity.House">
+    <update id="updateByPrimaryKeySelective" parameterType="com.waynechu.renting.dal.renting.entity.House">
         update house
         <set>
             <if test="title != null">
@@ -503,7 +503,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="cn.waynechu.renting.dal.renting.entity.House">
+    <update id="updateByPrimaryKey" parameterType="com.waynechu.renting.dal.renting.entity.House">
     update house
     set title = #{title,jdbcType=VARCHAR},
       price = #{price,jdbcType=INTEGER},

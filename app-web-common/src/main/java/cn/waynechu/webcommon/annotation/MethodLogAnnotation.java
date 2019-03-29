@@ -53,18 +53,4 @@ public @interface MethodLogAnnotation {
      * @return default false
      */
     boolean isClassFullName() default false;
-
-    /**
-     * 打印方法调用时间
-     *
-     * @return default true
-     */
-    boolean isPrintCostTime() default true;
-
-    /**
-     * 打印方法抛出的异常
-     *
-     * @return default true
-     */
-    boolean isPrintException() default true;
 }

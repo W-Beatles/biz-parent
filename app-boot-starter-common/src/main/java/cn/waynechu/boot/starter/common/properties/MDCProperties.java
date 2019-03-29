@@ -15,7 +15,7 @@ public class MDCProperties {
     private boolean enable = false;
 
     /**
-     * MDC前缀
+     * MDC前缀。默认为 ${spring.application.name}
      */
-    private String prefix = "";
+    private String prefix;
 }

@@ -72,7 +72,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         if (event.getMDCPropertyMap() != null) {
             Map<String, String> mdcPropertyMap = event.getMDCPropertyMap();
             for (Map.Entry<String, String> entry : mdcPropertyMap.entrySet()) {
-                if (AbstractControllerLogAspect.TIME_TAKEN_KEY.equals(entry.getKey())) {
+                if (AbstractControllerLogAspect.MDC_TIME_TAKEN_KEY.equals(entry.getKey())) {
                     // timeTaken 转化为int类型
                     json.put(entry.getKey(), Integer.parseInt(entry.getValue()));
                 } else {

@@ -25,8 +25,8 @@ import java.util.Collection;
  */
 @Slf4j
 public abstract class AbstractControllerLogAspect {
-
-    public static final String TIME_TAKEN_KEY = "timeTaken";
+    private static final String MDC_URL_KEY = "url";
+    public static final String MDC_TIME_TAKEN_KEY = "timeTaken";
 
     private ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
@@ -36,15 +36,15 @@ public abstract class AbstractControllerLogAspect {
 
     @Before(value = "controllerLog() && @annotation(logAnnotation)")
     public void doBefore(JoinPoint joinPoint, ApiOperation logAnnotation) {
-        log.info("{}开始调用, 参数: {}", logAnnotation.value(), this.getPrintArgsStr(joinPoint));
+        log.info("{}开始调用, 参数: {}", logAnnotation.value(), this.getPrintArgsStr(joinPoint.getArgs()));
 
         // 记录调用开始的时间
         threadLocal.set(System.currentTimeMillis());
 
-        // 添加MDC记录 url:请求地址
+        // 添加MDC记录  url: 请求地址
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
         if (attributes != null) {
-            MDC.put("url", ((ServletRequestAttributes) attributes).getRequest().getRequestURI());
+            MDC.put(MDC_URL_KEY, ((ServletRequestAttributes) attributes).getRequest().getRequestURI());
         }
     }
 
@@ -56,13 +56,15 @@ public abstract class AbstractControllerLogAspect {
     @AfterReturning(value = "controllerLog() && @annotation(logAnnotation)", returning = "result")
     public void doAfterReturning(JoinPoint joinPoint, ApiOperation logAnnotation, Object result) {
         Long timeTaken = System.currentTimeMillis() - threadLocal.get();
-        // 添加MDC记录 timeTaken:调用耗时
-        MDC.put(TIME_TAKEN_KEY, String.valueOf(timeTaken));
+        // 添加MDC记录  timeTaken: 调用耗时
+        MDC.put(MDC_TIME_TAKEN_KEY, String.valueOf(timeTaken));
 
         String jsonResult = JsonBinder.buildAlwaysBinder().toJson(result);
         log.info("{}结束调用, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, jsonResult);
 
+        // clear
         threadLocal.remove();
+        MDC.clear();
     }
 
     /**
@@ -80,9 +82,9 @@ public abstract class AbstractControllerLogAspect {
         return excludePrintClass;
     }
 
-    private String getPrintArgsStr(JoinPoint joinPoint) {
-        ArrayList<Object> args = new ArrayList<>();
-        for (Object arg : joinPoint.getArgs()) {
+    private String getPrintArgsStr(Object[] args) {
+        ArrayList<Object> returnValue = new ArrayList<>();
+        for (Object arg : args) {
             boolean isInstance = false;
             for (Class clazz : this.excludePrintClass()) {
                 if (clazz.isInstance(arg)) {
@@ -92,9 +94,9 @@ public abstract class AbstractControllerLogAspect {
             }
 
             if (!isInstance) {
-                args.add(arg);
+                returnValue.add(arg);
             }
         }
-        return JsonBinder.buildAlwaysBinder().toJson(args);
+        return JsonBinder.buildAlwaysBinder().toJson(returnValue);
     }
 }
