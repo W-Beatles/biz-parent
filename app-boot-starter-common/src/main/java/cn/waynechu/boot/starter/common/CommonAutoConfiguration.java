@@ -1,6 +1,9 @@
 package cn.waynechu.boot.starter.common;
 
-import cn.waynechu.boot.starter.common.mdc.MDCFilter;
+import cn.waynechu.boot.starter.common.aspect.ControllerExceptionHandler;
+import cn.waynechu.boot.starter.common.aspect.ControllerLogAspect;
+import cn.waynechu.boot.starter.common.aspect.MethodLogAspect;
+import cn.waynechu.boot.starter.common.filter.MDCFilter;
 import cn.waynechu.boot.starter.common.properties.CommonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author zhuwei
@@ -17,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
+@Import({ControllerExceptionHandler.class, ControllerLogAspect.class, MethodLogAspect.class})
 @EnableConfigurationProperties({CommonProperties.class})
 public class CommonAutoConfiguration {
 
