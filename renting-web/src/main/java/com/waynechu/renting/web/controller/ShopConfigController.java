@@ -1,7 +1,7 @@
 package com.waynechu.renting.web.controller;
 
 import cn.waynechu.facade.common.excel.ModelExcel;
-import cn.waynechu.spirngcloud.common.util.ExcelUtil;
+import cn.waynechu.springcloud.common.util.ExcelUtil;
 import com.waynechu.renting.facade.dto.ShopConfigLogDTO;
 import com.waynechu.renting.web.request.ExportLogRequest;
 import com.waynechu.renting.web.service.ShopConfigWebService;

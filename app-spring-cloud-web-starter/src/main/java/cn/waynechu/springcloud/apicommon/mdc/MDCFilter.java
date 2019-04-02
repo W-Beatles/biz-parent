@@ -1,7 +1,7 @@
 package cn.waynechu.springcloud.apicommon.mdc;
 
-import cn.waynechu.spirngcloud.common.util.StringUtil;
-import cn.waynechu.spirngcloud.common.util.WebUtil;
+import cn.waynechu.springcloud.common.util.StringUtil;
+import cn.waynechu.springcloud.common.util.WebUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -14,13 +14,16 @@ import java.net.UnknownHostException;
 import java.util.UUID;
 
 /**
- * 该过滤器会调用 MDC.put("reqKey", reqKeyValue) 添加reqKey到MDC映射调试上下文中，这样就可以在log日志中追踪调用信息
- * <ZH_PATTERN>
+ * MDC过滤器
+ *
+ * <pre>
+ * 该过滤器会调用 MDC.put("reqKey", reqKeyValue) 添加reqKey到MDC映射调试上下文中，这样就可以在log日志中追踪请求调用信息
  * 其中reqKey的格式为: traceNo-prefix-shortJavaUUID-localHostName
- * - traceNo为请求的追踪号。可添加至请求头或请求参数中来追踪请求链路，其中key为traceNo
+ * - traceNo: 请求的追踪号。可添加至请求头或请求参数中来追踪请求链路，其中key为traceNo
  * - prefix: 项目唯一标识
  * - shortJavaUUID: 请求的唯一标识
- * - localHostName: 服务器Host名称
+ * - localHostName: 服务器HostName
+ * </pre>
  *
  * @author zhuwei
  * @date 2019/1/4 15:10

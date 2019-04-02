@@ -1,6 +1,6 @@
 package com.waynechu.renting.web.convert;
 
-import cn.waynechu.spirngcloud.common.util.BeanUtil;
+import cn.waynechu.springcloud.common.util.BeanUtil;
 import com.waynechu.renting.facade.dto.HouseDTO;
 import com.waynechu.renting.web.response.HouseResponse;
 import lombok.experimental.UtilityClass;

@@ -1,6 +1,6 @@
 package com.waynechu.renting.test.aop.jdk;
 
-import cn.waynechu.spirngcloud.common.annotation.MethodLogAnnotation;
+import cn.waynechu.springcloud.common.annotation.MethodLogAnnotation;
 
 /**
  * @author zhuwei

@@ -1,7 +1,7 @@
 package com.waynechu.renting.test.aop.jdk;
 
-import cn.waynechu.spirngcloud.common.annotation.MethodLogAnnotation;
-import cn.waynechu.spirngcloud.common.util.JsonBinder;
+import cn.waynechu.springcloud.common.annotation.MethodLogAnnotation;
+import cn.waynechu.springcloud.common.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 

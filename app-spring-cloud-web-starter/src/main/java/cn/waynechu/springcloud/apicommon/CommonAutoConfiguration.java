@@ -1,5 +1,8 @@
 package cn.waynechu.springcloud.apicommon;
 
+import cn.waynechu.springcloud.apicommon.aspect.ControllerExceptionHandler;
+import cn.waynechu.springcloud.apicommon.aspect.ControllerLogAspect;
+import cn.waynechu.springcloud.apicommon.aspect.MethodLogAspect;
 import cn.waynechu.springcloud.apicommon.mdc.MDCFilter;
 import cn.waynechu.springcloud.apicommon.properties.CommonProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author zhuwei
@@ -18,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties({CommonProperties.class})
+@Import({ControllerExceptionHandler.class, ControllerLogAspect.class, MethodLogAspect.class})
 public class CommonAutoConfiguration {
 
     @Autowired
@@ -27,7 +32,7 @@ public class CommonAutoConfiguration {
     private String applicationName;
 
     @Bean
-    @ConditionalOnProperty(value = "common.mdc-filter.enable", havingValue = "true")
+    @ConditionalOnProperty(value = "app.web.starter.mdc-filter.enable", havingValue = "true")
     public FilterRegistrationBean<MDCFilter> mdcFilterRegistrationBean() {
         FilterRegistrationBean<MDCFilter> registrationBean = new FilterRegistrationBean<>();
         MDCFilter mdcFilter = new MDCFilter();

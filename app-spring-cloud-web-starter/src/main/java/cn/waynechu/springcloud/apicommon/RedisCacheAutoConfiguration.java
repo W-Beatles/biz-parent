@@ -1,9 +1,9 @@
 package cn.waynechu.springcloud.apicommon;
 
-import cn.waynechu.spirngcloud.common.serializer.FastJsonSerializer;
 import cn.waynechu.springcloud.apicommon.properties.CommonProperties;
 import cn.waynechu.springcloud.apicommon.properties.RedisCacheProperties;
 import cn.waynechu.springcloud.apicommon.util.RedisCache;
+import cn.waynechu.springcloud.common.serializer.FastJsonSerializer;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -38,7 +38,7 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @EnableCaching
-@ConditionalOnProperty(value = "common.redis-cache.enable", havingValue = "true")
+@ConditionalOnProperty(value = "app.web.starter.redis-cache.enable", havingValue = "true")
 @EnableConfigurationProperties({CommonProperties.class})
 public class RedisCacheAutoConfiguration {
 

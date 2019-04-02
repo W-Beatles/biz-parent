@@ -37,9 +37,10 @@
             <artifactId>app-spring-cloud-common</artifactId>
         </dependency>
 
+        <!-- Cache -->
         <dependency>
-            <groupId>cn.waynechu</groupId>
-            <artifactId>app-facade-common</artifactId>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-starter-redis</artifactId>
         </dependency>
 
         <dependency>
@@ -47,26 +48,38 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <!-- MQ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
         </dependency>
 
+        <!-- Job -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
         </dependency>
 
+        <!--<dependency>-->
+        <!--<groupId>cn.waynechu</groupId>-->
+        <!--<artifactId>app-boot-starter-elastic-job</artifactId>-->
+        <!--</dependency>-->
+
+        <!-- Swagger UI -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <scope>provided</scope>
         </dependency>
 
+        <!-- TemplateEngine -->
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
 

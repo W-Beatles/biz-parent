@@ -1,6 +1,6 @@
 package com.waynechu.renting.core.convert.entity;
 
-import cn.waynechu.spirngcloud.common.util.BeanUtil;
+import cn.waynechu.springcloud.common.util.BeanUtil;
 import com.waynechu.renting.dal.common.entity.ShopConfigLog;
 import com.waynechu.renting.facade.dto.ShopConfigLogDTO;
 import lombok.experimental.UtilityClass;

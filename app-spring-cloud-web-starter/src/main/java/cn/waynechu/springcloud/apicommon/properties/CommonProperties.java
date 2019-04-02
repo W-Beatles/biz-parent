@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @date 2018/12/28 16:17
  */
 @Data
-@ConfigurationProperties(prefix = "common")
+@ConfigurationProperties(prefix = "app.web.starter")
 public class CommonProperties {
 
     @NestedConfigurationProperty

@@ -6,7 +6,7 @@ import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.LayoutBase;
-import cn.waynechu.spirngcloud.common.aspect.AbstractControllerLogAspect;
+import cn.waynechu.springcloud.common.aspect.AbstractControllerLogAspect;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 

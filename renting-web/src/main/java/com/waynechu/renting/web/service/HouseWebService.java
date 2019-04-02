@@ -1,7 +1,7 @@
 package com.waynechu.renting.web.service;
 
 import cn.waynechu.facade.common.page.PageInfo;
-import cn.waynechu.spirngcloud.common.util.BeanUtil;
+import cn.waynechu.springcloud.common.util.BeanUtil;
 import com.waynechu.renting.facade.dto.HouseDTO;
 import com.waynechu.renting.facade.dto.condition.HouseSearchCondition;
 import com.waynechu.renting.facade.service.HouseService;
