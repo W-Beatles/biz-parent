@@ -6,7 +6,7 @@ import java.util.ServiceLoader;
 
 /**
  * Java SPI演示案例
- * <p>
+ * <ZH_PATTERN>
  * 1、服务提供者提供接口及具体实现
  * 2、在jar包的META-INF/services目录下创建一个以“接口全限定名”为命名的文件，内容为实现类的全限定名；
  * 3、接口实现类所在的jar包放在主程序的classpath中；

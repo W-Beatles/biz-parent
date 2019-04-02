@@ -1,15 +1,15 @@
 package com.waynechu.renting.web.service;
 
-import cn.waynechu.webcommon.page.PageInfo;
-import cn.waynechu.webcommon.util.BeanUtil;
+import cn.waynechu.facade.common.page.PageInfo;
+import cn.waynechu.spirngcloud.common.util.BeanUtil;
 import com.waynechu.renting.facade.dto.SysDictionaryDTO;
 import com.waynechu.renting.facade.dto.condition.SysDictionarySearchCondition;
 import com.waynechu.renting.facade.service.SysDictionaryService;
 import com.waynechu.renting.web.convert.SysDictionaryDtoConvert;
-import com.waynechu.renting.web.model.ModelSysDictionary;
 import com.waynechu.renting.web.request.SysDictionaryCreateRequest;
 import com.waynechu.renting.web.request.SysDictionarySearchRequest;
 import com.waynechu.renting.web.request.SysDictionaryUpdateRequest;
+import com.waynechu.renting.web.response.SysDictionaryResponse;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +25,8 @@ public class SysDictionaryWebService {
     @Reference(version = "1.0.0")
     private SysDictionaryService sysDictionaryService;
 
-    public ModelSysDictionary getById(Long id) {
-        ModelSysDictionary returnValue = null;
+    public SysDictionaryResponse getById(Long id) {
+        SysDictionaryResponse returnValue = null;
 
         SysDictionaryDTO sysDictionaryDTO = sysDictionaryService.getById(id);
         if (sysDictionaryDTO != null) {
@@ -49,12 +49,12 @@ public class SysDictionaryWebService {
         return sysDictionaryService.removeById(id);
     }
 
-    public PageInfo<ModelSysDictionary> search(SysDictionarySearchRequest request) {
+    public PageInfo<SysDictionaryResponse> search(SysDictionarySearchRequest request) {
         SysDictionarySearchCondition condition = BeanUtil.beanTransfer(request, SysDictionarySearchCondition.class);
         PageInfo<SysDictionaryDTO> houseDTOPageInfo = sysDictionaryService.search(condition);
 
         List<SysDictionaryDTO> list = houseDTOPageInfo.getList();
-        List<ModelSysDictionary> houseVOList = SysDictionaryDtoConvert.toSysDictionaryRespList(list);
+        List<SysDictionaryResponse> houseVOList = SysDictionaryDtoConvert.toSysDictionaryRespList(list);
         return houseDTOPageInfo.replace(houseVOList);
     }
 }

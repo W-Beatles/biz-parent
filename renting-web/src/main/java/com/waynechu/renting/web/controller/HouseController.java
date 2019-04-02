@@ -1,11 +1,11 @@
 package com.waynechu.renting.web.controller;
 
-import cn.waynechu.webcommon.page.PageInfo;
-import cn.waynechu.webcommon.web.Result;
-import com.waynechu.renting.web.model.ModelHouse;
+import cn.waynechu.facade.common.Result;
+import cn.waynechu.facade.common.page.PageInfo;
 import com.waynechu.renting.web.request.HouseCreateRequest;
 import com.waynechu.renting.web.request.HouseSearchRequest;
 import com.waynechu.renting.web.request.HouseUpdateRequest;
+import com.waynechu.renting.web.response.HouseResponse;
 import com.waynechu.renting.web.service.HouseWebService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,7 +34,7 @@ public class HouseController {
             @ApiImplicitParam(name = "id", value = "房屋ID", required = true, paramType = "path"),
             @ApiImplicitParam(name = "city", value = "城市名称", required = true, paramType = "query")
     })
-    public Result<ModelHouse> getById(@PathVariable Long id, @RequestParam String city) {
+    public Result<HouseResponse> getById(@PathVariable Long id, @RequestParam String city) {
         return Result.success(houseWebService.getById(id));
     }
 
@@ -59,7 +59,7 @@ public class HouseController {
 
     @PostMapping("/search")
     @ApiOperation(value = "分页查询房屋信息")
-    public Result<PageInfo<ModelHouse>> search(@Validated @RequestBody HouseSearchRequest request) {
+    public Result<PageInfo<HouseResponse>> search(@Validated @RequestBody HouseSearchRequest request) {
         return Result.success(houseWebService.search(request));
     }
 

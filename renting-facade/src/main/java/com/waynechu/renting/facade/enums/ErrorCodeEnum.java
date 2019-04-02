@@ -1,6 +1,6 @@
 package com.waynechu.renting.facade.enums;
 
-import cn.waynechu.webcommon.enums.AbstractEnum;
+import cn.waynechu.facade.common.enums.AbstractEnum;
 
 import java.io.Serializable;
 

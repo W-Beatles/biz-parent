@@ -1,7 +1,7 @@
 package com.waynechu.renting.core.service.impl;
 
-import cn.waynechu.webcommon.page.PageInfo;
-import cn.waynechu.webcommon.util.CollectionUtil;
+import cn.waynechu.facade.common.page.PageInfo;
+import cn.waynechu.spirngcloud.common.util.CollectionUtil;
 import com.waynechu.renting.core.convert.dto.SysDictionaryDtoConvert;
 import com.waynechu.renting.core.convert.entity.SysDictionaryConvert;
 import com.waynechu.renting.core.repository.SysDictionaryRepository;

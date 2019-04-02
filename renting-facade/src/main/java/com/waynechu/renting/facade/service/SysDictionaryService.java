@@ -1,6 +1,6 @@
 package com.waynechu.renting.facade.service;
 
-import cn.waynechu.webcommon.page.PageInfo;
+import cn.waynechu.facade.common.page.PageInfo;
 import com.waynechu.renting.facade.dto.SysDictionaryDTO;
 import com.waynechu.renting.facade.dto.condition.SysDictionarySearchCondition;
 

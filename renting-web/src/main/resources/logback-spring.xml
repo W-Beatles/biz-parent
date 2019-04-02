@@ -111,7 +111,7 @@
                 <durable>true</durable>
                 <deliveryMode>PERSISTENT</deliveryMode>
                 <charset>UTF-8</charset>
-                <layout class="cn.waynechu.boot.starter.common.logback.RabbitmqLayout"/>
+                <layout class="RabbitmqLayout"/>
             </appender>
         </then>
     </if>

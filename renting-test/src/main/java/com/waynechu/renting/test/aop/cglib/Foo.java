@@ -1,6 +1,6 @@
 package com.waynechu.renting.test.aop.cglib;
 
-import cn.waynechu.webcommon.annotation.MethodLogAnnotation;
+import cn.waynechu.spirngcloud.common.annotation.MethodLogAnnotation;
 import lombok.extern.slf4j.Slf4j;
 
 /**

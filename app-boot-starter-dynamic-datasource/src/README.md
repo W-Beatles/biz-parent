@@ -25,12 +25,12 @@
     
     ```
     ## logging
-    logging.level.com.tuhu.dynamic.datasource=DEBUG
+    logging.level.cn.waynechu.bootstarter.dynamicdatasource=DEBUG
     ```
 
-下面是参考配置，更多配置请参考Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
-
 ### 参考配置    
+
+可以参考如下配置，更多配置可查阅Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
 
 ```
 ## mybatis
@@ -40,7 +40,7 @@ mybatis.configuration.map-underscore-to-camel-case=true
 
 ## dynamic datasource
 ### 设置动态数据源选择策略。不配置默认使用轮询策略
-spring.datasource.dynamic.strategy=com.tuhu.dynamic.datasource.strategy.RoundRobinDynamicDataSourceStrategy
+spring.datasource.dynamic.strategy=cn.waynechu.bootstarter.dynamicdatasource.strategy.RoundRobinDynamicDataSourceStrategy
 ### 设置Druid密码加密公钥
 spring.datasource.dynamic.druid.public-key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIxH6Gne6flG+enZOeGsbg4hoiGFi1ORqvsi8EzlObP3Gz/NVQpJACcBidowsWolaYKyfv8jHUClNja3GCE2x+kCAwEAAQ==
 ### 开启stat后台监控页面
@@ -56,7 +56,7 @@ spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql=true
 ### 打开Web应用监控
 spring.datasource.dynamic.druid.web-stat-filter.enabled=true
 ### 设置Spring监控AOP包路径
-spring.datasource.dynamic.druid.aop-patterns=com.tuhu.demo.web.controller.*,com.tuhu.demo.core.service.*
+spring.datasource.dynamic.druid.aop-patterns=com.waynechu.renting.web.controller.*,com.tuhu.renting.core.service.*
 ### 设置多数据源
 #### order database 订单库配置(一主两从)
 spring.datasource.dynamic.datasource.order-master.username=root

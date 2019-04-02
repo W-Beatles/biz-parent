@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -13,10 +14,9 @@
     <groupId>cn.waynechu</groupId>
     <artifactId>app-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
     <name>app-parent</name>
-    <description>App parent for Spring Boot</description>
+    <description>app-parent pom</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,16 +43,20 @@
     </properties>
 
     <modules>
-        <module>app-web-common</module>
-        <module>app-boot-starter-common</module>
+        <module>app-facade-common</module>
+
         <module>app-boot-starter-dynamic-datasource</module>
         <module>app-boot-starter-sentry</module>
         <module>app-boot-starter-elastic-job</module>
 
-        <module>renting-integration-dal</module>
-        <module>renting-domain</module>
-        <module>renting-facade</module>
+        <module>app-spring-cloud-archetype</module>
+        <module>app-spring-cloud-web-starter</module>
+        <module>app-spring-cloud-common</module>
+
         <module>renting-web</module>
+        <module>renting-facade</module>
+        <module>renting-domain</module>
+        <module>renting-integration-dal</module>
         <module>renting-test</module>
     </modules>
 
@@ -220,16 +224,22 @@
                 <version>${xxl-job-core.version}</version>
             </dependency>
 
-            <!-- 项目版本 start -->
+            <!-- app start -->
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-web-common</artifactId>
+                <artifactId>app-facade-common</artifactId>
                 <version>${app.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-boot-starter-common</artifactId>
+                <artifactId>app-spring-cloud-common</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>app-spring-cloud-web-starter</artifactId>
                 <version>${app.version}</version>
             </dependency>
 
@@ -289,7 +299,7 @@
                 <profiles.active>test</profiles.active>
             </properties>
         </profile>
-        <!-- UT环境 -->
+        <!-- 预发布环境 -->
         <profile>
             <id>ut</id>
             <properties>

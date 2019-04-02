@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-web-common</artifactId>
+            <artifactId>app-facade-common</artifactId>
         </dependency>
 
         <dependency>

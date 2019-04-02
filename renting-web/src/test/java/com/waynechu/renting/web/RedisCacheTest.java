@@ -1,6 +1,6 @@
 package com.waynechu.renting.web;
 
-import cn.waynechu.boot.starter.common.util.RedisCache;
+import cn.waynechu.springcloud.apicommon.util.RedisCache;
 import com.waynechu.renting.facade.dto.HouseDTO;
 import org.junit.Assert;
 import org.junit.Test;

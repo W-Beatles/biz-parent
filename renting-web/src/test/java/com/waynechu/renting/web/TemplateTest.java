@@ -1,6 +1,6 @@
 package com.waynechu.renting.web;
 
-import com.waynechu.renting.web.model.ModelHouse;
+import com.waynechu.renting.web.response.HouseResponse;
 import com.waynechu.renting.web.service.HouseWebService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ public class TemplateTest extends RentingWebApplicationTests {
 
     @Test
     public void generateTemplateMessage() {
-        ModelHouse modelHouse = houseWebService.getById(33L);
+        HouseResponse houseResponse = houseWebService.getById(33L);
 
         Context context = new Context();
-        context.setVariable("modelHouse", modelHouse);
+        context.setVariable("modelHouse", houseResponse);
         String houseMail = templateEngine.process("houseMessage", context);
         System.out.println(houseMail);
     }

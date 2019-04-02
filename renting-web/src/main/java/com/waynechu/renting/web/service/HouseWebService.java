@@ -1,15 +1,15 @@
 package com.waynechu.renting.web.service;
 
-import cn.waynechu.webcommon.page.PageInfo;
-import cn.waynechu.webcommon.util.BeanUtil;
+import cn.waynechu.facade.common.page.PageInfo;
+import cn.waynechu.spirngcloud.common.util.BeanUtil;
 import com.waynechu.renting.facade.dto.HouseDTO;
 import com.waynechu.renting.facade.dto.condition.HouseSearchCondition;
 import com.waynechu.renting.facade.service.HouseService;
 import com.waynechu.renting.web.convert.HouseDtoConvert;
-import com.waynechu.renting.web.model.ModelHouse;
 import com.waynechu.renting.web.request.HouseCreateRequest;
 import com.waynechu.renting.web.request.HouseSearchRequest;
 import com.waynechu.renting.web.request.HouseUpdateRequest;
+import com.waynechu.renting.web.response.HouseResponse;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +25,8 @@ public class HouseWebService {
     @Reference(version = "1.0.0")
     private HouseService houseService;
 
-    public ModelHouse getById(Long id) {
-        ModelHouse returnValue = null;
+    public HouseResponse getById(Long id) {
+        HouseResponse returnValue = null;
 
         HouseDTO houseDTO = houseService.getById(id);
         if (houseDTO != null) {
@@ -49,12 +49,12 @@ public class HouseWebService {
         return houseService.removeById(id);
     }
 
-    public PageInfo<ModelHouse> search(HouseSearchRequest request) {
+    public PageInfo<HouseResponse> search(HouseSearchRequest request) {
         HouseSearchCondition condition = BeanUtil.beanTransfer(request, HouseSearchCondition.class);
         PageInfo<HouseDTO> houseDTOPageInfo = houseService.search(condition);
         List<HouseDTO> list = houseDTOPageInfo.getList();
 
-        List<ModelHouse> houseVOList = HouseDtoConvert.toHouseRespList(list);
+        List<HouseResponse> houseVOList = HouseDtoConvert.toHouseRespList(list);
         return houseDTOPageInfo.replace(houseVOList);
     }
 

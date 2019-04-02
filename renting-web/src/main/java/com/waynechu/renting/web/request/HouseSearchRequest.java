@@ -1,6 +1,6 @@
 package com.waynechu.renting.web.request;
 
-import cn.waynechu.webcommon.web.request.AbstractPageRequest;
+import cn.waynechu.facade.common.request.AbstractPageRequest;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

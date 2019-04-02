@@ -12,7 +12,7 @@
     <artifactId>app-boot-starter-sentry</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>app-boot-starter-sentry</name>
-    <description>App boot starter sentry module</description>
+    <description>app-boot-starter-sentry module</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

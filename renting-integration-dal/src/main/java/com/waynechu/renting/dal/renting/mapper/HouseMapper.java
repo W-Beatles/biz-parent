@@ -28,4 +28,6 @@ public interface HouseMapper {
     int updateByPrimaryKeySelective(House record);
 
     int updateByPrimaryKey(House record);
+
+    int countById();
 }

@@ -1,6 +1,6 @@
 package com.waynechu.renting.core.repository;
 
-import cn.waynechu.webcommon.page.PageInfo;
+import cn.waynechu.facade.common.page.PageInfo;
 import com.alicp.jetcache.anno.*;
 import com.github.pagehelper.PageHelper;
 import com.waynechu.renting.core.constant.RedisPrefix;

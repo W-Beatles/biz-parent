@@ -1,6 +1,6 @@
 package com.waynechu.renting.core.convert.dto;
 
-import cn.waynechu.webcommon.util.BeanUtil;
+import cn.waynechu.spirngcloud.common.util.BeanUtil;
 import com.waynechu.renting.dal.common.entity.SysDictionary;
 import com.waynechu.renting.facade.dto.SysDictionaryDTO;
 import lombok.experimental.UtilityClass;

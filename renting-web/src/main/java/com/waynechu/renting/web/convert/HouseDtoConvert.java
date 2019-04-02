@@ -1,8 +1,8 @@
 package com.waynechu.renting.web.convert;
 
-import cn.waynechu.webcommon.util.BeanUtil;
+import cn.waynechu.spirngcloud.common.util.BeanUtil;
 import com.waynechu.renting.facade.dto.HouseDTO;
-import com.waynechu.renting.web.model.ModelHouse;
+import com.waynechu.renting.web.response.HouseResponse;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -14,11 +14,11 @@ import java.util.List;
 @UtilityClass
 public class HouseDtoConvert {
 
-    public static ModelHouse toHouseResp(HouseDTO houseDTO) {
-        return BeanUtil.beanTransfer(houseDTO, ModelHouse.class);
+    public static HouseResponse toHouseResp(HouseDTO houseDTO) {
+        return BeanUtil.beanTransfer(houseDTO, HouseResponse.class);
     }
 
-    public static List<ModelHouse> toHouseRespList(List<HouseDTO> list) {
-        return BeanUtil.beanListTransfer(list, ModelHouse.class);
+    public static List<HouseResponse> toHouseRespList(List<HouseDTO> list) {
+        return BeanUtil.beanListTransfer(list, HouseResponse.class);
     }
 }

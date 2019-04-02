@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 简易的自定义Cache
- * <p>
+ * <ZH_PATTERN>
  * 使用ConcurrentHashMap存储缓存数据，更多详情可以参考 {@code ConcurrentMapCache}
  *
  * @author zhuwei

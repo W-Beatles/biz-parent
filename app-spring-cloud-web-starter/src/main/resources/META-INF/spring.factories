@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.waynechu.springcloud.apicommon.CommonAutoConfiguration,\
+cn.waynechu.springcloud.apicommon.RedisCacheAutoConfiguration

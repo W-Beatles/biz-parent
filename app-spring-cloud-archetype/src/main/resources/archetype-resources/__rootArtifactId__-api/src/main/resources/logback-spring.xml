@@ -1,0 +1,179 @@
+#set( $symbol_pound = '#' )
+        #set( $symbol_dollar = '$' )
+        #set( $symbol_escape = '\' )
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!-- 从高到低 OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、ALL -->
+        <!-- 日志输出规则 根据当前 ROOT 级别，日志输出时，级别高于root默认的级别会输出 -->
+        <!-- scan: 配置文件发生改变就会被重新加载，默认值为true
+             scanPeriod: 监测配置文件是否有修改的时间间隔，如果没有给出时间单位则默认是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+             debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!-- Pattern -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr([%X{reqKey}]){magenta} %clr([%t]){faint} %clr(%logger{30}){cyan} : %m%n"/>
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{reqKey}] %logger{30}:%line - %msg%n"/>
+
+    <!-- 配置日志位置 -->
+    <property name="LOG_HOME" value="/data/webroot/${parentArtifactId}/logs"/>
+
+    <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
+    <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>
+    <springProperty scope="context" name="elkHost" source="elk.host" defaultValue="localhost"/>
+    <springProperty scope="context" name="elkPort" source="elk.port" defaultValue="5672"/>
+    <springProperty scope="context" name="elkUsername" source="elk.username" defaultValue="guest"/>
+    <springProperty scope="context" name="elkPassword" source="elk.password" defaultValue="guest"/>
+    <springProperty scope="context" name="elkApplicationId" source="elk.applicationId" defaultValue="anonymous"/>
+    <springProperty scope="context" name="elkVirtualHost" source="elk.virtualHost" defaultValue="/"/>
+    <springProperty scope="context" name="elkExchange" source="elk.exchange" defaultValue="topic.loggingExchange"/>
+    <springProperty scope="context" name="elkRoutingKey" source="elk.routingKey" defaultValue="logback.#"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${symbol_dollar}{CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${symbol_dollar}{LOG_HOME}/info/info.log</file>
+        <!-- 记录 INFO 及以上级别日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${symbol_dollar}{LOG_HOME}/info/info_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxFileSize>300MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${symbol_dollar}{FILE_LOG_PATTERN}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${symbol_dollar}{LOG_HOME}/error/error.log</file>
+        <!-- 只记录 ERROR 级别日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${symbol_dollar}{LOG_HOME}/error/error_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxFileSize>300MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${symbol_dollar}{FILE_LOG_PATTERN}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志。默认的，如果队列的80%已满，则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度，该值会影响性能。默认值为256 -->
+        <queueSize>1024</queueSize>
+        <includeCallerData>true</includeCallerData>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="INFO"/>
+    </appender>
+
+    <if condition='property("sentryEnable").contains("true")'>
+        <then>
+            <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>WARN</level>
+                </filter>
+            </appender>
+        </then>
+    </if>
+
+    <if condition='property("elkEnable").contains("true")'>
+        <then>
+            <appender name="ELK" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>INFO</level>
+                </filter>
+                <host>${symbol_dollar}{elkHost}</host>
+                <port>${symbol_dollar}{elkPort}</port>
+                <username>${symbol_dollar}{elkUsername}</username>
+                <password>${symbol_dollar}{elkPassword}</password>
+                <applicationId>${symbol_dollar}{applicationId}</applicationId>
+                <virtualHost>${symbol_dollar}{elkVirtualHost}</virtualHost>
+                <exchangeName>${symbol_dollar}{elkExchange}</exchangeName>
+                <exchangeType>topic</exchangeType>
+                <declareExchange>true</declareExchange>
+                <routingKeyPattern>${symbol_dollar}{elkRoutingKey}</routingKeyPattern>
+                <autoDelete>false</autoDelete>
+                <generateId>true</generateId>
+                <durable>true</durable>
+                <deliveryMode>PERSISTENT</deliveryMode>
+                <charset>UTF-8</charset>
+                <layout class="RabbitmqLayout"/>
+            </appender>
+        </then>
+    </if>
+
+    <springProfile name="prd,test,ut">
+        <logger name="com" level="INFO" additivity="false">
+            <appender-ref ref="ASYNC_INFO"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+            <if condition='property("sentryEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="Sentry"/>
+                </then>
+            </if>
+            <if condition='property("elkEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="ELK"/>
+                </then>
+            </if>
+        </logger>
+
+        <logger name="cn" level="INFO" additivity="false">
+            <appender-ref ref="ASYNC_INFO"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+            <if condition='property("sentryEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="Sentry"/>
+                </then>
+            </if>
+            <if condition='property("elkEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="ELK"/>
+                </then>
+            </if>
+        </logger>
+
+        <logger name="org" level="INFO" additivity="false">
+            <appender-ref ref="ASYNC_INFO"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+            <if condition='property("sentryEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="Sentry"/>
+                </then>
+            </if>
+            <if condition='property("elkEnable").contains("true")'>
+                <then>
+                    <appender-ref ref="ELK"/>
+                </then>
+            </if>
+        </logger>
+    </springProfile>
+
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="INFO"/>
+        </root>
+    </springProfile>
+</configuration>

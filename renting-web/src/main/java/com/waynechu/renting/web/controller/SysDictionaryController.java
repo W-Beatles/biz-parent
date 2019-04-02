@@ -1,11 +1,11 @@
 package com.waynechu.renting.web.controller;
 
-import cn.waynechu.webcommon.page.PageInfo;
-import cn.waynechu.webcommon.web.Result;
-import com.waynechu.renting.web.model.ModelSysDictionary;
+import cn.waynechu.facade.common.Result;
+import cn.waynechu.facade.common.page.PageInfo;
 import com.waynechu.renting.web.request.SysDictionaryCreateRequest;
 import com.waynechu.renting.web.request.SysDictionarySearchRequest;
 import com.waynechu.renting.web.request.SysDictionaryUpdateRequest;
+import com.waynechu.renting.web.response.SysDictionaryResponse;
 import com.waynechu.renting.web.service.SysDictionaryWebService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -33,7 +33,7 @@ public class SysDictionaryController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "字典ID", required = true, paramType = "path")
     })
-    public Result<ModelSysDictionary> getById(@PathVariable Long id) {
+    public Result<SysDictionaryResponse> getById(@PathVariable Long id) {
         return Result.success(sysDictionaryWebService.getById(id));
     }
 
@@ -57,7 +57,7 @@ public class SysDictionaryController {
 
     @PostMapping("/search")
     @ApiOperation(value = "分页搜索字典项")
-    public Result<PageInfo<ModelSysDictionary>> search(@RequestBody SysDictionarySearchRequest request) {
+    public Result<PageInfo<SysDictionaryResponse>> search(@RequestBody SysDictionarySearchRequest request) {
         return Result.success(sysDictionaryWebService.search(request));
     }
 }

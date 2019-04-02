@@ -1,8 +1,8 @@
 package com.waynechu.renting.web.convert;
 
-import cn.waynechu.webcommon.util.BeanUtil;
+import cn.waynechu.spirngcloud.common.util.BeanUtil;
 import com.waynechu.renting.facade.dto.SysDictionaryDTO;
-import com.waynechu.renting.web.model.ModelSysDictionary;
+import com.waynechu.renting.web.response.SysDictionaryResponse;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -14,11 +14,11 @@ import java.util.List;
 @UtilityClass
 public class SysDictionaryDtoConvert {
 
-    public static ModelSysDictionary toSysDictionaryResp(SysDictionaryDTO sysDictionaryDTO) {
-        return BeanUtil.beanTransfer(sysDictionaryDTO, ModelSysDictionary.class);
+    public static SysDictionaryResponse toSysDictionaryResp(SysDictionaryDTO sysDictionaryDTO) {
+        return BeanUtil.beanTransfer(sysDictionaryDTO, SysDictionaryResponse.class);
     }
 
-    public static List<ModelSysDictionary> toSysDictionaryRespList(List<SysDictionaryDTO> list) {
-        return BeanUtil.beanListTransfer(list, ModelSysDictionary.class);
+    public static List<SysDictionaryResponse> toSysDictionaryRespList(List<SysDictionaryDTO> list) {
+        return BeanUtil.beanListTransfer(list, SysDictionaryResponse.class);
     }
 }

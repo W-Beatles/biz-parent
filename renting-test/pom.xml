@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-boot-starter-common</artifactId>
+            <artifactId>app-spring-cloud-common</artifactId>
         </dependency>
 
         <dependency>

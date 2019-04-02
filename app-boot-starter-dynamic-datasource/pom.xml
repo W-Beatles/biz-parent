@@ -11,7 +11,7 @@
     <artifactId>app-boot-starter-dynamic-datasource</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>app-boot-starter-dynamic-datasource</name>
-    <description>App boot starter dynamic datasource module</description>
+    <description>app-boot-starter-dynamic-datasource module</description>
 
     <licenses>
         <license>
@@ -96,6 +96,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
