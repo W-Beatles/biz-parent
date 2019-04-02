@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>renting-test</artifactId>
+    <artifactId>app-spring-cloud-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>renting-test</name>
-    <description>Renting test module</description>
+    <name>app-spring-cloud-test</name>
+    <description>app-spring-cloud-test module</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,11 +24,6 @@
         <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>app-spring-cloud-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>

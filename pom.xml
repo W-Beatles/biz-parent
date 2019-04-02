@@ -52,12 +52,12 @@
         <module>app-spring-cloud-archetype</module>
         <module>app-spring-cloud-web-starter</module>
         <module>app-spring-cloud-common</module>
+        <module>app-spring-cloud-test</module>
 
         <module>renting-web</module>
         <module>renting-facade</module>
         <module>renting-domain</module>
         <module>renting-integration-dal</module>
-        <module>renting-test</module>
     </modules>
 
     <repositories>
