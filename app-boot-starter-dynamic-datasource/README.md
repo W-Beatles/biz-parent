@@ -27,10 +27,11 @@
     ## logging
     logging.level.cn.waynechu.bootstarter.dynamicdatasource=DEBUG
     ```
+    
+    参数配置参考下一节，更多配置可查阅Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
 
 ### 参考配置    
 
-可以参考如下配置，更多配置可查阅Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
 
 ```
 ## mybatis

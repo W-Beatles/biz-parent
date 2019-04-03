@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-CommonAutoConfiguration,\
-RedisCacheAutoConfiguration
+cn.waynechu.bootstarter.elasticjob.ElasticJobAutoConfiguration
