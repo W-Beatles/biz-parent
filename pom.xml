@@ -34,11 +34,11 @@
         <fastjson.version>1.2.51</fastjson.version>
         <tinypinyin.version>2.0.3</tinypinyin.version>
         <druid.version>1.1.12</druid.version>
-        <jetcache-starter-redis.version>2.5.11</jetcache-starter-redis.version>
         <mybatis.spring.boot.version>1.3.2</mybatis.spring.boot.version>
         <pagehelper.spring.boot.version>1.2.9</pagehelper.spring.boot.version>
         <sentry.logback.version>1.7.16</sentry.logback.version>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+        <jetcache-starter-redis.version>2.5.11</jetcache-starter-redis.version>
         <elastic-job-lite-spring.version>2.1.5</elastic-job-lite-spring.version>
         <xxl-job-core.version>2.0.1</xxl-job-core.version>
     </properties>
@@ -179,13 +179,6 @@
                 <version>${fescar.version}</version>
             </dependency>
 
-            <!-- Cache -->
-            <dependency>
-                <groupId>com.alicp.jetcache</groupId>
-                <artifactId>jetcache-starter-redis</artifactId>
-                <version>${jetcache-starter-redis.version}</version>
-            </dependency>
-
             <!-- MyBatis -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -219,6 +212,13 @@
                 <version>${springfox.swagger2.version}</version>
             </dependency>
 
+            <!-- Cache -->
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-starter-redis</artifactId>
+                <version>${jetcache-starter-redis.version}</version>
+            </dependency>
+
             <!-- Job -->
             <dependency>
                 <groupId>com.dangdang</groupId>
@@ -247,7 +247,7 @@
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-spring-cloud-web-starter</artifactId>
+                <artifactId>app-spring-cloud-api-common</artifactId>
                 <version>${app.version}</version>
             </dependency>
 
