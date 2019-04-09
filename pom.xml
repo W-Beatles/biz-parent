@@ -50,7 +50,7 @@
         <module>app-boot-starter-elastic-job</module>
 
         <module>app-spring-cloud-archetype</module>
-        <module>app-spring-cloud-web-starter</module>
+        <module>app-spring-cloud-api-common</module>
         <module>app-spring-cloud-common</module>
         <module>app-spring-cloud-test</module>
 

@@ -1,6 +1,6 @@
 package cn.waynechu.springcloud.apicommon;
 
-import cn.waynechu.springcloud.apicommon.aspect.ControllerExceptionHandler;
+import cn.waynechu.springcloud.apicommon.advice.ControllerExceptionHandler;
 import cn.waynechu.springcloud.apicommon.aspect.ControllerLogAspect;
 import cn.waynechu.springcloud.apicommon.aspect.MethodLogAspect;
 import cn.waynechu.springcloud.apicommon.mdc.MDCFilter;

@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>app-spring-cloud-web-starter</artifactId>
+    <artifactId>app-spring-cloud-api-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>app-spring-cloud-web-starter</name>
-    <description>app-spring-cloud-web-starter module</description>
+    <name>app-spring-cloud-api-common</name>
+    <description>app-spring-cloud-api-common module</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

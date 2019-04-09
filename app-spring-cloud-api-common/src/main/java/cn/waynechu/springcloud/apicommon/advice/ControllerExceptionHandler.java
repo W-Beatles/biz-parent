@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apicommon.aspect;
+package cn.waynechu.springcloud.apicommon.advice;
 
 import cn.waynechu.facade.common.Result;
 import cn.waynechu.facade.common.enums.CommonResultEnum;
