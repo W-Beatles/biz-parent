@@ -1,7 +1,7 @@
 package cn.waynechu.facade.common;
 
-import cn.waynechu.facade.common.enums.AbstractEnum;
-import cn.waynechu.facade.common.enums.CommonResultEnum;
+import cn.waynechu.facade.common.enums.BizEnum;
+import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -26,14 +26,14 @@ public class Result<T> implements Serializable {
     @ApiModelProperty(value = "返回对象")
     private T data;
 
-    private Result(AbstractEnum abstractEnum) {
-        this.code = abstractEnum.getCode();
-        this.message = abstractEnum.getDesc();
+    private Result(BizEnum bizEnum) {
+        this.code = bizEnum.getCode();
+        this.message = bizEnum.getDesc();
     }
 
-    private Result(AbstractEnum abstractEnum, T data) {
-        this.code = abstractEnum.getCode();
-        this.message = abstractEnum.getDesc();
+    private Result(BizEnum bizEnum, T data) {
+        this.code = bizEnum.getCode();
+        this.message = bizEnum.getDesc();
         this.data = data;
     }
 
@@ -49,31 +49,35 @@ public class Result<T> implements Serializable {
     }
 
     public static Result success() {
-        return new Result<>(CommonResultEnum.SUCCESS);
+        return new Result<>(BizErrorCodeEnum.SUCCESS);
     }
 
     public static <T> Result<T> success(T data) {
-        return new Result<>(CommonResultEnum.SUCCESS, data);
+        return new Result<>(BizErrorCodeEnum.SUCCESS, data);
     }
 
     public static <T> Result<T> success(String message, T data) {
-        return new Result<>(CommonResultEnum.SUCCESS.getCode(), message, data);
+        return new Result<>(BizErrorCodeEnum.SUCCESS.getCode(), message, data);
     }
 
-    public static <T> Result<T> error(AbstractEnum abstractEnum) {
-        return new Result<>(abstractEnum.getCode(), abstractEnum.getDesc());
+    public static <T> Result<T> error(BizEnum bizEnum) {
+        return new Result<>(bizEnum.getCode(), bizEnum.getDesc());
     }
 
     public static <T> Result<T> error() {
-        return new Result<>(CommonResultEnum.SYSTEM_ERROR.getCode(), CommonResultEnum.SYSTEM_ERROR.getDesc());
+        return new Result<>(BizErrorCodeEnum.SYSTEM_ERROR.getCode(), BizErrorCodeEnum.SYSTEM_ERROR.getDesc());
     }
 
     public static <T> Result<T> error(String errorMessage) {
-        return new Result<>(CommonResultEnum.SYSTEM_ERROR.getCode(), errorMessage);
+        return new Result<>(BizErrorCodeEnum.SYSTEM_ERROR.getCode(), errorMessage);
     }
 
     public static <T> Result<T> error(int errorCode, String errorMessage) {
         return new Result<>(errorCode, errorMessage);
+    }
+
+    public static <T> Result<T> error(BizEnum bizEnum, T data) {
+        return new Result<>(bizEnum.getCode(), bizEnum.getDesc(), data);
     }
 
     public static <T> Result<T> error(int errorCode, String errorMessage, T data) {

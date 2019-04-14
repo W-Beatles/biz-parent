@@ -31,8 +31,8 @@ import java.util.UUID;
 @Data
 @Slf4j
 public class MDCFilter implements Filter {
-    private static final String TRACE_NO_FLAG = "traceNo";
-    private static final String REQ_KEY = "reqKey";
+    public static final String TRACE_NO_FLAG = "traceNo";
+    public static final String REQ_KEY = "reqKey";
     public static final String APPLICATION_NAME = "applicationName";
 
     private String prefix;

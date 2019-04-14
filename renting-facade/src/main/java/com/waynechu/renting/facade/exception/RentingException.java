@@ -1,6 +1,6 @@
 package com.waynechu.renting.facade.exception;
 
-import cn.waynechu.facade.common.enums.AbstractEnum;
+import cn.waynechu.facade.common.enums.BizEnum;
 import cn.waynechu.facade.common.exception.BizException;
 
 /**
@@ -9,8 +9,8 @@ import cn.waynechu.facade.common.exception.BizException;
  */
 public class RentingException extends BizException {
 
-    public RentingException(AbstractEnum abstractEnum) {
-        super(abstractEnum);
+    public RentingException(BizEnum bizEnum) {
+        super(bizEnum);
     }
 
     public RentingException(Integer errorCode, String errorMessage) {
