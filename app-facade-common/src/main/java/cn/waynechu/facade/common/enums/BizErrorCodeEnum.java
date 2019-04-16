@@ -8,7 +8,7 @@ package cn.waynechu.facade.common.enums;
  */
 public enum BizErrorCodeEnum implements BizEnum {
     /**
-     * 预定义枚举: 10000~19999  自定义业务异常: 20000++
+     * 预定义枚举: 10000~19999  自定义业务异常: 20000+
      */
     SUCCESS(10000, "SUCCESS", "操作成功"),
     SYSTEM_ERROR(10002, "SYSTEM_ERROR", "系统异常"),
