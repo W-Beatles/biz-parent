@@ -14,8 +14,15 @@
 
     <!-- 配置日志位置 -->
     <property name="LOG_HOME" value="/data/webroot/renting-web/logs"/>
+    <!-- 单个日志文件大小上限 -->
+    <property name="MAX_FILE_SIZE" value="300MB"/>
+    <!-- 日志文件保留天数 -->
+    <property name="MAX_HISTORY" value="30"/>
+    <!-- 日志最大占用磁盘 -->
+    <property name="TOTAL_SIZE_CAP" value="3GB"/>
 
     <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
+
     <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>
     <springProperty scope="context" name="elkHost" source="elk.host" defaultValue="localhost"/>
     <springProperty scope="context" name="elkPort" source="elk.port" defaultValue="5672"/>
@@ -40,9 +47,9 @@
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/info/info_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
-            <maxFileSize>300MB</maxFileSize>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>3GB</totalSizeCap>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
@@ -60,9 +67,9 @@
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/error/error_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
-            <maxFileSize>300MB</maxFileSize>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>3GB</totalSizeCap>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
