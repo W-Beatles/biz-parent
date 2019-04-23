@@ -1,7 +1,6 @@
-package cn.waynechu.springcloud.apicommon;
+package cn.waynechu.springcloud.apicommon.config;
 
-import cn.waynechu.springcloud.apicommon.properties.CommonProperties;
-import cn.waynechu.springcloud.apicommon.properties.RedisCacheProperties;
+import cn.waynechu.springcloud.apicommon.properties.RedisCacheProperty;
 import cn.waynechu.springcloud.apicommon.util.RedisCache;
 import cn.waynechu.springcloud.common.serializer.FastJsonSerializer;
 import com.alibaba.fastjson.parser.ParserConfig;
@@ -38,27 +37,26 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @EnableCaching
-@ConditionalOnProperty(value = "app.web.starter.redis-cache.enable", havingValue = "true")
-@EnableConfigurationProperties({CommonProperties.class})
+@ConditionalOnProperty(value = RedisCacheProperty.REDIS_CACHE_CONFIG_PREFIX + ".enable", havingValue = "true")
+@EnableConfigurationProperties({RedisCacheProperty.class})
 public class RedisCacheAutoConfiguration {
 
     @Autowired
-    private CommonProperties commonProperties;
+    private RedisCacheProperty redisCacheProperty;
 
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(connectionFactory);
 
         // 全局RedisCache配置
-        RedisCacheProperties redisCacheConfig = commonProperties.getRedisCache();
         RedisCacheConfiguration globalCacheConfiguration = createCacheConfig(redisSerializer(),
-                redisCacheConfig.getGlobalTtl(), redisCacheConfig.getKeyPrefix());
+                redisCacheProperty.getGlobalTtl(), redisCacheProperty.getKeyPrefix());
 
         // 用户自定义缓存配置
-        Map<String, Duration> customCacheTtlMap = redisCacheConfig.getCustomTtl();
+        Map<String, Duration> customCacheTtlMap = redisCacheProperty.getCustomTtl();
         Map<String, RedisCacheConfiguration> cacheConfigurationMap = new HashMap<>(customCacheTtlMap.size());
         customCacheTtlMap.forEach((cacheName, ttl) -> cacheConfigurationMap.put(cacheName,
-                createCacheConfig(redisSerializer(), ttl, redisCacheConfig.getKeyPrefix())));
+                createCacheConfig(redisSerializer(), ttl, redisCacheProperty.getKeyPrefix())));
         return new RedisCacheManager(redisCacheWriter, globalCacheConfiguration, cacheConfigurationMap);
     }
 
@@ -66,16 +64,15 @@ public class RedisCacheAutoConfiguration {
     @ConditionalOnMissingBean(RedisSerializer.class)
     public RedisSerializer<Object> redisSerializer() {
         RedisSerializer<Object> redisSerializer;
-        RedisCacheProperties redisCacheConfig = commonProperties.getRedisCache();
-        if (RedisCacheProperties.SerializerEnum.JDK.equals(redisCacheConfig.getSerializer())) {
+        if (RedisCacheProperty.SerializerEnum.JDK.equals(redisCacheProperty.getSerializer())) {
             redisSerializer = new JdkSerializationRedisSerializer();
             log.info("[RedisCache] Using JdkSerializationRedisSerializer.class for redis cache");
-        } else if (RedisCacheProperties.SerializerEnum.FAST_JSON.equals(redisCacheConfig.getSerializer())) {
+        } else if (RedisCacheProperty.SerializerEnum.FAST_JSON.equals(redisCacheProperty.getSerializer())) {
             redisSerializer = new FastJsonSerializer<>(Object.class);
             log.info("[RedisCache] Using FastJsonSerializer.class for redis cache");
 
             // FastJson需指定AutoType序列化白名单
-            for (String autoType : redisCacheConfig.getAutoTypes()) {
+            for (String autoType : redisCacheProperty.getAutoTypes()) {
                 ParserConfig.getGlobalInstance().addAccept(autoType);
             }
         } else {
@@ -118,10 +115,10 @@ public class RedisCacheAutoConfiguration {
 
     @Bean
     public RedisCache redisCache(RedisTemplate<String, Object> redisTemplate) {
-        if (!StringUtils.hasText(commonProperties.getRedisCache().getKeyPrefix())) {
+        if (!StringUtils.hasText(redisCacheProperty.getKeyPrefix())) {
             log.warn("[RedisCache] Redis key prefix not found, consider setting one");
         }
-        return new RedisCache(commonProperties.getRedisCache().getKeyPrefix(), commonProperties.getRedisCache().isPrintOps(), redisTemplate);
+        return new RedisCache(redisCacheProperty.getKeyPrefix(), redisCacheProperty.isPrintOps(), redisTemplate);
     }
 
     /**

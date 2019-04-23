@@ -1,10 +1,12 @@
-package cn.waynechu.springcloud.apicommon;
+package cn.waynechu.springcloud.apicommon.config;
 
 import cn.waynechu.springcloud.apicommon.advice.ControllerExceptionHandler;
 import cn.waynechu.springcloud.apicommon.aspect.ControllerLogAspect;
 import cn.waynechu.springcloud.apicommon.aspect.MethodLogAspect;
 import cn.waynechu.springcloud.apicommon.mdc.MDCFilter;
 import cn.waynechu.springcloud.apicommon.properties.CommonProperties;
+import cn.waynechu.springcloud.apicommon.properties.MDCProperty;
+import cn.waynechu.springcloud.common.util.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +34,7 @@ public class CommonAutoConfiguration {
     private String applicationName;
 
     @Bean
-    @ConditionalOnProperty(value = "app.web.starter.mdc-filter.enable", havingValue = "true")
+    @ConditionalOnProperty(value = MDCProperty.MDC_CONFIG_PREFIX + ".enable", havingValue = "true")
     public FilterRegistrationBean<MDCFilter> mdcFilterRegistrationBean() {
         FilterRegistrationBean<MDCFilter> registrationBean = new FilterRegistrationBean<>();
         MDCFilter mdcFilter = new MDCFilter();
@@ -43,5 +45,10 @@ public class CommonAutoConfiguration {
         registrationBean.setFilter(mdcFilter);
         registrationBean.setOrder(1);
         return registrationBean;
+    }
+
+    @Bean
+    public SpringContextHolder contextHolder() {
+        return new SpringContextHolder();
     }
 }

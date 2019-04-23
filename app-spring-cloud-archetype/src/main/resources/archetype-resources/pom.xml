@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <name>${artifactId}-parent</name>
-    <description>${artifactId} project for SpringBoot</description>
+    <description>${artifactId} project for SpringCloud</description>
 
     <repositories>
         <repository>
@@ -84,7 +84,7 @@
     </dependencyManagement>
 
     <profiles>
-        <!-- 开发环境 -->
+        <!-- dev env -->
         <profile>
             <id>dev</id>
             <properties>
@@ -94,21 +94,21 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-        <!-- 测试环境 -->
+        <!-- test env -->
         <profile>
             <id>test</id>
             <properties>
                 <profiles.active>test</profiles.active>
             </properties>
         </profile>
-        <!-- 预发布环境 -->
+        <!-- ut env -->
         <profile>
             <id>ut</id>
             <properties>
                 <profiles.active>ut</profiles.active>
             </properties>
         </profile>
-        <!-- 生产环境 -->
+        <!-- prd env -->
         <profile>
             <id>prd</id>
             <properties>

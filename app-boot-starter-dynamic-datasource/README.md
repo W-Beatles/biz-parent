@@ -57,7 +57,7 @@ spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql=true
 ### 打开Web应用监控
 spring.datasource.dynamic.druid.web-stat-filter.enabled=true
 ### 设置Spring监控AOP包路径
-spring.datasource.dynamic.druid.aop-patterns=com.waynechu.renting.web.controller.*,com.tuhu.renting.core.service.*
+spring.datasource.dynamic.druid.aop-patterns=com.waynechu.renting.web.controller.*,com.waynechu.renting.core.service.*
 ### 设置多数据源
 #### order database 订单库配置(一主两从)
 spring.datasource.dynamic.datasource.order-master.username=root
@@ -126,7 +126,7 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
      关键代码如下：
      ```
      MappedStatement ms = (MappedStatement) args[0];
-     String resource = ms.getResource(); // resource = "file [C:\Users\zhuwei\workspace\tuhu-parent\order-integration-dal\target\classes\sqlmap\gungnir\OrderMapper.xml]";
+     String resource = ms.getResource(); // resource = "file [C:\Users\zhuwei\workspace\app-parent\order-integration-dal\target\classes\sqlmap\gungnir\OrderMapper.xml]";
      String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
      String groupName = splitResource[splitResource.length - 2]; // groupName = "gungnir"
      ```
@@ -141,6 +141,6 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
           - gungnir
              - temp.xml
              - temp1.xml
-          - tuhu_order
+          - order
              - test.xml
              - test1.xml

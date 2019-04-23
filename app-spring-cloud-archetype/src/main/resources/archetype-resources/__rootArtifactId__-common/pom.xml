@@ -12,12 +12,12 @@
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
     <name>${artifactId}</name>
-    <description>${artifactId} module for SpringBoot</description>
+    <description>${artifactId} module for SpringCloud</description>
 
     <dependencies>
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-boot-starter-common</artifactId>
+            <artifactId>app-spring-cloud-api-common</artifactId>
         </dependency>
     </dependencies>
 

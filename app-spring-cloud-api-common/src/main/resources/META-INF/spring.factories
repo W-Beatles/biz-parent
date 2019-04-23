@@ -1,3 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.waynechu.springcloud.apicommon.CommonAutoConfiguration,\
-cn.waynechu.springcloud.apicommon.RedisCacheAutoConfiguration
+cn.waynechu.springcloud.apicommon.config.CommonAutoConfiguration,\
+cn.waynechu.springcloud.apicommon.config.RedisCacheAutoConfiguration,\
+cn.waynechu.springcloud.apicommon.config.CorsAutoConfiguration,\
+cn.waynechu.springcloud.apicommon.config.SwaggerAutoConfiguration

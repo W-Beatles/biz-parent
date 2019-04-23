@@ -11,11 +11,11 @@
     - shortJavaUUID: 请求的唯一标识。长度6个字符
     - localHostName: 服务器HostName
     
-    参考配置：
+    参考配置:
     ```
     ### mdc-filter
-    app.boot.starter.mdc-filter.enable=true
-    app.boot.starter.mdc-filter.prefix=${spring.application.name}
+    app.api.common.mdc-filter.enable=true
+    app.api.common.mdc-filter.prefix=${spring.application.name}
     ```
     
 2. ~~DataModifiedInterceptor SQL拦截器~~ (已移除)
@@ -25,7 +25,7 @@
     ~~该拦截器基于MyBatis拦截器实现，会拦截执行的SQL并对`insert`和`update`操作自动添加上操作人和操作时间，这样就无须在业务代码
     中手动为`createUser/updateUser`、`createTime/updateTime`设值~~
 
-    ~~参考配置：~~
+    ~~参考配置:~~
     ```
      ### data-modified-interceptor
      app.boot.starter.data-modified-interceptor.enable=true
@@ -42,3 +42,33 @@
 5. MethodLogAspect 方法调用情况切面 (默认开启)
 
 6. RedisCache Redis缓存工具类 (默认关闭)
+
+7. CorsAutoConfiguration 跨域配置 (默认关闭)
+
+    参考配置:
+    ```
+    ### cors
+    app.api.common.cors.enable=true
+    app.api.common.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
+    ```
+    
+8. SpringContextHolder Spring上下文工具类 (默认注入)
+
+    使用方式:   
+    使用 `@Autowire` 注解注入 `SpringContextHolder` 即可
+
+9. SwaggerAutoConfiguration 生成Swagger API文档 (默认关闭)
+
+    参考配置:
+    ```
+    ### swagger
+    app.api.common.swagger.enable=true
+    app.api.common.swagger.api-title=文档标题
+    app.api.common.swagger.api-description=文档描述
+    app.api.common.swagger.api-version=1.0.0
+    app.api.common.swagger.scan-package=com.waynechu
+    app.api.common.swagger.contact-name=联系人名称
+    app.api.common.swagger.contact-url=联系人名称
+    app.api.common.swagger.contact-email=联系人邮箱
+    ```
+    

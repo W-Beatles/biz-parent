@@ -13,7 +13,7 @@
     <version>${version}</version>
 
     <name>${artifactId}</name>
-    <description>${artifactId} module for SpringBoot</description>
+    <description>${artifactId} module for SpringCloud</description>
 
     <dependencies>
         <dependency>

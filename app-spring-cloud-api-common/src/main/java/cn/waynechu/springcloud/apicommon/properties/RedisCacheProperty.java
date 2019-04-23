@@ -1,6 +1,7 @@
 package cn.waynechu.springcloud.apicommon.properties;
 
 import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -13,7 +14,9 @@ import java.util.Map;
  * @date 2019/1/4 10:14
  */
 @Data
-public class RedisCacheProperties {
+@ConfigurationProperties(prefix = RedisCacheProperty.REDIS_CACHE_CONFIG_PREFIX)
+public class RedisCacheProperty {
+    public static final String REDIS_CACHE_CONFIG_PREFIX = CommonProperties.COMMON_CONFIG_PREFIX + ".redis-cache";
 
     /**
      * 是否开启RedisCache。默认false

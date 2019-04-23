@@ -9,12 +9,10 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @date 2018/12/28 16:17
  */
 @Data
-@ConfigurationProperties(prefix = "app.web.starter")
+@ConfigurationProperties(prefix = CommonProperties.COMMON_CONFIG_PREFIX)
 public class CommonProperties {
+    public static final String COMMON_CONFIG_PREFIX = "app.api.common";
 
     @NestedConfigurationProperty
-    private RedisCacheProperties redisCache;
-
-    @NestedConfigurationProperty
-    private MDCProperties mdcFilter;
+    private MDCProperty mdcFilter;
 }

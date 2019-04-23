@@ -115,7 +115,7 @@
                 <durable>true</durable>
                 <deliveryMode>PERSISTENT</deliveryMode>
                 <charset>UTF-8</charset>
-                <layout class="RabbitmqLayout"/>
+                <layout class="cn.waynechu.springcloud.apicommon.logback.RabbitmqLayout"/>
             </appender>
         </then>
     </if>
