@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <name>${artifactId}-parent</name>
-    <description>${artifactId} project for SpringCloud</description>
+    <description>${artifactId} module</description>
 
     <repositories>
         <repository>

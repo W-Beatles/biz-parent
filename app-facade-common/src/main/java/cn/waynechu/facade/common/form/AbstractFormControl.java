@@ -5,27 +5,29 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 
 /**
+ * 多态表单类型定义
+ *
  * @author zhuwei
  * @date 2019/2/21 13:53
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", visible = true)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = TextInputControl.class, name = AbstractFormControl.INPUT_TYPE_TEXT),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.INPUT_TYPE_PASSWORD),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.INPUT_TYPE_EMAIL),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.INPUT_TYPE_URL),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.INPUT_TYPE_NUMBER),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.INPUT_TYPE_RANGE),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.INPUT_TYPE_DATE),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.FORM_TYPE_DATALIST),
-        @JsonSubTypes.Type(value = RadioInputControl.class, name = AbstractFormControl.INPUT_TYPE_RADIO),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.FORM_TYPE_SELECT),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.FORM_TYPE_TEXTAREA),
-        @JsonSubTypes.Type(value = AbstractFormControl.class, name = AbstractFormControl.FORM_TYPE_FILE)
-})
+
 @Data
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = TextInputControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = RadioInputControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class),
+        @JsonSubTypes.Type(value = AbstractFormControl.class)
+})
 public abstract class AbstractFormControl {
-    // TODO: 2019/2/21 多态类型表单控件Model定义
     public static final String INPUT_TYPE_TEXT = "text";
     public static final String INPUT_TYPE_PASSWORD = "password";
     public static final String INPUT_TYPE_EMAIL = "email";

@@ -25,6 +25,7 @@
         <maven.test.skip>true</maven.test.skip>
         <app.version>0.0.1-SNAPSHOT</app.version>
 
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <dubbo.version>2.7.0</dubbo.version>
         <zookeeper.version>3.4.13</zookeeper.version>
         <curator.version>4.0.1</curator.version>
@@ -50,6 +51,7 @@
         <module>app-boot-starter-sentry</module>
         <module>app-boot-starter-elastic-job</module>
 
+        <module>app-spring-cloud-eureka</module>
         <module>app-spring-cloud-archetype</module>
         <module>app-spring-cloud-api-common</module>
         <module>app-spring-cloud-common</module>
@@ -79,6 +81,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- SpringCloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- Dubbo -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>

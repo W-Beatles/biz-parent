@@ -12,5 +12,5 @@
     <artifactId>app-spring-cloud-archetype</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>app-spring-cloud-archetype</name>
-    <description>app-spring-cloud-archetype module</description>
+    <description>app-spring-cloud-archetype module for SpringCloud</description>
 </project>

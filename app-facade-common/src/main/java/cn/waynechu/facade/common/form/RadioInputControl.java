@@ -1,16 +1,18 @@
 package cn.waynechu.facade.common.form;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * 当选按钮
+ * 单选按钮类型
  *
  * @author zhuwei
  * @date 2019/2/21 14:31
  */
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
+@JsonTypeName("radio")
 public class RadioInputControl extends AbstractFormControl {
 
     private String value;
