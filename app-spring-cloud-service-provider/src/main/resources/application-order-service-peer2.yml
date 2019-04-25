@@ -1,0 +1,13 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: order-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/
+    # 拉取注册信息间隔。默认30分钟 (测试环境，可适当降低该值来保证及时获取注信息)
+    registry-fetch-interval-seconds: 30

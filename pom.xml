@@ -56,6 +56,7 @@
         <module>app-spring-cloud-api-common</module>
         <module>app-spring-cloud-common</module>
         <module>app-spring-cloud-test</module>
+        <module>app-spring-cloud-service-provider</module>
 
         <module>renting-web</module>
         <module>renting-facade</module>
