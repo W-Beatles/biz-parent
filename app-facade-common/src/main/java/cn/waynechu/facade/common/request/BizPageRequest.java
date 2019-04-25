@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "分页请求对象")
-public abstract class AbstractPageRequest extends AbstractRequest implements Serializable {
+public class BizPageRequest extends BizRequest implements Serializable {
     private static final long serialVersionUID = 2789603649153042060L;
 
     @ApiModelProperty(value = "当前页。默认第1页")

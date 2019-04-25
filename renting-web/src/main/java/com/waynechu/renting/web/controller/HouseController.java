@@ -1,11 +1,11 @@
 package com.waynechu.renting.web.controller;
 
-import cn.waynechu.facade.common.Result;
 import cn.waynechu.facade.common.page.PageInfo;
+import cn.waynechu.facade.common.response.BizResponse;
 import com.waynechu.renting.web.request.HouseCreateRequest;
 import com.waynechu.renting.web.request.HouseSearchRequest;
 import com.waynechu.renting.web.request.HouseUpdateRequest;
-import com.waynechu.renting.web.response.HouseResponse;
+import com.waynechu.renting.web.response.HouseBizResponse;
 import com.waynechu.renting.web.service.HouseWebService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,38 +34,38 @@ public class HouseController {
             @ApiImplicitParam(name = "id", value = "房屋ID", required = true, paramType = "path"),
             @ApiImplicitParam(name = "city", value = "城市名称", required = true, paramType = "query")
     })
-    public Result<HouseResponse> getById(@PathVariable Long id, @RequestParam String city) {
-        return Result.success(houseWebService.getById(id));
+    public BizResponse<HouseBizResponse> getById(@PathVariable Long id, @RequestParam String city) {
+        return new BizResponse<>(houseWebService.getById(id));
     }
 
     @PostMapping
     @ApiOperation(value = "新增房屋信息")
-    public Result<Boolean> createHouse(@RequestBody HouseCreateRequest request) {
-        return Result.success(houseWebService.create(request));
+    public BizResponse<Boolean> createHouse(@RequestBody HouseCreateRequest request) {
+        return new BizResponse<>(houseWebService.create(request));
     }
 
     @PutMapping
     @ApiOperation(value = "更新房屋详情")
-    public Result<Boolean> updateHouse(@RequestBody HouseUpdateRequest request) {
-        return Result.success(houseWebService.update(request));
+    public BizResponse<Boolean> updateHouse(@RequestBody HouseUpdateRequest request) {
+        return new BizResponse<>(houseWebService.update(request));
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除指定房屋")
-    public Result<Boolean> removeById(@PathVariable Long id) {
-        return Result.success(houseWebService.removeById(id));
+    public BizResponse<Boolean> removeById(@PathVariable Long id) {
+        return new BizResponse<>(houseWebService.removeById(id));
     }
 
 
     @PostMapping("/search")
     @ApiOperation(value = "分页查询房屋信息")
-    public Result<PageInfo<HouseResponse>> search(@Validated @RequestBody HouseSearchRequest request) {
-        return Result.success(houseWebService.search(request));
+    public BizResponse<PageInfo<HouseBizResponse>> search(@Validated @RequestBody HouseSearchRequest request) {
+        return new BizResponse<>(houseWebService.search(request));
     }
 
     @PostMapping("/{id}")
     @ApiOperation(value = "复制房屋信息并创建", notes = "不支持分布式事务")
-    public Result<Boolean> copyByIdTransition(@PathVariable Long id) {
-        return Result.success(houseWebService.copyByIdTransition(id));
+    public BizResponse<Boolean> copyByIdTransition(@PathVariable Long id) {
+        return new BizResponse<>(houseWebService.copyByIdTransition(id));
     }
 }

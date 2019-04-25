@@ -14,7 +14,7 @@ eureka:
     hostname: localhost
     # 使用IP注册
     preferIpAddress: true
-    # Client向Eureka Server发送心跳的时间间隔，默认30s
+    # Client向Eureka Server发送心跳的时间间隔，默认30s (线上可适当提高该值来防止触发自我保护)
     lease-renewal-interval-in-seconds: 30
     # 服务失效剔除时间，默认90秒
     lease-expiration-duration-in-seconds: 90
@@ -25,7 +25,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9001/eureka/
-    # 拉取注册信息间隔。默认30分钟 (测试环境，可适当降低该值来保证及时获取注信息)
+    # 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注信息)
     registry-fetch-interval-seconds: 5
   server:
     # 是否启用自我保护模式。默认开启
@@ -33,6 +33,8 @@ eureka:
     # SELF PRESERVATION机制保证当一分钟内收到的续约次数小于指定伐值Renews threshold，则禁止定时任务剔除失效实例。
     # 开发测试环境，启用该机制反而可能会影响系统的持续集成)
     enable-self-preservation: true
+    # 触发自我保护的伐值因子，默认0.85 (该值可在生产环境下适当调小，防止频繁触发自我保护)
+    renewal-percent-threshold: 0.85
     # Eureka服务器获取不到集群里对等服务器上的实例时，多久不对外提供注册服务
     wait-time-in-ms-when-sync-empty: 0
     # EvictionTack服务剔除定时任务间隔。默认60s

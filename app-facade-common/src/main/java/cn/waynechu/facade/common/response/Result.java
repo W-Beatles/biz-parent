@@ -1,4 +1,4 @@
-package cn.waynechu.facade.common;
+package cn.waynechu.facade.common.response;
 
 import cn.waynechu.facade.common.enums.BizEnum;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
@@ -11,9 +11,11 @@ import java.io.Serializable;
 /**
  * @author zhuwei
  * @date 2018/11/15 13:35
+ * @deprecated 请使用BizResponse
  */
 @Data
 @ApiModel(description = "请求返回对象")
+@Deprecated
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = -9151575407714770162L;
 

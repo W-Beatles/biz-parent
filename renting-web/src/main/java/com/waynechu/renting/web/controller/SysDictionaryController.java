@@ -1,7 +1,7 @@
 package com.waynechu.renting.web.controller;
 
-import cn.waynechu.facade.common.Result;
 import cn.waynechu.facade.common.page.PageInfo;
+import cn.waynechu.facade.common.response.BizResponse;
 import com.waynechu.renting.web.request.SysDictionaryCreateRequest;
 import com.waynechu.renting.web.request.SysDictionarySearchRequest;
 import com.waynechu.renting.web.request.SysDictionaryUpdateRequest;
@@ -33,31 +33,31 @@ public class SysDictionaryController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "字典ID", required = true, paramType = "path")
     })
-    public Result<SysDictionaryResponse> getById(@PathVariable Long id) {
-        return Result.success(sysDictionaryWebService.getById(id));
+    public BizResponse<SysDictionaryResponse> getById(@PathVariable Long id) {
+        return new BizResponse<>(sysDictionaryWebService.getById(id));
     }
 
     @PostMapping
     @ApiOperation(value = "添加字典项")
-    public Result<Boolean> createSysDictionary(@Validated @RequestBody SysDictionaryCreateRequest request) {
-        return Result.success(sysDictionaryWebService.create(request));
+    public BizResponse<Boolean> createSysDictionary(@Validated @RequestBody SysDictionaryCreateRequest request) {
+        return new BizResponse<>(sysDictionaryWebService.create(request));
     }
 
     @PutMapping
     @ApiOperation(value = "更新字典项")
-    public Result<Boolean> updateSysDictionary(@Validated @RequestBody SysDictionaryUpdateRequest request) {
-        return Result.success(sysDictionaryWebService.update(request));
+    public BizResponse<Boolean> updateSysDictionary(@Validated @RequestBody SysDictionaryUpdateRequest request) {
+        return new BizResponse<>(sysDictionaryWebService.update(request));
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除指定字典项")
-    public Result<Boolean> removeById(@PathVariable Long id) {
-        return Result.success(sysDictionaryWebService.removeById(id));
+    public BizResponse<Boolean> removeById(@PathVariable Long id) {
+        return new BizResponse<>(sysDictionaryWebService.removeById(id));
     }
 
     @PostMapping("/search")
     @ApiOperation(value = "分页搜索字典项")
-    public Result<PageInfo<SysDictionaryResponse>> search(@RequestBody SysDictionarySearchRequest request) {
-        return Result.success(sysDictionaryWebService.search(request));
+    public BizResponse<PageInfo<SysDictionaryResponse>> search(@RequestBody SysDictionarySearchRequest request) {
+        return new BizResponse<>(sysDictionaryWebService.search(request));
     }
 }

@@ -9,7 +9,7 @@ import com.waynechu.renting.web.convert.HouseDtoConvert;
 import com.waynechu.renting.web.request.HouseCreateRequest;
 import com.waynechu.renting.web.request.HouseSearchRequest;
 import com.waynechu.renting.web.request.HouseUpdateRequest;
-import com.waynechu.renting.web.response.HouseResponse;
+import com.waynechu.renting.web.response.HouseBizResponse;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +25,8 @@ public class HouseWebService {
     @Reference(version = "1.0.0")
     private HouseService houseService;
 
-    public HouseResponse getById(Long id) {
-        HouseResponse returnValue = null;
+    public HouseBizResponse getById(Long id) {
+        HouseBizResponse returnValue = null;
 
         HouseDTO houseDTO = houseService.getById(id);
         if (houseDTO != null) {
@@ -49,12 +49,12 @@ public class HouseWebService {
         return houseService.removeById(id);
     }
 
-    public PageInfo<HouseResponse> search(HouseSearchRequest request) {
+    public PageInfo<HouseBizResponse> search(HouseSearchRequest request) {
         HouseSearchCondition condition = BeanUtil.beanTransfer(request, HouseSearchCondition.class);
         PageInfo<HouseDTO> houseDTOPageInfo = houseService.search(condition);
         List<HouseDTO> list = houseDTOPageInfo.getList();
 
-        List<HouseResponse> houseVOList = HouseDtoConvert.toHouseRespList(list);
+        List<HouseBizResponse> houseVOList = HouseDtoConvert.toHouseRespList(list);
         return houseDTOPageInfo.replace(houseVOList);
     }
 

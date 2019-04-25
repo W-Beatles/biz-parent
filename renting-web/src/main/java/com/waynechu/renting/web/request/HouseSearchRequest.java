@@ -1,6 +1,6 @@
 package com.waynechu.renting.web.request;
 
-import cn.waynechu.facade.common.request.AbstractPageRequest;
+import cn.waynechu.facade.common.request.BizPageRequest;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "分页搜索房屋信息请求对象")
-public class HouseSearchRequest extends AbstractPageRequest {
+public class HouseSearchRequest extends BizPageRequest {
 
     private String title;
 

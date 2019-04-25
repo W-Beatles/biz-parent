@@ -1,6 +1,6 @@
 package com.waynechu.renting.web.request;
 
-import cn.waynechu.facade.common.request.AbstractPageRequest;
+import cn.waynechu.facade.common.request.BizPageRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "分页搜索字典项请求对象")
-public class SysDictionarySearchRequest extends AbstractPageRequest {
+public class SysDictionarySearchRequest extends BizPageRequest {
 
     @ApiModelProperty("字典ID")
     private Long id;

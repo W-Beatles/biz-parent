@@ -2,7 +2,7 @@ package com.waynechu.renting.web.convert;
 
 import cn.waynechu.springcloud.common.util.BeanUtil;
 import com.waynechu.renting.facade.dto.HouseDTO;
-import com.waynechu.renting.web.response.HouseResponse;
+import com.waynechu.renting.web.response.HouseBizResponse;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -14,11 +14,11 @@ import java.util.List;
 @UtilityClass
 public class HouseDtoConvert {
 
-    public static HouseResponse toHouseResp(HouseDTO houseDTO) {
-        return BeanUtil.beanTransfer(houseDTO, HouseResponse.class);
+    public static HouseBizResponse toHouseResp(HouseDTO houseDTO) {
+        return BeanUtil.beanTransfer(houseDTO, HouseBizResponse.class);
     }
 
-    public static List<HouseResponse> toHouseRespList(List<HouseDTO> list) {
-        return BeanUtil.beanListTransfer(list, HouseResponse.class);
+    public static List<HouseBizResponse> toHouseRespList(List<HouseDTO> list) {
+        return BeanUtil.beanListTransfer(list, HouseBizResponse.class);
     }
 }

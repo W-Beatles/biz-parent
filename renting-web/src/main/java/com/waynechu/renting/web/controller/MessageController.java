@@ -1,6 +1,6 @@
 package com.waynechu.renting.web.controller;
 
-import com.waynechu.renting.web.response.HouseResponse;
+import com.waynechu.renting.web.response.HouseBizResponse;
 import com.waynechu.renting.web.service.HouseWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class MessageController {
 
     @GetMapping("/houses/{id}")
     public String houseMessage(@PathVariable Long id, Model model) {
-        HouseResponse houseResponse = houseWebService.getById(id);
+        HouseBizResponse houseResponse = houseWebService.getById(id);
         model.addAttribute("houseResponse", houseResponse);
         return "houseMessage";
     }
