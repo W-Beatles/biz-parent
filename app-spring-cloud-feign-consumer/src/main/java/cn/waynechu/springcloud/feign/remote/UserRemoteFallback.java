@@ -1,7 +1,7 @@
 package cn.waynechu.springcloud.feign.remote;
 
 import cn.waynechu.facade.common.response.BizResponse;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -9,7 +9,7 @@ import java.util.Map;
  * @author zhuwei
  * @date 2019/4/25 20:54
  */
-@Service
+@Component
 public class UserRemoteFallback implements UserRemote {
 
     @Override

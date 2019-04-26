@@ -36,6 +36,9 @@ feign:
         #decoder:
         #encoder:
         #contract:
+  # 开启hystrix熔断降级
+  hystrix:
+    enabled: true
 
 logging:
   level:
