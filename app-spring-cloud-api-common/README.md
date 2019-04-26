@@ -57,7 +57,7 @@
     使用方式:   
     使用 `@Autowire` 注解注入 `SpringContextHolder` 即可
 
-9. SwaggerAutoConfiguration 生成Swagger API文档 (默认关闭)
+9. SwaggerAutoConfiguration 开启Swagger API文档 (默认关闭)
 
     参考配置:
     ```

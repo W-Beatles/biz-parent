@@ -7,6 +7,8 @@ import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.LayoutBase;
 import cn.waynechu.springcloud.common.aspect.AbstractControllerLogAspect;
+import cn.waynechu.springcloud.common.util.DesensitizeUtils;
+import cn.waynechu.springcloud.common.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,9 +18,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author zhuwei
@@ -70,13 +72,14 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
 
     private void writeMdc(JSONObject json, ILoggingEvent event) {
         if (event.getMDCPropertyMap() != null) {
-            Map<String, String> mdcPropertyMap = event.getMDCPropertyMap();
-            for (Map.Entry<String, String> entry : mdcPropertyMap.entrySet()) {
-                if (AbstractControllerLogAspect.MDC_TIME_TAKEN_KEY.equals(entry.getKey())) {
-                    // timeTaken 转化为int类型
-                    json.put(entry.getKey(), Integer.parseInt(entry.getValue()));
-                } else {
-                    json.put(entry.getKey(), entry.getValue());
+            json.putAll(event.getMDCPropertyMap());
+            // 转化timeTaken为Integer类型
+            String timeTaken = event.getMDCPropertyMap().get(AbstractControllerLogAspect.MDC_TIME_TAKEN_KEY);
+            if (StringUtil.isNotBlank(timeTaken)) {
+                try {
+                    json.put(AbstractControllerLogAspect.MDC_TIME_TAKEN_KEY, Integer.valueOf(timeTaken));
+                } catch (Exception e) {
+                    this.addError("timeTaken转换成Integer失败", e);
                 }
             }
         }
@@ -90,7 +93,9 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(event.getTimeStamp()),
                 ZoneId.systemDefault());
         json.put("time", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS").format(localDateTime));
-        json.put("message", event.getFormattedMessage());
+        // 日志脱敏
+        String[] keyArray = {DesensitizeUtils.PASSWORD, DesensitizeUtils.PWD};
+        json.put("message", DesensitizeUtils.desensitize(event.getFormattedMessage(), keyArray));
         json.put("logger", event.getLoggerName());
     }
 
@@ -105,6 +110,17 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
             throwable.put("className", t.getClass().getCanonicalName());
             throwable.put("stackTrace", writeStackTrace(event));
             json.put("throwable", throwable);
+
+            List<JSONObject> traceObjects = new ArrayList<>();
+            for (StackTraceElement ste : t.getStackTrace()) {
+                JSONObject element = new JSONObject();
+                element.put("class", ste.getClassName());
+                element.put("method", ste.getMethodName());
+                element.put("line", ste.getLineNumber());
+                element.put("file", ste.getFileName());
+                traceObjects.add(element);
+            }
+            json.put("stackTrace", traceObjects);
         }
     }
 
