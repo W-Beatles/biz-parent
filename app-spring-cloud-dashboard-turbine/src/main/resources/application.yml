@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: turbine-dashboard
+    name: turbine-dashboard-service
 
 eureka:
   client:

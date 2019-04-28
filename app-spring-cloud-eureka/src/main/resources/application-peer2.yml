@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: eureka-server
+    name: eureka-service
   security:
     user:
       name: admin
