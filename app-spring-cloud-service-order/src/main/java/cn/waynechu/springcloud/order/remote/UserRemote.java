@@ -11,7 +11,7 @@ import java.util.Map;
  * @author zhuwei
  * @date 2019/4/25 15:37
  */
-@FeignClient(name = "user-service", path = "/users", fallback = UserRemoteFallback.class)
+@FeignClient(name = "user-service-api", path = "/users", fallback = UserRemoteFallback.class)
 public interface UserRemote {
 
     @GetMapping("/{id}")

@@ -14,7 +14,7 @@ eureka:
 
 turbine:
   # 要收集监控的服务名称
-  app-config: order-service,user-service
+  app-config: order-service-api,user-service-api
   # 指定集群名称
   cluster-name-expression: "'default'"
   # 本地调试使用host:post的方式区分实例。默认true
