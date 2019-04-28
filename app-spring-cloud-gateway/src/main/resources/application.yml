@@ -11,11 +11,6 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-#      routes:
-#        - id: baidu_route
-#          uri: https://www.baidu.com/
-#          predicates:
-#            - Path=/baidu
 
 eureka:
   client:
