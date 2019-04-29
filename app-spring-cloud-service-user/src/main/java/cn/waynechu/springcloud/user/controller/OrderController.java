@@ -2,6 +2,7 @@ package cn.waynechu.springcloud.user.controller;
 
 import cn.waynechu.facade.common.response.BizResponse;
 import cn.waynechu.springcloud.user.remote.OrderRemote;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/orders/remote")
+@Api(tags = "订单信息")
 public class OrderController {
 
     @Autowired

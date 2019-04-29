@@ -1,6 +1,7 @@
 package cn.waynechu.springcloud.user.controller;
 
 import cn.waynechu.facade.common.response.BizResponse;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import java.util.Random;
 @Slf4j
 @RestController
 @RequestMapping("/users")
+@Api(tags = "用户信息")
 public class UserController {
 
     @GetMapping("/{id}")

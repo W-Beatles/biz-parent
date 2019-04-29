@@ -53,3 +53,10 @@ logging:
   level:
     # 查看feign详细调用日志
     cn.waynechu.springcloud.provider.remote.OrderRemote: debug
+
+app:
+  api:
+    common:
+      swagger:
+        enable: true
+        scan-package: cn.waynechu

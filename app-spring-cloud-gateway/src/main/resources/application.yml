@@ -6,7 +6,7 @@ spring:
     name: inner-gateway-service
   cloud:
     gateway:
-      # \u5F00\u542F\u57FA\u4E8E\u670D\u52A1\u53D1\u73B0\u7684\u8DEF\u7531\u89C4\u5219
+      # 开启基于服务发现的路由规则
       discovery:
         locator:
           enabled: true
@@ -16,12 +16,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/
-    # \u62C9\u53D6\u6CE8\u518C\u4FE1\u606F\u95F4\u9694\u3002\u9ED8\u8BA430\u79D2 (\u6D4B\u8BD5\u73AF\u5883\uFF0C\u53EF\u9002\u5F53\u964D\u4F4E\u8BE5\u503C\u6765\u4FDD\u8BC1\u53CA\u65F6\u83B7\u53D6\u6CE8\u4FE1\u606F)
+    # 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注信息)
     registry-fetch-interval-seconds: 30
 
 logging:
   level:
-    # SpringCloud\u7F51\u5173\u65E5\u5FD7\u914D\u7F6E
+    # SpringCloud网关日志配置
     org.springframework.cloud.gateway: DEBUG
     org.springframework.http.server.reactive: DEBUG
     org.springframework.web.reactive: DEBUG

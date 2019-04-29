@@ -47,6 +47,14 @@ management:
       exposure:
         include: hystrix.stream
 
+# Swagger配置
+app:
+  api:
+    common:
+      swagger:
+        enable: true
+        scan-package: cn.waynechu
+
 logging:
   level:
     # 查看feign详细调用日志

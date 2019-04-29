@@ -58,6 +58,7 @@
         <module>app-spring-cloud-test</module>
         <module>app-spring-cloud-dashboard-hystrix</module>
         <module>app-spring-cloud-dashboard-turbine</module>
+        <module>app-spring-cloud-gateway</module>
         <module>app-spring-cloud-service-user</module>
         <module>app-spring-cloud-service-order</module>
 
