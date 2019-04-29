@@ -37,7 +37,7 @@
     
 3. ControllerExceptionHandler 统一异常处理切面 (默认开启)
 
-4. ControllerLogAspect Controller日志切面 (默认开启)
+4. ControllerLogAspect Controller 日志切面 (默认开启)
 
 5. MethodLogAspect 方法调用情况切面 (默认开启)
 
