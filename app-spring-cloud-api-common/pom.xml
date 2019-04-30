@@ -29,7 +29,7 @@
 
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-boot-starter-sentry</artifactId>
+            <artifactId>app-boot-starter-elk-sentry</artifactId>
         </dependency>
 
         <dependency>
@@ -52,17 +52,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <!-- MQ -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.codehaus.janino</groupId>
-            <artifactId>janino</artifactId>
         </dependency>
 
         <!-- PageHelper -->

@@ -1,6 +1,6 @@
-package cn.waynechu.bootstarter.sentry;
+package cn.waynechu.bootstarter.elk;
 
-import cn.waynechu.bootstarter.sentry.properties.ElkProperty;
+import cn.waynechu.bootstarter.elk.properties.ElkProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 

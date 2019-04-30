@@ -1,7 +1,7 @@
-package cn.waynechu.bootstarter.sentry;
+package cn.waynechu.bootstarter.elk;
 
-import cn.waynechu.bootstarter.sentry.initializer.SentryInitializer;
-import cn.waynechu.bootstarter.sentry.properties.SentryProperties;
+import cn.waynechu.bootstarter.elk.initializer.SentryInitializer;
+import cn.waynechu.bootstarter.elk.properties.SentryProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

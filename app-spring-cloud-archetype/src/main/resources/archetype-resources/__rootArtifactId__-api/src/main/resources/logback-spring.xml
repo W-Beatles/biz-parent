@@ -26,15 +26,17 @@
     <property name="TOTAL_SIZE_CAP" value="3GB"/>
 
     <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
+
     <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>
     <springProperty scope="context" name="elkHost" source="elk.host" defaultValue="localhost"/>
     <springProperty scope="context" name="elkPort" source="elk.port" defaultValue="5672"/>
     <springProperty scope="context" name="elkUsername" source="elk.username" defaultValue="guest"/>
     <springProperty scope="context" name="elkPassword" source="elk.password" defaultValue="guest"/>
-    <springProperty scope="context" name="elkApplicationId" source="elk.applicationId" defaultValue="anonymous"/>
-    <springProperty scope="context" name="elkVirtualHost" source="elk.virtualHost" defaultValue="/"/>
+    <springProperty scope="context" name="elkVirtualHost" source="elk.virtual-host" defaultValue="/"/>
     <springProperty scope="context" name="elkExchange" source="elk.exchange" defaultValue="topic.loggingExchange"/>
-    <springProperty scope="context" name="elkRoutingKey" source="elk.routingKey" defaultValue="logback.#"/>
+    <springProperty scope="context" name="elkRoutingKey" source="elk.routing-key" defaultValue="logback.#"/>
+    <springProperty scope="context" name="elkApplicationId" source="elk.application-id" defaultValue="anonymous"/>
+    <springProperty scope="context" name="elkConnectionName" source="elk.connection-name" defaultValue="UNDEFINED"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -106,22 +108,24 @@
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                     <level>INFO</level>
                 </filter>
-                <host>${symbol_dollar}{elkHost}</host>
-                <port>${symbol_dollar}{elkPort}</port>
-                <username>${symbol_dollar}{elkUsername}</username>
-                <password>${symbol_dollar}{elkPassword}</password>
-                <applicationId>${symbol_dollar}{applicationId}</applicationId>
-                <virtualHost>${symbol_dollar}{elkVirtualHost}</virtualHost>
-                <exchangeName>${symbol_dollar}{elkExchange}</exchangeName>
+                <host>${elkHost}</host>
+                <port>${elkPort}</port>
+                <username>${elkUsername}</username>
+                <password>${elkPassword}</password>
+                <applicationId>${applicationId}</applicationId>
+                <virtualHost>${elkVirtualHost}</virtualHost>
+                <exchangeName>${elkExchange}</exchangeName>
                 <exchangeType>topic</exchangeType>
                 <declareExchange>true</declareExchange>
-                <routingKeyPattern>${symbol_dollar}{elkRoutingKey}</routingKeyPattern>
+                <routingKeyPattern>${elkRoutingKey}</routingKeyPattern>
                 <autoDelete>false</autoDelete>
                 <generateId>true</generateId>
                 <durable>true</durable>
                 <deliveryMode>PERSISTENT</deliveryMode>
                 <charset>UTF-8</charset>
-                <layout class="cn.waynechu.springcloud.apicommon.logback.RabbitmqLayout"/>
+                <contentType>text/json</contentType>
+                <connectionName>${elkConnectionName}</connectionName>
+                <layout class="cn.waynechu.bootstarter.elk.layout.RabbitmqLayout"/>
             </appender>
         </then>
     </if>

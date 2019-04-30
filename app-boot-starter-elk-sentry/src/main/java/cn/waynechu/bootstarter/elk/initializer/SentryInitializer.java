@@ -1,6 +1,6 @@
-package cn.waynechu.bootstarter.sentry.initializer;
+package cn.waynechu.bootstarter.elk.initializer;
 
-import cn.waynechu.bootstarter.sentry.properties.SentryProperties;
+import cn.waynechu.bootstarter.elk.properties.SentryProperties;
 import org.springframework.beans.factory.InitializingBean;
 
 /**

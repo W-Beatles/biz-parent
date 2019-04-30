@@ -269,7 +269,7 @@
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-boot-starter-sentry</artifactId>
+                <artifactId>app-boot-starter-elk-sentry</artifactId>
                 <version>${app.version}</version>
             </dependency>
 
