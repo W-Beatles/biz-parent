@@ -56,6 +56,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
     public BizResponse unknownException(Exception e) {
         log.error("[系统异常] ", e);
-        return new BizResponse<>(BizErrorCodeEnum.SYSTEM_ERROR, MDC.get(MDCFilter.REQ_KEY));
+        return new BizResponse<>(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
+                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDCFilter.REQ_UUID));
     }
 }

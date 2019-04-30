@@ -33,6 +33,7 @@ import java.util.UUID;
 public class MDCFilter implements Filter {
     public static final String TRACE_NO_FLAG = "traceNo";
     public static final String REQ_KEY = "reqKey";
+    public static final String REQ_UUID = "reqUUID";
     public static final String APPLICATION_NAME = "applicationName";
 
     private String prefix;
@@ -66,6 +67,7 @@ public class MDCFilter implements Filter {
         String shortJavaUUID = generateShortJavaUUID();
         String reqKeyStr = generateReqKeyStr(traceNo, prefix, shortJavaUUID, localHostName);
 
+        MDC.put(REQ_UUID, shortJavaUUID);
         MDC.put(REQ_KEY, reqKeyStr);
         MDC.put(APPLICATION_NAME, applicationName);
     }
