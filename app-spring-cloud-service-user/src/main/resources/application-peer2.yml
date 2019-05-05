@@ -4,13 +4,42 @@ server:
 spring:
   application:
     name: user-service-api
+  ## redis
+  redis:
+    database: 0
+    host: localhost
+    password: 123456
+    port: 6379
+  ## rabbitmq
+  rabbitmq:
+    host: mq.waynechu.cn
+    port: 5672
+    username: waynechu
+    password: Swro39qE.mB5
+    virtual-host: /dev
+    #publisher-confirms: true
 
 eureka:
+  instance:
+    hostname: localhost
+    # 使用IP注册
+    preferIpAddress: true
+    # Client向Eureka Server发送心跳的时间间隔，默认30s (线上可适当提高该值来防止触发自我保护)
+    lease-renewal-interval-in-seconds: 30
+    # 服务失效剔除时间，默认90秒
+    lease-expiration-duration-in-seconds: 90
+    # 用于在重新启动后触发信息和端点更新
+    metadata-map:
+      startup: ${random.int}
   client:
+    # 是否将该当前实例注册到Eureka Server
+    register-with-eureka: true
+    # 是否获取注册表信息
+    fetch-registry: true
     service-url:
       defaultZone: http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/
     # 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注信息)
-    registry-fetch-interval-seconds: 30
+    registry-fetch-interval-seconds: 5
 
 feign:
   # feign压缩配置
@@ -42,12 +71,15 @@ feign:
   hystrix:
     enabled: true
 
-# 开放hystrix.stream监控端点
+# 开放boot-admin监控端点 其中hystrix监控端点为(include: hystrix.stream)
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 logging:
   level:

@@ -1,9 +1,9 @@
 server:
-  port: 8040
+  port: 8060
 
 spring:
   application:
-    name: turbine-dashboard-service
+    name: boot-admin-service
 
 eureka:
   client:
@@ -15,11 +15,3 @@ eureka:
       defaultZone: http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/
     # 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注信息)
     registry-fetch-interval-seconds: 5
-
-turbine:
-  # 要收集监控的服务名称
-  app-config: order-service-api,user-service-api
-  # 指定集群名称
-  cluster-name-expression: "'default'"
-  # 本地调试使用host:post的方式区分实例。默认true
-  combine-host-port: true

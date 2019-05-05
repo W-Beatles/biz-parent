@@ -19,21 +19,21 @@ eureka:
     # 服务失效剔除时间，默认90秒
     lease-expiration-duration-in-seconds: 90
   client:
-    # 是否将该当前实例注册到Eureka Server (单注册中心关闭)
-    register-with-eureka: true
-    # 是否获取注册表信息 (单注册中心关闭)
+    # 是否将该当前实例注册到Eureka Server
+    register-with-eureka: false
+    # 是否获取注册表信息
     fetch-registry: true
     service-url:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
     # 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注信息)
     registry-fetch-interval-seconds: 5
   server:
-    # 关闭自我保护模式。默认开启 (可能由于网络抖动造成Client向Server发送心跳失败，但服务实例是健康的。
+    # 是否开启自我保护模式。默认开启 (可能由于网络抖动造成Client向Server发送心跳失败，但服务实例是健康的。
     # 当出现大范围误判，可能导致注册的服务发范围被剔除。SELF PRESERVATION机制保证当一分钟内收到的续约次数小于指定伐值，
     # 则禁止定时任务剔除失效实例。开发测试环境，开启该机制反而可能会影响系统的持续集成)
     enable-self-preservation: true
     # 触发自我保护的伐值因子，默认0.85 (该值可在生产环境下适当调小，防止频繁触发自我保护)
-    renewal-percent-threshold: 0.85
+    renewal-percent-threshold: 0.5
     # Eureka服务器获取不到集群里对等服务器上的实例时，多久不对外提供注册服务
     wait-time-in-ms-when-sync-empty: 0
     # EvictionTack服务剔除定时任务间隔。默认60s

@@ -37,9 +37,11 @@ public class GatewaySwaggerProvider implements SwaggerResourcesProvider {
         List<SwaggerResource> resources = new ArrayList<>();
         // 从DiscoveryClientRouteDefinitionLocator 中取出routes，构造成swaggerResource
         routeLocator.getRouteDefinitions().subscribe(routeDefinition ->
-                resources.add(swaggerResource(
-                        routeDefinition.getId().substring(EUREKA_SUB_PREFIX.length()),
-                        routeDefinition.getPredicates().get(0).getArgs().get("pattern").replace("/**", API_URI))));
+        {
+            resources.add(swaggerResource(
+                    routeDefinition.getId().substring(EUREKA_SUB_PREFIX.length()),
+                    routeDefinition.getPredicates().get(0).getArgs().get("pattern").replace("/**", API_URI)));
+        });
         return resources;
     }
 

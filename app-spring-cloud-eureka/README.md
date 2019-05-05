@@ -68,16 +68,16 @@
         home-page-url: https://${eureka.instance.hostname}:${server.port}/
         status-page-url: https://${eureka.instance.hostname}:${server.port}/
       client:
-        # 是否将该当前实例注册到Eureka Server (单注册中心关闭)
+        # 是否将该当前实例注册到Eureka Server
         register-with-eureka: true
-        # 是否获取注册表信息 (单注册中心关闭)
+        # 是否获取注册表信息
         fetch-registry: true
         service-url:
           defaultZone: https://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
         # 拉取注册信息间隔。默认30 (测试环境，可适当降低该值来保证及时获取注信息)
         registry-fetch-interval-seconds: 5
       server:
-        # 关闭自我保护模式。默认开启 (可能由于网络抖动造成Client向Server发送心跳失败，但服务实例是健康的。
+        # 是否开启自我保护模式。默认开启 (可能由于网络抖动造成Client向Server发送心跳失败，但服务实例是健康的。
         # 当出现大范围误判，可能导致注册的服务发范围被剔除。SELF PRESERVATION机制保证当一分钟内收到的续约次数小于指定伐值，
         # 则禁止定时任务剔除失效实例。开发测试环境，开启该机制反而可能会影响系统的持续集成)
         enable-self-preservation: true
