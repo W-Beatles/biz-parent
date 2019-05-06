@@ -17,6 +17,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>app-spring-cloud-api-starter</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-integration-dal</artifactId>
         </dependency>

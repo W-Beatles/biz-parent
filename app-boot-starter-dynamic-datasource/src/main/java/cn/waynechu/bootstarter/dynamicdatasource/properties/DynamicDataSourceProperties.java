@@ -32,8 +32,9 @@ import java.util.Map;
  * @date 2019/1/15 16:42
  */
 @Data
-@ConfigurationProperties(prefix = "spring.datasource.dynamic")
+@ConfigurationProperties(prefix = DynamicDataSourceProperties.DYNAMIC_DATA_SOURCE_PREFIX)
 public class DynamicDataSourceProperties {
+    public static final String DYNAMIC_DATA_SOURCE_PREFIX = "spring.datasource.dynamic";
 
     /**
      * 配置所有数据源

@@ -15,10 +15,6 @@
     <description>${artifactId} module for SpringCloud</description>
 
     <dependencies>
-        <dependency>
-            <groupId>cn.waynechu</groupId>
-            <artifactId>app-spring-cloud-api-common</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

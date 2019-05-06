@@ -1,18 +1,17 @@
 #set( $symbol_pound = '#' )
-        #set( $symbol_dollar = '$' )
-        #set( $symbol_escape = '\' )
-
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!-- 从高到低 OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、ALL -->
-        <!-- 日志输出规则 根据当前 ROOT 级别，日志输出时，级别高于root默认的级别会输出 -->
-        <!-- scan: 配置文件发生改变就会被重新加载，默认值为true
-             scanPeriod: 监测配置文件是否有修改的时间间隔，如果没有给出时间单位则默认是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
-             debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 从高到低 OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、ALL -->
+<!-- 日志输出规则 根据当前 ROOT 级别，日志输出时，级别高于root默认的级别会输出 -->
+<!-- scan: 配置文件发生改变就会被重新加载，默认值为true
+     scanPeriod: 监测配置文件是否有修改的时间间隔，如果没有给出时间单位则默认是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+     debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <!-- Pattern -->
     <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr([%X{reqKey}]){magenta} %clr([%t]){faint} %clr(%logger{30}){cyan} : %m%n"/>
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr([%t]){faint} %clr(%logger{30}){cyan} : %m%n"/>
     <property name="FILE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{reqKey}] %logger{30}:%line - %msg%n"/>
 
@@ -36,7 +35,7 @@
     <springProperty scope="context" name="elkExchange" source="elk.exchange" defaultValue="topic.loggingExchange"/>
     <springProperty scope="context" name="elkRoutingKey" source="elk.routing-key" defaultValue="logback.#"/>
     <springProperty scope="context" name="elkApplicationId" source="elk.application-id" defaultValue="anonymous"/>
-    <springProperty scope="context" name="elkConnectionName" source="elk.connection-name" defaultValue="UNDEFINED"/>
+    <springProperty scope="context" name="elkConnectionName" source="elk.connection-name" defaultValue="undefined"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

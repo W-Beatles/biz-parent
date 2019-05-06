@@ -32,7 +32,7 @@
 
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-spring-cloud-api-common</artifactId>
+            <artifactId>app-spring-cloud-api-starter</artifactId>
         </dependency>
     </dependencies>
 

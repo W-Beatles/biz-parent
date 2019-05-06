@@ -25,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
@@ -37,6 +38,7 @@ import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 @Slf4j
 @Configuration
 @AutoConfigureBefore({DataSourceAutoConfiguration.class})
+@ConditionalOnProperty(DynamicDataSourceProperties.DYNAMIC_DATA_SOURCE_PREFIX + ".datasource")
 @EnableConfigurationProperties(DynamicDataSourceProperties.class)
 @Import(DruidDynamicDataSourceConfiguration.class)
 public class DynamicDataSourceAutoConfiguration {

@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <name>${artifactId}-parent</name>
-    <description>${artifactId} module</description>
+    <description>${artifactId} parent</description>
 
     <repositories>
         <repository>

@@ -54,12 +54,14 @@
 
         <module>app-spring-cloud-eureka</module>
         <module>app-spring-cloud-archetype</module>
-        <module>app-spring-cloud-api-common</module>
+        <module>app-spring-cloud-api-starter</module>
         <module>app-spring-cloud-common</module>
         <module>app-spring-cloud-test</module>
         <module>app-spring-cloud-dashboard-hystrix</module>
         <module>app-spring-cloud-dashboard-turbine</module>
         <module>app-spring-cloud-gateway</module>
+        <module>app-spring-boot-admin</module>
+
         <module>app-spring-cloud-service-user</module>
         <module>app-spring-cloud-service-order</module>
     </modules>
@@ -272,7 +274,7 @@
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-spring-cloud-api-common</artifactId>
+                <artifactId>app-spring-cloud-api-starter</artifactId>
                 <version>${app.version}</version>
             </dependency>
 
@@ -291,24 +293,6 @@
             <dependency>
                 <groupId>cn.waynechu</groupId>
                 <artifactId>app-boot-starter-elastic-job</artifactId>
-                <version>${app.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
-                <artifactId>renting-integration-dal</artifactId>
-                <version>${app.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
-                <artifactId>renting-domain</artifactId>
-                <version>${app.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
-                <artifactId>renting-facade</artifactId>
                 <version>${app.version}</version>
             </dependency>
         </dependencies>
