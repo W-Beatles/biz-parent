@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 9001
 
 spring:
   application:
@@ -7,7 +7,7 @@ spring:
   security:
     user:
       name: admin
-      password: 123456
+      password: EOus8'aw$q+P
 
 eureka:
   instance:
@@ -20,26 +20,25 @@ eureka:
     lease-expiration-duration-in-seconds: 90
   client:
     # 是否将该当前实例注册到Eureka Server
-    register-with-eureka: false
+    register-with-eureka: true
     # 是否获取注册表信息
     fetch-registry: true
     service-url:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9001/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
     # 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注信息)
     registry-fetch-interval-seconds: 5
   server:
-    # 是否启用自我保护模式。默认开启
-    # (可能由于网络抖动造成Client向Server发送心跳失败，但服务实例是健康的。当出现大范围误判，可能导致注册的服务大范围被剔除。
-    # SELF PRESERVATION机制保证当一分钟内收到的续约次数小于指定伐值Renews threshold，则禁止定时任务剔除失效实例。
-    # 开发测试环境，启用该机制反而可能会影响系统的持续集成)
+    # 是否开启自我保护模式。默认开启 (可能由于网络抖动造成Client向Server发送心跳失败，但服务实例是健康的。
+    # 当出现大范围误判，可能导致注册的服务发范围被剔除。SELF PRESERVATION机制保证当一分钟内收到的续约次数小于指定伐值，
+    # 则禁止定时任务剔除失效实例。开发测试环境，开启该机制反而可能会影响系统的持续集成)
     enable-self-preservation: true
     # 触发自我保护的伐值因子，默认0.85 (该值可在生产环境下适当调小，防止频繁触发自我保护)
-    renewal-percent-threshold:  0.5
+    renewal-percent-threshold: 0.85
     # Eureka服务器获取不到集群里对等服务器上的实例时，多久不对外提供注册服务
     wait-time-in-ms-when-sync-empty: 0
     # EvictionTack服务剔除定时任务间隔。默认60s
     eviction-interval-timer-in-ms: 60000
-    # (关闭Server的response cache，或者修改response cache的过期时间，可有效解决Server中存留过期实例信息的问题)
+    # 关闭Server的response cache，或者修改response cache的过期时间，可有效解决Server中存留过期实例信息的问题
     use-read-only-response-cache: false
-    # 修改response cache的过期时间
+    # 修改response cache的过期时间。默认180s
     response-cache-auto-expiration-in-seconds: 60
