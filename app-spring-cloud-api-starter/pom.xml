@@ -43,6 +43,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Apollo -->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+        </dependency>
+
         <!-- SpringBoot Admin -->
         <dependency>
             <groupId>de.codecentric</groupId>
@@ -79,6 +85,7 @@
             </exclusions>
         </dependency>
 
+        <!-- elk & sentry -->
         <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>app-boot-starter-elk-sentry</artifactId>

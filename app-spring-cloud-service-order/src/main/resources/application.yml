@@ -7,8 +7,8 @@ spring:
   ## redis
   redis:
     database: 0
-    host: localhost
-    password: 123456
+    host: dev.waynechu.cn
+    password: DOWE*2^VE_T%.1
     port: 6379
   ## rabbitmq
   rabbitmq:

@@ -25,6 +25,7 @@
         <maven.test.skip>true</maven.test.skip>
         <app.version>0.0.1-SNAPSHOT</app.version>
 
+        <apollo-client.version>1.4.0</apollo-client.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-boot-admin.version>2.1.4</spring-boot-admin.version>
         <dubbo.version>2.7.0</dubbo.version>
@@ -84,6 +85,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Apollo -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo-client.version}</version>
+            </dependency>
+
             <!-- SpringCloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
