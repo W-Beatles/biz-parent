@@ -9,9 +9,7 @@
 DATETIME=`date +%Y-%m-%d_%H:%M`
 
 # =============== Please do not modify the following content =============== #
-# go to script directory
-cd "${0%/*}"
-
+# go to app-parent directory
 cd ..
 
 # package project
