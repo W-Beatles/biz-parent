@@ -1,6 +1,6 @@
 package cn.waynechu.bootstarter.elk;
 
-import cn.waynechu.bootstarter.elk.initializer.SentryInitializer;
+import cn.waynechu.bootstarter.elk.aware.SentryContextAware;
 import cn.waynechu.bootstarter.elk.properties.SentryProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -17,7 +17,7 @@ public class SentryAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "sentry.enable", havingValue = "true")
-    public SentryInitializer sentryInitializer(SentryProperties sentryProperties) {
-        return new SentryInitializer(sentryProperties);
+    public SentryContextAware sentryInitializer() {
+        return new SentryContextAware();
     }
 }
