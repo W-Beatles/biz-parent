@@ -14,19 +14,25 @@
     sentry starter模块
 4. app-facade-common
     通用facade模块
-5. app-spring-cloud-archetype
-    用于生成spring-cloud项目骨架
-6. app-spring-cloud-common
+5. app-spring-boot-admin
+    SpringBoot Admin监控模块
+6. app-spring-cloud-api-starter
+   spring-cloud starter模块。提供MDC过滤器、控制器/方法切面等系列开箱即用功能
+7. app-spring-cloud-archetype
+    用于一键生成spring-cloud项目基础开发骨架
+8. app-spring-cloud-common
     spring-cloud项目通用工具类
-7. app-spring-cloud-test
-    测试模块
-7. app-spring-cloud-web-starter
-    spring-cloud starter模块。提供MDC过滤器、控制器/方法切面
-8. renting-domain
-    renting dubbo服务提供方测试模块
-9. renting-facade
-    renting facade模块
-10. renting-integration-dal
-    renting 数据访问层模块
-11. renting-web
-    renting web模块
+9. ~~(已废弃)app-spring-cloud-dashboard-hystrix~~
+    推荐使用app-spring-cloud-dashboard-turbine来进行Hystrix断路器监控
+10. app-spring-cloud-dashboard-turbine
+     用于监控应用hystrix.stream断点，并进行Hystrix断路器信息聚合
+11. app-spring-cloud-eureka
+     Eureka注册中心
+12. app-spring-cloud-gateway
+     API网关。用做服务代理及API聚合，并提供所有服务的Swagger文档聚合
+13. app-spring-cloud-service-order
+     订单模块(测试)
+14. app-spring-cloud-service-user
+     用户模块(测试)
+15. app-spring-cloud-test
+     测试模块
