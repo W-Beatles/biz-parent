@@ -38,64 +38,14 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
     sentry.dsn=http://a1c395c85d2xxxxxxxx0f1535b8@sentry.waynechu.cn:9000/2
     sentry.stacktrace-app-packages=
     ```
-    
-3. 添加Logback配置 `logback-spring.xml`
 
+3. (可选)如需要自定义日志相关配置，可新建`src/main/resources/logback-custom-spring.xml`来增加相关配置
     ```
-    ...
-    <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
-
-    <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>
-    <springProperty scope="context" name="elkHost" source="elk.host" defaultValue="localhost"/>
-    <springProperty scope="context" name="elkPort" source="elk.port" defaultValue="5672"/>
-    <springProperty scope="context" name="elkUsername" source="elk.username" defaultValue="guest"/>
-    <springProperty scope="context" name="elkPassword" source="elk.password" defaultValue="guest"/>
-    <springProperty scope="context" name="elkVirtualHost" source="elk.virtual-host" defaultValue="/"/>
-    <springProperty scope="context" name="elkExchange" source="elk.exchange" defaultValue="topic.loggingExchange"/>
-    <springProperty scope="context" name="elkRoutingKey" source="elk.routing-key" defaultValue="logback.#"/>
-    <springProperty scope="context" name="elkApplicationId" source="elk.application-id" defaultValue="anonymous"/>
-    <springProperty scope="context" name="elkConnectionName" source="elk.connection-name" defaultValue="UNDEFINED" />
-
-    <if condition='property("sentryEnable").contains("true")'>
-        <then>
-            <appender name="Sentry" class="io.sentry.logback.SentryAppender">
-                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                    <level>WARN</level>
-                </filter>
-            </appender>
-        </then>
-    </if>
-    
-    <if condition='property("elkEnable").contains("true")'>
-        <then>
-            <appender name="ELK" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
-                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                    <level>INFO</level>
-                </filter>
-                <host>${elkHost}</host>
-                <port>${elkPort}</port>
-                <username>${elkUsername}</username>
-                <password>${elkPassword}</password>
-                <applicationId>${applicationId}</applicationId>
-                <virtualHost>${elkVirtualHost}</virtualHost>
-                <exchangeName>${elkExchange}</exchangeName>
-                <exchangeType>topic</exchangeType>
-                <declareExchange>true</declareExchange>
-                <routingKeyPattern>${elkRoutingKey}</routingKeyPattern>
-                <autoDelete>false</autoDelete>
-                <generateId>true</generateId>
-                <durable>true</durable>
-                <deliveryMode>PERSISTENT</deliveryMode>
-                <charset>UTF-8</charset>
-                <contentType>text/json</contentType>
-                <connectionName>${elkConnectionName}</connectionName>
-                <layout class="cn.waynechu.bootstarter.logger.layout.RabbitmqLayout"/>
-            </appender>
-        </then>
-    </if>
-    ...
+    <?xml version="1.0" encoding="UTF-8"?>
+    <included>
+        相关配置内容
+    </included>
     ```
-
 ### 附: Docker快速搭建ELK环境
 
 ```
