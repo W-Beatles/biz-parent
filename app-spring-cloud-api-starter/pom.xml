@@ -88,7 +88,7 @@
         <!-- elk & sentry -->
         <dependency>
             <groupId>cn.waynechu</groupId>
-            <artifactId>app-boot-starter-elk-sentry</artifactId>
+            <artifactId>app-boot-starter-logger</artifactId>
         </dependency>
 
         <dependency>

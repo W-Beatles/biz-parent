@@ -1,8 +1,9 @@
-# app-boot-starter-elk-sentry
+# app-boot-starter-logger
 
 ### 项目介绍
 
 该模块用于上传日志到elasticsearch及sentry中。
+
 1. 该模块会将logback日志通过AmqpAppender发送到指定RabbitMQ消息队列中，然后通过配置logstash的input为
 RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示。
 2. 该模块会将error级别日志通过SentryAppender发送到指定的Sentry DSN地址，便于错误日志汇总、Bug排查定位，
@@ -15,7 +16,7 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
     ```
     <dependency>
         <groupId>cn.waynechu</groupId>
-        <artifactId>app-boot-starter-elk-sentry</artifactId>
+        <artifactId>app-boot-starter-logger</artifactId>
     </dependency>
     ```
 2. 添加配置
@@ -88,7 +89,7 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
                 <charset>UTF-8</charset>
                 <contentType>text/json</contentType>
                 <connectionName>${elkConnectionName}</connectionName>
-                <layout class="cn.waynechu.bootstarter.elk.layout.RabbitmqLayout"/>
+                <layout class="cn.waynechu.bootstarter.logger.layout.RabbitmqLayout"/>
             </appender>
         </then>
     </if>

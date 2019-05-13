@@ -1,4 +1,4 @@
-package cn.waynechu.bootstarter.elk.properties;
+package cn.waynechu.bootstarter.logger.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

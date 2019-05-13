@@ -50,8 +50,8 @@
         <module>app-facade-common</module>
 
         <module>app-boot-starter-dynamic-datasource</module>
-        <module>app-boot-starter-elk-sentry</module>
         <module>app-boot-starter-elastic-job</module>
+        <module>app-boot-starter-logger</module>
 
         <module>app-spring-cloud-eureka</module>
         <module>app-spring-cloud-archetype</module>
@@ -294,7 +294,7 @@
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-boot-starter-elk-sentry</artifactId>
+                <artifactId>app-boot-starter-logger</artifactId>
                 <version>${app.version}</version>
             </dependency>
 

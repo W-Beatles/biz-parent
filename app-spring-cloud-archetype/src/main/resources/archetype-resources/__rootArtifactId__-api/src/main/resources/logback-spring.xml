@@ -124,7 +124,7 @@
                 <charset>UTF-8</charset>
                 <contentType>text/json</contentType>
                 <connectionName>${elkConnectionName}</connectionName>
-                <layout class="cn.waynechu.bootstarter.elk.layout.RabbitmqLayout"/>
+                <layout class="cn.waynechu.bootstarter.logger.layout.RabbitmqLayout"/>
             </appender>
         </then>
     </if>

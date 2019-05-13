@@ -10,8 +10,8 @@
     动态数据源模块。支持读写分离、多数据源动态切换
 2. app-boot-starter-elastic-job
     elastic-job starter模块
-3. app-boot-starter-sentry
-    sentry starter模块
+3. app-boot-starter-logger
+    elk&sentry starter模块。用于日志上传ELK及Sentry
 4. app-facade-common
     通用facade模块
 5. app-spring-boot-admin

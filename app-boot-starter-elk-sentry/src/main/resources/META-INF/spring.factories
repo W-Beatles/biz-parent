@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.waynechu.bootstarter.elk.SentryAutoConfiguration,\
-cn.waynechu.bootstarter.elk.ElkAutoConfiguration

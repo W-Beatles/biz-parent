@@ -1,4 +1,4 @@
-package cn.waynechu.bootstarter.elk.aware;
+package cn.waynechu.bootstarter.logger.aware;
 
 import cn.waynechu.springcloud.common.util.StringUtil;
 import org.springframework.beans.BeansException;

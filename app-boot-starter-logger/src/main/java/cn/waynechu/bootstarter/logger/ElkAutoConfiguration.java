@@ -1,6 +1,6 @@
-package cn.waynechu.bootstarter.elk;
+package cn.waynechu.bootstarter.logger;
 
-import cn.waynechu.bootstarter.elk.properties.ElkProperty;
+import cn.waynechu.bootstarter.logger.properties.ElkProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 

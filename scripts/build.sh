@@ -34,30 +34,3 @@ nohup java -jar \
         ./app-spring-cloud-eureka/target/app-spring-cloud-eureka-0.0.1-SNAPSHOT.jar &
 echo "     [\033[32mvisit: http://dev.waynechu.cn:9001/\033[0m]"
 echo "     [\033[32mvisit: http://dev.waynechu.cn:9002/\033[0m]"
-
-echo "==== starting app-spring-cloud-dashboard-turbine(8040) ===="
-nohup java -jar \
-        -Denv=PRO -Dapollo.meta=http://apollo.waynechu.cn:8080 \
-        -Dserver.port=8040 -Dspring.profiles.active=prd \
-        -server -Xms256m -Xmx256m -Xmn100m -Xss256k \
-        -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/oom-error-${DATETIME}.hprof \
-        ./app-spring-cloud-dashboard-turbine/target/app-spring-cloud-dashboard-turbine-0.0.1-SNAPSHOT.jar &
-echo "     [\033[32mvisit: http://dev.waynechu.cn:8040/hystrix\033[0m]"
-
-echo "==== starting app-spring-cloud-gateway(8050) ===="
-nohup java -jar \
-        -Denv=PRO -Dapollo.meta=http://apollo.waynechu.cn:8080 \
-        -Dserver.port=8050 -Dspring.profiles.active=prd \
-        -server -Xms256m -Xmx256m -Xmn100m -Xss256k \
-        -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/oom-error-${DATETIME}.hprof \
-        ./app-spring-cloud-gateway/target/app-spring-cloud-gateway-0.0.1-SNAPSHOT.jar &
-echo "     [\033[32mvisit: http://dev.waynechu.cn:8050/swagger-ui.html\033[0m]"
-
-echo "==== starting app-spring-boot-admin(8060) ===="
-nohup java -jar \
-        -Denv=PRO -Dapollo.meta=http://apollo.waynechu.cn:8080 \
-        -Dserver.port=8060 -Dspring.profiles.active=prd \
-        -server -Xms256m -Xmx256m -Xmn100m -Xss256k \
-        -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/oom-error-${DATETIME}.hprof \
-        ./app-spring-boot-admin/target/app-spring-boot-admin-0.0.1-SNAPSHOT.jar &
-echo "     [\033[32mvisit: http://dev.waynechu.cn:8060/\033[0m]"
