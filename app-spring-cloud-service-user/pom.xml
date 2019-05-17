@@ -34,6 +34,11 @@
             <groupId>cn.waynechu</groupId>
             <artifactId>app-spring-cloud-api-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>app-boot-starter-dynamic-datasource</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

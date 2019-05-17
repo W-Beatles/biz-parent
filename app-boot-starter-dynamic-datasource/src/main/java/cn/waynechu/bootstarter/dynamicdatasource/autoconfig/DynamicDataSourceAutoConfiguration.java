@@ -15,20 +15,21 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource.autoconfig;
 
-import cn.waynechu.bootstarter.dynamicdatasource.DynamicDataSourceCreator;
+import cn.waynechu.bootstarter.dynamicdatasource.AbstractRoutingDataSource;
 import cn.waynechu.bootstarter.dynamicdatasource.DynamicRoutingDataSource;
 import cn.waynechu.bootstarter.dynamicdatasource.interceptor.DynamicDataSourceInterceptor;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DefaultDynamicDataSourceProvider;
-import cn.waynechu.bootstarter.dynamicdatasource.provider.DynamicDataSourceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
 /**
@@ -38,7 +39,6 @@ import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 @Slf4j
 @Configuration
 @AutoConfigureBefore({DataSourceAutoConfiguration.class})
-@ConditionalOnProperty(DynamicDataSourceProperties.DYNAMIC_DATA_SOURCE_PREFIX + ".datasource")
 @EnableConfigurationProperties(DynamicDataSourceProperties.class)
 @Import(DruidDynamicDataSourceConfiguration.class)
 public class DynamicDataSourceAutoConfiguration {
@@ -46,40 +46,22 @@ public class DynamicDataSourceAutoConfiguration {
     @Autowired
     private DynamicDataSourceProperties properties;
 
-    @Bean("dataSource")
-    @Primary
+    @Bean
     @DependsOn("dynamicRoutingDataSource")
-    public LazyConnectionDataSourceProxy dataSource(DynamicRoutingDataSource dynamicRoutingDataSource) {
-        LazyConnectionDataSourceProxy dataSourceProxy = new LazyConnectionDataSourceProxy();
-        dataSourceProxy.setTargetDataSource(dynamicRoutingDataSource);
-        return dataSourceProxy;
+    public LazyConnectionDataSourceProxy dataSource(AbstractRoutingDataSource routingDataSource) {
+        return new LazyConnectionDataSourceProxy(routingDataSource);
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public DynamicRoutingDataSource dynamicRoutingDataSource(DynamicDataSourceProvider dynamicDataSourceProvider) {
+    public AbstractRoutingDataSource dynamicRoutingDataSource() {
         DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
         dynamicRoutingDataSource.setStrategy(properties.getStrategy());
-        dynamicRoutingDataSource.setProvider(dynamicDataSourceProvider);
+        dynamicRoutingDataSource.setProvider(new DefaultDynamicDataSourceProvider(properties));
         return dynamicRoutingDataSource;
     }
 
     @Bean
-    @ConditionalOnMissingBean
-    public DynamicDataSourceProvider dynamicDataSourceProvider(DynamicDataSourceCreator dynamicDataSourceCreator) {
-        return new DefaultDynamicDataSourceProvider(properties, dynamicDataSourceCreator);
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public DynamicDataSourceCreator dynamicDataSourceCreator() {
-        DynamicDataSourceCreator dynamicDataSourceCreator = new DynamicDataSourceCreator();
-        dynamicDataSourceCreator.setDruidGlobalConfig(properties.getDruid());
-        return dynamicDataSourceCreator;
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
     public DynamicDataSourceInterceptor dynamicDataSourceInterceptor() {
         return new DynamicDataSourceInterceptor();
     }
