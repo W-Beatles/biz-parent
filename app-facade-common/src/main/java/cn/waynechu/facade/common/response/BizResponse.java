@@ -89,4 +89,8 @@ public class BizResponse<T> implements Serializable {
     public static <T> BizResponse<T> error(int errorCode, String errorMessage, T data) {
         return new BizResponse<>(errorCode, errorMessage, data);
     }
+
+    public boolean isSuccess() {
+        return this.code == BizErrorCodeEnum.SUCCESS.getCode();
+    }
 }
