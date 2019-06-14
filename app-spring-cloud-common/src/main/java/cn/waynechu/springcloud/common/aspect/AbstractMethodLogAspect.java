@@ -62,7 +62,7 @@ public abstract class AbstractMethodLogAspect {
 
     /**
      * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
-     * <ZH_PATTERN>
+     * <p>
      * 比如：包含密码等私密数据类型<br>
      * 默认提供 {@code Invisible} 类型
      *
