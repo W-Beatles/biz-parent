@@ -26,7 +26,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public BizResponse httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.info("请求参数格式不正确: {}", e.getMessage(), e);
-        return new BizResponse<>(BizErrorCodeEnum.ARGUMENT_IS_INCORRECT);
+        return new BizResponse<>(BizErrorCodeEnum.REQUEST_PARAM_INCORRECT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -34,9 +34,9 @@ public class ControllerExceptionHandler {
         log.info("请求参数校验不合法: {}", e.getMessage(), e);
         BindingResult bindingResult = e.getBindingResult();
         if (bindingResult == null || bindingResult.getFieldError() == null) {
-            return new BizResponse<>(BizErrorCodeEnum.ARGUMENT_NOT_VALID);
+            return new BizResponse<>(BizErrorCodeEnum.REQUEST_PARAM_INVALID);
         }
-        return new BizResponse<>(BizErrorCodeEnum.ARGUMENT_NOT_VALID.getCode(), bindingResult.getFieldError().getDefaultMessage());
+        return new BizResponse<>(BizErrorCodeEnum.REQUEST_PARAM_INVALID.getCode(), bindingResult.getFieldError().getDefaultMessage());
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
@@ -49,13 +49,17 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(BizException.class)
     public BizResponse bizException(BizException e) {
-        log.info("[业务异常] {}", e.getErrorMessage(), e);
+        if (BizErrorCodeEnum.SYSTEM_ERROR.getCode() == e.getErrorCode()
+                || BizErrorCodeEnum.CALL_SERVICE_ERROR.getCode() == e.getErrorCode()) {
+            log.error("[BizError] {}", e.getErrorMessage(), e);
+        }
+        log.info("[BizError] {}", e.getErrorMessage(), e);
         return new BizResponse<>(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.REQ_KEY));
     }
 
     @ExceptionHandler(Exception.class)
     public BizResponse unknownException(Exception e) {
-        log.error("[系统异常] ", e);
+        log.error("[SystemError] ", e);
         return new BizResponse<>(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
                 BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDCFilter.REQ_UUID));
     }
