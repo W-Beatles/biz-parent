@@ -1,5 +1,7 @@
 package cn.waynechu.facade.common.enums;
 
+import cn.waynechu.facade.common.exception.BizException;
+
 /**
  * @author zhuwei
  * @date 2018/11/6 17:24
@@ -42,6 +44,6 @@ public enum ValidStatusEnum implements BizEnum {
                 return validStatusEnum;
             }
         }
-        return null;
+        throw new BizException(BizErrorCodeEnum.INVALID_ENUM_CODE);
     }
 }

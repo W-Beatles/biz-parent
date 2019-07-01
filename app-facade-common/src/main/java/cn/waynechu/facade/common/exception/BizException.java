@@ -6,8 +6,6 @@ import java.io.Serializable;
 
 /**
  * 业务异常
- * <p>
- * 继承该类的异常都会以info级别日志打印
  *
  * @author zhuwei
  * @date 2018/11/6 19:27
