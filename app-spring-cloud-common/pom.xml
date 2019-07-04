@@ -76,6 +76,11 @@
             <groupId>com.github.promeg</groupId>
             <artifactId>tinypinyin</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
