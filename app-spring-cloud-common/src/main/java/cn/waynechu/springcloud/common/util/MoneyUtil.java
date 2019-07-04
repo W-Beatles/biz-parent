@@ -5,7 +5,6 @@ package cn.waynechu.springcloud.common.util;
  * @date 2019/6/10 10:14
  */
 public class MoneyUtil {
-
     private static final String UNIT = "万千佰拾亿千佰拾万千佰拾元角分";
     private static final String DIGIT = "零壹贰叁肆伍陆柒捌玖";
     private static final double MAX_VALUE = 9999999999999.99D;
