@@ -5,8 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-
 /**
  * @author zhuwei
  * @date 2018/11/15 11:56
@@ -14,7 +12,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(description = "分页请求对象")
-public class BizPageRequest extends BizRequest implements Serializable {
+public class BizPageRequest extends BizRequest {
     private static final long serialVersionUID = 2789603649153042060L;
 
     @ApiModelProperty(value = "当前页。默认第1页")

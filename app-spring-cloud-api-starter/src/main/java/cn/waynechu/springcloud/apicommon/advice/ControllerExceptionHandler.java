@@ -26,7 +26,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public BizResponse httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.info("请求参数格式不正确: {}", e.getMessage(), e);
-        return new BizResponse<>(BizErrorCodeEnum.PARAM_INCORRECT);
+        return new BizResponse<>(BizErrorCodeEnum.REQUEST_PARAM_INCORRECT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -34,9 +34,9 @@ public class ControllerExceptionHandler {
         log.info("请求参数校验不合法: {}", e.getMessage(), e);
         BindingResult bindingResult = e.getBindingResult();
         if (bindingResult == null || bindingResult.getFieldError() == null) {
-            return new BizResponse<>(BizErrorCodeEnum.ARGUMENT_INVALID);
+            return new BizResponse<>(BizErrorCodeEnum.REQUEST_PARAM_INVALID);
         }
-        return new BizResponse<>(BizErrorCodeEnum.ARGUMENT_INVALID.getCode(), bindingResult.getFieldError().getDefaultMessage());
+        return new BizResponse<>(BizErrorCodeEnum.REQUEST_PARAM_INVALID.getCode(), bindingResult.getFieldError().getDefaultMessage());
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
