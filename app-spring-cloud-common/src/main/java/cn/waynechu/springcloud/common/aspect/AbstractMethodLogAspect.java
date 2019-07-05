@@ -36,7 +36,7 @@ public abstract class AbstractMethodLogAspect {
     public void doBefore(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
         if (printAnnotation.isPrintParameter()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-            String argsStr = this.getPrintArgsStr(joinPoint, printAnnotation);
+            String argsStr = this.getPrintArgsJsonStr(joinPoint, printAnnotation);
             log.info("{}开始调用, 参数: {}", methodName, argsStr);
         }
 
@@ -92,26 +92,24 @@ public abstract class AbstractMethodLogAspect {
      * @return 方法名
      */
     private String getPrintMethodName(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
-        String methodName;
         // 默认打印自定义的方法描述字段
         if (StringUtil.isNotEmpty(printAnnotation.value())) {
-            methodName = printAnnotation.value();
+            return printAnnotation.value();
         } else if (StringUtil.isNotEmpty(printAnnotation.description())) {
-            methodName = printAnnotation.description();
+            return printAnnotation.description();
         } else {
             // 否则打印类全名
             if (printAnnotation.isClassFullName()) {
-                methodName = joinPoint.getSignature().toString();
+                return joinPoint.getSignature().toString();
             }
             // 或者类简单名
             else {
-                methodName = joinPoint.getSignature().toShortString();
+                return joinPoint.getSignature().toShortString();
             }
         }
-        return methodName;
     }
 
-    private String getPrintArgsStr(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
+    private String getPrintArgsJsonStr(JoinPoint joinPoint, MethodLogAnnotation printAnnotation) {
         ArrayList<Object> args = new ArrayList<>();
         for (Object arg : joinPoint.getArgs()) {
             boolean isInstance = false;

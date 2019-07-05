@@ -19,11 +19,11 @@ public class ImageUtil {
      * @param angle 旋转角度
      * @return 旋转后的图片
      */
-    public static BufferedImage rotate(BufferedImage src, int angle) {
-        int srcWidth = src.getWidth(null);
-        int srcHeight = src.getHeight(null);
+    public static BufferedImage rotate(Image src, int angle) {
+        double srcWidth = src.getWidth(null);
+        double srcHeight = src.getHeight(null);
         // 计算旋转后图片的尺寸
-        Rectangle rectDes = calcRotatedSize(new Rectangle(new Dimension(srcWidth, srcHeight)), angle);
+        Rectangle rectDes = calcRotatedSize(new Rectangle(new Dimension((int) srcWidth, (int) srcHeight)), angle);
         BufferedImage res = new BufferedImage(rectDes.width, rectDes.height, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = res.createGraphics();
         // 进行转换
@@ -64,21 +64,5 @@ public class ImageUtil {
         int desWidth = src.width + lenDaltaWidth * 2;
         int desHeight = src.height + lenDaltaHeight * 2;
         return new Rectangle(new Dimension(desWidth, desHeight));
-    }
-
-    public static void main(String[] args) {
-        /*
-            BufferedImage src = ImageIO.read(multipartFile.getInputStream());
-            if (src == null) {
-                throw new BizException(FrontInfoErrorCodeEnum.NOT_PICTURE_TYPE);
-            }
-            BufferedImage rotateImage = ImageUtil.rotate(src, rotate);
-            String filePath = request.getSession().getServletContext().getRealPath("/") + multipartFile.getOriginalFilename();
-            File file = new File(filePath);
-            ImageIO.write(rotateImage, "jpg", file);
-            OperationResult operationResult = filesRemote.fileUploadForYewuDoc(file);
-            file.delete();
-            return this.getFileResponse(multipartFile, withUrl, operationResult);
-         */
     }
 }

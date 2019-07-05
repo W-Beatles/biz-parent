@@ -18,7 +18,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Controller层方法监控切面
+ * Controller层方法调用情况切面
+ *
+ * <pre>
+ * 加入注解@ApiOperation将打印接口请求、返回及异常日志
+ *
+ * 并添加如下信息到MDC上下文中:
+ *   url: 接口访问路径
+ *   timeTaken: 接口访问耗时
+ * </pre>
  *
  * @author zhuwei
  * @date 2019/03/22 14:16
@@ -36,7 +44,7 @@ public abstract class AbstractControllerLogAspect {
 
     @Before(value = "controllerLog() && @annotation(logAnnotation)")
     public void doBefore(JoinPoint joinPoint, ApiOperation logAnnotation) {
-        log.info("{}开始调用, 参数: {}", logAnnotation.value(), this.getPrintArgsStr(joinPoint.getArgs()));
+        log.info("{}开始调用, 参数: {}", logAnnotation.value(), this.getPrintArgsJsonStr(joinPoint.getArgs()));
 
         // 记录调用开始的时间
         threadLocal.set(System.currentTimeMillis());
@@ -69,7 +77,7 @@ public abstract class AbstractControllerLogAspect {
 
     /**
      * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
-     * <ZH_PATTERN>
+     * <p>
      * 默认提供 {@code HttpServletResponse}、{@code MultipartFile}、{@code Invisible} 三种类型
      *
      * @return 不打印的入参类型
@@ -82,7 +90,7 @@ public abstract class AbstractControllerLogAspect {
         return excludePrintClass;
     }
 
-    private String getPrintArgsStr(Object[] args) {
+    private String getPrintArgsJsonStr(Object[] args) {
         ArrayList<Object> returnValue = new ArrayList<>();
         for (Object arg : args) {
             boolean isInstance = false;
