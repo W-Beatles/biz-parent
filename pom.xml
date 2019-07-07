@@ -322,15 +322,22 @@
     </dependencyManagement>
 
     <profiles>
-        <!-- 开发环境 -->
+        <!-- 本地开发环境 -->
         <profile>
-            <id>dev</id>
+            <id>local</id>
             <properties>
-                <profiles.active>dev</profiles.active>
+                <profiles.active>local</profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+        </profile>
+        <!-- 线上开发环境 -->
+        <profile>
+            <id>work</id>
+            <properties>
+                <profiles.active>work</profiles.active>
+            </properties>
         </profile>
         <!-- 测试环境 -->
         <profile>

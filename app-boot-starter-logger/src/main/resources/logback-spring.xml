@@ -21,7 +21,7 @@
     <springProperty scope="context" name="elkConnectionName" source="elk.connection-name" defaultValue="undefined"/>
 
     <!-- 引入自定义日志配置 -->
-    <include file="src/main/resources/logback-custom-spring.xml" />
+    <include file="src/main/resources/logback-custom-spring.xml"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -67,7 +67,7 @@
         </then>
     </if>
 
-    <springProfile name="prd,test,ut">
+    <springProfile name="work,test,ut,prd">
         <logger name="com" level="INFO" additivity="false">
             <appender-ref ref="CONSOLE"/>
             <if condition='property("sentryEnable").contains("true")'>
@@ -111,7 +111,7 @@
         </logger>
     </springProfile>
 
-    <springProfile name="dev">
+    <springProfile name="local">
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>

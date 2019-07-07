@@ -84,31 +84,33 @@
     </dependencyManagement>
 
     <profiles>
-        <!-- dev env -->
         <profile>
-            <id>dev</id>
+            <id>local</id>
             <properties>
-                <profiles.active>dev</profiles.active>
+                <profiles.active>local</profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-        <!-- test env -->
+        <profile>
+            <id>work</id>
+            <properties>
+                <profiles.active>work</profiles.active>
+            </properties>
+        </profile>
         <profile>
             <id>test</id>
             <properties>
                 <profiles.active>test</profiles.active>
             </properties>
         </profile>
-        <!-- ut env -->
         <profile>
             <id>ut</id>
             <properties>
                 <profiles.active>ut</profiles.active>
             </properties>
         </profile>
-        <!-- prd env -->
         <profile>
             <id>prd</id>
             <properties>
