@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.gateway.swagger;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,12 @@ public class GatewaySwaggerProvider implements SwaggerResourcesProvider {
     private static final String API_URI = "/v2/api-docs";
     private static final String EUREKA_SUB_PREFIX = "CompositeDiscoveryClient_";
 
+    /**
+     * 匿名服务标志。applicationName包含该标志则不维护到网关聚合Swagger列表上
+     * 适用于需要注册到注册中心并开启Admin监控，但又无需聚合API文档的服务。如eureka节点服务
+     */
+    public static final String ANONYMOUS_SERVICE_FLAG = "ANONYMOUS";
+
     private final DiscoveryClientRouteDefinitionLocator routeLocator;
 
     public GatewaySwaggerProvider(DiscoveryClientRouteDefinitionLocator routeLocator) {
@@ -35,11 +42,15 @@ public class GatewaySwaggerProvider implements SwaggerResourcesProvider {
     @Override
     public List<SwaggerResource> get() {
         List<SwaggerResource> resources = new ArrayList<>();
-        // 从DiscoveryClientRouteDefinitionLocator 中取出routes，构造成swaggerResource
-        routeLocator.getRouteDefinitions().subscribe(routeDefinition ->
-                resources.add(swaggerResource(
-                        routeDefinition.getId().substring(EUREKA_SUB_PREFIX.length()),
-                        routeDefinition.getPredicates().get(0).getArgs().get("pattern").replace("/**", API_URI))));
+        // 从DiscoveryClientRouteDefinitionLocator 中取出routes，构造swaggerResource
+        routeLocator.getRouteDefinitions().subscribe(
+                routeDefinition -> {
+                    if (!StringUtils.contains(routeDefinition.getId(), ANONYMOUS_SERVICE_FLAG)) {
+                        resources.add(swaggerResource(
+                                routeDefinition.getId().substring(EUREKA_SUB_PREFIX.length()),
+                                routeDefinition.getPredicates().get(0).getArgs().get("pattern").replace("/**", API_URI)));
+                    }
+                });
         return resources;
     }
 
