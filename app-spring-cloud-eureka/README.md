@@ -74,7 +74,7 @@
         fetch-registry: true
         service-url:
           defaultZone: https://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
-        # 拉取注册信息间隔。默认30 (测试环境，可适当降低该值来保证及时获取注信息)
+        # 拉取注册信息间隔。默认30 (测试环境，可适当降低该值来保证及时获取注册信息)
         registry-fetch-interval-seconds: 5
       server:
         # 是否开启自我保护模式。默认开启 (可能由于网络抖动造成Client向Server发送心跳失败，但服务实例是健康的。
@@ -83,7 +83,7 @@
         enable-self-preservation: true
         # Eureka服务器获取不到集群里对等服务器上的实例时，多久不对外提供注册服务
         wait-time-in-ms-when-sync-empty: 0
-        # EvictionTack服务剔除定时任务间隔。默认60s
+        # EvictionTack服务剔除定时任务间隔。默认60s(测试环境可适当降低该值来保证服务及时剔除)
         eviction-interval-timer-in-ms: 60000
         # (关闭Server的response cache，或者修改response cache的过期时间，可有效解决Server中存留过期实例信息的问题)
         use-read-only-response-cache: false
