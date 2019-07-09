@@ -12,18 +12,18 @@
     </parent>
 
     <groupId>cn.waynechu</groupId>
-    <artifactId>app-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>biz-parent</artifactId>
+    <version>1.0.2019070901-RELEASE</version>
 
-    <name>app-parent</name>
-    <description>app-parent pom</description>
+    <name>biz-parent</name>
+    <description>biz-parent pom for SpringCloud</description>
 
     <properties>
+        <maven.test.skip>true</maven.test.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <maven.test.skip>true</maven.test.skip>
-        <app.version>0.0.1-SNAPSHOT</app.version>
+        <biz.version>0.0.1-SNAPSHOT</biz.version>
 
         <apollo-client.version>1.4.0</apollo-client.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
@@ -45,27 +45,34 @@
         <jetcache-starter-redis.version>2.5.11</jetcache-starter-redis.version>
         <elastic-job-lite-spring.version>2.1.5</elastic-job-lite-spring.version>
         <xxl-job-core.version>2.0.1</xxl-job-core.version>
+
+        <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
+        <biz-spring-cloud-common.version>1.0.2019070901-RELEASE</biz-spring-cloud-common.version>
+        <biz-spring-cloud-api-starter.version>1.0.2019070901-RELEASE</biz-spring-cloud-api-starter.version>
+        <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE</biz-boot-starter-dynamic-datasource.version>
+        <biz-boot-starter-logger.version>1.0.2019070901-RELEASE</biz-boot-starter-logger.version>
+        <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
     </properties>
 
     <modules>
-        <module>app-facade-common</module>
+        <module>biz-facade-common</module>
 
-        <module>app-boot-starter-dynamic-datasource</module>
-        <module>app-boot-starter-elastic-job</module>
-        <module>app-boot-starter-logger</module>
+        <module>biz-boot-starter-dynamic-datasource</module>
+        <module>biz-boot-starter-elastic-job</module>
+        <module>biz-boot-starter-logger</module>
 
-        <module>app-spring-cloud-eureka</module>
-        <module>app-spring-cloud-archetype</module>
-        <module>app-spring-cloud-api-starter</module>
-        <module>app-spring-cloud-common</module>
-        <module>app-spring-cloud-test</module>
-        <module>app-spring-cloud-dashboard-hystrix</module>
-        <module>app-spring-cloud-dashboard-turbine</module>
-        <module>app-spring-cloud-gateway</module>
-        <module>app-spring-boot-admin</module>
+        <module>biz-spring-cloud-eureka</module>
+        <module>biz-spring-cloud-archetype</module>
+        <module>biz-spring-cloud-api-starter</module>
+        <module>biz-spring-cloud-common</module>
+        <module>biz-spring-cloud-test</module>
+        <module>biz-spring-cloud-dashboard-hystrix</module>
+        <module>biz-spring-cloud-dashboard-turbine</module>
+        <module>biz-spring-cloud-gateway</module>
+        <module>biz-spring-boot-admin</module>
 
-        <module>app-spring-cloud-service-user</module>
-        <module>app-spring-cloud-service-order</module>
+        <module>biz-spring-cloud-service-user</module>
+        <module>biz-spring-cloud-service-order</module>
     </modules>
 
     <repositories>
@@ -282,41 +289,41 @@
                 <version>${xxl-job-core.version}</version>
             </dependency>
 
-            <!-- app start -->
+            <!-- biz start -->
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-facade-common</artifactId>
-                <version>${app.version}</version>
+                <artifactId>biz-facade-common</artifactId>
+                <version>${biz-facade-common.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-spring-cloud-common</artifactId>
-                <version>${app.version}</version>
+                <artifactId>biz-spring-cloud-common</artifactId>
+                <version>${biz-spring-cloud-common.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-spring-cloud-api-starter</artifactId>
-                <version>${app.version}</version>
+                <artifactId>biz-spring-cloud-api-starter</artifactId>
+                <version>${biz-spring-cloud-api-starter.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-boot-starter-dynamic-datasource</artifactId>
-                <version>${app.version}</version>
+                <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
+                <version>${biz-boot-starter-dynamic-datasource.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-boot-starter-logger</artifactId>
-                <version>${app.version}</version>
+                <artifactId>biz-boot-starter-logger</artifactId>
+                <version>${biz-boot-starter-logger.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>app-boot-starter-elastic-job</artifactId>
-                <version>${app.version}</version>
+                <artifactId>biz-boot-starter-elastic-job</artifactId>
+                <version>${biz-boot-starter-elastic-job.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -332,7 +339,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-        <!-- 线上开发环境 -->
+        <!-- 开发环境 -->
         <profile>
             <id>work</id>
             <properties>
