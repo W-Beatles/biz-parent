@@ -37,6 +37,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-boot-starter-logger</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

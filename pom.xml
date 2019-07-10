@@ -23,7 +23,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <biz.version>0.0.1-SNAPSHOT</biz.version>
 
         <apollo-client.version>1.4.0</apollo-client.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
@@ -62,14 +61,15 @@
         <module>biz-boot-starter-logger</module>
 
         <module>biz-spring-cloud-eureka</module>
-        <module>biz-spring-cloud-archetype</module>
-        <module>biz-spring-cloud-api-starter</module>
-        <module>biz-spring-cloud-common</module>
-        <module>biz-spring-cloud-test</module>
         <module>biz-spring-cloud-dashboard-hystrix</module>
         <module>biz-spring-cloud-dashboard-turbine</module>
         <module>biz-spring-cloud-gateway</module>
         <module>biz-spring-boot-admin</module>
+        <module>biz-spring-cloud-test</module>
+
+        <module>biz-spring-cloud-archetype</module>
+        <module>biz-spring-cloud-api-starter</module>
+        <module>biz-spring-cloud-common</module>
 
         <module>biz-spring-cloud-service-user</module>
         <module>biz-spring-cloud-service-order</module>

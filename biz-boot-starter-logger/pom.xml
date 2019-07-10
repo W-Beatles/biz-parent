@@ -46,11 +46,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>biz-spring-cloud-common</artifactId>
         </dependency>

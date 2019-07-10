@@ -48,6 +48,16 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-boot-starter-logger</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

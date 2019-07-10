@@ -1,4 +1,4 @@
-# app-spring-cloud-api-starter
+# biz-spring-cloud-api-starter
 
 ### 项目介绍
 
@@ -20,7 +20,7 @@
     
 2. ~~DataModifiedInterceptor SQL拦截器~~ (已移除)
 
-    > **last commit (a765265a)**: feat(app-boot-starter-common): 添加RegexUtils工具类 Z-Beatles 2019-03-18 21:43
+    > **last commit (a765265a)**: feat(biz-boot-starter-common): 添加RegexUtils工具类 Z-Beatles 2019-03-18 21:43
     
     ~~该拦截器基于MyBatis拦截器实现，会拦截执行的SQL并对`insert`和`update`操作自动添加上操作人和操作时间，这样就无须在业务代码
     中手动为`createUser/updateUser`、`createTime/updateTime`设值~~

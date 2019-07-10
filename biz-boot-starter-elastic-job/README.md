@@ -1,4 +1,4 @@
-# app-boot-starter-elastic-job
+# biz-boot-starter-elastic-job
 
 ### 项目介绍
 
@@ -11,8 +11,8 @@
     ```
     <dependency>
         <groupId>cn.waynechu</groupId>
-        <artifactId>app-boot-starter-elastic-job</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>biz-boot-starter-elastic-job</artifactId>
+        <version>1.0.2019070901-RELEASE</version>
     </dependency>
     ```
 

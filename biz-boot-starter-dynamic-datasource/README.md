@@ -1,4 +1,4 @@
-# app-boot-starter-dynamic-datasource
+# biz-boot-starter-dynamic-datasource
 
 ### 项目介绍
 
@@ -14,8 +14,8 @@
     ```
     <dependency>
         <groupId>cn.waynechu</groupId>
-        <artifactId>app-boot-starter-dynamic-datasource</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
+        <version>1.0.2019070901-RELEASE</version>
     </dependency>
     ```
 
@@ -126,7 +126,7 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
      关键代码如下：
      ```
      MappedStatement ms = (MappedStatement) args[0];
-     String resource = ms.getResource(); // resource = "file [C:\Users\zhuwei\workspace\app-parent\order-integration-dal\target\classes\sqlmap\gungnir\OrderMapper.xml]";
+     String resource = ms.getResource(); // resource = "file [C:\Users\zhuwei\workspace\biz-parent\order-integration-dal\target\classes\sqlmap\gungnir\OrderMapper.xml]";
      String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
      String groupName = splitResource[splitResource.length - 2]; // groupName = "gungnir"
      ```

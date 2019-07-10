@@ -27,17 +27,29 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
     elk.host=elk.waynechu.cn
     elk.port=5672
     elk.username=waynechu
-    elk.password=youpassword
+    elk.password=Swro39qE.mB5
     elk.application-id=${spring.application.name}
-    elk.virtual-host=/dev
+    elk.virtual-host=/logback
     elk.exchange=topic.loggingExchange
     elk.routing-key=logback.#
-    elk.connection-name=app|${spring.application.name}
+    elk.connection-name=biz|${spring.application.name}
     ## sentry
     sentry.enable=true
-    sentry.dsn=http://a1c395c85d2xxxxxxxx0f1535b8@sentry.waynechu.cn:9000/2
+    sentry.dsn=http://a1c395c85d244742ae2a50b90f1535b8@sentry.waynechu.cn:9000/2
     sentry.stacktrace-app-packages=
     ```
+    注意：
+    - 为防止本地开发环境上传日志，`elk.enable=true` 和 `sentry.enable=true` 只有在非local环境下才会生效。参见 `logback-spring.xml`
+    - 如果抛出 `org.springframework.amqp.AmqpConnectException` Rabbit health check failed，这是因为`org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration`生效。
+    需添加如下Rabbitmq配置：
+        ```
+        spring.rabbitmq.host=mq.waynechu.cn
+        spring.rabbitmq.port=5672
+        spring.rabbitmq.username=waynechu
+        spring.rabbitmq.password=Swro39qE.mB5
+        spring.rabbitmq.virtual-host=/dev
+        spring.rabbitmq.publisher-confirms=true
+        ```
 
 3. (可选)如需要自定义日志相关配置，可新建`src/main/resources/logback-custom-spring.xml`来增加相关配置
     ```
@@ -70,7 +82,7 @@ input {
     port => 5672
     user => "waynechu"
     password =>"yourpassword"
-    vhost => "/dev"
+    vhost => "/logback"
     exchange => "topic.loggingExchange"
     exchange_type => "topic"
     queue => "logback"
