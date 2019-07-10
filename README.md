@@ -35,4 +35,4 @@
 14. biz-spring-cloud-service-user
      用户模块(测试)
 15. biz-spring-cloud-test
-     测试模块   
+     测试模块

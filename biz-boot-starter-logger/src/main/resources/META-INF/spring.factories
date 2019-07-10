@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.waynechu.bootstarter.logger.SentryAutoConfiguration,\
-cn.waynechu.bootstarter.logger.ElkAutoConfiguration
+cn.waynechu.bootstarter.logger.LoggerAutoConfiguration
