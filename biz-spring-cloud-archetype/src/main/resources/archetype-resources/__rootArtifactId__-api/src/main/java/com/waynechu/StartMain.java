@@ -3,7 +3,6 @@
 #set( $symbol_escape = '\' )
 package com.waynechu;
 
-import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -19,7 +18,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@EnableApolloConfig
 @SpringBootApplication(scanBasePackages = {"com.waynechu"})
 public class StartMain {
 
