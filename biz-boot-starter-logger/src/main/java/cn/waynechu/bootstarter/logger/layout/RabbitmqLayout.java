@@ -1,10 +1,8 @@
 package cn.waynechu.bootstarter.logger.layout;
 
-import ch.qos.logback.classic.pattern.ThrowableProxyConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
-import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.LayoutBase;
 import cn.waynechu.springcloud.common.aspect.AbstractControllerLogAspect;
 import cn.waynechu.springcloud.common.util.DesensitizeUtils;
@@ -19,7 +17,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,18 +26,9 @@ import java.util.List;
 @Slf4j
 public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
 
-    private static List<String> optionList = Collections.singletonList("full");
-
-    private static ThrowableProxyConverter converter = new ThrowableProxyConverter();
-
     protected String machineName;
 
     protected String localAddress;
-
-    static {
-        converter.setOptionList(optionList);
-        converter.start();
-    }
 
     public RabbitmqLayout() {
         try {
@@ -93,44 +81,42 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(event.getTimeStamp()),
                 ZoneId.systemDefault());
         json.put("time", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS").format(localDateTime));
-        // 日志脱敏
+        // 日志脱敏 & 超长截取
         String[] keyArray = {DesensitizeUtils.PASSWORD, DesensitizeUtils.PWD};
-        json.put("message", DesensitizeUtils.desensitize(event.getFormattedMessage(), keyArray));
+        String message = event.getFormattedMessage();
+        if (StringUtil.isNotBlank(message)) {
+            message = message.length() <= 1024 ? message : message.substring(0, 1024) + "...总长度为: " + message.length();
+        }
+        json.put("message", DesensitizeUtils.desensitize(message, keyArray));
         json.put("logger", event.getLoggerName());
     }
 
     private void writeThrowable(JSONObject json, ILoggingEvent event) {
         IThrowableProxy iThrowableProxy = event.getThrowableProxy();
-        if (iThrowableProxy instanceof ThrowableProxy) {
+        if (iThrowableProxy != null && iThrowableProxy instanceof ThrowableProxy) {
             ThrowableProxy throwableProxy = (ThrowableProxy) iThrowableProxy;
             Throwable t = throwableProxy.getThrowable();
+            Throwable ec = t.getCause();
             JSONObject throwable = new JSONObject();
 
             throwable.put("message", t.getMessage());
             throwable.put("className", t.getClass().getCanonicalName());
-            throwable.put("stackTrace", writeStackTrace(event));
-            json.put("throwable", throwable);
 
-            List<JSONObject> traceObjects = new ArrayList<>();
-            for (StackTraceElement ste : t.getStackTrace()) {
-                JSONObject element = new JSONObject();
-                element.put("class", ste.getClassName());
-                element.put("method", ste.getMethodName());
-                element.put("line", ste.getLineNumber());
-                element.put("file", ste.getFileName());
-                traceObjects.add(element);
+            if (ec == null) {
+                List<JSONObject> traceObjects = new ArrayList<>();
+                for (StackTraceElement ste : t.getStackTrace()) {
+                    JSONObject element = new JSONObject();
+                    element.put("class", ste.getClassName());
+                    element.put("method", ste.getMethodName());
+                    element.put("line", ste.getLineNumber());
+                    element.put("file", ste.getFileName());
+                    traceObjects.add(element);
+                }
+                json.put("stackTrace", traceObjects);
+            } else {
+                throwable.put("cause", ec);
             }
-            json.put("stackTrace", traceObjects);
+            json.put("throwable", throwable);
         }
-    }
-
-    private String writeStackTrace(ILoggingEvent event) {
-        StringBuilder stringBuilder = new StringBuilder(2048);
-        IThrowableProxy proxy = event.getThrowableProxy();
-        if (proxy != null) {
-            stringBuilder.append(converter.convert(event));
-            stringBuilder.append(CoreConstants.LINE_SEPARATOR);
-        }
-        return stringBuilder.toString();
     }
 }
