@@ -13,7 +13,7 @@
 
     <groupId>cn.waynechu</groupId>
     <artifactId>biz-parent</artifactId>
-    <version>1.0.2019070901-RELEASE</version>
+    <version>1.0.2019071501-RELEASE</version>
 
     <name>biz-parent</name>
     <description>biz-parent pom for SpringCloud</description>
@@ -28,7 +28,7 @@
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-boot-admin.version>2.1.4</spring-boot-admin.version>
         <dubbo.version>2.7.0</dubbo.version>
-        <zookeeper.version>3.4.13</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
         <curator.version>4.0.1</curator.version>
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>
@@ -49,7 +49,7 @@
         <biz-spring-cloud-common.version>1.0.2019070901-RELEASE</biz-spring-cloud-common.version>
         <biz-spring-cloud-api-starter.version>1.0.2019071001-RELEASE</biz-spring-cloud-api-starter.version>
         <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE</biz-boot-starter-dynamic-datasource.version>
-        <biz-boot-starter-logger.version>1.0.2019071001-RELEASE</biz-boot-starter-logger.version>
+        <biz-boot-starter-logger.version>1.0.2019071501-RELEASE</biz-boot-starter-logger.version>
         <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
     </properties>
 
