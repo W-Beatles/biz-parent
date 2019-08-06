@@ -6,12 +6,12 @@
 
 ### 使用方法
 
-进入CreateProject-0.0.1.bat目录，执行命令 `CreateProject-0.0.1.bat 项目名 包名`
+进入CreateProject-latest.bat目录，执行命令 `CreateProject-latest.bat 项目名 包名`
 
 例如:
 
 ```shell
-CreateProject-0.0.1.bat trader-center trader
+CreateProject-latest.bat trader-center trader
 ```
 
 即可生成工程 `biz-spring-cloud-api-trader-center`，包名为 `com.waynechu.trader`

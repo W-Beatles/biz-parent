@@ -6,7 +6,7 @@
     <parent>
         <artifactId>biz-parent</artifactId>
         <groupId>cn.waynechu</groupId>
-        <version>1.0.2019070901-RELEASE</version>
+        <version>1.0.2019071501-RELEASE</version>
     </parent>
 
     <groupId>com.waynechu</groupId>
