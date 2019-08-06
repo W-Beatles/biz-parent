@@ -33,6 +33,7 @@
         <poi.version>3.9</poi.version>
         <xmlbeans.version>2.3.0</xmlbeans.version>
         <protostuff.version>1.5.9</protostuff.version>
+        <easyexcel.version>1.1.2-beta5</easyexcel.version>
         <fastjson.version>1.2.58</fastjson.version>
         <tinypinyin.version>2.0.3</tinypinyin.version>
         <zxing.version>3.3.3</zxing.version>
@@ -46,7 +47,7 @@
         <xxl-job-core.version>2.0.1</xxl-job-core.version>
 
         <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
-        <biz-spring-cloud-common.version>1.0.2019070901-RELEASE</biz-spring-cloud-common.version>
+        <biz-spring-cloud-common.version>1.0.2019080601-RELEASE</biz-spring-cloud-common.version>
         <biz-spring-cloud-api-starter.version>1.0.2019071001-RELEASE</biz-spring-cloud-api-starter.version>
         <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE</biz-boot-starter-dynamic-datasource.version>
         <biz-boot-starter-logger.version>1.0.2019071501-RELEASE</biz-boot-starter-logger.version>
@@ -190,6 +191,7 @@
                 <version>${poi.version}</version>
             </dependency>
 
+            <!-- Protostuff -->
             <dependency>
                 <groupId>io.protostuff</groupId>
                 <artifactId>protostuff-core</artifactId>
@@ -200,6 +202,13 @@
                 <groupId>io.protostuff</groupId>
                 <artifactId>protostuff-runtime</artifactId>
                 <version>${protostuff.version}</version>
+            </dependency>
+
+            <!-- Excel -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
             </dependency>
 
             <!-- JSON -->

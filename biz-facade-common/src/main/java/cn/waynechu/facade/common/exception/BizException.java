@@ -23,6 +23,12 @@ public class BizException extends RuntimeException implements Serializable {
         this.errorMessage = bizEnum.getDesc();
     }
 
+    public BizException(BizEnum bizEnum, String errorMessage) {
+        super(errorMessage);
+        this.errorCode = bizEnum.getCode();
+        this.errorMessage = errorMessage;
+    }
+
     public BizException(Integer errorCode, String errorMessage) {
         super(errorMessage);
         this.errorCode = errorCode;

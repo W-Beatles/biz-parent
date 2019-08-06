@@ -6,11 +6,11 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-parent</artifactId>
-        <version>1.0.2019070901-RELEASE</version>
+        <version>1.0.2019071501-RELEASE</version>
     </parent>
 
     <artifactId>biz-spring-cloud-common</artifactId>
-    <version>1.0.2019070901-RELEASE</version>
+    <version>1.0.2019080601-RELEASE</version>
     <name>biz-spring-cloud-common</name>
     <description>biz-spring-cloud-common module for SpringCloud</description>
 
@@ -73,9 +73,14 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
         </dependency>
 
         <dependency>
