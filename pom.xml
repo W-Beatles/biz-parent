@@ -38,8 +38,10 @@
         <tinypinyin.version>2.0.3</tinypinyin.version>
         <zxing.version>3.3.3</zxing.version>
         <druid.version>1.1.12</druid.version>
+        <com.microsoft.sqlserver.version>4.0</com.microsoft.sqlserver.version>
+        <mybatis-plus-boot-starter.version>3.1.2</mybatis-plus-boot-starter.version>
         <mybatis.spring.boot.version>1.3.2</mybatis.spring.boot.version>
-        <pagehelper.spring.boot.version>1.2.9</pagehelper.spring.boot.version>
+        <pagehelper.spring.boot.version>1.2.12</pagehelper.spring.boot.version>
         <sentry.logback.version>1.7.16</sentry.logback.version>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
         <jetcache-starter-redis.version>2.5.11</jetcache-starter-redis.version>
@@ -49,7 +51,9 @@
         <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
         <biz-spring-cloud-common.version>1.0.2019080601-RELEASE</biz-spring-cloud-common.version>
         <biz-spring-cloud-api-starter.version>1.0.2019071001-RELEASE</biz-spring-cloud-api-starter.version>
-        <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE</biz-boot-starter-dynamic-datasource.version>
+        <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE
+        </biz-boot-starter-dynamic-datasource.version>
+        <biz-boot-starter-datasource-frame.version>1.0.2019080701-SNAPSHOT</biz-boot-starter-datasource-frame.version>
         <biz-boot-starter-logger.version>1.0.2019071501-RELEASE</biz-boot-starter-logger.version>
         <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
     </properties>
@@ -57,6 +61,7 @@
     <modules>
         <module>biz-facade-common</module>
 
+        <module>biz-boot-starter-datasource-frame</module>
         <module>biz-boot-starter-dynamic-datasource</module>
         <module>biz-boot-starter-elastic-job</module>
         <module>biz-boot-starter-logger</module>
@@ -69,8 +74,8 @@
         <module>biz-spring-cloud-test</module>
 
         <module>biz-spring-cloud-archetype</module>
-        <module>biz-spring-cloud-api-starter</module>
         <module>biz-spring-cloud-common</module>
+        <module>biz-spring-cloud-api-starter</module>
 
         <module>biz-spring-cloud-service-user</module>
         <module>biz-spring-cloud-service-order</module>
@@ -234,6 +239,12 @@
 
             <!-- DB -->
             <dependency>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>sqljdbc4</artifactId>
+                <version>${com.microsoft.sqlserver.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
@@ -243,6 +254,13 @@
                 <groupId>com.alibaba.fescar</groupId>
                 <artifactId>fescar-all</artifactId>
                 <version>${fescar.version}</version>
+            </dependency>
+
+            <!-- MyBatis-Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
 
             <!-- MyBatis -->
@@ -298,11 +316,35 @@
                 <version>${xxl-job-core.version}</version>
             </dependency>
 
-            <!-- biz start -->
+            <!-- Biz -->
             <dependency>
                 <groupId>cn.waynechu</groupId>
                 <artifactId>biz-facade-common</artifactId>
                 <version>${biz-facade-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-boot-starter-datasource-frame</artifactId>
+                <version>${biz-boot-starter-datasource-frame.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
+                <version>${biz-boot-starter-dynamic-datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-boot-starter-elastic-job</artifactId>
+                <version>${biz-boot-starter-elastic-job.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-boot-starter-logger</artifactId>
+                <version>${biz-boot-starter-logger.version}</version>
             </dependency>
 
             <dependency>
@@ -315,24 +357,6 @@
                 <groupId>cn.waynechu</groupId>
                 <artifactId>biz-spring-cloud-api-starter</artifactId>
                 <version>${biz-spring-cloud-api-starter.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
-                <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-                <version>${biz-boot-starter-dynamic-datasource.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
-                <artifactId>biz-boot-starter-logger</artifactId>
-                <version>${biz-boot-starter-logger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
-                <artifactId>biz-boot-starter-elastic-job</artifactId>
-                <version>${biz-boot-starter-elastic-job.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

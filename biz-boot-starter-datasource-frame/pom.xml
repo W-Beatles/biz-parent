@@ -8,29 +8,10 @@
         <version>1.0.2019071501-RELEASE</version>
     </parent>
 
-    <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-    <version>1.0.2019070901-RELEASE</version>
-    <name>biz-boot-starter-dynamic-datasource</name>
-    <description>biz-boot-starter-dynamic-datasource module</description>
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-    </licenses>
-
-    <organization>
-        <name>waynechu</name>
-        <url>https://waynechu.cn</url>
-    </organization>
-
-    <developers>
-        <developer>
-            <name>waynechu</name>
-            <email>waynechu@waynechu.cn</email>
-        </developer>
-    </developers>
+    <artifactId>biz-boot-starter-datasource-frame</artifactId>
+    <version>1.0.2019080701-SNAPSHOT</version>
+    <name>biz-boot-starter-datasource-frame</name>
+    <description>biz-boot-starter-datasource-frame module</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,40 +21,23 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
