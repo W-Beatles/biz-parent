@@ -10,7 +10,19 @@
     </parent>
 
     <artifactId>biz-spring-cloud-archetype</artifactId>
-    <version>1.0.2019070901-RELEASE</version>
+    <version>1.0.2019080701-RELEASE</version>
     <name>biz-spring-cloud-archetype</name>
     <description>biz-spring-cloud-archetype module for SpringCloud</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -4,72 +4,40 @@
         xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         name="biz-boot-starter-archetype">
-
-    <fileSets>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>.idea/libraries</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>.idea/inspectionProfiles</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>.idea/codeStyles</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>.idea</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>.idea/copyright</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>.idea/dictionaries</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-            <directory>.idea/sonarlint</directory>
-            <includes>
-                <include>**/*.</include>
-                <include>**/*.pb</include>
-            </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-            <directory></directory>
-            <includes>
-                <include>.gitignore</include>
-                <include>waynechu-archetype-springcloud.iml</include>
-            </includes>
-        </fileSet>
-    </fileSets>
     <modules>
+        <module id="${rootArtifactId}-api" dir="__rootArtifactId__-api" name="${rootArtifactId}-api">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/main/java</directory>
+                    <includes>
+                        <include>**/*.**</include>
+                    </includes>
+                </fileSet>
+                <fileSet filtered="true" encoding="UTF-8">
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*.xml</include>
+                        <include>**/**</include>
+                    </includes>
+                </fileSet>
+            </fileSets>
+        </module>
         <module id="${rootArtifactId}-common" dir="__rootArtifactId__-common" name="${rootArtifactId}-common">
             <fileSets>
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.java</include>
+                        <include>**/*.**</include>
                     </includes>
                 </fileSet>
-                <fileSet encoding="UTF-8">
-                    <directory></directory>
+            </fileSets>
+        </module>
+        <module id="${rootArtifactId}-domain" dir="__rootArtifactId__-domain" name="${rootArtifactId}-domain">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/main/java</directory>
                     <includes>
-                        <include>waynechu-archetype-springcloud-common.iml</include>
+                        <include>**/*.**</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -79,29 +47,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                </fileSet>
-                <fileSet encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>waynechu-archetype-springcloud-facade.iml</include>
-                    </includes>
-                </fileSet>
-            </fileSets>
-        </module>
-        <module id="${rootArtifactId}-remote" dir="__rootArtifactId__-remote" name="${rootArtifactId}-remote">
-            <fileSets>
-                <fileSet filtered="true" packaged="true" encoding="UTF-8">
-                    <directory>src/main/java</directory>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                </fileSet>
-                <fileSet encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>waynechu-archetype-springcloud-remote.iml</include>
+                        <include>**/*.**</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -112,67 +58,24 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.java</include>
+                        <include>**/*.**</include>
                     </includes>
                 </fileSet>
                 <fileSet filtered="true" encoding="UTF-8">
                     <directory>src/main/resources</directory>
                     <includes>
                         <include>**/*.xml</include>
-                    </includes>
-                </fileSet>
-                <fileSet encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>waynechu-archetype-springcloud-integration-dal.iml</include>
+                        <include>**/**</include>
                     </includes>
                 </fileSet>
             </fileSets>
         </module>
-        <module id="${rootArtifactId}-domain" dir="__rootArtifactId__-domain" name="${rootArtifactId}-domain">
+        <module id="${rootArtifactId}-remote" dir="__rootArtifactId__-remote" name="${rootArtifactId}-remote">
             <fileSets>
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                </fileSet>
-                <fileSet encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>waynechu-archetype-springcloud-domain.iml</include>
-                    </includes>
-                </fileSet>
-            </fileSets>
-        </module>
-        <module id="${rootArtifactId}-api" dir="__rootArtifactId__-api" name="${rootArtifactId}-api">
-            <fileSets>
-                <fileSet filtered="true" packaged="true" encoding="UTF-8">
-                    <directory>src/main/java</directory>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                    <excludes>
-                        <exclude>com/waynechu/StartMain.java</exclude>
-                    </excludes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory>src/main/java</directory>
-                    <includes>
-                        <include>com/waynechu/StartMain.java</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory>src/main/resources</directory>
-                    <includes>
-                        <include>**/*.xml</include>
-                        <include>**/*.properties</include>
-                    </includes>
-                </fileSet>
-                <fileSet encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>waynechu-archetype-springcloud-api.iml</include>
+                        <include>**/*.**</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -182,13 +85,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/test/java</directory>
                     <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                </fileSet>
-                <fileSet encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>waynechu-archetype-springcloud-test.iml</include>
+                        <include>**/*.**</include>
                     </includes>
                 </fileSet>
             </fileSets>

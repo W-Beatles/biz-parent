@@ -51,8 +51,7 @@
         <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
         <biz-spring-cloud-common.version>1.0.2019080601-RELEASE</biz-spring-cloud-common.version>
         <biz-spring-cloud-api-starter.version>1.0.2019071001-RELEASE</biz-spring-cloud-api-starter.version>
-        <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE
-        </biz-boot-starter-dynamic-datasource.version>
+        <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE</biz-boot-starter-dynamic-datasource.version>
         <biz-boot-starter-datasource-frame.version>1.0.2019080701-SNAPSHOT</biz-boot-starter-datasource-frame.version>
         <biz-boot-starter-logger.version>1.0.2019071501-RELEASE</biz-boot-starter-logger.version>
         <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
