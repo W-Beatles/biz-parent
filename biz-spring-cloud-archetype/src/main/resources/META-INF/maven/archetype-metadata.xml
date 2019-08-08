@@ -4,20 +4,35 @@
         xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         name="biz-boot-starter-archetype">
+    <!-- https://stackoverflow.com/questions/7981060/maven-archetype-plugin-doesnt-let-resources-in-archetype-resources-through?answertab=active#tab-top -->
+    <requiredProperties>
+        <requiredProperty key="gitignore">
+            <defaultValue>.gitignore</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+    <fileSets>
+        <fileSet>
+            <directory></directory>
+            <includes>
+                <include>__gitignore__</include>
+            </includes>
+        </fileSet>
+    </fileSets>
     <modules>
         <module id="${rootArtifactId}-api" dir="__rootArtifactId__-api" name="${rootArtifactId}-api">
             <fileSets>
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.**</include>
+                        <include>**/*.java</include>
+                        <include>com/waynechu/StartMain.java</include>
                     </includes>
                 </fileSet>
                 <fileSet filtered="true" encoding="UTF-8">
                     <directory>src/main/resources</directory>
                     <includes>
                         <include>**/*.xml</include>
-                        <include>**/**</include>
+                        <include>**/*.properties</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -27,7 +42,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.**</include>
+                        <include>**/*.java</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -37,7 +52,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.**</include>
+                        <include>**/*.java</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -47,7 +62,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.**</include>
+                        <include>**/*.java</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -58,14 +73,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.**</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory>src/main/resources</directory>
-                    <includes>
-                        <include>**/*.xml</include>
-                        <include>**/**</include>
+                        <include>**/*.java</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -75,7 +83,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/main/java</directory>
                     <includes>
-                        <include>**/*.**</include>
+                        <include>**/*.java</include>
                     </includes>
                 </fileSet>
             </fileSets>
@@ -85,7 +93,7 @@
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src/test/java</directory>
                     <includes>
-                        <include>**/*.**</include>
+                        <include>**/*.java</include>
                     </includes>
                 </fileSet>
             </fileSets>

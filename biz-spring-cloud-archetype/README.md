@@ -6,7 +6,7 @@
 
 ### 使用方法
 
-进入CreateProject-latest.bat目录，执行命令 `CreateProject-latest.bat 项目名 包名`
+进入`../scripts/CreateProject-latest.bat`所在目录，执行命令 `CreateProject-latest.bat 项目名 包名`
 
 例如:
 
