@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.bootstarter.dynamicdatasource.strategy;
+package cn.waynechu.bootstarter.datasoureframe.strategy;
 
 import lombok.extern.slf4j.Slf4j;
 

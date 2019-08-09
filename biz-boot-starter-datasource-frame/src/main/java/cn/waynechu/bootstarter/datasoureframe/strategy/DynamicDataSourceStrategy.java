@@ -13,23 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.bootstarter.dynamicdatasource.strategy;
+package cn.waynechu.bootstarter.datasoureframe.strategy;
 
 import javax.sql.DataSource;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * 动态数据源选择策略 - 随机策略
+ * 动态数据源选择策略
+ * <p>
+ * 默认为负载均衡策略，使用轮询算法。
+ * 你可以实现该接口自定义动态数据源切换策略
  *
  * @author zhuwei
- * @date 2019/1/15 16:50
+ * @date 2019/1/15 16:47
  */
-public class RandomDynamicDataSourceStrategy extends AbstractDynamicDataSourceStrategy {
+public interface DynamicDataSourceStrategy {
 
-    @Override
-    public DataSource determineSlave(List<DataSource> dataSources) {
-        return dataSources.get(ThreadLocalRandom.current().nextInt(dataSources.size() - 1) + 1);
-    }
+    /**
+     * 决定主数据源
+     *
+     * @param dataSources 数据源选择库
+     * @return 主数据源
+     */
+    DataSource determineMaster(List<DataSource> dataSources);
+
+    /**
+     * 决定从数据源
+     *
+     * @param dataSources 数据源选择库
+     * @return 从数据源
+     */
+    DataSource determineSlave(List<DataSource> dataSources);
 }

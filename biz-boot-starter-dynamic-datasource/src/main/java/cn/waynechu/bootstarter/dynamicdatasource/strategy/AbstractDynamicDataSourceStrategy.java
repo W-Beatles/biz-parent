@@ -1,12 +1,12 @@
 /**
  * Copyright © 2018 organization waynechu
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,7 +16,7 @@
 package cn.waynechu.bootstarter.dynamicdatasource.strategy;
 
 import javax.sql.DataSource;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 默认使用组数据源中的第一个作为主数据源
@@ -33,7 +33,7 @@ public abstract class AbstractDynamicDataSourceStrategy implements DynamicDataSo
      * @return 主数据源
      */
     @Override
-    public DataSource determineMaster(LinkedList<DataSource> dataSources) {
-        return dataSources.getFirst();
+    public DataSource determineMaster(List<DataSource> dataSources) {
+        return dataSources.get(0);
     }
 }

@@ -1,4 +1,4 @@
-package cn.waynechu.bootstarter.datasoureframe;
+package cn.waynechu.bootstarter.datasoureframe.autoconfig;
 
 import cn.waynechu.bootstarter.datasoureframe.properties.FrameDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;
