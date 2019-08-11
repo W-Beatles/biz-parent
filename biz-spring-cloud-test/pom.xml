@@ -6,7 +6,7 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-parent</artifactId>
-        <version>1.0.2019070901-RELEASE</version>
+        <version>1.0.2019071501-RELEASE</version>
     </parent>
 
     <artifactId>biz-spring-cloud-test</artifactId>
