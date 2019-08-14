@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author zhuwei
  * @date 2018/12/28 16:09
  */
+@Deprecated
 @Slf4j
 public class RedisCache {
     private String prefix;

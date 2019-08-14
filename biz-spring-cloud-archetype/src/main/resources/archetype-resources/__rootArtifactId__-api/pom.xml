@@ -27,6 +27,8 @@
     </dependencies>
 
     <build>
+        <finalName>${rootArtifactId}-api</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -51,6 +53,5 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <finalName>${rootArtifactId}-api</finalName>
     </build>
 </project>

@@ -14,8 +14,8 @@
     参考配置:
     ```
     ### mdc-filter
-    app.api.common.mdc-filter.enable=true
-    app.api.common.mdc-filter.prefix=${spring.application.name}
+    biz.api.common.mdc-filter.enable=true
+    biz.api.common.mdc-filter.prefix=${spring.application.name}
     ```
     
 2. ~~DataModifiedInterceptor SQL拦截器~~ (已移除)
@@ -28,11 +28,11 @@
     ~~参考配置:~~
     ```
      ### data-modified-interceptor
-     app.boot.starter.data-modified-interceptor.enable=true
-     app.boot.starter.data-modified-interceptor.created-user-attr-name=createdUser
-     app.boot.starter.data-modified-interceptor.created-time-attr-name=createdTime
-     app.boot.starter.data-modified-interceptor.updated-user-attr-name=updatedUser
-     app.boot.starter.data-modified-interceptor.updated-time-attr-name=updatedTime
+     biz.boot.starter.data-modified-interceptor.enable=true
+     biz.boot.starter.data-modified-interceptor.created-user-attr-name=createdUser
+     biz.boot.starter.data-modified-interceptor.created-time-attr-name=createdTime
+     biz.boot.starter.data-modified-interceptor.updated-user-attr-name=updatedUser
+     biz.boot.starter.data-modified-interceptor.updated-time-attr-name=updatedTime
     ```
     
 3. ControllerExceptionHandler 统一异常处理切面 (默认开启)
@@ -41,7 +41,7 @@
 
 5. MethodLogAspect 方法调用情况切面 (默认开启)
 
-6. RedisCache Redis缓存工具类 (默认关闭)
+6. ~~RedisCache Redis缓存工具类 (默认关闭)~~(暂不推荐使用)
 
 7. CorsAutoConfiguration 跨域配置 (默认关闭)
 
@@ -62,13 +62,13 @@
     参考配置:
     ```
     ### swagger
-    app.api.common.swagger.enable=true
-    app.api.common.swagger.api-title=文档标题
-    app.api.common.swagger.api-description=文档描述
-    app.api.common.swagger.api-version=1.0.0
-    app.api.common.swagger.scan-package=com.waynechu
-    app.api.common.swagger.contact-name=联系人名称
-    app.api.common.swagger.contact-url=联系人名称
-    app.api.common.swagger.contact-email=联系人邮箱
+    biz.api.common.swagger.enable=true
+    biz.api.common.swagger.api-title=文档标题
+    biz.api.common.swagger.api-description=文档描述
+    biz.api.common.swagger.api-version=1.0.0
+    biz.api.common.swagger.scan-package=com.waynechu
+    biz.api.common.swagger.contact-name=联系人名称
+    biz.api.common.swagger.contact-url=联系人名称
+    biz.api.common.swagger.contact-email=联系人邮箱
     ```
     
