@@ -2,7 +2,7 @@
 
 ### 项目介绍
 
-// TODO: 2019/4/2  
+SpringCloud微服务开发脚手架
 
 ### 模块说明
 
@@ -30,9 +30,11 @@
      Eureka注册中心
 12. biz-spring-cloud-gateway
      API网关。用做服务代理及API聚合，并提供所有服务的Swagger文档聚合
-13. biz-spring-cloud-service-order
-     订单模块(测试)
-14. biz-spring-cloud-service-user
-     用户模块(测试)
-15. biz-spring-cloud-test
+13. biz-spring-cloud-test
      测试模块
+14. biz-spring-cloud-api-service-order
+     订单模块(测试)
+15. biz-spring-cloud-api-service-user
+     用户模块(测试)
+16. biz-spring-cloud-api-service-user
+     公共服务。提供省市区查询、短链生成及解析服务

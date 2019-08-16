@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.waynechu.utility.dal.mapper.RegionMapper">
+    <resultMap id="BaseResultMap" type="com.waynechu.utility.dal.dataobject.RegionDO">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="pid" jdbcType="INTEGER" property="pid"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="region_name" jdbcType="VARCHAR" property="regionName"/>
+        <result column="simple_name" jdbcType="VARCHAR" property="simpleName"/>
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode"/>
+        <result column="postal_code" jdbcType="VARCHAR" property="postalCode"/>
+        <result column="merge_name" jdbcType="VARCHAR" property="mergeName"/>
+        <result column="lng" jdbcType="FLOAT" property="lng"/>
+        <result column="lat" jdbcType="FLOAT" property="lat"/>
+        <result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
+        <result column="deleted" jdbcType="BOOLEAN" property="deleted"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, pid, `level`, region_name, simple_name, city_code, postal_code, merge_name, lng,
+        lat, pinyin, deleted
+    </sql>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update region
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="pid = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.pid,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="`level` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.level,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="region_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.regionName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="simple_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.simpleName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="city_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.cityCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="postal_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.postalCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="merge_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.mergeName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="lng = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.lng,jdbcType=FLOAT}
+                </foreach>
+            </trim>
+            <trim prefix="lat = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.lat,jdbcType=FLOAT}
+                </foreach>
+            </trim>
+            <trim prefix="pinyin = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.pinyin,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="deleted = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.deleted,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into region
+        (id, pid, `level`, region_name, simple_name, city_code, postal_code, merge_name,
+        lng, lat, pinyin, deleted)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id,jdbcType=INTEGER}, #{item.pid,jdbcType=INTEGER}, #{item.level,jdbcType=INTEGER},
+            #{item.regionName,jdbcType=VARCHAR}, #{item.simpleName,jdbcType=VARCHAR}, #{item.cityCode,jdbcType=VARCHAR},
+            #{item.postalCode,jdbcType=VARCHAR}, #{item.mergeName,jdbcType=VARCHAR}, #{item.lng,jdbcType=FLOAT},
+            #{item.lat,jdbcType=FLOAT}, #{item.pinyin,jdbcType=VARCHAR}, #{item.deleted,jdbcType=BOOLEAN}
+            )
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.waynechu.utility.dal.dataobject.RegionDO">
+        <!--@mbg.generated-->
+        insert into region
+        (id, pid, `level`, region_name, simple_name, city_code, postal_code, merge_name,
+        lng, lat, pinyin, deleted)
+        values
+        (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR},
+        #{simpleName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR},
+        #{mergeName,jdbcType=VARCHAR}, #{lng,jdbcType=FLOAT}, #{lat,jdbcType=FLOAT}, #{pinyin,jdbcType=VARCHAR},
+        #{deleted,jdbcType=BOOLEAN})
+        on duplicate key update
+        id = #{id,jdbcType=INTEGER},
+        pid = #{pid,jdbcType=INTEGER},
+        `level` = #{level,jdbcType=INTEGER},
+        region_name = #{regionName,jdbcType=VARCHAR},
+        simple_name = #{simpleName,jdbcType=VARCHAR},
+        city_code = #{cityCode,jdbcType=VARCHAR},
+        postal_code = #{postalCode,jdbcType=VARCHAR},
+        merge_name = #{mergeName,jdbcType=VARCHAR},
+        lng = #{lng,jdbcType=FLOAT},
+        lat = #{lat,jdbcType=FLOAT},
+        pinyin = #{pinyin,jdbcType=VARCHAR},
+        deleted = #{deleted,jdbcType=BOOLEAN}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.waynechu.utility.dal.dataobject.RegionDO">
+        <!--@mbg.generated-->
+        insert into region
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="level != null">
+                `level`,
+            </if>
+            <if test="regionName != null">
+                region_name,
+            </if>
+            <if test="simpleName != null">
+                simple_name,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="postalCode != null">
+                postal_code,
+            </if>
+            <if test="mergeName != null">
+                merge_name,
+            </if>
+            <if test="lng != null">
+                lng,
+            </if>
+            <if test="lat != null">
+                lat,
+            </if>
+            <if test="pinyin != null">
+                pinyin,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                #{regionName,jdbcType=VARCHAR},
+            </if>
+            <if test="simpleName != null">
+                #{simpleName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="postalCode != null">
+                #{postalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mergeName != null">
+                #{mergeName,jdbcType=VARCHAR},
+            </if>
+            <if test="lng != null">
+                #{lng,jdbcType=FLOAT},
+            </if>
+            <if test="lat != null">
+                #{lat,jdbcType=FLOAT},
+            </if>
+            <if test="pinyin != null">
+                #{pinyin,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                `level` = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                region_name = #{regionName,jdbcType=VARCHAR},
+            </if>
+            <if test="simpleName != null">
+                simple_name = #{simpleName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="postalCode != null">
+                postal_code = #{postalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mergeName != null">
+                merge_name = #{mergeName,jdbcType=VARCHAR},
+            </if>
+            <if test="lng != null">
+                lng = #{lng,jdbcType=FLOAT},
+            </if>
+            <if test="lat != null">
+                lat = #{lat,jdbcType=FLOAT},
+            </if>
+            <if test="pinyin != null">
+                pinyin = #{pinyin,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+</mapper>

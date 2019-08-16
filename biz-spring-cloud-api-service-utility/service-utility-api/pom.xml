@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.waynechu</groupId>
+        <artifactId>service-utility-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>service-utility-api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>service-utility-api</name>
+    <description>service-utility-api module for SpringCloud</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.waynechu</groupId>
+            <artifactId>service-utility-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.waynechu</groupId>
+            <artifactId>service-utility-domain</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>service-utility-api</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArgument>-parameters</compilerArgument>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <!-- 指定配置文件编码 -->
+                    <encoding>UTF-8</encoding>
+                    <!-- 使用默认分隔符, ${xxx}或者@xxx@ -->
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
