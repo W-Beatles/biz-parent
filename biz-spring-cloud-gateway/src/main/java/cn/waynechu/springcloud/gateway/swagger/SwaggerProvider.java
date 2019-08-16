@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Component
 @Primary
-public class GatewaySwaggerProvider implements SwaggerResourcesProvider {
+public class SwaggerProvider implements SwaggerResourcesProvider {
     private static final String API_URI = "/v2/api-docs";
     private static final String EUREKA_SUB_PREFIX = "CompositeDiscoveryClient_";
 
@@ -35,7 +35,7 @@ public class GatewaySwaggerProvider implements SwaggerResourcesProvider {
 
     private final DiscoveryClientRouteDefinitionLocator routeLocator;
 
-    public GatewaySwaggerProvider(DiscoveryClientRouteDefinitionLocator routeLocator) {
+    public SwaggerProvider(DiscoveryClientRouteDefinitionLocator routeLocator) {
         this.routeLocator = routeLocator;
     }
 
