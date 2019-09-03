@@ -23,12 +23,17 @@
 
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-integration-dal</artifactId>
+            <artifactId>${rootArtifactId}-facade</artifactId>
         </dependency>
 
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-remote</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-integration-dal</artifactId>
         </dependency>
     </dependencies>
 </project>

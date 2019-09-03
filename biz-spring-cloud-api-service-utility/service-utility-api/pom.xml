@@ -17,11 +17,6 @@
     <dependencies>
         <dependency>
             <groupId>com.waynechu</groupId>
-            <artifactId>service-utility-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.waynechu</groupId>
             <artifactId>service-utility-domain</artifactId>
         </dependency>
     </dependencies>

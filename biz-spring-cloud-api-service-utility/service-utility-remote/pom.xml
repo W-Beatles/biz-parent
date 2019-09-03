@@ -16,23 +16,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.waynechu</groupId>
-            <artifactId>biz-facade-common</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.waynechu</groupId>
-            <artifactId>service-utility-facade</artifactId>
+            <artifactId>service-utility-common</artifactId>
         </dependency>
     </dependencies>
 </project>

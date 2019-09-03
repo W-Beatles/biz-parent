@@ -11,7 +11,7 @@
 例如:
 
 ```shell
-CreateProject-latest.bat trader-center trader
+CreateProject-latest.bat service-report report
 ```
 
-即可生成工程 `biz-spring-cloud-api-trader-center`，包名为 `com.waynechu.trader`
+即可生成工程 `biz-spring-cloud-api-service-report`，包名为 `com.waynechu.report`

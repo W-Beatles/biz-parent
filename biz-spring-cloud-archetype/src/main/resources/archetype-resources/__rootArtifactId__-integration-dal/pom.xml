@@ -16,11 +16,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-common</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>biz-boot-starter-datasource-frame</artifactId>
         </dependency>

@@ -16,8 +16,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-facade-common</artifactId>
         </dependency>
 
         <dependency>
