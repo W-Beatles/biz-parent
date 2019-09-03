@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/layout/RabbitmqLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/layout/RabbitmqLayout.java" afterDir="false" />
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="perf(biz-parent): 添加workspace.xml用于dashboard配置">
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/listener/ExcelImportListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ExportUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ExportUtil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/biz-spring-cloud-service-user/target/" />
@@ -33,6 +35,14 @@
     <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-test/target/" />
     <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-service-order/target/" />
     <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-service-user/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-domain/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-api/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-facade/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-test/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-integration-dal/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-common/target/" />
+    <ignored path="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-remote/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,29 +85,20 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/aware/SentryContextAware.java">
+        <entry file="file://$PROJECT_DIR$/scripts/CreateProject-latest.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="450">
+              <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/LoggerAutoConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-675">
-                <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+              <first_editor relative-caret-position="200">
+                <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               </first_editor>
               <second_editor />
             </state>
@@ -105,64 +106,51 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/SwaggerAutoConfiguration.java">
+        <entry file="file://$PROJECT_DIR$/scripts/build.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state relative-caret-position="575">
+              <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/CorsAutoConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/CommonAutoConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/aspect/ControllerLogAspect.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/aspect/MethodLogAspect.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__gitignore__">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+              <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/advice/ControllerExceptionHandler.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/pom.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/META-INF/maven/archetype-metadata.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            <state relative-caret-position="400">
+              <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/listener/ExcelImportListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/resources/META-INF/spring.factories">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ExportUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+            <state relative-caret-position="400">
+              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -227,9 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scripts/CreateProject-latest.bat" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/META-INF/maven/archetype-metadata.xml" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/java/com/waynechu/StartMain.java" />
         <option value="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/resources/META-INF/spring.factories" />
         <option value="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/DruidDynamicDataSourceConfiguration.java" />
         <option value="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/config/DruidConfig.java" />
@@ -268,7 +253,6 @@
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/README.md" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-prd.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-prd.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-test.properties" />
@@ -276,8 +260,12 @@
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-local.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-eureka/pom.xml" />
-        <option value="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/layout/RabbitmqLayout.java" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-local.properties" />
+        <option value="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/layout/RabbitmqLayout.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-api/src/main/java/com/waynechu/StartMain.java" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ExportUtil.java" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/listener/ExcelImportListener.java" />
       </list>
     </option>
   </component>
@@ -317,107 +305,25 @@
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-spring-cloud-common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-spring-cloud-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="logger" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="logger" type="462c0819:PsiDirectoryNode" />
-              <item name="aware" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="logger" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="logger" type="462c0819:PsiDirectoryNode" />
-              <item name="properties" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-boot-starter-logger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-spring-cloud-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-spring-cloud-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -425,68 +331,31 @@
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-spring-cloud-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="apicommon" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-spring-cloud-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="apicommon" type="462c0819:PsiDirectoryNode" />
-              <item name="advice" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="listener" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-spring-cloud-common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="apicommon" type="462c0819:PsiDirectoryNode" />
-              <item name="aspect" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="apicommon" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="apicommon" type="462c0819:PsiDirectoryNode" />
-              <item name="mdc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biz-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="biz-spring-cloud-api-starter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biz-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -511,7 +380,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-api-shop-report" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -521,25 +390,26 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-integration-dal\src\main\java\com\waynechu\__rootArtifactId__\dal\dataobject" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\scripts" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-service-order\src\main\resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.waynechu.bootstarter.datasoureframe.properties" />
-      <recent name="cn.waynechu.bootstarter.datasoureframe.config" />
-      <recent name="cn.waynechu.bootstarter.datasoureframe" />
-      <recent name="cn.waynechu.springcloud.common.util" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-datasource-frame\src\main\java\cn\waynechu\bootstarter\datasoureframe" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-dynamic-datasource\src\main\java\cn\waynechu\bootstarter\dynamicdatasource\strategy" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-datasource-frame\src\main\java\cn\waynechu\bootstarter\datasoureframe\autoconfig" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-datasource-frame\src\main" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-integration-dal\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.waynechu.springcloud.common.listener" />
+      <recent name="cn.waynechu.bootstarter.datasoureframe.properties" />
+      <recent name="cn.waynechu.bootstarter.datasoureframe.config" />
+      <recent name="cn.waynechu.bootstarter.datasoureframe" />
+      <recent name="cn.waynechu.springcloud.common.util" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-integration-dal\src\main\java\com\waynechu\__rootArtifactId__\dal\dataobject" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\scripts" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-service-order\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -560,7 +430,7 @@
     </option>
     <option name="contentProportion" value="0.18831168" />
   </component>
-  <component name="RunManager" selected="Spring Boot.(10000) order-service-peer1">
+  <component name="RunManager">
     <configuration name="(10000) order-service-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
       <module name="biz-spring-cloud-api-service-order" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.springcloud.order.OrderStartMain" />
@@ -810,7 +680,7 @@
       <workItem from="1566376226982" duration="6731000" />
       <workItem from="1566898597058" duration="47000" />
       <workItem from="1566993372223" duration="197000" />
-      <workItem from="1567475796826" duration="3960000" />
+      <workItem from="1567475796826" duration="8647000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -973,14 +843,22 @@
       <option name="project" value="LOCAL" />
       <updated>1565954573373</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="perf(biz-parent): 添加workspace.xml用于dashboard配置">
+      <created>1567483022101</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1567483022101</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125493000" />
+    <option name="totallyTimeSpent" value="130180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21375267" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1010,15 +888,25 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.19189766" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.19189766" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Mybatis datasource" order="5" side_tool="true" />
-      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.20202559" />
+      <window_info anchor="right" id="Database" order="6" weight="0.20202559" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -1081,7 +969,8 @@
     <MESSAGE value="perf(biz-parent): 提交idea配置" />
     <MESSAGE value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration，暂不推荐使用" />
     <MESSAGE value="feat(service-utility-parent): 添加utility服务" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(service-utility-parent): 添加utility服务" />
+    <MESSAGE value="perf(biz-parent): 添加workspace.xml用于dashboard配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="perf(biz-parent): 添加workspace.xml用于dashboard配置" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1096,101 +985,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-prd.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-test.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-ut.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-work.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/exception/BizException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/enums/BizEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/enums/BizErrorCodeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/enums/ValidStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/MethodLogAnnotation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/aspect/Invisible.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/DequeThreadLocalUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-238">
@@ -1293,9 +1087,6 @@
       </provider>
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/META-INF/maven/archetype-metadata.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-728" />
@@ -1321,13 +1112,6 @@
     <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application-local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1350" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c54bbdaf-e3f2-45a8-b85d-eac2ca09e767/console.sql">
@@ -1441,6 +1225,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-shop-report/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-shop-report/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-domain/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300" />
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-integration-dal/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300" />
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-api/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-api/src/main/java/com/waynechu/StartMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="18" column="102" selection-start-line="18" selection-start-column="102" selection-end-line="18" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/CreateProject-latest.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="200">
+            <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__gitignore__">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/META-INF/maven/archetype-metadata.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/listener/ExcelImportListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ExportUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
@@ -1493,7 +1380,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>service-utility-facade</last-edited>
+          <last-edited>shop-report-remote</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
