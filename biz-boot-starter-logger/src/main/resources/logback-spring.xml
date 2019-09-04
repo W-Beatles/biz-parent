@@ -67,53 +67,45 @@
         </then>
     </if>
 
-    <springProfile name="work,test,ut,prd">
-        <logger name="com" level="INFO" additivity="false">
-            <appender-ref ref="CONSOLE"/>
-            <if condition='property("sentryEnable").contains("true")'>
-                <then>
-                    <appender-ref ref="Sentry"/>
-                </then>
-            </if>
-            <if condition='property("elkEnable").contains("true")'>
-                <then>
-                    <appender-ref ref="ELK"/>
-                </then>
-            </if>
-        </logger>
+    <logger name="com" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry"/>
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK"/>
+            </then>
+        </if>
+    </logger>
 
-        <logger name="cn" level="INFO" additivity="false">
-            <appender-ref ref="CONSOLE"/>
-            <if condition='property("sentryEnable").contains("true")'>
-                <then>
-                    <appender-ref ref="Sentry"/>
-                </then>
-            </if>
-            <if condition='property("elkEnable").contains("true")'>
-                <then>
-                    <appender-ref ref="ELK"/>
-                </then>
-            </if>
-        </logger>
+    <logger name="cn" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry"/>
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK"/>
+            </then>
+        </if>
+    </logger>
 
-        <logger name="org" level="INFO" additivity="false">
-            <appender-ref ref="CONSOLE"/>
-            <if condition='property("sentryEnable").contains("true")'>
-                <then>
-                    <appender-ref ref="Sentry"/>
-                </then>
-            </if>
-            <if condition='property("elkEnable").contains("true")'>
-                <then>
-                    <appender-ref ref="ELK"/>
-                </then>
-            </if>
-        </logger>
-    </springProfile>
-
-    <springProfile name="local">
-        <root level="INFO">
-            <appender-ref ref="CONSOLE"/>
-        </root>
-    </springProfile>
+    <logger name="org" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry"/>
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK"/>
+            </then>
+        </if>
+    </logger>
 </configuration>
