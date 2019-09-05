@@ -1,6 +1,7 @@
 package com.waynechu.utility.controller;
 
 import com.waynechu.utility.domain.properties.ShortUrlProperty;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2019/8/13 20:47
  */
 @Controller
+@Api(tags = "短链跳转服务")
 @RequestMapping("/s")
 public class ShortUrlController {
 
