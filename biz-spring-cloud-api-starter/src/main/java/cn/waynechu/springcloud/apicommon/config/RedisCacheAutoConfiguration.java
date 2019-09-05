@@ -1,7 +1,7 @@
 package cn.waynechu.springcloud.apicommon.config;
 
 import cn.waynechu.springcloud.apicommon.properties.RedisCacheProperty;
-import cn.waynechu.springcloud.apicommon.util.RedisCache;
+import cn.waynechu.springcloud.apicommon.cache.RedisCache;
 import cn.waynechu.springcloud.common.serializer.FastJsonSerializer;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.fasterxml.jackson.annotation.JsonInclude;

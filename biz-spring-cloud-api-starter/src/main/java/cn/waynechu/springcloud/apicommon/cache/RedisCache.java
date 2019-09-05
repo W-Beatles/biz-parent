@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apicommon.util;
+package cn.waynechu.springcloud.apicommon.cache;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.*;

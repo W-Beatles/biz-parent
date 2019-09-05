@@ -12,6 +12,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
  * 切面生效条件:
  * 1. 该类位于controller包下
  * 2. 方法上添加了{@code io.swagger.annotations.ApiOperation} 注解
+ *
+ * 注: 如想替换默认的切点controller包，可以继承AbstractControllerLogAspect
+ * 并注入一个名为controllerLogAspect的bean来替换掉该默认实现
  * </pre>
  *
  * @author zhuwei

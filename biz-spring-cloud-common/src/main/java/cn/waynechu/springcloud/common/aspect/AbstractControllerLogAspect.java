@@ -23,7 +23,7 @@ import java.util.Collection;
  * <pre>
  * 加入注解@ApiOperation将打印接口请求、返回及异常日志
  *
- * 并添加如下信息到MDC上下文中:
+ * 该切面还会添加如下信息到MDC上下文中:
  *   url: 接口访问路径
  *   timeTaken: 接口访问耗时
  * </pre>

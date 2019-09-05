@@ -4,7 +4,7 @@
 
 1. MDCFilter过滤器 (默认关闭)
 
-    该过滤器会调用 MDC.put("reqKey", reqKeyValue) 添加reqKey到MDC映射调试上下文中，这样便于在log日志中追踪请求调用信息   
+    该过滤器会调用 MDC.put("reqKey", reqKeyValue) 添加`reqKey`到MDC映射调试上下文中，这样便于在log日志中追踪请求调用信息   
     其中reqKey的格式为: traceNo-prefix-shortJavaUUID-localHostName
     - traceNo: 请求追踪号。可添加至请求头或请求参数中来追踪请求链路，其中key为traceNo
     - prefix: 项目唯一标识。默认取值为`${spring.application.name}`
@@ -48,8 +48,8 @@
     参考配置:
     ```
     ### cors
-    app.api.common.cors.enable=true
-    app.api.common.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
+    biz.api.common.cors.enable=true
+    biz.api.common.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
     ```
     
 8. SpringContextHolder Spring上下文工具类 (默认注入)
@@ -68,7 +68,7 @@
     biz.api.common.swagger.api-version=1.0.0
     biz.api.common.swagger.scan-package=com.waynechu
     biz.api.common.swagger.contact-name=联系人名称
-    biz.api.common.swagger.contact-url=联系人名称
+    biz.api.common.swagger.contact-url=联系人主页
     biz.api.common.swagger.contact-email=联系人邮箱
     ```
     
