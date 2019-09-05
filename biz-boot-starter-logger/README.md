@@ -24,7 +24,7 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
     ```
     ## elk
     elk.enable=true
-    elk.host=elk.waynechu.cn
+    elk.host=mq.waynechu.cn
     elk.port=5672
     elk.username=waynechu
     elk.password=Swro39qE.mB5
