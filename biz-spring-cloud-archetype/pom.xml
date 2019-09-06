@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>biz-spring-cloud-archetype</artifactId>
-    <version>1.0.2019080701-RELEASE</version>
+    <version>1.0.2019090601-RELEASE</version>
     <name>biz-spring-cloud-archetype</name>
     <description>biz-spring-cloud-archetype module for SpringCloud</description>
 

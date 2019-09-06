@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="config(service-utility-api): 修改短链地址前缀">
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="docs(biz-parent): 添加TODO LIST">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/request/TestRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/request/TestRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/advice/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/advice/ControllerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/cache/RedisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/cache/RedisCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/SnowFlakeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/SnowFlakeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/spel/Society.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/spel/Society.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/biz-spring-cloud-service-user/target/" />
@@ -94,96 +101,97 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/CommonAutoConfiguration.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/DateUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
+            <state relative-caret-position="409">
+              <caret line="103" column="7" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/advice/ControllerExceptionHandler.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/RedisCacheAutoConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-350">
-              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+            <state relative-caret-position="-825">
+              <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/http/HttpUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="226" column="27" lean-forward="true" selection-start-line="226" selection-start-column="27" selection-end-line="226" selection-end-column="27" />
+            <state relative-caret-position="259">
+              <caret line="422" selection-start-line="422" selection-end-line="422" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/response/BizResponse.java">
+        <entry file="file://$PROJECT_DIR$/biz-boot-starter-elastic-job/src/main/java/cn/waynechu/bootstarter/elasticjob/ElasticJobAutoConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="812">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
+            <state relative-caret-position="-641">
+              <caret line="34" column="54" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.9.RELEASE/spring-context-5.1.9.RELEASE-sources.jar!/org/springframework/validation/Errors.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ImageUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="245" column="21" selection-start-line="245" selection-start-column="21" selection-end-line="245" selection-end-column="21" />
+            <state relative-caret-position="184">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.9.RELEASE/spring-context-5.1.9.RELEASE-sources.jar!/org/springframework/validation/AbstractBindingResult.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/cache/RedisCache.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="168" column="28" selection-start-line="168" selection-start-column="28" selection-end-line="168" selection-end-column="28" />
+            <state relative-caret-position="384">
+              <caret line="403" lean-forward="true" selection-start-line="403" selection-end-line="403" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.9.RELEASE/spring-context-5.1.9.RELEASE-sources.jar!/org/springframework/validation/BindException.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/spel/Society.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="196" column="40" selection-start-line="196" selection-start-column="40" selection-end-line="196" selection-end-column="40" />
+            <state relative-caret-position="-148">
+              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/controller/OrderController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/EncryptUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="409">
+              <caret line="135" selection-start-line="135" selection-end-line="135" />
               <folding>
-                <element signature="e#5241#5242#0" expanded="true" />
-                <element signature="e#5289#5290#0" expanded="true" />
+                <element signature="e#2476#2477#0" expanded="true" />
+                <element signature="e#2532#2533#0" expanded="true" />
+                <element signature="e#2685#2686#0" expanded="true" />
+                <element signature="e#2741#2742#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/controller/UserController.java">
+        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/UUIDUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/controller/TestController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="24" column="95" selection-start-line="24" selection-start-column="95" selection-end-line="24" selection-end-column="95" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/request/TestRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="184">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
             </state>
           </provider>
         </entry>
@@ -199,8 +207,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>zookeeper</find>
-      <find>jsonBinder</find>
       <find>easyexcel</find>
       <find>easyexcel.version</find>
       <find>pagehelper.spring.boot.version</find>
@@ -229,6 +235,8 @@
       <find>elk.enable=true</find>
       <find>ControllerExceptionHandler</find>
       <find>fastjson.version</find>
+      <find>jetcache</find>
+      <find>ac</find>
     </findStrings>
     <replaceStrings>
       <replace>**/*.**</replace>
@@ -251,12 +259,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/biz-spring-cloud-api-order-service/pom.xml" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-user/pom.xml" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/README.md" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-test.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-prd.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-eureka/pom.xml" />
         <option value="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/layout/RabbitmqLayout.java" />
@@ -264,7 +266,6 @@
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-shop-report/shop-report-api/src/main/java/com/waynechu/StartMain.java" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ExportUtil.java" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/listener/ExcelImportListener.java" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-remote/pom.xml" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-integration-dal/pom.xml" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-facade/pom.xml" />
@@ -296,12 +297,19 @@
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-local.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-prd.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/java/com/waynechu/utility/controller/ShortUrlController.java" />
-        <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-local.properties" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/request/TestRequest.java" />
         <option value="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/advice/ControllerExceptionHandler.java" />
         <option value="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/response/BizResponse.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/SnowFlakeGenerator.java" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/Base64Util.java" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/cache/RedisCache.java" />
+        <option value="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/spel/Society.java" />
       </list>
     </option>
   </component>
@@ -318,12 +326,33 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="biz-spring-cloud-archetype" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="biz-spring-cloud-api-service-order" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="biz-spring-cloud-archetype" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+          <item name="biz-spring-cloud-api-service-order" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="biz-spring-cloud-api-service-order" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="cn.waynechu:biz-spring-cloud-api-starter:1.0.2019071001-RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="biz-spring-cloud-api-service-order" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="cn.waynechu:biz-spring-cloud-api-starter:1.0.2019071001-RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+          <item name="de.codecentric:spring-boot-admin-starter-client:2.1.4" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="biz-spring-cloud-api-service-order" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="cn.waynechu:biz-spring-cloud-api-starter:1.0.2019071001-RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+          <item name="de.codecentric:spring-boot-admin-starter-client:2.1.4" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+          <item name="de.codecentric:spring-boot-admin-client:2.1.4" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
         </path>
       </expand>
       <select />
@@ -420,7 +449,20 @@
     </option>
     <option name="contentProportion" value="0.23430736" />
   </component>
-  <component name="RunManager" selected="Spring Boot.(10020) utility-service-peer1">
+  <component name="RunManager" selected="Application.Base64Util">
+    <configuration name="Base64Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.waynechu.springcloud.common.util.Base64Util" />
+      <module name="biz-spring-cloud-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.waynechu.springcloud.common.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestProxyFactory" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.waynechu.renting.test.aop.TestProxyFactory" />
       <module name="biz-spring-cloud-test" />
@@ -656,9 +698,11 @@
       <item itemvalue="Spring Boot.(10021) utility-service-peer2" />
       <item itemvalue="Spring Boot.(10030) order-service-peer1" />
       <item itemvalue="Spring Boot.(10031) order-service-peer2" />
+      <item itemvalue="Application.Base64Util" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Base64Util" />
         <item itemvalue="Application.TestProxyFactory" />
       </list>
     </recent_temporary>
@@ -695,7 +739,7 @@
       <workItem from="1567517173609" duration="3037000" />
       <workItem from="1567566622988" duration="8548000" />
       <workItem from="1567650406943" duration="12953000" />
-      <workItem from="1567748392005" duration="1326000" />
+      <workItem from="1567748392005" duration="4083000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -907,21 +951,29 @@
       <option name="project" value="LOCAL" />
       <updated>1567677557669</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="perf(biz-parent): 升级fastjson版本到1.2.60-修复拒绝服务安全问题">
+      <created>1567749774945</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1567749774945</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170829000" />
+    <option name="totallyTimeSpent" value="173586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Web" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.195629" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.195629" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection Results" weight="0.32962137" />
       <window_info anchor="bottom" id="Java Enterprise" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962137" />
@@ -935,18 +987,18 @@
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.4365256" />
       <window_info anchor="bottom" id="Statistic" order="11" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="12" weight="0.32962137" />
-      <window_info anchor="bottom" id="SonarLint" order="13" />
+      <window_info active="true" anchor="bottom" id="FindBugs-IDEA" order="12" visible="true" weight="0.32962137" />
+      <window_info anchor="bottom" id="SonarLint" order="13" weight="0.32962137" />
       <window_info anchor="bottom" id="Run with VisualVM" order="14" />
       <window_info anchor="bottom" id="Database Changes" order="15" weight="0.32962137" />
-      <window_info anchor="bottom" id="Version Control" order="16" sideWeight="0.4989339" weight="0.24498886" />
+      <window_info anchor="bottom" id="Version Control" order="16" sideWeight="0.4989339" weight="0.454343" />
       <window_info anchor="bottom" id="Messages" order="17" sideWeight="0.49946696" weight="0.32962137" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="18" />
-      <window_info anchor="bottom" id="Run Dashboard" order="19" sideWeight="0.49946696" visible="true" weight="0.48552337" />
+      <window_info anchor="bottom" id="Run Dashboard" order="19" sideWeight="0.49946696" weight="0.48552337" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.19189766" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.282516" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Mybatis datasource" order="5" side_tool="true" />
       <window_info anchor="right" id="Database" order="6" weight="0.20202559" />
@@ -1007,8 +1059,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doc(biz-parent): 文档完善" />
-    <MESSAGE value="perf(biz-boot-starter-logger): 修改banner版本提示" />
     <MESSAGE value="perf(biz-boot-starter-logger): 修改banner版本号提示" />
     <MESSAGE value="perf(biz-spring-cloud-archetype): 修改archetype项目骨架" />
     <MESSAGE value="feat(biz-spring-cloud-api-starter): 添加Apollo配置中心键值修改监听器" />
@@ -1032,7 +1082,9 @@
     <MESSAGE value="style(biz-spring-cloud-api-starter): 添加相关注释; 修改包结构" />
     <MESSAGE value="config(biz-parent): 修改elk地址" />
     <MESSAGE value="config(service-utility-api): 修改短链地址前缀" />
-    <option name="LAST_COMMIT_MESSAGE" value="config(service-utility-api): 修改短链地址前缀" />
+    <MESSAGE value="perf(biz-parent): 升级fastjson版本到1.2.60-修复拒绝服务安全问题" />
+    <MESSAGE value="docs(biz-parent): 添加TODO LIST" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs(biz-parent): 添加TODO LIST" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1053,226 +1105,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/biz-spring-boot-admin/src/main/java/cn/waynechu/springboot/admin/SpringBootAdminStartMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="37" selection-start-column="37" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="390">
-            <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/java/com/waynechu/utility/controller/CommonController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-test.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-ut.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.7.RELEASE/spring-boot-autoconfigure-2.1.7.RELEASE.jar!/org/springframework/boot/autoconfigure/SpringBootApplication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.7.RELEASE/spring-boot-autoconfigure-2.1.7.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/AutoConfigurationMetadataLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-          <folding>
-            <element signature="e#2401#2402#0" expanded="true" />
-            <element signature="e#2438#2439#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE.jar!/org/springframework/util/StringUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="524" column="27" selection-start-line="524" selection-start-column="27" selection-end-line="524" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE.jar!/org/springframework/core/type/AnnotationMetadata.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Java/jdk1.8.0_172/src.zip!/java/util/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="585" column="14" selection-start-line="585" selection-start-column="14" selection-end-line="585" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE.jar!/org/springframework/core/io/support/SpringFactoriesLoader.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/RedisCacheAutoConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE-sources.jar!/org/springframework/util/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="893" column="27" selection-start-line="893" selection-start-column="27" selection-end-line="893" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE-sources.jar!/org/springframework/core/type/AnnotationMetadata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.7.RELEASE/spring-boot-autoconfigure-2.1.7.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/AutoConfigurationExcludeFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.7.RELEASE/spring-boot-autoconfigure-2.1.7.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/ImportAutoConfigurationImportSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE-sources.jar!/org/springframework/core/io/support/SpringFactoriesLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="136" column="45" lean-forward="true" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.7.RELEASE/spring-boot-autoconfigure-2.1.7.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/SpringBootApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="50" column="7" selection-start-line="50" selection-end-line="50" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.7.RELEASE/spring-boot-autoconfigure-2.1.7.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/EnableAutoConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/java/com/waynechu/StartMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/layout/RabbitmqLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/properties/ElkProperty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="275">
-            <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/resources/logback-spring.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-427">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/resources/banner.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="71" selection-start-line="9" selection-start-column="71" selection-end-line="9" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/aware/SentryContextAware.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/properties/SentryProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/LoggerAutoConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-prd.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application-local.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="56" selection-start-line="56" selection-end-line="59" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1301,13 +1133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="93" column="44" lean-forward="true" selection-start-line="93" selection-start-column="44" selection-end-line="93" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1389,10 +1214,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/response/BizResponse.java">
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application-local.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="189">
+          <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1403,11 +1235,248 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-domain/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/de/codecentric/spring-boot-admin-starter-client/2.1.4/spring-boot-admin-starter-client-2.1.4.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1524" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1500">
+          <caret line="42" column="52" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="100">
+            <caret line="4" column="19" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="19" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="226" column="27" lean-forward="true" selection-start-line="226" selection-start-column="27" selection-end-line="226" selection-end-column="27" />
+        <state relative-caret-position="-4189">
+          <caret line="226" column="27" selection-start-line="226" selection-start-column="27" selection-end-line="226" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1214">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="32" selection-start-line="32" selection-end-line="41" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/META-INF/maven/archetype-metadata.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1125" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-archetype/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/SnowFlakeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/mdc/MDCFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="66" column="15" selection-start-line="66" selection-start-column="15" selection-end-line="66" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/layout/RabbitmqLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/DateTimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/autoconfig/DruidConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="72" column="22" selection-start-line="72" selection-start-column="22" selection-end-line="72" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/ApolloChangeAutoConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/AuthSignatureFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#1226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/Base64Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="64" column="53" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/BeanUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="317" column="119" selection-start-line="317" selection-start-column="119" selection-end-line="317" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-common/src/main/java/com/waynechu/utility/common/util/BinaryConversionUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/response/BizResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ByteUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="103" column="7" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/RedisCacheAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-825">
+          <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/EncryptUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
+          <folding>
+            <element signature="e#2476#2477#0" expanded="true" />
+            <element signature="e#2532#2533#0" expanded="true" />
+            <element signature="e#2685#2686#0" expanded="true" />
+            <element signature="e#2741#2742#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/UUIDUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-boot-starter-elastic-job/src/main/java/cn/waynechu/bootstarter/elasticjob/ElasticJobAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-641">
+          <caret line="34" column="54" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ImageUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/cache/RedisCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="403" lean-forward="true" selection-start-line="403" selection-end-line="403" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/spel/Society.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-148">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/controller/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/http/HttpUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="422" selection-start-line="422" selection-end-line="422" />
         </state>
       </provider>
     </entry>

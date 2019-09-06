@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  * @date 2018/11/15 11:56
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(description = "分页请求对象")
 public class BizPageRequest extends BizRequest {
     private static final long serialVersionUID = 2789603649153042060L;

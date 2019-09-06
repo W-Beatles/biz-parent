@@ -13,9 +13,9 @@ import java.util.*;
 @Data
 public class Society {
     private String name;
-    public static String Advisors = "advisors";
-    public static String President = "president";
-    private List<Inventor> members = new ArrayList<Inventor>();
+    public static String advisors = "advisors";
+    public static String president = "president";
+    private List<Inventor> members = new ArrayList<>();
     private Map officers = new HashMap();
 }
 

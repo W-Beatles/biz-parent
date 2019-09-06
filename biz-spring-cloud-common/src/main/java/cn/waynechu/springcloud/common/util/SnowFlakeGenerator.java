@@ -25,16 +25,16 @@ public class SnowFlakeGenerator {
     /**
      * 起始时间戳(2019-01-01 00:00:00)
      */
-    private static final long twepoch = 1546272000000L;
-    private static final long workerIdBits = 5L;
-    private static final long dataCenterIdBits = 5L;
-    private static final long maxWorkerId = ~(-1L << workerIdBits);
-    private static final long maxDataCenterId = ~(-1L << dataCenterIdBits);
-    private static final long sequenceBits = 12L;
-    private static final long workerIdShift = sequenceBits;
-    private static final long dataCenterIdShift = sequenceBits + workerIdBits;
-    private static final long timestampLeftShift = sequenceBits + workerIdBits + dataCenterIdBits;
-    private static final long sequenceMask = ~(-1L << sequenceBits);
+    private static final long TWEPOCH = 1546272000000L;
+    private static final long WORKER_ID_BITS = 5L;
+    private static final long DATA_CENTER_ID_BITS = 5L;
+    private static final long MAX_WORKER_ID = ~(-1L << WORKER_ID_BITS);
+    private static final long MAX_DATA_CENTER_ID = ~(-1L << DATA_CENTER_ID_BITS);
+    private static final long SEQUENCE_BITS = 12L;
+    private static final long WORKER_ID_SHIFT = SEQUENCE_BITS;
+    private static final long DATA_CENTER_ID_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS;
+    private static final long TIMESTAMP_LEFT_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS + DATA_CENTER_ID_BITS;
+    private static final long SEQUENCE_MASK = ~(-1L << SEQUENCE_BITS);
 
     private long workerId;
     private long dataCenterId;
@@ -46,11 +46,11 @@ public class SnowFlakeGenerator {
      * @param workerId     机器ID
      */
     public SnowFlakeGenerator(long dataCenterId, long workerId) {
-        if (dataCenterId > maxDataCenterId || dataCenterId < 0) {
-            throw new IllegalArgumentException(String.format("dataCenter Id can't be greater than %d or less than 0", maxDataCenterId));
+        if (dataCenterId > MAX_DATA_CENTER_ID || dataCenterId < 0) {
+            throw new IllegalArgumentException(String.format("dataCenter Id can't be greater than %d or less than 0", MAX_DATA_CENTER_ID));
         }
-        if (workerId > maxWorkerId || workerId < 0) {
-            throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
+        if (workerId > MAX_WORKER_ID || workerId < 0) {
+            throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", MAX_WORKER_ID));
         }
         this.dataCenterId = dataCenterId;
         this.workerId = workerId;
@@ -64,7 +64,7 @@ public class SnowFlakeGenerator {
         }
         // 如果是同一时间生成的，则进行毫秒内序列
         if (lastTimestamp == timestamp) {
-            sequence = (sequence + 1) & sequenceMask;
+            sequence = (sequence + 1) & SEQUENCE_MASK;
             // 毫秒内序列溢出
             if (sequence == 0) {
                 // 阻塞到下一个毫秒,获得新的时间戳
@@ -74,7 +74,7 @@ public class SnowFlakeGenerator {
             sequence = 0L;
         }
         lastTimestamp = timestamp;
-        return ((timestamp - twepoch) << timestampLeftShift) | (dataCenterId << dataCenterIdShift) | (workerId << workerIdShift) | sequence;
+        return ((timestamp - TWEPOCH) << TIMESTAMP_LEFT_SHIFT) | (dataCenterId << DATA_CENTER_ID_SHIFT) | (workerId << WORKER_ID_SHIFT) | sequence;
     }
 
     private static long tilNextMillis(long lastTimestamp) {

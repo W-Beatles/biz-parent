@@ -383,7 +383,7 @@ public class RedisCache {
         String lockNameWithPrefix = getKeyWithPrefix(lockName);
         // 尝试获取锁
         Boolean getLock = valueOperations.setIfAbsent(lockNameWithPrefix, String.valueOf(expireTime));
-        if (getLock) {
+        if (Boolean.TRUE.equals(getLock)) {
             // 获取锁成功
             return expireTime;
         } else {
@@ -393,7 +393,7 @@ public class RedisCache {
                 // 该锁已超时，设置新值并返回旧值
                 long newExpireTime = System.currentTimeMillis() + lockTimeout + 1;
                 String getSetValue = (String) valueOperations.getAndSet(lockNameWithPrefix, String.valueOf(newExpireTime));
-                if (getSetValue == null || (getSetValue != null && lockValue.equals(getSetValue))) {
+                if (getSetValue == null || lockValue.equals(getSetValue)) {
                     // 已过期的旧值仍然存在。只有最先执行getAndSet()的应用进程才能获取到锁
                     return newExpireTime;
                 }
