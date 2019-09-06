@@ -25,13 +25,13 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public BizResponse httpMessageNotReadableException(HttpMessageNotReadableException e) {
-        log.info("请求参数格式不正确: {}", e.getMessage(), e);
+        log.info("请求参数格式不正确: {}", e.getMessage());
         return BizResponse.error(BizErrorCodeEnum.REQUEST_PARAM_INCORRECT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public BizResponse methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        log.info("请求参数校验不合法: {}", e.getMessage(), e);
+        log.info("请求参数校验不合法: {}", e.getMessage());
         BindingResult bindingResult = e.getBindingResult();
         if (bindingResult.getFieldError() == null) {
             return BizResponse.error(BizErrorCodeEnum.REQUEST_PARAM_INVALID);
@@ -41,7 +41,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public BizResponse missingServletRequestParameterException(MissingServletRequestParameterException e) {
-        log.info("缺少请求参数: ({}) {}", e.getParameterType(), e.getParameterName(), e);
+        log.info("缺少请求参数: ({}) {}", e.getParameterType(), e.getParameterName());
         return BizResponse.error(BizErrorCodeEnum.MISSING_REQUEST_PARAM.getCode(),
                 BizErrorCodeEnum.MISSING_REQUEST_PARAM.getDesc()
                         + ": (" + e.getParameterType() + ") " + e.getParameterName());
@@ -53,7 +53,7 @@ public class ControllerExceptionHandler {
                 || BizErrorCodeEnum.CALL_SERVICE_ERROR.getCode() == e.getErrorCode()) {
             log.error("[BizError] {}", e.getErrorMessage(), e);
         }
-        log.info("[BizError] {}", e.getErrorMessage(), e);
+        log.info("[BizError] {}", e.getErrorMessage());
         return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.REQ_KEY));
     }
 

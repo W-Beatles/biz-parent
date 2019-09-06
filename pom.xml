@@ -34,7 +34,7 @@
         <xmlbeans.version>3.1.0</xmlbeans.version>
         <protostuff.version>1.5.9</protostuff.version>
         <easyexcel.version>1.1.2-beta5</easyexcel.version>
-        <fastjson.version>1.2.59</fastjson.version>
+        <fastjson.version>1.2.60</fastjson.version>
         <tinypinyin.version>2.0.3</tinypinyin.version>
         <zxing.version>3.4.0</zxing.version>
         <druid.version>1.1.18</druid.version>
@@ -217,6 +217,7 @@
             </dependency>
 
             <!-- JSON -->
+            <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
