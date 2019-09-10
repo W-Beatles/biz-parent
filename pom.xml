@@ -13,7 +13,7 @@
 
     <groupId>cn.waynechu</groupId>
     <artifactId>biz-parent</artifactId>
-    <version>1.0.2019071501-RELEASE</version>
+    <version>1.0.2019091001-RELEASE</version>
 
     <name>biz-parent</name>
     <description>biz-parent pom for SpringCloud</description>
@@ -25,24 +25,24 @@
         <java.version>1.8</java.version>
 
         <apollo-client.version>1.4.0</apollo-client.version>
-        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
-        <spring-boot-admin.version>2.1.4</spring-boot-admin.version>
-        <dubbo.version>2.7.0</dubbo.version>
+        <spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
+        <dubbo.version>2.7.3</dubbo.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <curator.version>4.0.1</curator.version>
         <poi.version>4.1.0</poi.version>
         <xmlbeans.version>3.1.0</xmlbeans.version>
-        <protostuff.version>1.5.9</protostuff.version>
-        <easyexcel.version>1.1.2-beta5</easyexcel.version>
+        <protostuff.version>1.6.0</protostuff.version>
+        <easyexcel.version>2.0.0-beta6</easyexcel.version>
         <fastjson.version>1.2.60</fastjson.version>
         <tinypinyin.version>2.0.3</tinypinyin.version>
         <zxing.version>3.4.0</zxing.version>
-        <druid.version>1.1.18</druid.version>
+        <druid.version>1.1.20</druid.version>
         <com.microsoft.sqlserver.version>4.0</com.microsoft.sqlserver.version>
-        <mybatis-plus-boot-starter.version>3.1.2</mybatis-plus-boot-starter.version>
+        <mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
         <mybatis-spring-boot-starter.version>2.1.0</mybatis-spring-boot-starter.version>
         <pagehelper-spring-boot-starter.version>1.2.12</pagehelper-spring-boot-starter.version>
-        <sentry-logback.version>1.7.26</sentry-logback.version>
+        <sentry-logback.version>1.7.27</sentry-logback.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <jetcache-starter-redis-lettuce.version>2.5.14</jetcache-starter-redis-lettuce.version>
         <elastic-job-lite-spring.version>2.1.5</elastic-job-lite-spring.version>
@@ -50,10 +50,10 @@
 
         <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
         <biz-spring-cloud-common.version>1.0.2019080601-RELEASE</biz-spring-cloud-common.version>
-        <biz-spring-cloud-api-starter.version>1.0.2019071001-RELEASE</biz-spring-cloud-api-starter.version>
+        <biz-spring-cloud-api-starter.version>1.0.2019091001-RELEASE</biz-spring-cloud-api-starter.version>
         <biz-boot-starter-dynamic-datasource.version>1.0.2019070901-RELEASE</biz-boot-starter-dynamic-datasource.version>
         <biz-boot-starter-datasource-frame.version>1.0.2019080701-SNAPSHOT</biz-boot-starter-datasource-frame.version>
-        <biz-boot-starter-logger.version>1.0.2019071501-RELEASE</biz-boot-starter-logger.version>
+        <biz-boot-starter-logger.version>1.0.2019091001-RELEASE</biz-boot-starter-logger.version>
         <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
     </properties>
 
@@ -117,7 +117,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -217,7 +217,6 @@
             </dependency>
 
             <!-- JSON -->
-            <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>

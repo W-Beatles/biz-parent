@@ -4,11 +4,38 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/DistributedLock.java" afterDir="false" />
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="release(biz-parent): 1.0.2019091001-RELEASE&#10;&#10;version change:&#10;spring-boot-admin         2.1.4 -&gt; 2.1.6&#10;dubbo                     2.7.0 -&gt; 2.7.3&#10;protostuff                1.5.9 -&gt; 1.6.0&#10;easyexcel                 1.1.2-beta5 -&gt; 2.0.0-beta6&#10;druid                     1.1.18 -&gt; 1.1.20&#10;mybatis-plus-boot-starter 3.1.2 -&gt; 3.2.0&#10;sentry-logback            1.7.26 -&gt; 1.7.27">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/RequestRateLimitAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/RequestRateLimitAnnotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/ShopTypeUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-elastic-job/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/properties/BannerProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/properties/BannerProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/resources/banner.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-facade-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-hystrix/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-hystrix/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,50 +84,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>**/*.java</find>
-      <find>projectName</find>
-      <find>ProjectName</find>
-      <find>tuhu</find>
-      <find>druid</find>
-      <find>dashboard</find>
-      <find>pagehelper-spring-boot-starter</find>
-      <find>biz-spring-cloud-service-order</find>
-      <find>biz-spring-cloud-service-user</find>
-      <find>biz-spring-cloud-api-service-order</find>
-      <find>biz-spring-cloud-api-order-service</find>
-      <find>biz-spring-cloud-user-service</find>
-      <find>facade</find>
-      <find>IDCard</find>
-      <find>ValidateU</find>
-      <find>load</find>
-      <find>META-INF/spring.factories</find>
-      <find>elk.host=${spring.rabbitmq.host}</find>
-      <find>elk.enable=true</find>
-      <find>ControllerExceptionHandler</find>
-      <find>fastjson.version</find>
-      <find>jetcache</find>
-      <find>ac</find>
-      <find>RedisCache</find>
-      <find>lock</find>
-      <find>&lt;ZH_PATTERN&gt;</find>
-      <find>getKeyWithPrefix(key)</find>
-      <find>String keyWithPrefix = key;</find>
-      <find>keyWith</find>
-      <find>Distributed</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>**/*.**</replace>
-      <replace>projectName</replace>
-      <replace>biz-spring-cloud-api-order-service</replace>
-      <replace>biz-spring-cloud-user-service</replace>
-      <replace>biz-spring-cloud-api-service-order</replace>
-      <replace>biz-spring-cloud-api-service-user</replace>
-      <replace>&lt;p&gt;</replace>
-      <replace>key</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -141,7 +124,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2728146" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -184,33 +167,7 @@
     </option>
     <option name="contentProportion" value="0.23430736" />
   </component>
-  <component name="RunManager" selected="Application.Base64Util">
-    <configuration name="Base64Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.waynechu.springcloud.common.util.Base64Util" />
-      <module name="biz-spring-cloud-common" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.waynechu.springcloud.common.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestProxyFactory" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.waynechu.renting.test.aop.TestProxyFactory" />
-      <module name="biz-spring-cloud-test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.waynechu.renting.test.aop.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="(10010) user-service-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
       <module name="biz-spring-cloud-api-service-user" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.springcloud.user.UserStartMain" />
@@ -420,8 +377,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.TestProxyFactory" />
-      <item itemvalue="Application.Base64Util" />
       <item itemvalue="Spring Boot.(9010) gateway" />
       <item itemvalue="Spring Boot.(9020) boot-admin" />
       <item itemvalue="Spring Boot.(9030) hystrix-dashboard" />
@@ -435,12 +390,33 @@
       <item itemvalue="Spring Boot.(10030) order-service-peer1" />
       <item itemvalue="Spring Boot.(10031) order-service-peer2" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Base64Util" />
-        <item itemvalue="Application.TestProxyFactory" />
-      </list>
-    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.16341992" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e74297bc" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e74297bc" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3229398e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e74297bc" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3229398e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@a1fba17a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -481,6 +457,7 @@
       <workItem from="1568114734717" duration="1299000" />
       <workItem from="1568116089151" duration="342000" />
       <workItem from="1568116490540" duration="336000" />
+      <workItem from="1568117388487" duration="2873000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -761,8 +738,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="perf(biz-spring-cloud-archetype): 修改archetype项目骨架" />
-    <MESSAGE value="feat(biz-spring-cloud-api-starter): 添加Apollo配置中心键值修改监听器" />
     <MESSAGE value="fix(biz-parent): fastjson升级1.2.58版本，修复FastJSON远程代码执行0day漏洞" />
     <MESSAGE value="perf(biz-boot-starter-logger): 日志消息超长截取，限制为1024个字符" />
     <MESSAGE value="release(biz-parent): 1.0.2019071501-RELEASE" />
@@ -786,7 +761,9 @@
     <MESSAGE value="perf(biz-parent): 升级fastjson版本到1.2.60-修复拒绝服务安全问题" />
     <MESSAGE value="docs(biz-parent): 添加TODO LIST" />
     <MESSAGE value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration" />
-    <option name="LAST_COMMIT_MESSAGE" value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration" />
+    <MESSAGE value="release(biz-parent): 1.0.2019091001-RELEASE" />
+    <MESSAGE value="release(biz-parent): 1.0.2019091001-RELEASE&#10;&#10;version change:&#10;spring-boot-admin         2.1.4 -&gt; 2.1.6&#10;dubbo                     2.7.0 -&gt; 2.7.3&#10;protostuff                1.5.9 -&gt; 1.6.0&#10;easyexcel                 1.1.2-beta5 -&gt; 2.0.0-beta6&#10;druid                     1.1.18 -&gt; 1.1.20&#10;mybatis-plus-boot-starter 3.1.2 -&gt; 3.2.0&#10;sentry-logback            1.7.26 -&gt; 1.7.27" />
+    <option name="LAST_COMMIT_MESSAGE" value="release(biz-parent): 1.0.2019091001-RELEASE&#10;&#10;version change:&#10;spring-boot-admin         2.1.4 -&gt; 2.1.6&#10;dubbo                     2.7.0 -&gt; 2.7.3&#10;protostuff                1.5.9 -&gt; 1.6.0&#10;easyexcel                 1.1.2-beta5 -&gt; 2.0.0-beta6&#10;druid                     1.1.18 -&gt; 1.1.20&#10;mybatis-plus-boot-starter 3.1.2 -&gt; 3.2.0&#10;sentry-logback            1.7.26 -&gt; 1.7.27" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

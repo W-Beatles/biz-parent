@@ -16,7 +16,7 @@ public class BannerProperty {
     /**
      * 指定banner展示的 SpringCloud 版本
      */
-    private String springCloud;
+    private String springCloudDependencies;
 
     /**
      * 指定banner展示的  biz-spring-cloud-api-starter 版本

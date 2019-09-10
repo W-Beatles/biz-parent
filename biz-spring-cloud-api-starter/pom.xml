@@ -6,11 +6,11 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-parent</artifactId>
-        <version>1.0.2019071501-RELEASE</version>
+        <version>1.0.2019091001-RELEASE</version>
     </parent>
 
     <artifactId>biz-spring-cloud-api-starter</artifactId>
-    <version>1.0.2019071001-RELEASE</version>
+    <version>1.0.2019091001-RELEASE</version>
     <name>biz-spring-cloud-api-starter</name>
     <description>biz-spring-cloud-api-starter module for SpringCloud</description>
 
