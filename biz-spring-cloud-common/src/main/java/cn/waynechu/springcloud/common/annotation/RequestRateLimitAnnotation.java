@@ -12,9 +12,9 @@ import java.lang.annotation.*;
  * @author zhuwei
  * @date 2018/11/6 16:02
  */
+@Documented
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Documented
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public @interface RequestRateLimitAnnotation {
 
