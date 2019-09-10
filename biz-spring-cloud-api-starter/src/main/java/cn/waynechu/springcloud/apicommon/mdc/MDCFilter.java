@@ -88,7 +88,7 @@ public class MDCFilter implements Filter {
 
     /**
      * 生成随机UUID的前6位
-     * <ZH_PATTERN>
+     * <p>
      * 10000次内约有五次左右重复
      *
      * @return uuid

@@ -41,7 +41,7 @@
 
 5. MethodLogAspect 方法调用情况切面 (默认开启)
 
-6. ~~RedisCache Redis缓存工具类 (默认关闭)~~(暂不推荐使用)
+6. ~~RedisCache Redis缓存工具类 (默认关闭)~~(已移除)
 
 7. CorsAutoConfiguration 跨域配置 (默认关闭)
 

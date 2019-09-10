@@ -262,7 +262,7 @@ public class RegexUtils {
 
     /**
      * 验证用户名
-     * <ZH_PATTERN>取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾,用户名必须是6-20位</ZH_PATTERN>
+     * <p>取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾,用户名必须是6-20位</ZH_PATTERN>
      *
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配

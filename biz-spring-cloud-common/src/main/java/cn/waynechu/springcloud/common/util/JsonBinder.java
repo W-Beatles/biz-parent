@@ -83,7 +83,7 @@ public class JsonBinder {
     /**
      * 如果JSON字符串为Null或"null"字符串,返回Null.
      * 如果JSON字符串为"[]",返回空集合.
-     * <ZH_PATTERN>
+     * <p>
      * 如需读取集合如List/Map,且不是List<String>这种简单类型时使用如下语句:
      * List<MyBean> beanList = binder.getMapper().readValue(listString, new TypeReference<List<MyBean>>() {});
      */
@@ -130,7 +130,7 @@ public class JsonBinder {
 
     /**
      * Java对象转化为jsonStr
-     * <ZH_PATTERN>
+     * <p>
      * 如果对象为null，返回null
      * 如果集合为空集合，返回[]
      *
@@ -143,7 +143,7 @@ public class JsonBinder {
 
     /**
      * Java对象转化为格式化的jsonStr
-     * <ZH_PATTERN>
+     * <p>
      * 如果对象为null，返回null
      * 如果集合为空集合，返回[]
      *
@@ -156,7 +156,7 @@ public class JsonBinder {
 
     /**
      * Java对象转化为JsonStr
-     * <ZH_PATTERN>
+     * <p>
      * 如果对象为null，返回null
      * 如果集合为空集合，返回[]
      */
