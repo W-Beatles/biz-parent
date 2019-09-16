@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public @interface RequestRateLimitAnnotation {
+public @interface RequestLimit {
 
     /**
      * 限制某时间段内可访问次数，默认5次

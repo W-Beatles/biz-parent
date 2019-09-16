@@ -1,6 +1,6 @@
 package com.waynechu.renting.test.aop.jdk;
 
-import cn.waynechu.springcloud.common.annotation.MethodLogAnnotation;
+import cn.waynechu.springcloud.common.annotation.MethodLog;
 import cn.waynechu.springcloud.common.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -38,7 +38,7 @@ public class MethodPrintProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object returnValue;
 
-        MethodLogAnnotation printAnnotation = method.getAnnotation(MethodLogAnnotation.class);
+        MethodLog printAnnotation = method.getAnnotation(MethodLog.class);
 
         if (printAnnotation != null) {
             String methodName = this.getPrintMethodName(printAnnotation, targetObj);
@@ -55,7 +55,7 @@ public class MethodPrintProxy implements InvocationHandler {
         return returnValue;
     }
 
-    private String getPrintMethodName(MethodLogAnnotation printAnnotation, Object targetObj) {
+    private String getPrintMethodName(MethodLog printAnnotation, Object targetObj) {
         String methodName;
         // 默认打印方法描述字段
         if (!StringUtils.isEmpty(printAnnotation.value())) {

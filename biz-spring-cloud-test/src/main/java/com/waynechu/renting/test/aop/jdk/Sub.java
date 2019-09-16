@@ -1,6 +1,6 @@
 package com.waynechu.renting.test.aop.jdk;
 
-import cn.waynechu.springcloud.common.annotation.MethodLogAnnotation;
+import cn.waynechu.springcloud.common.annotation.MethodLog;
 
 /**
  * @author zhuwei
@@ -8,6 +8,6 @@ import cn.waynechu.springcloud.common.annotation.MethodLogAnnotation;
  */
 public interface Sub {
 
-    @MethodLogAnnotation
+    @MethodLog
     String printOne(String str);
 }

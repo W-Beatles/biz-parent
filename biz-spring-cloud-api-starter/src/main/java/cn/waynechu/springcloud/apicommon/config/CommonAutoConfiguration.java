@@ -2,7 +2,9 @@ package cn.waynechu.springcloud.apicommon.config;
 
 import cn.waynechu.springcloud.apicommon.advice.ControllerExceptionHandler;
 import cn.waynechu.springcloud.apicommon.aspect.ControllerLogAspect;
+import cn.waynechu.springcloud.apicommon.aspect.DistributedLockAspect;
 import cn.waynechu.springcloud.apicommon.aspect.MethodLogAspect;
+import cn.waynechu.springcloud.apicommon.cache.RedisCache;
 import cn.waynechu.springcloud.apicommon.mdc.MDCFilter;
 import cn.waynechu.springcloud.apicommon.properties.CommonProperties;
 import cn.waynechu.springcloud.apicommon.properties.MDCProperty;
@@ -24,7 +26,8 @@ import org.springframework.context.annotation.Import;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties({CommonProperties.class})
-@Import({ControllerExceptionHandler.class, ControllerLogAspect.class, MethodLogAspect.class})
+@Import({ControllerExceptionHandler.class, ControllerLogAspect.class, MethodLogAspect.class,
+        DistributedLockAspect.class, RedisCache.class})
 public class CommonAutoConfiguration {
 
     @Autowired

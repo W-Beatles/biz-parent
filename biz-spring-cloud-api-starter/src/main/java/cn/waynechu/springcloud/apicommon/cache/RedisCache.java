@@ -1,8 +1,10 @@
 package cn.waynechu.springcloud.apicommon.cache;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +15,10 @@ import java.util.concurrent.TimeUnit;
  * @date 2018/12/28 16:09
  */
 @Slf4j
+@Component
 public class RedisCache {
 
+    @Autowired
     private StringRedisTemplate redisTemplate;
 
     public RedisCache(StringRedisTemplate redisTemplate) {
@@ -25,15 +29,31 @@ public class RedisCache {
      * 获取分布式锁
      *
      * @param lockName     锁名
-     * @param requestId    解锁标识，会将它作为value来存储。
+     * @param requestId    解锁标识，会将它作为value来存储
      *                     可使用UUID.randomUUID().toString()或者其它唯一值标识
      * @param milliseconds 锁定有效期，单位毫秒
      *                     它不仅是key自动失效时间，还是一个客户端持有锁多长时间后
      *                     可以被另外一个客户端重新获得的时间
-     * @return {@code true} 加锁成功
+     * @return 获取锁成功返回 {@code true}
      */
     public Boolean getLock(String lockName, String requestId, long milliseconds) {
         return redisTemplate.opsForValue().setIfAbsent(lockName, requestId, milliseconds, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * 获取分布式锁
+     *
+     * @param lockName  锁名
+     * @param requestId 解锁标识，会将它作为value来存储
+     *                  可使用UUID.randomUUID().toString()或者其它唯一值标识
+     * @param timeout   锁定有效期
+     *                  它不仅是key自动失效时间，还是一个客户端持有锁多长时间后
+     *                  可以被另外一个客户端重新获得的时间
+     * @param unit      时间单位
+     * @return 获取锁成功返回 {@code true}
+     */
+    public Boolean getLock(String lockName, String requestId, long timeout, TimeUnit unit) {
+        return redisTemplate.opsForValue().setIfAbsent(lockName, requestId, timeout, unit);
     }
 
     /**

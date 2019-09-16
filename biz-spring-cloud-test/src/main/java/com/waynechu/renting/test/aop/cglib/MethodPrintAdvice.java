@@ -1,6 +1,6 @@
 package com.waynechu.renting.test.aop.cglib;
 
-import cn.waynechu.springcloud.common.annotation.MethodLogAnnotation;
+import cn.waynechu.springcloud.common.annotation.MethodLog;
 import cn.waynechu.springcloud.common.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -31,7 +31,7 @@ public class MethodPrintAdvice implements MethodInterceptor {
         final Method userDeclaredMethod = BridgeMethodResolver.findBridgedMethod(specificMethod);
 
         // 获取方法上注解
-        MethodLogAnnotation printAnnotation = AnnotatedElementUtils.findMergedAnnotation(userDeclaredMethod, MethodLogAnnotation.class);
+        MethodLog printAnnotation = AnnotatedElementUtils.findMergedAnnotation(userDeclaredMethod, MethodLog.class);
         // 获取返回类型
         if (printAnnotation != null) {
             String methodName = invocation.getMethod().getName();

@@ -4,38 +4,21 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="release(biz-parent): 1.0.2019091001-RELEASE&#10;&#10;version change:&#10;spring-boot-admin         2.1.4 -&gt; 2.1.6&#10;dubbo                     2.7.0 -&gt; 2.7.3&#10;protostuff                1.5.9 -&gt; 1.6.0&#10;easyexcel                 1.1.2-beta5 -&gt; 2.0.0-beta6&#10;druid                     1.1.18 -&gt; 1.1.20&#10;mybatis-plus-boot-starter 3.1.2 -&gt; 3.2.0&#10;sentry-logback            1.7.26 -&gt; 1.7.27">
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="config(service-utility-api): 修改短链地址前缀">
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/aspect/DistributedLockAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-elastic-job/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/properties/BannerProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/properties/BannerProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/resources/banner.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-facade-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-hystrix/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-hystrix/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/java/com/waynechu/utility/controller/RegionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/java/com/waynechu/utility/controller/RegionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/cache/RedisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/cache/RedisCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/CommonAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/CommonAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/DistributedLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/DistributedLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/MethodLogAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/MethodLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/RequestRateLimitAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/annotation/RequestLimit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/aspect/AbstractMethodLogAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/aspect/MethodLogAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/DequeThreadLocalUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/DequeThreadLocal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/cglib/Foo.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/cglib/Foo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/cglib/MethodPrintAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/cglib/MethodPrintAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/jdk/MethodPrintProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/jdk/MethodPrintProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/jdk/Sub.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-test/src/main/java/com/waynechu/renting/test/aop/jdk/Sub.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,8 +62,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -167,7 +150,7 @@
     </option>
     <option name="contentProportion" value="0.23430736" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.(9010) gateway">
     <configuration name="(10010) user-service-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
       <module name="biz-spring-cloud-api-service-user" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.springcloud.user.UserStartMain" />
@@ -394,23 +377,39 @@
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
-        <option name="contentProportion" value="0.16341992" />
         <treeState>
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e74297bc" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8fe05ced" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e74297bc" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3229398e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8fe05ced" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d0d55492" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e74297bc" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3229398e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@a1fba17a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8fe05ced" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d0d55492" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@230a647d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8fe05ced" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1e9c90af" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8fe05ced" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1e9c90af" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8e6ef89b" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8fe05ced" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1e9c90af" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@70d1a09a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -458,6 +457,8 @@
       <workItem from="1568116089151" duration="342000" />
       <workItem from="1568116490540" duration="336000" />
       <workItem from="1568117388487" duration="2873000" />
+      <workItem from="1568167401919" duration="10116000" />
+      <workItem from="1568259981277" duration="201000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>

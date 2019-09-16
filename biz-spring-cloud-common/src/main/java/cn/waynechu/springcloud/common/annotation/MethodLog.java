@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD})
-public @interface MethodLogAnnotation {
+public @interface MethodLog {
 
     @AliasFor("description")
     String value() default "";
