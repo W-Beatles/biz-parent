@@ -4,21 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/DistributedLockProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/aspect/DistributedLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/aspect/DistributedLockAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/CommonAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/CommonAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/CommonProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/CommonProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/CorsProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/CorsProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/MDCProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/MDCProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/SwaggerProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/properties/SwaggerProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application-local.properties" afterDir="false" />
-    </list>
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -460,7 +446,7 @@
       <workItem from="1568167401919" duration="10116000" />
       <workItem from="1568259981277" duration="201000" />
       <workItem from="1568636819427" duration="303000" />
-      <workItem from="1568689083925" duration="16171000" />
+      <workItem from="1568689083925" duration="16707000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -707,7 +693,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568706576798</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="perf(biz-spring-cloud-api-starter): 分布式锁优化">
+      <created>1568712516952</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1568712516952</updated>
+    </task>
+    <task id="LOCAL-00037" summary="release(biz-spring-cloud-api-starter): 1.0.2019091701-RELEASE">
+      <created>1568712777924</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1568712777924</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -755,8 +755,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="release(biz-parent): 1.0.2019071501-RELEASE" />
-    <MESSAGE value="feat(biz-spring-cloud-common): 添加导出工具类" />
     <MESSAGE value="docs(biz-spring-cloud-archetype): 完善文档" />
     <MESSAGE value="feat(biz-boot-starter-datasource-frame): 添加读写数据源模块" />
     <MESSAGE value="feat(biz-spring-cloud-archetype): 添加空目录" />
@@ -780,7 +778,9 @@
     <MESSAGE value="release(biz-parent): 1.0.2019091001-RELEASE&#10;&#10;version change:&#10;spring-boot-admin         2.1.4 -&gt; 2.1.6&#10;dubbo                     2.7.0 -&gt; 2.7.3&#10;protostuff                1.5.9 -&gt; 1.6.0&#10;easyexcel                 1.1.2-beta5 -&gt; 2.0.0-beta6&#10;druid                     1.1.18 -&gt; 1.1.20&#10;mybatis-plus-boot-starter 3.1.2 -&gt; 3.2.0&#10;sentry-logback            1.7.26 -&gt; 1.7.27" />
     <MESSAGE value="work(biz-spring-cloud-api-starter): 添加分布式锁注解" />
     <MESSAGE value="feat(biz-spring-cloud-api-starter|biz-spring-cloud-common): 完成分布式锁注解实现; 添加SPEL解析工具类" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(biz-spring-cloud-api-starter|biz-spring-cloud-common): 完成分布式锁注解实现; 添加SPEL解析工具类" />
+    <MESSAGE value="perf(biz-spring-cloud-api-starter): 分布式锁优化" />
+    <MESSAGE value="release(biz-parent): 1.0.2019091701-RELEASE&#10;&#10;version change:&#10;1. 支持@DistributeLock分布式锁注解&#10;2. 添加SPEL解析工具类" />
+    <option name="LAST_COMMIT_MESSAGE" value="release(biz-parent): 1.0.2019091701-RELEASE&#10;&#10;version change:&#10;1. 支持@DistributeLock分布式锁注解&#10;2. 添加SPEL解析工具类" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

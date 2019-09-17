@@ -6,7 +6,7 @@
     <parent>
         <artifactId>biz-parent</artifactId>
         <groupId>cn.waynechu</groupId>
-        <version>1.0.2019091001-RELEASE</version>
+        <version>1.0.2019091701-RELEASE</version>
     </parent>
 
     <artifactId>biz-spring-cloud-archetype</artifactId>
