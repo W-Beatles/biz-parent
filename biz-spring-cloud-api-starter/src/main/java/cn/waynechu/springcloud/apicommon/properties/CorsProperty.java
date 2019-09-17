@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = CorsProperty.CORS_CONFIG_PREFIX)
 public class CorsProperty {
-    public static final String CORS_CONFIG_PREFIX = CommonProperties.COMMON_CONFIG_PREFIX + ".cors";
+    public static final String CORS_CONFIG_PREFIX = CommonProperty.COMMON_CONFIG_PREFIX + ".cors";
 
     /**
      * 是否开启跨域设置。默认关闭

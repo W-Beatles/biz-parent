@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = SwaggerProperty.SWAGGER_CONFIG_PREFIX)
 public class SwaggerProperty {
-    public static final String SWAGGER_CONFIG_PREFIX = CommonProperties.COMMON_CONFIG_PREFIX + ".swagger";
+    public static final String SWAGGER_CONFIG_PREFIX = CommonProperty.COMMON_CONFIG_PREFIX + ".swagger";
 
     /**
      * 是否开启Swagger API文档

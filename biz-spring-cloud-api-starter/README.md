@@ -14,8 +14,8 @@
     参考配置:
     ```
     ### mdc-filter
-    biz.api.common.mdc-filter.enable=true
-    biz.api.common.mdc-filter.prefix=${spring.application.name}
+    biz.api.starter.mdc-filter.enable=true
+    biz.api.starter.mdc-filter.prefix=${spring.application.name}
     ```
     
 2. ~~DataModifiedInterceptor SQL拦截器~~ (已移除)
@@ -41,7 +41,14 @@
 
 5. MethodLogAspect 方法调用情况切面 (默认开启)
 
-6. DistributedLockAspect 分布式锁实现，用于方法访问控制 (默认开启)
+6. DistributedLockAspect 分布式锁实现，用于方法访问控制 (默认关闭)
+
+    参考配置:
+    ```
+    ### distributed-lock
+    biz.api.starter.distributed-lock.enable=true
+    biz.api.starter.distributed-lock.prefix=work.waynechu.cn
+    ```
 
 7. ~~RedisCache Redis缓存工具类 (默认关闭)~~(已移除)
 
@@ -50,8 +57,8 @@
     参考配置:
     ```
     ### cors
-    biz.api.common.cors.enable=true
-    biz.api.common.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
+    biz.api.starter.cors.enable=true
+    biz.api.starter.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
     ```
     
 9. SpringContextHolder Spring上下文工具类 (默认注入)
@@ -64,13 +71,13 @@
     参考配置:
     ```
     ### swagger
-    biz.api.common.swagger.enable=true
-    biz.api.common.swagger.api-title=文档标题
-    biz.api.common.swagger.api-description=文档描述
-    biz.api.common.swagger.api-version=1.0.0
-    biz.api.common.swagger.scan-package=com.waynechu
-    biz.api.common.swagger.contact-name=联系人名称
-    biz.api.common.swagger.contact-url=联系人主页
-    biz.api.common.swagger.contact-email=联系人邮箱
+    biz.api.starter.swagger.enable=true
+    biz.api.starter.swagger.api-title=文档标题
+    biz.api.starter.swagger.api-description=文档描述
+    biz.api.starter.swagger.api-version=1.0.0
+    biz.api.starter.swagger.scan-package=com.waynechu
+    biz.api.starter.swagger.contact-name=联系人名称
+    biz.api.starter.swagger.contact-url=联系人主页
+    biz.api.starter.swagger.contact-email=联系人邮箱
     ```
     

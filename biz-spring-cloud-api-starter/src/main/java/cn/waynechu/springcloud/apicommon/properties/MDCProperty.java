@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class MDCProperty {
-    public static final String MDC_CONFIG_PREFIX = CommonProperties.COMMON_CONFIG_PREFIX + ".mdc-filter";
+    public static final String MDC_CONFIG_PREFIX = CommonProperty.COMMON_CONFIG_PREFIX + ".mdc-filter";
 
     /**
      * 是否开启MDC。默认关闭
