@@ -24,7 +24,7 @@ import java.util.Collection;
  *
  * <pre>
  * 切面生效条件:
- * 方法上添加了{@code cn.waynechu.springcloud.common.annotation.MethodLogAnnotation} 注解
+ * 1.方法上添加{@code cn.waynechu.springcloud.common.annotation.MethodLogAnnotation} 注解
  * </pre>
  *
  * @author zhuwei
@@ -35,7 +35,7 @@ import java.util.Collection;
 @ConditionalOnMissingBean(name = "methodLogAspect")
 public class MethodLogAspect {
 
-    private static final DequeThreadLocal dequethreadlocal = new DequeThreadLocal();
+    private static final DequeThreadLocal<Long> DEQUE_THREAD_LOCAL = new DequeThreadLocal<>();
 
     @Before("@annotation(printAnnotation)")
     public void doBefore(JoinPoint joinPoint, MethodLog printAnnotation) {
@@ -47,7 +47,7 @@ public class MethodLogAspect {
 
         // 记录调用开始时间
         if (printAnnotation.isPrintReturn()) {
-//            DequeThreadLocal.offerFirst(System.currentTimeMillis());
+            DEQUE_THREAD_LOCAL.offerFirst(System.currentTimeMillis());
         }
     }
 
@@ -56,7 +56,7 @@ public class MethodLogAspect {
         if (printAnnotation.isPrintReturn()) {
             String methodName = getPrintMethodName(joinPoint, printAnnotation);
             String returnStr = getPrintReturnStr(result, printAnnotation);
-//            log.info("{}结束调用, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - (long) DequeThreadLocal.pollFirst(), returnStr);
+            log.info("{}结束调用, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - DEQUE_THREAD_LOCAL.pollFirst(), returnStr);
         }
     }
 

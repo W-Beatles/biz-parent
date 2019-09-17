@@ -54,7 +54,7 @@ public class ControllerExceptionHandler {
             log.error("[BizError] {}", e.getErrorMessage(), e);
         }
         log.info("[BizError] {}", e.getErrorMessage());
-        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.REQ_KEY));
+        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.REQ_UUID));
     }
 
     @ExceptionHandler(Exception.class)

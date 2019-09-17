@@ -41,9 +41,11 @@
 
 5. MethodLogAspect 方法调用情况切面 (默认开启)
 
-6. ~~RedisCache Redis缓存工具类 (默认关闭)~~(已移除)
+6. DistributedLockAspect 分布式锁实现，用于方法访问控制 (默认开启)
 
-7. CorsAutoConfiguration 跨域配置 (默认关闭)
+7. ~~RedisCache Redis缓存工具类 (默认关闭)~~(已移除)
+
+8. CorsAutoConfiguration 跨域配置 (默认关闭)
 
     参考配置:
     ```
@@ -52,12 +54,12 @@
     biz.api.common.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
     ```
     
-8. SpringContextHolder Spring上下文工具类 (默认注入)
+9. SpringContextHolder Spring上下文工具类 (默认注入)
 
     使用方式:   
     使用 `@Autowire` 注解注入 `SpringContextHolder` 即可
 
-9. SwaggerAutoConfiguration 开启Swagger API文档 (默认关闭)
+10. SwaggerAutoConfiguration 开启Swagger API文档 (默认关闭)
 
     参考配置:
     ```

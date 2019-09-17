@@ -28,7 +28,7 @@ public @interface DistributedLock {
      *
      * @return 锁key值
      */
-    String key() default "";
+    String key();
 
     /**
      * 锁超时时间。默认5秒

@@ -30,7 +30,6 @@ public class RegionController {
     @ApiOperation(value = "省市区三级联动", notes = "根据父级id获取子级行政区id列表")
     @ApiImplicitParam(name = "pid", value = "父级行政区id。pid为100000查询省列表", required = true)
     @GetMapping
-    @DistributedLock(name = "listByPid", key = "#pid", expire = 10, timeUnit = TimeUnit.DAYS)
     public BizResponse<List<RegionResponse>> listByPid(Integer pid) {
         return BizResponse.success(regionService.listByPid(pid));
     }

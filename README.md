@@ -17,7 +17,7 @@ SpringCloud微服务开发脚手架
 5. biz-spring-boot-admin 
     SpringBoot Admin监控模块
 6. biz-spring-cloud-api-starter 
-   spring-cloud starter模块。提供MDC过滤器、控制器/方法切面等系列开箱即用功能
+   spring-cloud starter模块。提供MDC过滤器、接口/方法切面、访问控制等一系列开箱即用功能
 7. biz-spring-cloud-archetype 
     用于一键生成spring-cloud项目基础开发骨架
 8. biz-spring-cloud-common 
@@ -41,6 +41,5 @@ SpringCloud微服务开发脚手架
      
 ### TODO LIST
 
-1. 提供分布式锁注解支持 
-2. 完善动态数据源模块，支持多数据源的actuator监控 
-3. 支持微服务调用全链路日志追踪，添加requestId 
+1. 完善动态数据源模块，支持多数据源的actuator监控 
+2. 支持微服务调用全链路日志追踪，添加requestId 
