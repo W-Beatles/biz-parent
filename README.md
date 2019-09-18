@@ -41,5 +41,8 @@ SpringCloud微服务开发脚手架
      
 ### TODO LIST
 
-1. 完善动态数据源模块，支持多数据源的actuator监控 
-2. 支持微服务调用全链路日志追踪，添加requestId 
+1. 完善动态数据源模块，支持多数据源的`actuator`监控 
+2. 支持微服务调用全链路日志追踪，添加`requestId`(请求唯一标识，网关生成或来自外部请求头，格式为UUID)、`appId`(应用唯一标识)、`remoteAppNames`(appName调用链路记录，以`,`分割)、`remoteHostNames`(hostName调用链路记录，以`,`分割)、`remoteHostAddresses(hostAddress调用链路记录，以`,`分割)`
+3. 日志模块支持kafka日志上传
+4. 添加文件上传模块 `biz-spring-cloud-file-upload`。需支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储 
+5. 添加统一认证鉴权模块 `biz-spring-cloud-oauth`

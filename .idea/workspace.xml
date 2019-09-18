@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/enums/BizErrorCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/enums/BizErrorCodeEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/SwaggerAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/config/SwaggerAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/mdc/MDCFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/mdc/MDCFilter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -466,7 +464,7 @@
       <workItem from="1568636819427" duration="303000" />
       <workItem from="1568689083925" duration="16707000" />
       <workItem from="1568723859802" duration="13290000" />
-      <workItem from="1568798881134" duration="3636000" />
+      <workItem from="1568798881134" duration="8412000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -734,7 +732,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568798693130</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="perf(biz-spring-cloud-api-starter): 修改MDC过滤器">
+      <created>1568804922791</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1568804922791</updated>
+    </task>
+    <task id="LOCAL-00040" summary="docs(biz-parent): 添加TODO LIST">
+      <created>1568808257716</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1568808257716</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,7 +794,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="feat(biz-boot-starter-datasource-frame): 添加读写数据源模块" />
     <MESSAGE value="feat(biz-spring-cloud-archetype): 添加空目录" />
     <MESSAGE value="fix(biz-spring-cloud-archetype): 添加.gitignore文件" />
     <MESSAGE value="feat(biz-spring-cloud-api-service-utility): 添加utility公共服务" />
@@ -798,7 +809,6 @@
     <MESSAGE value="config(biz-parent): 修改elk地址" />
     <MESSAGE value="config(service-utility-api): 修改短链地址前缀" />
     <MESSAGE value="perf(biz-parent): 升级fastjson版本到1.2.60-修复拒绝服务安全问题" />
-    <MESSAGE value="docs(biz-parent): 添加TODO LIST" />
     <MESSAGE value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration" />
     <MESSAGE value="release(biz-parent): 1.0.2019091001-RELEASE" />
     <MESSAGE value="release(biz-parent): 1.0.2019091001-RELEASE&#10;&#10;version change:&#10;spring-boot-admin         2.1.4 -&gt; 2.1.6&#10;dubbo                     2.7.0 -&gt; 2.7.3&#10;protostuff                1.5.9 -&gt; 1.6.0&#10;easyexcel                 1.1.2-beta5 -&gt; 2.0.0-beta6&#10;druid                     1.1.18 -&gt; 1.1.20&#10;mybatis-plus-boot-starter 3.1.2 -&gt; 3.2.0&#10;sentry-logback            1.7.26 -&gt; 1.7.27" />
@@ -807,7 +817,9 @@
     <MESSAGE value="perf(biz-spring-cloud-api-starter): 分布式锁优化" />
     <MESSAGE value="release(biz-parent): 1.0.2019091701-RELEASE&#10;&#10;version change:&#10;1. 支持@DistributeLock分布式锁注解&#10;2. 添加SPEL解析工具类" />
     <MESSAGE value="feat(biz-parent): 添加work环境配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(biz-parent): 添加work环境配置" />
+    <MESSAGE value="perf(biz-spring-cloud-api-starter): 修改MDC过滤器" />
+    <MESSAGE value="docs(biz-parent): 添加TODO LIST" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs(biz-parent): 添加TODO LIST" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

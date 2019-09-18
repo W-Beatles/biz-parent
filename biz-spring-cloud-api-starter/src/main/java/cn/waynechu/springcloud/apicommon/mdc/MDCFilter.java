@@ -35,7 +35,7 @@ public class MDCFilter implements Filter {
     public static final String DEVICE_ID_FLAG = "deviceId";
     public static final String REQ_KEY = "reqKey";
     public static final String REQ_UUID = "reqUUID";
-    public static final String APPLICATION_NAME = "applicationName";
+    public static final String APP_NAME = "appName";
 
     private String prefix;
 
@@ -73,7 +73,7 @@ public class MDCFilter implements Filter {
         String shortUuid = generateShortUuid();
         String reqKeyStr = generateReqKeyStr(traceNo, prefix, shortUuid);
 
-        MDC.put(APPLICATION_NAME, applicationName);
+        MDC.put(APP_NAME, applicationName);
         MDC.put(REQ_UUID, shortUuid);
         MDC.put(REQ_KEY, reqKeyStr);
     }
