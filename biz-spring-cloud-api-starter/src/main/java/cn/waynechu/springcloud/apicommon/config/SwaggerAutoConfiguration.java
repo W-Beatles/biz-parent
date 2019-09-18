@@ -52,13 +52,13 @@ public class SwaggerAutoConfiguration {
         ParameterBuilder channelPar = new ParameterBuilder();
         ParameterBuilder apiVersionPar = new ParameterBuilder();
         List<Parameter> parameters = new ArrayList<>();
-        tokenPar.name("user").description("用户").modelRef(new ModelRef("string")).parameterType("header")
+        tokenPar.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header")
                 .required(false).order(0).build();
         deviceIdPar.name("deviceId").description("设备ID").modelRef(new ModelRef("string")).parameterType("header")
                 .required(false).order(1).build();
         channelPar.name("channel").description("渠道").modelRef(new ModelRef("string")).parameterType("header")
                 .required(false).order(2).build();
-        apiVersionPar.name("apiVersion").description("版本").defaultValue("1.0").modelRef(new ModelRef("string")).parameterType("header")
+        apiVersionPar.name("apiVersion").description("版本").modelRef(new ModelRef("string")).parameterType("header")
                 .required(false).order(3).build();
         parameters.add(tokenPar.build());
         parameters.add(deviceIdPar.build());
