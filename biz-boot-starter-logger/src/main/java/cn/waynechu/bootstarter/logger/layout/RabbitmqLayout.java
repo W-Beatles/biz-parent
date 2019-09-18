@@ -26,26 +26,26 @@ import java.util.List;
 @Slf4j
 public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
 
-    protected String machineName;
+    private String hostName;
 
-    protected String localAddress;
+    private String hostAddress;
 
     public RabbitmqLayout() {
         try {
             InetAddress address = InetAddress.getLocalHost();
-            machineName = address.getHostName();
-            localAddress = address.getHostAddress();
+            hostName = address.getHostName();
+            hostAddress = address.getHostAddress();
         } catch (UnknownHostException e) {
-            this.addError("RabbitmqLayout无法获取machineName和localAddress", e);
+            this.addError("RabbitmqLayout无法获取hostName和hostAddress", e);
         }
     }
 
     @Override
     public String doLayout(ILoggingEvent iLoggingEvent) {
-        return buildELKFormat(iLoggingEvent);
+        return buildElkFormat(iLoggingEvent);
     }
 
-    private String buildELKFormat(ILoggingEvent iLoggingEvent) {
+    private String buildElkFormat(ILoggingEvent iLoggingEvent) {
         JSONObject root = new JSONObject();
 
         // write mdc fields
@@ -74,8 +74,8 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
     }
 
     private void writeBasic(JSONObject json, ILoggingEvent event) {
-        json.put("machineName", machineName);
-        json.put("localAddress", localAddress);
+        json.put("hostName", hostName);
+        json.put("hostAddress", hostAddress);
         json.put("threadName", event.getThreadName());
         json.put("level", event.getLevel().toString());
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(event.getTimeStamp()),
@@ -85,7 +85,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         String[] keyArray = {DesensitizeUtils.PASSWORD, DesensitizeUtils.PWD};
         String message = event.getFormattedMessage();
         if (StringUtil.isNotBlank(message)) {
-            message = message.length() <= 1024 ? message : message.substring(0, 1024) + "...总长度为: " + message.length();
+            message = message.length() <= 10240 ? message : message.substring(0, 10240) + "...总长度为: " + message.length();
         }
         json.put("message", DesensitizeUtils.desensitize(message, keyArray));
         json.put("logger", event.getLoggerName());
@@ -93,7 +93,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
 
     private void writeThrowable(JSONObject json, ILoggingEvent event) {
         IThrowableProxy iThrowableProxy = event.getThrowableProxy();
-        if (iThrowableProxy != null && iThrowableProxy instanceof ThrowableProxy) {
+        if (iThrowableProxy instanceof ThrowableProxy) {
             ThrowableProxy throwableProxy = (ThrowableProxy) iThrowableProxy;
             Throwable t = throwableProxy.getThrowable();
             Throwable ec = t.getCause();

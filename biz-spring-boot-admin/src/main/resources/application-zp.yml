@@ -1,9 +1,9 @@
 server:
-  port: 8060
+  port: 9020
 
 spring:
   application:
-    name: boot-admin-service
+    name: biz-spring-boot-admin-anonymous
 
 eureka:
   client:

@@ -1,5 +1,6 @@
 package com.waynechu.springcloud.order.remote;
 
+import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.response.BizResponse;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,6 @@ public class UserRemoteFallback implements UserRemote {
 
     @Override
     public BizResponse<Map<String, Object>> getById(Integer id) {
-        return BizResponse.error();
+        return BizResponse.error(BizErrorCodeEnum.CALL_SERVICE_ERROR);
     }
 }
