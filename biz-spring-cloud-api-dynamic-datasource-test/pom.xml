@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>biz-parent</artifactId>
+        <groupId>cn.waynechu</groupId>
+        <version>1.0.2019091701-RELEASE</version>
+    </parent>
+
+    <groupId>com.waynechu</groupId>
+    <artifactId>dynamic-datasource-test-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>dynamic-datasource-test-parent</name>
+    <description>dynamic-datasource-test parent</description>
+
+    <repositories>
+        <repository>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <parent-project.version>0.0.1-SNAPSHOT</parent-project.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.waynechu</groupId>
+                <artifactId>dynamic-datasource-test-common</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.waynechu</groupId>
+                <artifactId>dynamic-datasource-test-facade</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.waynechu</groupId>
+                <artifactId>dynamic-datasource-test-remote</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.waynechu</groupId>
+                <artifactId>dynamic-datasource-test-integration-dal</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.waynechu</groupId>
+                <artifactId>dynamic-datasource-test-domain</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.waynechu</groupId>
+                <artifactId>dynamic-datasource-test-api</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.waynechu</groupId>
+                <artifactId>dynamic-datasource-test-test</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <profiles.active>local</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>work</id>
+            <properties>
+                <profiles.active>work</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>ut</id>
+            <properties>
+                <profiles.active>ut</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <profiles.active>prd</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+    <modules>
+        <module>dynamic-datasource-test-api</module>
+        <module>dynamic-datasource-test-common</module>
+        <module>dynamic-datasource-test-domain</module>
+        <module>dynamic-datasource-test-facade</module>
+        <module>dynamic-datasource-test-integration-dal</module>
+        <module>dynamic-datasource-test-remote</module>
+        <module>dynamic-datasource-test-test</module>
+    </modules>
+</project>

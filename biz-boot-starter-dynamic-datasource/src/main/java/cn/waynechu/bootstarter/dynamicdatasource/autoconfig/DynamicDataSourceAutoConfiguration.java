@@ -21,6 +21,7 @@ import cn.waynechu.bootstarter.dynamicdatasource.interceptor.DynamicDataSourceIn
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DefaultDynamicDataSourceProvider;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -30,7 +31,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
+
+import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  * @author zhuwei
@@ -54,11 +59,22 @@ public class DynamicDataSourceAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public AbstractRoutingDataSource dynamicRoutingDataSource() {
+    public DynamicRoutingDataSource dynamicRoutingDataSource() {
         DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
         dynamicRoutingDataSource.setStrategy(properties.getStrategy());
         dynamicRoutingDataSource.setProvider(new DefaultDynamicDataSourceProvider(properties));
         return dynamicRoutingDataSource;
+    }
+
+    @Bean("sqlSessionFactory")
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) throws IOException {
+        SqlSessionFactoryBean session = new SqlSessionFactoryBean();
+        session.setDataSource(dataSource);
+
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        session.setMapperLocations(resolver.getResources("classpath:sqlmap/**/*Mapper.xml"));
+
+        return session;
     }
 
     @Bean

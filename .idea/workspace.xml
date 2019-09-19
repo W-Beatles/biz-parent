@@ -4,10 +4,56 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="">
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="docs(biz-parent): 添加TODO LIST">
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/StartMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/META-INF/app.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-local.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-prd.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-test.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-ut.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-work.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/convert/OrderConvert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/service/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/src/main/java/com/waynechu/dynamicdatasource/facade/response/OrderResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/OrderDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/OrderDOExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/ProductDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/ProductDOExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/OrderMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/ProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/order/OrderMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/product/ProductMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-remote/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-test/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/mdc/MDCFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apicommon/mdc/MDCFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/DruidDynamicDataSourceConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/FrameDataSourceAutoConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/stat/DruidSpringAopConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/stat/DruidStatViewServletConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/stat/DruidWebStatFilterConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/properties/DruidStatProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/properties/FrameDataSourceProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/AbstractDynamicDataSourceStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/DynamicDataSourceStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/RandomDynamicDataSourceStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/RoundRobinDynamicDataSourceStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/resources/META-INF/spring.factories" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicRoutingDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicRoutingDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/autoconfig/DynamicDataSourceAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/autoconfig/DynamicDataSourceAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-integration-dal/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-integration-dal/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,18 +75,33 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="common@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="order@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="common@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="order@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="common@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="order@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="common: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="order: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="product@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="product@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="product@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="product: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -81,6 +142,7 @@
   <component name="ProjectId" id="1Qe1wLyfEQzmOdL44SKYEhkf0fr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="GO_FMT" value="true" />
@@ -94,7 +156,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/src/main" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -104,26 +166,26 @@
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-integration-dal\src\main\java\com\waynechu\__rootArtifactId__\dal\dataobject" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\scripts" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-service-order\src\main\resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.waynechu.springcloud.common.listener" />
-      <recent name="cn.waynechu.bootstarter.datasoureframe.properties" />
-      <recent name="cn.waynechu.bootstarter.datasoureframe.config" />
-      <recent name="cn.waynechu.bootstarter.datasoureframe" />
-      <recent name="cn.waynechu.springcloud.common.util" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-facade\src\main" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-dashboard-turbine\src\main\resources" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-boot-admin\src\main\resources" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
       <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-eureka\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.waynechu.bootstarter.dynamicdatasource.toolkit" />
+      <recent name="cn.waynechu.bootstarter.datasoureframe.toolkit" />
+      <recent name="cn.waynechu.bootstarter.datasoureframe.interceptor" />
+      <recent name="cn.waynechu.bootstarter.datasoureframe.autoconfig" />
+      <recent name="cn.waynechu.bootstarter.datasoureframe.properties" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-integration-dal\src\main\java\com\waynechu\__rootArtifactId__\dal\dataobject" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -144,7 +206,20 @@
     </option>
     <option name="contentProportion" value="0.23430736" />
   </component>
-  <component name="RunManager" selected="Spring Boot.(9010) gateway">
+  <component name="RunManager" selected="Spring Boot.StartMain">
+    <configuration name="StartMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="dynamic-datasource-test-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.waynechu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="(10010) user-service-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
       <module name="biz-spring-cloud-api-service-user" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.springcloud.user.UserStartMain" />
@@ -367,7 +442,13 @@
       <item itemvalue="Spring Boot.(10021) utility-service-peer2" />
       <item itemvalue="Spring Boot.(10030) order-service-peer1" />
       <item itemvalue="Spring Boot.(10031) order-service-peer2" />
+      <item itemvalue="Spring Boot.StartMain" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.StartMain" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
@@ -377,41 +458,37 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1dd5b2b5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1dd5b2b5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@558484b7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@92405c5b" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1dd5b2b5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@558484b7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@276e45e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@40b20af6" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1dd5b2b5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@558484b7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@a7b994a2" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@40b20af6" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b08472e2" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1dd5b2b5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c10d4cf4" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@40b20af6" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@92e71ae1" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1dd5b2b5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c10d4cf4" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@30dfb4e0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@7aae5c76" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1dd5b2b5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c10d4cf4" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@13425cdf" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@921c20e3" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -464,7 +541,9 @@
       <workItem from="1568636819427" duration="303000" />
       <workItem from="1568689083925" duration="16707000" />
       <workItem from="1568723859802" duration="13290000" />
-      <workItem from="1568798881134" duration="8412000" />
+      <workItem from="1568798881134" duration="8852000" />
+      <workItem from="1568856913950" duration="588000" />
+      <workItem from="1568857713141" duration="25138000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -746,7 +825,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568808257716</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="docs(biz-parent): 添加TODO LIST">
+      <created>1568809946727</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1568809946728</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -829,95 +915,12 @@
           <line>97</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/ProductMapper.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Spring</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>service-report-integration-dal</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2728146" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
