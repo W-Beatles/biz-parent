@@ -16,6 +16,7 @@
 package cn.waynechu.bootstarter.dynamicdatasource.interceptor;
 
 import cn.waynechu.bootstarter.dynamicdatasource.DynamicRoutingDataSource;
+import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.cache.CacheKey;
@@ -26,6 +27,7 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.Properties;
@@ -49,12 +51,15 @@ import java.util.Properties;
 })
 @Slf4j
 public class DynamicDataSourceInterceptor implements Interceptor {
-    private static final String QUERY_METHOD_NAME = "query";
 
+    private static final String QUERY_METHOD_NAME = "query";
     private static final String SQL_TYPE_SELECT_KEY = "SELECT_KEY";
     private static final String SQL_TYPE_READ_ONLY = "READ_ONLY";
     private static final String SQL_TYPE_TRANSITION = "TRANSITION";
     private static final String SQL_TYPE_DATA_MODIFY = "DATA_MODIFY";
+
+    @Autowired
+    private DynamicDataSourceProperties properties;
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -88,7 +93,10 @@ public class DynamicDataSourceInterceptor implements Interceptor {
             dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
         }
 
-        log.debug("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
+        if (properties.isLoggerEnable()) {
+            log.info("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
+        }
+
         try {
             // lookupKey格式：组名_数据源类型。比如：订单库主库 order_master
             String lookUpKey = groupName + DynamicRoutingDataSource.GROUP_FLAG + dataSourceType;

@@ -41,6 +41,7 @@
         <com.microsoft.sqlserver.version>4.0</com.microsoft.sqlserver.version>
         <mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
         <mybatis-spring-boot-starter.version>2.1.0</mybatis-spring-boot-starter.version>
+        <mybatis-typehandlers-jsr310.version>1.0.2</mybatis-typehandlers-jsr310.version>
         <pagehelper-spring-boot-starter.version>1.2.12</pagehelper-spring-boot-starter.version>
         <sentry-logback.version>1.7.27</sentry-logback.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
@@ -51,7 +52,7 @@
         <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
         <biz-spring-cloud-common.version>1.0.2019080601-RELEASE</biz-spring-cloud-common.version>
         <biz-spring-cloud-api-starter.version>1.0.2019091701-RELEASE</biz-spring-cloud-api-starter.version>
-        <biz-boot-starter-dynamic-datasource.version>1.0.2019070919-SNAPSHOT</biz-boot-starter-dynamic-datasource.version>
+        <biz-boot-starter-dynamic-datasource.version>1.0.2019092001-RELEASE</biz-boot-starter-dynamic-datasource.version>
         <biz-boot-starter-logger.version>1.0.2019091001-RELEASE</biz-boot-starter-logger.version>
         <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
     </properties>
@@ -272,6 +273,12 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-typehandlers-jsr310</artifactId>
+                <version>${mybatis-typehandlers-jsr310.version}</version>
             </dependency>
 
             <dependency>

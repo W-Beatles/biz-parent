@@ -37,6 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource implements InitializingBean {
+
     /**
      * 分组标识。如 order-slave1，order-slave2 会划分到 order 组中
      */
@@ -48,6 +49,11 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      */
     private DataSource primaryDataSource;
 
+    /**
+     * 是否打印动态数据源执行情况
+     */
+    @Setter
+    public boolean loggerEnable;
     @Setter
     protected DynamicDataSourceProvider provider;
     @Setter
@@ -70,13 +76,14 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     @Override
     public void afterPropertiesSet() {
         Map<String, DataSource> dataSources = provider.loadDataSources();
+
         log.info("读取到 [{}] 个数据源, 开始动态数据源分组...", dataSources.size());
         for (Map.Entry<String, DataSource> entry : dataSources.entrySet()) {
             // 选择读取到的第一个数据源作为主数据源
             if (primaryDataSource == null) {
                 primaryDataSource = entry.getValue();
             }
-            addDataSource(entry.getKey(), entry.getValue());
+            this.addDataSource(entry.getKey(), entry.getValue());
         }
     }
 
@@ -136,7 +143,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      * @param lookUpKey 用于获取数据源的key
      * @return 数据源
      */
-    public DataSource getDataSource(String lookUpKey) {
+    private DataSource getDataSource(String lookUpKey) {
         DataSource dataSource;
         if (StringUtils.isEmpty(lookUpKey)) {
             dataSource = primaryDataSource;
@@ -155,7 +162,9 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
 
         if (dataSource instanceof DruidDataSource) {
             String dataSourceName = ((DruidDataSource) dataSource).getName();
-            log.debug("使用动态数据源 [{}]", dataSourceName);
+            if (loggerEnable) {
+                log.info("使用动态数据源 [{}]", dataSourceName);
+            }
         }
         return dataSource;
     }
@@ -164,7 +173,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      * 从组数据源中获取数据源
      *
      * @param groupName      组名
-     * @param dataSourceType 数据源类型 master|slave
+     * @param dataSourceType 数据源类型 master | slave
      * @return 数据源
      */
     private DataSource getFromGroupDataSource(String groupName, String dataSourceType) {

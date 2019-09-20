@@ -6,6 +6,7 @@
 2. 基于MyBatis拦截器实现主从数据源的动态切换
 3. 集成Druid数据源监控多数据源，支持原生SQL监控、防火墙监控、慢查询日志、Url监控、Spring监控等
 4. 可实现 **DynamicDataSourceStrategy** 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
+5. 可参考 `dynamic-datasource-test-integration-dal` 测试项目
 
 ### 使用方法
 
@@ -15,31 +16,26 @@
     <dependency>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-        <version>1.0.2019070901-RELEASE</version>
+        <version>1.0.2019092001-RELEASE</version>
     </dependency>
     ```
-
-2. 添加配置
-
-    **推荐：开发环境开启log日志，可查看详细数据源切换的日志**
-    
-    ```
-    ## logging
-    logging.level.cn.waynechu.bootstarter.dynamicdatasource=DEBUG
-    ```
-    
+2. 添加数据源配置
     参数配置参考下一节，更多配置可查阅Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
 
 ### 参考配置    
 
 
 ```
-## mybatis
-mybatis.mapper-locations=classpath:sqlmap/**/*Mapper.xml
-mybatis.configuration.cache-enabled=false
-mybatis.configuration.map-underscore-to-camel-case=true
+## mybatis-plus
+mybatis-plus.mapper-locations=classpath:sqlmap/**/*Mapper.xml
+mybatis-plus.configuration.cache-enabled=false
+mybatis-plus.configuration.map-underscore-to-camel-case=true
+mybatis-plus.configuration.use-generated-keys=true
+mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
 ## dynamic datasource
+### 打印动态数据源执行情况
+spring.datasource.dynamic.logger-enable=true
 ### 设置动态数据源选择策略。不配置默认使用轮询策略
 spring.datasource.dynamic.strategy=cn.waynechu.bootstarter.dynamicdatasource.strategy.RoundRobinDynamicDataSourceStrategy
 ### 设置Druid密码加密公钥
@@ -57,28 +53,28 @@ spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql=true
 ### 打开Web应用监控
 spring.datasource.dynamic.druid.web-stat-filter.enabled=true
 ### 设置Spring监控AOP包路径
-spring.datasource.dynamic.druid.aop-patterns=com.waynechu.renting.web.controller.*,com.waynechu.renting.core.service.*
+spring.datasource.dynamic.druid.aop-patterns=com.waynechu.dynamicdatasource.api.controller.*,com.waynechu.dynamicdatasource.domain.service.*
 ### 设置多数据源
-#### order database 订单库配置(一主两从)
+#### order database 订单库
 spring.datasource.dynamic.datasource.order-master.username=root
 spring.datasource.dynamic.datasource.order-master.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-master.url=jdbc:mysql://192.168.1.100:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.order-master.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 spring.datasource.dynamic.datasource.order-slave1.username=root
 spring.datasource.dynamic.datasource.order-slave1.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-slave1.url=jdbc:mysql://192.168.1.101:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.order-slave1.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 spring.datasource.dynamic.datasource.order-slave2.username=root
 spring.datasource.dynamic.datasource.order-slave2.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-slave2.url=jdbc:mysql://192.168.1.102:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-#### product database 产品库配置(一主两从)
+spring.datasource.dynamic.datasource.order-slave2.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+#### product database 产品库
 spring.datasource.dynamic.datasource.product-master.username=root
 spring.datasource.dynamic.datasource.product-master.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.product-master.url=jdbc:mysql://192.168.2.100:3306:3306/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.product-master.url=jdbc:mysql://localhost:3306/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 spring.datasource.dynamic.datasource.product-slave1.username=root
 spring.datasource.dynamic.datasource.product-slave1.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.product-slave1.url=jdbc:mysql://192.168.2.101:3306:3307/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.product-slave1.url=jdbc:mysql://localhost:3307/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 spring.datasource.dynamic.datasource.product-slave2.username=root
 spring.datasource.dynamic.datasource.product-slave2.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.product-slave2.url=jdbc:mysql://192.168.2.102:3306:3308/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.product-slave2.url=jdbc:mysql://localhost:3308/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 ```
 
 ### 约定与说明
@@ -138,9 +134,9 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
     比如：
     - resource
        - sqlmap
-          - gungnir
-             - temp.xml
-             - temp1.xml
           - order
-             - test.xml
              - test1.xml
+             - test2.xml
+          - product
+             - test3.xml
+             - test4.xml

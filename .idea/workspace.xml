@@ -4,55 +4,38 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="docs(biz-parent): 添加TODO LIST">
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/StartMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/META-INF/app.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-local.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-prd.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-ut.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-work.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/convert/OrderConvert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/repository/OrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/service/OrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/src/main/java/com/waynechu/dynamicdatasource/facade/response/OrderResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/OrderDO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/OrderDOExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/ProductDO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/ProductDOExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/OrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/ProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/order/OrderMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/product/ProductMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-remote/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-test/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/pom.xml" afterDir="false" />
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="feat(biz-boot-starter-dynamic-datasource): 完善动态数据源">
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/convert/ProductConvert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/repository/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/service/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/src/main/java/com/waynechu/dynamicdatasource/facade/response/OrderDetailResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/src/main/java/com/waynechu/dynamicdatasource/facade/response/ProductResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/order/OrderDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/product/ProductDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/order/OrderMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/product/ProductMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/DruidDynamicDataSourceConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/FrameDataSourceAutoConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/stat/DruidSpringAopConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/stat/DruidStatViewServletConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/autoconfig/stat/DruidWebStatFilterConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/properties/DruidStatProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/properties/FrameDataSourceProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/AbstractDynamicDataSourceStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/DynamicDataSourceStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/RandomDynamicDataSourceStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/java/cn/waynechu/bootstarter/datasoureframe/strategy/RoundRobinDynamicDataSourceStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-datasource-frame/src/main/resources/META-INF/spring.factories" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicRoutingDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicRoutingDataSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/autoconfig/DynamicDataSourceAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/autoconfig/DynamicDataSourceAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-integration-dal/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-integration-dal/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/interceptor/DynamicDataSourceInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/interceptor/DynamicDataSourceInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/properties/DynamicDataSourceProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/properties/DynamicDataSourceProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/convert/OrderConvert.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/convert/OrderConvert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/src/main/java/com/waynechu/dynamicdatasource/facade/response/OrderResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-facade/src/main/java/com/waynechu/dynamicdatasource/facade/response/OrderResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/OrderDO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/OrderDOExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/ProductDO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/dataobject/ProductDOExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/OrderMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/order/OrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/order/OrderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/product/ProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/resources/sqlmap/product/ProductMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -166,12 +149,12 @@
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-facade\src\main" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-dashboard-turbine\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-boot-admin\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\src\main\resources" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-integration-dal\src\main\java\com\waynechu\__rootArtifactId__\dal\dataobject" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.waynechu.bootstarter.dynamicdatasource.toolkit" />
@@ -180,12 +163,12 @@
       <recent name="cn.waynechu.bootstarter.datasoureframe.autoconfig" />
       <recent name="cn.waynechu.bootstarter.datasoureframe.properties" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-integration-dal\src\main\java\com\waynechu\__rootArtifactId__\dal\dataobject" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-facade\src\main" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-dashboard-turbine\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-boot-admin\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -206,8 +189,8 @@
     </option>
     <option name="contentProportion" value="0.23430736" />
   </component>
-  <component name="RunManager" selected="Spring Boot.StartMain">
-    <configuration name="StartMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.(10001) dynamic-datasource-test-api">
+    <configuration name="(10001) dynamic-datasource-test-api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" temporary="true">
       <module name="dynamic-datasource-test-api" />
       <extension name="coverage">
         <pattern>
@@ -216,6 +199,7 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -442,53 +426,45 @@
       <item itemvalue="Spring Boot.(10021) utility-service-peer2" />
       <item itemvalue="Spring Boot.(10030) order-service-peer1" />
       <item itemvalue="Spring Boot.(10031) order-service-peer2" />
-      <item itemvalue="Spring Boot.StartMain" />
+      <item itemvalue="Spring Boot.(10001) dynamic-datasource-test-api" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.StartMain" />
+        <item itemvalue="Spring Boot.(10001) dynamic-datasource-test-api" />
       </list>
     </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
-        <option name="contentProportion" value="0.22889611" />
+        <option name="contentProportion" value="0.16937229" />
         <treeState>
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9f81ee3f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@92405c5b" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9f81ee3f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6a19a861" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@40b20af6" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9f81ee3f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6a19a861" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@bc4eb84c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@40b20af6" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b08472e2" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9f81ee3f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9972ac5c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2a787f3e" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@40b20af6" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@92e71ae1" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@7aae5c76" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@921c20e3" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9f81ee3f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9972ac5c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@eba7bc47" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -544,6 +520,7 @@
       <workItem from="1568798881134" duration="8852000" />
       <workItem from="1568856913950" duration="588000" />
       <workItem from="1568857713141" duration="25138000" />
+      <workItem from="1568950366744" duration="12998000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -916,9 +893,14 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-integration-dal/src/main/java/com/waynechu/dynamicdatasource/dal/mapper/ProductMapper.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="17" />
+          <url>jar://$MAVEN_REPOSITORY$/org/mybatis/spring/boot/mybatis-spring-boot-autoconfigure/2.1.0/mybatis-spring-boot-autoconfigure-2.1.0-sources.jar!/org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/mybatis/spring/boot/mybatis-spring-boot-autoconfigure/2.1.0/mybatis-spring-boot-autoconfigure-2.1.0-sources.jar!/org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

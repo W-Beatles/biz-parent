@@ -37,13 +37,20 @@ public class DynamicDataSourceProperties {
     public static final String DYNAMIC_DATA_SOURCE_PREFIX = "spring.datasource.dynamic";
 
     /**
+     * 打印动态数据源执行日志
+     */
+    private boolean loggerEnable = false;
+
+    /**
      * 配置所有数据源
      */
     private Map<String, DataSourceProperty> datasource = new LinkedHashMap<>();
+
     /**
      * 动态数据源选择策略，默认轮询策略
      */
     private Class<? extends DynamicDataSourceStrategy> strategy = RoundRobinDynamicDataSourceStrategy.class;
+
     /**
      * Druid全局参数配置
      */

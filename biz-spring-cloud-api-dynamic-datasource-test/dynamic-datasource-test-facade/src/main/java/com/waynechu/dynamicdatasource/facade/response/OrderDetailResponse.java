@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 
 /**
  * @author zhuwei
- * @date 2019/9/19 18:15
+ * @date 2019/9/20 14:46
  */
 @Data
-@ApiModel(description = "订单信息返回对象")
-public class OrderResponse {
+@ApiModel(description = "订单详情返回对象")
+public class OrderDetailResponse {
 
     @ApiModelProperty("订单ID")
     private Long id;
@@ -22,6 +22,12 @@ public class OrderResponse {
 
     @ApiModelProperty("套餐ID")
     private Long productId;
+
+    @ApiModelProperty("套餐名称")
+    private String name;
+
+    @ApiModelProperty("套餐状态：0下架，1上架")
+    private Boolean productStatus;
 
     @ApiModelProperty("订单状态：1已下单，2已送达（部门代理人领餐成功），3已领取（代理人确认成员领餐），4未领取（9点后代理人未确认领取的全部设为未领取）。取消订单删除该条记录）")
     private Integer orderStatus;

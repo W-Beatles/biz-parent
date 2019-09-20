@@ -1,7 +1,7 @@
 package com.waynechu.dynamicdatasource.domain.convert;
 
 import cn.waynechu.springcloud.common.util.BeanUtil;
-import com.waynechu.dynamicdatasource.dal.dataobject.OrderDO;
+import com.waynechu.dynamicdatasource.dal.dataobject.order.OrderDO;
 import com.waynechu.dynamicdatasource.facade.response.OrderResponse;
 import lombok.experimental.UtilityClass;
 
