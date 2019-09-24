@@ -13,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -78,12 +79,13 @@ public abstract class AbstractControllerLogAspect {
     /**
      * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
      * <p>
-     * 默认提供 {@code HttpServletResponse}、{@code MultipartFile}、{@code Invisible} 三种类型
+     * 默认提供 {@code HttpServletRequest}、{@code HttpServletResponse}、{@code MultipartFile}、{@code Invisible} 三种类型
      *
      * @return 不打印的入参类型
      */
     protected Collection<Class> excludePrintClass() {
-        ArrayList<Class> excludePrintClass = new ArrayList<>(3);
+        ArrayList<Class> excludePrintClass = new ArrayList<>(4);
+        excludePrintClass.add(HttpServletRequest.class);
         excludePrintClass.add(HttpServletResponse.class);
         excludePrintClass.add(MultipartFile.class);
         excludePrintClass.add(Invisible.class);

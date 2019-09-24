@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
@@ -25,7 +26,8 @@ public class OrderController {
 
     @ApiOperation(value = "获取订单详情")
     @GetMapping("/{id}")
-    public BizResponse<Map<String, Object>> getById(@PathVariable Integer id) {
+    public BizResponse<Map<String, Object>> getById(@PathVariable Integer id, HttpServletRequest request) {
+        System.out.println(request.getHeader("requestId"));
         Map<String, Object> order = new LinkedHashMap<>(2);
         order.put("id", id);
         order.put("count", new Random().nextInt());
