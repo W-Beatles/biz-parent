@@ -1,6 +1,6 @@
-package cn.waynechu.springcloud.apicommon.config;
+package cn.waynechu.springcloud.apistarter.config;
 
-import cn.waynechu.springcloud.apicommon.properties.SwaggerProperty;
+import cn.waynechu.springcloud.apistarter.properties.SwaggerProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apicommon.config;
+package cn.waynechu.springcloud.apistarter.config;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;

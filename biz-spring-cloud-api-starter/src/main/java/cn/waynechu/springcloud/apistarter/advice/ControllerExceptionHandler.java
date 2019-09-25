@@ -1,9 +1,9 @@
-package cn.waynechu.springcloud.apicommon.advice;
+package cn.waynechu.springcloud.apistarter.advice;
 
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.response.BizResponse;
-import cn.waynechu.springcloud.apicommon.mdc.MDCFilter;
+import cn.waynechu.springcloud.apistarter.mdc.MDCFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -54,13 +54,13 @@ public class ControllerExceptionHandler {
             log.error("[BizError] {}", e.getErrorMessage(), e);
         }
         log.info("[BizError] {}", e.getErrorMessage());
-        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.REQ_UUID));
+        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.REQUEST_ID_FLAG).substring(0, 5));
     }
 
     @ExceptionHandler(Exception.class)
     public BizResponse unknownException(Exception e) {
         log.error("[SystemError] ", e);
         return BizResponse.error(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
-                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDCFilter.REQ_UUID));
+                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDCFilter.REQUEST_ID_FLAG).substring(0, 5));
     }
 }

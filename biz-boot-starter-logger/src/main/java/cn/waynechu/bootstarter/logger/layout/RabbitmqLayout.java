@@ -85,7 +85,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
         String[] keyArray = {DesensitizeUtils.PASSWORD, DesensitizeUtils.PWD};
         String message = event.getFormattedMessage();
         if (StringUtil.isNotBlank(message)) {
-            message = message.length() <= 10240 ? message : message.substring(0, 10240) + "...总长度为: " + message.length();
+            message = message.length() <= 4096 ? message : message.substring(0, 4096) + "...总长度为: " + message.length();
         }
         json.put("message", DesensitizeUtils.desensitize(message, keyArray));
         json.put("logger", event.getLoggerName());

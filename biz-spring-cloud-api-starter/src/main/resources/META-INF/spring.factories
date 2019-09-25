@@ -1,5 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.waynechu.springcloud.apicommon.config.CommonAutoConfiguration,\
-cn.waynechu.springcloud.apicommon.config.CorsAutoConfiguration,\
-cn.waynechu.springcloud.apicommon.config.SwaggerAutoConfiguration,\
-cn.waynechu.springcloud.apicommon.config.ApolloChangeAutoConfig
+cn.waynechu.springcloud.apistarter.config.CommonAutoConfiguration,\
+cn.waynechu.springcloud.apistarter.config.CorsAutoConfiguration,\
+cn.waynechu.springcloud.apistarter.config.SwaggerAutoConfiguration,\
+cn.waynechu.springcloud.apistarter.config.ApolloChangeAutoConfig,\
+cn.waynechu.springcloud.apistarter.config.FeignInterceptorAutoConfiguration

@@ -4,17 +4,12 @@
 
 1. MDCFilter过滤器 (默认关闭)
 
-    该过滤器会调用 MDC.put("reqKey", reqKeyValue) 添加`reqKey`到MDC映射调试上下文中，这样便于在log日志中追踪请求调用信息   
-    其中reqKey的格式为: traceNo-prefix-shortUUID
-    - traceNo: 请求追踪号。可添加至请求头或请求参数中来追踪请求链路，其中key为traceNo
-    - prefix: 项目唯一标识。默认取值为`${spring.application.name}`
-    - shortUUID: 请求的唯一标识。长度6个字符
+    该过滤器用于添加信息到MDC上下文中
     
     参考配置:
     ```
     ### mdc-filter
     biz.api.starter.mdc-filter.enable=true
-    biz.api.starter.mdc-filter.prefix=${spring.application.name}
     ```
     
 2. ~~DataModifiedInterceptor SQL拦截器~~ (已移除)

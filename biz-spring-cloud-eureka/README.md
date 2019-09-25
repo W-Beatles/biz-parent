@@ -56,7 +56,7 @@
       instance:
         hostname: localhost
         # 使用IP注册
-        preferIpAddress: true
+        prefer-ip-address: true
         # Client向Eureka Server发送心跳的时间间隔，默认30s
         lease-renewal-interval-in-seconds: 30
         # 服务失效剔除时间，默认90秒

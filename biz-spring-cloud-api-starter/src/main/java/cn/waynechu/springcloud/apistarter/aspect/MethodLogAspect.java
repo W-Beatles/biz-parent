@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apicommon.aspect;
+package cn.waynechu.springcloud.apistarter.aspect;
 
 import cn.waynechu.springcloud.common.annotation.MethodLog;
 import cn.waynechu.springcloud.common.aspect.Invisible;

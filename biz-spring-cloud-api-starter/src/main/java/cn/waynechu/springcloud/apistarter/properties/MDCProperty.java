@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apicommon.properties;
+package cn.waynechu.springcloud.apistarter.properties;
 
 import lombok.Data;
 
@@ -14,9 +14,4 @@ public class MDCProperty {
      * 是否开启MDC。默认关闭
      */
     private boolean enable = false;
-
-    /**
-     * MDC前缀。默认为 ${spring.application.name}
-     */
-    private String prefix;
 }

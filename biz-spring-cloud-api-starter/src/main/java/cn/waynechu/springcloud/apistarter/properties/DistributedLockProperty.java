@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apicommon.properties;
+package cn.waynechu.springcloud.apistarter.properties;
 
 import lombok.Data;
 

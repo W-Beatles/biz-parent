@@ -1,9 +1,12 @@
 package com.waynechu.springcloud.order.remote;
 
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
+import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.response.BizResponse;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * @author zhuwei
@@ -14,6 +17,11 @@ public class UserRemoteFallbackFactory implements FallbackFactory<UserRemote> {
 
     @Override
     public UserRemote create(Throwable throwable) {
-        return id -> new BizResponse<>(BizErrorCodeEnum.CALL_SERVICE_ERROR);
+        return new UserRemote() {
+            @Override
+            public BizResponse<Map<String, Object>> getById(Integer id) {
+                throw new BizException(BizErrorCodeEnum.CALL_SERVICE_ERROR, throwable.getMessage());
+            }
+        };
     }
 }

@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @Api(tags = "测试接口")
 public class TestController {
 
-    @ApiOperation(value = "测试接口", notes = "测试请求参数格式不正确异常")
+    @ApiOperation(value = "测试接口", notes = "测试统一异常处理、分布式锁")
     @PostMapping
     @DistributedLock(key = "#request.id", expire = 10)
     public BizResponse<Boolean> testHttpMessageNotReadableException(@Valid @RequestBody TestRequest request) {

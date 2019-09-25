@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 @UtilityClass
 public class WebUtil {
 
-    public static String getReqParam(String key, HttpServletRequest request) {
+    public static String getReqParamOrHeader(String key, HttpServletRequest request) {
         // 1. parameter
         String parameter = request.getParameter(key);
         if (StringUtil.isEmpty(parameter)) {
@@ -19,5 +19,13 @@ public class WebUtil {
             parameter = request.getHeader(key);
         }
         return parameter;
+    }
+
+    public static String getReqParam(String key, HttpServletRequest request) {
+        return request.getParameter(key);
+    }
+
+    public static String getReqHeader(String key, HttpServletRequest request) {
+        return request.getHeader(key);
     }
 }

@@ -1,10 +1,10 @@
-package cn.waynechu.springcloud.apicommon.aspect;
+package cn.waynechu.springcloud.apistarter.aspect;
 
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
-import cn.waynechu.springcloud.apicommon.cache.RedisCache;
-import cn.waynechu.springcloud.apicommon.properties.CommonProperty;
-import cn.waynechu.springcloud.apicommon.properties.DistributedLockProperty;
+import cn.waynechu.springcloud.apistarter.cache.RedisCache;
+import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
+import cn.waynechu.springcloud.apistarter.properties.DistributedLockProperty;
 import cn.waynechu.springcloud.common.annotation.DistributedLock;
 import cn.waynechu.springcloud.common.util.SpelUtil;
 import cn.waynechu.springcloud.common.util.UUIDUtil;

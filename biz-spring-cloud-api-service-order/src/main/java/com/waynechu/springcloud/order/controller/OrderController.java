@@ -24,10 +24,10 @@ import java.util.Random;
 @Api(tags = "订单信息")
 public class OrderController {
 
-    @ApiOperation(value = "获取订单详情")
+    @ApiOperation(value = "根据订单id获取订单详情")
     @GetMapping("/{id}")
     public BizResponse<Map<String, Object>> getById(@PathVariable Integer id, HttpServletRequest request) {
-        System.out.println(request.getHeader("requestId"));
+        log.info(request.getHeader("requestId"));
         Map<String, Object> order = new LinkedHashMap<>(2);
         order.put("id", id);
         order.put("count", new Random().nextInt());
