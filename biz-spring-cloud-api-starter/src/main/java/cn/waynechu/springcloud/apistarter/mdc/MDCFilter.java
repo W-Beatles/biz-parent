@@ -23,17 +23,12 @@ import java.net.UnknownHostException;
 @Data
 @Slf4j
 public class MDCFilter implements Filter {
-
-    public static final String APP_NAME_FLAG = "appName";
-
     public static final String TRACE_NO_FLAG = "traceNo";
     public static final String REQUEST_ID_FLAG = "requestId";
 
     public static final String API_VERSION_FLAG = "apiVersion";
     public static final String CHANNEL_FLAG = "channel";
     public static final String DEVICE_ID_FLAG = "deviceId";
-
-    private String appName;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -48,8 +43,6 @@ public class MDCFilter implements Filter {
     }
 
     private void initMDC(HttpServletRequest request){
-        MDC.put(APP_NAME_FLAG, StringUtil.isNotBlank(appName) ? appName : "UNDEFINED");
-
         MDCUtil.copyReqParamOrHeaderToMDC(request, TRACE_NO_FLAG);
         MDCUtil.copyReqHeaderToMDC(request, REQUEST_ID_FLAG, API_VERSION_FLAG, CHANNEL_FLAG, DEVICE_ID_FLAG);
     }

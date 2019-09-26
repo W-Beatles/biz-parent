@@ -8,10 +8,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2019/7/10 20:34
  */
 @Data
-@ConfigurationProperties(prefix = BannerProperty.BANNER_CONFIG_PREFIX)
-public class BannerProperty {
+@ConfigurationProperties(prefix = LoggerProperty.LOGGER_PREFIX)
+public class LoggerProperty {
 
-    public static final String BANNER_CONFIG_PREFIX = "banner.version";
+    public static final String LOGGER_PREFIX = "biz.logger.version";
 
     /**
      * 指定banner展示的 SpringCloud 版本
@@ -19,7 +19,7 @@ public class BannerProperty {
     private String springCloudDependencies;
 
     /**
-     * 指定banner展示的  biz-spring-cloud-api-starter 版本
+     * 指定banner展示的父项目版本
      */
-    private String bizSpringCloudApiStarter;
+    private String parentProject;
 }

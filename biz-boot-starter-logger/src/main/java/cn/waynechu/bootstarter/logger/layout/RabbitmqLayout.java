@@ -4,14 +4,13 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.LayoutBase;
+import cn.waynechu.bootstarter.logger.helper.ApplicationHelper;
 import cn.waynechu.springcloud.common.aspect.AbstractControllerLogAspect;
 import cn.waynechu.springcloud.common.util.DesensitizeUtils;
 import cn.waynechu.springcloud.common.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -25,20 +24,6 @@ import java.util.List;
  */
 @Slf4j
 public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
-
-    private String hostName;
-
-    private String hostAddress;
-
-    public RabbitmqLayout() {
-        try {
-            InetAddress address = InetAddress.getLocalHost();
-            hostName = address.getHostName();
-            hostAddress = address.getHostAddress();
-        } catch (UnknownHostException e) {
-            this.addError("RabbitmqLayout无法获取hostName和hostAddress", e);
-        }
-    }
 
     @Override
     public String doLayout(ILoggingEvent iLoggingEvent) {
@@ -61,6 +46,7 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
     private void writeMdc(JSONObject json, ILoggingEvent event) {
         if (event.getMDCPropertyMap() != null) {
             json.putAll(event.getMDCPropertyMap());
+
             // 转化timeTaken为Integer类型
             String timeTaken = event.getMDCPropertyMap().get(AbstractControllerLogAspect.MDC_TIME_TAKEN_KEY);
             if (StringUtil.isNotBlank(timeTaken)) {
@@ -74,8 +60,11 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
     }
 
     private void writeBasic(JSONObject json, ILoggingEvent event) {
-        json.put("hostName", hostName);
-        json.put("hostAddress", hostAddress);
+        json.put("parentProjectVersion", ApplicationHelper.getParentProjectVersion());
+        json.put("appName", ApplicationHelper.getApplicationName());
+        json.put("hostName", ApplicationHelper.getHostName());
+        json.put("hostAddress", ApplicationHelper.getHostAddress());
+
         json.put("threadName", event.getThreadName());
         json.put("level", event.getLevel().toString());
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(event.getTimeStamp()),
