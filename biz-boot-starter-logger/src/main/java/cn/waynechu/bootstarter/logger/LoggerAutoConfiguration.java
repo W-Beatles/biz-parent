@@ -1,7 +1,7 @@
 package cn.waynechu.bootstarter.logger;
 
 import cn.waynechu.bootstarter.logger.aware.SentryContextAware;
-import cn.waynechu.bootstarter.logger.helper.ApplicationHelper;
+import cn.waynechu.bootstarter.logger.provider.ApplicationProvider;
 import cn.waynechu.bootstarter.logger.properties.LoggerProperty;
 import cn.waynechu.bootstarter.logger.properties.ElkProperty;
 import cn.waynechu.bootstarter.logger.properties.SentryProperties;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @EnableConfigurationProperties({SentryProperties.class, ElkProperty.class, LoggerProperty.class})
-@Import({ApplicationHelper.class})
+@Import({ApplicationProvider.class})
 public class LoggerAutoConfiguration {
 
     @Bean

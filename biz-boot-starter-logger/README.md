@@ -8,7 +8,22 @@
 RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示。
 2. 该模块会将error级别日志通过SentryAppender发送到指定的Sentry DSN地址，便于错误日志汇总、Bug排查定位，
 还能及时收到的应用的错误报告。
-
+3. 打印的信息有
+    ```
+     ---------- 基础信息 ----------
+     parentProjectVersion - 父项目版本号。该值为 biz.logger.version.parent-project 的赋值
+     appId                - 项目唯一标识。该值为 java._appid_ 的赋值
+     appName              - 项目名称。该值为 spring.application.name 的赋值
+     hostName             - 服务器名称
+     hostAddress          - 服务器IP
+     logger               - logger名称
+     threadName           - 线程名称
+     level                - 日志级别
+     time                 - 日志时间。格式为 yyyy-MM-dd HH:mm:ss.SSS
+     message              - 日志内容
+     ---------- MDC信息 ----------
+   
+    ```
 ### 使用方式
 
 1. 添加依赖

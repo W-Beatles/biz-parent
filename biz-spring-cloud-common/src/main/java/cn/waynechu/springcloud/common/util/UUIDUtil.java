@@ -12,7 +12,7 @@ public class UUIDUtil {
     /**
      * 带-的uuid
      */
-    private static final String LONG_UUID  = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
+    private static final String LONG_UUID = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
     /**
      * 不带-的uuid
      */
@@ -85,14 +85,14 @@ public class UUIDUtil {
         System.out.println("check > " + uuid2 + " > " + isValidUUID(uuid2));
         System.out.println("check > " + uuid3 + " > " + isValidUUID(uuid3));
         System.out.println("check > " + uuid4 + " > " + isValidUUID(uuid4));
-        System.out.println("build a uuid> " + getRandomUUID(null));
-        System.out.println("build a uuid> " + getRandomUUID(null));
-        System.out.println("build a uuid> " + getRandomUUID("kangyucheng"));
-        System.out.println("build a uuid> " + getRandomUUID("kangyucheng"));
-        System.out.println("build a short uuid> " + getShortUUID(uuid1) + " > " + isValidUUID(getShortUUID(uuid1)));
-        System.out.println("build a short uuid> " + getShortUUID(uuid4) + " > " + isValidUUID(getShortUUID(uuid4)));
-        System.out.println("build a short uuid> " + getShortUUID(uuid3) + " > " + isValidUUID(getShortUUID(uuid3)));
+        System.out.println("build a uuid > " + getRandomUUID(null));
+        System.out.println("build a uuid > " + getRandomUUID(null));
+        System.out.println("build a uuid > " + getRandomUUID("waynechu"));
+        System.out.println("build a uuid > " + getRandomUUID("waynechu"));
+        System.out.println("build a short uuid > " + getShortUUID(uuid1) + " > " + isValidUUID(getShortUUID(uuid1)));
+        System.out.println("build a short uuid > " + getShortUUID(uuid4) + " > " + isValidUUID(getShortUUID(uuid4)));
+        System.out.println("build a short uuid > " + getShortUUID(uuid3) + " > " + isValidUUID(getShortUUID(uuid3)));
         String shortUUID = getShortUUID();
-        System.out.println("build a short uuid> " + shortUUID + " > " + isValidUUID(shortUUID));
+        System.out.println("build a short uuid > " + shortUUID + " > " + isValidUUID(shortUUID));
     }
 }

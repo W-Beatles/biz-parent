@@ -13,9 +13,21 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 public class CommonProperty {
     public static final String COMMON_CONFIG_PREFIX = "biz.api.starter";
 
+    /**
+     * MDC过滤器配置
+     */
     @NestedConfigurationProperty
     private MDCProperty mdcFilter;
 
+    /**
+     * Feign请求头拦截器配置
+     */
+    @NestedConfigurationProperty
+    private FeignTraceProperty feignTraceInterceptor;
+
+    /**
+     * 分布式锁配置
+     */
     @NestedConfigurationProperty
     private DistributedLockProperty distributedLock;
 }

@@ -4,7 +4,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.LayoutBase;
-import cn.waynechu.bootstarter.logger.helper.ApplicationHelper;
+import cn.waynechu.bootstarter.logger.provider.ApplicationProvider;
 import cn.waynechu.springcloud.common.aspect.AbstractControllerLogAspect;
 import cn.waynechu.springcloud.common.util.DesensitizeUtils;
 import cn.waynechu.springcloud.common.util.StringUtil;
@@ -60,11 +60,13 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
     }
 
     private void writeBasic(JSONObject json, ILoggingEvent event) {
-        json.put("parentProjectVersion", ApplicationHelper.getParentProjectVersion());
-        json.put("appName", ApplicationHelper.getApplicationName());
-        json.put("hostName", ApplicationHelper.getHostName());
-        json.put("hostAddress", ApplicationHelper.getHostAddress());
+        json.put("parentProjectVersion", ApplicationProvider.getParentProjectVersion());
+        json.put("appId", ApplicationProvider.getAppId());
+        json.put("appName", ApplicationProvider.getAppName());
+        json.put("hostName", ApplicationProvider.getHostName());
+        json.put("hostAddress", ApplicationProvider.getHostAddress());
 
+        json.put("logger", event.getLoggerName());
         json.put("threadName", event.getThreadName());
         json.put("level", event.getLevel().toString());
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(event.getTimeStamp()),
@@ -77,7 +79,6 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
             message = message.length() <= 4096 ? message : message.substring(0, 4096) + "...总长度为: " + message.length();
         }
         json.put("message", DesensitizeUtils.desensitize(message, keyArray));
-        json.put("logger", event.getLoggerName());
     }
 
     private void writeThrowable(JSONObject json, ILoggingEvent event) {

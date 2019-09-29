@@ -22,7 +22,7 @@ public class SentryProperties {
     private String dsn;
 
     /**
-     * 要追踪的包名，多个请用“,”分割。默认上传所有包下的日志
+     * 要追踪的包名，多个请用 “,” 分割。默认上传所有包下的日志
      */
     private String stacktraceAppPackages = "";
 }
