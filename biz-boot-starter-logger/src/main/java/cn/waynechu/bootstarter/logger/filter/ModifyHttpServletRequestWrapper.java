@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apistarter.filter;
+package cn.waynechu.bootstarter.logger.filter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

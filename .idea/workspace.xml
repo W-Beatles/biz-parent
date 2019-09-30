@@ -4,22 +4,15 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="">
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/LoggerAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/LoggerAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/advice/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/advice/ControllerExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/config/CommonAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/config/CommonAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/filter/MDCFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/filter/MDCFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/filter/ModifyHttpServletRequestWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/filter/ModifyHttpServletRequestWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/properties/CommonProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/properties/CommonProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/properties/FeignTraceProperty.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/properties/MDCProperty.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/config/RouterFunctionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/config/RouterFunctionConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/RequestIdGenerateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/RequestIdGenerateFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/filter/MDCFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/filter/MDCFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/filter/ModifyHttpServletRequestWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/filter/ModifyHttpServletRequestWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/interceptor/FeignTraceInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +110,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/properties" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -127,12 +120,12 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger\properties" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-facade\src\main" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-dashboard-turbine\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-boot-admin\src\main\resources" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-starter\src\main\java\cn\waynechu\springcloud\apicommon\config" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.waynechu.bootstarter.logger.interceptor" />
@@ -141,12 +134,12 @@
       <recent name="cn.waynechu.bootstarter.datasoureframe.toolkit" />
       <recent name="cn.waynechu.bootstarter.datasoureframe.interceptor" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-starter\src\main\java\cn\waynechu\springcloud\apicommon\config" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger\properties" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-facade\src\main" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-dashboard-turbine\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-boot-admin\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -439,25 +432,13 @@
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
               <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3fe0fa98" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b2cf6d6d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3959341c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
               <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3fe0fa98" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b2cf6d6d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3d8b398" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3fe0fa98" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b2cf6d6d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@40f8ab53" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3fe0fa98" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b2cf6d6d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e63b5b97" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3959341c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b7743177" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -903,7 +884,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="perf(biz-parent): 提交idea配置" />
     <MESSAGE value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration，暂不推荐使用" />
     <MESSAGE value="feat(service-utility-parent): 添加utility服务" />
     <MESSAGE value="perf(biz-parent): 添加workspace.xml用于dashboard配置" />
@@ -928,7 +908,8 @@
     <MESSAGE value="feat(biz-spring-cloud-gateway): biz-spring-cloud-gateway网关产生requestId并通过feign调用传递" />
     <MESSAGE value="perf(biz-boot-starter-logger): 修改RabbitmqLayout" />
     <MESSAGE value="refactor(biz-boot-starter-logger): 添加调用链路追踪信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(biz-boot-starter-logger): 添加调用链路追踪信息" />
+    <MESSAGE value="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -952,11 +933,6 @@
           <url>file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/filter/MDCFilter.java</url>
           <line>61</line>
           <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/interceptor/FeignTraceInterceptor.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java</url>

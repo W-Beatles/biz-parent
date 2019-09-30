@@ -1,15 +1,20 @@
 package cn.waynechu.bootstarter.logger;
 
 import cn.waynechu.bootstarter.logger.aware.SentryContextAware;
+import cn.waynechu.bootstarter.logger.filter.MDCFilter;
+import cn.waynechu.bootstarter.logger.interceptor.FeignTraceInterceptor;
 import cn.waynechu.bootstarter.logger.properties.ElkProperty;
 import cn.waynechu.bootstarter.logger.properties.LoggerProperty;
 import cn.waynechu.bootstarter.logger.properties.SentryProperties;
 import cn.waynechu.bootstarter.logger.provider.ApplicationProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import java.util.Arrays;
 
 /**
  * @author zhuwei
@@ -24,5 +29,23 @@ public class LoggerAutoConfiguration {
     @ConditionalOnProperty(value = SentryContextAware.SENTRY_ENABLE, havingValue = "true")
     public SentryContextAware sentryInitializer() {
         return new SentryContextAware();
+    }
+
+    @Bean
+    public FilterRegistrationBean<MDCFilter> mdcFilterRegistrationBean() {
+        FilterRegistrationBean<MDCFilter> registrationBean = new FilterRegistrationBean<>();
+        MDCFilter mdcFilter = new MDCFilter();
+
+        registrationBean.setFilter(mdcFilter);
+        registrationBean.setOrder(1);
+        return registrationBean;
+    }
+
+    @Bean
+    public FeignTraceInterceptor feignInterceptor() {
+        FeignTraceInterceptor feignTraceInterceptor = new FeignTraceInterceptor();
+        String feignTraceHeaders = "requestId,traceNo,traceAppIds,traceAppNames,traceHostNames,traceHostAddresses";
+        feignTraceInterceptor.setFeignTraceHeaders(Arrays.asList(feignTraceHeaders.split(",")));
+        return feignTraceInterceptor;
     }
 }

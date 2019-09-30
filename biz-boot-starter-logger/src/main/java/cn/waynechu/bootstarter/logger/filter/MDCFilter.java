@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apistarter.filter;
+package cn.waynechu.bootstarter.logger.filter;
 
 import cn.waynechu.bootstarter.logger.provider.ApplicationProvider;
 import cn.waynechu.springcloud.common.util.MDCUtil;
@@ -6,15 +6,11 @@ import cn.waynechu.springcloud.common.util.StringUtil;
 import cn.waynechu.springcloud.common.util.UUIDUtil;
 import cn.waynechu.springcloud.common.util.WebUtil;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
-import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -28,8 +24,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class MDCFilter extends OncePerRequestFilter {
+public class MDCFilter implements Filter {
     public static final String HEADER_KEY_TRACE_NO = "traceNo";
     public static final String HEADER_KEY_REQUEST_ID = "requestId";
 
@@ -47,12 +42,13 @@ public class MDCFilter extends OncePerRequestFilter {
     public static final String HEADER_KEY_TRACE_HOST_NAMES = "traceHostNames";
     public static final String HEADER_KEY_TRACE_HOST_ADDRESSES = "traceHostAddresses";
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        try {
-            ModifyHttpServletRequestWrapper modifyHttpServletRequestWrapper = this.modifyRequestAndAddMdc(request);
 
-            filterChain.doFilter(modifyHttpServletRequestWrapper, response);
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        try {
+            ModifyHttpServletRequestWrapper modifyHttpServletRequestWrapper = this.modifyRequestAndAddMdc((HttpServletRequest) servletRequest);
+
+            filterChain.doFilter(modifyHttpServletRequestWrapper, servletResponse);
         } finally {
             MDC.clear();
         }

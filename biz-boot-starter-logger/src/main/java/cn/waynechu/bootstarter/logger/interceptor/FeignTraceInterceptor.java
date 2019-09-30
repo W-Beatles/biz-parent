@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apistarter.interceptor;
+package cn.waynechu.bootstarter.logger.interceptor;
 
 import cn.waynechu.springcloud.common.util.StringUtil;
 import feign.RequestInterceptor;
