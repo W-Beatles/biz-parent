@@ -8,17 +8,15 @@ import cn.waynechu.springcloud.apistarter.cache.RedisCache;
 import cn.waynechu.springcloud.apistarter.filter.MDCFilter;
 import cn.waynechu.springcloud.apistarter.interceptor.FeignTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
-import cn.waynechu.springcloud.apistarter.properties.FeignTraceProperty;
-import cn.waynechu.springcloud.apistarter.properties.MDCProperty;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import java.util.Arrays;
 
 /**
  * @author zhuwei
@@ -31,11 +29,7 @@ import org.springframework.context.annotation.Import;
         DistributedLockAspect.class, RedisCache.class})
 public class CommonAutoConfiguration {
 
-    @Autowired
-    private CommonProperty commonProperty;
-
     @Bean
-    @ConditionalOnProperty(value = MDCProperty.MDC_CONFIG_PREFIX + ".enable", havingValue = "true")
     public FilterRegistrationBean<MDCFilter> mdcFilterRegistrationBean() {
         FilterRegistrationBean<MDCFilter> registrationBean = new FilterRegistrationBean<>();
         MDCFilter mdcFilter = new MDCFilter();
@@ -46,10 +40,10 @@ public class CommonAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(value = FeignTraceProperty.FEIGN_TRACE_PREFIX + ".enable", havingValue = "true")
     public FeignTraceInterceptor feignInterceptor() {
         FeignTraceInterceptor feignTraceInterceptor = new FeignTraceInterceptor();
-        feignTraceInterceptor.setFeignTraceHeaders(commonProperty.getFeignTraceInterceptor().getFeignTraceHeaders());
+        String feignTraceHeaders = "requestId,traceNo,traceAppIds,traceAppNames,traceHostNames,traceHostAddresses";
+        feignTraceInterceptor.setFeignTraceHeaders(Arrays.asList(feignTraceHeaders.split(",")));
         return feignTraceInterceptor;
     }
 

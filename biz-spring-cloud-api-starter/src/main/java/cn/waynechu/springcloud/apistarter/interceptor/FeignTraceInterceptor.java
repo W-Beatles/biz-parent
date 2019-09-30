@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.apistarter.interceptor;
 
+import cn.waynechu.springcloud.common.util.StringUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.Setter;
@@ -28,9 +29,15 @@ public class FeignTraceInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {
         Map<String, String> headers = this.getHeaders();
-        for (String headerName : headers.keySet()) {
-            if (feignTraceHeaders.contains(headerName)) {
-                requestTemplate.header(headerName, getHeaders().get(headerName));
+        for (String traceHeaderKey : feignTraceHeaders) {
+            String traceHeaderValue = headers.get(traceHeaderKey);
+            // 兼容处理header key为全小写的情况
+            if (StringUtil.isBlank(traceHeaderValue)) {
+                traceHeaderValue = headers.get(traceHeaderKey.toLowerCase());
+            }
+
+            if (StringUtil.isNotBlank(traceHeaderValue)) {
+                requestTemplate.header(traceHeaderKey, traceHeaderValue);
             }
         }
     }

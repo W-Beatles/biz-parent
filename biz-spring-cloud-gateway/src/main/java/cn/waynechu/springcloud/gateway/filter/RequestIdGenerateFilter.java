@@ -17,19 +17,19 @@ import reactor.core.publisher.Mono;
 @Component
 public class RequestIdGenerateFilter implements GlobalFilter, Ordered {
 
-    private static final String REQUEST_ID_KEY = "requestId";
+    private static final String HEADER_KEY_REQUEST_ID = "requestId";
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        String remoteRequestId = exchange.getRequest().getHeaders().getFirst(REQUEST_ID_KEY);
+        String remoteRequestId = exchange.getRequest().getHeaders().getFirst(HEADER_KEY_REQUEST_ID);
         if (StringUtil.isBlank(remoteRequestId)) {
             remoteRequestId = UUIDUtil.getShortUUID();
         }
 
         System.out.println(remoteRequestId);
-        // 传递requestId
-        ServerHttpRequest requestId = exchange.getRequest().mutate().header(REQUEST_ID_KEY, remoteRequestId).build();
-        ServerWebExchange build = exchange.mutate().request(requestId).build();
+        // 向下传递requestId
+        ServerHttpRequest mutateRequest = exchange.getRequest().mutate().header(HEADER_KEY_REQUEST_ID, remoteRequestId).build();
+        ServerWebExchange build = exchange.mutate().request(mutateRequest).build();
         return chain.filter(build);
     }
 

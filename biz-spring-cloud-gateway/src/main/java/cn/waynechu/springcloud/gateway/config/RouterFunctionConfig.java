@@ -31,7 +31,7 @@ public class RouterFunctionConfig {
     /**
      * 提供运行Swagger-ui需要的一些SwaggerResources端点
      *
-     * @return  Represents a function that routes to a {@linkplain HandlerFunction handler function}.
+     * @return Represents a function that routes to a {@linkplain HandlerFunction handler function}.
      */
     @Bean
     public RouterFunction routerFunction() {

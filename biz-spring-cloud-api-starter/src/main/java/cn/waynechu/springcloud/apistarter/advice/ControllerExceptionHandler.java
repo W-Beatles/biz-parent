@@ -54,13 +54,13 @@ public class ControllerExceptionHandler {
             log.error("[BizError] {}", e.getErrorMessage(), e);
         }
         log.info("[BizError] {}", e.getErrorMessage());
-        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.REQUEST_ID_FLAG).substring(0, 5));
+        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDCFilter.HEADER_KEY_REQUEST_ID).substring(0, 5));
     }
 
     @ExceptionHandler(Exception.class)
     public BizResponse unknownException(Exception e) {
         log.error("[SystemError] ", e);
         return BizResponse.error(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
-                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDCFilter.REQUEST_ID_FLAG).substring(0, 5));
+                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDCFilter.HEADER_KEY_REQUEST_ID).substring(0, 5));
     }
 }
