@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -60,10 +61,31 @@ public class PageInfo<T> extends PageSerializable<T> {
         return new PageInfo<>(list);
     }
 
+    /**
+     * 替换pageInfo的list数据
+     *
+     * @param replaceList 替换的数据
+     * @param <E>         替换之后的类型
+     * @return 替换后的pageInfo
+     */
     @SuppressWarnings("unchecked")
     public <E> PageInfo<E> replace(List<E> replaceList) {
         PageInfo replacePageInfo = this;
         replacePageInfo.setList(replaceList);
         return replacePageInfo;
+    }
+
+    /**
+     * 返回空分页信息
+     *
+     * @param pageNum  当前页
+     * @param pageSize 页大小
+     * @return 空分页信息
+     */
+    public PageInfo<T> emptyPage(int pageNum, int pageSize) {
+        this.setPageNum(pageNum);
+        this.setPageSize(pageSize);
+        this.setList(Collections.emptyList());
+        return this;
     }
 }
