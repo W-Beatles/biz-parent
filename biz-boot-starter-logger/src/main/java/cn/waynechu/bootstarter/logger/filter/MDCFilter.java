@@ -88,7 +88,7 @@ public class MDCFilter implements Filter {
         MDC.put(HEADER_KEY_TRACE_HOST_NAMES, hostName);
         httpServletRequestWrapper.putHeader(HEADER_KEY_TRACE_HOST_NAMES, hostName);
 
-        String hostAddress = ApplicationProvider.getHostName();
+        String hostAddress = ApplicationProvider.getHostAddress();
         String traceHostAddress = WebUtil.getReqHeader(HEADER_KEY_TRACE_HOST_ADDRESSES, request);
         if (StringUtil.isNotBlank(traceHostAddress)) {
             hostAddress = traceHostAddress + "," + hostAddress;
