@@ -14,7 +14,7 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
      parentProjectVersion - 父项目版本号。该值为 biz.logger.version.parent-project 的赋值
      appId                - 项目唯一标识。该值为 java._appid_ 的赋值
      appName              - 项目名称。该值为 spring.application.name 的赋值
-     hostName             - 服务器名称
+     hostName             - 服务器名
      hostAddress          - 服务器IP
      logger               - logger名称
      threadName           - 线程名称
@@ -24,6 +24,29 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
      ---------- MDC信息 ----------
    
     ```
+
+### 过滤器 & 拦截器
+1. MDCFilter过滤器
+
+    该过滤器用于添加调用链路日志信息到MDC中。
+
+    添加的MDC信息有:
+    ```
+    ---------- MDC信息 ----------
+    traceNo                  - 请求跟踪号。可添加到请求头或请求参数上，用于自定义追踪标记
+    requestId                - 请求唯一标识。格式为UUID(32个字符)，来自header或者由该过滤器初始化
+    apiVersion               - 请求的API版本号
+    channel                  - 调用方标识
+    deviceId                 - 设备id
+    traceAppIds              - appId调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+    traceAppNames            - appName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+    traceHostNames           - hostName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+    traceHostAddresses       - hostAddress调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+   ```
+2. FeignHeaderInterceptor拦截器。
+
+    该拦截器用于微服务间使用feign互相调用传递header请求头信息
+  
 ### 使用方式
 
 1. 添加依赖

@@ -32,16 +32,10 @@ public class MDCFilter implements Filter {
     public static final String HEADER_KEY_CHANNEL = "channel";
     public static final String HEADER_KEY_DEVICE_ID = "deviceId";
 
-    public static final String HEADER_KEY_APP_ID = "appId";
-    public static final String HEADER_KEY_APP_NAME = "appName";
-    public static final String HEADER_KEY_HOST_NAME = "hostName";
-    public static final String HEADER_KEY_HOST_ADDRESS = "hostAddress";
-
     public static final String HEADER_KEY_TRACE_APP_IDS = "traceAppIds";
     public static final String HEADER_KEY_TRACE_APP_NAMES = "traceAppNames";
     public static final String HEADER_KEY_TRACE_HOST_NAMES = "traceHostNames";
     public static final String HEADER_KEY_TRACE_HOST_ADDRESSES = "traceHostAddresses";
-
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
