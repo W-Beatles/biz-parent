@@ -6,10 +6,12 @@ import cn.waynechu.springcloud.apistarter.cache.RedisCache;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
 import cn.waynechu.springcloud.apistarter.properties.DistributedLockProperty;
 import cn.waynechu.springcloud.common.annotation.DistributedLock;
+import cn.waynechu.springcloud.common.util.DequeThreadLocal;
 import cn.waynechu.springcloud.common.util.SpelUtil;
 import cn.waynechu.springcloud.common.util.UUIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -46,6 +48,8 @@ public class DistributedLockAspect {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    private static final DequeThreadLocal<Long> DEQUE_THREAD_LOCAL = new DequeThreadLocal<>();
+
     @Before("@annotation(distributedLock)")
     public void doBefore(JoinPoint joinPoint, DistributedLock distributedLock) {
         String lockName = distributedLock.name();
@@ -65,11 +69,16 @@ public class DistributedLockAspect {
             lockKey = SpelUtil.getKey(spelKey, parameterNames, args);
         }
 
-        String lockFullName = commonProperty.getDistributedLock().getPrefix() + ":" + lockName + ":" + lockKey;
+        String lockFullName = applicationName + ":" + commonProperty.getDistributedLock().getPrefix() + ":" + lockName + ":" + lockKey;
 
         Boolean getLock = redisCache.getLock(lockFullName, UUIDUtil.getRandomUUID(), distributedLock.expire(), distributedLock.timeUnit());
         if (Boolean.FALSE.equals(getLock)) {
-            throw new BizException(BizErrorCodeEnum.TOO_MANY_REQUEST);
+            throw new BizException(BizErrorCodeEnum.RESOURCE_HAS_BEEN_LOCKED);
         }
+    }
+
+    @After("@annotation(distributedLock)")
+    public void doAfter(JoinPoint joinPoint, DistributedLock distributedLock) {
+
     }
 }

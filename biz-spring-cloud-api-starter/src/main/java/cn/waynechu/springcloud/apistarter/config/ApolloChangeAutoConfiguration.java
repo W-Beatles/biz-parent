@@ -15,7 +15,7 @@ import java.util.Set;
  */
 @Slf4j
 @Configuration
-public class ApolloChangeAutoConfig {
+public class ApolloChangeAutoConfiguration {
 
     @Value("${spring.application.name}")
     private String springApplicationName;

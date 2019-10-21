@@ -4,10 +4,15 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="">
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="perf(biz-facade-common): 完善分页工具">
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/config/ExecutorServiceAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/executor/BizThreadPoolTaskExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/properties/ExecutorServiceProperty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/enums/BizErrorCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/enums/BizErrorCodeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/aspect/DistributedLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/aspect/DistributedLockAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/config/ApolloChangeAutoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/config/ApolloChangeAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/resources/META-INF/spring.factories" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -419,7 +424,40 @@
       <serviceView>
         <option name="contentProportion" value="0.16937229" />
         <treeState>
-          <expand />
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f83ac598" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f83ac598" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@822d927a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f83ac598" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@822d927a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1e5b7690" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f83ac598" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@5218853d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f83ac598" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@5218853d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@de99d735" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f83ac598" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@5218853d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c0fc7f34" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
           <select />
         </treeState>
       </serviceView>
@@ -484,7 +522,10 @@
       <workItem from="1569808670881" duration="17987000" />
       <workItem from="1569840001755" duration="241000" />
       <workItem from="1570868073603" duration="644000" />
-      <workItem from="1571196670367" duration="428000" />
+      <workItem from="1571196670367" duration="498000" />
+      <workItem from="1571386585437" duration="4516000" />
+      <workItem from="1571391696674" duration="1444000" />
+      <workItem from="1571622377727" duration="2461000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
       <created>1562686729506</created>
@@ -815,7 +856,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569839548947</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="perf(biz-facade-common): 完善分页工具">
+      <created>1571197128535</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1571197128535</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -863,7 +911,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration，暂不推荐使用" />
     <MESSAGE value="feat(service-utility-parent): 添加utility服务" />
     <MESSAGE value="perf(biz-parent): 添加workspace.xml用于dashboard配置" />
     <MESSAGE value="feat(biz-spring-cloud-common): 添加excel解析监听器，用于excel文件解析" />
@@ -888,7 +935,8 @@
     <MESSAGE value="perf(biz-boot-starter-logger): 修改RabbitmqLayout" />
     <MESSAGE value="refactor(biz-boot-starter-logger): 添加调用链路追踪信息" />
     <MESSAGE value="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块" />
+    <MESSAGE value="perf(biz-facade-common): 完善分页工具" />
+    <option name="LAST_COMMIT_MESSAGE" value="perf(biz-facade-common): 完善分页工具" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -917,6 +965,11 @@
           <url>file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java</url>
           <line>31</line>
           <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.9.RELEASE/spring-context-5.1.9.RELEASE-sources.jar!/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.java</url>
+          <line>325</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
