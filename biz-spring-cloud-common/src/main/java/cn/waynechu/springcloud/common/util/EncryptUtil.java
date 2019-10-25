@@ -9,6 +9,7 @@ import java.security.MessageDigest;
  *
  * @author zhuwei
  * @date 2019/1/2 17:53
+ * @see org.springframework.util.DigestUtils
  */
 @UtilityClass
 public class EncryptUtil {
