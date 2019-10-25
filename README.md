@@ -46,3 +46,10 @@ SpringCloud微服务开发脚手架
 3. 完善动态数据源模块，集成`seata`分布式事务解决方案
 4. 添加文件上传模块 `biz-spring-cloud-file-upload`。需支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储 
 5. 添加统一认证鉴权模块 `biz-spring-cloud-oauth`
+6. 添加分布式任务调度系统(扩展xxl-job)
+   - 支持任务前置依赖配置
+   - 支持任务优先级配置
+   - 支持任务手动执行指定服务器IP
+   - 定制RPC通信协议，支持跨语言跨平台调度
+   - 新加任务执行线程池，替换JobThread,减少线程创建销毁带来的开销 `@see https://github.com/XuMinCha/xxl-job`
+   - 新增注解@MultiplexJobHandler和@JobMethod，支持方法级别任务，类似spring的@scheduled `@see https://github.com/XuMinCha/xxl-job`
