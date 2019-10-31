@@ -8,7 +8,6 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
-
     <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>
     <springProperty scope="context" name="elkHost" source="elk.host" defaultValue="localhost"/>
     <springProperty scope="context" name="elkPort" source="elk.port" defaultValue="5672"/>
@@ -17,7 +16,7 @@
     <springProperty scope="context" name="elkVirtualHost" source="elk.virtual-host" defaultValue="/"/>
     <springProperty scope="context" name="elkExchange" source="elk.exchange" defaultValue="topic.loggingExchange"/>
     <springProperty scope="context" name="elkRoutingKey" source="elk.routing-key" defaultValue="logback.#"/>
-    <springProperty scope="context" name="elkApplicationId" source="elk.application-id" defaultValue="anonymous"/>
+    <springProperty scope="context" name="elkApplicationId" source="elk.application-id" defaultValue="undefined"/>
     <springProperty scope="context" name="elkConnectionName" source="elk.connection-name" defaultValue="undefined"/>
 
     <!-- 引入自定义日志配置 -->
@@ -27,14 +26,6 @@
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
-    </appender>
-
-    <appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
-        <!-- 不丢失日志。默认如果队列的80%已满，则会丢弃TRACT、DEBUG、INFO级别的日志 -->
-        <discardingThreshold>0</discardingThreshold>
-        <!-- 默认队列深度，该值会影响性能。默认值为256 -->
-        <queueSize>256</queueSize>
-        <appender-ref ref="CONSOLE"/>
     </appender>
 
     <if condition='property("sentryEnable").contains("true")'>
@@ -76,6 +67,7 @@
     </if>
 
     <root level="info">
+        <appender-ref ref="CONSOLE"/>
         <if condition='property("sentryEnable").contains("true")'>
             <then>
                 <appender-ref ref="Sentry"/>
