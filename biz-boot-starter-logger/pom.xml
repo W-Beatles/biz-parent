@@ -54,6 +54,12 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.danielwegener</groupId>
+            <artifactId>logback-kafka-appender</artifactId>
+            <version>0.2.0-RC2</version>
+        </dependency>
+
         <!-- Logback condition表达式支持 -->
         <dependency>
             <groupId>org.codehaus.janino</groupId>

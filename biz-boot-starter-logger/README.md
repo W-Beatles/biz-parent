@@ -2,10 +2,10 @@
 
 ### 项目介绍
 
-该模块用于上传日志到elasticsearch及sentry中。
+该模块用于日志上传。支持RabbitMQ或Kafka日志上传
 
-1. 该模块会将logback日志通过AmqpAppender发送到指定RabbitMQ消息队列中，然后通过配置logstash的input为
-RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示。
+1. 该模块会将logback日志通过Appender发送到指定RabbitMQ消息队列/Kafka消息队列中，然后通过配置logstash的input为
+RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展示。  
 2. 该模块会将error级别日志通过SentryAppender发送到指定的Sentry DSN地址，便于错误日志汇总、Bug排查定位，
 还能及时收到的应用的错误报告。
 3. 打印的信息有
@@ -21,11 +21,10 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
      level                - 日志级别
      time                 - 日志时间。格式为 yyyy-MM-dd HH:mm:ss.SSS
      message              - 日志内容
-     ---------- MDC信息 ----------
-   
     ```
 
 ### 过滤器 & 拦截器
+
 1. MDCFilter过滤器
 
     该过滤器用于添加调用链路日志信息到MDC中。
@@ -45,7 +44,7 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
    ```
 2. FeignHeaderInterceptor拦截器。
 
-    该拦截器用于微服务间使用feign互相调用传递header请求头信息
+    该拦截器用于微服务间使用feign互相调用传递header请求头信息。
   
 ### 使用方式
 
@@ -60,24 +59,31 @@ RabbitMQ、output为elasticsearch来将日志收集到ES中并在Kibana中展示
 2. 添加配置
 
     ```
-    ## elk
-    elk.enable=true
-    elk.host=mq.waynechu.cn
-    elk.port=5672
-    elk.username=waynechu
-    elk.password=Swro39qE.mB5
-    elk.application-id=${spring.application.name}
-    elk.virtual-host=/logback
-    elk.exchange=topic.loggingExchange
-    elk.routing-key=logback.#
-    elk.connection-name=biz|${spring.application.name}
     ## sentry
     sentry.enable=true
     sentry.dsn=http://a1c395c85d244742ae2a50b90f1535b8@sentry.waynechu.cn:9000/2
     sentry.stacktrace-app-packages=
+   
+    ## elk-rabbit
+    elk.rabbitmq.enable=true
+    elk.rabbitmq.host=mq.waynechu.cn
+    elk.rabbitmq.port=5672
+    elk.rabbitmq.username=waynechu
+    elk.rabbitmq.password=Swro39qE.mB5
+    elk.rabbitmq.application-id=${spring.application.name}
+    elk.rabbitmq.virtual-host=/logback
+    elk.rabbitmq.exchange=topic.loggingExchange
+    elk.rabbitmq.routing-key=logback.#
+    elk.rabbitmq.connection-name=biz|${spring.application.name}
+   
+    ## elk-rabbit
+    elk.kafka.enable=true
+    elk.kafka.host=localhost
+    elk.kafka.port=9092
+    elk.kafka.topic=logback
     ```
+   
     注意：
-    - 为防止本地开发环境上传日志，`elk.enable=true` 和 `sentry.enable=true` 只有在非local环境下才会生效。参见 `logback-spring.xml`
     - 如果抛出 `org.springframework.amqp.AmqpConnectException` Rabbit health check failed，这是因为`org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration`生效。
     需添加如下Rabbitmq配置：
         ```
@@ -106,7 +112,7 @@ docker run -d --restart=always --name elasticsearch --net elk -p 9200:9200 -p 93
 // 启动Kibana
 docker run -d --restart=always --name kibana -e ELASTICSEARCH_URL=http://xxx.xxx.xxx.xxx:9200 --net elk -p 5601:5601 kibana:6.6.1
 // 启动Logstash
-docker run -d --restart=always --name logstash -p 7002:7002 --net elk -v /root/tools/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml -v /root/tools/logstash/pipeline/:/usr/share/logstash/pipeline/ logstash:6.6.1
+docker run -d --restart=always --name logstash -p 7002:7002 --net elk -v /root/tools/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml logstash:6.6.1
 ```
 
 ### 附: logstash收集RabbitMQ消息到elasticsearch

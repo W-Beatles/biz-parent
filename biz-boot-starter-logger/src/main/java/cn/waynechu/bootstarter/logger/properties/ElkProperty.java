@@ -1,7 +1,10 @@
 package cn.waynechu.bootstarter.logger.properties;
 
+import cn.waynechu.bootstarter.logger.properties.nested.KafkaProperty;
+import cn.waynechu.bootstarter.logger.properties.nested.RabbitmqProperty;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * @author zhuwei
@@ -13,52 +16,14 @@ public class ElkProperty {
     public static final String ELK_CONFIG_PREFIX = "elk";
 
     /**
-     * 是否开启ELK日志上传
+     * rabbitmq配置
      */
-    private Boolean enable = false;
+    @NestedConfigurationProperty
+    private RabbitmqProperty rabbitmq;
 
     /**
-     * RabbitMQ host
+     * kafka配置
      */
-    private String host;
-
-    /**
-     * RabbitMQ port
-     */
-    private Integer port;
-
-    /**
-     * RabbitMQ username
-     */
-    private String username;
-
-    /**
-     * RabbitMQ password
-     */
-    private String password;
-
-    /**
-     * RabbitMQ virtualHost
-     */
-    private String virtualHost;
-
-    /**
-     * RabbitMQ exchange
-     */
-    private String exchange;
-
-    /**
-     * RabbitMQ routingKey
-     */
-    private String routingKey;
-
-    /**
-     * 应用ID
-     */
-    private String applicationId;
-
-    /**
-     * 客户端标识(在Rabbit Admin界面展示)
-     */
-    private String connectionName;
+    @NestedConfigurationProperty
+    private KafkaProperty kafka;
 }

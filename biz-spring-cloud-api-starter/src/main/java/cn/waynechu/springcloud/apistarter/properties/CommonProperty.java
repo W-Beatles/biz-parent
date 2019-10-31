@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.apistarter.properties;
 
+import cn.waynechu.springcloud.apistarter.properties.nested.DistributedLockProperty;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

@@ -8,16 +8,50 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false"/>
-    <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false"/>
-    <springProperty scope="context" name="elkHost" source="elk.host" defaultValue="localhost"/>
-    <springProperty scope="context" name="elkPort" source="elk.port" defaultValue="5672"/>
-    <springProperty scope="context" name="elkUsername" source="elk.username" defaultValue="guest"/>
-    <springProperty scope="context" name="elkPassword" source="elk.password" defaultValue="guest"/>
-    <springProperty scope="context" name="elkVirtualHost" source="elk.virtual-host" defaultValue="/"/>
-    <springProperty scope="context" name="elkExchange" source="elk.exchange" defaultValue="topic.loggingExchange"/>
-    <springProperty scope="context" name="elkRoutingKey" source="elk.routing-key" defaultValue="logback.#"/>
-    <springProperty scope="context" name="elkApplicationId" source="elk.application-id" defaultValue="undefined"/>
-    <springProperty scope="context" name="elkConnectionName" source="elk.connection-name" defaultValue="undefined"/>
+
+    <!-- rabbitmq -->
+    <springProperty scope="context" name="elkRabbitmqEnable"
+                    source="elk.rabbitmq.enable" defaultValue="false"/>
+    <springProperty scope="context" name="elkRabbitmqHost"
+                    source="elk.rabbitmq.host" defaultValue="localhost"/>
+    <springProperty scope="context" name="elkRabbitmqPort"
+                    source="elk.rabbitmq.port" defaultValue="5672"/>
+    <springProperty scope="context" name="elkRabbitmqUsername"
+                    source="elk.rabbitmq.username" defaultValue="guest"/>
+    <springProperty scope="context" name="elkRabbitmqPassword"
+                    source="elk.rabbitmq.password" defaultValue="guest"/>
+    <springProperty scope="context" name="elkRabbitmqVirtualHost"
+                    source="elk.rabbitmq.virtual-host" defaultValue="/"/>
+    <springProperty scope="context" name="elkRabbitmqExchange"
+                    source="elk.rabbitmq.exchange" defaultValue="topic.loggingExchange"/>
+    <springProperty scope="context" name="elkRabbitmqRoutingKey"
+                    source="elk.rabbitmq.routing-key" defaultValue="logback.#"/>
+    <springProperty scope="context" name="elkRabbitmqApplicationId"
+                    source="elk.rabbitmq.application-id" defaultValue="undefined"/>
+    <springProperty scope="context" name="elkRabbitmqConnectionName"
+                    source="elk.rabbitmq.connection-name" defaultValue="undefined"/>
+
+    <!-- kafka -->
+    <springProperty scope="context" name="elkKafkaEnable"
+                    source="elk.kafka.enable" defaultValue="false"/>
+    <springProperty scope="context" name="elkKafkaHost"
+                    source="elk.kafka.host" defaultValue="localhost"/>
+    <springProperty scope="context" name="elkKafkaPort"
+                    source="elk.kafka.port" defaultValue="19092"/>
+    <springProperty scope="context" name="elkKafkaTopic"
+                    source="elk.kafka.topic" defaultValue="logback"/>
+    <springProperty scope="context" name="elkKafkaBufferMemory"
+                    source="elk.kafka.bufferMemory" defaultValue="33554432"/>
+    <springProperty scope="context" name="elkKafkaAcks"
+                    source="elk.kafka.acks" defaultValue="1"/>
+    <springProperty scope="context" name="elkKafkaLingerMs"
+                    source="elk.kafka.linger-ms" defaultValue="100"/>
+    <springProperty scope="context" name="elkKafkaMaxBlockMs"
+                    source="elk.kafka.max-block-ms" defaultValue="60000"/>
+    <springProperty scope="context" name="elkKafkaCompressionType"
+                    source="elk.kafka.compression-type" defaultValue="gzip"/>
+    <springProperty scope="context" name="elkKafkaRetries"
+                    source="elk.kafka.retries" defaultValue="2"/>
 
     <!-- 引入自定义日志配置 -->
     <include file="src/main/resources/logback-custom-spring.xml"/>
@@ -38,30 +72,62 @@
         </then>
     </if>
 
-    <if condition='property("elkEnable").contains("true")'>
+    <if condition='property("elkRabbitmqEnable").contains("true")'>
         <then>
-            <appender name="ELK" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+            <appender name="ELK_RABBITMQ" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+                <layout class="cn.waynechu.bootstarter.logger.layout.RabbitmqLayout"/>
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                     <level>INFO</level>
                 </filter>
-                <host>${elkHost}</host>
-                <port>${elkPort}</port>
-                <username>${elkUsername}</username>
-                <password>${elkPassword}</password>
-                <applicationId>${applicationId}</applicationId>
-                <virtualHost>${elkVirtualHost}</virtualHost>
-                <exchangeName>${elkExchange}</exchangeName>
+
+                <host>${elkRabbitmqHost}</host>
+                <port>${elkRabbitmqPort}</port>
+                <username>${elkRabbitmqUsername}</username>
+                <password>${elkRabbitmqPassword}</password>
+                <applicationId>${elkRabbitmqApplicationId}</applicationId>
+                <virtualHost>${elkRabbitmqVirtualHost}</virtualHost>
+                <exchangeName>${elkRabbitmqExchange}</exchangeName>
                 <exchangeType>topic</exchangeType>
                 <declareExchange>true</declareExchange>
-                <routingKeyPattern>${elkRoutingKey}</routingKeyPattern>
+                <routingKeyPattern>${elkRabbitmqRoutingKey}</routingKeyPattern>
                 <autoDelete>false</autoDelete>
                 <generateId>true</generateId>
                 <durable>true</durable>
                 <deliveryMode>PERSISTENT</deliveryMode>
                 <charset>UTF-8</charset>
                 <contentType>text/json</contentType>
-                <connectionName>${elkConnectionName}</connectionName>
-                <layout class="cn.waynechu.bootstarter.logger.layout.RabbitmqLayout"/>
+                <connectionName>${elkRabbitmqConnectionName}</connectionName>
+            </appender>
+        </then>
+    </if>
+
+    <if condition='property("elkKafkaEnable").contains("true")'>
+        <then>
+            <appender name="ELK_KAFKA" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+                <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                    <layout class="cn.waynechu.bootstarter.logger.layout.RabbitmqLayout"/>
+                </encoder>
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>INFO</level>
+                </filter>
+
+                <topic>${elkKafkaTopic}</topic>
+                <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy"/>
+                <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy"/>
+                <!-- Optional parameter to use a fixed partition -->
+                <!-- <partition>0</partition> -->
+                <!-- Optional parameter to include log timestamps into the kafka message -->
+                <!-- <appendTimestamp>true</appendTimestamp> -->
+                <!-- each <producerConfig> translates to regular kafka-client config (format: key=value) -->
+                <!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
+                <!-- bootstrap.servers is the only mandatory producerConfig -->
+                <producerConfig>bootstrap.servers=${elkKafkaHost}:${elkKafkaPort}</producerConfig>
+                <producerConfig>buffer.memory=${elkKafkaBufferMemory}</producerConfig>
+                <producerConfig>acks=${elkKafkaAcks}</producerConfig>
+                <producerConfig>linger.ms=${elkKafkaLingerMs}</producerConfig>
+                <producerConfig>max.block.ms=${elkKafkaMaxBlockMs}</producerConfig>
+                <producerConfig>compression.type=${elkKafkaCompressionType}</producerConfig>
+                <producerConfig>retries=${elkKafkaRetries}</producerConfig>
             </appender>
         </then>
     </if>
@@ -73,9 +139,14 @@
                 <appender-ref ref="Sentry"/>
             </then>
         </if>
-        <if condition='property("elkEnable").contains("true")'>
+        <if condition='property("elkRabbitmqEnable").contains("true")'>
             <then>
-                <appender-ref ref="ELK"/>
+                <appender-ref ref="ELK_RABBITMQ"/>
+            </then>
+        </if>
+        <if condition='property("elkKafkaEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK_KAFKA"/>
             </then>
         </if>
     </root>

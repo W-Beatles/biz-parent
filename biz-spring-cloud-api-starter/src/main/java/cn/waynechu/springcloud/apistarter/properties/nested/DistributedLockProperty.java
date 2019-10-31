@@ -1,5 +1,6 @@
-package cn.waynechu.springcloud.apistarter.properties;
+package cn.waynechu.springcloud.apistarter.properties.nested;
 
+import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
 import lombok.Data;
 
 /**

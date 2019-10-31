@@ -5,7 +5,7 @@ import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.springcloud.apistarter.cache.RedisCache;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
-import cn.waynechu.springcloud.apistarter.properties.DistributedLockProperty;
+import cn.waynechu.springcloud.apistarter.properties.nested.DistributedLockProperty;
 import cn.waynechu.springcloud.common.annotation.DistributedLock;
 import cn.waynechu.springcloud.common.util.DequeThreadLocal;
 import cn.waynechu.springcloud.common.util.SpelUtil;
