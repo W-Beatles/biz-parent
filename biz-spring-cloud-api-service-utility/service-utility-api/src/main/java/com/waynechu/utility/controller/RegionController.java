@@ -1,7 +1,6 @@
 package com.waynechu.utility.controller;
 
 import cn.waynechu.facade.common.response.BizResponse;
-import cn.waynechu.springcloud.common.annotation.DistributedLock;
 import com.waynechu.utility.domain.service.RegionService;
 import com.waynechu.utility.facade.response.RegionResponse;
 import io.swagger.annotations.Api;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author zhuwei

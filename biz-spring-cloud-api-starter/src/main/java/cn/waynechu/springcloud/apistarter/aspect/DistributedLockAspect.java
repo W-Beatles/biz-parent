@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.apistarter.aspect;
 
+import cn.waynechu.bootstarter.logger.filter.MDCFilter;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.springcloud.apistarter.cache.RedisCache;
@@ -9,6 +10,7 @@ import cn.waynechu.springcloud.common.annotation.DistributedLock;
 import cn.waynechu.springcloud.common.util.DequeThreadLocal;
 import cn.waynechu.springcloud.common.util.SpelUtil;
 import cn.waynechu.springcloud.common.util.UUIDUtil;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -18,13 +20,18 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
- * 方法访问控制切面
+ * 分布式锁切面
  *
  * <pre>
  * 示例场景：
- * 1.接口因为前端按钮的多次点击重复请求的问题
+ * 1.分布式资源访问控制
+ * 2.单位时间内接口访问控制
  *
  * 切面生效条件:
  * 1. biz.api.starter.distributed-lock.enable=true
@@ -48,7 +55,7 @@ public class DistributedLockAspect {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    private static final DequeThreadLocal<Long> DEQUE_THREAD_LOCAL = new DequeThreadLocal<>();
+    private static final DequeThreadLocal<DistributeLockHolder> DEQUE_THREAD_LOCAL = new DequeThreadLocal<>();
 
     @Before("@annotation(distributedLock)")
     public void doBefore(JoinPoint joinPoint, DistributedLock distributedLock) {
@@ -69,16 +76,38 @@ public class DistributedLockAspect {
             lockKey = SpelUtil.getKey(spelKey, parameterNames, args);
         }
 
+        log.info("asdf");
+
+        // 锁全名格式: 应用名:分布式锁前缀:类名.方法名():锁关键字
         String lockFullName = applicationName + ":" + commonProperty.getDistributedLock().getPrefix() + ":" + lockName + ":" + lockKey;
 
-        Boolean getLock = redisCache.getLock(lockFullName, UUIDUtil.getRandomUUID(), distributedLock.expire(), distributedLock.timeUnit());
+        HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String requestId = servletRequest.getHeader(MDCFilter.HEADER_KEY_REQUEST_ID);
+
+        DistributeLockHolder lockHolder = new DistributeLockHolder();
+        lockHolder.setLockFullName(lockFullName);
+        lockHolder.setRequestId(requestId == null ? UUIDUtil.getShortUUID() : requestId);
+        DEQUE_THREAD_LOCAL.offerFirst(lockHolder);
+
+        Boolean getLock = redisCache.getLock(lockFullName, requestId, distributedLock.expire(), distributedLock.timeUnit());
         if (Boolean.FALSE.equals(getLock)) {
             throw new BizException(BizErrorCodeEnum.RESOURCE_HAS_BEEN_LOCKED);
         }
     }
 
     @After("@annotation(distributedLock)")
-    public void doAfter(JoinPoint joinPoint, DistributedLock distributedLock) {
+    public void doAfter(DistributedLock distributedLock) {
+        if (distributedLock.autoRelease()) {
+            DistributeLockHolder localHolder = DEQUE_THREAD_LOCAL.pollFirst();
+            if (localHolder != null) {
+                redisCache.delLock(localHolder.getLockFullName(), localHolder.getRequestId());
+            }
+        }
+    }
 
+    @Data
+    private static class DistributeLockHolder {
+        private String lockFullName;
+        private String requestId;
     }
 }

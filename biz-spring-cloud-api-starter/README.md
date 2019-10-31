@@ -25,7 +25,7 @@
 
 4. MethodLogAspect 方法调用情况切面 (默认开启)
 
-5. DistributedLockAspect 分布式锁实现，用于方法访问控制 (默认关闭)
+5. DistributedLockAspect 分布式锁实现，用于资源访问控制 (默认关闭)
 
     参考配置:
     ```

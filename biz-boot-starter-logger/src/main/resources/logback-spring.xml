@@ -29,6 +29,14 @@
         </encoder>
     </appender>
 
+    <appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志。默认如果队列的80%已满，则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 默认队列深度，该值会影响性能。默认值为256 -->
+        <queueSize>256</queueSize>
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
     <if condition='property("sentryEnable").contains("true")'>
         <then>
             <appender name="Sentry" class="io.sentry.logback.SentryAppender">
@@ -67,8 +75,7 @@
         </then>
     </if>
 
-    <logger name="com" level="INFO" additivity="false">
-        <appender-ref ref="CONSOLE"/>
+    <root level="info">
         <if condition='property("sentryEnable").contains("true")'>
             <then>
                 <appender-ref ref="Sentry"/>
@@ -79,33 +86,5 @@
                 <appender-ref ref="ELK"/>
             </then>
         </if>
-    </logger>
-
-    <logger name="cn" level="INFO" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <if condition='property("sentryEnable").contains("true")'>
-            <then>
-                <appender-ref ref="Sentry"/>
-            </then>
-        </if>
-        <if condition='property("elkEnable").contains("true")'>
-            <then>
-                <appender-ref ref="ELK"/>
-            </then>
-        </if>
-    </logger>
-
-    <logger name="org" level="INFO" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <if condition='property("sentryEnable").contains("true")'>
-            <then>
-                <appender-ref ref="Sentry"/>
-            </then>
-        </if>
-        <if condition='property("elkEnable").contains("true")'>
-            <then>
-                <appender-ref ref="ELK"/>
-            </then>
-        </if>
-    </logger>
+    </root>
 </configuration>

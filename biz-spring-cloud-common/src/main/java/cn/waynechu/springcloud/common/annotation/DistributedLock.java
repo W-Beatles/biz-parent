@@ -43,4 +43,15 @@ public @interface DistributedLock {
      * @return 时间单位
      */
     TimeUnit timeUnit() default TimeUnit.SECONDS;
+
+    /**
+     * 方法返回自动释放锁。默认是
+     *
+     * <pre>
+     *     当该值为否时，分布式锁退化成访问控制作用，限定时间内只有一个请求能够持有该锁，直到锁自动过期
+     * </pre>
+     *
+     * @return 自动释放锁
+     */
+    boolean autoRelease() default true;
 }
