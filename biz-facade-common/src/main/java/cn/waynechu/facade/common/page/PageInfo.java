@@ -19,7 +19,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(description = "分页返回对象")
 public class PageInfo<T> extends PageSerializable<T> {
     private static final long serialVersionUID = -5598171228549570150L;
@@ -32,6 +32,9 @@ public class PageInfo<T> extends PageSerializable<T> {
 
     @ApiModelProperty("总页数")
     private int pages;
+
+    @ApiModelProperty("是否为最后一页")
+    private boolean isLastPage = false;
 
     public PageInfo(int pageNum, int pageSize) {
         this.pageNum = pageNum;
@@ -55,6 +58,7 @@ public class PageInfo<T> extends PageSerializable<T> {
             this.pageSize = list.size();
             this.pages = this.pageSize > 0 ? 1 : 0;
         }
+        isLastPage = pageNum == pages || pages == 0;
     }
 
     public static <T> PageInfo<T> of(List<T> list) {
