@@ -44,13 +44,13 @@ public class PageDetail<T> extends PageSerializable<T> {
     private int nextPage;
 
     @ApiModelProperty("是否为第一页")
-    private boolean isFirstPage = false;
+    private Boolean isFirstPage = false;
     @ApiModelProperty("是否为最后一页")
-    private boolean isLastPage = false;
+    private Boolean isLastPage = false;
     @ApiModelProperty("是否有前一页")
-    private boolean hasPreviousPage = false;
+    private Boolean hasPreviousPage = false;
     @ApiModelProperty("是否有下一页")
-    private boolean hasNextPage = false;
+    private Boolean hasNextPage = false;
 
     @ApiModelProperty("导航页码数")
     private int navigatePages;

@@ -4,11 +4,13 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="feat(biz-boot-starter-dynamic-datasource): 完善动态数据源">
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="feat(biz-boot-starter-logger): 支持kafka日志上传">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/filter/MDCFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/filter/MDCFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-facade-common/src/main/java/cn/waynechu/facade/common/page/PageInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/RegexUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/RegexUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/StringUtil.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,6 +91,11 @@
   </component>
   <component name="ProjectId" id="1Qe1wLyfEQzmOdL44SKYEhkf0fr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
@@ -114,12 +121,12 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-starter\src\main\java\cn\waynechu\springcloud\apicommon\config" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger\properties" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-facade\src\main" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-dashboard-turbine\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-boot-admin\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.waynechu.bootstarter.logger.interceptor" />
@@ -128,12 +135,12 @@
       <recent name="cn.waynechu.bootstarter.datasoureframe.toolkit" />
       <recent name="cn.waynechu.bootstarter.datasoureframe.interceptor" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-boot-starter-logger\src\main\java\cn\waynechu\bootstarter\logger\properties" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-facade\src\main" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-dashboard-turbine\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-boot-admin\src\main\resources" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-starter\src\main\java\cn\waynechu\springcloud\apicommon\config" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-dynamic-datasource-test\dynamic-datasource-test-integration-dal\src\main" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-archetype\src\main\resources\archetype-resources\__rootArtifactId__-api\src\main\java\com\waynechu" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -142,21 +149,36 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-    <option name="contentProportion" value="0.23430736" />
   </component>
-  <component name="RunManager" selected="Spring Boot.(9001) eureka-peer1">
+  <component name="RunManager" selected="Application.ByteUtil">
+    <configuration name="ByteUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.waynechu.springcloud.common.util.ByteUtil" />
+      <module name="biz-spring-cloud-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.waynechu.springcloud.common.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UUIDUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.waynechu.springcloud.common.util.UUIDUtil" />
+      <module name="biz-spring-cloud-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.waynechu.springcloud.common.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.waynechu.springcloud.common.util.WebUtil" />
       <module name="biz-spring-cloud-common" />
       <extension name="coverage">
         <pattern>
@@ -393,6 +415,8 @@
     </configuration>
     <list>
       <item itemvalue="Application.UUIDUtil" />
+      <item itemvalue="Application.WebUtil" />
+      <item itemvalue="Application.ByteUtil" />
       <item itemvalue="Spring Boot.(9010) gateway" />
       <item itemvalue="Spring Boot.(9020) boot-admin" />
       <item itemvalue="Spring Boot.(9030) hystrix-dashboard" />
@@ -409,19 +433,22 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ByteUtil" />
+        <item itemvalue="Application.WebUtil" />
         <item itemvalue="Application.UUIDUtil" />
       </list>
     </recent_temporary>
   </component>
   <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <option name="contentProportion" value="0.16937229" />
-        <treeState>
-          <expand />
-          <select />
-        </treeState>
-      </serviceView>
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
     </option>
   </component>
   <component name="TaskManager">
@@ -485,20 +512,29 @@
       <workItem from="1570001946645" duration="1744000" />
       <workItem from="1570005980834" duration="533000" />
       <workItem from="1570006532999" duration="8000" />
-    </task>
-    <task id="LOCAL-00001" summary="refactor(app-parent): 修改项目名称">
-      <created>1562686729506</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1562686729506</updated>
-    </task>
-    <task id="LOCAL-00002" summary="doc(biz-parent): 文档完善">
-      <created>1562750339494</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1562750339494</updated>
+      <workItem from="1572433085953" duration="2277000" />
+      <workItem from="1572490781819" duration="17077000" />
+      <workItem from="1572513072877" duration="9000" />
+      <workItem from="1572514105963" duration="104000" />
+      <workItem from="1572586989761" duration="3374000" />
+      <workItem from="1572832980937" duration="1667000" />
+      <workItem from="1572871651146" duration="613000" />
+      <workItem from="1573022938011" duration="52000" />
+      <workItem from="1573043960439" duration="976000" />
+      <workItem from="1573458292893" duration="28000" />
+      <workItem from="1573458335359" duration="9000" />
+      <workItem from="1573463209706" duration="668000" />
+      <workItem from="1573732589716" duration="1428000" />
+      <workItem from="1573783911398" duration="2284000" />
+      <workItem from="1574164304720" duration="622000" />
+      <workItem from="1574252961193" duration="640000" />
+      <workItem from="1574391295390" duration="855000" />
+      <workItem from="1574736410217" duration="1753000" />
+      <workItem from="1574749002787" duration="4302000" />
+      <workItem from="1574925828820" duration="624000" />
+      <workItem from="1575018290535" duration="703000" />
+      <workItem from="1575444771458" duration="1375000" />
+      <workItem from="1575550586330" duration="764000" />
     </task>
     <task id="LOCAL-00003" summary="perf(biz-boot-starter-logger): 修改banner版本提示">
       <created>1562760581621</created>
@@ -801,7 +837,49 @@
       <option name="project" value="LOCAL" />
       <updated>1569757883818</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="feat(biz-parent): 添加todo list">
+      <created>1571997364382</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1571997364382</updated>
+    </task>
+    <task id="LOCAL-00047" summary="conf(biz-parent): 修改配置">
+      <created>1572492169951</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1572492169951</updated>
+    </task>
+    <task id="LOCAL-00048" summary="feat(biz-spring-cloud-api-starter): 分布式锁支持autoRelease自动锁释放控制">
+      <created>1572504653485</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1572504653485</updated>
+    </task>
+    <task id="LOCAL-00049" summary="perf(biz-boot-starter-logger): logback配置修改">
+      <created>1572506552041</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1572506552041</updated>
+    </task>
+    <task id="LOCAL-00050" summary="feat(biz-boot-starter-logger): 支持kafka日志上传">
+      <created>1572512993573</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1572512993573</updated>
+    </task>
+    <task id="LOCAL-00051" summary="perf(biz-facade-common): 分页信息添加是否为最后一页信息">
+      <created>1572589841830</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1572589841831</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -849,13 +927,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration，暂不推荐使用" />
-    <MESSAGE value="feat(service-utility-parent): 添加utility服务" />
-    <MESSAGE value="perf(biz-parent): 添加workspace.xml用于dashboard配置" />
-    <MESSAGE value="feat(biz-spring-cloud-common): 添加excel解析监听器，用于excel文件解析" />
-    <MESSAGE value="perf(biz-spring-cloud-archetype): 修改项目骨架依赖关系" />
-    <MESSAGE value="style(biz-spring-cloud-api-starter): 添加相关注释; 修改包结构" />
-    <MESSAGE value="config(biz-parent): 修改elk地址" />
     <MESSAGE value="config(service-utility-api): 修改短链地址前缀" />
     <MESSAGE value="perf(biz-parent): 升级fastjson版本到1.2.60-修复拒绝服务安全问题" />
     <MESSAGE value="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration" />
@@ -874,7 +945,24 @@
     <MESSAGE value="perf(biz-boot-starter-logger): 修改RabbitmqLayout" />
     <MESSAGE value="refactor(biz-boot-starter-logger): 添加调用链路追踪信息" />
     <MESSAGE value="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块" />
+    <MESSAGE value="feat(biz-parent): 添加todo list" />
+    <MESSAGE value="conf(biz-parent): 修改配置" />
+    <MESSAGE value="feat(biz-spring-cloud-api-starter): 分布式锁支持autoRelease自动锁释放控制" />
+    <MESSAGE value="conf(biz-parent): 完善动态数据源" />
+    <MESSAGE value="perf(biz-boot-starter-logger): logback配置修改" />
+    <MESSAGE value="feat(biz-boot-starter-logger): 支持kafka日志上传" />
+    <MESSAGE value="perf(biz-facade-common): 分页信息添加是否为最后一页信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="perf(biz-facade-common): 分页信息添加是否为最后一页信息" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="495" y="105" key="CommitChangelistDialog2" timestamp="1575551344191">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="495" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1575551344191" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1575551188751">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575551188751" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

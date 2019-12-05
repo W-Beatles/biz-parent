@@ -34,7 +34,7 @@ public class PageInfo<T> extends PageSerializable<T> {
     private int pages;
 
     @ApiModelProperty("是否为最后一页")
-    private boolean isLastPage = false;
+    private Boolean isLastPage = false;
 
     public PageInfo(int pageNum, int pageSize) {
         this.pageNum = pageNum;
@@ -77,6 +77,16 @@ public class PageInfo<T> extends PageSerializable<T> {
         PageInfo replacePageInfo = this;
         replacePageInfo.setList(replaceList);
         return replacePageInfo;
+    }
+
+    /**
+     * 返回空分页信息
+     *
+     * @return 空分页信息
+     */
+    public PageInfo<T> emptyPage() {
+        this.setList(Collections.emptyList());
+        return this;
     }
 
     /**

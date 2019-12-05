@@ -127,6 +127,9 @@ public class RegexUtils {
      */
     public static final String REGEX_NOT_WORDS = "^[a-zA-Z]+$";
 
+    /**
+     * 中文汉字
+     */
     public static final Pattern ZH_PATTERN = Pattern.compile("[\u4e00-\u9fa5]");
 
 

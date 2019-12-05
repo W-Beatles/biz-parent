@@ -2,6 +2,8 @@ package cn.waynechu.springcloud.common.util;
 
 import lombok.experimental.UtilityClass;
 
+import java.util.regex.Matcher;
+
 /**
  * @author zhuwei
  * @date 2018/11/6 16:21
@@ -79,5 +81,16 @@ public class StringUtil {
             return String.valueOf(cs);
         }
         return null;
+    }
+
+    /**
+     * 判断字符串中是否包含汉字
+     *
+     * @param str 字符串
+     * @return true if 包含汉字
+     */
+    public static boolean checkContainChinese(String str) {
+        Matcher matcher = RegexUtils.ZH_PATTERN.matcher(str);
+        return matcher.find();
     }
 }
