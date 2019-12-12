@@ -49,7 +49,7 @@ public class CollectionUtil {
         int count = (size + len - 1) / len;
 
         for (int i = 0; i < count; i++) {
-            List<T> subList = list.subList(i * len, ((i + 1) * len > size ? size : (i + 1) * len));
+            List<T> subList = list.subList(i * len, (Math.min((i + 1) * len, size)));
             result.add(subList);
         }
         return result;
