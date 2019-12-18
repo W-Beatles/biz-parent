@@ -2,7 +2,7 @@
 
 ### 项目介绍
 
-1. 基于Spring提供的 AbstractDataSource 实现多数据源路由选择
+1. 基于Spring提供的 LazyConnectionDataSourceProxy 实现多数据源路由选择
 2. 基于MyBatis拦截器实现主从数据源的动态切换
 3. 集成Druid数据源监控多数据源，支持原生SQL监控、防火墙监控、慢查询日志、Url监控、Spring监控等
 4. 可实现 **DynamicDataSourceStrategy** 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
