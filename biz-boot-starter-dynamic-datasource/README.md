@@ -116,27 +116,25 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
     
     当方法执行到创建订单时，因为此时操作的还是产品库，会抛出异常。在事务控制下，无法实现数据源的切换。
 
-2. 限制了 **mapper(xml)** 文件放置的位置。目前切换不同数据库的逻辑是使用MyBatis拦截器拿到
- **MappedStatement** 对象的 **resource** 字符串。其中 **resource** 代表了当前查询的mapper方法对应的xml的存放路径。
+2. 限制了 **XxxMapper.java** 文件放置的位置。目前切换不同数据库的逻辑是使用MyBatis拦截器拿到
+   **MappedStatement** 对象的 **resource** 字符串。其中 **resource** 代表了当前查询的 **XxxMapper.java** 存放路径。
      
      关键代码如下：
      ```
      MappedStatement ms = (MappedStatement) args[0];
-     String resource = ms.getResource(); // resource = "file [C:\Users\zhuwei\workspace\biz-parent\order-integration-dal\target\classes\sqlmap\gungnir\OrderMapper.xml]";
+     String resource = ms.getResource(); // resource = "com/waynechu/dynamicdatasource/dal/mapper/order/OrderMapper.java (best guess)";
      String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
-     String groupName = splitResource[splitResource.length - 2]; // groupName = "gungnir"
+     String groupName = splitResource[splitResource.length - 2]; // groupName = "order"
      ```
-    这样拦截器就可以获取到当前要操作的数据库属于 **gungnir** 数据源组。
+    这样拦截器就可以获取到当前要操作的数据库属于 **order** 数据源组。
     
     所以，**关键！关键！关键！**
-    把属于不同数据库的mapper.xml文件放在 **对应数据库组名** 的文件夹下
+    把属于不同数据库的 **XxxMapper.java** 文件放在 **对应数据库组名** 的文件夹下
     
     比如：
-    - resource
-       - sqlmap
+    - com.waynechu.dynamicdatasource.dal
+       - mapper
           - order
-             - test1.xml
-             - test2.xml
+             - OrderMapper.java
           - product
-             - test3.xml
-             - test4.xml
+             - ProductMapper.java

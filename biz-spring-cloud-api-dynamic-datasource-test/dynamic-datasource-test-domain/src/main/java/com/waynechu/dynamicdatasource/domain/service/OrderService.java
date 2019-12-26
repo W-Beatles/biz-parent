@@ -12,6 +12,7 @@ import com.waynechu.dynamicdatasource.facade.response.OrderDetailResponse;
 import com.waynechu.dynamicdatasource.facade.response.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhuwei
