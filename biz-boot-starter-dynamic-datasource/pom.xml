@@ -102,11 +102,13 @@
                     <includes>
                         <include>src/main/java/**</include>
                     </includes>
+                    <strictCheck>true</strictCheck>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>check</goal>
+                            <goal>remove</goal>
+                            <goal>format</goal>
                         </goals>
                     </execution>
                 </executions>

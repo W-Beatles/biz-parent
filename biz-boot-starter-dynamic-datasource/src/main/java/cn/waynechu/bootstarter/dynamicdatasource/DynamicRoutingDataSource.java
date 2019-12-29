@@ -18,7 +18,6 @@ package cn.waynechu.bootstarter.dynamicdatasource;
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DynamicDataSourceProvider;
 import cn.waynechu.bootstarter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
-import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -60,9 +59,9 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     protected Class<? extends DynamicDataSourceStrategy> strategy;
 
     /**
-     * 单数据源
+     * 所有数据源
      */
-    private Map<String, DataSource> singleDataSource = new LinkedHashMap<>();
+    private Map<String, DataSource> allDataSource = new LinkedHashMap<>();
     /**
      * 分组数据库
      */
@@ -96,10 +95,8 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     public void addDataSource(String dataSourceName, DataSource dataSource) {
         if (dataSourceName.contains(GROUP_FLAG)) {
             addGroupDataSource(dataSourceName, dataSource);
-        } else {
-            singleDataSource.put(dataSourceName, dataSource);
-            log.info("添加单数据源 [{}]", dataSourceName);
         }
+        allDataSource.put(dataSourceName, dataSource);
     }
 
     /**
@@ -144,29 +141,28 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
      * @return 数据源
      */
     private DataSource getDataSource(String lookUpKey) {
-        DataSource dataSource;
         if (StringUtils.isEmpty(lookUpKey)) {
-            dataSource = primaryDataSource;
-        } else {
+            return primaryDataSource;
+        }
+
+        DataSource dataSource = allDataSource.get(lookUpKey);
+        if (dataSource != null) {
+            return dataSource;
+        }
+
+        if (lookUpKey.contains(GROUP_FLAG)) {
+
             String[] splitStr = lookUpKey.split(GROUP_FLAG);
             String groupName = splitStr[0];
             String dataSourceType = splitStr[1];
 
-            DynamicGroupDataSource getFromGroup = groupDataSources.get(groupName);
-            if (getFromGroup != null) {
-                dataSource = getFromGroupDataSource(groupName, dataSourceType);
-            } else {
-                dataSource = singleDataSource.get(groupName);
+            DynamicGroupDataSource dynamicGroupDataSource = groupDataSources.get(groupName);
+            if (dynamicGroupDataSource != null) {
+                return this.getFromGroupDataSource(groupName, dataSourceType);
             }
         }
 
-        if (dataSource instanceof DruidDataSource) {
-            String dataSourceName = ((DruidDataSource) dataSource).getName();
-            if (loggerEnable) {
-                log.info("使用动态数据源 [{}]", dataSourceName);
-            }
-        }
-        return dataSource;
+        throw new RuntimeException("Unknown lookUpKey.");
     }
 
     /**
