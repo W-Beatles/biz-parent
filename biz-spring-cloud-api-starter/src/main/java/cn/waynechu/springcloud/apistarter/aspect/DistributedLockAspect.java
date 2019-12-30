@@ -76,8 +76,6 @@ public class DistributedLockAspect {
             lockKey = SpelUtil.getKey(spelKey, parameterNames, args);
         }
 
-        log.info("asdf");
-
         // 锁全名格式: 应用名:分布式锁前缀:类名.方法名():锁关键字
         String lockFullName = applicationName + ":" + commonProperty.getDistributedLock().getPrefix() + ":" + lockName + ":" + lockKey;
 

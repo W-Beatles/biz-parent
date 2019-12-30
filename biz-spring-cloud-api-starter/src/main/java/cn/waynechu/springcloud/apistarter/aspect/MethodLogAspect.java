@@ -68,8 +68,8 @@ public class MethodLogAspect {
      *
      * @return 不打印的入参类型
      */
-    private static Collection<Class> excludePrintClass() {
-        ArrayList<Class> excludePrintClass = new ArrayList<>(1);
+    private static Collection<Class<?>> excludePrintClass() {
+        ArrayList<Class<?>> excludePrintClass = new ArrayList<>(1);
         excludePrintClass.add(Invisible.class);
         return excludePrintClass;
     }
@@ -113,7 +113,7 @@ public class MethodLogAspect {
         ArrayList<Object> args = new ArrayList<>();
         for (Object arg : joinPoint.getArgs()) {
             boolean isInstance = false;
-            for (Class clazz : excludePrintClass()) {
+            for (Class<?> clazz : excludePrintClass()) {
                 if (clazz.isInstance(arg)) {
                     isInstance = true;
                     break;

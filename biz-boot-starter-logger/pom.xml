@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>biz-boot-starter-logger</artifactId>
-    <version>1.0.2019091001-RELEASE</version>
+    <version>1.0.2019123001-RELEASE</version>
     <name>biz-boot-starter-logger</name>
     <description>biz-boot-starter-logger module</description>
 
