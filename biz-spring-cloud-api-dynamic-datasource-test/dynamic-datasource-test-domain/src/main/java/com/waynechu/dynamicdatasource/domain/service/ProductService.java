@@ -1,5 +1,6 @@
 package com.waynechu.dynamicdatasource.domain.service;
 
+import cn.waynechu.bootstarter.dynamicdatasource.annotion.SwitchDataSource;
 import com.waynechu.dynamicdatasource.dal.dataobject.product.ProductDO;
 import com.waynechu.dynamicdatasource.domain.convert.ProductConvert;
 import com.waynechu.dynamicdatasource.domain.repository.ProductRepository;
@@ -18,6 +19,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public ProductResponse getById(Long productId) {
+        ProductDO product = productRepository.getById(productId);
+        return ProductConvert.toProductResponse(product);
+    }
+
+    @SwitchDataSource("product-master")
+    public ProductResponse getByIdAndSwitch(Long productId) {
         ProductDO product = productRepository.getById(productId);
         return ProductConvert.toProductResponse(product);
     }

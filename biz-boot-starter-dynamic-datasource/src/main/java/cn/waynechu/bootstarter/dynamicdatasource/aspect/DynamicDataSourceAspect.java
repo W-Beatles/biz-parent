@@ -1,12 +1,12 @@
 /**
  * Copyright © 2018 organization waynechu
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,14 +19,16 @@ import cn.waynechu.bootstarter.dynamicdatasource.annotion.SwitchDataSource;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 
 /**
+ * 动态数据源切面
+ *
  * @author zhuwei
  * @date 2019/12/27 13:35
  */
@@ -35,7 +37,7 @@ import java.lang.reflect.Method;
 public class DynamicDataSourceAspect {
 
     @Before("@within(switchDataSource) || @annotation(switchDataSource)")
-    public void changeDataSource(JoinPoint point, SwitchDataSource switchDataSource) {
+    public void switchDataSource(JoinPoint point, SwitchDataSource switchDataSource) {
         Method method = ((MethodSignature) point.getSignature()).getMethod();
         SwitchDataSource annotation = method.getAnnotation(SwitchDataSource.class);
 
@@ -47,11 +49,9 @@ public class DynamicDataSourceAspect {
         }
 
         String value = annotation.value();
-        DynamicDataSourceContextHolder.push(value);
+        if (!StringUtils.isEmpty(value)) {
+            DynamicDataSourceContextHolder.push(value);
+        }
     }
 
-    @After("@within(switchDataSource) || @annotation(switchDataSource)")
-    public void clean(SwitchDataSource switchDataSource) {
-        DynamicDataSourceContextHolder.peek();
-    }
 }

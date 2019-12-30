@@ -29,4 +29,11 @@ public class ProductController {
         ProductResponse productResponse = productService.getById(productId);
         return BizResponse.success(productResponse);
     }
+
+    @ApiOperation("根据产品id获取产品详情(指定数据源)")
+    @GetMapping("/switch/{productId}")
+    public BizResponse<ProductResponse> getByIdAndSwitch(@PathVariable Long productId) {
+        ProductResponse productResponse = productService.getByIdAndSwitch(productId);
+        return BizResponse.success(productResponse);
+    }
 }

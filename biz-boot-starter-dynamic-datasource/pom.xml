@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-    <version>1.0.2019092001-RELEASE</version>
+    <version>1.0.2019123001-RELEASE</version>
     <name>biz-boot-starter-dynamic-datasource</name>
     <description>biz-boot-starter-dynamic-datasource module</description>
 

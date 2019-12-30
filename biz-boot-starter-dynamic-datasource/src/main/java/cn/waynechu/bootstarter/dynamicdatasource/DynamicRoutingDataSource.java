@@ -1,12 +1,12 @@
 /**
  * Copyright © 2018 organization waynechu
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,6 +18,7 @@ package cn.waynechu.bootstarter.dynamicdatasource;
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DynamicDataSourceProvider;
 import cn.waynechu.bootstarter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
+import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -69,7 +70,16 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
 
     @Override
     protected DataSource determineDataSource() {
-        return this.getDataSource(DynamicDataSourceContextHolder.peek());
+        String lookUpKey = DynamicDataSourceContextHolder.peek();
+        DataSource dataSource = this.getDataSource(lookUpKey);
+
+        if (dataSource instanceof DruidDataSource) {
+            String dataSourceName = ((DruidDataSource) dataSource).getName();
+            if (loggerEnable) {
+                log.info("使用动态数据源 [{}]", dataSourceName);
+            }
+        }
+        return dataSource;
     }
 
     @Override
@@ -151,7 +161,6 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         }
 
         if (lookUpKey.contains(GROUP_FLAG)) {
-
             String[] splitStr = lookUpKey.split(GROUP_FLAG);
             String groupName = splitStr[0];
             String dataSourceType = splitStr[1];
@@ -161,7 +170,6 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
                 return this.getFromGroupDataSource(groupName, dataSourceType);
             }
         }
-
         throw new RuntimeException("Unknown lookUpKey.");
     }
 

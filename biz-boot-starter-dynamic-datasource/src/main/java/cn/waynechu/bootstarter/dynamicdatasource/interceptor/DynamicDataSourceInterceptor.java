@@ -1,12 +1,12 @@
 /**
  * Copyright © 2018 organization waynechu
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,44 +63,49 @@ public class DynamicDataSourceInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        String dataSourceType;
-        String sqlType;
+        String lookUpKey = DynamicDataSourceContextHolder.peek();
 
-        Object[] args = invocation.getArgs();
-        MappedStatement ms = (MappedStatement) args[0];
+        if (lookUpKey == null) {
+            String dataSourceType;
+            String sqlType;
 
-        String resource = ms.getResource();
-        String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
-        String groupName = splitResource[splitResource.length - 2];
+            Object[] args = invocation.getArgs();
+            MappedStatement ms = (MappedStatement) args[0];
 
-        if (QUERY_METHOD_NAME.equals(invocation.getMethod().getName())) {
-            boolean isTransactionActive = TransactionSynchronizationManager.isActualTransactionActive();
+            String resource = ms.getResource();
+            String[] splitResource = resource.replaceAll("\\\\", "/").split("/");
+            String groupName = splitResource[splitResource.length - 2];
 
-            if (!isTransactionActive) {
-                if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
-                    sqlType = SQL_TYPE_SELECT_KEY;
-                    dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
+            if (QUERY_METHOD_NAME.equals(invocation.getMethod().getName())) {
+                boolean isTransactionActive = TransactionSynchronizationManager.isActualTransactionActive();
+
+                if (!isTransactionActive) {
+                    if (ms.getId().contains(SelectKeyGenerator.SELECT_KEY_SUFFIX)) {
+                        sqlType = SQL_TYPE_SELECT_KEY;
+                        dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
+                    } else {
+                        sqlType = SQL_TYPE_READ_ONLY;
+                        dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_SALVE_FLAG;
+                    }
                 } else {
-                    sqlType = SQL_TYPE_READ_ONLY;
-                    dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_SALVE_FLAG;
+                    sqlType = SQL_TYPE_TRANSITION;
+                    dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
                 }
             } else {
-                sqlType = SQL_TYPE_TRANSITION;
+                sqlType = SQL_TYPE_DATA_MODIFY;
                 dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
             }
-        } else {
-            sqlType = SQL_TYPE_DATA_MODIFY;
-            dataSourceType = DynamicDataSourceContextHolder.DATASOURCE_MASTER_FLAG;
-        }
 
-        if (properties.isLoggerEnable()) {
-            log.info("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
+            if (properties.isLoggerEnable()) {
+                log.info("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
+            }
+
+            // lookupKey格式：组名_数据源类型。比如：订单库主库 order_master
+            lookUpKey = groupName + DynamicRoutingDataSource.GROUP_FLAG + dataSourceType;
+            DynamicDataSourceContextHolder.push(lookUpKey);
         }
 
         try {
-            // lookupKey格式：组名_数据源类型。比如：订单库主库 order_master
-            String lookUpKey = groupName + DynamicRoutingDataSource.GROUP_FLAG + dataSourceType;
-            DynamicDataSourceContextHolder.push(lookUpKey);
             return invocation.proceed();
         } finally {
             DynamicDataSourceContextHolder.poll();

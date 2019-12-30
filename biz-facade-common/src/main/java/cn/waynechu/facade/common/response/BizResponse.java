@@ -2,6 +2,7 @@ package cn.waynechu.facade.common.response;
 
 import cn.waynechu.facade.common.enums.BizEnum;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -54,7 +55,8 @@ public class BizResponse<T> implements Serializable {
         this.data = data;
     }
 
-    public static BizResponse success() {
+    @JsonIgnore
+    public static <T> BizResponse<T> success() {
         return new BizResponse<>(BizErrorCodeEnum.SUCCESS);
     }
 

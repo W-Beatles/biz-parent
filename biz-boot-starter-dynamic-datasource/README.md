@@ -4,9 +4,13 @@
 
 1. 基于Spring提供的 LazyConnectionDataSourceProxy 实现多数据源路由选择
 2. 基于MyBatis拦截器实现主从数据源的动态切换
-3. 集成Druid数据源监控多数据源，支持原生SQL监控、防火墙监控、慢查询日志、Url监控、Spring监控等
+3. 支持类、方法级别添加注解 `SwitchDataSource` 来指定目标数据源
 4. 可实现 **DynamicDataSourceStrategy** 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
-5. 可参考 `dynamic-datasource-test-integration-dal` 测试项目
+5. 集成Druid数据源监控多数据源，支持原生SQL监控、防火墙监控、慢查询日志、Url监控、Spring监控等
+6. 兼容 `mybatis-plus3`持久层框架，简化CRUD开发
+7. 默认添加 `mybatis-typehandlers-jsr310` 日期API依赖，支持数据库时间类型到 Java8 LocalData、LocalDataTime 时间类型的映射
+
+注：使用方式可参考 `biz-spring-cloud-api-dynamic-datasource-test` 测试项目
 
 ### 使用方法
 
@@ -16,7 +20,7 @@
     <dependency>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-        <version>1.0.2019092001-RELEASE</version>
+        <version>1.0.2019123001-RELEASE</version>
     </dependency>
     ```
 2. 添加数据源配置
@@ -92,7 +96,7 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
 
 2. 减号 **-** 后面的部分为数据源名称，你可以起任何有意义的名称。要想配置某个组内的某个数据源为主数据源，只需要数据源名称中包含 **master** 字符标记即可
 
-3. 如果不使用 **master** 标记主数据源，会使用添加到该组的第一个数据源作为主数据源。有时候这将会因为从数据源的只读设置带来读写失败异常的情况发生。所以最好给主数据源名称加个 **master** 字符标记哦！
+3. 如果不使用 **master** 标记主数据源，会使用添加到该组的第一个数据源作为主数据源。有时候这将会因为从数据源的只读设置带来读写失败异常的情况发生，所以最好给主数据源名称加个 **master** 标记符哦！
 
 ### 当前版本局限
 
@@ -116,8 +120,8 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
     
     当方法执行到创建订单时，因为此时操作的还是产品库，会抛出异常。在事务控制下，无法实现数据源的切换。
 
-2. 限制了 **XxxMapper.java** 文件放置的位置。目前切换不同数据库的逻辑是使用MyBatis拦截器拿到
-   **MappedStatement** 对象的 **resource** 字符串。其中 **resource** 代表了当前查询的 **XxxMapper.java** 存放路径。
+2. 限制了 **XxxMapper.java** 文件放置的位置。当前查询要使用的数据库是通过MyBatis拦截器拿到的。  
+   取值为 **MappedStatement** 对象的 **resource** 字符串。其中 **resource** 代表了当前查询的 **XxxMapper.java** 存放路径。
      
      关键代码如下：
      ```
