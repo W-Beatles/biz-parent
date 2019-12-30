@@ -10,7 +10,7 @@
 6. 兼容 `mybatis-plus3`持久层框架，简化CRUD开发
 7. 默认添加 `mybatis-typehandlers-jsr310` 日期API依赖，支持数据库时间类型到 Java8 LocalData、LocalDataTime 时间类型的映射
 
-注：使用方式可参考 `biz-spring-cloud-api-dynamic-datasource-test` 测试项目
+> 注：使用方式可参考 `biz-spring-cloud-api-dynamic-datasource-test` 测试项目
 
 ### 使用方法
 
@@ -65,10 +65,10 @@ spring.datasource.dynamic.datasource.order-master.password=LP1lXJ+2jrs+QhjLUJJRv
 spring.datasource.dynamic.datasource.order-master.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 spring.datasource.dynamic.datasource.order-slave1.username=root
 spring.datasource.dynamic.datasource.order-slave1.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-slave1.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.order-slave1.url=jdbc:mysql://localhost:3307/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 spring.datasource.dynamic.datasource.order-slave2.username=root
 spring.datasource.dynamic.datasource.order-slave2.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-slave2.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.order-slave2.url=jdbc:mysql://localhost:3308/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
 #### product database 产品库
 spring.datasource.dynamic.datasource.product-master.username=root
 spring.datasource.dynamic.datasource.product-master.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
