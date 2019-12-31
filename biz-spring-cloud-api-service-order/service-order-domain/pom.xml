@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.waynechu</groupId>
+        <artifactId>service-order-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>service-order-domain</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>service-order-domain</name>
+    <description>service-order-domain module for SpringCloud</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-spring-cloud-api-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.waynechu</groupId>
+            <artifactId>service-order-facade</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.waynechu</groupId>
+            <artifactId>service-order-remote</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.waynechu</groupId>
+            <artifactId>service-order-integration-dal</artifactId>
+        </dependency>
+    </dependencies>
+</project>

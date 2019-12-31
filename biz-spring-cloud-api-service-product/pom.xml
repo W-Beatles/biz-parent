@@ -9,12 +9,12 @@
     </parent>
 
     <groupId>com.waynechu</groupId>
-    <artifactId>service-order-parent</artifactId>
+    <artifactId>service-product-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>service-order-parent</name>
-    <description>service-order parent</description>
+    <name>service-product-parent</name>
+    <description>service-product parent</description>
 
     <repositories>
         <repository>
@@ -40,43 +40,43 @@
         <dependencies>
             <dependency>
                 <groupId>com.waynechu</groupId>
-                <artifactId>service-order-common</artifactId>
+                <artifactId>service-product-common</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.waynechu</groupId>
-                <artifactId>service-order-facade</artifactId>
+                <artifactId>service-product-facade</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.waynechu</groupId>
-                <artifactId>service-order-remote</artifactId>
+                <artifactId>service-product-remote</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.waynechu</groupId>
-                <artifactId>service-order-integration-dal</artifactId>
+                <artifactId>service-product-integration-dal</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.waynechu</groupId>
-                <artifactId>service-order-domain</artifactId>
+                <artifactId>service-product-domain</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.waynechu</groupId>
-                <artifactId>service-order-api</artifactId>
+                <artifactId>service-product-api</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.waynechu</groupId>
-                <artifactId>service-order-test</artifactId>
+                <artifactId>service-product-test</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
         </dependencies>
@@ -117,12 +117,12 @@
             </properties>
         </profile>
     </profiles>
-<modules>  <module>service-order-api</module>
-    <module>service-order-common</module>
-    <module>service-order-domain</module>
-    <module>service-order-facade</module>
-    <module>service-order-integration-dal</module>
-    <module>service-order-remote</module>
-    <module>service-order-test</module>
+<modules>  <module>service-product-api</module>
+    <module>service-product-common</module>
+    <module>service-product-domain</module>
+    <module>service-product-facade</module>
+    <module>service-product-integration-dal</module>
+    <module>service-product-remote</module>
+    <module>service-product-test</module>
   </modules>
 </project>

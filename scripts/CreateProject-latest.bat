@@ -20,3 +20,5 @@ echo Y | mvn archetype:generate ^
     -Dversion=0.0.1-SNAPSHOT ^
     -Dpackage=com.waynechu.%packageName% ^
     & ren %projectName% biz-spring-cloud-api-%projectName%
+
+color

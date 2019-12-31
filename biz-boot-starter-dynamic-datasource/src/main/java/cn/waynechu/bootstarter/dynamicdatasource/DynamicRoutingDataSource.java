@@ -22,10 +22,10 @@ import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -62,7 +62,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     /**
      * 所有数据源
      */
-    private Map<String, DataSource> allDataSource = new LinkedHashMap<>();
+    private Map<String, DataSource> allDataSource;
     /**
      * 分组数据库
      */
@@ -84,10 +84,13 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
 
     @Override
     public void afterPropertiesSet() {
-        Map<String, DataSource> dataSources = provider.loadDataSources();
+        allDataSource = provider.loadDataSources();
+        if (CollectionUtils.isEmpty(allDataSource)) {
+            throw new IllegalArgumentException("未获取到数据源配置信息");
+        }
 
-        log.info("读取到 [{}] 个数据源, 开始动态数据源分组...", dataSources.size());
-        for (Map.Entry<String, DataSource> entry : dataSources.entrySet()) {
+        log.info("读取到 [{}] 个数据源, 开始动态数据源分组...", allDataSource.size());
+        for (Map.Entry<String, DataSource> entry : allDataSource.entrySet()) {
             // 选择读取到的第一个数据源作为主数据源
             if (primaryDataSource == null) {
                 primaryDataSource = entry.getValue();
@@ -106,7 +109,6 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         if (dataSourceName.contains(GROUP_FLAG)) {
             addGroupDataSource(dataSourceName, dataSource);
         }
-        allDataSource.put(dataSourceName, dataSource);
     }
 
     /**
@@ -170,7 +172,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
                 return this.getFromGroupDataSource(groupName, dataSourceType);
             }
         }
-        throw new RuntimeException("Unknown lookUpKey.");
+        throw new RuntimeException("Unknown lookUpKey: " + lookUpKey);
     }
 
     /**
@@ -189,7 +191,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         } else if (DynamicDataSourceContextHolder.DATASOURCE_SALVE_FLAG.equals(dataSourceType)) {
             dataSource = groupDataSource.determineSlave();
         } else {
-            throw new IllegalArgumentException("Unknown datasource type.");
+            throw new RuntimeException("Unknown datasource type: " + dataSourceType);
         }
         return dataSource;
     }

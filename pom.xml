@@ -74,10 +74,6 @@
         <module>biz-spring-cloud-archetype</module>
         <module>biz-spring-cloud-common</module>
         <module>biz-spring-cloud-api-starter</module>
-
-        <module>biz-spring-cloud-api-service-user</module>
-        <module>biz-spring-cloud-api-service-order</module>
-        <module>biz-spring-cloud-api-service-utility</module>
     </modules>
 
     <repositories>
