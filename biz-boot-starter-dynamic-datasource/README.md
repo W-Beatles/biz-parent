@@ -15,7 +15,6 @@
 ### 使用方法
 
 1. 添加pom依赖
-
     ```
     <dependency>
         <groupId>cn.waynechu</groupId>
@@ -23,6 +22,10 @@
         <version>1.0.2019123001-RELEASE</version>
     </dependency>
     ```
+2. 启动类添加注解配置 `mapper` java文件扫描路径
+   ```
+   @MapperScan("com.xxx.yyy.dal.mapper")
+   ```
 2. 添加数据源配置
     参数配置参考下一节，更多配置可查阅Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
 
@@ -58,7 +61,7 @@ spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql=true
 spring.datasource.dynamic.druid.web-stat-filter.enabled=true
 ### 设置Spring监控AOP包路径
 spring.datasource.dynamic.druid.aop-patterns=com.waynechu.dynamicdatasource.api.controller.*,com.waynechu.dynamicdatasource.domain.service.*
-### 设置多数据源
+### 多数据源配置
 #### order database 订单库
 spring.datasource.dynamic.datasource.order-master.username=root
 spring.datasource.dynamic.datasource.order-master.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==

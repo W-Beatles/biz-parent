@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: biz-spring-boot-admin-anonymous
+    name: biz-spring-boot-admin
 
 eureka:
   client:

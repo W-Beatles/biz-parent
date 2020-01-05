@@ -26,7 +26,6 @@ public class RequestIdGenerateFilter implements GlobalFilter, Ordered {
             remoteRequestId = UUIDUtil.getShortUUID();
         }
 
-        System.out.println(remoteRequestId);
         // 向下传递requestId
         ServerHttpRequest mutateRequest = exchange.getRequest().mutate().header(HEADER_KEY_REQUEST_ID, remoteRequestId).build();
         ServerWebExchange build = exchange.mutate().request(mutateRequest).build();

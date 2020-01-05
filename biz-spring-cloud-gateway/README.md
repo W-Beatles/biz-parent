@@ -1,8 +1,13 @@
+## 修改swagger文档聚合名称
+```
+eureka.instance.metadata-map.swagger-name=默认使用applicationName,可以自定义文档聚合名称
+```
+
 ###  配置版本路由权重
 ```
 spring:
   application:
-    name: inner-gateway-service
+    name: biz-spring-cloud-gateway
   cloud:
     gateway:
       # 开启基于服务发现的路由规则

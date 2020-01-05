@@ -5,74 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="feat(biz-boot-starter-logger): 支持kafka日志上传">
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-ut.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-work.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-domain/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-facade/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-integration-dal/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-remote/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-test/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/service-product-api.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/META-INF/app.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-prd.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-ut.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-work.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-common/service-product-common.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-domain/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-domain/service-product-domain.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-facade/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-facade/service-product-facade.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-integration-dal/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-integration-dal/service-product-integration-dal.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-parent.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-remote/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-remote/service-product-remote.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-test/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-test/service-product-test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicRoutingDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicRoutingDataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/OrderStartMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/java/com/waynechu/StartMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/config/RibbonClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/controller/GitHubController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/remote/GitHubRemote.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/remote/UserRemote.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/java/com/waynechu/springcloud/order/remote/UserRemoteFallbackFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/META-INF/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/META-INF/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-prd.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application-work.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/src/test/java/com/waynechu/springcloud/order/OrderStartMainTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/UserStartMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/java/com/waynechu/StartMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/controller/TestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/remote/OrderRemote.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/remote/OrderRemoteFallbackFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/java/com/waynechu/springcloud/user/request/TestRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/META-INF/app.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-prd.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application-work.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-user/src/test/java/com/waynechu/springcloud/user/UserStartMainTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-prd.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-work.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-work.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-zp.yml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application-zp.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-boot-admin/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-prd.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-ut.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-ut.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/service-product-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/service-product-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-prd.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-ut.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application-ut.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-common/service-product-common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-common/service-product-common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-domain/service-product-domain.iml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-domain/service-product-domain.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-facade/service-product-facade.iml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-facade/service-product-facade.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-integration-dal/service-product-integration-dal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-integration-dal/service-product-integration-dal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-remote/service-product-remote.iml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-remote/service-product-remote.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-test/service-product-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-test/service-product-test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-utility/service-utility-api/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/CreateProject-latest.bat" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/CreateProject-latest.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application-prd.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application-work.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application-work.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-dashboard-turbine/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-prd.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-work.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/resources/application-work.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/RequestIdGenerateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/RequestIdGenerateFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/SwaggerProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/SwaggerProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-prd.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-work.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources/application-work.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +193,15 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.(10031) service-utility-peer2">
+  <component name="RunManager" selected="Spring Boot.(9001) eureka-peer1">
+    <configuration name="All in biz-spring-cloud-api-service-user" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biz-spring-cloud-api-service-user" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="(10001) dynamic-datasource-test-api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
       <module name="dynamic-datasource-test-api" />
       <extension name="coverage">
@@ -230,6 +211,7 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
+      <option name="URL_PATH" value="/swagger-ui.html" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -292,6 +274,7 @@
     <configuration name="(10021) service-product-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
       <module name="service-product-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
+      <option name="URL_PATH" value="/swagger-ui.html" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=service-product" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <additionalParameters>
@@ -446,8 +429,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.(9010) gateway" />
+      <item itemvalue="JUnit.All in biz-spring-cloud-api-service-user" />
       <item itemvalue="Spring Boot.(9020) boot-admin" />
+      <item itemvalue="Spring Boot.(9010) gateway" />
       <item itemvalue="Spring Boot.(9030) hystrix-dashboard" />
       <item itemvalue="Spring Boot.(9040) turbine-dashboard" />
       <item itemvalue="Spring Boot.(9001) eureka-peer1" />
@@ -460,12 +444,17 @@
       <item itemvalue="Spring Boot.(10030) service-utility-peer1" />
       <item itemvalue="Spring Boot.(10031) service-utility-peer2" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in biz-spring-cloud-api-service-user" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
       <list>
         <serviceView>
-          <option name="contentProportion" value="0.19318181" />
+          <option name="contentProportion" value="0.19101731" />
           <treeState>
             <expand>
               <path>
@@ -475,35 +464,18 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="eureka" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="service" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="dashboard" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -604,6 +576,7 @@
       <workItem from="1575550586330" duration="764000" />
       <workItem from="1577757890608" duration="54000" />
       <workItem from="1577770644531" duration="3352000" />
+      <workItem from="1578132383789" duration="4718000" />
     </task>
     <task id="LOCAL-00003" summary="perf(biz-boot-starter-logger): 修改banner版本提示">
       <created>1562760581621</created>
@@ -1044,6 +1017,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2510" y="2" key="#(10011)_user-service-peer2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577771701160" />
+    <state x="590" y="19" key="#(10020)_service-product-peer1" timestamp="1578131103908">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state x="590" y="19" key="#(10020)_service-product-peer1/0.0.1920.1049@0.0.1920.1049" timestamp="1578131103908" />
     <state x="2510" y="2" key="#(10030)_order-service-peer1" timestamp="1577771833946">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -1052,14 +1029,19 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2510" y="2" key="#(10031)_order-service-peer2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577771900839" />
+    <state x="590" y="19" key="#(9010)_gateway" timestamp="1578131123453">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state x="590" y="19" key="#(9010)_gateway/0.0.1920.1049@0.0.1920.1049" timestamp="1578131123453" />
     <state x="2472" y="178" width="1176" height="684" key="#Project_Structure" timestamp="1577771011319">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="178" width="1176" height="684" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577771011319" />
-    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577772204092">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578129069541">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772204092" />
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1578129069541" />
     <state x="2685" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1577705934324">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -1068,60 +1050,101 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2609" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772052978" />
-    <state x="2415" y="105" key="CommitChangelistDialog2" timestamp="1577775673883">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="495" y="106" key="CommitChangelistDialog2" timestamp="1578209198480">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="495" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1575551344191" />
     <state x="2415" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775673883" />
-    <state x="2104" y="86" key="DiffContextDialog" timestamp="1577707400514">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="495" y="106" key="CommitChangelistDialog2/0.0.1920.1049@0.0.1920.1049" timestamp="1578209198480" />
+    <state width="714" height="466" key="DebuggerActiveHint" timestamp="1578129506529">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state width="714" height="466" key="DebuggerActiveHint/0.0.1920.1049@0.0.1920.1049" timestamp="1578129506529" />
+    <state x="184" y="87" width="1536" height="868" key="DiffContextDialog" timestamp="1578209089047">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2104" y="86" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577707400514" />
     <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575551188751" />
-    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1577772426965">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="184" y="87" width="1536" height="868" key="DiffContextDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1578209089047" />
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1578126937976">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772426965" />
-    <state width="1490" height="317" key="GridCell.Tab.0.bottom" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1049@0.0.1920.1049" timestamp="1578126937976" />
+    <state width="1494" height="317" key="GridCell.Tab.0.bottom" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state width="1490" height="317" key="GridCell.Tab.0.center" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1494" height="317" key="GridCell.Tab.0.center" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state width="1490" height="317" key="GridCell.Tab.0.left" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.0.center/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1494" height="317" key="GridCell.Tab.0.left" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state width="1490" height="317" key="GridCell.Tab.0.right" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.0.left/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1494" height="317" key="GridCell.Tab.0.right" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state width="1490" height="317" key="GridCell.Tab.1.bottom" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.0.right/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1494" height="317" key="GridCell.Tab.1.bottom" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state width="1490" height="317" key="GridCell.Tab.1.center" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.1.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1494" height="317" key="GridCell.Tab.1.center" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state width="1490" height="317" key="GridCell.Tab.1.left" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.1.center/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1494" height="317" key="GridCell.Tab.1.left" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state width="1490" height="317" key="GridCell.Tab.1.right" timestamp="1577775662431">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.1.left/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1494" height="317" key="GridCell.Tab.1.right" timestamp="1578209132555">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1490" height="317" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
-    <state x="2700" y="217" key="NewModule_or_Project.wizard" timestamp="1577772428131">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1494" height="317" key="GridCell.Tab.1.right/0.0.1920.1049@0.0.1920.1049" timestamp="1578209132555" />
+    <state width="1334" height="317" key="GridCell.Tab.2.bottom" timestamp="1578135621221">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state width="1334" height="317" key="GridCell.Tab.2.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1578135621221" />
+    <state width="1334" height="317" key="GridCell.Tab.2.center" timestamp="1578135621221">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state width="1334" height="317" key="GridCell.Tab.2.center/0.0.1920.1049@0.0.1920.1049" timestamp="1578135621221" />
+    <state width="1334" height="317" key="GridCell.Tab.2.left" timestamp="1578135621221">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state width="1334" height="317" key="GridCell.Tab.2.left/0.0.1920.1049@0.0.1920.1049" timestamp="1578135621221" />
+    <state width="1334" height="317" key="GridCell.Tab.2.right" timestamp="1578135621221">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state width="1334" height="317" key="GridCell.Tab.2.right/0.0.1920.1049@0.0.1920.1049" timestamp="1578135621221" />
+    <state x="780" y="219" key="NewModule_or_Project.wizard" timestamp="1578126938989">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2700" y="217" key="NewModule_or_Project.wizard/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772428131" />
-    <state x="2360" y="94" key="SettingsEditor" timestamp="1577772430381">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="780" y="219" key="NewModule_or_Project.wizard/0.0.1920.1049@0.0.1920.1049" timestamp="1578126938989" />
+    <state x="335" y="163" key="SettingsEditor" timestamp="1578126940273">
+      <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2360" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772430381" />
+    <state x="335" y="163" key="SettingsEditor/0.0.1920.1049@0.0.1920.1049" timestamp="1578126940273" />
+    <state x="752" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578209066430">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state x="752" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1049@0.0.1920.1049" timestamp="1578209066430" />
+    <state x="567" y="229" width="842" height="590" key="find.popup" timestamp="1578134139998">
+      <screen x="0" y="0" width="1920" height="1049" />
+    </state>
+    <state x="567" y="229" width="842" height="590" key="find.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1578134139998" />
     <state width="650" height="123" key="javadoc.popup.new" timestamp="1577704461242">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -1158,6 +1181,11 @@
           <url>file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java</url>
           <line>31</line>
           <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/SwaggerProvider.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

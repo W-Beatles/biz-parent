@@ -1,12 +1,16 @@
 package cn.waynechu.springcloud.gateway.swagger;
 
-import org.apache.commons.lang.StringUtils;
-import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
+import cn.waynechu.springcloud.common.util.StringUtil;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,36 +25,34 @@ import java.util.List;
  * @author zhuwei
  * @date 2019/4/28 19:29
  */
-@Component
 @Primary
+@Component
 public class SwaggerProvider implements SwaggerResourcesProvider {
-    private static final String API_URI = "/v2/api-docs";
-    private static final String EUREKA_SUB_PREFIX = "CompositeDiscoveryClient_";
 
-    /**
-     * 匿名服务标志。applicationName包含该标志则不维护到网关聚合Swagger列表上
-     * 适用于需要注册到注册中心并开启Admin监控，但又无需聚合API文档的服务。如eureka节点服务
-     */
-    public static final String ANONYMOUS_SERVICE_FLAG = "ANONYMOUS";
+    @Resource
+    private EurekaClient eurekaClient;
 
-    private final DiscoveryClientRouteDefinitionLocator routeLocator;
-
-    public SwaggerProvider(DiscoveryClientRouteDefinitionLocator routeLocator) {
-        this.routeLocator = routeLocator;
-    }
+    @Value("#{'${swagger.exclude-applications}'.split(',')}")
+    private List<String> excludeApplications;
 
     @Override
     public List<SwaggerResource> get() {
+        List<Application> registeredApplications = eurekaClient.getApplications().getRegisteredApplications();
         List<SwaggerResource> resources = new ArrayList<>();
-        // 从DiscoveryClientRouteDefinitionLocator 中取出routes，构造swaggerResource
-        routeLocator.getRouteDefinitions().subscribe(
-                routeDefinition -> {
-                    if (!StringUtils.contains(routeDefinition.getId(), ANONYMOUS_SERVICE_FLAG)) {
-                        resources.add(swaggerResource(
-                                routeDefinition.getId().substring(EUREKA_SUB_PREFIX.length()),
-                                routeDefinition.getPredicates().get(0).getArgs().get("pattern").replace("/**", API_URI)));
-                    }
-                });
+
+        registeredApplications.forEach(application -> {
+            String applicationName = application.getName().toLowerCase();
+            List<InstanceInfo> instances = application.getInstances();
+
+            if (instances.size() > 0) {
+                String swaggerName = instances.get(0).getMetadata().get("swagger-name");
+                if (StringUtil.isNotEmpty(swaggerName)) {
+                    resources.add(swaggerResource(swaggerName, "/" + applicationName + "/v2/api-docs"));
+                } else if (!excludeApplications.contains(applicationName)) {
+                    resources.add(swaggerResource(applicationName, "/" + applicationName + "/v2/api-docs"));
+                }
+            }
+        });
         return resources;
     }
 
