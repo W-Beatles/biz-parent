@@ -36,11 +36,11 @@ public class MethodPrintAdvice implements MethodInterceptor {
         if (printAnnotation != null) {
             String methodName = invocation.getMethod().getName();
             Object[] arguments = invocation.getArguments();
-            log.info("[MethodPrintAdvice] {} 开始调用, 参数: {}", methodName, arguments);
+            log.info("[MethodPrintAdvice] {} 调用开始, 参数: {}", methodName, arguments);
             returnValue = invocation.proceed();
 
             String returnStr = this.getJsonStr(returnValue, printAnnotation.isFormat());
-            log.debug("[MethodPrintAdvice] {} 结束调用，返回值: {}", methodName, returnStr);
+            log.debug("[MethodPrintAdvice] {} 调用结束，返回值: {}", methodName, returnStr);
         } else {
             returnValue = invocation.proceed();
         }

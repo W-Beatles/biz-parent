@@ -45,7 +45,7 @@ public abstract class AbstractControllerLogAspect {
 
     @Before(value = "controllerLog() && @annotation(logAnnotation)")
     public void doBefore(JoinPoint joinPoint, ApiOperation logAnnotation) {
-        log.info("{}开始调用, 参数: {}", logAnnotation.value(), this.getPrintArgsJsonStr(joinPoint.getArgs()));
+        log.info("{}调用开始, 参数: {}", logAnnotation.value(), this.getPrintArgsJsonStr(joinPoint.getArgs()));
 
         // 记录调用开始的时间
         threadLocal.set(System.currentTimeMillis());
@@ -69,7 +69,7 @@ public abstract class AbstractControllerLogAspect {
         MDC.put(MDC_TIME_TAKEN_KEY, String.valueOf(timeTaken));
 
         String jsonResult = JsonBinder.buildAlwaysBinder().toJson(result);
-        log.info("{}结束调用, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, jsonResult);
+        log.info("{}调用结束, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, jsonResult);
 
         // clear
         threadLocal.remove();

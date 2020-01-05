@@ -43,12 +43,12 @@ public class MethodPrintProxy implements InvocationHandler {
         if (printAnnotation != null) {
             String methodName = this.getPrintMethodName(printAnnotation, targetObj);
             String argsStr = this.getJsonStr(args, printAnnotation.isFormat());
-            log.info("[MethodPrintProxy] {} 开始调用, 参数: {}", methodName, argsStr);
+            log.info("[MethodPrintProxy] {} 调用开始, 参数: {}", methodName, argsStr);
 
             returnValue = method.invoke(this.targetObj, args);
 
             String returnStr = this.getJsonStr(returnValue, printAnnotation.isFormat());
-            log.debug("[MethodPrintProxy] {} 结束调用，返回值: {}", methodName, returnStr);
+            log.debug("[MethodPrintProxy] {} 调用结束，返回值: {}", methodName, returnStr);
         } else {
             returnValue = method.invoke(this.targetObj, args);
         }

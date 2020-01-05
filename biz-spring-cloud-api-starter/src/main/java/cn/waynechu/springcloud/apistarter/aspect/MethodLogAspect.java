@@ -42,7 +42,7 @@ public class MethodLogAspect {
         if (printAnnotation.isPrintParameter()) {
             String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
             String argsStr = this.getPrintArgsJsonStr(joinPoint, printAnnotation);
-            log.info("{}开始调用, 参数: {}", methodName, argsStr);
+            log.info("{}调用开始, 参数: {}", methodName, argsStr);
         }
 
         // 记录调用开始时间
@@ -56,7 +56,7 @@ public class MethodLogAspect {
         if (printAnnotation.isPrintReturn()) {
             String methodName = getPrintMethodName(joinPoint, printAnnotation);
             String returnStr = getPrintReturnStr(result, printAnnotation);
-            log.info("{}结束调用, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - DEQUE_THREAD_LOCAL.pollFirst(), returnStr);
+            log.info("{}调用结束, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - DEQUE_THREAD_LOCAL.pollFirst(), returnStr);
         }
     }
 
