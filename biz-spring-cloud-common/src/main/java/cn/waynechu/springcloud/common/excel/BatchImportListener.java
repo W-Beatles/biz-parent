@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.common.listener;
+package cn.waynechu.springcloud.common.excel;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author zhuwei
  * @date 2019/7/29 21:00
  */
-public class ExcelImportListener<T> extends AnalysisEventListener<T> {
+public class BatchImportListener<T> extends AnalysisEventListener<T> {
 
     /**
      * 默认每隔3000条调用一次batchInvokeHandler的回调方法, 然后清理list, 防止几万条数据在内存中, 容易OOM
@@ -32,10 +32,14 @@ public class ExcelImportListener<T> extends AnalysisEventListener<T> {
      */
     private IBatchInvokeHandler<T> batchInvokeHandler;
 
-    public ExcelImportListener() {
+    public BatchImportListener() {
     }
 
-    public ExcelImportListener(int batchAnalysisLimit, IBatchInvokeHandler<T> batchInvokeHandler) {
+    public BatchImportListener(IBatchInvokeHandler<T> batchInvokeHandler) {
+        this.batchInvokeHandler = batchInvokeHandler;
+    }
+
+    public BatchImportListener(int batchAnalysisLimit, IBatchInvokeHandler<T> batchInvokeHandler) {
         this.batchAnalysisLimit = batchAnalysisLimit;
         this.batchInvokeHandler = batchInvokeHandler;
     }
