@@ -19,7 +19,7 @@ import java.util.List;
  * @date 2019/7/29 17:37
  */
 @UtilityClass
-public class ExcelExportUtil {
+public class ExportUtil {
 
     /**
      * 导出单sheet Excel文件
