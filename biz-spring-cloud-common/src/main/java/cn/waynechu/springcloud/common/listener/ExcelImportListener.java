@@ -2,7 +2,6 @@ package cn.waynechu.springcloud.common.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
-import com.alibaba.excel.metadata.BaseRowModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,28 +15,56 @@ import java.util.List;
  * @author zhuwei
  * @date 2019/7/29 21:00
  */
-public class ExcelImportListener<T extends BaseRowModel> extends AnalysisEventListener<T> {
+public class ExcelImportListener<T> extends AnalysisEventListener<T> {
 
     /**
-     * 用于暂时存储导入数据
+     * 默认每隔3000条调用一次batchInvokeHandler的回调方法, 然后清理list, 防止几万条数据在内存中, 容易OOM
      */
-    private List<T> datas = new ArrayList<>();
+    private int batchAnalysisLimit = 3000;
+
+    /**
+     * 用于暂存解析的数据
+     */
+    private List<T> data = new ArrayList<>();
+
+    /**
+     * 回调处理器
+     */
+    private IBatchInvokeHandler<T> batchInvokeHandler;
+
+    public ExcelImportListener() {
+    }
+
+    public ExcelImportListener(int batchAnalysisLimit, IBatchInvokeHandler<T> batchInvokeHandler) {
+        this.batchAnalysisLimit = batchAnalysisLimit;
+        this.batchInvokeHandler = batchInvokeHandler;
+    }
 
     @Override
     public void invoke(T object, AnalysisContext context) {
-        datas.add(object);
+        data.add(object);
+
+        // 达到解析数量上限, 需要调用一次回调方法并清理list
+        if (batchInvokeHandler != null && data.size() >= batchAnalysisLimit) {
+            batchInvoke();
+            // 回调完成并清理 list
+            data.clear();
+        }
     }
 
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
-        // do nothing here.
+        // 这里也要回调，确保最后遗留的数据也能解析到
+        if (batchInvokeHandler != null) {
+            batchInvoke();
+        }
     }
 
-    public List<T> getDatas() {
-        return datas;
+    public void batchInvoke() {
+        batchInvokeHandler.batchInvoke(data);
     }
 
-    public void setDatas(List<T> datas) {
-        this.datas = datas;
+    public List<T> getData() {
+        return data;
     }
 }

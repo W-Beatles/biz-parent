@@ -22,6 +22,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>biz-facade-common</artifactId>
         </dependency>
