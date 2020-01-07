@@ -32,8 +32,7 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
     添加的MDC信息有:
     ```
     ---------- MDC信息 ----------
-    traceNo                  - 请求跟踪号。可添加到请求头或请求参数上，用于自定义追踪标记
-    requestId                - 请求唯一标识。格式为UUID(32个字符)，来自header或者由该过滤器初始化
+    requestId                - 请求跟踪号。格式为UUID(32个字符)，来自header或者由该过滤器初始化
     apiVersion               - 请求的API版本号
     channel                  - 调用方标识
     deviceId                 - 设备id

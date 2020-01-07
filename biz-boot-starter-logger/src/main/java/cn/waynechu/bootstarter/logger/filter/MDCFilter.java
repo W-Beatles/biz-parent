@@ -18,7 +18,6 @@ import java.io.IOException;
  * MDC过滤器
  * <p>
  * 该过滤器用于添加请求信息到MDC上下文中，并且添加header追踪信息
- * 如: 调用 MDC.put("traceNo", traceNoValue) 添加traceNo到MDC映射调试上下文中，这样就可以在log日志中追踪请求调用信息
  *
  * @author zhuwei
  * @date 2019/1/4 15:10
@@ -26,7 +25,6 @@ import java.io.IOException;
 @Slf4j
 @Data
 public class MDCFilter implements Filter {
-    public static final String HEADER_KEY_TRACE_NO = "traceNo";
     public static final String HEADER_KEY_REQUEST_ID = "requestId";
 
     public static final String HEADER_KEY_API_VERSION = "apiVersion";
@@ -93,7 +91,6 @@ public class MDCFilter implements Filter {
         MDC.put(HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress);
         httpServletRequestWrapper.putHeader(HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress);
 
-        MDCUtil.copyReqParamOrHeaderToMDC(httpServletRequestWrapper, HEADER_KEY_TRACE_NO);
         MDCUtil.copyReqHeaderToMDC(httpServletRequestWrapper, HEADER_KEY_API_VERSION, HEADER_KEY_CHANNEL, HEADER_KEY_DEVICE_ID);
         return httpServletRequestWrapper;
     }
