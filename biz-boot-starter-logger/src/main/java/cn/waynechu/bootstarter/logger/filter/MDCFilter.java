@@ -11,6 +11,7 @@ import org.slf4j.MDC;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -42,6 +43,8 @@ public class MDCFilter implements Filter {
         try {
             ModifyHttpServletRequestWrapper modifyHttpServletRequestWrapper = this.modifyRequestAndAddMdc((HttpServletRequest) servletRequest);
 
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.setHeader(HEADER_KEY_REQUEST_ID, modifyHttpServletRequestWrapper.getHeader(HEADER_KEY_REQUEST_ID));
             filterChain.doFilter(modifyHttpServletRequestWrapper, servletResponse);
         } finally {
             MDC.clear();
