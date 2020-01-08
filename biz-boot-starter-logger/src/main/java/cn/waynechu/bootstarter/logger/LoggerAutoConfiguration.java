@@ -29,8 +29,11 @@ import java.util.List;
 @Import({ApplicationProvider.class})
 public class LoggerAutoConfiguration {
 
-    private static final String NEED_TRACE_HEADERS_STR = "requestId,traceAppIds,traceAppNames,traceHostNames,traceHostAddresses";
-    private static final List<String> NEED_TRACE_HEADERS = Arrays.asList(NEED_TRACE_HEADERS_STR.split(","));
+    /**
+     * 调用链路追踪需要传递的请求头
+     */
+    private static final List<String> NEED_TRACE_HEADERS = Arrays.asList(
+            "requestId", "traceAppIds", "traceAppNames", "traceHostNames", "traceHostAddresses");
 
     @Bean
     @ConditionalOnProperty(value = SentryContextAware.SENTRY_ENABLE, havingValue = "true")

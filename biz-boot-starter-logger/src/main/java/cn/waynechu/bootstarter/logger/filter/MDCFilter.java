@@ -25,12 +25,11 @@ import java.io.IOException;
 @Slf4j
 @Data
 public class MDCFilter implements Filter {
-    public static final String HEADER_KEY_REQUEST_ID = "requestId";
-
     public static final String HEADER_KEY_API_VERSION = "apiVersion";
     public static final String HEADER_KEY_CHANNEL = "channel";
     public static final String HEADER_KEY_DEVICE_ID = "deviceId";
 
+    public static final String HEADER_KEY_REQUEST_ID = "requestId";
     public static final String HEADER_KEY_TRACE_APP_IDS = "traceAppIds";
     public static final String HEADER_KEY_TRACE_APP_NAMES = "traceAppNames";
     public static final String HEADER_KEY_TRACE_HOST_NAMES = "traceHostNames";

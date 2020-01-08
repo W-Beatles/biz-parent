@@ -2,12 +2,12 @@
 
 ### 项目介绍
 
-1. 基于Spring提供的 LazyConnectionDataSourceProxy 实现多数据源路由选择
+1. 基于Spring提供的 `LazyConnectionDataSourceProxy` 实现多数据源路由选择
 2. 基于MyBatis拦截器实现主从数据源的动态切换
 3. 支持类、方法级别添加注解 `SwitchDataSource` 来指定目标数据源
-4. 可实现 **DynamicDataSourceStrategy** 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
-5. 集成Druid数据源监控多数据源，支持原生SQL监控、防火墙监控、慢查询日志、Url监控、Spring监控等
-6. 兼容 `mybatis-plus3`持久层框架，简化CRUD开发
+4. 可实现 `**`DynamicDataSourceStrategy`` 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
+5. 集成Druid数据源，支持原生SQL监控、防火墙监控、慢查询监控、Url监控、Spring监控等
+6. 兼容 `mybatis-plus3` 持久层框架，简化CRUD开发
 7. 默认添加 `mybatis-typehandlers-jsr310` 日期API依赖，支持数据库时间类型到 Java8 LocalData、LocalDataTime 时间类型的映射
 
 > 注：使用方式可参考 `biz-spring-cloud-api-dynamic-datasource-test` 测试项目
@@ -30,7 +30,6 @@
     参数配置参考下一节，更多配置可查阅Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
 
 ### 参考配置    
-
 
 ```
 ## mybatis-plus

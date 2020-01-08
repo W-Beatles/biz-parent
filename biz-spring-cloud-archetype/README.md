@@ -2,7 +2,7 @@
 
 ### 项目介绍
 
-用于快速生成SpringCloud项目开发骨架
+用于快速生成SpringCloud项目开发骨架，不用再考虑框架的搭建及相关组件的集成，实现敏捷开发。
 
 ### 使用方法
 
@@ -11,7 +11,7 @@
 例如:
 
 ```shell
-CreateProject-latest.bat service-report report
+CreateProject-latest.bat service-order order
 ```
 
-即可生成工程 `biz-spring-cloud-api-service-report`，包名为 `com.waynechu.report`
+即可生成工程 `biz-spring-cloud-api-service-order`，包名为 `com.waynechu.order`

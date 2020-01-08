@@ -13,7 +13,7 @@ SpringCloud微服务开发脚手架
 2. biz-boot-starter-elastic-job  
     elastic-job starter模块
 3. biz-boot-starter-logger  
-    elk&sentry starter模块。用于日志上传ELK及Sentry
+    elk&sentry starter模块。用于日志上传ELK及Sentry报警
 4. biz-facade-common  
     通用facade模块
 5. biz-spring-boot-admin  
@@ -22,14 +22,14 @@ SpringCloud微服务开发脚手架
     动态数据源测试模块
 7. biz-spring-cloud-api-service-order  
      订单模块(测试)
-8. biz-spring-cloud-api-service-user  
-     用户模块(测试)
+8. biz-spring-cloud-api-service-product  
+     产品模块(测试)
 9. biz-spring-cloud-api-service-utility  
-     公共服务。提供省市区查询、短链生成及解析服务
+     公共服务。提供省市区查询、短链生成及重定向服务
 10. biz-spring-cloud-api-starter  
    spring-cloud starter模块。提供MDC过滤器、接口/方法切面、分布式锁等一系列开箱即用功能
 11. biz-spring-cloud-archetype  
-    用于一键生成spring-cloud项目基础开发骨架
+    用于一键生成spring-cloud项目基础开发骨架，基于该骨架直接写业务代码即可
 12. biz-spring-cloud-common  
     spring-cloud项目通用工具类
 13. ~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
@@ -39,7 +39,7 @@ SpringCloud微服务开发脚手架
 15. biz-spring-cloud-eureka  
      Eureka注册中心
 16. biz-spring-cloud-gateway  
-     API网关。用做服务代理及API聚合，并提供所有服务的Swagger文档聚合
+     API网关。用与服务代理及各个服务的Swagger文档聚合
 17. biz-spring-cloud-test  
      测试模块
 
