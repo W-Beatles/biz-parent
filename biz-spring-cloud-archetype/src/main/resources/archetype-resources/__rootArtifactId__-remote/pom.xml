@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-facade-common</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-common</artifactId>
         </dependency>

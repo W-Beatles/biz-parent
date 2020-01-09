@@ -27,13 +27,14 @@ public class RequestIdGenerateFilter implements GlobalFilter, Ordered {
         }
 
         // 向下传递requestId
-        ServerHttpRequest mutateRequest = exchange.getRequest().mutate().header(HEADER_KEY_REQUEST_ID, remoteRequestId).build();
+        ServerHttpRequest mutateRequest = exchange.getRequest().mutate()
+                .header(HEADER_KEY_REQUEST_ID, new String[]{remoteRequestId}).build();
         ServerWebExchange build = exchange.mutate().request(mutateRequest).build();
         return chain.filter(build);
     }
 
     @Override
     public int getOrder() {
-        return 0;
+        return Ordered.HIGHEST_PRECEDENCE;
     }
 }

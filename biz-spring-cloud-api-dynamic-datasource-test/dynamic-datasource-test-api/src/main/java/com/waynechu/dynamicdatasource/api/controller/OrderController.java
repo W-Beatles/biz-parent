@@ -24,14 +24,14 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @ApiOperation("根据订单id获取订单信息")
+    @ApiOperation(value = "根据订单id获取订单信息", notes = "查询order从库")
     @GetMapping("/{orderId}")
     public BizResponse<OrderResponse> getById(@PathVariable Long orderId) {
         OrderResponse orderResponse = orderService.getById(orderId);
         return BizResponse.success(orderResponse);
     }
 
-    @ApiOperation("根据订单id获取订单详情")
+    @ApiOperation(value = "根据订单id获取订单详情", notes = "查询order主库和product从库")
     @GetMapping("/{orderId}/detail")
     public BizResponse<OrderDetailResponse> getDetailById(@PathVariable Long orderId) {
         OrderDetailResponse orderdetailResponse = orderService.getDetailById(orderId);

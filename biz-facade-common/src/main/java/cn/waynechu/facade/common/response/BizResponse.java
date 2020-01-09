@@ -55,7 +55,6 @@ public class BizResponse<T> implements Serializable {
         this.data = data;
     }
 
-    @JsonIgnore
     public static <T> BizResponse<T> success() {
         return new BizResponse<>(BizErrorCodeEnum.SUCCESS);
     }
@@ -92,6 +91,7 @@ public class BizResponse<T> implements Serializable {
         return new BizResponse<>(errorCode, errorMessage, data);
     }
 
+    @JsonIgnore
     public boolean isSuccess() {
         return this.code == BizErrorCodeEnum.SUCCESS.getCode();
     }

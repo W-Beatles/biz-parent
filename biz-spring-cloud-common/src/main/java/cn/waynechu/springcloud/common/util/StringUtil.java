@@ -69,18 +69,31 @@ public class StringUtil {
     }
 
     /**
-     * 字符串首字母小写转化为大写
+     * 首字母转大写
      *
-     * @param str 首字母小写的字符串
+     * @param str 原字符串
      * @return 首字母大写的字符串
      */
-    public static String capitalize(String str) {
-        if (isNotEmpty(str)) {
-            char[] cs = str.toCharArray();
-            cs[0] -= 32;
-            return String.valueOf(cs);
+    public static String toUpperCaseFirstOne(String str) {
+        if (Character.isUpperCase(str.charAt(0))) {
+            return str;
+        } else {
+            return Character.toUpperCase(str.charAt(0)) + str.substring(1);
         }
-        return null;
+    }
+
+    /**
+     * 首字母转小写
+     *
+     * @param str 原字符串
+     * @return 首字母小写的字符串
+     */
+    public static String toLowerCaseFirstOne(String str) {
+        if (Character.isLowerCase(str.charAt(0))) {
+            return str;
+        } else {
+            return Character.toLowerCase(str.charAt(0)) + str.substring(1);
+        }
     }
 
     /**

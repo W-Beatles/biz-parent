@@ -14,6 +14,7 @@ import java.util.*;
 @Slf4j
 @UtilityClass
 public class BeanUtil {
+
     private static final String NEW_INSTANCE_INSTANTIATION_ERROR = "New instance error. Is it an abstract class?";
     private static final String NEW_INSTANCE_ILLEGAL_ACCESS_ERROR = "New instance error. Is the constructor accessible?";
 
@@ -26,7 +27,7 @@ public class BeanUtil {
      * @param targetClass 目标类
      * @param <X>         <X>源对象类型
      * @param <Y>         <Y>目标对象类型
-     * @return T2类型对象
+     * @return <Y>类型对象
      */
     public static <X, Y> Y beanTransfer(X srcObject, Class<Y> targetClass) {
         Y returnValue = null;
@@ -76,7 +77,7 @@ public class BeanUtil {
      * @param targetClass 目标类
      * @param <X>         <X>源类型
      * @param <Y>         <Y>目标类型
-     * @return 目标类型列表对象
+     * @return <Y>目标类型列表对象
      */
     public static <X, Y> List<Y> beanListTransfer(List<X> srcObjects, Class<Y> targetClass) {
         List<Y> returnValue = null;
@@ -396,15 +397,15 @@ public class BeanUtil {
 
     private static Set<String> getSetterMethodNames(String propertyName) {
         Set<String> returnValue = new HashSet<>();
-        returnValue.add("set" + StringUtil.capitalize(propertyName));
+        returnValue.add("set" + StringUtil.toUpperCaseFirstOne(propertyName));
         return returnValue;
     }
 
     private static Set<String> getGetterMethodNames(String propertyName) {
         Set<String> returnValue = new HashSet<>();
-        returnValue.add("get" + StringUtil.capitalize(propertyName));
-        returnValue.add("is" + StringUtil.capitalize(propertyName));
-        returnValue.add("has" + StringUtil.capitalize(propertyName));
+        returnValue.add("get" + StringUtil.toUpperCaseFirstOne(propertyName));
+        returnValue.add("is" + StringUtil.toUpperCaseFirstOne(propertyName));
+        returnValue.add("has" + StringUtil.toUpperCaseFirstOne(propertyName));
         return returnValue;
     }
 

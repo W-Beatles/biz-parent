@@ -23,17 +23,10 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @ApiOperation("根据产品id获取产品详情")
+    @ApiOperation(value = "根据产品id获取产品信息", notes = "查询product从库")
     @GetMapping("/{productId}")
     public BizResponse<ProductResponse> getById(@PathVariable Long productId) {
         ProductResponse productResponse = productService.getById(productId);
-        return BizResponse.success(productResponse);
-    }
-
-    @ApiOperation("根据产品id获取产品详情(指定数据源)")
-    @GetMapping("/switch/{productId}")
-    public BizResponse<ProductResponse> getByIdAndSwitch(@PathVariable Long productId) {
-        ProductResponse productResponse = productService.getByIdAndSwitch(productId);
         return BizResponse.success(productResponse);
     }
 }

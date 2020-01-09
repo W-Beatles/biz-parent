@@ -64,23 +64,23 @@ spring.datasource.dynamic.druid.aop-patterns=com.waynechu.dynamicdatasource.api.
 #### order database 订单库
 spring.datasource.dynamic.datasource.order-master.username=root
 spring.datasource.dynamic.datasource.order-master.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-master.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.order-master.url=jdbc:mysql://localhost:3306/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 spring.datasource.dynamic.datasource.order-slave1.username=root
 spring.datasource.dynamic.datasource.order-slave1.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-slave1.url=jdbc:mysql://localhost:3307/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.order-slave1.url=jdbc:mysql://localhost:3307/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 spring.datasource.dynamic.datasource.order-slave2.username=root
 spring.datasource.dynamic.datasource.order-slave2.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.order-slave2.url=jdbc:mysql://localhost:3308/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.order-slave2.url=jdbc:mysql://localhost:3308/order?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 #### product database 产品库
 spring.datasource.dynamic.datasource.product-master.username=root
 spring.datasource.dynamic.datasource.product-master.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.product-master.url=jdbc:mysql://localhost:3306/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.product-master.url=jdbc:mysql://localhost:3306/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 spring.datasource.dynamic.datasource.product-slave1.username=root
 spring.datasource.dynamic.datasource.product-slave1.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.product-slave1.url=jdbc:mysql://localhost:3307/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.product-slave1.url=jdbc:mysql://localhost:3307/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 spring.datasource.dynamic.datasource.product-slave2.username=root
 spring.datasource.dynamic.datasource.product-slave2.password=LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==
-spring.datasource.dynamic.datasource.product-slave2.url=jdbc:mysql://localhost:3308/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+spring.datasource.dynamic.datasource.product-slave2.url=jdbc:mysql://localhost:3308/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 ```
 
 ### 约定与说明

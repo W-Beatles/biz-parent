@@ -12,7 +12,6 @@ import com.waynechu.dynamicdatasource.facade.response.OrderDetailResponse;
 import com.waynechu.dynamicdatasource.facade.response.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhuwei
@@ -27,15 +26,28 @@ public class OrderService {
     @Autowired
     private ProductRepository productRepository;
 
+    /**
+     * 根据订单id获取订单信息
+     *
+     * @param orderId 订单id
+     * @return 订单信息
+     */
     public OrderResponse getById(Long orderId) {
         OrderDO order = orderRepository.getById(orderId);
         return OrderConvert.toOrderResponse(order);
     }
 
+    /**
+     * 根据订单id获取订单详情
+     *
+     * @param orderId 订单id
+     * @return 订单详情
+     */
     public OrderDetailResponse getDetailById(Long orderId) {
-        OrderDO order = orderRepository.getById(orderId);
+        // 状态判断、时效性要求高的查询优先走主库，防止主从同步延迟导致读取脏数据
+        OrderDO order = orderRepository.getByIdFromMaster(orderId);
         if (order == null) {
-            throw new BizException(BizErrorCodeEnum.SUCCESS_NOT_EXIST);
+            throw new BizException(BizErrorCodeEnum.DATA_NOT_EXIST);
         }
 
         OrderDetailResponse orderDetailResponse = new OrderDetailResponse();
