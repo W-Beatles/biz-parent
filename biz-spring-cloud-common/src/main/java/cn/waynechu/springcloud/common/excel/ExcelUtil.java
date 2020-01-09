@@ -4,6 +4,7 @@ import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import com.alibaba.excel.EasyExcel;
 import lombok.experimental.UtilityClass;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -13,23 +14,36 @@ import java.net.URLEncoder;
 import java.util.List;
 
 /**
- * excel导出工具类
- *
  * @author zhuwei
- * @date 2019/7/29 17:37
+ * @date 2020/1/9 10:40
  */
 @UtilityClass
-public class ExportUtil {
+public class ExcelUtil {
 
     /**
-     * 导出单sheet Excel文件
+     * 解析excel，推荐数据行数小于3000行时使用
+     *
+     * @param file  MultipartFile
+     * @param clazz 解析的数据模型
+     * @return 数据列表
+     */
+    public <T> List<T> parse(MultipartFile file, Class<T> clazz) {
+        try {
+            return EasyExcel.read(file.getInputStream()).head(clazz).sheet(0).doReadSync();
+        } catch (IOException e) {
+            throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "解析excel失败");
+        }
+    }
+
+    /**
+     * 导出excel
      *
      * @param list     数据列表
      * @param clazz    导出模型类
      * @param filename 导出文件名
-     * @param response HttpServletResponse
+     * @param response httpServletResponse
      */
-    public static void export(List<?> list, Class<?> clazz, String filename, HttpServletResponse response) {
+    public static <T> void export(List<T> list, Class<T> clazz, String filename, HttpServletResponse response) {
         try {
             filename = URLEncoder.encode(filename, "UTF-8");
         } catch (UnsupportedEncodingException e) {
