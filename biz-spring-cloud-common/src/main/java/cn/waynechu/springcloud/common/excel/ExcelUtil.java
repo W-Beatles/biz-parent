@@ -27,7 +27,7 @@ public class ExcelUtil {
      * @param clazz 解析的数据模型
      * @return 数据列表
      */
-    public <T> List<T> parse(MultipartFile file, Class<T> clazz) {
+    public static <T> List<T> parse(MultipartFile file, Class<T> clazz) {
         try {
             return EasyExcel.read(file.getInputStream()).head(clazz).sheet(0).doReadSync();
         } catch (IOException e) {
