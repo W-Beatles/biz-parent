@@ -19,7 +19,7 @@ public class ProductRemoteFallbackFactory implements FallbackFactory<ProductRemo
         return new ProductRemote() {
             @Override
             public BizResponse<ProductResponse> getById(Long productId) {
-                log.error("根据产品id获取产品信息调用失败", throwable);
+                log.error("根据产品id获取产品信息调用失败, message: {}", throwable.getMessage());
                 return null;
             }
         };
