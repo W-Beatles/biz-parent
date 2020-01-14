@@ -21,11 +21,13 @@ import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContex
 import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,7 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2019/1/15 17:29
  */
 @Slf4j
-public class DynamicRoutingDataSource extends AbstractRoutingDataSource implements InitializingBean {
+public class DynamicRoutingDataSource extends AbstractRoutingDataSource implements InitializingBean, DisposableBean {
 
     /**
      * 分组标识。如 order-slave1，order-slave2 会划分到 order 组中
@@ -97,6 +99,22 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
             }
             this.addDataSource(entry.getKey(), entry.getValue());
         }
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        log.info("开始销毁动态数据源");
+        for (Map.Entry<String, DataSource> item : allDataSource.entrySet()) {
+            DataSource dataSource = item.getValue();
+            Class<? extends DataSource> clazz = dataSource.getClass();
+            try {
+                Method closeMethod = clazz.getDeclaredMethod("close");
+                closeMethod.invoke(dataSource);
+            } catch (NoSuchMethodException e) {
+                log.warn("销毁动态数据源 {} 失败", item.getKey());
+            }
+        }
+        log.info("销毁动态数据源结束");
     }
 
     /**

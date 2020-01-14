@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -51,7 +51,7 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
         Map<String, DataSourceProperty> dataSourcePropertiesMap = properties.getDatasource();
         DruidConfig druidGlobalConfig = properties.getDruid();
 
-        Map<String, DataSource> dataSourceMap = new HashMap<>(dataSourcePropertiesMap.size());
+        Map<String, DataSource> dataSourceMap = new LinkedHashMap<>(dataSourcePropertiesMap.size());
         for (Map.Entry<String, DataSourceProperty> entry : dataSourcePropertiesMap.entrySet()) {
             String dataSourceName = entry.getKey();
             DataSourceProperty dataSourceProperty = entry.getValue();
