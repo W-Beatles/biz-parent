@@ -1,6 +1,6 @@
 package com.waynechu.utility.domain.service;
 
-import com.waynechu.utility.common.util.BinaryConversionUtil;
+import cn.waynechu.springcloud.common.util.BinaryUtil;
 import com.waynechu.utility.domain.properties.ShortUrlProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,7 +28,7 @@ public class CommonService {
         while (increment == null) {
             increment = valueOperations.increment(shortUrlProperty.getRedisIncrementKey());
         }
-        String shortUrlSuffix = BinaryConversionUtil.convert10to62(increment);
+        String shortUrlSuffix = BinaryUtil.convert10to62(increment);
         String shortUrl = shortUrlProperty.getShortUrlPrefix() + shortUrlSuffix;
         // 短网址 -> 原始地址的映射  key: redisUrlKeyPrefix + shortUrl  value: originUrl
         if (timeout == null) {

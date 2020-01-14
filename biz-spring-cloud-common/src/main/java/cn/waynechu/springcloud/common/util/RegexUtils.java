@@ -125,8 +125,7 @@ public class RegexUtils {
     /**
      * 英文字母
      */
-    public static final String REGEX_NOT_WORDS = "^[a-zA-Z]+$";
-
+    public static final String REGEX_ENGLISH_ALPHABET = "^[a-zA-Z]+$";
     /**
      * 中文汉字
      */
@@ -199,7 +198,7 @@ public class RegexUtils {
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
      */
-    public static boolean isIDCard15(CharSequence input) {
+    public static boolean isIdCard15(CharSequence input) {
         return isMatch(REGEX_ID_CARD15, input);
     }
 
@@ -209,7 +208,7 @@ public class RegexUtils {
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
      */
-    public static boolean isIDCard18(CharSequence input) {
+    public static boolean isIdCard18(CharSequence input) {
         return isMatch(REGEX_ID_CARD18, input);
     }
 
@@ -229,7 +228,7 @@ public class RegexUtils {
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
      */
-    public static boolean isURL(CharSequence input) {
+    public static boolean isUrl(CharSequence input) {
         return isMatch(REGEX_URL, input);
     }
 
@@ -244,12 +243,23 @@ public class RegexUtils {
     }
 
     /**
+     * 判断是否包含汉字
+     *
+     * @param str 待验证文本
+     * @return {@code true}: 匹配<br>{@code false}: 不匹配
+     */
+    public static boolean isContainZh(CharSequence str) {
+        Matcher m = ZH_PATTERN.matcher(str);
+        return m.find();
+    }
+
+    /**
      * 验证数字
      *
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
      */
-    public static boolean isINTEGER(CharSequence input) {
+    public static boolean isInteger(CharSequence input) {
         return isMatch(REGEX_INTEGER, input);
     }
 
@@ -259,7 +269,7 @@ public class RegexUtils {
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
      */
-    public static boolean isNOTNEGATIVEINTEGER(CharSequence input) {
+    public static boolean isNotNegativeInteger(CharSequence input) {
         return isMatch(REGEX_NOT_NEGATIVE_INTEGER, input);
     }
 
@@ -290,7 +300,7 @@ public class RegexUtils {
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
      */
-    public static boolean isIP(CharSequence input) {
+    public static boolean isIp(CharSequence input) {
         return isMatch(REGEX_IP, input);
     }
 
@@ -396,17 +406,6 @@ public class RegexUtils {
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
      */
     public static boolean isWords(CharSequence input) {
-        return isMatch(REGEX_NOT_WORDS, input);
-    }
-
-    /**
-     * 判断是否包含汉字
-     *
-     * @param str 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isContainChinese(String str) {
-        Matcher m = ZH_PATTERN.matcher(str);
-        return m.find();
+        return isMatch(REGEX_ENGLISH_ALPHABET, input);
     }
 }
