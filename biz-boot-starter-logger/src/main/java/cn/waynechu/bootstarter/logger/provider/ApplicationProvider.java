@@ -55,7 +55,7 @@ public class ApplicationProvider implements InitializingBean {
 
             appProperties.load(new InputStreamReader(in, StandardCharsets.UTF_8));
             this.initAppId();
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             log.error("Initialize DefaultApplicationProvider failed.", ex);
         }
     }

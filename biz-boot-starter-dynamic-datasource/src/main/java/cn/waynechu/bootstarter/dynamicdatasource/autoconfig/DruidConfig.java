@@ -214,7 +214,6 @@ public class DruidConfig {
         if (tempPhyTimeoutMillis != null && !tempPhyTimeoutMillis.equals(DEFAULT_PHY_TIMEOUT_MILLIS)) {
             properties.setProperty("druid.phyTimeoutMillis", String.valueOf(tempPhyTimeoutMillis));
         }
-        // TODO: 2019/1/17  druid.phyMaxUseCount
 
         //
         Boolean tempKeepAlive = keepAlive == null ? globalConfig.getKeepAlive() : keepAlive;

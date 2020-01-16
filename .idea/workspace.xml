@@ -4,8 +4,20 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="perf(biz-parent): 修改ribbon.retryableStatusCodes为404,502">
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="perf(biz-parent): 兼容">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/autoconfig/DruidConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/autoconfig/DruidConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/provider/ApplicationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-logger/src/main/java/cn/waynechu/bootstarter/logger/provider/ApplicationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/StartMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/StartMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/config/ApolloChangeAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/config/ApolloChangeAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/http/HttpUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/http/HttpUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/serializer/FastJsonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/serializer/FastJsonSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/JsonBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-common/src/main/java/cn/waynechu/springcloud/common/util/JsonBinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/SwaggerProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/SwaggerProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/HystrixFallbackHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/HystrixFallbackHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/SwaggerResourceHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/SwaggerResourceHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/SwaggerSecurityHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/SwaggerSecurityHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/SwaggerUiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/swagger/handler/SwaggerUiHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,12 +101,17 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
-        <option name="userSettingsFile" value="C:\Users\Z-Beatles\.m2\settings-alibaba.xml" />
+        <option name="userSettingsFile" value="C:\Users\zhuwei\.m2\settings-alibaba.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="enabledProfiles">
       <list>
         <option value="work" />
+      </list>
+    </option>
+    <option name="disabledProfiles">
+      <list>
+        <option value="local" />
       </list>
     </option>
   </component>
@@ -121,14 +138,14 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-api-service-product/service-product-domain/src/main/java/com/waynechu/product/domain" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-api-service-product" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.29441625" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -165,7 +182,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.(9001) eureka-peer1">
-    <configuration name="(10001) dynamic-datasource-test-api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
+    <configuration name="(10001) dynamic-datasource-test-api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="dynamic-datasource-test-api" />
       <extension name="coverage">
         <pattern>
@@ -181,7 +198,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(10010) service-order-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
+    <configuration name="(10010) service-order-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-order-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
@@ -198,7 +215,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(10011) service-order-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
+    <configuration name="(10011) service-order-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-order-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
@@ -215,7 +232,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(10020) service-product-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
+    <configuration name="(10020) service-product-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-product-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
@@ -228,14 +245,11 @@
           <option name="value" value="10020" />
         </param>
       </additionalParameters>
-      <RunnerSettings RunnerId="Debug with VisualVM">
-        <option name="visualVMId" value="2256944452747425" />
-      </RunnerSettings>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(10021) service-product-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
+    <configuration name="(10021) service-product-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-product-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
@@ -252,7 +266,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(10030) service-utility-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
+    <configuration name="(10030) service-utility-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-utility-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
@@ -269,7 +283,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(10031) service-utility-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service">
+    <configuration name="(10031) service-utility-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-utility-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=service-utility-api" />
@@ -285,7 +299,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9001) eureka-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="eureka">
+    <configuration name="(9001) eureka-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="eureka" singleton="false">
       <module name="biz-spring-cloud-eureka" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springcloud.eureka.EurekaStartMain" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=biz-spring-cloud-eureka" />
@@ -306,7 +320,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9002) eureka-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="eureka">
+    <configuration name="(9002) eureka-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="eureka" singleton="false">
       <module name="biz-spring-cloud-eureka" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springcloud.eureka.EurekaStartMain" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=biz-spring-cloud-eureka" />
@@ -327,7 +341,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9010) gateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard">
+    <configuration name="(9010) gateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard" singleton="false">
       <module name="biz-spring-cloud-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springcloud.gateway.GatewayStartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
@@ -344,7 +358,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9020) boot-admin" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard">
+    <configuration name="(9020) boot-admin" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard" singleton="false">
       <module name="biz-spring-boot-admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springboot.admin.SpringBootAdminStartMain" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=biz-spring-boot-admin" />
@@ -360,7 +374,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9030) hystrix-dashboard" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard">
+    <configuration name="(9030) hystrix-dashboard" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard" singleton="false">
       <module name="biz-spring-cloud-dashboard-hystrix" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springcloud.hystrix.HystrixDashboardStartMain" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=biz-spring-cloud-hystrix" />
@@ -376,7 +390,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9040) turbine-dashboard" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard">
+    <configuration name="(9040) turbine-dashboard" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard" singleton="false">
       <module name="biz-spring-cloud-dashboard-turbine" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springcloud.turbine.TurbineDashboardStartMain" />
       <option name="URL_PATH" value="/hystrix" />
@@ -413,7 +427,7 @@
     <option name="viewStates">
       <list>
         <serviceView>
-          <option name="contentProportion" value="0.16883117" />
+          <option name="contentProportion" value="0.19318181" />
           <treeState>
             <expand>
               <path>
@@ -423,13 +437,12 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="dashboard" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -534,6 +547,10 @@
       <workItem from="1578822527878" duration="9441000" />
       <workItem from="1578923542747" duration="11549000" />
       <workItem from="1579016846397" duration="3040000" />
+      <workItem from="1579144785091" duration="693000" />
+      <workItem from="1579156861166" duration="945000" />
+      <workItem from="1579159594987" duration="3454000" />
+      <workItem from="1579163118700" duration="4148000" />
     </task>
     <task id="LOCAL-00010" summary="release(biz-parent): 1.0.2019071501-RELEASE">
       <created>1563160850013</created>
@@ -979,9 +996,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="perf(biz-parent): 修改ribbon.retryableStatusCodes为404,502" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="590" y="19" key="#(10001)_dynamic-datasource-test-api" timestamp="1579017927179">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2510" y="19" key="#(10001)_dynamic-datasource-test-api" timestamp="1579087845952">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="2510" y="19" key="#(10001)_dynamic-datasource-test-api/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579087845952" />
     <state x="590" y="19" key="#(10001)_dynamic-datasource-test-api/0.0.1920.1049@0.0.1920.1049" timestamp="1579017927179" />
     <state x="2510" y="14" key="#(10010)_order-service-peer1" timestamp="1577771797566">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -1011,13 +1029,15 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2510" y="2" key="#(10011)_user-service-peer2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577771701160" />
-    <state x="590" y="19" key="#(10020)_service-product-peer1" timestamp="1579018065317">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2510" y="4" key="#(10020)_service-product-peer1" timestamp="1579163283914">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="2510" y="4" key="#(10020)_service-product-peer1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579163283914" />
     <state x="590" y="19" key="#(10020)_service-product-peer1/0.0.1920.1049@0.0.1920.1049" timestamp="1579018065317" />
-    <state x="590" y="19" key="#(10021)_service-product-peer2" timestamp="1579018073970">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2510" y="19" key="#(10021)_service-product-peer2" timestamp="1579163276281">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="2510" y="19" key="#(10021)_service-product-peer2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579163276281" />
     <state x="590" y="19" key="#(10021)_service-product-peer2/0.0.1920.1049@0.0.1920.1049" timestamp="1579018073970" />
     <state x="2510" y="2" key="#(10030)_order-service-peer1" timestamp="1577771833946">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -1035,13 +1055,19 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="590" y="19" key="#(10031)_service-utility-peer2/0.0.1920.1049@0.0.1920.1049" timestamp="1579018055291" />
-    <state x="590" y="19" key="#(9001)_eureka-peer1" timestamp="1579017867991">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2510" y="19" key="#(9001)_eureka-peer1" timestamp="1579161965367">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="2510" y="19" key="#(9001)_eureka-peer1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579161965367" />
     <state x="590" y="19" key="#(9001)_eureka-peer1/0.0.1920.1049@0.0.1920.1049" timestamp="1579017867991" />
-    <state x="590" y="19" key="#(9010)_gateway" timestamp="1579017835615">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2510" y="14" key="#(9002)_eureka-peer2" timestamp="1579163394945">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="2510" y="14" key="#(9002)_eureka-peer2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579163394945" />
+    <state x="2510" y="19" key="#(9010)_gateway" timestamp="1579087852858">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2510" y="19" key="#(9010)_gateway/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579087852858" />
     <state x="590" y="19" key="#(9010)_gateway/0.0.1920.1049@0.0.1920.1049" timestamp="1579017835615" />
     <state x="590" y="19" key="#(9020)_boot-admin" timestamp="1579017796791">
       <screen x="0" y="0" width="1920" height="1049" />
@@ -1063,20 +1089,24 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="178" width="1176" height="684" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577771011319" />
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579017690983">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2472" y="178" key="#SonarLint" timestamp="1579167348982">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772204092" />
+    <state x="2472" y="178" key="#SonarLint/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579167348982" />
+    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579163060158">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579163060158" />
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1579017690983" />
     <state x="765" y="231" key="#com.intellij.ide.util.MemberChooser" timestamp="1578821736925">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2685" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577705934324" />
     <state x="765" y="231" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1049@0.0.1920.1049" timestamp="1578821736925" />
-    <state x="2609" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1577772052978">
+    <state x="3081" y="423" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1579162937767">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2609" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772052978" />
+    <state x="3081" y="423" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162937767" />
     <state x="317" y="449" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1578580665287">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
@@ -1093,66 +1123,66 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1578579705352" />
-    <state x="495" y="48" key="CommitChangelistDialog2" timestamp="1579020837794">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2415" y="105" key="CommitChangelistDialog2" timestamp="1579168393532">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="495" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1575551344191" />
-    <state x="2415" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775673883" />
+    <state x="2415" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168393532" />
     <state x="495" y="48" key="CommitChangelistDialog2/0.0.1920.1049@0.0.1920.1049" timestamp="1579020837794" />
     <state width="714" height="466" key="DebuggerActiveHint" timestamp="1578934605305">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="714" height="466" key="DebuggerActiveHint/0.0.1920.1049@0.0.1920.1049" timestamp="1578934605305" />
-    <state x="184" y="87" width="1536" height="868" key="DiffContextDialog" timestamp="1578934792513">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2104" y="86" width="1536" height="861" key="DiffContextDialog" timestamp="1579168392213">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2104" y="86" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577707400514" />
+    <state x="2104" y="86" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168392213" />
     <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575551188751" />
     <state x="184" y="87" width="1536" height="868" key="DiffContextDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1578934792513" />
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1578832351753">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1579162719429">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772426965" />
+    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162719429" />
     <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1049@0.0.1920.1049" timestamp="1578832351753" />
-    <state width="1535" height="294" key="GridCell.Tab.0.bottom" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.0.bottom" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
-    <state width="1535" height="294" key="GridCell.Tab.0.center" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.0.center" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.0.center/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
-    <state width="1535" height="294" key="GridCell.Tab.0.left" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.0.left" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.0.left/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
-    <state width="1535" height="294" key="GridCell.Tab.0.right" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.0.right" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.0.right/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
-    <state width="1535" height="294" key="GridCell.Tab.1.bottom" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.1.bottom" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.1.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
-    <state width="1535" height="294" key="GridCell.Tab.1.center" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.1.center" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.1.center/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
-    <state width="1535" height="294" key="GridCell.Tab.1.left" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.1.left" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.1.left/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
-    <state width="1535" height="294" key="GridCell.Tab.1.right" timestamp="1579020810839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1490" height="313" key="GridCell.Tab.1.right" timestamp="1579168066085">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1490" height="317" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577775662431" />
+    <state width="1490" height="313" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168066085" />
     <state width="1535" height="294" key="GridCell.Tab.1.right/0.0.1920.1049@0.0.1920.1049" timestamp="1579020810839" />
     <state width="1500" height="469" key="GridCell.Tab.2.bottom" timestamp="1578935099458">
       <screen x="0" y="0" width="1920" height="1049" />
@@ -1170,15 +1200,15 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state width="1500" height="469" key="GridCell.Tab.2.right/0.0.1920.1049@0.0.1920.1049" timestamp="1578935099458" />
-    <state x="780" y="219" key="NewModule_or_Project.wizard" timestamp="1578126938989">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2700" y="217" key="NewModule_or_Project.wizard" timestamp="1579162720871">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2700" y="217" key="NewModule_or_Project.wizard/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772428131" />
+    <state x="2700" y="217" key="NewModule_or_Project.wizard/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162720871" />
     <state x="780" y="219" key="NewModule_or_Project.wizard/0.0.1920.1049@0.0.1920.1049" timestamp="1578126938989" />
-    <state x="602" y="184" key="SettingsEditor" timestamp="1578832352886">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2360" y="94" key="SettingsEditor" timestamp="1579162962151">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2360" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577772430381" />
+    <state x="2360" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162962151" />
     <state x="602" y="184" key="SettingsEditor/0.0.1920.1049@0.0.1920.1049" timestamp="1578832352886" />
     <state x="721" y="253" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578933528839">
       <screen x="0" y="0" width="1920" height="1049" />
@@ -1188,14 +1218,15 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="752" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1049@0.0.1920.1049" timestamp="1578209066430" />
-    <state x="534" y="299" width="1263" height="750" key="find.popup" timestamp="1579017736669">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="2454" y="296" width="1263" height="744" key="find.popup" timestamp="1579168183871">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="2454" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168183871" />
     <state x="534" y="299" width="1263" height="750" key="find.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1579017736669" />
-    <state width="650" height="125" key="javadoc.popup.new" timestamp="1578929078067">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="650" height="123" key="javadoc.popup.new" timestamp="1579165824763">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="650" height="123" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577704461242" />
+    <state width="650" height="123" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579165824763" />
     <state width="650" height="125" key="javadoc.popup.new/0.0.1920.1049@0.0.1920.1049" timestamp="1578929078067" />
     <state x="417" y="201" width="1190" height="659" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1578579161652">
       <screen x="0" y="0" width="1920" height="1049" />

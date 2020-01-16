@@ -34,16 +34,21 @@ public class JsonBinder {
 
         // 设置序列化策略
         mapper.setSerializationInclusion(inclusion);
+
         // ---------- SerializationFeature ----------
-        mapper.configure(SerializationFeature.FLUSH_AFTER_WRITE_VALUE, false);
+        mapper.disable(SerializationFeature.FLUSH_AFTER_WRITE_VALUE);
+        // 允许反序列化空对象
+        mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         // ---------- DeserializationFeature ----------
         // 设置反序列化时存在未知属性是否抛出异常
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
         // ---------- JsonParser ----------
+        // 支持解析注释
+        mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
         // 设置解析器支持解析单引号
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-        // 设置解析器支持解析结束符
-        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+
         // 设置ObjectMapper对大小写不敏感
         //mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
     }

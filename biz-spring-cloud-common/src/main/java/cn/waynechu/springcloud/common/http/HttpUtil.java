@@ -150,18 +150,17 @@ public class HttpUtil {
         return stringBuilder.toString();
     }
 
-    public static String getRequestedURIQueryString(HttpServletRequest request) {
+    public static String getRequestedUriQueryString(HttpServletRequest request) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(request.getRequestURI());
-
         if (!StringUtil.isEmpty(request.getQueryString())) {
             stringBuilder.append("?").append(request.getQueryString());
         }
         return stringBuilder.toString();
     }
 
-    public static String getURIQueryString(String url) {
+    public static String getUriQueryString(String url) {
         StringBuilder stringBuilder = new StringBuilder();
 
         try {
