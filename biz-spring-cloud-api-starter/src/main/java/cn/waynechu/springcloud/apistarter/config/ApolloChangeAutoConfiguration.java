@@ -28,7 +28,7 @@ public class ApolloChangeAutoConfiguration {
      */
     @PostConstruct
     private void init() {
-        if (null == namespaces || namespaces.length == 0 || "notApollo".equals(namespaces[0])) {
+        if (namespaces == null || namespaces.length == 0) {
             return;
         }
 

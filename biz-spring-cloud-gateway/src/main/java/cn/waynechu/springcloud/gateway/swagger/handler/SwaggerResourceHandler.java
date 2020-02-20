@@ -1,7 +1,6 @@
 package cn.waynechu.springcloud.gateway.swagger.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -28,13 +27,14 @@ public class SwaggerResourceHandler implements HandlerFunction<ServerResponse> {
 
     /**
      * Handle the given request.
+     *
      * @param request the request to handle
      * @return the response
      */
     @Override
     public Mono<ServerResponse> handle(ServerRequest request) {
         return ServerResponse.status(HttpStatus.OK)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .body(BodyInserters.fromObject(swaggerResources.get()));
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(swaggerResources.get()));
     }
 }

@@ -44,7 +44,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
             String applicationName = application.getName().toLowerCase();
             List<InstanceInfo> instances = application.getInstances();
 
-            if (instances.size() > 0) {
+            if (!instances.isEmpty()) {
                 String swaggerName = instances.get(0).getMetadata().get("swagger-name");
                 if (StringUtil.isNotEmpty(swaggerName)) {
                     resources.add(swaggerResource(swaggerName, "/" + applicationName + "/v2/api-docs"));
