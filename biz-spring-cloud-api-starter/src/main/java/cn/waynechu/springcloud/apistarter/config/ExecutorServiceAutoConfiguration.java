@@ -1,12 +1,14 @@
 package cn.waynechu.springcloud.apistarter.config;
 
-import cn.waynechu.springcloud.apistarter.executor.BizThreadPoolTaskExecutor;
+import cn.waynechu.springcloud.apistarter.executor.BizThreadPoolExecutor;
 import cn.waynechu.springcloud.apistarter.properties.ExecutorServiceProperty;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author zhuwei
@@ -19,17 +21,16 @@ public class ExecutorServiceAutoConfiguration {
     @Autowired
     private ExecutorServiceProperty property;
 
-    @Bean("defaultThreadPoolTaskExecutor")
-    public ThreadPoolTaskExecutor defaultThreadPoolTaskExecutor() {
-        BizThreadPoolTaskExecutor taskExecutor = new BizThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(property.getCorePoolSize());
-        taskExecutor.setMaxPoolSize(property.getMaxPoolSize());
-        taskExecutor.setKeepAliveSeconds(property.getKeepAliveSeconds());
-        taskExecutor.setQueueCapacity(property.getQueueCapacity());
-        taskExecutor.setAwaitTerminationSeconds(property.getAwaitTerminationSeconds());
-        taskExecutor.setThreadNamePrefix(property.getThreadNamePrefix());
-        taskExecutor.setRejectedExecutionHandler(property.getRejectedExecutionHandler());
-        taskExecutor.initialize();
-        return taskExecutor;
+    @Bean("defaultThreadPoolExecutor")
+    public ThreadPoolExecutor defaultThreadPoolTaskExecutor() {
+        return new BizThreadPoolExecutor(
+                property.getCorePoolSize(),
+                property.getCorePoolSize(),
+                property.getKeepAliveTime(),
+                property.getUnit(),
+                property.getWorkQueue(),
+                new ThreadFactoryBuilder().setNameFormat(property.getThreadNamePrefix() + "-%d").build(),
+                property.getRejectedExecutionHandler()
+        );
     }
 }
