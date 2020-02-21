@@ -33,8 +33,8 @@ public class PageInfo<T> extends PageSerializable<T> {
     @ApiModelProperty("总页数")
     private int pages;
 
-    @ApiModelProperty("是否为最后一页")
-    private Boolean isLastPage = false;
+    @ApiModelProperty("是否有下一页")
+    private boolean hasNextPage = false;
 
     public PageInfo(int pageNum, int pageSize) {
         this.pageNum = pageNum;
@@ -58,7 +58,7 @@ public class PageInfo<T> extends PageSerializable<T> {
             this.pageSize = list.size();
             this.pages = this.pageSize > 0 ? 1 : 0;
         }
-        isLastPage = pageNum == pages || pages == 0;
+        hasNextPage = pageNum < pages;
     }
 
     public static <T> PageInfo<T> of(List<T> list) {

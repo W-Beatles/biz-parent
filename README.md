@@ -35,7 +35,7 @@ SpringCloud微服务开发脚手架
 13. ~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
     推荐使用biz-spring-cloud-dashboard-turbine来进行Hystrix断路器监控
 14. biz-spring-cloud-dashboard-turbine  
-     用于监控应用hystrix.stream断点，并进行Hystrix断路器信息聚合
+     用于监控应用hystrix.stream端点，并进行Hystrix断路器信息聚合
 15. biz-spring-cloud-eureka  
      Eureka注册中心
 16. biz-spring-cloud-gateway  
