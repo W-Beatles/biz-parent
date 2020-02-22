@@ -22,6 +22,6 @@ public class HystrixFallbackHandler implements HandlerFunction<ServerResponse> {
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
         log.error("网关执行请求失败: {}, hystrix服务降级处理", serverRequest.uri());
         return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromValue("服务异常"));
+                .contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject("服务异常"));
     }
 }

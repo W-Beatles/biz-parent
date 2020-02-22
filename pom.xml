@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
+        <version>2.1.12.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -24,9 +24,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <apollo-client.version>1.4.0</apollo-client.version>
-        <spring-cloud-dependencies.version>Hoxton.SR2</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>Greenwich.SR5</spring-cloud-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2.1.0.RELEASE</spring-cloud-alibaba-dependencies.version>
         <spring-boot-admin.version>2.2.1</spring-boot-admin.version>
+        <apollo-client.version>1.4.0</apollo-client.version>
         <dubbo.version>2.7.3</dubbo.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <curator.version>4.0.1</curator.version>
@@ -101,18 +102,20 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Apollo -->
-            <dependency>
-                <groupId>com.ctrip.framework.apollo</groupId>
-                <artifactId>apollo-client</artifactId>
-                <version>${apollo-client.version}</version>
-            </dependency>
-
             <!-- SpringCloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringCloud Alibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -128,6 +131,13 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
                 <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <!-- Apollo -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo-client.version}</version>
             </dependency>
 
             <!-- Dubbo -->

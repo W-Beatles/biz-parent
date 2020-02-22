@@ -36,7 +36,7 @@ public class SwaggerUiHandler implements HandlerFunction<ServerResponse> {
     public Mono<ServerResponse> handle(ServerRequest request) {
         return ServerResponse.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(
+                .body(BodyInserters.fromObject(
                         Optional.ofNullable(uiConfiguration)
                                 .orElse(UiConfigurationBuilder.builder().build())));
     }
