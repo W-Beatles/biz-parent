@@ -180,7 +180,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.(9010) gateway">
     <configuration name="(10001) dynamic-datasource-test-api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="dynamic-datasource-test-api" />
       <extension name="coverage">
@@ -1123,11 +1123,11 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="178" key="#SonarLint/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579167348982" />
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582346615067">
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582564496335">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579163060158" />
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1582346615067" />
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1582564496335" />
     <state x="394" y="231" width="1401" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1582255984038">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
