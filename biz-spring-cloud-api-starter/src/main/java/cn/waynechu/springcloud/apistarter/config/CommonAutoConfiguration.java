@@ -9,6 +9,7 @@ import cn.waynechu.springcloud.apistarter.aspect.MethodLogAspect;
 import cn.waynechu.springcloud.apistarter.cache.RedisCache;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
+import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -37,6 +38,7 @@ public class CommonAutoConfiguration {
 
     @Bean
     @LoadBalanced
+    @SentinelRestTemplate
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
         RestTemplateTraceInterceptor traceInterceptor = new RestTemplateTraceInterceptor(LoggerAutoConfiguration.NEED_TRACE_HEADERS);
