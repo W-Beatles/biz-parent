@@ -17,7 +17,7 @@ SpringCloud微服务开发脚手架
 4. biz-facade-common  
     通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
 5. biz-spring-boot-admin  
-    SpringBoot Admin监控模块
+    SpringBoot Admin监控模块。
 6. biz-spring-cloud-api-dynamic-datasource-test  
     动态数据源测试模块
 7. biz-spring-cloud-api-service-order  
