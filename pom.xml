@@ -68,6 +68,7 @@
         <module>biz-spring-cloud-dashboard-hystrix</module>
         <module>biz-spring-cloud-dashboard-turbine</module>
         <module>biz-spring-cloud-gateway</module>
+        <module>biz-spring-cloud-oauth-server</module>
         <module>biz-spring-boot-admin</module>
         <module>biz-spring-cloud-test</module>
 

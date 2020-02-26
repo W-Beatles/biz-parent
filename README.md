@@ -40,7 +40,9 @@ SpringCloud微服务开发脚手架
      Eureka注册中心
 16. biz-spring-cloud-gateway  
      API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
-17. biz-spring-cloud-test  
+17. biz-spring-cloud-oauth-server  
+     oauth2统一认证授权中心
+18. biz-spring-cloud-test  
      测试模块
 
 ### TODO LIST
@@ -57,10 +59,10 @@ SpringCloud微服务开发脚手架
    - ~~支持注解声明式指定数据源~~
    - 集成`seata`分布式事务解决方案
 5. 添加文件上传模块 `biz-spring-cloud-file-upload`  
-   - 支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储 
-6. 添加统一认证鉴权模块 `biz-spring-cloud-oauth`
-7. SpringCloud Gateway网关支持多种业务渠道鉴权。如企业微信，Oauth2等
-8. 添加分布式任务调度系统模块(扩展xxl-job)
+   - 支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储  
+6. 添加统一认证鉴权模块 `biz-spring-cloud-oauth-server`  
+7. SpringCloud Gateway网关支持多种业务渠道鉴权。如企业微信，Oauth2等  
+8. 添加分布式任务调度系统模块(扩展xxl-job)  
    - 支持任务前置依赖配置
    - 支持任务优先级配置
    - 支持任务手动执行指定服务器IP
