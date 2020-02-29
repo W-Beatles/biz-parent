@@ -118,6 +118,7 @@
             </properties>
         </profile>
     </profiles>
+
     <modules>
         <module>dynamic-datasource-test-api</module>
         <module>dynamic-datasource-test-common</module>

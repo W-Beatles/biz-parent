@@ -26,19 +26,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("usernameis:" + username);
         // 查询数据库操作
-        if (!username.equals("admin")) {
-            throw new UsernameNotFoundException("the user is not found");
-        } else {
-            // 用户角色也应在数据库中获取
-            String role = "ROLE_ADMIN";
-            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(role));
-            // 线上环境应该通过用户名查询数据库获取加密后的密码
-            String password = passwordEncoder.encode("123456");
-            return new User(username, password, authorities);
-        }
+        String role = "ROLE_ADMIN";
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role));
+        String password = passwordEncoder.encode("123456");
+        return User.withUsername(username).password(password)
+                .authorities(authorities).build();
     }
-
 }

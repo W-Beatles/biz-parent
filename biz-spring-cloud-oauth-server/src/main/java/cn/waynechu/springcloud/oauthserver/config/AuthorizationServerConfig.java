@@ -21,10 +21,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    public PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserDetailsService bizUserDetailsService;
+    private UserDetailsService bizUserDetailsService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -42,21 +42,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("order-client")
-                .secret(passwordEncoder.encode("order-secret-8888"))
+                .withClient("h5")
+                .secret(passwordEncoder.encode("123456"))
                 // 支持的授权模式
                 .authorizedGrantTypes("refresh_token", "authorization_code", "password")
+                // token有效期
                 .accessTokenValiditySeconds(3600)
-                // 定义访问作用域，也就是当用户使用某一个scope授权之后，可以根据不同的scope封装不同的user信息，比如webclient会封装角色，mobileclient封装角色和资源api，由开发人员定义即可
-                .scopes("all")
-                .and()
-                .withClient("user-client")
-                .secret(passwordEncoder.encode("user-secret-8888"))
-                .authorizedGrantTypes("refresh_token", "authorization_code", "password")
-                .accessTokenValiditySeconds(3600)
-                .scopes("all");
+                // 访问的资源id
+                .resourceIds("biz-spring-cloud-gateway")
+                // 定义访问作用域，也就是当用户使用某一个scope授权之后，可以根据不同的scope封装不同的user信息，由开发人员定义即可
+                .scopes("read", "write");
     }
-
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
