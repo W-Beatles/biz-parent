@@ -28,7 +28,7 @@ public class PathUtil {
      * @param antPattern ant风格的url
      * @return 符合返回true
      */
-    public static boolean urlContain(Collection<String> urls, String antPattern) {
+    public static boolean antMatch(Collection<String> urls, String antPattern) {
         PathMatcher matcher = new AntPathMatcher();
         for (String url : urls) {
             if (matcher.match(url, antPattern)) {

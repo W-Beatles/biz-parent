@@ -25,6 +25,7 @@ import java.io.IOException;
 @Slf4j
 @Data
 public class MDCFilter implements Filter {
+
     public static final String HEADER_KEY_API_VERSION = "apiVersion";
     public static final String HEADER_KEY_CHANNEL = "channel";
     public static final String HEADER_KEY_DEVICE_ID = "deviceId";
@@ -38,8 +39,10 @@ public class MDCFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try {
+            // 添加请求头及MDC信息
             ModifyHttpServletRequestWrapper modifyHttpServletRequestWrapper = this.modifyRequestAndAddMdc((HttpServletRequest) servletRequest);
 
+            // ResponseHeader返回requestId
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             response.setHeader(HEADER_KEY_REQUEST_ID, modifyHttpServletRequestWrapper.getHeader(HEADER_KEY_REQUEST_ID));
             filterChain.doFilter(modifyHttpServletRequestWrapper, servletResponse);
