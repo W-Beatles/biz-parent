@@ -47,23 +47,23 @@ public class SwaggerAutoConfiguration {
     @Bean
     public Docket createRestApi() {
         // 添加公共head参数
-        ParameterBuilder tokenPar = new ParameterBuilder();
-        ParameterBuilder deviceIdPar = new ParameterBuilder();
-        ParameterBuilder channelPar = new ParameterBuilder();
         ParameterBuilder apiVersionPar = new ParameterBuilder();
+        ParameterBuilder authType = new ParameterBuilder();
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        ParameterBuilder userPar = new ParameterBuilder();
         List<Parameter> parameters = new ArrayList<>();
-        tokenPar.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header")
-                .required(false).order(0).build();
-        deviceIdPar.name("deviceId").description("设备ID").modelRef(new ModelRef("string")).parameterType("header")
-                .required(false).order(1).build();
-        channelPar.name("channel").description("渠道").modelRef(new ModelRef("string")).parameterType("header")
-                .required(false).order(2).build();
         apiVersionPar.name("apiVersion").description("版本").modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).order(1).build();
+        authType.name("authType").description("鉴权渠道").modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).order(2).build();
+        tokenPar.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header")
                 .required(false).order(3).build();
-        parameters.add(tokenPar.build());
-        parameters.add(deviceIdPar.build());
-        parameters.add(channelPar.build());
+        userPar.name("user").description("用户").modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).order(4).build();
         parameters.add(apiVersionPar.build());
+        parameters.add(authType.build());
+        parameters.add(tokenPar.build());
+        parameters.add(userPar.build());
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
