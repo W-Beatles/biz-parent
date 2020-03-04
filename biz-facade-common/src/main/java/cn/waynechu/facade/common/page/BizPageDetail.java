@@ -19,9 +19,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(description = "分页详情返回对象")
-public class PageDetail<T> extends PageSerializable<T> {
+public class BizPageDetail<T> extends PageSerializable<T> {
     private static final long serialVersionUID = 4173165387592228326L;
 
     @ApiModelProperty("当前页数")
@@ -61,7 +61,7 @@ public class PageDetail<T> extends PageSerializable<T> {
     @ApiModelProperty("导航条上的最后一页")
     private int navigateLastPage;
 
-    public PageDetail(int pageNum, int pageSize) {
+    public BizPageDetail(int pageNum, int pageSize) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
     }
@@ -71,7 +71,7 @@ public class PageDetail<T> extends PageSerializable<T> {
      *
      * @param list page对象
      */
-    public PageDetail(List<T> list) {
+    public BizPageDetail(List<T> list) {
         this(list, 8);
     }
 
@@ -81,7 +81,7 @@ public class PageDetail<T> extends PageSerializable<T> {
      * @param list          page对象
      * @param navigatePages 导航页码数
      */
-    public PageDetail(List<T> list, int navigatePages) {
+    public BizPageDetail(List<T> list, int navigatePages) {
         super(list);
         if (list instanceof Page) {
             Page page = (Page) list;
@@ -118,12 +118,12 @@ public class PageDetail<T> extends PageSerializable<T> {
         judgePageBoundary();
     }
 
-    public static <T> PageDetail<T> of(List<T> list) {
-        return new PageDetail<>(list);
+    public static <T> BizPageDetail<T> of(List<T> list) {
+        return new BizPageDetail<>(list);
     }
 
-    public static <T> PageDetail<T> of(List<T> list, int navigatePages) {
-        return new PageDetail<>(list, navigatePages);
+    public static <T> BizPageDetail<T> of(List<T> list, int navigatePages) {
+        return new BizPageDetail<>(list, navigatePages);
     }
 
     /**
@@ -134,10 +134,10 @@ public class PageDetail<T> extends PageSerializable<T> {
      * @return 替换后的pageDetail
      */
     @SuppressWarnings("unchecked")
-    public <E> PageDetail<E> replace(List<E> replaceList) {
-        PageDetail replacePageDetail = this;
-        replacePageDetail.setList(replaceList);
-        return replacePageDetail;
+    public <E> BizPageDetail<E> replace(List<E> replaceList) {
+        BizPageDetail replaceBizPageDetail = this;
+        replaceBizPageDetail.setList(replaceList);
+        return replaceBizPageDetail;
     }
 
     /**
@@ -147,7 +147,7 @@ public class PageDetail<T> extends PageSerializable<T> {
      * @param pageSize 页大小
      * @return 空分页信息
      */
-    public PageDetail<T> emptyPage(int pageNum, int pageSize) {
+    public BizPageDetail<T> emptyPage(int pageNum, int pageSize) {
         this.setPageNum(pageNum);
         this.setPageSize(pageSize);
         this.setList(Collections.emptyList());

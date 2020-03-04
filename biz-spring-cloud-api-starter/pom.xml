@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>biz-spring-cloud-api-starter</artifactId>
-    <version>1.0.2019091701-RELEASE</version>
+    <version>1.0.2020030401-RELEASE</version>
     <name>biz-spring-cloud-api-starter</name>
     <description>biz-spring-cloud-api-starter module for SpringCloud</description>
 
