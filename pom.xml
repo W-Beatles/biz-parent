@@ -26,7 +26,7 @@
 
         <apollo-client.version>1.4.0</apollo-client.version>
         <spring-cloud-dependencies.version>Hoxton.SR2</spring-cloud-dependencies.version>
-        <spring-boot-admin.version>2.2.1</spring-boot-admin.version>
+        <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
         <dubbo.version>2.7.3</dubbo.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <curator.version>4.0.1</curator.version>
@@ -51,7 +51,7 @@
 
         <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
         <biz-spring-cloud-common.version>1.0.2019080601-RELEASE</biz-spring-cloud-common.version>
-        <biz-spring-cloud-api-starter.version>1.0.2019091701-RELEASE</biz-spring-cloud-api-starter.version>
+        <biz-spring-cloud-api-starter.version>1.0.2020030401-RELEASE</biz-spring-cloud-api-starter.version>
         <biz-boot-starter-dynamic-datasource.version>1.0.2019123001-RELEASE</biz-boot-starter-dynamic-datasource.version>
         <biz-boot-starter-logger.version>1.0.2019123001-RELEASE</biz-boot-starter-logger.version>
         <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>

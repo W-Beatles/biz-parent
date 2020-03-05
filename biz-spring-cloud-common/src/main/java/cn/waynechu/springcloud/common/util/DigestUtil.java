@@ -12,7 +12,7 @@ import java.security.MessageDigest;
  * @see org.springframework.util.DigestUtils
  */
 @UtilityClass
-public class EncryptUtil {
+public class DigestUtil {
 
     public static final String MD5 = "MD5";
     public static final String SHA_1 = "SHA-1";

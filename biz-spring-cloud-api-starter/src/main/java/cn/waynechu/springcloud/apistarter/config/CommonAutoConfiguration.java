@@ -7,6 +7,7 @@ import cn.waynechu.springcloud.apistarter.aspect.ControllerLogAspect;
 import cn.waynechu.springcloud.apistarter.aspect.DistributedLockAspect;
 import cn.waynechu.springcloud.apistarter.aspect.MethodLogAspect;
 import cn.waynechu.springcloud.apistarter.cache.RedisCache;
+import cn.waynechu.springcloud.apistarter.helper.PageLoopHelper;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
+import java.util.concurrent.Executor;
 
 /**
  * @author zhuwei
@@ -42,5 +44,10 @@ public class CommonAutoConfiguration {
         RestTemplateTraceInterceptor traceInterceptor = new RestTemplateTraceInterceptor(LoggerAutoConfiguration.NEED_TRACE_HEADERS);
         restTemplate.setInterceptors(Collections.singletonList(traceInterceptor));
         return restTemplate;
+    }
+
+    @Bean
+    public PageLoopHelper pageLoopHelper(Executor defaultThreadPoolExecutor) {
+        return new PageLoopHelper(defaultThreadPoolExecutor);
     }
 }

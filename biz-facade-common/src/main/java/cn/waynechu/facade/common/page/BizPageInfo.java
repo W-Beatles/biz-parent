@@ -21,7 +21,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(description = "分页返回对象")
-public class PageInfo<T> extends PageSerializable<T> {
+public class BizPageInfo<T> extends PageSerializable<T> {
     private static final long serialVersionUID = -5598171228549570150L;
 
     @ApiModelProperty("当前页数")
@@ -34,9 +34,9 @@ public class PageInfo<T> extends PageSerializable<T> {
     private int pages;
 
     @ApiModelProperty("是否有下一页")
-    private boolean hasNextPage = false;
+    private Boolean hasNextPage = false;
 
-    public PageInfo(int pageNum, int pageSize) {
+    public BizPageInfo(int pageNum, int pageSize) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
     }
@@ -46,7 +46,7 @@ public class PageInfo<T> extends PageSerializable<T> {
      *
      * @param list page对象
      */
-    public PageInfo(List<T> list) {
+    public BizPageInfo(List<T> list) {
         super(list);
         if (list instanceof Page) {
             Page page = (Page) list;
@@ -61,8 +61,8 @@ public class PageInfo<T> extends PageSerializable<T> {
         hasNextPage = pageNum < pages;
     }
 
-    public static <T> PageInfo<T> of(List<T> list) {
-        return new PageInfo<>(list);
+    public static <T> BizPageInfo<T> of(List<T> list) {
+        return new BizPageInfo<>(list);
     }
 
     /**
@@ -73,10 +73,10 @@ public class PageInfo<T> extends PageSerializable<T> {
      * @return 替换后的pageInfo
      */
     @SuppressWarnings("unchecked")
-    public <E> PageInfo<E> replace(List<E> replaceList) {
-        PageInfo replacePageInfo = this;
-        replacePageInfo.setList(replaceList);
-        return replacePageInfo;
+    public <E> BizPageInfo<E> replace(List<E> replaceList) {
+        BizPageInfo replaceBizPageInfo = this;
+        replaceBizPageInfo.setList(replaceList);
+        return replaceBizPageInfo;
     }
 
     /**
@@ -84,7 +84,7 @@ public class PageInfo<T> extends PageSerializable<T> {
      *
      * @return 空分页信息
      */
-    public PageInfo<T> emptyPage() {
+    public BizPageInfo<T> emptyPage() {
         this.setList(Collections.emptyList());
         return this;
     }
@@ -96,7 +96,7 @@ public class PageInfo<T> extends PageSerializable<T> {
      * @param pageSize 页大小
      * @return 空分页信息
      */
-    public PageInfo<T> emptyPage(int pageNum, int pageSize) {
+    public BizPageInfo<T> emptyPage(int pageNum, int pageSize) {
         this.setPageNum(pageNum);
         this.setPageSize(pageSize);
         this.setList(Collections.emptyList());

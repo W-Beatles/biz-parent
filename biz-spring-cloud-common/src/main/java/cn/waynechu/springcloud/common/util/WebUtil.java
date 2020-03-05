@@ -1,6 +1,7 @@
 package cn.waynechu.springcloud.common.util;
 
 import lombok.experimental.UtilityClass;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,5 +28,9 @@ public class WebUtil {
 
     public static String getReqHeader(String key, HttpServletRequest request) {
         return request.getHeader(key);
+    }
+
+    public static String getReqHeader(String key, ServerHttpRequest request) {
+        return request.getHeaders().getFirst(key);
     }
 }
