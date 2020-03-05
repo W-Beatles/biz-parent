@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.bootstarter.dynamicdatasource.autoconfig;
+package cn.waynechu.bootstarter.dynamicdatasource.config;
 
-import cn.waynechu.bootstarter.dynamicdatasource.autoconfig.stat.DruidSpringAopConfiguration;
-import cn.waynechu.bootstarter.dynamicdatasource.autoconfig.stat.DruidStatViewServletConfiguration;
-import cn.waynechu.bootstarter.dynamicdatasource.autoconfig.stat.DruidWebStatFilterConfiguration;
+import cn.waynechu.bootstarter.dynamicdatasource.config.stat.DruidSpringAopConfiguration;
+import cn.waynechu.bootstarter.dynamicdatasource.config.stat.DruidStatViewServletConfiguration;
+import cn.waynechu.bootstarter.dynamicdatasource.config.stat.DruidWebStatFilterConfiguration;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DruidStatProperties;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -36,5 +36,5 @@ import org.springframework.context.annotation.Import;
         DruidStatViewServletConfiguration.class,
         DruidSpringAopConfiguration.class,
         DruidWebStatFilterConfiguration.class})
-public class DruidDynamicDataSourceConfiguration {
+public class DruidDynamicDataSourceConfig {
 }

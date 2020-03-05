@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.bootstarter.dynamicdatasource.autoconfig.stat;
+package cn.waynechu.bootstarter.dynamicdatasource.config.stat;
 
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DruidStatProperties;
 import com.alibaba.druid.support.http.StatViewServlet;

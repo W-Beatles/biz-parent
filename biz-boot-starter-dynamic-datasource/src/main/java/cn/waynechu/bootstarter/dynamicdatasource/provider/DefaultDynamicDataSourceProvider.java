@@ -15,7 +15,7 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource.provider;
 
-import cn.waynechu.bootstarter.dynamicdatasource.autoconfig.DruidConfig;
+import cn.waynechu.bootstarter.dynamicdatasource.config.DruidConfig;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DataSourceProperty;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import com.alibaba.druid.pool.DruidDataSource;

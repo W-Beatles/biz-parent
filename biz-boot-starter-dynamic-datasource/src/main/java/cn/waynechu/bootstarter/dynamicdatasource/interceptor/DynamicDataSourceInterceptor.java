@@ -15,7 +15,7 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource.interceptor;
 
-import cn.waynechu.bootstarter.dynamicdatasource.DynamicRoutingDataSource;
+import cn.waynechu.bootstarter.dynamicdatasource.dynamic.DynamicRoutingDataSource;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
 import lombok.extern.slf4j.Slf4j;
