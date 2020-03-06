@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.bootstarter.dynamicdatasource;
+package cn.waynechu.bootstarter.dynamicdatasource.dynamic;
 
 import org.springframework.jdbc.datasource.AbstractDataSource;
 

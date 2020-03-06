@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.waynechu.bootstarter.dynamicdatasource;
+package cn.waynechu.bootstarter.dynamicdatasource.dynamic;
 
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DynamicDataSourceProvider;
 import cn.waynechu.bootstarter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
 import com.alibaba.druid.pool.DruidDataSource;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
@@ -64,6 +65,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     /**
      * 所有数据源
      */
+    @Getter
     private Map<String, DataSource> allDataSource;
     /**
      * 分组数据库

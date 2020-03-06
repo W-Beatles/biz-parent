@@ -15,7 +15,7 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource.properties;
 
-import cn.waynechu.bootstarter.dynamicdatasource.autoconfig.DruidConfig;
+import cn.waynechu.bootstarter.dynamicdatasource.config.DruidConfig;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

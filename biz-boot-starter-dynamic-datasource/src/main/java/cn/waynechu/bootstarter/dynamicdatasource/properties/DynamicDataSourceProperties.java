@@ -15,7 +15,7 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource.properties;
 
-import cn.waynechu.bootstarter.dynamicdatasource.autoconfig.DruidConfig;
+import cn.waynechu.bootstarter.dynamicdatasource.config.DruidConfig;
 import cn.waynechu.bootstarter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
 import cn.waynechu.bootstarter.dynamicdatasource.strategy.RoundRobinDynamicDataSourceStrategy;
 import lombok.Data;
