@@ -19,13 +19,11 @@ import cn.waynechu.bootstarter.dynamicdatasource.aspect.DynamicDataSourceAspect;
 import cn.waynechu.bootstarter.dynamicdatasource.config.DruidDynamicDataSourceConfig;
 import cn.waynechu.bootstarter.dynamicdatasource.dynamic.AbstractRoutingDataSource;
 import cn.waynechu.bootstarter.dynamicdatasource.dynamic.DynamicRoutingDataSource;
-import cn.waynechu.bootstarter.dynamicdatasource.indicator.DynamicDataSourceIndicator;
 import cn.waynechu.bootstarter.dynamicdatasource.interceptor.DynamicDataSourceInterceptor;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DefaultDynamicDataSourceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -67,10 +65,5 @@ public class DynamicDataSourceAutoConfiguration {
     @Bean
     public DynamicDataSourceInterceptor dynamicDataSourceInterceptor() {
         return new DynamicDataSourceInterceptor();
-    }
-
-    @Bean
-    public HealthIndicator dynamicDataSourceIndicator(DynamicRoutingDataSource dataSource) {
-        return new DynamicDataSourceIndicator(dataSource);
     }
 }

@@ -83,6 +83,13 @@ spring.datasource.dynamic.datasource.product-slave2.password=LP1lXJ+2jrs+QhjLUJJ
 spring.datasource.dynamic.datasource.product-slave2.url=jdbc:mysql://localhost:3308/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 ```
 
+### 健康检查
+默认开启健康检查，如需关闭请添加如下配置
+```
+## health endpoint
+management.health.dynamic-datasource.enabled=false
+```
+
 ### 约定与说明
 
 比如：

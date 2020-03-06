@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author zhuwei
  * @date 2019/9/19 17:48
@@ -23,6 +25,13 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @ApiOperation(value = "获取订单列表", notes = "查询order从库")
+    @GetMapping
+    public BizResponse<List<OrderResponse>> listAll() {
+        List<OrderResponse> orderResponses= orderService.listAll();
+        return BizResponse.success(orderResponses);
+    }
 
     @ApiOperation(value = "根据订单id获取订单信息", notes = "查询order从库")
     @GetMapping("/{orderId}")

@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "management.health.dynamic-datasource.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Whether to enable dynamic datasource health check.",
+      "defaultValue": true
+    }
+  ]
+}

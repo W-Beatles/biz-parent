@@ -13,6 +13,8 @@ import com.waynechu.dynamicdatasource.facade.response.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author zhuwei
  * @date 2019/9/19 18:13
@@ -58,5 +60,10 @@ public class OrderService {
             BeanUtil.copyProperties(product, orderDetailResponse);
         }
         return orderDetailResponse;
+    }
+
+    public List<OrderResponse> listAll() {
+        List<OrderDO> orderDOList = orderRepository.listAll();
+        return BeanUtil.beanListTransfer(orderDOList, OrderResponse.class);
     }
 }

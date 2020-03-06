@@ -1,10 +1,13 @@
 package com.waynechu.dynamicdatasource.domain.repository;
 
 import cn.waynechu.bootstarter.dynamicdatasource.annotion.SwitchDataSource;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.waynechu.dynamicdatasource.dal.dataobject.order.OrderDO;
 import com.waynechu.dynamicdatasource.dal.mapper.order.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author zhuwei
@@ -35,5 +38,10 @@ public class OrderRepository {
     @SwitchDataSource("order-master")
     public OrderDO getByIdFromMaster(Long orderId) {
         return orderMapper.selectById(orderId);
+    }
+
+    public List<OrderDO> listAll() {
+        QueryWrapper<OrderDO> wrapper = new QueryWrapper<>();
+        return orderMapper.selectList(wrapper);
     }
 }

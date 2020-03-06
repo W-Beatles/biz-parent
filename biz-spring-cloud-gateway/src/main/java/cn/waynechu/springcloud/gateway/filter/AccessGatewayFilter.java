@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 /**
- * GlobalFilter过滤请求参数
+ * 网关鉴权过滤器
  *
  * @author zhuwei
  * @date 2019/4/28 17:29
