@@ -5,20 +5,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+
+import javax.sql.DataSource;
 
 /**
  * @author zhuwei
  * @date 2020-02-27 21:57
  */
 @Configuration
-public class RedisTokenStoreConfig {
+public class TokenStoreConfig {
 
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
+    @Autowired
+    private DataSource dataSource;
+
     @Bean
-    public TokenStore redisTokenStore (){
-        return new RedisTokenStore(redisConnectionFactory);
+    public TokenStore tokenStore() {
+        // return new RedisTokenStore(redisConnectionFactory);
+        return new JdbcTokenStore(dataSource);
     }
 }
