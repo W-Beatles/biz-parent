@@ -1,13 +1,14 @@
 package cn.waynechu.springcloud.apistarter.config;
 
-import com.ctrip.framework.apollo.Config;
-import com.ctrip.framework.apollo.ConfigService;
+import com.ctrip.framework.apollo.model.ConfigChange;
+import com.ctrip.framework.apollo.model.ConfigChangeEvent;
+import com.ctrip.framework.apollo.spring.annotation.ApolloConfigChangeListener;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.BeansException;
+import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
-import java.util.Set;
 
 /**
  * @author zhuwei
@@ -15,31 +16,23 @@ import java.util.Set;
  */
 @Slf4j
 @Configuration
-public class ApolloChangeAutoConfiguration {
+public class ApolloChangeAutoConfiguration implements ApplicationContextAware {
 
-    @Value("${spring.application.name}")
-    private String springApplicationName;
+    private ApplicationContext applicationContext;
 
-    @Value("${apollo.bootstrap.namespaces:notApollo}")
-    private String[] namespaces;
-
-    /**
-     * 配置apollo监听事件
-     */
-    @PostConstruct
-    private void init() {
-        if (namespaces == null || namespaces.length == 0) {
-            return;
+    @ApolloConfigChangeListener
+    private void configChangeListener(ConfigChangeEvent changeEvent) {
+        for (String key : changeEvent.changedKeys()) {
+            ConfigChange change = changeEvent.getChange(key);
+            log.info("Found config change - {}", change.toString());
         }
 
-        for (String namespace : namespaces) {
-            Config config = ConfigService.getConfig(namespace);
-            config.addChangeListener(
-                    changeEvent -> {
-                        Set<String> changedKeys = changeEvent.changedKeys();
-                        changedKeys.forEach(key -> log.info("Apollo配置中心 key : {} 的值修改为: {}", key, changeEvent.getChange(key)));
-                        // TODO 2019/7/11 20:24 解决apollo不能自动刷新@ConfigurationProperties的问题
-                    });
-        }
+        // 更新bean的属性值，解决@ConfigurationProperties注解的bean无法刷新问题
+        this.applicationContext.publishEvent(new EnvironmentChangeEvent(changeEvent.changedKeys()));
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }
