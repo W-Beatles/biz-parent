@@ -1,12 +1,19 @@
 package cn.waynechu.springcloud.gateway.filter;
 
 import cn.waynechu.springcloud.common.util.PathUtil;
-import cn.waynechu.springcloud.common.util.StringUtil;
+import cn.waynechu.springcloud.gateway.enums.AuthTypeEnum;
+import cn.waynechu.springcloud.gateway.filter.auth.type.AuthTypeFilter;
+import cn.waynechu.springcloud.gateway.property.AuthTypeSwitchProperties;
+import cn.waynechu.springcloud.gateway.util.AuthUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -23,32 +30,70 @@ import java.util.List;
  * @author zhuwei
  * @date 2019/4/28 17:29
  */
+@Slf4j
 @Component
 @Order(2)
 public class AccessGatewayFilter implements GlobalFilter {
 
-    @Value("${spring.cloud.gateway.permit-urls}")
+    @Value("${gateway.permit-urls}")
     private List<String> permitUrls;
+
+    @Autowired
+    private AuthTypeSwitchProperties authTypeSwitchProperties;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
+
+        // 放行无需鉴权路由
         Route route = exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR);
         if (route == null) {
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            return response.setComplete();
+            return unauthorized(response, "gatewayRoute无效");
         }
-
         String serviceName = route.getUri().getHost();
         String url = "/" + serviceName.toLowerCase() + request.getPath().value();
-        if (!PathUtil.antMatch(permitUrls, url)) {
-            String authToken = request.getHeaders().getFirst("Authorization");
-            if (StringUtil.isEmpty(authToken)) {
-                response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                return response.setComplete();
-            }
+        if (PathUtil.antMatch(permitUrls, url)) {
+            return chain.filter(exchange);
         }
-        return chain.filter(exchange);
+
+        // 判断当前authType鉴权渠道是否可用
+        AuthTypeEnum authTypeEnum = AuthUtil.getAuthType(request);
+        if (authTypeEnum == null) {
+            return unauthorized(response, "authType缺失");
+        }
+        if (!AuthUtil.isAuthTypeOpened(authTypeSwitchProperties, authTypeEnum.getName())) {
+            return unauthorized(response, "该authType不可用");
+        }
+
+        // TODO 2020-03-07 23:49 判断当前服务是否开通此鉴权渠道
+
+        ApplicationContext applicationContext = exchange.getApplicationContext();
+        if (applicationContext == null) {
+            return unauthorized(response, "applicationContext无效");
+        }
+
+        AuthTypeFilter filter;
+        try {
+            Object filterObj = applicationContext.getBean(authTypeEnum.getBeanName());
+            filter = (AuthTypeFilter) filterObj;
+        } catch (NoSuchBeanDefinitionException e) {
+            log.error("AuthTypeFilter: {} 未定义", authTypeEnum.getBeanName(), e);
+            return unauthorized(response, "该authType未定义");
+        }
+        return filter.filter(exchange, chain);
+    }
+
+    /**
+     * 返回401未授权信息
+     *
+     * @param response response
+     * @param message  日志的message
+     * @return mono
+     */
+    private Mono<Void> unauthorized(ServerHttpResponse response, String message) {
+        response.setStatusCode(HttpStatus.UNAUTHORIZED);
+        log.info("网关401: {}", message);
+        return response.setComplete();
     }
 }

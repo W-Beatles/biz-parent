@@ -40,6 +40,8 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
     deviceId                 - 设备id
     ---------- MDC & 请求头 ----------
     requestId                - 请求跟踪号，全链路唯一标识。格式为UUID(32个字符)，来自header或者由该过滤器初始化
+    scClientIp               - 请求来源客户端ip
+    originUrl                - 请求来源地址
     traceAppIds              - appId调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
     traceAppNames            - appName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
     traceHostNames           - hostName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割

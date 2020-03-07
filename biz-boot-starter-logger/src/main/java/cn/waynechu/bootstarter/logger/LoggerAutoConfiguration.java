@@ -30,7 +30,8 @@ public class LoggerAutoConfiguration {
      * 调用链路追踪需要传递的请求头
      */
     public static final List<String> NEED_TRACE_HEADERS = Arrays.asList(
-            "requestId", "traceAppIds", "traceAppNames", "traceHostNames", "traceHostAddresses");
+            "requestId", "scClientIp", "originUrl",
+            "traceAppIds", "traceAppNames", "traceHostNames", "traceHostAddresses");
 
     @Bean
     @ConditionalOnProperty(value = SentryContextAware.SENTRY_ENABLE, havingValue = "true")

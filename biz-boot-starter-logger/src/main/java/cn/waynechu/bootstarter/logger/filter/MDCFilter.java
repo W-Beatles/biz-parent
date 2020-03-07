@@ -31,6 +31,8 @@ public class MDCFilter implements Filter {
     public static final String HEADER_KEY_DEVICE_ID = "deviceId";
 
     public static final String HEADER_KEY_REQUEST_ID = "requestId";
+    public static final String HEADER_KEY_SC_CLIENT_IP = "scClientIp";
+    public static final String HEADER_KEY_ORIGIN_URL = "originUrl";
     public static final String HEADER_KEY_TRACE_APP_IDS = "traceAppIds";
     public static final String HEADER_KEY_TRACE_APP_NAMES = "traceAppNames";
     public static final String HEADER_KEY_TRACE_HOST_NAMES = "traceHostNames";
@@ -54,12 +56,22 @@ public class MDCFilter implements Filter {
     private ModifyHttpServletRequestWrapper modifyRequestAndAddMdc(HttpServletRequest request) {
         ModifyHttpServletRequestWrapper httpServletRequestWrapper = new ModifyHttpServletRequestWrapper(request);
 
+        MDCUtil.copyReqHeaderToMDC(httpServletRequestWrapper, HEADER_KEY_API_VERSION, HEADER_KEY_CHANNEL, HEADER_KEY_DEVICE_ID);
+
         String requestId = WebUtil.getReqHeader(HEADER_KEY_REQUEST_ID, request);
         if (StringUtil.isBlank(requestId)) {
             requestId = UUIDUtil.getShortUUID();
             httpServletRequestWrapper.putHeader(HEADER_KEY_REQUEST_ID, requestId);
         }
         MDC.put(HEADER_KEY_REQUEST_ID, requestId);
+
+        String scClientIp = WebUtil.getReqHeader(HEADER_KEY_SC_CLIENT_IP, request);
+        MDC.put(HEADER_KEY_SC_CLIENT_IP, scClientIp);
+        httpServletRequestWrapper.putHeader(HEADER_KEY_SC_CLIENT_IP, scClientIp);
+
+        String originUrl = WebUtil.getReqHeader(HEADER_KEY_ORIGIN_URL, request);
+        MDC.put(HEADER_KEY_ORIGIN_URL, originUrl);
+        httpServletRequestWrapper.putHeader(HEADER_KEY_ORIGIN_URL, originUrl);
 
         String appId = ApplicationProvider.getAppId();
         String traceAppIds = WebUtil.getReqHeader(HEADER_KEY_TRACE_APP_IDS, request);
@@ -93,7 +105,6 @@ public class MDCFilter implements Filter {
         MDC.put(HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress);
         httpServletRequestWrapper.putHeader(HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress);
 
-        MDCUtil.copyReqHeaderToMDC(httpServletRequestWrapper, HEADER_KEY_API_VERSION, HEADER_KEY_CHANNEL, HEADER_KEY_DEVICE_ID);
         return httpServletRequestWrapper;
     }
 }

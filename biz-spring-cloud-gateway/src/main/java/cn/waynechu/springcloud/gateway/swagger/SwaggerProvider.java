@@ -32,7 +32,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
     @Resource
     private EurekaClient eurekaClient;
 
-    @Value("${spring.cloud.gateway.swagger.exclude-applications}")
+    @Value("${gateway.swagger.exclude-applications}")
     private List<String> excludeApplications;
 
     @Override

@@ -1,0 +1,16 @@
+{
+  "properties": [
+    {
+      "name": "gateway.permit-urls",
+      "type": "java.lang.String",
+      "description": "网关不鉴权的url,url为ant风格.",
+      "defaultValue": ""
+    },
+    {
+      "name": "gateway.swagger.exclude-applications",
+      "type": "java.lang.String",
+      "description": "网关需要排除的swagger文档.",
+      "defaultValue": ""
+    }
+  ]
+}
