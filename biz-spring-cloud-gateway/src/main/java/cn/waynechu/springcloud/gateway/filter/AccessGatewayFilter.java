@@ -15,7 +15,6 @@ import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -49,7 +48,7 @@ public class AccessGatewayFilter implements GlobalFilter {
         // 放行无需鉴权路由
         Route route = exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR);
         if (route == null) {
-            return unauthorized(response, "gatewayRoute无效");
+            return AuthUtil.unauthorized(exchange, "gatewayRoute无效");
         }
         String serviceName = route.getUri().getHost();
         String url = "/" + serviceName.toLowerCase() + request.getPath().value();
@@ -60,17 +59,17 @@ public class AccessGatewayFilter implements GlobalFilter {
         // 判断当前authType鉴权渠道是否可用
         AuthTypeEnum authTypeEnum = AuthUtil.getAuthType(request);
         if (authTypeEnum == null) {
-            return unauthorized(response, "authType缺失");
+            return AuthUtil.unauthorized(exchange, "authType缺失");
         }
         if (!AuthUtil.isAuthTypeOpened(authTypeSwitchProperties, authTypeEnum.getName())) {
-            return unauthorized(response, "该authType不可用");
+            return AuthUtil.unauthorized(exchange, "该authType不可用");
         }
 
         // TODO 2020-03-07 23:49 判断当前服务是否开通此鉴权渠道
 
         ApplicationContext applicationContext = exchange.getApplicationContext();
         if (applicationContext == null) {
-            return unauthorized(response, "applicationContext无效");
+            return AuthUtil.unauthorized(exchange, "applicationContext无效");
         }
 
         AuthTypeFilter filter;
@@ -79,21 +78,8 @@ public class AccessGatewayFilter implements GlobalFilter {
             filter = (AuthTypeFilter) filterObj;
         } catch (NoSuchBeanDefinitionException e) {
             log.error("AuthTypeFilter: {} 未定义", authTypeEnum.getBeanName(), e);
-            return unauthorized(response, "该authType未定义");
+            return AuthUtil.unauthorized(exchange, "该authType未定义");
         }
         return filter.filter(exchange, chain);
-    }
-
-    /**
-     * 返回401未授权信息
-     *
-     * @param response response
-     * @param message  日志的message
-     * @return mono
-     */
-    private Mono<Void> unauthorized(ServerHttpResponse response, String message) {
-        response.setStatusCode(HttpStatus.UNAUTHORIZED);
-        log.info("网关401: {}", message);
-        return response.setComplete();
     }
 }

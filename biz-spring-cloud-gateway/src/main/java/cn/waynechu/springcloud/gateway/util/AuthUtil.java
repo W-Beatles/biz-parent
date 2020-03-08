@@ -1,11 +1,19 @@
 package cn.waynechu.springcloud.gateway.util;
 
 import cn.waynechu.springcloud.common.util.CollectionUtil;
+import cn.waynechu.springcloud.common.util.StringUtil;
 import cn.waynechu.springcloud.gateway.constant.ChannelConstant;
 import cn.waynechu.springcloud.gateway.enums.AuthTypeEnum;
 import cn.waynechu.springcloud.gateway.property.AuthTypeSwitchProperties;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -13,6 +21,7 @@ import java.util.List;
  * @author zhuwei
  * @date 2020-03-07 16:22
  */
+@Slf4j
 @UtilityClass
 public class AuthUtil {
 
@@ -51,5 +60,21 @@ public class AuthUtil {
         }
         List<String> opens = properties.getOpens();
         return CollectionUtil.isNotNullOrEmpty(opens) && opens.contains(authType);
+    }
+
+    /**
+     * 网关拒绝，返回401
+     *
+     * @param serverWebExchange change
+     */
+    public static Mono<Void> unauthorized(ServerWebExchange serverWebExchange, String message) {
+        ServerHttpResponse response = serverWebExchange.getResponse();
+        response.setStatusCode(HttpStatus.UNAUTHORIZED);
+        response.getHeaders().add("Content-Type", "text/plain;charset=UTF-8");
+        DataBuffer buffer = response.bufferFactory()
+                .wrap(StringUtil.isBlank(message) ? HttpStatus.UNAUTHORIZED.getReasonPhrase().getBytes()
+                        : message.getBytes());
+        log.info("网关401: {}", message);
+        return response.writeWith(Flux.just(buffer));
     }
 }
