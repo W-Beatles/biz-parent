@@ -5,7 +5,7 @@
 1. 基于Spring提供的 `LazyConnectionDataSourceProxy` 实现多数据源路由选择
 2. 基于MyBatis拦截器实现主从数据源的动态切换
 3. 支持类、方法级别添加注解 `SwitchDataSource` 来指定目标数据源
-4. 可实现 `**`DynamicDataSourceStrategy`` 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
+4. 可实现 `DynamicDataSourceStrategy` 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
 5. 集成Druid数据源，支持原生SQL监控、防火墙监控、慢查询监控、Url监控、Spring监控等
 6. 兼容 `mybatis-plus3` 持久层框架，简化CRUD开发
 7. 默认添加 `mybatis-typehandlers-jsr310` 日期API依赖，支持数据库时间类型到 Java8 LocalData、LocalDataTime 时间类型的映射
@@ -19,7 +19,7 @@
     <dependency>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-        <version>1.0.2019123001-RELEASE</version>
+        <version>1.0.2020030601-RELEASE</version>
     </dependency>
     ```
 2. 启动类添加注解配置 `mapper` java文件扫描路径

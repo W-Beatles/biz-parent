@@ -111,6 +111,7 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
         自定义配置
     </included>
     ```
+
 ### 附: Docker快速搭建ELK环境
 
 这里我们固定了elk的ip地址，防止重启ip地址发生变动
@@ -126,8 +127,8 @@ docker run -d --name kibana -e ELASTICSEARCH_URL=http://172.18.0.2:9200 --net el
 // 启动Rabbitmq
 docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 --net elk --ip 172.18.0.4 -e RABBITMQ_DEFAULT_USER=waynechu -e RABBITMQ_DEFAULT_PASS=123456 -e RABBITMQ_DEFAULT_VHOST=/logback rabbitmq:3-management
 // 启动Logstash
-(Linux)docker run -d --name logstash -p 7002:7002 --net elk --ip 172.18.0.5 -it -v /root/tools/logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf logstash:7.5.1
-(Windows)docker run -d --name logstash -p 7002:7002 --net elk --ip 172.18.0.5 -it -v /E/work/Tools/logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf logstash:7.5.1
+(Linux) docker run -d --name logstash -p 7002:7002 --net elk --ip 172.18.0.5 -it -v /root/tools/logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf logstash:7.5.1
+(Windows) docker run -d --name logstash -p 7002:7002 --net elk --ip 172.18.0.5 -it -v /E/work/Tools/logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf logstash:7.5.1
 ```
 
 ### 附: logstash收集RabbitMQ消息到elasticsearch
