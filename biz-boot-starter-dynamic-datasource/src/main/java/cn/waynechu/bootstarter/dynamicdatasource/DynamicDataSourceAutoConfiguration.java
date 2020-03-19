@@ -28,6 +28,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
@@ -45,6 +46,9 @@ public class DynamicDataSourceAutoConfiguration {
     @Autowired
     private DynamicDataSourceProperties properties;
 
+    @Autowired(required = false)
+    private ApplicationContext applicationContext;
+
     @Bean
     @Primary
     @DependsOn("dynamicRoutingDataSource")
@@ -58,7 +62,7 @@ public class DynamicDataSourceAutoConfiguration {
         DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
         dynamicRoutingDataSource.setLoggerEnable(properties.isLoggerEnable());
         dynamicRoutingDataSource.setStrategy(properties.getStrategy());
-        dynamicRoutingDataSource.setProvider(new DefaultDynamicDataSourceProvider(properties));
+        dynamicRoutingDataSource.setProvider(new DefaultDynamicDataSourceProvider(properties, applicationContext));
         return dynamicRoutingDataSource;
     }
 

@@ -15,11 +15,12 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource.config;
 
-import cn.waynechu.bootstarter.dynamicdatasource.config.stat.DruidSpringAopConfiguration;
-import cn.waynechu.bootstarter.dynamicdatasource.config.stat.DruidStatViewServletConfiguration;
-import cn.waynechu.bootstarter.dynamicdatasource.config.stat.DruidWebStatFilterConfiguration;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DruidStatProperties;
-import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
+import com.alibaba.druid.spring.boot.autoconfigure.stat.DruidFilterConfiguration;
+import com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration;
+import com.alibaba.druid.spring.boot.autoconfigure.stat.DruidStatViewServletConfiguration;
+import com.alibaba.druid.spring.boot.autoconfigure.stat.DruidWebStatFilterConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -30,11 +31,12 @@ import org.springframework.context.annotation.Import;
  * @date 2019/1/15 17:11
  */
 @Configuration
-@ConditionalOnClass(DruidDataSource.class)
+@ConditionalOnClass(DruidDataSourceAutoConfigure.class)
 @EnableConfigurationProperties({DruidStatProperties.class})
 @Import({
         DruidStatViewServletConfiguration.class,
         DruidSpringAopConfiguration.class,
-        DruidWebStatFilterConfiguration.class})
+        DruidWebStatFilterConfiguration.class,
+        DruidFilterConfiguration.class})
 public class DruidDynamicDataSourceConfig {
 }

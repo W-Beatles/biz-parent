@@ -16,15 +16,23 @@
 package cn.waynechu.bootstarter.dynamicdatasource.provider;
 
 import cn.waynechu.bootstarter.dynamicdatasource.config.DruidConfig;
+import cn.waynechu.bootstarter.dynamicdatasource.config.DruidSlf4jConfig;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DataSourceProperty;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
+import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DruidWallConfigUtil;
+import com.alibaba.druid.filter.Filter;
+import com.alibaba.druid.filter.logging.Slf4jLogFilter;
+import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.wall.WallConfig;
+import com.alibaba.druid.wall.WallFilter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
+import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 默认动态数据源提供者
@@ -42,8 +50,11 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
      */
     private DynamicDataSourceProperties properties;
 
-    public DefaultDynamicDataSourceProvider(DynamicDataSourceProperties properties) {
+    private ApplicationContext applicationContext;
+
+    public DefaultDynamicDataSourceProvider(DynamicDataSourceProperties properties, ApplicationContext applicationContext) {
         this.properties = properties;
+        this.applicationContext = applicationContext;
     }
 
     @Override
@@ -67,7 +78,7 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
      * @param dataSourceProperty 数据源参数
      * @return Druid数据源
      */
-    public static DataSource createDataSource(DataSourceProperty dataSourceProperty, DruidConfig druidGlobalConfig) {
+    public DataSource createDataSource(DataSourceProperty dataSourceProperty, DruidConfig druidGlobalConfig) {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername(dataSourceProperty.getUsername());
         dataSource.setPassword(dataSourceProperty.getPassword());
@@ -76,30 +87,82 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
         dataSource.setName(dataSourceProperty.getDataSourceName());
 
         DruidConfig config = dataSourceProperty.getDruid();
-        dataSource.configFromPropety(config.toProperties(druidGlobalConfig));
-        // connectProperties连接参数单独设置
+        Properties properties = config.toProperties(druidGlobalConfig);
+        String filters = properties.getProperty("druid.filters");
+        List<Filter> proxyFilters = new ArrayList<>(2);
+        if (!StringUtils.isEmpty(filters) && filters.contains("stat")) {
+            StatFilter statFilter = new StatFilter();
+            statFilter.configFromProperties(properties);
+            proxyFilters.add(statFilter);
+        }
+        if (!StringUtils.isEmpty(filters) && filters.contains("wall")) {
+            WallConfig wallConfig = DruidWallConfigUtil.toWallConfig(dataSourceProperty.getDruid().getWall(), druidGlobalConfig.getWall());
+            WallFilter wallFilter = new WallFilter();
+            wallFilter.setConfig(wallConfig);
+            proxyFilters.add(wallFilter);
+        }
+        if (!StringUtils.isEmpty(filters) && filters.contains("slf4j")) {
+            Slf4jLogFilter slf4jLogFilter = new Slf4jLogFilter();
+            // 由于properties上面被用了，LogFilter不能使用configFromProperties方法，这里只能一个个set了。
+            DruidSlf4jConfig slf4jConfig = druidGlobalConfig.getSlf4j();
+            slf4jLogFilter.setStatementLogEnabled(slf4jConfig.getEnable());
+            slf4jLogFilter.setStatementExecutableSqlLogEnable(slf4jConfig.getStatementExecutableSqlLogEnable());
+            proxyFilters.add(slf4jLogFilter);
+        }
+
+        if (this.applicationContext != null) {
+            for (String filterId : druidGlobalConfig.getProxyFilters()) {
+                proxyFilters.add(this.applicationContext.getBean(filterId, Filter.class));
+            }
+        }
+        dataSource.setProxyFilters(proxyFilters);
+        dataSource.configFromPropety(properties);
+        // 连接参数单独设置
         dataSource.setConnectProperties(config.getConnectionProperties());
         // 设置druid内置properties不支持的的参数
         Boolean testOnReturn = config.getTestOnReturn() == null ? druidGlobalConfig.getTestOnReturn() : config.getTestOnReturn();
         if (testOnReturn != null && testOnReturn.equals(true)) {
             dataSource.setTestOnReturn(true);
         }
-        Integer validationQueryTimeout = config.getValidationQueryTimeout() == null ? druidGlobalConfig.getValidationQueryTimeout() : config.getValidationQueryTimeout();
+        Integer validationQueryTimeout =
+                config.getValidationQueryTimeout() == null ? druidGlobalConfig.getValidationQueryTimeout() : config.getValidationQueryTimeout();
         if (validationQueryTimeout != null && !validationQueryTimeout.equals(-1)) {
             dataSource.setValidationQueryTimeout(validationQueryTimeout);
         }
-        Boolean sharePreparedStatements = config.getSharePreparedStatements() == null ? druidGlobalConfig.getSharePreparedStatements() : config.getSharePreparedStatements();
+
+        Boolean sharePreparedStatements =
+                config.getSharePreparedStatements() == null ? druidGlobalConfig.getSharePreparedStatements() : config.getSharePreparedStatements();
         if (sharePreparedStatements != null && sharePreparedStatements.equals(true)) {
             dataSource.setSharePreparedStatements(true);
         }
-        Integer connectionErrorRetryAttempts = config.getConnectionErrorRetryAttempts() == null ? druidGlobalConfig.getConnectionErrorRetryAttempts() : config.getConnectionErrorRetryAttempts();
+        Integer connectionErrorRetryAttempts =
+                config.getConnectionErrorRetryAttempts() == null ? druidGlobalConfig.getConnectionErrorRetryAttempts()
+                        : config.getConnectionErrorRetryAttempts();
         if (connectionErrorRetryAttempts != null && !connectionErrorRetryAttempts.equals(1)) {
             dataSource.setConnectionErrorRetryAttempts(connectionErrorRetryAttempts);
         }
-        Boolean breakAfterAcquireFailure = config.getBreakAfterAcquireFailure() == null ? druidGlobalConfig.getBreakAfterAcquireFailure() : config.getBreakAfterAcquireFailure();
+        Boolean breakAfterAcquireFailure =
+                config.getBreakAfterAcquireFailure() == null ? druidGlobalConfig.getBreakAfterAcquireFailure() : config.getBreakAfterAcquireFailure();
         if (breakAfterAcquireFailure != null && breakAfterAcquireFailure.equals(true)) {
             dataSource.setBreakAfterAcquireFailure(true);
         }
+
+        Integer timeout = config.getRemoveAbandonedTimeoutMillis() == null ? druidGlobalConfig.getRemoveAbandonedTimeoutMillis()
+                : config.getRemoveAbandonedTimeoutMillis();
+        if (timeout != null) {
+            dataSource.setRemoveAbandonedTimeout(timeout);
+        }
+
+        Boolean abandoned = config.getRemoveAbandoned() == null ? druidGlobalConfig.getRemoveAbandoned() : config.getRemoveAbandoned();
+        if (abandoned != null) {
+            dataSource.setRemoveAbandoned(abandoned);
+        }
+
+        Boolean logAbandoned = config.getLogAbandoned() == null ? druidGlobalConfig.getLogAbandoned() : config.getLogAbandoned();
+        if (logAbandoned != null) {
+            dataSource.setLogAbandoned(logAbandoned);
+        }
+
         try {
             dataSource.init();
         } catch (SQLException e) {
