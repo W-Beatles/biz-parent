@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2019/1/2 16:03
  */
 @UtilityClass
-public class DateTimeUtil {
+public class LocalDateTimeUtil {
 
     public static LocalDateTime toLocalDateTimeFromDate(Date date) {
         Instant instant = Instant.ofEpochMilli(date.getTime());

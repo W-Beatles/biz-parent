@@ -12,7 +12,8 @@ import java.util.regex.Pattern;
  * @date 2019/3/18 20:54
  */
 @UtilityClass
-public class RegexUtils {
+public class RegexUtil {
+
     /**
      * 正则：手机号（简单）
      */
@@ -77,7 +78,7 @@ public class RegexUtils {
     /**
      * 正则：QQ号
      */
-    public static final String REGEX_TENCENT_NUM = "[1-9][0-9]{4,}";
+    public static final String REGEX_QQ_NUM = "[1-9][0-9]{4,}";
     /**
      * 正则：中国邮政编码
      */

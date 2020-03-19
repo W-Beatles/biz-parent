@@ -103,7 +103,7 @@ public class StringUtil {
      * @return true if 包含汉字
      */
     public static boolean checkContainChinese(String str) {
-        Matcher matcher = RegexUtils.ZH_PATTERN.matcher(str);
+        Matcher matcher = RegexUtil.ZH_PATTERN.matcher(str);
         return matcher.find();
     }
 }

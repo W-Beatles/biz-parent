@@ -37,13 +37,6 @@ public class BigDecimalUtil {
         return value1.add(value2);
     }
 
-    /**
-     * 提供精确的减法运算。
-     *
-     * @param value1 被减数
-     * @param value2 减数
-     * @return 两个参数的差
-     */
     public static BigDecimal subtract(BigDecimal value1, BigDecimal value2, int scale, int roundingMode) {
         if (value1 == null) {
             value1 = new BigDecimal(0);
@@ -70,15 +63,6 @@ public class BigDecimalUtil {
         return value1.subtract(value2);
     }
 
-    /**
-     * 相乘
-     *
-     * @param value1
-     * @param value2
-     * @param scale
-     * @param roundingMode
-     * @return
-     */
     public static BigDecimal multiply(BigDecimal value1, BigDecimal value2, int scale, int roundingMode) {
         if (value1 == null) {
             value1 = new BigDecimal(0);
@@ -104,15 +88,6 @@ public class BigDecimalUtil {
         return value1.multiply(value2);
     }
 
-    /**
-     * 相除
-     *
-     * @param value1
-     * @param value2
-     * @param scale
-     * @param roundingMode
-     * @return
-     */
     public static BigDecimal divide(BigDecimal value1, BigDecimal value2, int scale, int roundingMode) {
         if (value1 == null) {
             value1 = new BigDecimal(0);
