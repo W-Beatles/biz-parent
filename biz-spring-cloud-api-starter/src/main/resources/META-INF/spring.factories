@@ -3,4 +3,4 @@ cn.waynechu.springcloud.apistarter.config.CommonAutoConfiguration,\
 cn.waynechu.springcloud.apistarter.config.CorsAutoConfiguration,\
 cn.waynechu.springcloud.apistarter.config.SwaggerAutoConfiguration,\
 cn.waynechu.springcloud.apistarter.config.ApolloChangeAutoConfiguration,\
-cn.waynechu.springcloud.apistarter.config.ExecutorServiceAutoConfiguration
+cn.waynechu.springcloud.apistarter.config.ExecutorAutoConfiguration

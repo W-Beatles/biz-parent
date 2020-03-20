@@ -1,19 +1,15 @@
 package cn.waynechu.springcloud.apistarter.executor;
 
 import org.slf4j.MDC;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Map;
-import java.util.concurrent.*;
 
 /**
  * @author zhuwei
  * @date 2019/10/18 16:49
  */
-public class BizThreadPoolExecutor extends ThreadPoolExecutor {
-
-    public BizThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
-        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
-    }
+public class BizThreadPoolExecutor extends ThreadPoolTaskExecutor {
 
     /**
      * 所有线程都会委托给这个execute方法，在这个方法中我们把父线程的MDC内容赋值给子线程

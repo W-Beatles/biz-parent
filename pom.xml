@@ -38,6 +38,8 @@
         <tinypinyin.version>2.0.3</tinypinyin.version>
         <zxing.version>3.4.0</zxing.version>
         <druid.version>1.1.20</druid.version>
+        <fescar-all.version>0.4.2</fescar-all.version>
+        <transmittable-thread-local.version>2.11.4</transmittable-thread-local.version>
         <com.microsoft.sqlserver.version>4.0</com.microsoft.sqlserver.version>
         <mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
         <mybatis-spring-boot-starter.version>2.1.0</mybatis-spring-boot-starter.version>
@@ -255,7 +257,13 @@
             <dependency>
                 <groupId>com.alibaba.fescar</groupId>
                 <artifactId>fescar-all</artifactId>
-                <version>${fescar.version}</version>
+                <version>${fescar-all.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
             </dependency>
 
             <!-- MyBatis-Plus -->
