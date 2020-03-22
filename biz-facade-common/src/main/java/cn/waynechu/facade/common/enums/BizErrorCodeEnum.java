@@ -1,5 +1,7 @@
 package cn.waynechu.facade.common.enums;
 
+import java.util.Objects;
+
 /**
  * 响应枚举
  *
@@ -7,6 +9,7 @@ package cn.waynechu.facade.common.enums;
  * @date 2018/11/6 18:49
  */
 public enum BizErrorCodeEnum implements BizEnum {
+
     /**
      * 预定义枚举: 10000~19999  自定义业务异常: 20000+
      */
@@ -61,7 +64,7 @@ public enum BizErrorCodeEnum implements BizEnum {
     REPEAT_OPERATION(19002, "REPEAT_OPERATION", "重复操作"),
     ;
 
-    private int code;
+    private Integer code;
     private String name;
     private String desc;
 
@@ -86,12 +89,13 @@ public enum BizErrorCodeEnum implements BizEnum {
         return this.desc;
     }
 
-    public BizErrorCodeEnum getByCode(int code) {
+    public BizErrorCodeEnum getByCode(Integer code) {
         for (BizErrorCodeEnum baseResultEnum : values()) {
-            if (baseResultEnum.getCode() == code) {
+            if (Objects.equals(baseResultEnum.getCode(), code)) {
                 return baseResultEnum;
             }
         }
         return null;
     }
+
 }

@@ -2,6 +2,8 @@ package cn.waynechu.facade.common.enums;
 
 import cn.waynechu.facade.common.exception.BizException;
 
+import java.util.Objects;
+
 /**
  * @author zhuwei
  * @date 2018/11/6 17:24
@@ -13,7 +15,7 @@ public enum ValidStatusEnum implements BizEnum {
     INVALID(0, "INVALID", "无效"),
     VALID(1, "VALID", "有效");
 
-    private int code;
+    private Integer code;
     private String name;
     private String desc;
 
@@ -24,7 +26,7 @@ public enum ValidStatusEnum implements BizEnum {
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return this.code;
     }
 
@@ -38,9 +40,9 @@ public enum ValidStatusEnum implements BizEnum {
         return this.desc;
     }
 
-    public ValidStatusEnum getByCode(int code) {
+    public ValidStatusEnum getByCode(Integer code) {
         for (ValidStatusEnum validStatusEnum : values()) {
-            if (validStatusEnum.getCode() == code) {
+            if (Objects.equals(validStatusEnum.getCode(), code)) {
                 return validStatusEnum;
             }
         }
