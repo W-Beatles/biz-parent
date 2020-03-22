@@ -13,11 +13,11 @@ public class TokenInfo {
 
     private boolean active;
 
-    private String client_id;
+    private String clientId;
 
     private String[] scope;
 
-    private String user_name;
+    private String userName;
 
     private String[] aud;
 

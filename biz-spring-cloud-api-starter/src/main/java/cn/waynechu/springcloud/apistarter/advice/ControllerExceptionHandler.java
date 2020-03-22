@@ -13,6 +13,8 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Objects;
+
 /**
  * 统一异常处理切面
  *
@@ -24,13 +26,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public BizResponse httpMessageNotReadableException(HttpMessageNotReadableException e) {
+    public BizResponse<String> httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.info("请求参数格式不正确: {}", e.getMessage());
         return BizResponse.error(BizErrorCodeEnum.REQUEST_PARAM_INCORRECT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public BizResponse methodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public BizResponse<String> methodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.info("请求参数校验不合法: {}", e.getMessage());
         BindingResult bindingResult = e.getBindingResult();
         if (bindingResult.getFieldError() == null) {
@@ -40,7 +42,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public BizResponse missingServletRequestParameterException(MissingServletRequestParameterException e) {
+    public BizResponse<String> missingServletRequestParameterException(MissingServletRequestParameterException e) {
         log.info("缺少请求参数: ({}) {}", e.getParameterType(), e.getParameterName());
         return BizResponse.error(BizErrorCodeEnum.MISSING_REQUEST_PARAM.getCode(),
                 BizErrorCodeEnum.MISSING_REQUEST_PARAM.getDesc()
@@ -48,9 +50,9 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(BizException.class)
-    public BizResponse bizException(BizException e) {
-        if (BizErrorCodeEnum.SYSTEM_ERROR.getCode() == e.getErrorCode()
-                || BizErrorCodeEnum.CALL_SERVICE_ERROR.getCode() == e.getErrorCode()) {
+    public BizResponse<String> bizException(BizException e) {
+        if (Objects.equals(BizErrorCodeEnum.SYSTEM_ERROR.getCode(), e.getErrorCode())
+                || Objects.equals(BizErrorCodeEnum.CALL_SERVICE_ERROR.getCode(), e.getErrorCode())) {
             log.error("[BizError] {}", e.getErrorMessage(), e);
         }
         log.info("[BizError] {}", e.getErrorMessage());
@@ -58,9 +60,10 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public BizResponse unknownException(Exception e) {
+    public BizResponse<String> unknownException(Exception e) {
         log.error("[SystemError] ", e);
         return BizResponse.error(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
                 BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDCFilter.HEADER_KEY_REQUEST_ID).substring(0, 5));
     }
+
 }
