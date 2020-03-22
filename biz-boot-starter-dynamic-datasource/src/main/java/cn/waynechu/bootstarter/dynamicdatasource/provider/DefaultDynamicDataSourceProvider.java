@@ -1,12 +1,12 @@
 /**
  * Copyright © 2018 organization waynechu
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -103,7 +103,6 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
         }
         if (!StringUtils.isEmpty(filters) && filters.contains("slf4j")) {
             Slf4jLogFilter slf4jLogFilter = new Slf4jLogFilter();
-            // 由于properties上面被用了，LogFilter不能使用configFromProperties方法，这里只能一个个set了。
             DruidSlf4jConfig slf4jConfig = druidGlobalConfig.getSlf4j();
             slf4jLogFilter.setStatementLogEnabled(slf4jConfig.getEnable());
             slf4jLogFilter.setStatementExecutableSqlLogEnable(slf4jConfig.getStatementExecutableSqlLogEnable());
@@ -124,31 +123,26 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
         if (testOnReturn != null && testOnReturn.equals(true)) {
             dataSource.setTestOnReturn(true);
         }
-        Integer validationQueryTimeout =
-                config.getValidationQueryTimeout() == null ? druidGlobalConfig.getValidationQueryTimeout() : config.getValidationQueryTimeout();
+        Integer validationQueryTimeout = config.getValidationQueryTimeout() == null ? druidGlobalConfig.getValidationQueryTimeout() : config.getValidationQueryTimeout();
         if (validationQueryTimeout != null && !validationQueryTimeout.equals(-1)) {
             dataSource.setValidationQueryTimeout(validationQueryTimeout);
         }
 
-        Boolean sharePreparedStatements =
-                config.getSharePreparedStatements() == null ? druidGlobalConfig.getSharePreparedStatements() : config.getSharePreparedStatements();
+        Boolean sharePreparedStatements = config.getSharePreparedStatements() == null ? druidGlobalConfig.getSharePreparedStatements() : config.getSharePreparedStatements();
         if (sharePreparedStatements != null && sharePreparedStatements.equals(true)) {
             dataSource.setSharePreparedStatements(true);
         }
-        Integer connectionErrorRetryAttempts =
-                config.getConnectionErrorRetryAttempts() == null ? druidGlobalConfig.getConnectionErrorRetryAttempts()
-                        : config.getConnectionErrorRetryAttempts();
+        Integer connectionErrorRetryAttempts = config.getConnectionErrorRetryAttempts() == null ? druidGlobalConfig.getConnectionErrorRetryAttempts()
+                : config.getConnectionErrorRetryAttempts();
         if (connectionErrorRetryAttempts != null && !connectionErrorRetryAttempts.equals(1)) {
             dataSource.setConnectionErrorRetryAttempts(connectionErrorRetryAttempts);
         }
-        Boolean breakAfterAcquireFailure =
-                config.getBreakAfterAcquireFailure() == null ? druidGlobalConfig.getBreakAfterAcquireFailure() : config.getBreakAfterAcquireFailure();
+        Boolean breakAfterAcquireFailure = config.getBreakAfterAcquireFailure() == null ? druidGlobalConfig.getBreakAfterAcquireFailure() : config.getBreakAfterAcquireFailure();
         if (breakAfterAcquireFailure != null && breakAfterAcquireFailure.equals(true)) {
             dataSource.setBreakAfterAcquireFailure(true);
         }
 
-        Integer timeout = config.getRemoveAbandonedTimeoutMillis() == null ? druidGlobalConfig.getRemoveAbandonedTimeoutMillis()
-                : config.getRemoveAbandonedTimeoutMillis();
+        Integer timeout = config.getRemoveAbandonedTimeoutMillis() == null ? druidGlobalConfig.getRemoveAbandonedTimeoutMillis() : config.getRemoveAbandonedTimeoutMillis();
         if (timeout != null) {
             dataSource.setRemoveAbandonedTimeout(timeout);
         }

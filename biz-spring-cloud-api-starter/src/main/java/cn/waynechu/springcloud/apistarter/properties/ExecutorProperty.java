@@ -28,12 +28,12 @@ public class ExecutorProperty {
     /**
      * 最大线程数
      */
-    private Integer maxPoolSize = 2 * Runtime.getRuntime().availableProcessors();
+    private Integer maxPoolSize = Integer.MAX_VALUE;
 
     /**
      * 队列大小
      */
-    private Integer queueCapacity;
+    private Integer queueCapacity = Integer.MAX_VALUE;
 
     /**
      * 线程池维护线程所允许的空闲时间。默认60秒
@@ -41,6 +41,16 @@ public class ExecutorProperty {
      * 当任务很多的时候，并且每个任务执行的时间比较短，可以调大时间，即调大线程活动保持时间，可以提高线程的利用率
      */
     private Integer keepAliveSeconds = 60;
+
+    /**
+     * 设置线程池关闭的时候等待所有任务都完成再继续销毁其他的Bean
+     */
+    private Boolean isWaitForTasksToCompleteOnShutdown = false;
+
+    /**
+     * 设置线程池中任务的等待时间，如果超过这个时候还没有销毁就强制销毁
+     */
+    private Integer awaitTerminationSeconds = 0;
 
     /**
      * 饱和策略。默认使用终止策略，线程池队列满会抛出RejectedExecutionException异常

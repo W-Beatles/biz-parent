@@ -52,6 +52,8 @@ spring.datasource.dynamic.druid.stat-view-servlet.login-username=admin
 spring.datasource.dynamic.druid.stat-view-servlet.login-password=123456
 ### 打开SQL监控、防火墙监控
 spring.datasource.dynamic.druid.filters=stat,wall
+### 限制单次查询数量
+spring.datasource.dynamic.druid.wall.select-limit=100000
 ### 多数据源SQL合并，开启慢查询日志记录
 spring.datasource.dynamic.druid.connection-properties.druid.stat.mergeSql=true
 spring.datasource.dynamic.druid.connection-properties.druid.stat.slowSqlMillis=1000

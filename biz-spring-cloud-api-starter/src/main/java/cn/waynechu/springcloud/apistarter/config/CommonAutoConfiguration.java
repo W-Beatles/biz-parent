@@ -47,7 +47,7 @@ public class CommonAutoConfiguration {
     }
 
     @Bean
-    public PageLoopHelper pageLoopHelper(Executor defaultThreadPoolExecutor) {
-        return new PageLoopHelper(defaultThreadPoolExecutor);
+    public PageLoopHelper pageLoopHelper(Executor bizTaskExecutor) {
+        return new PageLoopHelper(bizTaskExecutor);
     }
 }
