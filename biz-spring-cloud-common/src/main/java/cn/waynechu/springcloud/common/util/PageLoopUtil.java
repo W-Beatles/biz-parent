@@ -1,8 +1,7 @@
-package cn.waynechu.springcloud.apistarter.helper;
+package cn.waynechu.springcloud.common.util;
 
 import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.request.BizPageRequest;
-import cn.waynechu.springcloud.common.util.BeanUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,19 +15,18 @@ import java.util.function.Supplier;
  * @author zhuwei
  * @date 2020-03-04 21:25
  */
-public class PageLoopHelper {
-
-    private Executor executor;
-
-    public PageLoopHelper(Executor executor) {
-        this.executor = executor;
-    }
+public class PageLoopUtil {
 
     /**
      * 循环翻页的最大值。默认10000
      */
     public static final Integer PAGE_LOOP_LIMIT = 10000;
 
+    private Executor executor;
+
+    public PageLoopUtil(Executor executor) {
+        this.executor = executor;
+    }
 
     /**
      * 循环查询所有分页数据
@@ -39,11 +37,11 @@ public class PageLoopHelper {
      * </pre>
      *
      * @param bizPageRequest 分页请求参数
-     * @param supplier        分页查询的方法。该方法入参需继承 {@code BizPageRequest}，出参需是 {@code BizPageInfo} 类型
-     * @param <R>             查询结果类型
+     * @param supplier       分页查询的方法。该方法入参需继承 {@code BizPageRequest}，出参需是 {@code BizPageInfo} 类型
+     * @param <R>            查询结果类型
      * @return 所有的分页数据
      */
-    public <R> List<R> listAllPage(BizPageRequest bizPageRequest, Supplier<BizPageInfo<R>> supplier) {
+    public static <R> List<R> listAllPage(BizPageRequest bizPageRequest, Supplier<BizPageInfo<R>> supplier) {
         List<R> returnValue = new ArrayList<>();
         BizPageInfo<R> bizPageInfo;
 
@@ -71,9 +69,9 @@ public class PageLoopHelper {
      * </pre>
      *
      * @param bizPageRequest 分页请求参数
-     * @param parallelism     并发查询的线程数
-     * @param function        分页查询的方法。该方法入参需继承 {@code BizPageRequest}，出参需是 {@code BizPageInfo} 类型
-     * @param <R>             查询结果类型
+     * @param parallelism    并发查询的线程数
+     * @param function       分页查询的方法。该方法入参需继承 {@code BizPageRequest}，出参需是 {@code BizPageInfo} 类型
+     * @param <R>            查询结果类型
      * @return 所有的分页数据
      */
     public <R> List<R> listAllPage(BizPageRequest bizPageRequest, int parallelism, Function<BizPageRequest, BizPageInfo<R>> function) {
@@ -119,4 +117,5 @@ public class PageLoopHelper {
         }
         return returnValue;
     }
+
 }

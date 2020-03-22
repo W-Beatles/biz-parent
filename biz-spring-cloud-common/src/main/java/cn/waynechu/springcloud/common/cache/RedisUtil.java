@@ -1,10 +1,8 @@
-package cn.waynechu.springcloud.apistarter.cache;
+package cn.waynechu.springcloud.common.cache;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
-import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,13 +13,11 @@ import java.util.concurrent.TimeUnit;
  * @date 2018/12/28 16:09
  */
 @Slf4j
-@Component
-public class RedisCache {
+public class RedisUtil {
 
-    @Autowired
     private StringRedisTemplate redisTemplate;
 
-    public RedisCache(StringRedisTemplate redisTemplate) {
+    public RedisUtil(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -112,4 +108,5 @@ public class RedisCache {
         }
         return -1;
     }
+
 }

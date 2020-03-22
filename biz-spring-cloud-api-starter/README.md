@@ -34,9 +34,7 @@
     biz.api.starter.distributed-lock.prefix=work.waynechu.cn
     ```
 
-6. RedisCache Redis缓存工具类 (默认关闭)
-
-7. CorsAutoConfiguration 跨域配置 (默认关闭)
+6. CorsAutoConfiguration 跨域配置 (默认关闭)
 
     参考配置:
     ```
@@ -45,7 +43,7 @@
     biz.api.starter.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
     ```
 
-8. SwaggerAutoConfiguration 开启Swagger API文档 (默认关闭)
+7. SwaggerAutoConfiguration 开启Swagger API文档 (默认关闭)
 
     参考配置:
     ```
@@ -59,4 +57,19 @@
     biz.api.starter.swagger.contact-url=联系人主页
     biz.api.starter.swagger.contact-email=联系人邮箱
     ```
-    
+   
+8. RedisUtil Redis缓存工具类
+    注入`RedisUtil`即可使用
+
+9. PageLoopUtil 基于BizPageInfo的分页查询工具
+    注入`PageLoopUtil`即可使用
+
+10. ExcelUtil excel解析、异步下载工具
+
+    设计原则： 
+    - 解耦数据导出服务与业务站点
+    - 后端统一接口/前端组件化
+    - 提供数据获取接口，便于业务方对接
+    - 提供简单的导出数据模型定义方法
+    - 封装公共组件方法，管理整个生命周期，简化接入方开发
+    - 异步数据处理，引入文件系统，避免因网络限制带来的问题

@@ -1,4 +1,4 @@
-package cn.waynechu.springcloud.apistarter.executor;
+package cn.waynechu.springcloud.common.executor;
 
 import org.slf4j.MDC;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -6,6 +6,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.Map;
 
 /**
+ * 自定义线程池
+ * <p>
+ * 拷贝MDC信息，防止由于异步线程造成的日志信息丢失问题
+ *
  * @author zhuwei
  * @date 2019/10/18 16:49
  */
@@ -44,4 +48,5 @@ public class BizThreadPoolExecutor extends ThreadPoolTaskExecutor {
             MDC.clear();
         }
     }
+
 }

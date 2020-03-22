@@ -1,7 +1,8 @@
 package cn.waynechu.springcloud.apistarter.config;
 
-import cn.waynechu.springcloud.apistarter.executor.BizThreadPoolExecutor;
 import cn.waynechu.springcloud.apistarter.properties.ExecutorProperty;
+import cn.waynechu.springcloud.common.executor.BizThreadPoolExecutor;
+import com.alibaba.ttl.threadpool.TtlExecutors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -56,6 +57,7 @@ public class ExecutorAutoConfiguration {
         executor.setRejectedExecutionHandler(executorProperty.getRejectedExecutionHandler());
 
         executor.initialize();
-        return executor;
+        return TtlExecutors.getTtlExecutor(executor);
     }
+
 }

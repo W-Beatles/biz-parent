@@ -72,7 +72,7 @@ public enum BizErrorCodeEnum implements BizEnum {
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return this.code;
     }
 

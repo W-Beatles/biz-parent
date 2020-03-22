@@ -6,9 +6,10 @@ import cn.waynechu.springcloud.apistarter.advice.ControllerExceptionHandler;
 import cn.waynechu.springcloud.apistarter.aspect.ControllerLogAspect;
 import cn.waynechu.springcloud.apistarter.aspect.DistributedLockAspect;
 import cn.waynechu.springcloud.apistarter.aspect.MethodLogAspect;
-import cn.waynechu.springcloud.apistarter.cache.RedisCache;
-import cn.waynechu.springcloud.apistarter.helper.PageLoopHelper;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
+import cn.waynechu.springcloud.common.cache.RedisUtil;
+import cn.waynechu.springcloud.common.excel.ExcelUtil;
+import cn.waynechu.springcloud.common.util.PageLoopUtil;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,6 +17,8 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -29,7 +32,7 @@ import java.util.concurrent.Executor;
 @Configuration
 @EnableConfigurationProperties({CommonProperty.class})
 @Import({ControllerExceptionHandler.class, ControllerLogAspect.class, MethodLogAspect.class,
-        DistributedLockAspect.class, RedisCache.class})
+        DistributedLockAspect.class})
 public class CommonAutoConfiguration {
 
     @Bean
@@ -47,7 +50,18 @@ public class CommonAutoConfiguration {
     }
 
     @Bean
-    public PageLoopHelper pageLoopHelper(Executor bizTaskExecutor) {
-        return new PageLoopHelper(bizTaskExecutor);
+    public RedisUtil redisUtil(StringRedisTemplate stringRedisTemplate) {
+        return new RedisUtil(stringRedisTemplate);
     }
+
+    @Bean
+    public PageLoopUtil pageLoopHelper(Executor bizTaskExecutor) {
+        return new PageLoopUtil(bizTaskExecutor);
+    }
+
+    @Bean
+    public ExcelUtil excelUtil(Executor bizTaskExecutor, RedisTemplate<Object, Object> redisTemplate) {
+        return new ExcelUtil(bizTaskExecutor, redisTemplate);
+    }
+
 }

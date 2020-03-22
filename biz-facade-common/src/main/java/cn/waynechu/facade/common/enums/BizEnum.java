@@ -16,7 +16,7 @@ public interface BizEnum extends Serializable {
      *
      * @return code
      */
-    int getCode();
+    Integer getCode();
 
     /**
      * 获取枚举名称
