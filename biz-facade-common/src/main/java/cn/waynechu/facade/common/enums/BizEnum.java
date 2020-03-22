@@ -3,14 +3,13 @@ package cn.waynechu.facade.common.enums;
 import java.io.Serializable;
 
 /**
- * 业务异常枚举接口定义
- * <p>
- * 实现该接口可创建自定义业务异常
+ * 枚举基类
  *
  * @author zhuwei
  * @date 2018/11/6 17:31
  */
 public interface BizEnum extends Serializable {
+
     /**
      * 获取枚举code
      *
@@ -31,4 +30,5 @@ public interface BizEnum extends Serializable {
      * @return desc
      */
     String getDesc();
+
 }
