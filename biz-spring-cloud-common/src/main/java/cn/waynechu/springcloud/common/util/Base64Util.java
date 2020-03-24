@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
@@ -17,6 +18,29 @@ import java.util.Base64;
 @Slf4j
 @UtilityClass
 public class Base64Util {
+
+    private static final Base64.Decoder DECODER = Base64.getDecoder();
+    private static final Base64.Encoder ENCODER = Base64.getEncoder();
+
+    /**
+     * Base64加密字符串
+     *
+     * @param str 待加密字符串
+     * @return 加密字符串
+     */
+    public static String encode(String str) {
+        return ENCODER.withoutPadding().encodeToString(str.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Base64解密字符串
+     *
+     * @param str 待解密字符串
+     * @return 解密字符串
+     */
+    public static String decode(String str) {
+        return new String(DECODER.decode(str), StandardCharsets.UTF_8);
+    }
 
     /**
      * 网络图片转化为Base64字符串
