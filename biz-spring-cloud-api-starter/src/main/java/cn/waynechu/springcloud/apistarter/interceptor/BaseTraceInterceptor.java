@@ -1,12 +1,12 @@
 package cn.waynechu.springcloud.apistarter.interceptor;
 
+import cn.waynechu.springcloud.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -45,7 +45,9 @@ public abstract class BaseTraceInterceptor {
         while (enumeration.hasMoreElements()) {
             String key = enumeration.nextElement();
             String value = request.getHeader(key);
-            headers.put(key, Arrays.asList(value.split(",")));
+            if (StringUtil.isNotBlank(value)) {
+                headers.add(key, value);
+            }
         }
         return headers;
     }

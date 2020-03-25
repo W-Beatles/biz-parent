@@ -4,22 +4,9 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="feat(biz-boot-starter-dynamic-datasource):">
-      <change afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/resources/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/TraceInitialFilter.java" afterDir="false" />
+    <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="feat(biz-spring-cloud-api-starter): 添加excel下载工具，excel下载异步、组件化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicDataSourceAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicDataSourceAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicDataSourceHealthContributorAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/DynamicDataSourceHealthContributorAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/java/cn/waynechu/bootstarter/dynamicdatasource/indicator/DynamicDataSourceIndicator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-api/src/main/java/com/waynechu/dynamicdatasource/api/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-dynamic-datasource-test/dynamic-datasource-test-domain/src/main/java/com/waynechu/dynamicdatasource/domain/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/AccessGatewayFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/AccessGatewayFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/RequestIdGenerateFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/BaseTraceInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/BaseTraceInterceptor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +65,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -136,43 +124,45 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-boot-starter-dynamic-datasource/src/main/resources/META-INF" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/resources" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.29441625" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.waynechu.order.remote.model.response" />
-      <recent name="cn.waynechu.springcloud.common.excel" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-boot-starter-dynamic-datasource\src\main\resources\META-INF" />
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-oauth-server" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-oauth-server\src\main\resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.waynechu.springcloud.gateway.util" />
-      <recent name="cn.waynechu.bootstarter.dynamicdatasource.toolkit" />
-      <recent name="com.waynechu.product.facade.model.response" />
-      <recent name="com.waynechu.product.domain.convert" />
-      <recent name="com.waynechu.product.domain.service" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources\META-INF" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\sql" />
       <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
       <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway" />
       <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-api-service-order\service-order-remote\src\main\java" />
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-api-service-order\service-order-remote\com.waynechu.order.remote.model.response\src.main.java" />
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\sql" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cn.waynechu.springcloud.common" />
+      <recent name="cn.waynechu.springcloud.common.excel" />
+      <recent name="cn.waynechu.springcloud.common.util" />
+      <recent name="com.waynechu.order.remote.model.response" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.waynechu.springcloud.apistarter.helper" />
+      <recent name="cn.waynechu.bootstarter.dynamicdatasource.toolkit" />
+      <recent name="cn.waynechu.springcloud.gateway.property" />
+      <recent name="cn.waynechu.springcloud.gateway.util" />
+      <recent name="com.waynechu.product.facade.model.response" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-boot-starter-dynamic-datasource\src\main\resources\META-INF" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-oauth-server" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-oauth-server\src\main\resources" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -203,7 +193,7 @@
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
-      <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=dynamic-datasource-test-api" />
+      <option name="VM_PARAMETERS" value="-Denv=LOCAL -javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=dynamic-datasource-test-api" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -352,7 +342,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9010) gateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard" singleton="false">
+    <configuration name="(9010) gateway-outer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard" singleton="false">
       <module name="biz-spring-cloud-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springcloud.gateway.GatewayStartMain" />
       <option name="URL_PATH" value="/swagger-ui.html" />
@@ -436,7 +426,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="(9050) oauth-server" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="dashboard">
+    <configuration name="(9050) oauth-server" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="oauth">
       <module name="biz-spring-cloud-oauth-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.waynechu.springcloud.oauthserver.OauthServerStartMain" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=biz-spring-cloud-oauth-server" />
@@ -454,13 +444,13 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.(9020) boot-admin" />
-      <item itemvalue="Spring Boot.(9010) gateway" />
+      <item itemvalue="Spring Boot.(9010) gateway-outer" />
       <item itemvalue="Spring Boot.(9030) hystrix-dashboard" />
       <item itemvalue="Spring Boot.(9040) turbine-dashboard" />
-      <item itemvalue="Spring Boot.(9050) oauth-server" />
       <item itemvalue="Spring Boot.(9011) gateway-inner" />
       <item itemvalue="Spring Boot.(9001) eureka-peer1" />
       <item itemvalue="Spring Boot.(9002) eureka-peer2" />
+      <item itemvalue="Spring Boot.(9050) oauth-server" />
       <item itemvalue="Spring Boot.(10001) dynamic-datasource-test-api" />
       <item itemvalue="Spring Boot.(10010) service-order-peer1" />
       <item itemvalue="Spring Boot.(10011) service-order-peer2" />
@@ -474,29 +464,12 @@
     <option name="viewStates">
       <list>
         <serviceView>
-          <option name="contentProportion" value="0.17316018" />
+          <option name="contentProportion" value="0.18668832" />
           <treeState>
             <expand>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="dashboard" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="eureka" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -513,6 +486,18 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="dashboard" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="service" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -630,90 +615,15 @@
       <workItem from="1583034574791" duration="14379000" />
       <workItem from="1583113053215" duration="2585000" />
       <workItem from="1583328322505" duration="6112000" />
-    </task>
-    <task id="LOCAL-00019" summary="work(biz-boot-starter-datasource-frame): 完善数据源模块">
-      <created>1565349309610</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1565349309610</updated>
-    </task>
-    <task id="LOCAL-00020" summary="perf(biz-parent): 提交idea配置">
-      <created>1565581009525</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1565581009525</updated>
-    </task>
-    <task id="LOCAL-00021" summary="perf(biz-parent): 提交idea配置">
-      <created>1565581099763</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1565581099763</updated>
-    </task>
-    <task id="LOCAL-00022" summary="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration，暂不推荐使用">
-      <created>1565751573478</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1565751573478</updated>
-    </task>
-    <task id="LOCAL-00023" summary="feat(service-utility-parent): 添加utility服务">
-      <created>1565954573373</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1565954573373</updated>
-    </task>
-    <task id="LOCAL-00024" summary="perf(biz-parent): 添加workspace.xml用于dashboard配置">
-      <created>1567483022101</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1567483022101</updated>
-    </task>
-    <task id="LOCAL-00025" summary="feat(biz-spring-cloud-common): 添加excel解析监听器，用于excel文件解析">
-      <created>1567496766307</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1567496766307</updated>
-    </task>
-    <task id="LOCAL-00026" summary="perf(biz-spring-cloud-archetype): 修改项目骨架依赖关系">
-      <created>1567511135619</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1567511135619</updated>
-    </task>
-    <task id="LOCAL-00027" summary="style(biz-spring-cloud-api-starter): 添加相关注释; 修改包结构">
-      <created>1567663122192</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1567663122192</updated>
-    </task>
-    <task id="LOCAL-00028" summary="config(biz-parent): 修改elk地址">
-      <created>1567676544704</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1567676544704</updated>
-    </task>
-    <task id="LOCAL-00029" summary="config(biz-parent): 修改elk地址">
-      <created>1567676597605</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1567676597605</updated>
-    </task>
-    <task id="LOCAL-00030" summary="config(service-utility-api): 修改短链地址前缀">
-      <created>1567677557669</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1567677557669</updated>
+      <workItem from="1583567021069" duration="16924000" />
+      <workItem from="1583658022935" duration="5749000" />
+      <workItem from="1583679254978" duration="6037000" />
+      <workItem from="1583824934204" duration="4360000" />
+      <workItem from="1584627806994" duration="6373000" />
+      <workItem from="1584858559979" duration="13581000" />
+      <workItem from="1584873580560" duration="7983000" />
+      <workItem from="1585054270993" duration="624000" />
+      <workItem from="1585148689301" duration="1435000" />
     </task>
     <task id="LOCAL-00031" summary="perf(biz-parent): 升级fastjson版本到1.2.60-修复拒绝服务安全问题">
       <created>1567749774945</created>
@@ -974,7 +884,91 @@
       <option name="project" value="LOCAL" />
       <updated>1583331085922</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="feat(biz-boot-starter-dynamic-datasource): 添加动态数据健康检查">
+      <created>1583498132980</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1583498132980</updated>
+    </task>
+    <task id="LOCAL-00069" summary="feat(biz-boot-starter-dynamic-datasource): 添加动态数据健康检查">
+      <created>1583498177456</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1583498177456</updated>
+    </task>
+    <task id="LOCAL-00070" summary="perf(biz-spring-cloud-oauth-server): 持久化oauth服务的ClientDetails、Token信息">
+      <created>1583515510900</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1583515510900</updated>
+    </task>
+    <task id="LOCAL-00071" summary="perf(biz-spring-cloud-api-starter): 解决@ConfigurationProperties注解的bean无法刷新问题">
+      <created>1583571403352</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1583571403352</updated>
+    </task>
+    <task id="LOCAL-00072" summary="feat(biz-spring-cloud-api-starter): 网关支持BasicAuth认证">
+      <created>1583685421901</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1583685421902</updated>
+    </task>
+    <task id="LOCAL-00073" summary="perf(biz-boot-starter-dynamic-datasource): 动态数据源优化，修复部分配置不生效的问题">
+      <created>1584633317260</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1584633317260</updated>
+    </task>
+    <task id="LOCAL-00074" summary="feat(biz-boot-starter-dynamic-datasource): 动态数据源添加查询条数限制，防止一次性查询太多数据">
+      <created>1584868507999</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1584868508000</updated>
+    </task>
+    <task id="LOCAL-00075" summary="feat(biz-spring-cloud-api-starter): 添加excel下载工具，excel下载异步、组件化">
+      <created>1584874505351</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1584874505351</updated>
+    </task>
+    <task id="LOCAL-00076" summary="fix(biz-facade-common): 修复枚举字段类型错误">
+      <created>1584874681368</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1584874681368</updated>
+    </task>
+    <task id="LOCAL-00077" summary="format(biz-parent): 格式化">
+      <created>1584874972162</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1584874972162</updated>
+    </task>
+    <task id="LOCAL-00078" summary="work(service-utility-api): 添加异步下载excel业务组件">
+      <created>1584890397248</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1584890397248</updated>
+    </task>
+    <task id="LOCAL-00079" summary="fix(biz-spring-cloud-api-service-utility): 修复artifactId错误导致无法打包问题">
+      <created>1584893950962</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1584893950962</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1047,18 +1041,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="refactor(biz-boot-starter-logger): 添加调用链路追踪信息" />
-    <MESSAGE value="refactor(biz-boot-starter-logger): 完善调用链路追踪信息，迁移过滤器、拦截器到日志模块" />
-    <MESSAGE value="feat(biz-parent): 添加todo list" />
-    <MESSAGE value="conf(biz-parent): 修改配置" />
-    <MESSAGE value="feat(biz-spring-cloud-api-starter): 分布式锁支持autoRelease自动锁释放控制" />
-    <MESSAGE value="conf(biz-parent): 完善动态数据源" />
-    <MESSAGE value="perf(biz-boot-starter-logger): logback配置修改" />
-    <MESSAGE value="feat(biz-boot-starter-logger): 支持kafka日志上传" />
-    <MESSAGE value="perf(biz-facade-common): 分页信息添加是否为最后一页信息" />
-    <MESSAGE value="perf(biz-boot-starter-logger): 修改导出示例" />
-    <MESSAGE value="docs(biz-parent): 文档完善" />
-    <MESSAGE value="feat(biz-parent): 修复若干问题" />
     <MESSAGE value="feat(biz-parent): 修复若干问题&#10;&#10;1. 修复属性名大写的情况下BeanUtil拷贝属性失败的问题&#10;2. 修复RestTemplate无法负载的问题&#10;3. 修改部分相应枚举code&#10;4. 基础BizResponse返回值移除success字段&#10;5. StringUtil添加首字母大小写转换工具&#10;6. 修改网关requestId过滤器级别&#10;7. 添加order示例项目" />
     <MESSAGE value="perf(biz-parent): 修复选择默认数据源错误的问题; 完善product模块" />
     <MESSAGE value="perf(biz-parent): 修改eureka健康检查方式，使用actuator替换心跳检测; 开启/actuator/shutdown端点" />
@@ -1072,13 +1054,26 @@
     <MESSAGE value="work(biz-spring-cloud-gateway): 添加内部网关配置" />
     <MESSAGE value="feat(biz-spring-cloud-api-starter): 添加PageLoopHelper分页查询工具，支持for循环同步翻页和多线程并发翻页两种方式" />
     <MESSAGE value="feat(biz-spring-cloud-api-starter): 规范swagger通用请求头信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(biz-spring-cloud-api-starter): 规范swagger通用请求头信息" />
+    <MESSAGE value="feat(biz-boot-starter-dynamic-datasource): 添加动态数据健康检查" />
+    <MESSAGE value="perf(biz-spring-cloud-oauth-server): 持久化oauth服务的ClientDetails、Token信息" />
+    <MESSAGE value="perf(biz-spring-cloud-api-starter): 解决@ConfigurationProperties注解的bean无法刷新问题" />
+    <MESSAGE value="feat(biz-spring-cloud-api-starter): 网关支持BasicAuth认证" />
+    <MESSAGE value="perf(biz-boot-starter-dynamic-datasource): 动态数据源优化，修复部分配置不生效的问题" />
+    <MESSAGE value="feat(biz-boot-starter-dynamic-datasource): 动态数据源添加查询条数限制，防止一次性查询太多数据" />
+    <MESSAGE value="feat(biz-spring-cloud-api-starter): 添加异步解析excel工具" />
+    <MESSAGE value="fix(biz-facade-common): 修复枚举字段类型错误" />
+    <MESSAGE value="format(biz-parent): 格式化" />
+    <MESSAGE value="work(service-utility-api): 添加异步下载excel业务组件" />
+    <MESSAGE value="feat(biz-spring-cloud-api-starter): 添加excel下载工具，excel下载异步、组件化" />
+    <MESSAGE value="fix(biz-spring-cloud-api-service-utility): 修复artifactId错误导致无法打包问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(biz-spring-cloud-api-service-utility): 修复artifactId错误导致无法打包问题" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2510" y="19" key="#(10001)_dynamic-datasource-test-api" timestamp="1579087845952">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="590" y="19" key="#(10001)_dynamic-datasource-test-api" timestamp="1583568581241">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2510" y="19" key="#(10001)_dynamic-datasource-test-api/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579087845952" />
+    <state x="590" y="19" key="#(10001)_dynamic-datasource-test-api/0.0.1920.1040@0.0.1920.1040" timestamp="1583568581241" />
     <state x="590" y="19" key="#(10001)_dynamic-datasource-test-api/0.0.1920.1049@0.0.1920.1049" timestamp="1579017927179" />
     <state x="2510" y="14" key="#(10010)_order-service-peer1" timestamp="1577771797566">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -1143,10 +1138,11 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2510" y="14" key="#(9002)_eureka-peer2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579163394945" />
-    <state x="2510" y="19" key="#(9010)_gateway" timestamp="1582710537371">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="590" y="19" key="#(9010)_gateway" timestamp="1583568757204">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2510" y="19" key="#(9010)_gateway/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582710537371" />
+    <state x="590" y="19" key="#(9010)_gateway/0.0.1920.1040@0.0.1920.1040" timestamp="1583568757204" />
     <state x="590" y="19" key="#(9010)_gateway/0.0.1920.1049@0.0.1920.1049" timestamp="1579017835615" />
     <state x="590" y="19" key="#(9010)_gateway_(1)" timestamp="1583082788169">
       <screen x="0" y="0" width="1920" height="1049" />
@@ -1185,156 +1181,188 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="178" key="#SonarLint/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579167348982" />
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583497519605">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583567730574">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579163060158" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583567730574" />
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583497519605" />
     <state x="677" y="327" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582982521264">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="677" y="327" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1049@0.0.1920.1049" timestamp="1582982521264" />
-    <state x="394" y="231" width="1401" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1583328777211">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="394" y="229" width="1401" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1584890844572">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2685" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577705934324" />
+    <state x="394" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584890844572" />
     <state x="394" y="231" width="1401" height="568" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1049@0.0.1920.1049" timestamp="1583328777211" />
     <state x="3081" y="423" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1579162937767">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="3081" y="423" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162937767" />
-    <state x="317" y="449" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1578580665287">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="343" y="598" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584872025914">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="343" y="598" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584872025914" />
     <state x="317" y="449" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1578580665287" />
-    <state x="465" y="382" width="989" height="294" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1578581622911">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="465" y="379" width="989" height="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1584872020151">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="465" y="379" width="989" height="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1584872020151" />
     <state x="465" y="382" width="989" height="294" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1049@0.0.1920.1049" timestamp="1578581622911" />
-    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583329305946">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="465" y="399" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1584872027480">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="465" y="399" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1584872027480" />
+    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584872788263">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584872788263" />
     <state x="497" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583329305946" />
-    <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1578579705352">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584632702932">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584632702932" />
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1578579705352" />
     <state x="393" y="292" key="#xdebugger.evaluate" timestamp="1583492042748">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="393" y="292" key="#xdebugger.evaluate/0.0.1920.1049@0.0.1920.1049" timestamp="1583492042748" />
-    <state x="157" y="102" key="CommitChangelistDialog2" timestamp="1583498061975">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="319" y="102" key="CommitChangelistDialog2" timestamp="1585150174573">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="495" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1575551344191" />
     <state x="2415" y="105" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711616937" />
-    <state x="157" y="102" key="CommitChangelistDialog2/0.0.1920.1049@0.0.1920.1049" timestamp="1583498061975" />
-    <state width="977" height="466" key="DebuggerActiveHint" timestamp="1583491908339">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="319" y="102" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585150174573" />
+    <state x="157" y="102" key="CommitChangelistDialog2/0.0.1920.1049@0.0.1920.1049" timestamp="1583515510278" />
+    <state width="977" height="463" key="DebuggerActiveHint" timestamp="1585149885630">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="977" height="463" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1585149885630" />
     <state width="977" height="466" key="DebuggerActiveHint/0.0.1920.1049@0.0.1920.1049" timestamp="1583491908339" />
-    <state x="259" y="105" width="1536" height="756" key="DiffContextDialog" timestamp="1583498055019">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="184" y="86" width="1536" height="859" key="DiffContextDialog" timestamp="1585150172850">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2104" y="86" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711615755" />
-    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575551188751" />
-    <state x="259" y="105" width="1536" height="756" key="DiffContextDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583498055019" />
+    <state x="184" y="86" width="1536" height="859" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585150172850" />
+    <state x="259" y="105" width="1536" height="756" key="DiffContextDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583515456641" />
     <state x="512" y="272" key="FileChooserDialogImpl" timestamp="1582801449205">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162719429" />
     <state x="512" y="272" key="FileChooserDialogImpl/0.0.1920.1049@0.0.1920.1049" timestamp="1582801449205" />
-    <state width="1527" height="237" key="GridCell.Tab.0.bottom" timestamp="1583498077138">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.0.bottom" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570100" />
-    <state width="1527" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077138" />
-    <state width="1527" height="237" key="GridCell.Tab.0.center" timestamp="1583498077137">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.0.center" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570099" />
-    <state width="1527" height="237" key="GridCell.Tab.0.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077137" />
-    <state width="1527" height="237" key="GridCell.Tab.0.left" timestamp="1583498077137">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.0.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.0.left" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570099" />
-    <state width="1527" height="237" key="GridCell.Tab.0.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077137" />
-    <state width="1527" height="237" key="GridCell.Tab.0.right" timestamp="1583498077137">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.0.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.0.right" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570100" />
-    <state width="1527" height="237" key="GridCell.Tab.0.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077137" />
-    <state width="1527" height="237" key="GridCell.Tab.1.bottom" timestamp="1583498077138">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.0.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.1.bottom" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570101" />
-    <state width="1527" height="237" key="GridCell.Tab.1.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077138" />
-    <state width="1527" height="237" key="GridCell.Tab.1.center" timestamp="1583498077138">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.1.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.1.center" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570101" />
-    <state width="1527" height="237" key="GridCell.Tab.1.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077138" />
-    <state width="1527" height="237" key="GridCell.Tab.1.left" timestamp="1583498077138">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.1.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.1.left" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570101" />
-    <state width="1527" height="237" key="GridCell.Tab.1.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077138" />
-    <state width="1527" height="237" key="GridCell.Tab.1.right" timestamp="1583498077138">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.1.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.1.right" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1535" height="277" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582711570101" />
-    <state width="1527" height="237" key="GridCell.Tab.1.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583498077138" />
-    <state width="1527" height="293" key="GridCell.Tab.2.bottom" timestamp="1583497256363">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1527" height="298" key="GridCell.Tab.1.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
+    <state width="1502" height="310" key="GridCell.Tab.2.bottom" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1502" height="310" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="293" key="GridCell.Tab.2.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583497256363" />
-    <state width="1527" height="293" key="GridCell.Tab.2.center" timestamp="1583497256363">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.2.center" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1502" height="310" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="293" key="GridCell.Tab.2.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583497256363" />
-    <state width="1527" height="293" key="GridCell.Tab.2.left" timestamp="1583497256363">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.2.left" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1502" height="310" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="293" key="GridCell.Tab.2.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583497256363" />
-    <state width="1527" height="293" key="GridCell.Tab.2.right" timestamp="1583497256363">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="1502" height="310" key="GridCell.Tab.2.right" timestamp="1585149915376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1502" height="310" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="293" key="GridCell.Tab.2.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583497256363" />
     <state x="2700" y="217" key="NewModule_or_Project.wizard" timestamp="1579162720871">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2700" y="217" key="NewModule_or_Project.wizard/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162720871" />
     <state x="780" y="219" key="NewModule_or_Project.wizard/0.0.1920.1049@0.0.1920.1049" timestamp="1578126938989" />
-    <state x="524" y="235" key="RollbackChangesDialog" timestamp="1582986322428">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="524" y="233" key="RollbackChangesDialog" timestamp="1584634183778">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="524" y="233" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584634183778" />
     <state x="524" y="235" key="RollbackChangesDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1582986322428" />
-    <state x="602" y="184" key="SettingsEditor" timestamp="1583483639570">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="602" y="182" key="SettingsEditor" timestamp="1584890768076">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2360" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579162962151" />
+    <state x="602" y="182" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584890768076" />
     <state x="602" y="184" key="SettingsEditor/0.0.1920.1049@0.0.1920.1049" timestamp="1583483639570" />
+    <state x="648" y="434" key="VCS.ChangelistChooser" timestamp="1584864649702">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="648" y="434" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584864649702" />
     <state x="92" y="92" width="1736" height="865" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1583081540869">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="92" y="92" width="1736" height="865" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583081540869" />
-    <state x="721" y="253" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578933528839">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="711" y="245" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1584861220650">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="711" y="245" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584861220650" />
     <state x="721" y="253" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1049@0.0.1920.1049" timestamp="1578933528839" />
     <state x="752" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578209066430">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="752" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1049@0.0.1920.1049" timestamp="1578209066430" />
-    <state x="534" y="299" width="1263" height="750" key="find.popup" timestamp="1583492457668">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="534" y="296" width="1263" height="744" key="find.popup" timestamp="1584874624393">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2454" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1579168183871" />
+    <state x="534" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584874624393" />
     <state x="534" y="299" width="1263" height="750" key="find.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583492457668" />
-    <state width="650" height="258" key="javadoc.popup.new" timestamp="1583491293920">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state width="650" height="256" key="javadoc.popup.new" timestamp="1584872877394">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="650" height="123" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582710329971" />
+    <state width="650" height="256" key="javadoc.popup.new/0.0.1920.1040@0.0.1920.1040" timestamp="1584872877394" />
     <state width="650" height="258" key="javadoc.popup.new/0.0.1920.1049@0.0.1920.1049" timestamp="1583491293920" />
     <state x="2390" y="255" key="new project wizard" timestamp="1582709955436">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -1348,11 +1376,12 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583328762165" />
-    <state x="623" y="227" width="672" height="684" key="search.everywhere.popup" timestamp="1583495439820">
-      <screen x="0" y="0" width="1920" height="1049" />
+    <state x="623" y="225" width="672" height="679" key="search.everywhere.popup" timestamp="1584867036774">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577771054869" />
-    <state x="623" y="227" width="672" height="684" key="search.everywhere.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583495439820" />
+    <state x="623" y="225" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584867036774" />
+    <state x="623" y="227" width="672" height="684" key="search.everywhere.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583510071897" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1378,11 +1407,6 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-commons/2.1.0.RELEASE/spring-cloud-commons-2.1.0.RELEASE-sources.jar!/org/springframework/cloud/client/loadbalancer/RetryLoadBalancerInterceptor.java</url>
           <line>79</line>
           <option name="timeStamp" value="49" />
@@ -1403,9 +1427,29 @@
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-actuator/2.2.2.RELEASE/spring-boot-actuator-2.2.2.RELEASE-sources.jar!/org/springframework/boot/actuate/jdbc/DataSourceHealthIndicator.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="74" />
+          <url>file://$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/AccessGatewayFilter.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/biz-spring-cloud-gateway/src/main/java/cn/waynechu/springcloud/gateway/filter/TraceInitialFilter.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/com/alibaba/druid/1.1.20/druid-1.1.20-sources.jar!/com/alibaba/druid/wall/spi/MySqlWallVisitor.java</url>
+          <line>206</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/BaseTraceInterceptor.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/biz-spring-cloud-api-starter/src/main/java/cn/waynechu/springcloud/apistarter/interceptor/FeignTraceInterceptor.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
