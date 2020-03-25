@@ -11,10 +11,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.task.support.ExecutorServiceAdapter;
+import org.springframework.core.task.support.TaskExecutorAdapter;
 import org.springframework.scheduling.annotation.AsyncAnnotationBeanPostProcessor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
 /**
  * @author zhuwei
@@ -30,11 +33,17 @@ public class ExecutorAutoConfiguration {
     private ExecutorProperty property;
 
     @Lazy
-    @Bean(name = {"bizTaskExecutor",
+    @Bean(name = {"bizExecutor",
             TaskExecutionAutoConfiguration.APPLICATION_TASK_EXECUTOR_BEAN_NAME,
             AsyncAnnotationBeanPostProcessor.DEFAULT_TASK_EXECUTOR_BEAN_NAME})
     public Executor applicationTaskExecutor() {
         return buildExecutor(property);
+    }
+
+    @Lazy
+    @Bean("bizExecutorService")
+    public ExecutorService executorService() {
+        return new ExecutorServiceAdapter(new TaskExecutorAdapter(applicationTaskExecutor()));
     }
 
     private static Executor buildExecutor(ExecutorProperty executorProperty) {

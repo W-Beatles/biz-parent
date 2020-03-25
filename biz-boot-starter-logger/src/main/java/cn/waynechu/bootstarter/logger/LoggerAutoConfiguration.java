@@ -2,7 +2,6 @@ package cn.waynechu.bootstarter.logger;
 
 import cn.waynechu.bootstarter.logger.aware.SentryContextAware;
 import cn.waynechu.bootstarter.logger.filter.MDCFilter;
-import cn.waynechu.bootstarter.logger.interceptor.FeignTraceInterceptor;
 import cn.waynechu.bootstarter.logger.properties.ElkProperty;
 import cn.waynechu.bootstarter.logger.properties.LoggerProperty;
 import cn.waynechu.bootstarter.logger.properties.SentryProperties;
@@ -14,9 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * @author zhuwei
  * @date 2019/1/8 13:50
@@ -25,13 +21,6 @@ import java.util.List;
 @EnableConfigurationProperties({SentryProperties.class, ElkProperty.class, LoggerProperty.class})
 @Import({ApplicationProvider.class})
 public class LoggerAutoConfiguration {
-
-    /**
-     * 调用链路追踪需要传递的请求头
-     */
-    public static final List<String> NEED_TRACE_HEADERS = Arrays.asList(
-            "requestId", "scClientIp", "originUrl",
-            "traceAppIds", "traceAppNames", "traceHostNames", "traceHostAddresses");
 
     @Bean
     @ConditionalOnProperty(value = SentryContextAware.SENTRY_ENABLE, havingValue = "true")
@@ -49,8 +38,4 @@ public class LoggerAutoConfiguration {
         return registrationBean;
     }
 
-    @Bean
-    public FeignTraceInterceptor feignInterceptor() {
-        return new FeignTraceInterceptor(NEED_TRACE_HEADERS);
-    }
 }

@@ -49,9 +49,9 @@ SpringCloud微服务开发脚手架
 
 > 注: ~~ ~~划线部分为已完成功能~~ ~~
 
-1. ~~支持微服务调用全链路日志追踪。添加`requestId`(请求唯一标识，网关生成或来自外部请求头，格式为UUID)、`appId`(应用唯一标识)、`appName`(应用名称)、
-   `traceAppNames`(appName调用链路记录，以`,`分割)、`traceHostNames`(hostName调用链路记录，以`,`分割)、
-   `traceHostAddresses`(hostAddress调用链路记录，以`,`分割)~~
+1. ~~支持微服务调用全链路日志追踪。添加`request-id`(请求唯一标识，网关生成或来自外部请求头，格式为UUID)、`app-id`(应用唯一标识)、`app-name`(应用名称)、
+   `trace-app-names`(appName调用链路记录，以`,`分割)、`trace-host-names`(hostName调用链路记录，以`,`分割)、
+   `trace-host-addresses`(hostAddress调用链路记录，以`,`分割)~~
    - ~~支持Feign调用传递请求头信息~~
    - ~~支持RestTemplate调用传递请求头信息~~
 2. ~~日志模块支持kafka日志上传~~

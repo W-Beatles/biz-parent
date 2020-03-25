@@ -1,4 +1,4 @@
-package cn.waynechu.bootstarter.logger.interceptor;
+package cn.waynechu.springcloud.apistarter.interceptor;
 
 import cn.waynechu.springcloud.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,6 @@ import org.springframework.http.client.ClientHttpResponse;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * RestTemplate调用传递header信息
@@ -27,20 +26,16 @@ public class RestTemplateTraceInterceptor extends BaseTraceInterceptor implement
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-        Map<String, String> originHeaders = super.getHeaders();
+        HttpHeaders originHeaders = super.getHeaders();
         HttpHeaders headers = request.getHeaders();
 
         for (String traceHeaderKey : needTraceHeaders) {
-            String traceHeaderValue = originHeaders.get(traceHeaderKey);
-            // 兼容处理header key为全小写的情况
-            if (StringUtil.isBlank(traceHeaderValue)) {
-                traceHeaderValue = originHeaders.get(traceHeaderKey.toLowerCase());
-            }
-
+            String traceHeaderValue = originHeaders.getFirst(traceHeaderKey);
             if (StringUtil.isNotBlank(traceHeaderValue)) {
                 headers.add(traceHeaderKey, traceHeaderValue);
             }
         }
         return execution.execute(request, body);
     }
+
 }

@@ -1,17 +1,18 @@
 package cn.waynechu.springcloud.apistarter.config;
 
-import cn.waynechu.bootstarter.logger.LoggerAutoConfiguration;
-import cn.waynechu.bootstarter.logger.interceptor.RestTemplateTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.advice.ControllerExceptionHandler;
 import cn.waynechu.springcloud.apistarter.aspect.ControllerLogAspect;
 import cn.waynechu.springcloud.apistarter.aspect.DistributedLockAspect;
 import cn.waynechu.springcloud.apistarter.aspect.MethodLogAspect;
+import cn.waynechu.springcloud.apistarter.interceptor.FeignTraceInterceptor;
+import cn.waynechu.springcloud.apistarter.interceptor.RestTemplateTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
 import cn.waynechu.springcloud.common.cache.RedisUtil;
 import cn.waynechu.springcloud.common.excel.ExcelUtil;
 import cn.waynechu.springcloud.common.util.PageLoopUtil;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,9 @@ import java.util.concurrent.Executor;
         DistributedLockAspect.class})
 public class CommonAutoConfiguration {
 
+    @Autowired
+    private CommonProperty commonProperty;
+
     @Bean
     public SpringContextHolder contextHolder() {
         return new SpringContextHolder();
@@ -44,9 +48,14 @@ public class CommonAutoConfiguration {
     @LoadBalanced
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
-        RestTemplateTraceInterceptor traceInterceptor = new RestTemplateTraceInterceptor(LoggerAutoConfiguration.NEED_TRACE_HEADERS);
+        RestTemplateTraceInterceptor traceInterceptor = new RestTemplateTraceInterceptor(commonProperty.getNeedTraceHeaders());
         restTemplate.setInterceptors(Collections.singletonList(traceInterceptor));
         return restTemplate;
+    }
+
+    @Bean
+    public FeignTraceInterceptor feignInterceptor() {
+        return new FeignTraceInterceptor(commonProperty.getNeedTraceHeaders());
     }
 
     @Bean
@@ -55,13 +64,13 @@ public class CommonAutoConfiguration {
     }
 
     @Bean
-    public PageLoopUtil pageLoopHelper(Executor bizTaskExecutor) {
-        return new PageLoopUtil(bizTaskExecutor);
+    public PageLoopUtil pageLoopHelper(Executor bizExecutor) {
+        return new PageLoopUtil(bizExecutor);
     }
 
     @Bean
-    public ExcelUtil excelUtil(Executor bizTaskExecutor, RedisTemplate<Object, Object> redisTemplate) {
-        return new ExcelUtil(bizTaskExecutor, redisTemplate);
+    public ExcelUtil excelUtil(Executor bizExecutor, RedisTemplate<Object, Object> redisTemplate) {
+        return new ExcelUtil(bizExecutor, redisTemplate);
     }
 
 }

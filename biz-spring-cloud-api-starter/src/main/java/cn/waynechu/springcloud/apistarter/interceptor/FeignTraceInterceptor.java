@@ -1,12 +1,12 @@
-package cn.waynechu.bootstarter.logger.interceptor;
+package cn.waynechu.springcloud.apistarter.interceptor;
 
 import cn.waynechu.springcloud.common.util.StringUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Feign调用传递header信息
@@ -23,17 +23,13 @@ public class FeignTraceInterceptor extends BaseTraceInterceptor implements Reque
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        Map<String, String> headers = super.getHeaders();
+        HttpHeaders headers = super.getHeaders();
         for (String traceHeaderKey : needTraceHeaders) {
-            String traceHeaderValue = headers.get(traceHeaderKey);
-            // 兼容处理header key为全小写的情况
-            if (StringUtil.isBlank(traceHeaderValue)) {
-                traceHeaderValue = headers.get(traceHeaderKey.toLowerCase());
-            }
-
+            String traceHeaderValue = headers.getFirst(traceHeaderKey);
             if (StringUtil.isNotBlank(traceHeaderValue)) {
                 requestTemplate.header(traceHeaderKey, traceHeaderValue);
             }
         }
     }
+
 }

@@ -35,26 +35,20 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
     添加的MDC上下文和请求头中的信息有:
     ```
     ---------- MDC ----------
-    apiVersion               - 请求的API版本号
-    channel                  - 渠道，调用方标识
-    deviceId                 - 设备id
+    api-version                - 请求的API版本号
+    channel                    - 渠道，调用方标识
+    device-id                  - 设备id
     ---------- MDC & 请求头 ----------
-    requestId                - 请求跟踪号，全链路唯一标识。格式为UUID(32个字符)，来自header或者由该过滤器初始化
-    scClientIp               - 请求来源客户端ip
-    originUrl                - 请求来源地址
-    traceAppIds              - appId调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
-    traceAppNames            - appName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
-    traceHostNames           - hostName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
-    traceHostAddresses       - hostAddress调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+    request-id                 - 请求跟踪号，全链路唯一标识。格式为UUID(32个字符)，来自header或者由该过滤器初始化
+    sc-client-ip               - 请求来源客户端ip
+    origin-url                 - 请求来源地址
+    trace-app-ids              - appId调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+    trace-app-names            - appName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+    trace-host-names           - hostName调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
+    trace-host-addresses       - hostAddress调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
    ```
-2. FeignHeaderInterceptor拦截器
 
-    该拦截器用于微服务间使用Feign互相调用传递header请求头信息。
 
-3. RestTemplateTraceInterceptor拦截器
-
-   该拦截器用于微服务间使用RestTemplate互相调用传递header请求头信息。
-   
 ### 使用方式
 
 1. 添加依赖

@@ -14,6 +14,10 @@ import java.util.Map;
 @UtilityClass
 public class CollectionUtil {
 
+    public static boolean isEmpty(Collection<? extends Object> collection) {
+        return isNullOrEmpty(collection);
+    }
+
     public static boolean isNullOrEmpty(Collection<? extends Object> collection) {
         return collection == null || collection.isEmpty();
     }

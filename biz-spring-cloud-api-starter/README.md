@@ -25,8 +25,7 @@
 
 4. MethodLogAspect 方法调用情况切面 (默认开启)
 
-5. DistributedLockAspect 分布式锁实现，用于资源访问控制 (默认关闭)
-
+5. DistributedLockAspect 分布式锁实现，用于资源访问控制 (默认关闭)  
     参考配置:
     ```
     ### distributed-lock
@@ -34,8 +33,7 @@
     biz.api.starter.distributed-lock.prefix=work.waynechu.cn
     ```
 
-6. CorsAutoConfiguration 跨域配置 (默认关闭)
-
+6. CorsAutoConfiguration 跨域配置 (默认关闭)  
     参考配置:
     ```
     ### cors
@@ -43,8 +41,7 @@
     biz.api.starter.cors.allowedOrigins=api.waynchu.cn,*.waynechu.cn
     ```
 
-7. SwaggerAutoConfiguration 开启Swagger API文档 (默认关闭)
-
+7. SwaggerAutoConfiguration 开启Swagger API文档 (默认关闭)  
     参考配置:
     ```
     ### swagger
@@ -57,15 +54,20 @@
     biz.api.starter.swagger.contact-url=联系人主页
     biz.api.starter.swagger.contact-email=联系人邮箱
     ```
+
+2. FeignHeaderInterceptor拦截器  
+    该拦截器用于微服务间使用Feign互相调用传递header请求头信息。
+
+3. RestTemplateTraceInterceptor拦截器  
+   该拦截器用于微服务间使用RestTemplate互相调用传递header请求头信息。
    
-8. RedisUtil Redis缓存工具类
+8. RedisUtil Redis缓存工具类  
     注入`RedisUtil`即可使用
 
-9. PageLoopUtil 基于BizPageInfo的分页查询工具
+9. PageLoopUtil 基于BizPageInfo的分页查询工具  
     注入`PageLoopUtil`即可使用
 
-10. ExcelUtil excel解析、异步下载工具
-
+10. ExcelUtil excel解析、异步下载工具  
     设计原则： 
     - 解耦数据导出服务与业务站点
     - 后端统一接口/前端组件化

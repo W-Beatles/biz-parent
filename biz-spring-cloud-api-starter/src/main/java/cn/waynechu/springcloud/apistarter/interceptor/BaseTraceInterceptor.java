@@ -1,11 +1,14 @@
-package cn.waynechu.bootstarter.logger.interceptor;
+package cn.waynechu.springcloud.apistarter.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
 
 /**
  * @author zhuwei
@@ -28,21 +31,23 @@ public abstract class BaseTraceInterceptor {
      *
      * @return 请求头信息
      */
-    protected Map<String, String> getHeaders() {
+    protected HttpHeaders getHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) {
             log.warn("获取当前线程的RequestAttributes请求参数失败");
-            return Collections.emptyMap();
+            return headers;
         }
 
         HttpServletRequest request = requestAttributes.getRequest();
-        Map<String, String> map = new LinkedHashMap<>();
         Enumeration<String> enumeration = request.getHeaderNames();
         while (enumeration.hasMoreElements()) {
             String key = enumeration.nextElement();
             String value = request.getHeader(key);
-            map.put(key, value);
+            headers.put(key, Arrays.asList(value.split(",")));
         }
-        return map;
+        return headers;
     }
+
 }
