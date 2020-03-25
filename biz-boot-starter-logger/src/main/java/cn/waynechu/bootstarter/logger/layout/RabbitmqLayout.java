@@ -48,10 +48,10 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
             json.putAll(event.getMDCPropertyMap());
 
             // 转化timeTaken为Integer类型
-            String timeTaken = event.getMDCPropertyMap().get(AbstractControllerLogAspect.MDC_TIME_TAKEN_KEY);
+            String timeTaken = event.getMDCPropertyMap().get(AbstractControllerLogAspect.MDC_KEY_TIME_TAKEN);
             if (StringUtil.isNotBlank(timeTaken)) {
                 try {
-                    json.put(AbstractControllerLogAspect.MDC_TIME_TAKEN_KEY, Integer.valueOf(timeTaken));
+                    json.put(AbstractControllerLogAspect.MDC_KEY_TIME_TAKEN, Integer.valueOf(timeTaken));
                 } catch (Exception e) {
                     this.addError("timeTaken转换成Integer失败", e);
                 }

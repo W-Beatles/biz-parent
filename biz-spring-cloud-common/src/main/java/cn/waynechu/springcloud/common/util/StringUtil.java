@@ -106,4 +106,41 @@ public class StringUtil {
         Matcher matcher = RegexUtil.ZH_PATTERN.matcher(str);
         return matcher.find();
     }
+
+    /**
+     * 指定格式转化为驼峰命名格式
+     *
+     * @param originStr 原始字符串
+     * @param split     分隔符
+     * @return 驼峰命名的的字符串
+     */
+    public static String toCamel(String originStr, String split) {
+        StringBuilder result = new StringBuilder();
+        if (originStr == null || originStr.isEmpty()) {
+            return "";
+        } else if (!originStr.contains(split)) {
+            return originStr.substring(0, 1).toLowerCase() + originStr.substring(1);
+        }
+
+        String[] splitStr = originStr.split(split);
+        for (String str : splitStr) {
+            if (str.isEmpty()) {
+                continue;
+            }
+
+            if (result.length() == 0) {
+                result.append(str.toLowerCase());
+            } else {
+                result.append(str.substring(0, 1).toUpperCase());
+                result.append(str.substring(1).toLowerCase());
+            }
+        }
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String str = "trace-app-ids";
+        String camelStr = toCamel(str, "-");
+        System.out.println(camelStr);
+    }
 }

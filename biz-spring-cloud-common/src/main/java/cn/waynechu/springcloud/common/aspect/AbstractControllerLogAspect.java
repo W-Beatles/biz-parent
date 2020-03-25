@@ -34,8 +34,8 @@ import java.util.Collection;
  */
 @Slf4j
 public abstract class AbstractControllerLogAspect {
-    private static final String MDC_URL_KEY = "url";
-    public static final String MDC_TIME_TAKEN_KEY = "timeTaken";
+    private static final String MDC_KEY_URL = "url";
+    public static final String MDC_KEY_TIME_TAKEN = "timeTaken";
 
     private ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
@@ -53,7 +53,7 @@ public abstract class AbstractControllerLogAspect {
         // 添加MDC记录  url: 请求地址
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
         if (attributes != null) {
-            MDC.put(MDC_URL_KEY, ((ServletRequestAttributes) attributes).getRequest().getRequestURI());
+            MDC.put(MDC_KEY_URL, ((ServletRequestAttributes) attributes).getRequest().getRequestURI());
         }
     }
 
@@ -66,7 +66,7 @@ public abstract class AbstractControllerLogAspect {
     public void doAfterReturning(JoinPoint joinPoint, ApiOperation logAnnotation, Object result) {
         Long timeTaken = System.currentTimeMillis() - threadLocal.get();
         // 添加MDC记录  timeTaken: 调用耗时
-        MDC.put(MDC_TIME_TAKEN_KEY, String.valueOf(timeTaken));
+        MDC.put(MDC_KEY_TIME_TAKEN, String.valueOf(timeTaken));
 
         String jsonResult = JsonBinder.buildAlwaysBinder().toJson(result);
         log.info("{}调用结束, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, jsonResult);

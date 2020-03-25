@@ -26,18 +26,6 @@ import java.io.IOException;
 @Data
 public class MDCFilter implements Filter {
 
-    public static final String HEADER_KEY_API_VERSION = "api-version";
-    public static final String HEADER_KEY_CHANNEL = "channel";
-    public static final String HEADER_KEY_DEVICE_ID = "device-id";
-
-    public static final String HEADER_KEY_REQUEST_ID = "request-id";
-    public static final String HEADER_KEY_SC_CLIENT_IP = "sc-client-ip";
-    public static final String HEADER_KEY_ORIGIN_URL = "origin-url";
-    public static final String HEADER_KEY_TRACE_APP_IDS = "trace-app-ids";
-    public static final String HEADER_KEY_TRACE_APP_NAMES = "trace-app-names";
-    public static final String HEADER_KEY_TRACE_HOST_NAMES = "trace-host-names";
-    public static final String HEADER_KEY_TRACE_HOST_ADDRESSES = "trace-host-addresses";
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try {
@@ -63,14 +51,14 @@ public class MDCFilter implements Filter {
             requestId = UUIDUtil.getShortUUID();
             httpServletRequestWrapper.putHeader(HEADER_KEY_REQUEST_ID, requestId);
         }
-        MDC.put(HEADER_KEY_REQUEST_ID, requestId);
+        MDC.put(MDC_KEY_REQUEST_ID, requestId);
 
         String scClientIp = WebUtil.getReqHeader(HEADER_KEY_SC_CLIENT_IP, request);
-        MDC.put(HEADER_KEY_SC_CLIENT_IP, scClientIp);
+        MDC.put(MDC_KEY_SC_CLIENT_IP, scClientIp);
         httpServletRequestWrapper.putHeader(HEADER_KEY_SC_CLIENT_IP, scClientIp);
 
         String originUrl = WebUtil.getReqHeader(HEADER_KEY_ORIGIN_URL, request);
-        MDC.put(HEADER_KEY_ORIGIN_URL, originUrl);
+        MDC.put(MDC_KEY_ORIGIN_URL, originUrl);
         httpServletRequestWrapper.putHeader(HEADER_KEY_ORIGIN_URL, originUrl);
 
         String appId = ApplicationProvider.getAppId();
@@ -78,7 +66,7 @@ public class MDCFilter implements Filter {
         if (StringUtil.isNotBlank(traceAppIds)) {
             appId = traceAppIds + "," + appId;
         }
-        MDC.put(HEADER_KEY_TRACE_APP_IDS, appId);
+        MDC.put(MDC_KEY_TRACE_APP_IDS, appId);
         httpServletRequestWrapper.putHeader(HEADER_KEY_TRACE_APP_IDS, appId);
 
         String appName = ApplicationProvider.getAppName();
@@ -86,7 +74,7 @@ public class MDCFilter implements Filter {
         if (StringUtil.isNotBlank(traceAppNames)) {
             appName = traceAppNames + "," + appName;
         }
-        MDC.put(HEADER_KEY_TRACE_APP_NAMES, appName);
+        MDC.put(MDC_KEY_TRACE_APP_NAMES, appName);
         httpServletRequestWrapper.putHeader(HEADER_KEY_TRACE_APP_NAMES, appName);
 
         String hostName = ApplicationProvider.getHostName();
@@ -94,7 +82,7 @@ public class MDCFilter implements Filter {
         if (StringUtil.isNotBlank(traceHostNames)) {
             hostName = traceHostNames + "," + hostName;
         }
-        MDC.put(HEADER_KEY_TRACE_HOST_NAMES, hostName);
+        MDC.put(MDC_KEY_TRACE_HOST_NAMES, hostName);
         httpServletRequestWrapper.putHeader(HEADER_KEY_TRACE_HOST_NAMES, hostName);
 
         String hostAddress = ApplicationProvider.getHostAddress();
@@ -102,9 +90,32 @@ public class MDCFilter implements Filter {
         if (StringUtil.isNotBlank(traceHostAddress)) {
             hostAddress = traceHostAddress + "," + hostAddress;
         }
-        MDC.put(HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress);
+        MDC.put(MDC_KEY_TRACE_HOST_ADDRESSES, hostAddress);
         httpServletRequestWrapper.putHeader(HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress);
 
         return httpServletRequestWrapper;
     }
+
+    public static final String HEADER_KEY_API_VERSION = "api-version";
+    public static final String HEADER_KEY_CHANNEL = "channel";
+    public static final String HEADER_KEY_DEVICE_ID = "device-id";
+    public static final String HEADER_KEY_REQUEST_ID = "request-id";
+    public static final String HEADER_KEY_SC_CLIENT_IP = "sc-client-ip";
+    public static final String HEADER_KEY_ORIGIN_URL = "origin-url";
+    public static final String HEADER_KEY_TRACE_APP_IDS = "trace-app-ids";
+    public static final String HEADER_KEY_TRACE_APP_NAMES = "trace-app-names";
+    public static final String HEADER_KEY_TRACE_HOST_NAMES = "trace-host-names";
+    public static final String HEADER_KEY_TRACE_HOST_ADDRESSES = "trace-host-addresses";
+
+    public static final String MDC_KEY_API_VERSION = "apiVersion";
+    public static final String MDC_KEY_CHANNEL = "channel";
+    public static final String MDC_KEY_DEVICE_ID = "deviceId";
+    public static final String MDC_KEY_REQUEST_ID = "requestId";
+    public static final String MDC_KEY_SC_CLIENT_IP = "scClientIp";
+    public static final String MDC_KEY_ORIGIN_URL = "originUrl";
+    public static final String MDC_KEY_TRACE_APP_IDS = "traceAppIds";
+    public static final String MDC_KEY_TRACE_APP_NAMES = "traceAppNames";
+    public static final String MDC_KEY_TRACE_HOST_NAMES = "traceHostNames";
+    public static final String MDC_KEY_TRACE_HOST_ADDRESSES = "traceHostAddresses";
+
 }
