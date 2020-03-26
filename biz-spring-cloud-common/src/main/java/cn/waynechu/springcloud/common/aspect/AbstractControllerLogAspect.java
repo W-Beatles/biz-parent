@@ -34,7 +34,8 @@ import java.util.Collection;
  */
 @Slf4j
 public abstract class AbstractControllerLogAspect {
-    private static final String MDC_KEY_URL = "url";
+
+    public static final String MDC_KEY_URL = "url";
     public static final String MDC_KEY_TIME_TAKEN = "timeTaken";
 
     private ThreadLocal<Long> threadLocal = new ThreadLocal<>();

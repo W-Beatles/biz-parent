@@ -25,7 +25,7 @@ SpringCloud微服务开发脚手架
 8. biz-spring-cloud-api-service-product  
      产品模块(测试)
 9. biz-spring-cloud-api-service-utility  
-     公共服务。提供省市区查询、短链生成及重定向服务
+     公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
 10. biz-spring-cloud-api-starter  
    spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等一系列功能
 11. biz-spring-cloud-archetype  
@@ -54,13 +54,13 @@ SpringCloud微服务开发脚手架
    `trace-host-addresses`(hostAddress调用链路记录，以`,`分割)~~
    - ~~支持Feign调用传递请求头信息~~
    - ~~支持RestTemplate调用传递请求头信息~~
-2. ~~日志模块支持kafka日志上传~~
+2. ~~日志模块支持kafka日志上传~~  
 3. 完善动态数据源模块  
    - ~~支持注解声明式指定数据源~~
    - 集成`seata`分布式事务解决方案
-5. 添加文件上传模块 `biz-spring-cloud-file-upload`  
+5. 添加文件上传模块 `biz-spring-cloud-file-upload`，并提供基础SDK  
    - 支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储  
-6. 添加统一认证鉴权模块 `biz-spring-cloud-oauth-server`  
+6. ~~添加统一认证鉴权模块biz-spring-cloud-oauth-server(待完善)~~  
 7. SpringCloud Gateway网关支持多种业务渠道鉴权。如企业微信，Oauth2等  
 8. SpringCloud Gateway网关支持限流  
 9. 添加分布式任务调度系统模块(扩展xxl-job)  
@@ -70,4 +70,8 @@ SpringCloud微服务开发脚手架
    - 定制RPC通信协议，支持跨语言跨平台调度
    - 新加任务执行线程池，替换JobThread,减少线程创建销毁带来的开销 `@see https://github.com/XuMinCha/xxl-job`
    - 新增注解@MultiplexJobHandler和@JobMethod，支持方法级别任务，类似spring的@scheduled `@see https://github.com/XuMinCha/xxl-job`
-10. utility服务模块添加excel异步下载功能
+10. utility模块添加excel异步下载功能  
+11. 添加Sms短信服务模块，并提供基础SDK  
+12. 添加Email发送服务模块，并提供基础SDK  
+13. 添加企业微信通知服务模块，并提供基础SDK  
+14. utility模块添加ip地址反查、手机号归属查询服务  

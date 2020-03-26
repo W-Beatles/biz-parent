@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.*;
+
 /**
  * MDC过滤器
  * <p>
@@ -95,27 +97,5 @@ public class MDCFilter implements Filter {
 
         return httpServletRequestWrapper;
     }
-
-    public static final String HEADER_KEY_API_VERSION = "api-version";
-    public static final String HEADER_KEY_CHANNEL = "channel";
-    public static final String HEADER_KEY_DEVICE_ID = "device-id";
-    public static final String HEADER_KEY_REQUEST_ID = "request-id";
-    public static final String HEADER_KEY_SC_CLIENT_IP = "sc-client-ip";
-    public static final String HEADER_KEY_ORIGIN_URL = "origin-url";
-    public static final String HEADER_KEY_TRACE_APP_IDS = "trace-app-ids";
-    public static final String HEADER_KEY_TRACE_APP_NAMES = "trace-app-names";
-    public static final String HEADER_KEY_TRACE_HOST_NAMES = "trace-host-names";
-    public static final String HEADER_KEY_TRACE_HOST_ADDRESSES = "trace-host-addresses";
-
-    public static final String MDC_KEY_API_VERSION = "apiVersion";
-    public static final String MDC_KEY_CHANNEL = "channel";
-    public static final String MDC_KEY_DEVICE_ID = "deviceId";
-    public static final String MDC_KEY_REQUEST_ID = "requestId";
-    public static final String MDC_KEY_SC_CLIENT_IP = "scClientIp";
-    public static final String MDC_KEY_ORIGIN_URL = "originUrl";
-    public static final String MDC_KEY_TRACE_APP_IDS = "traceAppIds";
-    public static final String MDC_KEY_TRACE_APP_NAMES = "traceAppNames";
-    public static final String MDC_KEY_TRACE_HOST_NAMES = "traceHostNames";
-    public static final String MDC_KEY_TRACE_HOST_ADDRESSES = "traceHostAddresses";
 
 }

@@ -1,6 +1,5 @@
 package cn.waynechu.springcloud.apistarter.aspect;
 
-import cn.waynechu.bootstarter.logger.filter.MDCFilter;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
@@ -25,13 +24,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_REQUEST_ID;
+
 /**
  * 分布式锁切面
  *
  * <pre>
  * 示例场景：
  * 1.分布式资源访问控制
- * 2.单位时间内接口访问控制
+ * 2.防止重复请求
  *
  * 切面生效条件:
  * 1. biz.api.starter.distributed-lock.enable=true
@@ -80,7 +81,7 @@ public class DistributedLockAspect {
         String lockFullName = applicationName + ":" + commonProperty.getDistributedLock().getPrefix() + ":" + lockName + ":" + lockKey;
 
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        String requestId = servletRequest.getHeader(MDCFilter.HEADER_KEY_REQUEST_ID);
+        String requestId = servletRequest.getHeader(HEADER_KEY_REQUEST_ID);
 
         DistributeLockHolder lockHolder = new DistributeLockHolder();
         lockHolder.setLockFullName(lockFullName);

@@ -1,6 +1,5 @@
 package cn.waynechu.springcloud.gateway.filter;
 
-import cn.waynechu.bootstarter.logger.filter.MDCFilter;
 import cn.waynechu.bootstarter.logger.provider.ApplicationProvider;
 import cn.waynechu.springcloud.common.util.StringUtil;
 import cn.waynechu.springcloud.common.util.UUIDUtil;
@@ -17,6 +16,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.*;
+
 /**
  * 初始化requestId以及trace信息过滤器
  *
@@ -32,25 +33,25 @@ public class TraceInitialFilter implements GlobalFilter {
         ServerHttpRequest request = exchange.getRequest();
 
         // 网关产生requestId
-        String requestId = request.getHeaders().getFirst(MDCFilter.HEADER_KEY_REQUEST_ID);
+        String requestId = request.getHeaders().getFirst(HEADER_KEY_REQUEST_ID);
         if (StringUtil.isBlank(requestId)) {
             requestId = UUIDUtil.getShortUUID();
         }
-        MDC.put(MDCFilter.MDC_KEY_REQUEST_ID, requestId);
+        MDC.put(MDC_KEY_REQUEST_ID, requestId);
 
         // 添加客户端ip
         String scClientIp = IpReactiveUtils.getIpAddr(request);
-        MDC.put(MDCFilter.MDC_KEY_SC_CLIENT_IP, scClientIp);
+        MDC.put(MDC_KEY_SC_CLIENT_IP, scClientIp);
 
         // 添加trace信息
         String appId = ApplicationProvider.getAppId();
-        MDC.put(MDCFilter.MDC_KEY_TRACE_APP_IDS, appId);
+        MDC.put(MDC_KEY_TRACE_APP_IDS, appId);
         String appName = ApplicationProvider.getAppName();
-        MDC.put(MDCFilter.MDC_KEY_TRACE_APP_NAMES, appName);
+        MDC.put(MDC_KEY_TRACE_APP_NAMES, appName);
         String hostName = ApplicationProvider.getHostName();
-        MDC.put(MDCFilter.MDC_KEY_TRACE_HOST_NAMES, hostName);
+        MDC.put(MDC_KEY_TRACE_HOST_NAMES, hostName);
         String hostAddress = ApplicationProvider.getHostAddress();
-        MDC.put(MDCFilter.MDC_KEY_TRACE_HOST_ADDRESSES, hostAddress);
+        MDC.put(MDC_KEY_TRACE_HOST_ADDRESSES, hostAddress);
 
         // 添加来源url信息
         Map<String, Object> attributes = exchange.getAttributes();
@@ -59,15 +60,16 @@ public class TraceInitialFilter implements GlobalFilter {
 
         // 添加请求头trace信息
         ServerHttpRequest mutateRequest = request.mutate()
-                .header(MDCFilter.HEADER_KEY_REQUEST_ID, requestId)
-                .header(MDCFilter.HEADER_KEY_SC_CLIENT_IP, scClientIp)
-                .header(MDCFilter.HEADER_KEY_ORIGIN_URL, originalUrl)
-                .header(MDCFilter.HEADER_KEY_TRACE_APP_IDS, appId)
-                .header(MDCFilter.HEADER_KEY_TRACE_APP_NAMES, appName)
-                .header(MDCFilter.HEADER_KEY_TRACE_HOST_NAMES, hostName)
-                .header(MDCFilter.HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress)
+                .header(HEADER_KEY_REQUEST_ID, requestId)
+                .header(HEADER_KEY_SC_CLIENT_IP, scClientIp)
+                .header(HEADER_KEY_ORIGIN_URL, originalUrl)
+                .header(HEADER_KEY_TRACE_APP_IDS, appId)
+                .header(HEADER_KEY_TRACE_APP_NAMES, appName)
+                .header(HEADER_KEY_TRACE_HOST_NAMES, hostName)
+                .header(HEADER_KEY_TRACE_HOST_ADDRESSES, hostAddress)
                 .build();
         ServerWebExchange serverWebExchange = exchange.mutate().request(mutateRequest).build();
         return chain.filter(serverWebExchange);
     }
+
 }
