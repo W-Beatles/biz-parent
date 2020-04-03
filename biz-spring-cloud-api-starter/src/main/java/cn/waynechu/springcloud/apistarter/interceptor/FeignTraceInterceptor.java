@@ -1,6 +1,6 @@
 package cn.waynechu.springcloud.apistarter.interceptor;
 
-import cn.waynechu.springcloud.common.util.StringUtil;
+import cn.waynechu.springcloud.common.util.CollectionUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +25,8 @@ public class FeignTraceInterceptor extends BaseTraceInterceptor implements Reque
     public void apply(RequestTemplate requestTemplate) {
         HttpHeaders headers = super.getHeaders();
         for (String traceHeaderKey : needTraceHeaders) {
-            String traceHeaderValue = headers.getFirst(traceHeaderKey);
-            if (StringUtil.isNotBlank(traceHeaderValue)) {
+            List<String> traceHeaderValue = headers.get(traceHeaderKey);
+            if (CollectionUtil.isNotNullOrEmpty(traceHeaderValue)) {
                 requestTemplate.header(traceHeaderKey, traceHeaderValue);
             }
         }
