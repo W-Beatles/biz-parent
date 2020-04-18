@@ -109,7 +109,7 @@ public class ExcelUtil {
             WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE).build();
 
             WriteTable writeTable;
-            BizPageInfo<T> shopPageInfo;
+            BizPageInfo<T> bizPageInfo;
             int pageIndex = 1;
             // 默认从第一页开始查
             request.setPageNum(1);
@@ -122,10 +122,10 @@ public class ExcelUtil {
 
                 // 分页查询
                 request.setPageNum(pageIndex);
-                shopPageInfo = supplier.get();
-                excelWriter.write(shopPageInfo.getList(), writeSheet, writeTable);
+                bizPageInfo = supplier.get();
+                excelWriter.write(bizPageInfo.getList(), writeSheet, writeTable);
                 pageIndex++;
-            } while (shopPageInfo.getHasNextPage() && pageIndex < PageLoopUtil.PAGE_LOOP_LIMIT);
+            } while (bizPageInfo.getHasNextPage() && pageIndex < PageLoopUtil.PAGE_LOOP_LIMIT);
             excelWriter.finish();
 
             // 上传excel

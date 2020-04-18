@@ -84,8 +84,8 @@ public abstract class AbstractControllerLogAspect {
      *
      * @return 不打印的入参类型
      */
-    protected Collection<Class> excludePrintClass() {
-        ArrayList<Class> excludePrintClass = new ArrayList<>(4);
+    protected Collection<Class<?>> excludePrintClass() {
+        ArrayList<Class<?>> excludePrintClass = new ArrayList<>(4);
         excludePrintClass.add(HttpServletRequest.class);
         excludePrintClass.add(HttpServletResponse.class);
         excludePrintClass.add(MultipartFile.class);
@@ -97,7 +97,7 @@ public abstract class AbstractControllerLogAspect {
         ArrayList<Object> returnValue = new ArrayList<>();
         for (Object arg : args) {
             boolean isInstance = false;
-            for (Class clazz : this.excludePrintClass()) {
+            for (Class<?> clazz : this.excludePrintClass()) {
                 if (clazz.isInstance(arg)) {
                     isInstance = true;
                     break;
