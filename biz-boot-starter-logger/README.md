@@ -95,7 +95,9 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
         spring.rabbitmq.username=waynechu
         spring.rabbitmq.password=123456
         spring.rabbitmq.virtual-host=/dev
-        spring.rabbitmq.publisher-confirms=true
+        spring.rabbitmq.publisher-confirm-type=correlated
+        spring.rabbitmq.publisher-returns=true
+        spring.rabbitmq.template.mandatory=true
         ```
 
 3. (可选)如需要自定义日志相关配置，可新建`src/main/resources/logback-custom-spring.xml`来增加相关配置

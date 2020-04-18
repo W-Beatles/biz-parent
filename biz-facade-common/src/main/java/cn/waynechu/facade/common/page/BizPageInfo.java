@@ -17,7 +17,6 @@ import java.util.List;
  * @date 2018/12/28 19:07
  */
 @Data
-@NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(description = "分页返回对象")
@@ -59,6 +58,15 @@ public class BizPageInfo<T> extends PageSerializable<T> {
             this.pages = this.pageSize > 0 ? 1 : 0;
         }
         hasNextPage = pageNum < pages;
+    }
+
+    @Override
+    public void setTotal(long total) {
+        this.total = total;
+        if (pageSize != 0) {
+            this.pages = Math.toIntExact(total / pageSize + 1);
+        }
+        hasNextPage = pageNum >= pages;
     }
 
     public static <T> BizPageInfo<T> of(List<T> list) {

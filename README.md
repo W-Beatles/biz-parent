@@ -9,7 +9,7 @@ SpringCloud微服务开发脚手架
 > 注: 详细介绍请参考各模块 **README.md** 文档
 
 1. biz-boot-starter-dynamic-datasource  
-    动态数据源模块。支持读写分离、多数据源动态切换
+    动态数据源模块。支持读写分离、多数据源动态切换、健康检查
 2. biz-boot-starter-elastic-job  
     elastic-job starter模块
 3. biz-boot-starter-logger  
@@ -27,7 +27,7 @@ SpringCloud微服务开发脚手架
 9. biz-spring-cloud-api-service-utility  
      公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
 10. biz-spring-cloud-api-starter  
-   spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等一系列功能
+   spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
 11. biz-spring-cloud-archetype  
     用于一键生成spring-cloud项目基础开发骨架。可开箱即用，直接编写业务代码即可
 12. biz-spring-cloud-common  

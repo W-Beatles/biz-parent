@@ -1,7 +1,5 @@
 package cn.waynechu.facade.common.enums;
 
-import cn.waynechu.facade.common.exception.BizException;
-
 import java.util.Objects;
 
 /**
@@ -46,6 +44,6 @@ public enum ValidStatusEnum implements BizEnum {
                 return validStatusEnum;
             }
         }
-        throw new BizException(BizErrorCodeEnum.INVALID_ENUM_CODE);
+        return null;
     }
 }

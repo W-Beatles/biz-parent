@@ -22,12 +22,20 @@ public class CommonService {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    /**
+     * 获取短链
+     *
+     * @param originUrl 原始地址
+     * @param timeout   过期时间
+     * @return 短链
+     */
     public String getShortUrl(String originUrl, Long timeout) {
         ValueOperations<String, String> valueOperations = stringRedisTemplate.opsForValue();
         Long increment = null;
         while (increment == null) {
             increment = valueOperations.increment(shortUrlProperty.getRedisIncrementKey());
         }
+
         String shortUrlSuffix = BinaryUtil.convert10to62(increment);
         String shortUrl = shortUrlProperty.getShortUrlPrefix() + shortUrlSuffix;
         // 短网址 -> 原始地址的映射  key: redisUrlKeyPrefix + shortUrl  value: originUrl
@@ -39,8 +47,15 @@ public class CommonService {
         return shortUrl;
     }
 
+    /**
+     * 短链还原
+     *
+     * @param shortUrl 断链
+     * @return 原始地址
+     */
     public String getOriginUrl(String shortUrl) {
         ValueOperations<String, String> valueOperations = stringRedisTemplate.opsForValue();
         return valueOperations.get(shortUrlProperty.getRedisUrlKeyPrefix() + shortUrl);
     }
+
 }

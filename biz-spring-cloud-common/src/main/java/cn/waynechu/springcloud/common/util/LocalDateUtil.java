@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2019/1/2 16:03
  */
 @UtilityClass
-public class LocalDateTimeUtil {
+public class LocalDateUtil {
 
     public static LocalDateTime toLocalDateTimeFromDate(Date date) {
         Instant instant = Instant.ofEpochMilli(date.getTime());
@@ -54,9 +54,9 @@ public class LocalDateTimeUtil {
         if (StringUtils.isBlank(text)) {
             return null;
         } else if (StringUtils.containsAny(text, "年月日")) {
-            return toLocalDateFromString(text, "uuuu年MM月dd日");
+            return toLocalDateFromString(text, "yyyy年MM月dd日");
         } else if (StringUtils.contains(text, "-")) {
-            return toLocalDateFromString(text, "uuuu-MM-dd");
+            return toLocalDateFromString(text, "yyyy-MM-dd");
         }
         return LocalDate.parse(text);
     }
@@ -69,7 +69,7 @@ public class LocalDateTimeUtil {
         if (date == null) {
             return "";
         }
-        return toStringFromLocalDate(date, "uuuu-MM-dd");
+        return toStringFromLocalDate(date, "yyyy-MM-dd");
     }
 
     public static LocalDateTime toLocalDateTimeFromString(String text, String format) {
@@ -80,7 +80,7 @@ public class LocalDateTimeUtil {
         if (StringUtils.isBlank(text)) {
             return null;
         } else if (StringUtils.contains(text, "-")) {
-            return toLocalDateTimeFromString(text, "uuuu-MM-dd HH:mm:ss");
+            return toLocalDateTimeFromString(text, "yyyy-MM-dd HH:mm:ss");
         }
         return LocalDateTime.parse(text);
     }
@@ -93,7 +93,35 @@ public class LocalDateTimeUtil {
         if (date == null) {
             return "";
         }
-        return toStringFromLocalDateTime(date, "uuuu-MM-dd HH:mm:ss");
+        return toStringFromLocalDateTime(date, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    /**
+     * 判断是否是今天
+     *
+     * @param year  年
+     * @param month 月
+     * @param day   日
+     * @return true if 是
+     */
+    public static boolean isCurDay(Integer year, Integer month, Integer day) {
+        LocalDate localDate = LocalDate.of(year, month, day);
+        LocalDate today = LocalDate.now();
+        return today.isEqual(localDate);
+    }
+
+    /**
+     * 判断是否是周末
+     *
+     * @param year  年
+     * @param month 月
+     * @param day   日
+     * @return true if 是
+     */
+    public static boolean isIsWeekend(Integer year, Integer month, Integer day) {
+        LocalDate localDate = LocalDate.of(year, month, day);
+        int dayOfWeek = localDate.getDayOfWeek().getValue();
+        return dayOfWeek == 6 || dayOfWeek == 7;
     }
 
     /**
@@ -140,4 +168,5 @@ public class LocalDateTimeUtil {
             System.out.println(localDateTimeRange);
         }
     }
+
 }

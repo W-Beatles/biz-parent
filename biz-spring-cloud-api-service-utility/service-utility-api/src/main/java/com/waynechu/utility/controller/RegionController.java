@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2019/8/8 15:08
  */
 @RestController
-@Api(tags = "行政区")
+@Api(tags = "行政区服务")
 @RequestMapping("/regions")
 public class RegionController {
 

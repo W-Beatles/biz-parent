@@ -14,7 +14,7 @@ import java.util.List;
 public class PageUtil {
 
     /**
-     * 物理分页工具类
+     * 物理分页
      *
      * @param list     待分页数据
      * @param pageNum  分页大小
@@ -50,7 +50,7 @@ public class PageUtil {
     }
 
     /**
-     * 物理分页工具类
+     * 物理分页
      *
      * @param list     待分页数据
      * @param pageNum  分页大小
@@ -66,6 +66,8 @@ public class PageUtil {
         }
 
         int totalCount = list.size();
+        returnValue.setTotal(totalCount);
+
         int pageCount;
         int remainder = totalCount % pageSize;
         if (remainder > 0) {
@@ -99,4 +101,5 @@ public class PageUtil {
         BizPageInfo<Integer> pageInfo = PageUtil.getPageInfo(integers, 1, 2);
         System.out.println(pageInfo);
     }
+
 }

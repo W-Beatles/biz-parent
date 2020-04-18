@@ -7,27 +7,25 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author zhuwei
  * @date 2020-03-22 23:06
  */
-@Controller
-@Api(tags = "excel下载")
-@RequestMapping("/excel")
+@RestController
+@Api(tags = "Excel导出服务")
+@RequestMapping("/excels")
 public class ExcelController {
 
     @Autowired
     private ExcelService excelService;
 
-    @ApiOperation("excel导出-获取sid")
+    @ApiOperation("获取sid")
     @PostMapping("/sid")
     public BizResponse<String> getSid(@RequestBody JSONObject params, @RequestParam String dataExportUrl) {
         String sid = excelService.getSid(params, dataExportUrl);
         return BizResponse.success(sid);
     }
+
 }

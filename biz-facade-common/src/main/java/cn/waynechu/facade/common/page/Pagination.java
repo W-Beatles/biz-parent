@@ -137,16 +137,4 @@ public class Pagination implements Serializable {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Pagination{" +
-                "totalRows=" + totalRows +
-                ", curPage=" + curPage +
-                ", pageSize=" + pageSize +
-                ", maxPage=" + maxPage +
-                ", startRowIdx=" + startRowIdx +
-                ", endRowIdx=" + endRowIdx +
-                ", displayingPageLimit=" + displayingPageLimit +
-                '}';
-    }
 }

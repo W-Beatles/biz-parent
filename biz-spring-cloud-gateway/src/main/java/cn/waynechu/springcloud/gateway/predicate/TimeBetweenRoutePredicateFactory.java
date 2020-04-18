@@ -46,8 +46,8 @@ public class TimeBetweenRoutePredicateFactory extends AbstractRoutePredicateFact
          * property的谓词配置示例:
          *
          * routes:
-         *   - id: service-order-api
-         *     uri: lb://service-order-api
+         *   - id: service-order
+         *     uri: lb://service-order
          *     predicates:
          *       - TimeBetween=下午9:00,下午6:00
          */
