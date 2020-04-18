@@ -1,0 +1,42 @@
+# biz-spring-cloud-common
+
+### 项目介绍
+提供基础工具类库
+
+### 功能清单
+- Base64Util 
+- BeanUtil
+- BigDecimalUtil
+- BinaryUtil
+- ByteUtil
+- CollectionUtil
+- DateUtil
+- DBUtil
+- DequeThreadLocal
+- DesensitizeUtil
+- DigestUtil
+- FileUploadUtil
+- FileUtil
+- IDCardValidateUtil
+- ImageUtil
+- IpUtil
+- JsonBinder
+- LocalDateTimeRange
+- LocalDateUtil
+- LunarCalendar
+- MDCUtil
+- MoneyUtil
+- PageLoopUtil
+- PageUtil
+- PathUtil
+- PinyinUtil
+- ProtoStuffSerializeUtil
+- QrCodeUtil
+- RegexUtil
+- SerializeUtil
+- SnowFlakeGenerator
+- SpelUtil
+- SpringContextHolder
+- StringUtil
+- UUIDUtil
+- WebUtil

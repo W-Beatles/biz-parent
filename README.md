@@ -6,7 +6,7 @@ SpringCloud微服务开发脚手架
 
 ### 模块说明
 
-> 注: 详细介绍请参考各模块 **README.md** 文档
+> 注: 详细介绍请参考各模块的 **README.md** 文档
 
 1. biz-boot-starter-dynamic-datasource  
     动态数据源模块。支持读写分离、多数据源动态切换、健康检查
@@ -21,19 +21,19 @@ SpringCloud微服务开发脚手架
 6. biz-spring-cloud-api-dynamic-datasource-test  
     动态数据源测试模块
 7. biz-spring-cloud-api-service-order  
-     订单模块(测试)
+    微服务测试模块 - 订单模块
 8. biz-spring-cloud-api-service-product  
-     产品模块(测试)
+    微服务测试模块 - 产品测试
 9. biz-spring-cloud-api-service-utility  
-     公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
+    公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
 10. biz-spring-cloud-api-starter  
-   spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
+    spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
 11. biz-spring-cloud-archetype  
-    用于一键生成spring-cloud项目基础开发骨架。可开箱即用，直接编写业务代码即可
+     用于一键生成spring-cloud项目基础开发骨架。可开箱即用，直接编写业务代码即可
 12. biz-spring-cloud-common  
-    spring-cloud项目通用类库
+     spring-cloud项目通用类库
 13. ~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
-    推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
+     推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
 14. biz-spring-cloud-dashboard-turbine  
      用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
 15. biz-spring-cloud-eureka  

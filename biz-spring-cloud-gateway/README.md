@@ -1,6 +1,12 @@
-## 修改swagger文档聚合名称
+# biz-spring-cloud-gateway
+
+###
+微服务网关
+
+### 使用说明
+可以自定义swagger文档聚合名称，配置如下:
 ```
-eureka.instance.metadata-map.swagger-name=默认使用applicationName,可以自定义文档聚合名称
+eureka.instance.metadata-map.swagger-name=默认使用applicationName
 ```
 
 ###  配置版本路由权重

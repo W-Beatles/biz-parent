@@ -6,7 +6,7 @@ import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.LayoutBase;
 import cn.waynechu.bootstarter.logger.provider.ApplicationProvider;
 import cn.waynechu.springcloud.common.aspect.AbstractControllerLogAspect;
-import cn.waynechu.springcloud.common.util.DesensitizeUtils;
+import cn.waynechu.springcloud.common.util.DesensitizeUtil;
 import cn.waynechu.springcloud.common.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -73,12 +73,12 @@ public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {
                 ZoneId.systemDefault());
         json.put("time", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS").format(localDateTime));
         // 日志脱敏 & 超长截取
-        String[] keyArray = {DesensitizeUtils.PASSWORD, DesensitizeUtils.PWD};
+        String[] keyArray = {DesensitizeUtil.PASSWORD, DesensitizeUtil.PWD};
         String message = event.getFormattedMessage();
         if (StringUtil.isNotBlank(message)) {
             message = message.length() <= 4096 ? message : message.substring(0, 4096) + "...总长度为: " + message.length();
         }
-        json.put("message", DesensitizeUtils.desensitize(message, keyArray));
+        json.put("message", DesensitizeUtil.desensitize(message, keyArray));
     }
 
     private void writeThrowable(JSONObject json, ILoggingEvent event) {

@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * @author zhuwei
  * @date 2019/4/9 17:13
  */
-public class DesensitizeUtils {
+public class DesensitizeUtil {
     public static final String IDCARD = "idcard";
     public static final String MOBILE = "mobile";
     public static final String REALNAME = "realname";
@@ -220,20 +220,20 @@ public class DesensitizeUtils {
     }
 
     private static String invokeMsg(String submsg, String key) {
-        if (DesensitizeUtils.IDCARD.equalsIgnoreCase(key)) {
-            return DesensitizeUtils.idCardNum(submsg);
+        if (DesensitizeUtil.IDCARD.equalsIgnoreCase(key)) {
+            return DesensitizeUtil.idCardNum(submsg);
         }
-        if (DesensitizeUtils.REALNAME.equalsIgnoreCase(key)) {
-            return DesensitizeUtils.chineseName(submsg);
+        if (DesensitizeUtil.REALNAME.equalsIgnoreCase(key)) {
+            return DesensitizeUtil.chineseName(submsg);
         }
-        if (DesensitizeUtils.BANKCARD.equalsIgnoreCase(key)) {
-            return DesensitizeUtils.bankCard(submsg);
+        if (DesensitizeUtil.BANKCARD.equalsIgnoreCase(key)) {
+            return DesensitizeUtil.bankCard(submsg);
         }
-        if (DesensitizeUtils.MOBILE.equalsIgnoreCase(key)) {
-            return DesensitizeUtils.mobilePhone(submsg);
+        if (DesensitizeUtil.MOBILE.equalsIgnoreCase(key)) {
+            return DesensitizeUtil.mobilePhone(submsg);
         }
-        if (DesensitizeUtils.PASSWORD.equalsIgnoreCase(key) || DesensitizeUtils.PWD.equalsIgnoreCase(key)) {
-            return DesensitizeUtils.password(submsg);
+        if (DesensitizeUtil.PASSWORD.equalsIgnoreCase(key) || DesensitizeUtil.PWD.equalsIgnoreCase(key)) {
+            return DesensitizeUtil.password(submsg);
         }
         return "";
     }
@@ -241,8 +241,8 @@ public class DesensitizeUtils {
     public static void main(String[] args) {
         String tempMsg = "{sign=f88898b2677e62f1ad54b9e330c0a27e, idcard=130333198901192762, realname=%E5%BE%90%E5%BD%A6%E5%A8%9C, key=c5d34d4c3c71cc45c88f32b4f13da887, mobile=13210141605, bankcard=6226430106137525}";
         String tempMsg1 = "{\"reason\":\"成功 \",\"result\":{\"jobid\":\"JH2131171027170837443588J6\",\"realname\":\"李哪娜\",\"bankcard\":\"6226430106137525\",\"idcard\":\"130333198901192762\",\"mobile\":\"13210141605\",\"password\":\"123456\",\"message\":\"验证成功\"},\"error_code\":0}";
-        String[] keysArray = {DesensitizeUtils.BANKCARD, DesensitizeUtils.IDCARD, DesensitizeUtils.MOBILE,
-                DesensitizeUtils.PASSWORD, DesensitizeUtils.PWD};
+        String[] keysArray = {DesensitizeUtil.BANKCARD, DesensitizeUtil.IDCARD, DesensitizeUtil.MOBILE,
+                DesensitizeUtil.PASSWORD, DesensitizeUtil.PWD};
         System.out.println(desensitize(tempMsg, keysArray));
         System.out.println(desensitize(tempMsg1, keysArray));
     }

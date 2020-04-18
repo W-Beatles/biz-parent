@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author zhuwei
  * @date 2018/11/7 11:38
- * @deprecated 请使用 {@code PageInfo} {@code PageDetail} 分页工具
+ * @deprecated 已废弃。请使用 {@code PageInfo}、{@code PageDetail} 分页工具
  */
 @Deprecated
 public class Pagination implements Serializable {
