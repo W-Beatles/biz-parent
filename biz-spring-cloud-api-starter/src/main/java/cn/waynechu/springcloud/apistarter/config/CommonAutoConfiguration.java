@@ -4,10 +4,11 @@ import cn.waynechu.springcloud.apistarter.advice.ControllerExceptionHandler;
 import cn.waynechu.springcloud.apistarter.aspect.ControllerLogAspect;
 import cn.waynechu.springcloud.apistarter.aspect.DistributedLockAspect;
 import cn.waynechu.springcloud.apistarter.aspect.MethodLogAspect;
+import cn.waynechu.springcloud.apistarter.cache.DefaultBloomOperations;
+import cn.waynechu.springcloud.apistarter.cache.RedisUtil;
 import cn.waynechu.springcloud.apistarter.interceptor.FeignTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.interceptor.RestTemplateTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
-import cn.waynechu.springcloud.common.cache.RedisUtil;
 import cn.waynechu.springcloud.common.excel.ExcelUtil;
 import cn.waynechu.springcloud.common.util.PageLoopUtil;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
@@ -60,7 +61,8 @@ public class CommonAutoConfiguration {
 
     @Bean
     public RedisUtil redisUtil(StringRedisTemplate stringRedisTemplate) {
-        return new RedisUtil(stringRedisTemplate);
+        DefaultBloomOperations<String, String> bloomOperations = new DefaultBloomOperations<>(stringRedisTemplate);
+        return new RedisUtil(stringRedisTemplate, bloomOperations);
     }
 
     @Bean
