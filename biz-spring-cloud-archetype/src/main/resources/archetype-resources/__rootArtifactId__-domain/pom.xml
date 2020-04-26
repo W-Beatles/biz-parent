@@ -23,6 +23,11 @@
 
         <dependency>
             <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-facade</artifactId>
         </dependency>
 
@@ -36,4 +41,5 @@
             <artifactId>${rootArtifactId}-integration-dal</artifactId>
         </dependency>
     </dependencies>
+
 </project>
