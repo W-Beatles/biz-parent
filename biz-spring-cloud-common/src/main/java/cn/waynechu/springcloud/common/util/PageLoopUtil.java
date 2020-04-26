@@ -2,6 +2,7 @@ package cn.waynechu.springcloud.common.util;
 
 import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.request.BizPageRequest;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +16,7 @@ import java.util.function.Supplier;
  * @author zhuwei
  * @date 2020-03-04 21:25
  */
+@Slf4j
 public class PageLoopUtil {
 
     /**
@@ -45,17 +47,21 @@ public class PageLoopUtil {
         List<R> returnValue = new ArrayList<>();
         BizPageInfo<R> bizPageInfo;
 
-        int count = 0;
-        do {
-            bizPageInfo = supplier.get();
-            if (bizPageInfo != null) {
-                returnValue.addAll(bizPageInfo.getList());
-            }
-            bizPageRequest.setPageNum(bizPageRequest.getPageNum() + 1);
-            count++;
-        } while (bizPageInfo != null
-                && bizPageInfo.getHasNextPage()
-                && count < PAGE_LOOP_LIMIT);
+        int count = 1;
+        try {
+            do {
+                bizPageInfo = supplier.get();
+                if (bizPageInfo != null) {
+                    returnValue.addAll(bizPageInfo.getList());
+                }
+                bizPageRequest.setPageNum(bizPageRequest.getPageNum() + 1);
+                count++;
+            } while (bizPageInfo != null
+                    && bizPageInfo.getHasNextPage()
+                    && count < PAGE_LOOP_LIMIT);
+        } catch (Exception e) {
+            log.error("分页查询失败 message: {}", e.getMessage());
+        }
         return returnValue;
     }
 
@@ -105,14 +111,17 @@ public class PageLoopUtil {
                     try {
                         BizPageInfo<R> currentBizPageInfo = function.apply(curRequest);
                         if (currentBizPageInfo != null) {
-                            returnValue.addAll(currentBizPageInfo.getList());
+                            List<R> curPageList = currentBizPageInfo.getList();
+                            if (CollectionUtil.isNotNullOrEmpty(curPageList)) {
+                                returnValue.addAll(curPageList);
+                            }
                         }
                     } finally {
                         semaphore.release();
                     }
                 });
             } catch (Exception e) {
-                // do nothing here.
+                log.error("分页查询失败 message: {}", e.getMessage());
             }
         }
         return returnValue;
