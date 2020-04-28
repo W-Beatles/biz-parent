@@ -48,7 +48,7 @@ public class BizPageInfo<T> extends PageSerializable<T> {
     public BizPageInfo(List<T> list) {
         super(list);
         if (list instanceof Page) {
-            Page page = (Page) list;
+            Page<T> page = (Page<T>) list;
             this.pageNum = page.getPageNum();
             this.pageSize = page.getPageSize();
             this.pages = page.getPages();
