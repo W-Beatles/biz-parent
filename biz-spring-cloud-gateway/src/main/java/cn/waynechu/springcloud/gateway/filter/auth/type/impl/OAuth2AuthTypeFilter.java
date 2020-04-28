@@ -25,6 +25,7 @@ import reactor.core.publisher.Mono;
 @Component("oauth2AuthTypeFilter")
 public class OAuth2AuthTypeFilter implements AuthTypeFilter {
 
+    // TODO 2020-04-28 23:03 使用WebClient优化接口调用，减少NIO请求
     private RestTemplate restTemplate = new RestTemplate();
 
     @Override
