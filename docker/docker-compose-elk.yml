@@ -1,0 +1,58 @@
+version: '3'
+services:
+  elasticsearch:
+    image: elasticsearch:7.5.1
+    container_name: biz-elasticsearch
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:   #覆盖容器默认的 ulimit
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.7
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  kibana:
+    image: kibana:7.5.1
+    container_name: biz-kibana
+    restart: always
+    volumes:
+      - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.8
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    image: logstash:7.5.1
+    container_name: biz-logstash
+    restart: always
+    volumes:
+      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.9
+    ports:
+      - 7002:7002
+    depends_on:
+      - elasticsearch
+      - kibana
+
+networks:
+  biz-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
