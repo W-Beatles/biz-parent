@@ -26,4 +26,5 @@
 /nbdist/
 /.nb-gradle/
 
-!/.idea/workspace.xml
+### Custom ###
+/docker/data
