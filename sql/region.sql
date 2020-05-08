@@ -17,6 +17,10 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP DATABASE IF EXISTS common;
+CREATE DATABASE common DEFAULT CHARSET utf8mb4;
+USE common;
+
 -- ----------------------------
 -- Table structure for region
 -- ----------------------------

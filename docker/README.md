@@ -24,7 +24,7 @@ docker-compose stop         # 停止容器
 
 ## elk(可选)
 
-`docker-compose -f docker-compose.yml -f docker-compose-elk.yml up -d`
+`docker-compose -f docker-compose-elk.yml up -d`
 
 |  服务           |  服务名          |  端口     |  帐号/密码         |  地址                         |
 |---------------- |-----------------|-----------|------------------|-------------------------------|

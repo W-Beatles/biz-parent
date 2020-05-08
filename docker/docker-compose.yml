@@ -3,7 +3,7 @@ services:
   mysql-master:
     image: mysql:8.0.12   #镜像
     container_name: biz-mysql-master   #容器名
-    restart: always    #重启容器策略: 1.no 默认策略,退出后不重启  2.on-failure 非正常退出会重启,on-failure:3还能指定尝试重启次数  3.always 容器退出时总是重启  4.unless-stopped 在容器退出时总是重启容器,但是不考虑在Docker守护进程启动时就已经停止了的容器
+    restart: always    #重启容器策略: 1.null 默认策略,退出后不重启  2.on-failure 非正常退出会重启,on-failure:3还能指定尝试重启次数  3.always 容器退出时总是重启  4.unless-stopped 在容器退出时总是重启容器,但是不考虑在Docker守护进程启动时就已经停止了的容器
     networks:   #配置容器连接的网络,引用顶级networks下的条目
       biz-net:
         ipv4_address: 172.20.0.2
@@ -13,6 +13,8 @@ services:
       - ./data/mysql/master/mysql:/var/lib/mysql
       - ./data/mysql/master/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-master.cnf:/etc/mysql/my.cnf
+      - ../sql:/sql
+      - ../scripts/init-db.sh:/init-db.sh
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
@@ -32,6 +34,8 @@ services:
       - ./data/mysql/slave1/mysql:/var/lib/mysql
       - ./data/mysql/slave1/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-slave1.cnf:/etc/mysql/my.cnf
+      - ../sql:/sql
+      - ../scripts/init-db.sh:/init-db.sh
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
@@ -51,6 +55,8 @@ services:
       - ./data/mysql/slave2/mysql:/var/lib/mysql
       - ./data/mysql/slave2/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-slave2.cnf:/etc/mysql/my.cnf
+      - ../sql:/sql
+      - ../scripts/init-db.sh:/init-db.sh
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
