@@ -13,8 +13,7 @@ services:
       - ./data/mysql/master/mysql:/var/lib/mysql
       - ./data/mysql/master/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-master.cnf:/etc/mysql/my.cnf
-      - ../sql:/sql
-      - ../scripts/init-db.sh:/init-db.sh
+      - ../sql:/docker-entrypoint-initdb.d/   #MySQL第一次启动时执行会执行该路径下的SQL脚本
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
@@ -34,8 +33,7 @@ services:
       - ./data/mysql/slave1/mysql:/var/lib/mysql
       - ./data/mysql/slave1/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-slave1.cnf:/etc/mysql/my.cnf
-      - ../sql:/sql
-      - ../scripts/init-db.sh:/init-db.sh
+      - ../sql:/docker-entrypoint-initdb.d/
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
@@ -55,8 +53,7 @@ services:
       - ./data/mysql/slave2/mysql:/var/lib/mysql
       - ./data/mysql/slave2/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-slave2.cnf:/etc/mysql/my.cnf
-      - ../sql:/sql
-      - ../scripts/init-db.sh:/init-db.sh
+      - ../sql:/docker-entrypoint-initdb.d/
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
