@@ -2,7 +2,7 @@ package com.waynechu.utility.controller;
 
 import cn.waynechu.facade.common.response.BizResponse;
 import com.waynechu.utility.domain.properties.ShortUrlProperty;
-import com.waynechu.utility.domain.service.CommonService;
+import com.waynechu.utility.domain.service.ShortUrlService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,7 +26,7 @@ public class ShortUrlController {
     private RedisTemplate<String, String> redisTemplate;
 
     @Autowired
-    private CommonService commonService;
+    private ShortUrlService shortUrlService;
 
     @ApiOperation("获取短链")
     @ApiImplicitParams({
@@ -36,22 +36,30 @@ public class ShortUrlController {
     @GetMapping("/get-short-url")
     @ResponseBody
     public BizResponse<String> getShortUrl(@RequestParam String originUrl, @RequestParam(required = false) Long timeout) {
-        return BizResponse.success(commonService.getShortUrl(originUrl, timeout));
+        return BizResponse.success(shortUrlService.getShortUrl(originUrl, timeout));
+    }
+
+    @ApiOperation("短链访问次数统计")
+    @GetMapping("/statistics")
+    @ResponseBody
+    public BizResponse<Long> statistics(@ApiParam(value = "短链url", required = true) @RequestParam String shortUrl) {
+        return BizResponse.success(shortUrlService.statistics(shortUrl));
     }
 
     @ApiOperation("短链还原")
     @GetMapping("/get-origin-url")
     @ResponseBody
-    public BizResponse<String> getOriginUrl(@ApiParam(value = "短url", required = true) @RequestParam String shortUrl) {
-        return BizResponse.success(commonService.getOriginUrl(shortUrl));
+    public BizResponse<String> getOriginUrl(@ApiParam(value = "短链url", required = true) @RequestParam String shortUrl) {
+        return BizResponse.success(shortUrlService.getOriginUrl(shortUrl));
     }
 
     @ApiIgnore
     @ApiOperation("短链重定向")
     @GetMapping("/{shortUrlSuffix}")
     public String redirect(@PathVariable String shortUrlSuffix) {
-        return "redirect:" + redisTemplate.opsForValue().get(shortUrlProperty.getRedisUrlKeyPrefix()
-                + shortUrlProperty.getShortUrlPrefix() + shortUrlSuffix);
+        String shortUrl = shortUrlProperty.getShortUrlPrefix() + shortUrlSuffix;
+        shortUrlService.asyncStatistic(shortUrl);
+        return "redirect:" + redisTemplate.opsForValue().get(shortUrlProperty.getRedisUrlKeyPrefix() + shortUrl);
     }
 
 }

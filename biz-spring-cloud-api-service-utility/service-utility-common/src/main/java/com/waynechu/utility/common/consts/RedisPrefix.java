@@ -14,6 +14,13 @@ public class RedisPrefix {
     public interface Regions {
         String REGIONS_PREFIX = REDIS_COMMON_PREFIX + "regions:";
 
-        String LIST_BY_PID_PREFIX = REGIONS_PREFIX + "listByPid";
+        String LIST_BY_PID_PREFIX = REGIONS_PREFIX + "listByPid:";
     }
+
+    public interface ShortUrls {
+        String INCREMENT_KEY = "increment-key";
+
+        String STATISTICS_PREFIX = "statistic:";
+    }
+
 }
