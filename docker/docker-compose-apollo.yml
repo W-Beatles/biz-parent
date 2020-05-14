@@ -4,15 +4,13 @@ services:
   apollo:
     image: nobodyiam/apollo-quick-start
     container_name: biz-apollo
-    depends_on:
-      - apollo-db
     networks:
       biz-net:
         ipv4_address: 172.20.0.10
     ports:
       - "8080:8080"
       - "8070:8070"
-    links:
+    depends_on:
       - apollo-db
 
   apollo-db:
@@ -27,6 +25,7 @@ services:
     ports:
       - "13306:3306"
     volumes:
+      - ./data/apollo/mysql:/var/lib/mysql
       - ./config/apollo:/docker-entrypoint-initdb.d
 
 networks:
@@ -35,4 +34,3 @@ networks:
     ipam:
       config:
         - subnet: 172.20.0.0/16
-
