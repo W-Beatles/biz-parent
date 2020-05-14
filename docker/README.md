@@ -42,10 +42,18 @@ docker-compose stop         # 停止容器
 
 ## 2. elk(可选)
 
-`docker-compose -f docker-compose.yml -f docker-compose-elk.yml up -d`
+`docker-compose -f docker-compose-elk.yml up -d`
 
 |  服务           |  服务名          |  端口     |  帐号/密码         |  地址                         |
 |---------------- |-----------------|-----------|------------------|-------------------------------|
 |  搜索引擎        |   elasticsearch |  9200     |                  |                               |
 |  日志分析工具    |   kibana        |  5601     |                   |  http://localhost:5601/       |
 |  日志收集工具    |   logstash      |  7002     |                   |                               |
+
+## 3. apollo(可选)
+
+`docker-compose -f docker-compose-apollo.yml up -d`
+
+|  服务           |  服务名          |  端口     |  帐号/密码         |  地址                         |
+|---------------- |-----------------|-----------|------------------|-------------------------------|
+|  配置中心        |   apollo        |  9070     |  apollo/admin    |  http://localhost:9070/       |

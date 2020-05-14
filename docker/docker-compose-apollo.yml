@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  apollo:
+    image: nobodyiam/apollo-quick-start
+    container_name: biz-apollo
+    depends_on:
+      - apollo-db
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.10
+    ports:
+      - "8080:8080"
+      - "8070:8070"
+    links:
+      - apollo-db
+
+  apollo-db:
+    image: mysql:5.7
+    container_name: biz-apollo-db
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.11
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./config/apollo:/docker-entrypoint-initdb.d
+
+networks:
+  biz-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
