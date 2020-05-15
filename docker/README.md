@@ -1,7 +1,7 @@
 
 # docker快速启动
 
-docker-compose常用命令:  
+## docker-compose常用命令
 ```shell
 docker-compose up -d        # 后台启动，如果容器不存在根据镜像自动创建
 docker-compose down -v      # 停止容器并删除容器
@@ -9,7 +9,15 @@ docker-compose start        # 启动容器，容器不存在就无法启动，�
 docker-compose stop         # 停止容器
 ```
 
-## 1. 基础依赖(必须)
+## 启动/停止容器
+```
+docker-compose start/stop
+docker-compose -f docker-compose-elk.yml start/stop
+docker-compose -f docker-compose-apollo.yml start/stop
+```
+
+## 初始化容器
+### 1. 基础依赖(必须)
 
 进入docker目录, 执行`docker-compose up -d` 或单个启动`docker-compose up 服务名 -d`, 服务名如下:  
 
@@ -21,7 +29,7 @@ docker-compose stop         # 停止容器
 |  KV缓存         |   redis         |  6379     |  123456           |                               |
 |  消息中间件     |   rabbitmq       |  5672     |  waynechu/123456  |  http://localhost:15672/      |                 |
 
-### 配置MySQL主从链路
+**扩展:** 配置MySQL主从链路
 
 首次启动主从集群后，需要手动建立主从同步链路
 
@@ -40,7 +48,7 @@ docker-compose stop         # 停止容器
     show slave status; -- Slave_IO_Running 和 Slave_SQL_Running 为 YES 代表配置成功
     ```
 
-## 2. elk(可选)
+### 2. elk(可选)
 
 `docker-compose -f docker-compose-elk.yml up -d`
 
@@ -50,7 +58,7 @@ docker-compose stop         # 停止容器
 |  日志分析工具    |   kibana        |  5601     |                   |  http://localhost:5601/       |
 |  日志收集工具    |   logstash      |  7002     |                   |                               |
 
-## 3. apollo(可选)
+### 3. apollo(可选)
 
 `docker-compose -f docker-compose-apollo.yml up -d`
 

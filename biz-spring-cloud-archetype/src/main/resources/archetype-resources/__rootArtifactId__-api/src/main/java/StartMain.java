@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 
-package ${package}.api;
+package ${package};
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +23,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = {"com.waynechu"})
+@SpringBootApplication
 public class StartMain {
 
     public static void main(String[] args) {

@@ -24,7 +24,7 @@ public class ApolloChangeAutoConfiguration implements ApplicationContextAware {
     private void configChangeListener(ConfigChangeEvent changeEvent) {
         for (String key : changeEvent.changedKeys()) {
             ConfigChange change = changeEvent.getChange(key);
-            log.info("Found config change - {}", change.toString());
+            log.info("Apollo config change - {}", change.toString());
         }
 
         // 更新bean的属性值，解决@ConfigurationProperties注解的bean无法刷新问题
