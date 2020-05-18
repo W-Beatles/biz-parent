@@ -16,18 +16,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.waynechu</groupId>
-            <artifactId>service-order-common</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.waynechu</groupId>
             <artifactId>service-order-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.waynechu</groupId>
-            <artifactId>service-order-facade</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -22,7 +22,7 @@
     </dependencies>
 
     <build>
-        <finalName>${rootArtifactId}-api</finalName>
+        <finalName>${rootArtifactId}</finalName>
 
         <plugins>
             <plugin>

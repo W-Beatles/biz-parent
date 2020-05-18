@@ -22,7 +22,7 @@
     </dependencies>
 
     <build>
-        <finalName>service-order-api</finalName>
+        <finalName>service-order</finalName>
 
         <plugins>
             <plugin>

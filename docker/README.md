@@ -1,12 +1,14 @@
 
 # docker快速启动
 
-## docker-compose常用命令
+## 常用命令
 ```shell
-docker-compose up -d        # 后台启动，如果容器不存在根据镜像自动创建
-docker-compose down -v      # 停止容器并删除容器
-docker-compose start        # 启动容器，容器不存在就无法启动，不会自动创建镜像
-docker-compose stop         # 停止容器
+docker-compose up -d                   # 后台启动，如果容器不存在根据镜像自动创建
+docker-compose down -v                 # 停止容器并删除容器
+docker-compose start                   # 启动容器，容器不存在就无法启动，不会自动创建镜像
+docker-compose stop                    # 停止容器
+docker build -t waynechu/xxx:v1.0.0 .  # 创建镜像
+docker push waynechu/xxx:v1.0.0        # 推送远程仓库
 ```
 
 ## 启动/停止容器
@@ -14,6 +16,8 @@ docker-compose stop         # 停止容器
 docker-compose start/stop
 docker-compose -f docker-compose-elk.yml start/stop
 docker-compose -f docker-compose-apollo.yml start/stop
+docker-compose -f docker-compose-eureka.yml start/stop
+docker-compose -f docker-compose-service.yml start/stop
 ```
 
 ## 初始化容器
@@ -65,3 +69,21 @@ docker-compose -f docker-compose-apollo.yml start/stop
 |  服务           |  服务名          |  端口     |  帐号/密码         |  地址                         |
 |---------------- |-----------------|-----------|------------------|-------------------------------|
 |  配置中心        |   apollo        |  9070     |  apollo/admin    |  http://localhost:9070/       |
+
+### 4. eureka注册中心
+
+`docker-compose -f docker-compose-eureka.yml up -d`
+
+|  服务           |  服务名          |  端口     |  帐号/密码         |  地址                         |
+|---------------- |-----------------|-----------|------------------|-------------------------------|
+|  注册中心        |   eureka-1      |  9001     |                  |  http://localhost:9001/       |
+|  注册中心        |   eureka-2      |  9002     |                  |  http://localhost:9002/       |
+
+### 5. 普通服务
+
+`docker-compose -f docker-compose-service.yml up -d`
+
+|  服务            |  服务名                |  端口     |  帐号/密码         |  地址                                    |
+|------------------|-----------------------|-----------|------------------|------------------------------------------|
+|  订单服务(peer1)  |  service-order-peer1  |  10010    |                  |  http://localhost:10010/swagger-ui.html  |
+|  订单服务(peer2)  |  service-order-peer2  |  10011    |                  |  http://localhost:10011/swagger-ui.html  |

@@ -1,26 +1,24 @@
 version: '3'
 services:
-  eureka-1:
-    image: waynechu/biz-spring-cloud-eureka:latest
-    container_name: biz-spring-cloud-eureka-1
+  service-order-peer1:
+    image: waynechu/service-order
+    container_name: service-order-peer1
     networks:
       biz-net:
-        ipv4_address: 172.20.0.12
     ports:
-      - 9001:8080
+      - 10010:8080
     environment:
       - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.10:8080 -Ddev_meta=http://172.20.0.10:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345
       - server.port=8080
       - eureka.client.service-url.defaultZone=http://172.20.0.12:8080/eureka/,http://172.20.0.13:8080/eureka/
 
-  eureka-2:
-    image: waynechu/biz-spring-cloud-eureka:latest
-    container_name: biz-spring-cloud-eureka-2
+  service-order-peer2:
+    image: waynechu/service-order
+    container_name: service-order-peer2
     networks:
       biz-net:
-        ipv4_address: 172.20.0.13
     ports:
-      - 9002:8080
+      - 10011:8080
     environment:
       - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.10:8080 -Ddev_meta=http://172.20.0.10:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345
       - server.port=8080

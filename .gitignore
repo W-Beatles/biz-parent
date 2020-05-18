@@ -1,4 +1,5 @@
 **/target/
+*.jar
 */out/
 !.mvn/wrapper/maven-wrapper.jar
 /.settings/
