@@ -4,7 +4,8 @@ services:
     image: apache/skywalking-oap-server:7.0.0-es7
     container_name: skywalking-oap
     networks:
-      - biz-net
+      biz-net:
+        ipv4_address: 172.20.0.215
     depends_on:
       - elasticsearch
     links:
@@ -16,7 +17,8 @@ services:
     image: apache/skywalking-ui:7.0.0
     container_name: skywalking-ui
     networks:
-      - biz-net
+      biz-net:
+        ipv4_address: 172.20.0.216
     depends_on:
       - skywalking-oap
     links:

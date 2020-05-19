@@ -89,7 +89,15 @@ docker-compose -f docker-compose-dashboard.yml start/stop
 |  网关           |   inner-gateway |  9011     |                  |  http://localhost:9011/swagger-ui.html        |
 |  监控中心        |   boot-admin    |  9020     |                  |  http://localhost:9020/                      |
 
-### 6. 普通服务
+### 6. skywalking
+
+`docker-compose -f docker-compose-elk.yml -f docker-compose-skywalking.yml up -d`
+
+|  服务           |  服务名          |  端口     |  帐号/密码         |  地址                                        |
+|---------------- |-----------------|-----------|------------------|----------------------------------------------|
+|  skywalking     |   skywalking-ui |  9011     |                  |  http://localhost:9011/swagger-ui.html        |
+
+### 7. 普通服务
 
 `docker-compose -f docker-compose-service.yml up -d`
 

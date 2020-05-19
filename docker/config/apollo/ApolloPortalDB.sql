@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost_13306
+ Source Server         : localhost-3316
  Source Server Type    : MySQL
- Source Server Version : 50730
- Source Host           : localhost:13306
+ Source Server Version : 50729
+ Source Host           : localhost:3316
  Source Schema         : ApolloPortalDB
 
  Target Server Type    : MySQL
- Target Server Version : 50730
+ Target Server Version : 50729
  File Encoding         : 65001
 
- Date: 19/05/2020 16:42:36
+ Date: 20/05/2020 00:39:37
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `App`  (
   INDEX `AppId`(`AppId`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Name`(`Name`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of App
@@ -58,6 +58,7 @@ INSERT INTO `App` VALUES (6, 'biz-spring-cloud-public', 'biz-spring-cloud-public
 INSERT INTO `App` VALUES (7, 'biz-boot-starter-logger', 'biz-boot-starter-logger', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
 INSERT INTO `App` VALUES (8, 'biz-spring-boot-admin', 'biz-spring-boot-admin', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
 INSERT INTO `App` VALUES (9, 'service-product', 'service-product', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `App` VALUES (10, 'biz-dynamic-datasource', 'biz-dynamic-datasource', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
 
 -- ----------------------------
 -- Table structure for AppNamespace
@@ -79,7 +80,7 @@ CREATE TABLE `AppNamespace`  (
   INDEX `IX_AppId`(`AppId`) USING BTREE,
   INDEX `Name_AppId`(`Name`, `AppId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of AppNamespace
@@ -95,6 +96,8 @@ INSERT INTO `AppNamespace` VALUES (8, 'application', 'biz-boot-starter-logger', 
 INSERT INTO `AppNamespace` VALUES (9, 'Archer.biz-boot-starter-logger', 'biz-boot-starter-logger', 'properties', b'1', 'biz-boot-starter-logger配置', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
 INSERT INTO `AppNamespace` VALUES (10, 'application', 'biz-spring-boot-admin', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
 INSERT INTO `AppNamespace` VALUES (11, 'application', 'service-product', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `AppNamespace` VALUES (12, 'application', 'biz-dynamic-datasource', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `AppNamespace` VALUES (13, 'Archer.biz-dynamic-datasource', 'biz-dynamic-datasource', 'properties', b'1', '动态数据源通用配置', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
 
 -- ----------------------------
 -- Table structure for Authorities
@@ -225,7 +228,7 @@ CREATE TABLE `Permission`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `IX_TargetId_PermissionType`(`TargetId`(191), `PermissionType`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 83 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'permission表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 95 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'permission表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Permission
@@ -312,6 +315,18 @@ INSERT INTO `Permission` VALUES (79, 'ModifyNamespace', 'service-product+applica
 INSERT INTO `Permission` VALUES (80, 'ReleaseNamespace', 'service-product+application', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 INSERT INTO `Permission` VALUES (81, 'ModifyNamespace', 'service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 INSERT INTO `Permission` VALUES (82, 'ReleaseNamespace', 'service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (83, 'CreateCluster', 'biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (84, 'AssignRole', 'biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (85, 'CreateNamespace', 'biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (86, 'ManageAppMaster', 'biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (87, 'ModifyNamespace', 'biz-dynamic-datasource+application', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (88, 'ReleaseNamespace', 'biz-dynamic-datasource+application', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (89, 'ModifyNamespace', 'biz-dynamic-datasource+application+DEV', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (90, 'ReleaseNamespace', 'biz-dynamic-datasource+application+DEV', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Permission` VALUES (91, 'ModifyNamespace', 'biz-dynamic-datasource+Archer.biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `Permission` VALUES (92, 'ReleaseNamespace', 'biz-dynamic-datasource+Archer.biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `Permission` VALUES (93, 'ModifyNamespace', 'biz-dynamic-datasource+Archer.biz-dynamic-datasource+DEV', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `Permission` VALUES (94, 'ReleaseNamespace', 'biz-dynamic-datasource+Archer.biz-dynamic-datasource+DEV', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
 
 -- ----------------------------
 -- Table structure for Role
@@ -328,7 +343,7 @@ CREATE TABLE `Role`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `IX_RoleName`(`RoleName`(191)) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 65 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Role
@@ -397,6 +412,16 @@ INSERT INTO `Role` VALUES (61, 'ModifyNamespace+service-product+application', b'
 INSERT INTO `Role` VALUES (62, 'ReleaseNamespace+service-product+application', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 INSERT INTO `Role` VALUES (63, 'ModifyNamespace+service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 INSERT INTO `Role` VALUES (64, 'ReleaseNamespace+service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Role` VALUES (65, 'Master+biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Role` VALUES (66, 'ManageAppMaster+biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Role` VALUES (67, 'ModifyNamespace+biz-dynamic-datasource+application', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Role` VALUES (68, 'ReleaseNamespace+biz-dynamic-datasource+application', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Role` VALUES (69, 'ModifyNamespace+biz-dynamic-datasource+application+DEV', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Role` VALUES (70, 'ReleaseNamespace+biz-dynamic-datasource+application+DEV', b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `Role` VALUES (71, 'ModifyNamespace+biz-dynamic-datasource+Archer.biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `Role` VALUES (72, 'ReleaseNamespace+biz-dynamic-datasource+Archer.biz-dynamic-datasource', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `Role` VALUES (73, 'ModifyNamespace+biz-dynamic-datasource+Archer.biz-dynamic-datasource+DEV', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `Role` VALUES (74, 'ReleaseNamespace+biz-dynamic-datasource+Archer.biz-dynamic-datasource+DEV', b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
 
 -- ----------------------------
 -- Table structure for RolePermission
@@ -415,7 +440,7 @@ CREATE TABLE `RolePermission`  (
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_RoleId`(`RoleId`) USING BTREE,
   INDEX `IX_PermissionId`(`PermissionId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 83 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和权限的绑定表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 95 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和权限的绑定表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of RolePermission
@@ -502,6 +527,18 @@ INSERT INTO `RolePermission` VALUES (79, 61, 79, b'0', 'apollo', '2020-05-19 16:
 INSERT INTO `RolePermission` VALUES (80, 62, 80, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 INSERT INTO `RolePermission` VALUES (81, 63, 81, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 INSERT INTO `RolePermission` VALUES (82, 64, 82, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (83, 65, 83, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (84, 65, 84, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (85, 65, 85, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (86, 66, 86, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (87, 67, 87, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (88, 68, 88, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (89, 69, 89, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (90, 70, 90, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `RolePermission` VALUES (91, 71, 91, b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `RolePermission` VALUES (92, 72, 92, b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `RolePermission` VALUES (93, 73, 93, b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `RolePermission` VALUES (94, 74, 94, b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
 
 -- ----------------------------
 -- Table structure for ServerConfig
@@ -551,7 +588,7 @@ CREATE TABLE `UserRole`  (
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_RoleId`(`RoleId`) USING BTREE,
   INDEX `IX_UserId_RoleId`(`UserId`, `RoleId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和role的绑定表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和role的绑定表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of UserRole
@@ -596,6 +633,13 @@ INSERT INTO `UserRole` VALUES (37, 'apollo', 56, b'0', 'apollo', '2020-05-19 15:
 INSERT INTO `UserRole` VALUES (38, 'waynechu', 59, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 INSERT INTO `UserRole` VALUES (39, 'apollo', 61, b'0', 'apollo', '2020-05-19 16:06:22', 'apollo', '2020-05-19 16:06:22');
 INSERT INTO `UserRole` VALUES (40, 'apollo', 62, b'0', 'apollo', '2020-05-19 16:06:22', 'apollo', '2020-05-19 16:06:22');
+INSERT INTO `UserRole` VALUES (41, 'waynechu', 65, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `UserRole` VALUES (42, 'apollo', 67, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `UserRole` VALUES (43, 'apollo', 68, b'0', 'apollo', '2020-05-19 23:55:15', 'apollo', '2020-05-19 23:55:15');
+INSERT INTO `UserRole` VALUES (44, 'apollo', 71, b'0', 'apollo', '2020-05-19 23:55:42', 'apollo', '2020-05-19 23:55:42');
+INSERT INTO `UserRole` VALUES (45, 'apollo', 72, b'0', 'apollo', '2020-05-19 23:55:43', 'apollo', '2020-05-19 23:55:43');
+INSERT INTO `UserRole` VALUES (46, 'waynechu', 71, b'0', 'apollo', '2020-05-19 23:55:47', 'apollo', '2020-05-19 23:55:47');
+INSERT INTO `UserRole` VALUES (47, 'waynechu', 72, b'0', 'apollo', '2020-05-19 23:55:50', 'apollo', '2020-05-19 23:55:50');
 
 -- ----------------------------
 -- Table structure for Users

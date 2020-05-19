@@ -15,7 +15,7 @@ services:
       - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
     networks:
       biz-net:
-        ipv4_address: 172.20.0.7
+        ipv4_address: 172.20.0.210
     ports:
       - 9200:9200
       - 9300:9300
@@ -27,7 +27,7 @@ services:
       - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     networks:
       biz-net:
-        ipv4_address: 172.20.0.8
+        ipv4_address: 172.20.0.211
     ports:
       - 5601:5601
     depends_on:
@@ -40,7 +40,7 @@ services:
       - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     networks:
       biz-net:
-        ipv4_address: 172.20.0.9
+        ipv4_address: 172.20.0.212
     ports:
       - 7002:7002
     depends_on:

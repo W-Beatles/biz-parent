@@ -6,7 +6,7 @@ services:
     restart: always    #重启容器策略: 1.null 默认策略,退出后不重启  2.on-failure 非正常退出会重启,on-failure:3还能指定尝试重启次数  3.always 容器退出时总是重启  4.unless-stopped 在容器退出时总是重启容器,但是不考虑在Docker守护进程启动时就已经停止了的容器
     networks:   #配置容器连接的网络,引用顶级networks下的条目
       biz-net:
-        ipv4_address: 172.20.0.2
+        ipv4_address: 172.20.0.201
     ports:
       - 3306:3306   #宿主机与容器的端口映射规则
     volumes:   #数据卷或者文件挂载到容器
@@ -24,7 +24,7 @@ services:
     restart: always
     networks:
       biz-net:
-        ipv4_address: 172.20.0.3
+        ipv4_address: 172.20.0.202
     ports:
       - 3307:3306
     depends_on:
@@ -44,7 +44,7 @@ services:
     restart: always
     networks:
       biz-net:
-        ipv4_address: 172.20.0.4
+        ipv4_address: 172.20.0.203
     ports:
       - 3308:3306
     depends_on:
@@ -67,7 +67,7 @@ services:
       - ./data/redis:/data
     networks:
       biz-net:
-        ipv4_address: 172.20.0.5
+        ipv4_address: 172.20.0.204
     ports:
       - 6379:6379
 
@@ -79,7 +79,7 @@ services:
       - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
     networks:
       biz-net:
-        ipv4_address: 172.20.0.6
+        ipv4_address: 172.20.0.205
     ports:
       - 5672:5672
       - 15672:15672

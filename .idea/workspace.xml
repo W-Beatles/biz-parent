@@ -5,33 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="work(docker): 初始化数据库脚本">
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/docker/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-common/src/main/java/com/waynechu/order/common/consts/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-common/src/main/java/com/waynechu/order/common/enums/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-common/src/main/java/com/waynechu/order/common/util/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-test/src/test/java/com/waynechu/order/test/StartMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/src/main/java/cn/waynechu/springcloud/eureka/config/ApolloChangeConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/docker-compose-dashboard.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/docker-compose-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-prd.properties" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/resources/application-prd.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-archetype/src/main/resources/archetype-resources/__rootArtifactId__-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/biz-spring-cloud-eureka/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biz-spring-cloud-eureka/docker/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docker/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/elasticsearch/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/mysql/master/mysql-files/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/mysql/master/mysql/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/mysql/slave1/mysql-files/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/mysql/slave1/mysql/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/mysql/slave2/mysql-files/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/mysql/slave2/mysql/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/rabbitmq/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/data/redis/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/config/apollo/ApolloConfigDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/apollo/ApolloConfigDB.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/config/apollo/ApolloPortalDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/apollo/ApolloPortalDB.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/config/kibana/kibana.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/kibana/kibana.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/config/logstash/logstash.conf" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/logstash/logstash.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose-apollo.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-apollo.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose-dashboard.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-dashboard.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose-elk.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-elk.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/docker-compose-eureka.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-eureka.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose-skywalking.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-skywalking.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +106,7 @@
     </option>
     <option name="enabledProfiles">
       <list>
-        <option value="work" />
+        <option value="local" />
       </list>
     </option>
   </component>
@@ -148,7 +134,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-spring-cloud-api-service-order/service-order-api/src/main/docker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docker/config/apollo" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -158,18 +144,18 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\service-order-common\src\main\java" />
+      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-eureka\docker" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources\META-INF" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\sql" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="cn.waynechu.springcloud.common" />
       <recent name="cn.waynechu.springcloud.common.excel" />
       <recent name="cn.waynechu.springcloud.common.util" />
       <recent name="com.waynechu.order.remote.model.response" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\service-order-api\src\main\docker" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\service-order-test\src\test\java\com\waynechu\order\test" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\service-order-common\src\main\java\com\waynechu\order\common" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\docker" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-eureka\docker" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.waynechu.springcloud.eureka.config" />
@@ -178,12 +164,12 @@
       <recent name="cn.waynechu.springcloud.gateway.property" />
       <recent name="cn.waynechu.springcloud.gateway.util" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-api-service-order\service-order-common\src\main\java" />
-      <recent name="C:\Users\zhuwei\workspace\biz-parent\biz-spring-cloud-eureka\docker" />
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources\META-INF" />
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\sql" />
-      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-gateway\src\main\resources" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\docker\config\apollo" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-api-service-product\docker" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-api-service-order\docker" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-cloud-api-service-utility\docker" />
+      <recent name="C:\Users\Z-Beatles\IdeaProjects\biz-parent\biz-spring-boot-admin\docker" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -203,7 +189,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.Docker">
+  <component name="RunManager" selected="Spring Boot.(9020) boot-admin">
     <configuration name="(10001) dynamic-datasource-test-api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="dynamic-datasource-test-api" />
       <extension name="coverage">
@@ -310,7 +296,8 @@
     </configuration>
     <configuration name="(10030) service-utility-peer1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-utility-api" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.utility.StartMain" />
+      <option name="ENABLE_LAUNCH_OPTIMIZATION" value="false" />
       <option name="URL_PATH" value="/swagger-ui.html" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=service-utility-api" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -327,7 +314,7 @@
     </configuration>
     <configuration name="(10031) service-utility-peer2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="service" singleton="false">
       <module name="service-utility-api" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.StartMain" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.waynechu.utility.StartMain" />
       <option name="VM_PARAMETERS" value="-javaagent:D:/OpenSource/apache-skywalking-apm-bin/agent/skywalking-agent.jar -Dskywalking.agent.service_name=service-utility-api" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <additionalParameters>
@@ -503,21 +490,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Docker" type="docker-deploy" factoryName="docker-compose.yml" folderName="compose" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="secondarySourceFiles">
-            <list>
-              <option value="docker/docker-compose-elk.yml" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker/docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Docker.Docker" />
       <item itemvalue="Spring Boot.(9020) boot-admin" />
       <item itemvalue="Spring Boot.(9010) gateway-outer" />
       <item itemvalue="Spring Boot.(9030) hystrix-dashboard" />
@@ -553,15 +526,12 @@
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="dashboard" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="service" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="docker" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -1152,6 +1122,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2510" y="15" key="#(10011)_service-order-peer2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589525577561" />
+    <state x="590" y="2" key="#(10030)_service-utility-peer1" timestamp="1589904302303">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="590" y="2" key="#(10030)_service-utility-peer1/0.0.1920.1040@0.0.1920.1040" timestamp="1589904302303" />
+    <state x="590" y="2" key="#(10031)_service-utility-peer2" timestamp="1589904310455">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="590" y="2" key="#(10031)_service-utility-peer2/0.0.1920.1040@0.0.1920.1040" timestamp="1589904310455" />
     <state x="2573" y="177" width="753" height="685" key="#(9001)_eureka-peer1" timestamp="1589525278694">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -1197,11 +1175,11 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="179" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589511450832" />
-    <state x="2090" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589797059458">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589906549616">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2090" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589797059458" />
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583567730574" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589906549616" />
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583497519605" />
     <state x="677" y="327" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582982521264">
       <screen x="0" y="0" width="1920" height="1049" />
@@ -1212,6 +1190,10 @@
     </state>
     <state x="394" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584890844572" />
     <state x="394" y="231" width="1401" height="568" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1049@0.0.1920.1049" timestamp="1583328777211" />
+    <state x="689" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1589904306697">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="303" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589904306697" />
     <state x="2726" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1589510611331">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -1239,6 +1221,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584632702932" />
+    <state x="736" y="78" key="#docker/Dockerfile" timestamp="1589904184855">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="736" y="78" key="#docker/Dockerfile/0.0.1920.1040@0.0.1920.1040" timestamp="1589904184855" />
     <state x="2588" y="241" key="#docker/docker-compose-elk.yml:_Compose_Deployment" timestamp="1589005048938">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -1279,29 +1265,29 @@
     </state>
     <state x="2432" y="270" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589531243956" />
     <state x="512" y="272" key="FileChooserDialogImpl/0.0.1920.1049@0.0.1920.1049" timestamp="1582801449205" />
-    <state width="1877" height="272" key="GridCell.Tab.0.bottom" timestamp="1589795284056">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="222" key="GridCell.Tab.0.bottom" timestamp="1589906558749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="272" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284056" />
-    <state width="1502" height="310" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1877" height="222" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558749" />
     <state width="1527" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1877" height="272" key="GridCell.Tab.0.center" timestamp="1589795284055">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="222" key="GridCell.Tab.0.center" timestamp="1589906558748">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="272" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284055" />
-    <state width="1502" height="310" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1877" height="222" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558748" />
     <state width="1527" height="298" key="GridCell.Tab.0.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1877" height="272" key="GridCell.Tab.0.left" timestamp="1589795284055">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="222" key="GridCell.Tab.0.left" timestamp="1589906558748">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="272" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284055" />
-    <state width="1502" height="310" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1877" height="222" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558748" />
     <state width="1527" height="298" key="GridCell.Tab.0.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1877" height="272" key="GridCell.Tab.0.right" timestamp="1589795284055">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="222" key="GridCell.Tab.0.right" timestamp="1589906558749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="272" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284055" />
-    <state width="1502" height="310" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
+    <state width="1877" height="222" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558749" />
     <state width="1527" height="298" key="GridCell.Tab.0.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
     <state width="1531" height="266" key="GridCell.Tab.1.bottom" timestamp="1589535813792">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -1370,11 +1356,11 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="92" y="92" width="1736" height="865" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583081540869" />
-    <state x="2631" y="245" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589539602117">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="711" y="245" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589906474712">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2631" y="245" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589539602117" />
-    <state x="711" y="245" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584861220650" />
+    <state x="711" y="245" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589906474712" />
     <state x="2672" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589530466410">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -1383,11 +1369,11 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2400" y="256" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589525543274" />
-    <state x="2454" y="296" width="1263" height="744" key="find.popup" timestamp="1589794589962">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="534" y="296" width="1263" height="744" key="find.popup" timestamp="1589902080666">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2454" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589794589962" />
-    <state x="534" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584874624393" />
+    <state x="534" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589902080666" />
     <state x="534" y="299" width="1263" height="750" key="find.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583492457668" />
     <state width="650" height="123" key="javadoc.popup.new" timestamp="1589010699883">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -1479,9 +1465,6 @@
           <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
-      <default-breakpoints>
-        <breakpoint type="DlvErrorBreakpoint" />
-      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>

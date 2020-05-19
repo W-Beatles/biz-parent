@@ -6,10 +6,10 @@ services:
     container_name: biz-apollo
     networks:
       biz-net:
-        ipv4_address: 172.20.0.10
+        ipv4_address: 172.20.0.206
     ports:
-      - "8080:8080"
-      - "8070:8070"
+      - 8080:8080
+      - 8070:8070
     depends_on:
       - apollo-db
 
@@ -21,9 +21,9 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     networks:
       biz-net:
-        ipv4_address: 172.20.0.11
+        ipv4_address: 172.20.0.207
     ports:
-      - "13306:3306"
+      - 3316:3306
     volumes:
       - ./data/apollo/mysql:/var/lib/mysql
       - ./config/apollo:/docker-entrypoint-initdb.d
