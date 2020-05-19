@@ -1,4 +1,4 @@
-package com.waynechu.utility.controller;
+package com.waynechu.utility.api.controller;
 
 import cn.waynechu.facade.common.response.BizResponse;
 import com.waynechu.utility.domain.service.CandlerService;

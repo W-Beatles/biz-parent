@@ -1,4 +1,4 @@
-package com.waynechu;
+package com.waynechu.utility;
 
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.alicp.jetcache.anno.config.EnableMethodCache;
@@ -21,7 +21,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.waynechu.utility.dal.mapper")
 @EnableMethodCache(basePackages = "com.waynechu.utility.domain.repository")
 @EnableCreateCacheAnnotation
-@SpringBootApplication(scanBasePackages = {"com.waynechu"})
+@SpringBootApplication
 public class StartMain {
 
     public static void main(String[] args) {

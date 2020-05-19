@@ -1,10 +1,10 @@
 version: '3'
 services:
   service-order-peer1:
-    image: waynechu/service-order
+    image: waynechu/service-order:latest
     container_name: service-order-peer1
     networks:
-      biz-net:
+      - biz-net
     ports:
       - 10010:8080
     environment:
@@ -13,12 +13,60 @@ services:
       - eureka.client.service-url.defaultZone=http://172.20.0.12:8080/eureka/,http://172.20.0.13:8080/eureka/
 
   service-order-peer2:
-    image: waynechu/service-order
+    image: waynechu/service-order:latest
     container_name: service-order-peer2
     networks:
       biz-net:
     ports:
       - 10011:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.10:8080 -Ddev_meta=http://172.20.0.10:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.12:8080/eureka/,http://172.20.0.13:8080/eureka/
+
+  service-product-peer1:
+    image: waynechu/service-product:latest
+    container_name: service-product-peer1
+    networks:
+      - biz-net
+    ports:
+      - 10020:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.10:8080 -Ddev_meta=http://172.20.0.10:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.12:8080/eureka/,http://172.20.0.13:8080/eureka/
+
+  service-product-peer2:
+    image: waynechu/service-product:latest
+    container_name: service-product-peer2
+    networks:
+      biz-net:
+    ports:
+      - 10021:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.10:8080 -Ddev_meta=http://172.20.0.10:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.12:8080/eureka/,http://172.20.0.13:8080/eureka/
+
+  service-utility-peer1:
+    image: waynechu/service-utility:latest
+    container_name: service-utility-peer1
+    networks:
+      - biz-net
+    ports:
+      - 10030:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.10:8080 -Ddev_meta=http://172.20.0.10:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.12:8080/eureka/,http://172.20.0.13:8080/eureka/
+
+  service-utility-peer2:
+    image: waynechu/service-utility:latest
+    container_name: service-utility-peer2
+    networks:
+      biz-net:
+    ports:
+      - 10031:8080
     environment:
       - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.10:8080 -Ddev_meta=http://172.20.0.10:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345
       - server.port=8080

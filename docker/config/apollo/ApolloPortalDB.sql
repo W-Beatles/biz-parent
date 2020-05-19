@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 18/05/2020 19:33:32
+ Date: 19/05/2020 16:42:36
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `App`  (
   INDEX `AppId`(`AppId`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Name`(`Name`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of App
@@ -55,6 +55,9 @@ INSERT INTO `App` VALUES (3, 'biz-spring-cloud-gateway', 'biz-spring-cloud-gatew
 INSERT INTO `App` VALUES (4, 'service-utility', 'service-utility', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-15 14:22:26', 'apollo', '2020-05-15 14:22:26');
 INSERT INTO `App` VALUES (5, 'service-order', 'service-order', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-15 14:22:50', 'apollo', '2020-05-15 14:22:50');
 INSERT INTO `App` VALUES (6, 'biz-spring-cloud-public', 'biz-spring-cloud-public', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-15 14:25:36', 'apollo', '2020-05-15 14:25:36');
+INSERT INTO `App` VALUES (7, 'biz-boot-starter-logger', 'biz-boot-starter-logger', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `App` VALUES (8, 'biz-spring-boot-admin', 'biz-spring-boot-admin', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `App` VALUES (9, 'service-product', 'service-product', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 
 -- ----------------------------
 -- Table structure for AppNamespace
@@ -76,7 +79,7 @@ CREATE TABLE `AppNamespace`  (
   INDEX `IX_AppId`(`AppId`) USING BTREE,
   INDEX `Name_AppId`(`Name`, `AppId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of AppNamespace
@@ -88,6 +91,10 @@ INSERT INTO `AppNamespace` VALUES (4, 'application', 'service-utility', 'propert
 INSERT INTO `AppNamespace` VALUES (5, 'application', 'service-order', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-15 14:22:50', 'apollo', '2020-05-15 14:22:50');
 INSERT INTO `AppNamespace` VALUES (6, 'application', 'biz-spring-cloud-public', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-15 14:25:36', 'apollo', '2020-05-15 14:25:36');
 INSERT INTO `AppNamespace` VALUES (7, 'Archer.biz-spring-cloud-public', 'biz-spring-cloud-public', 'properties', b'1', '', b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
+INSERT INTO `AppNamespace` VALUES (8, 'application', 'biz-boot-starter-logger', 'properties', b'0', 'default app namespace', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `AppNamespace` VALUES (9, 'Archer.biz-boot-starter-logger', 'biz-boot-starter-logger', 'properties', b'1', 'biz-boot-starter-logger配置', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `AppNamespace` VALUES (10, 'application', 'biz-spring-boot-admin', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `AppNamespace` VALUES (11, 'application', 'service-product', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 
 -- ----------------------------
 -- Table structure for Authorities
@@ -218,7 +225,7 @@ CREATE TABLE `Permission`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `IX_TargetId_PermissionType`(`TargetId`(191), `PermissionType`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'permission表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 83 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'permission表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Permission
@@ -273,6 +280,38 @@ INSERT INTO `Permission` VALUES (47, 'ModifyNamespace', 'biz-spring-cloud-public
 INSERT INTO `Permission` VALUES (48, 'ReleaseNamespace', 'biz-spring-cloud-public+Archer.biz-spring-cloud-public', b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
 INSERT INTO `Permission` VALUES (49, 'ModifyNamespace', 'biz-spring-cloud-public+Archer.biz-spring-cloud-public+DEV', b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
 INSERT INTO `Permission` VALUES (50, 'ReleaseNamespace', 'biz-spring-cloud-public+Archer.biz-spring-cloud-public+DEV', b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
+INSERT INTO `Permission` VALUES (51, 'CreateNamespace', 'biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (52, 'CreateCluster', 'biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (53, 'AssignRole', 'biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (54, 'ManageAppMaster', 'biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (55, 'ModifyNamespace', 'biz-boot-starter-logger+application', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (56, 'ReleaseNamespace', 'biz-boot-starter-logger+application', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (57, 'ModifyNamespace', 'biz-boot-starter-logger+application+DEV', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (58, 'ReleaseNamespace', 'biz-boot-starter-logger+application+DEV', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (59, 'ModifyNamespace', 'biz-boot-starter-logger+Archer.biz-spring-cloud-public', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (60, 'ReleaseNamespace', 'biz-boot-starter-logger+Archer.biz-spring-cloud-public', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (61, 'ModifyNamespace', 'biz-boot-starter-logger+Archer.biz-spring-cloud-public+DEV', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (62, 'ReleaseNamespace', 'biz-boot-starter-logger+Archer.biz-spring-cloud-public+DEV', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (63, 'ModifyNamespace', 'biz-boot-starter-logger+Archer.biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (64, 'ReleaseNamespace', 'biz-boot-starter-logger+Archer.biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (65, 'ModifyNamespace', 'biz-boot-starter-logger+Archer.biz-boot-starter-logger+DEV', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (66, 'ReleaseNamespace', 'biz-boot-starter-logger+Archer.biz-boot-starter-logger+DEV', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Permission` VALUES (67, 'CreateNamespace', 'biz-spring-boot-admin', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (68, 'AssignRole', 'biz-spring-boot-admin', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (69, 'CreateCluster', 'biz-spring-boot-admin', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (70, 'ManageAppMaster', 'biz-spring-boot-admin', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (71, 'ModifyNamespace', 'biz-spring-boot-admin+application', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (72, 'ReleaseNamespace', 'biz-spring-boot-admin+application', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (73, 'ModifyNamespace', 'biz-spring-boot-admin+application+DEV', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (74, 'ReleaseNamespace', 'biz-spring-boot-admin+application+DEV', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Permission` VALUES (75, 'CreateCluster', 'service-product', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (76, 'AssignRole', 'service-product', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (77, 'CreateNamespace', 'service-product', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (78, 'ManageAppMaster', 'service-product', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (79, 'ModifyNamespace', 'service-product+application', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (80, 'ReleaseNamespace', 'service-product+application', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (81, 'ModifyNamespace', 'service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Permission` VALUES (82, 'ReleaseNamespace', 'service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 
 -- ----------------------------
 -- Table structure for Role
@@ -289,7 +328,7 @@ CREATE TABLE `Role`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `IX_RoleName`(`RoleName`(191)) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 65 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Role
@@ -332,6 +371,32 @@ INSERT INTO `Role` VALUES (35, 'ModifyNamespace+biz-spring-cloud-public+Archer.b
 INSERT INTO `Role` VALUES (36, 'ReleaseNamespace+biz-spring-cloud-public+Archer.biz-spring-cloud-public', b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
 INSERT INTO `Role` VALUES (37, 'ModifyNamespace+biz-spring-cloud-public+Archer.biz-spring-cloud-public+DEV', b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
 INSERT INTO `Role` VALUES (38, 'ReleaseNamespace+biz-spring-cloud-public+Archer.biz-spring-cloud-public+DEV', b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
+INSERT INTO `Role` VALUES (39, 'Master+biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (40, 'ManageAppMaster+biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (41, 'ModifyNamespace+biz-boot-starter-logger+application', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (42, 'ReleaseNamespace+biz-boot-starter-logger+application', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (43, 'ModifyNamespace+biz-boot-starter-logger+application+DEV', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (44, 'ReleaseNamespace+biz-boot-starter-logger+application+DEV', b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (45, 'ModifyNamespace+biz-boot-starter-logger+Archer.biz-spring-cloud-public', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (46, 'ReleaseNamespace+biz-boot-starter-logger+Archer.biz-spring-cloud-public', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (47, 'ModifyNamespace+biz-boot-starter-logger+Archer.biz-spring-cloud-public+DEV', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (48, 'ReleaseNamespace+biz-boot-starter-logger+Archer.biz-spring-cloud-public+DEV', b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (49, 'ModifyNamespace+biz-boot-starter-logger+Archer.biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (50, 'ReleaseNamespace+biz-boot-starter-logger+Archer.biz-boot-starter-logger', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (51, 'ModifyNamespace+biz-boot-starter-logger+Archer.biz-boot-starter-logger+DEV', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (52, 'ReleaseNamespace+biz-boot-starter-logger+Archer.biz-boot-starter-logger+DEV', b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `Role` VALUES (53, 'Master+biz-spring-boot-admin', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Role` VALUES (54, 'ManageAppMaster+biz-spring-boot-admin', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Role` VALUES (55, 'ModifyNamespace+biz-spring-boot-admin+application', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Role` VALUES (56, 'ReleaseNamespace+biz-spring-boot-admin+application', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Role` VALUES (57, 'ModifyNamespace+biz-spring-boot-admin+application+DEV', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Role` VALUES (58, 'ReleaseNamespace+biz-spring-boot-admin+application+DEV', b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `Role` VALUES (59, 'Master+service-product', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Role` VALUES (60, 'ManageAppMaster+service-product', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Role` VALUES (61, 'ModifyNamespace+service-product+application', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Role` VALUES (62, 'ReleaseNamespace+service-product+application', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Role` VALUES (63, 'ModifyNamespace+service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `Role` VALUES (64, 'ReleaseNamespace+service-product+application+DEV', b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 
 -- ----------------------------
 -- Table structure for RolePermission
@@ -350,7 +415,7 @@ CREATE TABLE `RolePermission`  (
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_RoleId`(`RoleId`) USING BTREE,
   INDEX `IX_PermissionId`(`PermissionId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和权限的绑定表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 83 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和权限的绑定表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of RolePermission
@@ -405,6 +470,38 @@ INSERT INTO `RolePermission` VALUES (47, 35, 47, b'0', 'apollo', '2020-05-15 14:
 INSERT INTO `RolePermission` VALUES (48, 36, 48, b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
 INSERT INTO `RolePermission` VALUES (49, 37, 49, b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
 INSERT INTO `RolePermission` VALUES (50, 38, 50, b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
+INSERT INTO `RolePermission` VALUES (51, 39, 51, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (52, 39, 52, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (53, 39, 53, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (54, 40, 54, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (55, 41, 55, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (56, 42, 56, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (57, 43, 57, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (58, 44, 58, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (59, 45, 59, b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (60, 46, 60, b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (61, 47, 61, b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (62, 48, 62, b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (63, 49, 63, b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (64, 50, 64, b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (65, 51, 65, b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (66, 52, 66, b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `RolePermission` VALUES (67, 53, 67, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (68, 53, 68, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (69, 53, 69, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (70, 54, 70, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (71, 55, 71, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (72, 56, 72, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (73, 57, 73, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (74, 58, 74, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `RolePermission` VALUES (75, 59, 75, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (76, 59, 76, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (77, 59, 77, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (78, 60, 78, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (79, 61, 79, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (80, 62, 80, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (81, 63, 81, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `RolePermission` VALUES (82, 64, 82, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
 
 -- ----------------------------
 -- Table structure for ServerConfig
@@ -454,7 +551,7 @@ CREATE TABLE `UserRole`  (
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_RoleId`(`RoleId`) USING BTREE,
   INDEX `IX_UserId_RoleId`(`UserId`, `RoleId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和role的绑定表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和role的绑定表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of UserRole
@@ -482,6 +579,23 @@ INSERT INTO `UserRole` VALUES (20, 'apollo', 35, b'0', 'apollo', '2020-05-15 14:
 INSERT INTO `UserRole` VALUES (21, 'apollo', 36, b'0', 'apollo', '2020-05-15 14:26:03', 'apollo', '2020-05-15 14:26:03');
 INSERT INTO `UserRole` VALUES (22, 'waynechu', 35, b'0', 'apollo', '2020-05-15 14:26:08', 'apollo', '2020-05-15 14:26:08');
 INSERT INTO `UserRole` VALUES (23, 'waynechu', 36, b'0', 'apollo', '2020-05-15 14:26:10', 'apollo', '2020-05-15 14:26:10');
+INSERT INTO `UserRole` VALUES (24, 'waynechu', 39, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (25, 'apollo', 41, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (26, 'apollo', 42, b'1', 'apollo', '2020-05-19 14:57:02', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (27, 'apollo', 45, b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (28, 'apollo', 46, b'1', 'apollo', '2020-05-19 14:57:26', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (29, 'waynechu', 45, b'1', 'apollo', '2020-05-19 14:57:34', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (30, 'waynechu', 46, b'1', 'apollo', '2020-05-19 14:57:36', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (31, 'apollo', 49, b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (32, 'apollo', 50, b'1', 'apollo', '2020-05-19 15:00:11', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (33, 'waynechu', 49, b'1', 'apollo', '2020-05-19 15:10:29', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (34, 'waynechu', 50, b'1', 'apollo', '2020-05-19 15:10:33', 'apollo', '2020-05-19 15:17:07');
+INSERT INTO `UserRole` VALUES (35, 'waynechu', 53, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `UserRole` VALUES (36, 'apollo', 55, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `UserRole` VALUES (37, 'apollo', 56, b'0', 'apollo', '2020-05-19 15:17:28', 'apollo', '2020-05-19 15:17:28');
+INSERT INTO `UserRole` VALUES (38, 'waynechu', 59, b'0', 'apollo', '2020-05-19 16:06:21', 'apollo', '2020-05-19 16:06:21');
+INSERT INTO `UserRole` VALUES (39, 'apollo', 61, b'0', 'apollo', '2020-05-19 16:06:22', 'apollo', '2020-05-19 16:06:22');
+INSERT INTO `UserRole` VALUES (40, 'apollo', 62, b'0', 'apollo', '2020-05-19 16:06:22', 'apollo', '2020-05-19 16:06:22');
 
 -- ----------------------------
 -- Table structure for Users

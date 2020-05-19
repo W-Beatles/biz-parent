@@ -22,7 +22,7 @@
     </dependencies>
 
     <build>
-        <finalName>service-utility-api</finalName>
+        <finalName>service-utility</finalName>
 
         <plugins>
             <plugin>

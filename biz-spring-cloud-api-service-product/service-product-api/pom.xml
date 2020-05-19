@@ -22,7 +22,7 @@
     </dependencies>
 
     <build>
-        <finalName>service-product-api</finalName>
+        <finalName>service-product</finalName>
 
         <plugins>
             <plugin>

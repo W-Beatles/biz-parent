@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author zhuwei
  * @date 2020-01-09 22:54
  */
-@FeignClient(name = "service-product-api", path = "/products", fallbackFactory = ProductRemoteFallbackFactory.class)
+@FeignClient(name = "service-product", path = "/products", fallbackFactory = ProductRemoteFallbackFactory.class)
 public interface ProductRemote {
 
     /**

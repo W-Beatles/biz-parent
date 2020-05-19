@@ -18,6 +18,7 @@ docker-compose -f docker-compose-elk.yml start/stop
 docker-compose -f docker-compose-apollo.yml start/stop
 docker-compose -f docker-compose-eureka.yml start/stop
 docker-compose -f docker-compose-service.yml start/stop
+docker-compose -f docker-compose-dashboard.yml start/stop
 ```
 
 ## 初始化容器
@@ -76,14 +77,27 @@ docker-compose -f docker-compose-service.yml start/stop
 
 |  服务           |  服务名          |  端口     |  帐号/密码         |  地址                         |
 |---------------- |-----------------|-----------|------------------|-------------------------------|
-|  注册中心        |   eureka-1      |  9001     |                  |  http://localhost:9001/       |
-|  注册中心        |   eureka-2      |  9002     |                  |  http://localhost:9002/       |
+|  注册中心(peer1) |   eureka-1      |  9001     |                  |  http://localhost:9001/       |
+|  注册中心(peer1) |   eureka-2      |  9002     |                  |  http://localhost:9002/       |
 
-### 5. 普通服务
+### 5. dashboard(包括网关、监控等)
+
+`docker-compose -f docker-compose-dashboard.yml up -d`
+
+|  服务           |  服务名          |  端口     |  帐号/密码         |  地址                                        |
+|---------------- |-----------------|-----------|------------------|----------------------------------------------|
+|  网关           |   inner-gateway |  9011     |                  |  http://localhost:9011/swagger-ui.html        |
+|  监控中心        |   boot-admin    |  9020     |                  |  http://localhost:9020/                      |
+
+### 6. 普通服务
 
 `docker-compose -f docker-compose-service.yml up -d`
 
-|  服务            |  服务名                |  端口     |  帐号/密码         |  地址                                    |
-|------------------|-----------------------|-----------|------------------|------------------------------------------|
-|  订单服务(peer1)  |  service-order-peer1  |  10010    |                  |  http://localhost:10010/swagger-ui.html  |
-|  订单服务(peer2)  |  service-order-peer2  |  10011    |                  |  http://localhost:10011/swagger-ui.html  |
+|  服务            |  服务名                  |  端口     |  帐号/密码         |  地址                                    |
+|------------------|-------------------------|-----------|------------------|------------------------------------------|
+|  订单服务(peer1)  |  service-order-peer1    |  10010    |                  |  http://localhost:10010/swagger-ui.html  |
+|  订单服务(peer2)  |  service-order-peer2    |  10011    |                  |  http://localhost:10011/swagger-ui.html  |
+|  订单服务(peer1)  |  service-product-peer1  |  10020    |                  |  http://localhost:10020/swagger-ui.html  |
+|  订单服务(peer2)  |  service-product-peer2  |  10021    |                  |  http://localhost:10021/swagger-ui.html  |
+|  公共服务(peer1)  |  service-utility-peer1  |  10030    |                  |  http://localhost:10030/swagger-ui.html  |
+|  公共服务(peer2)  |  service-utility-peer2  |  10031    |                  |  http://localhost:10031/swagger-ui.html  |
