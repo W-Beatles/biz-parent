@@ -69,7 +69,7 @@ docker-compose -f docker-compose-dashboard.yml start/stop
 
 |  服务           |  服务名          |  端口     |  帐号/密码         |  地址                         |
 |---------------- |-----------------|-----------|------------------|-------------------------------|
-|  配置中心        |   apollo        |  9070     |  apollo/admin    |  http://localhost:9070/       |
+|  配置中心        |   apollo        |  9070     |  apollo/admin    |  http://localhost:8070/       |
 
 ### 4. eureka注册中心
 

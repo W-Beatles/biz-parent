@@ -1,0 +1,34 @@
+version: '3'
+services:
+  skywalking-oap:
+    image: apache/skywalking-oap-server:7.0.0-es7
+    container_name: skywalking-oap
+    networks:
+      - biz-net
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+    environment:
+      - SW_STORAGE_ES_CLUSTER_NODES=elasticsearch:9200
+
+  skywalking-ui:
+    image: apache/skywalking-ui:7.0.0
+    container_name: skywalking-ui
+    networks:
+      - biz-net
+    depends_on:
+      - skywalking-oap
+    links:
+      - skywalking-oap
+    ports:
+      - 8090:8080
+    environment:
+      - SW_OAP_ADDRESS=skywalking-oap:12800
+
+networks:
+  biz-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

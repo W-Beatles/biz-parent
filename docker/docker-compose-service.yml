@@ -16,7 +16,7 @@ services:
     image: waynechu/service-order:latest
     container_name: service-order-peer2
     networks:
-      biz-net:
+      - biz-net
     ports:
       - 10011:8080
     environment:
@@ -40,7 +40,7 @@ services:
     image: waynechu/service-product:latest
     container_name: service-product-peer2
     networks:
-      biz-net:
+      - biz-net
     ports:
       - 10021:8080
     environment:
@@ -64,7 +64,7 @@ services:
     image: waynechu/service-utility:latest
     container_name: service-utility-peer2
     networks:
-      biz-net:
+      - biz-net
     ports:
       - 10031:8080
     environment:
