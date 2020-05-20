@@ -94,7 +94,7 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
         spring.rabbitmq.port=5672
         spring.rabbitmq.username=waynechu
         spring.rabbitmq.password=123456
-        spring.rabbitmq.virtual-host=/dev
+        spring.rabbitmq.virtual-host=/logback
         spring.rabbitmq.publisher-confirm-type=correlated
         spring.rabbitmq.publisher-returns=true
         spring.rabbitmq.template.mandatory=true

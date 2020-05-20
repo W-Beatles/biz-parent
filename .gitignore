@@ -29,3 +29,4 @@
 
 ### Custom ###
 /docker/data
+/docker/config/skywalking/apache-skywalking-apm-bin/

@@ -9,6 +9,9 @@ services:
         ipv4_address: 172.20.0.201
     ports:
       - 3306:3306   #宿主机与容器的端口映射规则
+    depends_on:   #容器依赖关系
+      - mysql-slave1
+      - mysql-slave2
     volumes:   #数据卷或者文件挂载到容器
       - ./data/mysql/master/mysql:/var/lib/mysql
       - ./data/mysql/master/mysql-files:/var/lib/mysql-files
@@ -27,8 +30,6 @@ services:
         ipv4_address: 172.20.0.202
     ports:
       - 3307:3306
-    depends_on:
-      - mysql-master
     volumes:
       - ./data/mysql/slave1/mysql:/var/lib/mysql
       - ./data/mysql/slave1/mysql-files:/var/lib/mysql-files
@@ -47,8 +48,6 @@ services:
         ipv4_address: 172.20.0.203
     ports:
       - 3308:3306
-    depends_on:
-      - mysql-master
     volumes:
       - ./data/mysql/slave2/mysql:/var/lib/mysql
       - ./data/mysql/slave2/mysql-files:/var/lib/mysql-files
@@ -84,6 +83,297 @@ services:
       - 5672:5672
       - 15672:15672
     env_file: .env   #从文件添加环境变量
+
+  apollo:
+    image: nobodyiam/apollo-quick-start
+    container_name: biz-apollo
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.206
+    ports:
+      - 8080:8080
+      - 8070:8070
+    depends_on:
+      - apollo-db
+
+  apollo-db:
+    image: mysql:5.7
+    container_name: biz-apollo-db
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.207
+    ports:
+      - 3316:3306
+    volumes:
+      - ./data/apollo/mysql:/var/lib/mysql
+      - ./config/apollo:/docker-entrypoint-initdb.d
+
+  inner-gateway:
+    image: waynechu/biz-spring-cloud-gateway:latest
+    container_name: biz-spring-cloud-gateway-inner
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.208
+    ports:
+      - 9011:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=biz-spring-cloud-gateway
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  boot-admin:
+    image: waynechu/biz-spring-boot-admin:latest
+    container_name: biz-spring-boot-admin
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.209
+    ports:
+      - 9020:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=biz-spring-boot-admin
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  elasticsearch:
+    image: elasticsearch:7.5.1
+    container_name: biz-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - TZ=Asia/Shanghai
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.210
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  kibana:
+    image: kibana:7.5.1
+    container_name: biz-kibana
+    volumes:
+      - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.211
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    image: logstash:7.5.1
+    container_name: biz-logstash
+    volumes:
+      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.212
+    ports:
+      - 7002:7002
+    depends_on:
+      - elasticsearch
+      - kibana
+
+  eureka-1:
+    image: waynechu/biz-spring-cloud-eureka:latest
+    container_name: biz-spring-cloud-eureka-1
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.213
+    ports:
+      - 9001:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=biz-spring-cloud-eureka
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+
+  eureka-2:
+    image: waynechu/biz-spring-cloud-eureka:latest
+    container_name: biz-spring-cloud-eureka-2
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.214
+    ports:
+      - 9002:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=biz-spring-cloud-eureka
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+
+  service-order-peer1:
+    image: waynechu/service-order:latest
+    container_name: service-order-peer1
+    networks:
+      - biz-net
+    ports:
+      - 10010:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-order
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+      - mysql-slave2
+      - rabbitmq
+      - redis
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  service-order-peer2:
+    image: waynechu/service-order:latest
+    container_name: service-order-peer2
+    networks:
+      - biz-net
+    ports:
+      - 10011:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-order
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+      - mysql-slave2
+      - rabbitmq
+      - redis
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  service-product-peer1:
+    image: waynechu/service-product:latest
+    container_name: service-product-peer1
+    networks:
+      - biz-net
+    ports:
+      - 10020:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-product
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+      - mysql-slave2
+      - rabbitmq
+      - redis
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  service-product-peer2:
+    image: waynechu/service-product:latest
+    container_name: service-product-peer2
+    networks:
+      - biz-net
+    ports:
+      - 10021:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-product
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+      - mysql-slave2
+      - rabbitmq
+      - redis
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  service-utility-peer1:
+    image: waynechu/service-utility:latest
+    container_name: service-utility-peer1
+    networks:
+      - biz-net
+    ports:
+      - 10030:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-utility
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+      - mysql-slave2
+      - rabbitmq
+      - redis
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  service-utility-peer2:
+    image: waynechu/service-utility:latest
+    container_name: service-utility-peer2
+    networks:
+      - biz-net
+    ports:
+      - 10031:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://172.20.0.206:8080 -Ddev_meta=http://172.20.0.206:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-utility
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://172.20.0.213:8080/eureka/,http://172.20.0.214:8080/eureka/
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+      - mysql-slave2
+      - rabbitmq
+      - redis
+      - apollo
+      - eureka-1
+      - eureka-2
+
+  skywalking-oap:
+    image: apache/skywalking-oap-server:7.0.0-es7
+    container_name: skywalking-oap
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.215
+    ports:
+      - 11800:11800
+      - 12800:12800
+    environment:
+      - SW_STORAGE=elasticsearch7
+      - TZ=Asia/Shanghai
+      - SW_STORAGE_ES_CLUSTER_NODES=172.20.0.210:9200
+    depends_on:
+      - elasticsearch
+
+  skywalking-ui:
+    image: apache/skywalking-ui:7.0.0
+    container_name: skywalking-ui
+    networks:
+      biz-net:
+        ipv4_address: 172.20.0.216
+    ports:
+      - 8090:8080
+    environment:
+      - SW_OAP_ADDRESS=172.20.0.215:12800
+      - TZ=Asia/Shanghai
+    depends_on:
+      - skywalking-oap
 
 networks:
   biz-net:

@@ -1,6 +1,7 @@
-FROM java:alpine
+FROM waynechu/java-skywalking:latest
 LABEL maintainer="waynechu@waynechu.cn"
 LABEL version="0.0.1-SNAPSHOT"
+LABEL description="docker build -t waynechu/service-order . && docker push waynechu/service-order"
 VOLUME /tmp
 ADD service-order.jar /app.jar
 ENV JAVA_OPTS="\
