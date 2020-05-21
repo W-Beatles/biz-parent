@@ -2,7 +2,7 @@ version: '3'
 services:
   mysql-master:
     image: mysql:8.0.12   #镜像
-    container_name: biz-mysql-master   #容器名
+    container_name: mysql-master   #容器名
     restart: always    #重启容器策略: 1.null 默认策略,退出后不重启  2.on-failure 非正常退出会重启,on-failure:3还能指定尝试重启次数  3.always 容器退出时总是重启  4.unless-stopped 在容器退出时总是重启容器,但是不考虑在Docker守护进程启动时就已经停止了的容器
     networks:   #配置容器连接的网络,引用顶级networks下的条目
       biz-net:
@@ -23,7 +23,7 @@ services:
 
   mysql-slave1:
     image: mysql:8.0.12
-    container_name: biz-mysql-slave1
+    container_name: mysql-slave1
     restart: always
     networks:
       biz-net:
@@ -41,7 +41,7 @@ services:
 
   mysql-slave2:
     image: mysql:8.0.12
-    container_name: biz-mysql-slave2
+    container_name: mysql-slave2
     restart: always
     networks:
       biz-net:
@@ -59,7 +59,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: biz-redis
+    container_name: redis
     restart: always
     command: redis-server --requirepass 123456
     volumes:
@@ -72,7 +72,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: biz-rabbitmq
+    container_name: rabbitmq
     restart: always
     volumes:
       - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
@@ -86,7 +86,7 @@ services:
 
   apollo:
     image: nobodyiam/apollo-quick-start
-    container_name: biz-apollo
+    container_name: apollo
     networks:
       biz-net:
         ipv4_address: 172.20.0.206
@@ -98,7 +98,7 @@ services:
 
   apollo-db:
     image: mysql:5.7
-    container_name: biz-apollo-db
+    container_name: apollo-db
     environment:
       TZ: Asia/Shanghai
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
@@ -113,7 +113,7 @@ services:
 
   inner-gateway:
     image: waynechu/biz-spring-cloud-gateway:latest
-    container_name: biz-spring-cloud-gateway-inner
+    container_name: inner-gateway
     networks:
       biz-net:
         ipv4_address: 172.20.0.208
@@ -130,7 +130,7 @@ services:
 
   boot-admin:
     image: waynechu/biz-spring-boot-admin:latest
-    container_name: biz-spring-boot-admin
+    container_name: boot-admin
     networks:
       biz-net:
         ipv4_address: 172.20.0.209
@@ -147,7 +147,7 @@ services:
 
   elasticsearch:
     image: elasticsearch:7.5.1
-    container_name: biz-elasticsearch
+    container_name: elasticsearch
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -168,7 +168,7 @@ services:
 
   kibana:
     image: kibana:7.5.1
-    container_name: biz-kibana
+    container_name: kibana
     volumes:
       - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     networks:
@@ -181,7 +181,7 @@ services:
 
   logstash:
     image: logstash:7.5.1
-    container_name: biz-logstash
+    container_name: logstash
     volumes:
       - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     networks:
@@ -195,7 +195,7 @@ services:
 
   eureka-1:
     image: waynechu/biz-spring-cloud-eureka:latest
-    container_name: biz-spring-cloud-eureka-1
+    container_name: eureka-1
     networks:
       biz-net:
         ipv4_address: 172.20.0.213
@@ -208,7 +208,7 @@ services:
 
   eureka-2:
     image: waynechu/biz-spring-cloud-eureka:latest
-    container_name: biz-spring-cloud-eureka-2
+    container_name: eureka-2
     networks:
       biz-net:
         ipv4_address: 172.20.0.214
