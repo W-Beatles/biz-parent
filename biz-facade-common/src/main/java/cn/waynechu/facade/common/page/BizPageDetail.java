@@ -1,7 +1,6 @@
 package cn.waynechu.facade.common.page;
 
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageSerializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,7 +8,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,7 +19,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(description = "分页详情返回对象")
-public class BizPageDetail<T> extends PageSerializable<T> {
+public class BizPageDetail<T> extends BizPageInfo<T> {
     private static final long serialVersionUID = 4173165387592228326L;
 
     @ApiModelProperty("当前页数")
@@ -124,34 +122,6 @@ public class BizPageDetail<T> extends PageSerializable<T> {
 
     public static <T> BizPageDetail<T> of(List<T> list, int navigatePages) {
         return new BizPageDetail<>(list, navigatePages);
-    }
-
-    /**
-     * 替换pageDetail的list数据
-     *
-     * @param replaceList 替换的数据
-     * @param <E>         替换之后的类型
-     * @return 替换后的pageDetail
-     */
-    @SuppressWarnings("unchecked")
-    public <E> BizPageDetail<E> replace(List<E> replaceList) {
-        BizPageDetail replaceBizPageDetail = this;
-        replaceBizPageDetail.setList(replaceList);
-        return replaceBizPageDetail;
-    }
-
-    /**
-     * 返回空分页信息
-     *
-     * @param pageNum  当前页
-     * @param pageSize 页大小
-     * @return 空分页信息
-     */
-    public BizPageDetail<T> emptyPage(int pageNum, int pageSize) {
-        this.setPageNum(pageNum);
-        this.setPageSize(pageSize);
-        this.setList(Collections.emptyList());
-        return this;
     }
 
     /**
