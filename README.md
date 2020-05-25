@@ -89,21 +89,20 @@ docker-compose stop                    # 停止容器
 
 #### 快速启动
 
-进入docker目录, 执行`docker-compose up -d`，或者`docker-compose up 服务名1 服务名2 -d`启动指定服务，服务名如下: 
-> 注: 1.服务前加*代表必须依赖 2.普通服务的image已经上传docker hub，如果下载较慢，请自行构建相应镜像
+进入docker目录, 执行`docker-compose up -d`，或者`docker-compose up -d 服务名1 服务名2`启动指定服务，服务名如下: 
+> 注:  
+>1. 使用--scale参数可设置水平扩容。如: docker-compose up -d --scale eureka=2 eureka 
+>2. 服务前加*代表必须依赖  
+>3. 普通服务的image已经上传docker hub，如果下载较慢，请自行构建相应镜像  
 
 ```
-// 初始化级别，推荐按以下顺序初始化服务，否则依赖的服务会无法正常启动
-docker-compose up -d apollo elasticsearch -> skywalking-oap kibana -> eureka-1 eureka-2 
-                     -> skywalking-ui boot-admin inner-gateway
-// 初始化剩余服务
-docker-compose up -d
-
-// 启动
-docker-compose start apollo elasticsearch -> skywalking-oap kibana -> eureka-1 eureka-2 
-                     -> skywalking-ui boot-admin inner-gateway
-// 启动剩余服务
-docker-compose start
+// 推荐按以下顺序初始化容器，否则依赖的服务可能会无法正常启动
+1. mysql-master mysql-slave1 mysql-slave2 redis rabbitmq
+2. apollo-db apollo elasticsearch
+3. skywalking-oap logstash kibana
+4. eureka
+5. inner-gateway boot-admin skywalking-ui
+6. other services
 ```
 
 |  服务            |   服务名                 |  端口     |  帐号/密码         |  地址                                     |
@@ -117,19 +116,15 @@ docker-compose start
 |  日志分析工具      |  kibana                |  5601     |                   |  http://localhost:5601                   |
 |  日志收集工具      |  logstash              |  7002     |                   |                                          |
 |  *配置中心        |  apollo                 |  9070     |  apollo/admin     |  http://localhost:8070                  |
-|  *配置中心        |  apollo-mysql           |  3316     |                   |                                         |
-|  *注册中心(peer1) |  eureka-1               |  9001     |                   |  http://localhost:9001                  |
-|  *注册中心(peer1) |  eureka-2               |  9002     |                   |  http://localhost:9002                  |
-|  网关             |  inner-gateway          |  9011     |                   |  http://localhost:9011/swagger-ui.html  |
+|  *配置中心db      |  apollo-db              |  3316     |                   |                                         |
+|  *注册中心        |  eureka                 |  9001     |                   |  http://localhost:9001                  |
+|  网关             |  inner-gateway          |  9011     |                  |  http://localhost:9011/swagger-ui.html   |
 |  监控中心         |  boot-admin             |  9020     |                   |  http://localhost:9020                  |
-|  skywalking      |  skywalking-oap         |  12800    |                   |                                         |
-|  skywalking      |  skywalking-ui          |  8090     |                   |  http://localhost:8090                   |
-|  订单服务(peer1)  |  service-order-peer1    |  10010    |                   |  http://localhost:10010/swagger-ui.html  |
-|  订单服务(peer2)  |  service-order-peer2    |  10011    |                   |  http://localhost:10011/swagger-ui.html  |
-|  订单服务(peer1)  |  service-product-peer1  |  10020    |                   |  http://localhost:10020/swagger-ui.html  |
-|  订单服务(peer2)  |  service-product-peer2  |  10021    |                   |  http://localhost:10021/swagger-ui.html  |
-|  公共服务(peer1)  |  service-utility-peer1  |  10030    |                   |  http://localhost:10030/swagger-ui.html  |
-|  公共服务(peer2)  |  service-utility-peer2  |  10031    |                   |  http://localhost:10031/swagger-ui.html  |
+|  skywalking-oap  |  skywalking-oap         |  12800    |                   |                                         |
+|  skywalking-ui   |  skywalking-ui          |  8090     |                   |  http://localhost:8090                   |
+|  订单服务         |  service-order          |  10010    |                   |  http://localhost:10010/swagger-ui.html  |
+|  订单服务         |  service-product        |  10020    |                   |  http://localhost:10020/swagger-ui.html  |
+|  公共服务         |  service-utility        |  10030    |                   |  http://localhost:10030/swagger-ui.html  |
 
 **扩展:** 配置MySQL主从链路
 
