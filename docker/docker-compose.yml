@@ -115,9 +115,9 @@ services:
     ports:
       - 9011:8080
     environment:
-      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=biz-spring-cloud-gateway
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=biz-spring-cloud-gateway
       - server.port=8080
-      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/
+      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/,http://apollo:8080/eureka/
     depends_on:
       - apollo
       - eureka
@@ -130,9 +130,9 @@ services:
     ports:
       - 9020:8080
     environment:
-      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=biz-spring-boot-admin
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=biz-spring-boot-admin
       - server.port=8080
-      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/
+      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/,http://apollo:8080/eureka/
     depends_on:
       - apollo
       - eureka
@@ -189,9 +189,9 @@ services:
     ports:
       - 9001-9009:8080
     environment:
-      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=biz-spring-cloud-eureka
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=biz-spring-cloud-eureka
       - server.port=8080
-      - eureka.client.service-url.defaultZone=http://eureka:8080/eureka/,http://apollo:8080/eureka/
+      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/,http://apollo:8080/eureka/
 
   skywalking-oap:
     image: apache/skywalking-oap-server:7.0.0-es7
@@ -228,9 +228,9 @@ services:
     ports:
       - 10010-10019:8080
     environment:
-      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-order
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=service-order
       - server.port=8080
-      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/
+      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/,http://apollo:8080/eureka/
     depends_on:
       - mysql-master
       - mysql-slave1
@@ -247,9 +247,9 @@ services:
     ports:
       - 10020-10029:8080
     environment:
-      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-product
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=service-product
       - server.port=8080
-      - eureka.client.service-url.defaultZone=http://apollo:8080/eureka/,http://apollo:8080/eureka/
+      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/,http://apollo:8080/eureka/
     depends_on:
       - mysql-master
       - mysql-slave1
@@ -266,9 +266,9 @@ services:
     ports:
       - 10030-10039:8080
     environment:
-      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=172.20.0.215:11800 -Dskywalking.agent.service_name=service-utility
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=service-utility
       - server.port=8080
-      - eureka.client.service-url.defaultZone=http://apollo:8080/eureka/,http://apollo:8080/eureka/
+      - eureka.client.service-url.defaultZone=http://eureka-1:8080/eureka/,http://eureka-2:8080/eureka/,http://apollo:8080/eureka/
     depends_on:
       - mysql-master
       - mysql-slave1

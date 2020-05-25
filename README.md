@@ -91,7 +91,7 @@ docker-compose stop                    # 停止容器
 
 进入docker目录, 执行`docker-compose up -d`，或者`docker-compose up -d 服务名1 服务名2`启动指定服务，服务名如下: 
 > 注:  
->1. 使用--scale参数可设置水平扩容。如: docker-compose up -d --scale eureka=2 eureka 
+>1. 使用--scale参数可设置水平扩容。如: docker-compose up -d --scale service-order=2 service-order  
 >2. 服务前加*代表必须依赖  
 >3. 普通服务的image已经上传docker hub，如果下载较慢，请自行构建相应镜像  
 
@@ -140,7 +140,7 @@ docker-compose stop                    # 停止容器
 
 2. 登录从库并启动复制链路(从库都需要执行)
     ```
-    change master to master_host='172.20.0.201',master_user='replication',master_password='EiO8Rx4W.T3',master_log_file='mysql-bin.000003',master_log_pos=445,master_port=3306;
+    change master to master_host='mysql-master',master_user='replication',master_password='EiO8Rx4W.T3',master_log_file='mysql-bin.000003',master_log_pos=445,master_port=3306;
     start slave;
     show slave status; -- Slave_IO_Running 和 Slave_SQL_Running 为 YES 代表配置成功
     ```
