@@ -9,7 +9,7 @@ services:
     ports:
       - 3306:3306   #宿主机与容器的端口映射规则
     volumes:   #数据卷或者文件挂载到容器
-      #- ./data/mysql/master/mysql:/var/lib/mysql
+#      - ./data/mysql/master/mysql:/var/lib/mysql
       - ./data/mysql/master/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-master.cnf:/etc/mysql/my.cnf
       - ../sql:/docker-entrypoint-initdb.d/   #MySQL第一次启动时执行会执行该路径下的SQL脚本
@@ -29,7 +29,7 @@ services:
     ports:
       - 3307:3306
     volumes:
-      #- ./data/mysql/slave1/mysql:/var/lib/mysql
+#      - ./data/mysql/slave1/mysql:/var/lib/mysql
       - ./data/mysql/slave1/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-slave1.cnf:/etc/mysql/my.cnf
       - ../sql:/docker-entrypoint-initdb.d/
@@ -46,7 +46,7 @@ services:
     ports:
       - 3308:3306
     volumes:
-      #- ./data/mysql/slave2/mysql:/var/lib/mysql
+#      - ./data/mysql/slave2/mysql:/var/lib/mysql
       - ./data/mysql/slave2/mysql-files:/var/lib/mysql-files
       - ./config/mysql/mysql-slave2.cnf:/etc/mysql/my.cnf
       - ../sql:/docker-entrypoint-initdb.d/
@@ -59,8 +59,8 @@ services:
     container_name: redis
     restart: always
     command: redis-server --requirepass 123456
-      #volumes:
-    #- ./data/redis:/data
+#      volumes:
+#    - ./data/redis:/data
     networks:
       - biz-net
     ports:
@@ -70,8 +70,8 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     restart: always
-      #volumes:
-    #- ./data/rabbitmq:/var/lib/rabbitmq/mnesia
+#      volumes:
+#    - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
     networks:
       - biz-net
     ports:
@@ -101,7 +101,7 @@ services:
     ports:
       - 3316:3306
     volumes:
-      #- ./data/apollo/mysql:/var/lib/mysql
+#      - ./data/apollo/mysql:/var/lib/mysql
       - ./config/apollo:/docker-entrypoint-initdb.d
 
   inner-gateway:
@@ -145,9 +145,9 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
-      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
+#    volumes:
+#      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+#      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
     networks:
       - biz-net
     ports:

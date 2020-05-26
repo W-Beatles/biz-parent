@@ -3,15 +3,15 @@
 
  Source Server         : localhost-3316
  Source Server Type    : MySQL
- Source Server Version : 50729
+ Source Server Version : 50730
  Source Host           : localhost:3316
  Source Schema         : ApolloPortalDB
 
  Target Server Type    : MySQL
- Target Server Version : 50729
+ Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 20/05/2020 00:39:37
+ Date: 26/05/2020 23:52:06
 */
 
 SET NAMES utf8mb4;
