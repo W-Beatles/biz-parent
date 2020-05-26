@@ -10,39 +10,37 @@ SpringCloud微服务开发脚手架
 
 1. biz-boot-starter-dynamic-datasource  
     动态数据源模块。支持读写分离、多数据源动态切换、健康检查
-2. biz-boot-starter-elastic-job  
-    elastic-job starter模块
-3. biz-boot-starter-logger  
+2. biz-boot-starter-logger  
     elk&sentry starter模块。用于日志上传ELK及Sentry报警
-4. biz-facade-common  
+3. biz-facade-common  
     通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
-5. biz-spring-boot-admin  
-    SpringBoot Admin监控模块。
-6. biz-spring-cloud-api-dynamic-datasource-test  
+4. biz-spring-boot-admin  
+    SpringBoot Admin监控模块
+5. biz-spring-cloud-api-dynamic-datasource-test  
     动态数据源测试模块
-7. biz-spring-cloud-api-service-order  
+6. biz-spring-cloud-api-service-order  
     微服务测试模块 - 订单模块
-8. biz-spring-cloud-api-service-product  
+7. biz-spring-cloud-api-service-product  
     微服务测试模块 - 产品测试
-9. biz-spring-cloud-api-service-utility  
+8. biz-spring-cloud-api-service-utility  
     公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
-10. biz-spring-cloud-api-starter  
+9. biz-spring-cloud-api-starter  
     spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
-11. biz-spring-cloud-archetype  
+10.biz-spring-cloud-archetype  
      用于一键生成spring-cloud项目基础开发骨架。可开箱即用，直接编写业务代码即可
-12. biz-spring-cloud-common  
+11.biz-spring-cloud-common  
      spring-cloud项目通用类库
-13. ~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
+12.~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
      推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
-14. biz-spring-cloud-dashboard-turbine  
+13.biz-spring-cloud-dashboard-turbine  
      用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
-15. biz-spring-cloud-eureka  
+14.biz-spring-cloud-eureka  
      Eureka注册中心
-16. biz-spring-cloud-gateway  
+15.biz-spring-cloud-gateway  
      API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
-17. biz-spring-cloud-oauth-server  
+16.biz-spring-cloud-oauth-server  
      oauth2统一认证授权中心
-18. biz-spring-cloud-test  
+17.biz-spring-cloud-test  
      测试模块
 
 ### TODO LIST
@@ -90,41 +88,45 @@ docker-compose stop                    # 停止容器
 #### 快速启动
 
 进入docker目录, 执行`docker-compose up -d`，或者`docker-compose up -d 服务名1 服务名2`启动指定服务，服务名如下: 
-> 注:  
->1. 使用--scale参数可设置水平扩容。如: docker-compose up -d --scale service-order=2 service-order  
->2. 服务前加*代表必须依赖  
->3. 普通服务的image已经上传docker hub，如果下载较慢，请自行构建相应镜像  
 
-```
-// 推荐按以下顺序初始化容器，否则依赖的服务可能会无法正常启动
-1. mysql-master mysql-slave1 mysql-slave2 redis rabbitmq
-2. apollo-db apollo elasticsearch
-3. skywalking-oap logstash kibana
-4. eureka
-5. inner-gateway boot-admin skywalking-ui
-6. other services
-```
+说明:  
+1. 使用--scale参数可设置水平扩容。如: docker-compose up -d --scale service-order=2 service-order  
+2. 服务前加*代表必须依赖  
+3. 普通服务的image已经上传docker hub，如果下载较慢，请自行构建相应镜像  
+    ```
+    cd ./biz-parent/biz-spring-cloud-api-service-order/docker/
+    docker build -t waynechu/service-order .
+    ```
+4. 依赖之前存在依赖关系，depends_on无法决定依赖的服务是否完全启动。推荐按以下顺序初始化容器：  
+    - mysql-master mysql-slave1 mysql-slave2 redis rabbitmq  
+    - apollo-db apollo elasticsearch  
+    - skywalking-oap logstash kibana  
+    - eureka  
+    - inner-gateway boot-admin skywalking-ui  
+    - other services  
 
-|  服务            |   服务名                 |  端口     |  帐号/密码         |  地址                                     |
-|------------------|-------------------------|-----------|-------------------|------------------------------------------|
-|  *数据库(主)      |   mysql-master          |  3306     |  waynechu/123456  |                                          |
-|  *数据库(从)      |   mysql-slave1          |  3307     |  waynechu/123456  |                                          |
-|  *数据库(从)      |   mysql-slave2          |  3308     |  waynechu/123456  |                                          |
-|  *KV缓存          |   redis                |  6379      |  123456          |                                          |
-|  *消息中间件      |   rabbitmq              |  5672     |  waynechu/123456  |  http://localhost:15672                  |
-|  搜索引擎         |  elasticsearch          |  9200     |                   |                                          |
-|  日志分析工具      |  kibana                |  5601     |                   |  http://localhost:5601                   |
-|  日志收集工具      |  logstash              |  7002     |                   |                                          |
-|  *配置中心        |  apollo                 |  9070     |  apollo/admin     |  http://localhost:8070                  |
-|  *配置中心db      |  apollo-db              |  3316     |                   |                                         |
-|  *注册中心        |  eureka                 |  9001     |                   |  http://localhost:9001                  |
-|  网关             |  inner-gateway          |  9011     |                  |  http://localhost:9011/swagger-ui.html   |
-|  监控中心         |  boot-admin             |  9020     |                   |  http://localhost:9020                  |
-|  skywalking-oap  |  skywalking-oap         |  12800    |                   |                                         |
-|  skywalking-ui   |  skywalking-ui          |  8090     |                   |  http://localhost:8090                   |
-|  订单服务         |  service-order          |  10010    |                   |  http://localhost:10010/swagger-ui.html  |
-|  订单服务         |  service-product        |  10020    |                   |  http://localhost:10020/swagger-ui.html  |
-|  公共服务         |  service-utility        |  10030    |                   |  http://localhost:10030/swagger-ui.html  |
+-----------------
+
+|  服务            |   服务名                 |  端口        |  帐号/密码         |  地址                                     |
+|------------------|-------------------------|--------------|-------------------|------------------------------------------|
+|  *数据库(主)      |   mysql-master          |  3306        |  waynechu/123456  |                                          |
+|  *数据库(从)      |   mysql-slave1          |  3307        |  waynechu/123456  |                                          |
+|  *数据库(从)      |   mysql-slave2          |  3308        |  waynechu/123456  |                                          |
+|  *KV缓存          |   redis                |  6379         |  123456           |                                         |
+|  *消息中间件      |   rabbitmq              |  5672        |   waynechu/123456  |  http://localhost:15672                 |
+|  搜索引擎         |  elasticsearch          |  9200        |                   |                                          |
+|  日志分析工具      |  kibana                |  5601         |                   |  http://localhost:5601                  |
+|  日志收集工具      |  logstash              |  7002         |                   |                                         |
+|  *配置中心        |  apollo                 |  9070        |  apollo/admin     |  http://localhost:8070                  |
+|  *配置中心db      |  apollo-db              |  3316        |                   |                                         |
+|  *注册中心        |  eureka                 |  9001-9009   |                   |  http://localhost:9001                  |
+|  网关             |  inner-gateway          |  9011        |                   |  http://localhost:9011/swagger-ui.html  |
+|  监控中心         |  boot-admin             |  9020        |                   |  http://localhost:9020                   |
+|  skywalking-oap  |  skywalking-oap         |  12800       |                   |                                          |
+|  skywalking-ui   |  skywalking-ui          |  8090        |                   |  http://localhost:8090                   |
+|  订单服务         |  service-order          |  10010-10019 |                   |  http://localhost:10010/swagger-ui.html  |
+|  订单服务         |  service-product        |  10020-10029 |                   |  http://localhost:10020/swagger-ui.html  |
+|  公共服务         |  service-utility        |  10030-10039 |                   |  http://localhost:10030/swagger-ui.html  |
 
 **扩展:** 配置MySQL主从链路
 

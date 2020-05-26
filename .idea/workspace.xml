@@ -6,18 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="a5c955b1-ec1a-4963-8f90-b69978c4ab60" name="Default Changelist" comment="work(docker): 初始化数据库脚本">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docker/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/config/apollo/ApolloConfigDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/apollo/ApolloConfigDB.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/config/apollo/ApolloPortalDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/apollo/ApolloPortalDB.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/config/kibana/kibana.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/kibana/kibana.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/config/logstash/logstash.conf" beforeDir="false" afterPath="$PROJECT_DIR$/docker/config/logstash/logstash.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose-apollo.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-apollo.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose-dashboard.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-dashboard.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose-elk.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-elk.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose-eureka.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-eureka.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose-skywalking.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose-skywalking.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/src/main/java/cn/waynechu/bootstarter/elasticjob/ElasticJobAutoConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/src/main/java/cn/waynechu/bootstarter/elasticjob/ElasticJobBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/src/main/java/cn/waynechu/bootstarter/elasticjob/ElasticJobProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/biz-boot-starter-elastic-job/src/main/resources/META-INF/spring.factories" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +102,7 @@
     </option>
     <option name="enabledProfiles">
       <list>
-        <option value="local" />
+        <option value="work" />
       </list>
     </option>
   </component>
@@ -134,7 +130,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docker/config/apollo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/biz-boot-starter-logger" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -142,6 +138,9 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.29441625" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -526,12 +525,9 @@
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="docker" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="service" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -664,27 +660,12 @@
       <workItem from="1589521976007" duration="3131000" />
       <workItem from="1589525974308" duration="13646000" />
       <workItem from="1589786987348" duration="9783000" />
-    </task>
-    <task id="LOCAL-00032" summary="docs(biz-parent): 添加TODO LIST">
-      <created>1567752719131</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1567752719131</updated>
-    </task>
-    <task id="LOCAL-00033" summary="perf(biz-spring-cloud-api-starter): 移除RedisCacheAutoConfiguration">
-      <created>1568115743726</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1568115743726</updated>
-    </task>
-    <task id="LOCAL-00034" summary="work(biz-spring-cloud-api-starter): 添加分布式锁注解">
-      <created>1568637041241</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1568637041241</updated>
+      <workItem from="1590027548483" duration="13724000" />
+      <workItem from="1590112642930" duration="2762000" />
+      <workItem from="1590390745226" duration="2740000" />
+      <workItem from="1590403650426" duration="46000" />
+      <workItem from="1590409598332" duration="2394000" />
+      <workItem from="1590490394517" duration="2223000" />
     </task>
     <task id="LOCAL-00035" summary="feat(biz-spring-cloud-api-starter|biz-spring-cloud-common): 完成分布式锁注解实现; 添加SPEL解析工具类">
       <created>1568706576798</created>
@@ -1008,7 +989,28 @@
       <option name="project" value="LOCAL" />
       <updated>1589530927694</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="perf(docker-compose): 优化compose脚本">
+      <created>1590046536339</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1590046536340</updated>
+    </task>
+    <task id="LOCAL-00082" summary="perf(biz-facade-common): 分页工具类优化">
+      <created>1590394824568</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1590394824568</updated>
+    </task>
+    <task id="LOCAL-00083" summary="perf(docker): docker-compose优化">
+      <created>1590491378453</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1590491378454</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1081,9 +1083,6 @@
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-service-utility" />
       <path value="$PROJECT_DIR$/biz-spring-cloud-api-utility-service" />
     </ignored-roots>
-    <MESSAGE value="perf(biz-parent): 修复选择默认数据源错误的问题; 完善product模块" />
-    <MESSAGE value="perf(biz-parent): 修改eureka健康检查方式，使用actuator替换心跳检测; 开启/actuator/shutdown端点" />
-    <MESSAGE value="perf(biz-parent): 修改ribbon.retryableStatusCodes为404,502" />
     <MESSAGE value="perf(biz-facade-common): 分页工具优化" />
     <MESSAGE value="doc(biz-parent): 文档完善" />
     <MESSAGE value="work(biz-spring-cloud-oauth-server): 完善oauth-server模块" />
@@ -1106,7 +1105,10 @@
     <MESSAGE value="feat(biz-spring-cloud-api-starter): 添加excel下载工具，excel下载异步、组件化" />
     <MESSAGE value="fix(biz-spring-cloud-api-service-utility): 修复artifactId错误导致无法打包问题" />
     <MESSAGE value="feat(service-order-api): 添加apollo动态配置测试类" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(service-order-api): 添加apollo动态配置测试类" />
+    <MESSAGE value="perf(docker-compose): 优化compose脚本" />
+    <MESSAGE value="perf(biz-facade-common): 分页工具类优化" />
+    <MESSAGE value="perf(docker): docker-compose优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="perf(docker): docker-compose优化" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2510" y="19" width="753" height="710" key="#(10001)_dynamic-datasource-test-api" timestamp="1589794151577">
@@ -1171,14 +1173,14 @@
     </state>
     <state x="2588" y="253" key="#Docker-Basic/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589005203023" />
     <state x="2472" y="179" key="#Docker/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589005441367" />
-    <state x="2472" y="179" key="#Project_Structure" timestamp="1589511450832">
+    <state x="2472" y="179" key="#Project_Structure" timestamp="1590491651695">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2472" y="179" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589511450832" />
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589906549616">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2472" y="179" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590491651695" />
+    <state x="2090" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590049875044">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2090" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589797059458" />
+    <state x="2090" y="237" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590049875044" />
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589906549616" />
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583497519605" />
     <state x="677" y="327" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582982521264">
@@ -1238,10 +1240,10 @@
     </state>
     <state x="2313" y="289" key="#xdebugger.evaluate/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589010566239" />
     <state x="393" y="292" key="#xdebugger.evaluate/0.0.1920.1049@0.0.1920.1049" timestamp="1583492042748" />
-    <state x="2410" y="110" key="CommitChangelistDialog2" timestamp="1589797301201">
+    <state x="2410" y="110" key="CommitChangelistDialog2" timestamp="1590492709300">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2410" y="110" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589797301201" />
+    <state x="2410" y="110" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492709300" />
     <state x="319" y="102" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585150174573" />
     <state x="157" y="102" key="CommitChangelistDialog2/0.0.1920.1049@0.0.1920.1049" timestamp="1583515510278" />
     <state width="977" height="463" key="DebuggerActiveHint" timestamp="1589010369502">
@@ -1250,67 +1252,67 @@
     <state width="977" height="463" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589010369502" />
     <state width="977" height="463" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1585149885630" />
     <state width="977" height="466" key="DebuggerActiveHint/0.0.1920.1049@0.0.1920.1049" timestamp="1583491908339" />
-    <state x="2104" y="86" width="1536" height="861" key="DiffContextDialog" timestamp="1589797246735">
+    <state x="2070" y="179" width="1536" height="861" key="DiffContextDialog" timestamp="1590492631512">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2104" y="86" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589797246735" />
+    <state x="2070" y="179" width="1536" height="861" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492631512" />
     <state x="184" y="86" width="1536" height="859" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585150172850" />
     <state x="259" y="105" width="1536" height="756" key="DiffContextDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1583515456641" />
     <state x="2718" y="409" key="DockerComposeFileDialog" timestamp="1589011218014">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2718" y="409" key="DockerComposeFileDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589011218014" />
-    <state x="2432" y="270" key="FileChooserDialogImpl" timestamp="1589531243956">
+    <state x="2432" y="270" key="FileChooserDialogImpl" timestamp="1590491648582">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2432" y="270" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589531243956" />
+    <state x="2432" y="270" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590491648582" />
     <state x="512" y="272" key="FileChooserDialogImpl/0.0.1920.1049@0.0.1920.1049" timestamp="1582801449205" />
-    <state width="1877" height="222" key="GridCell.Tab.0.bottom" timestamp="1589906558749">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1531" height="308" key="GridCell.Tab.0.bottom" timestamp="1589970741270">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="272" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284056" />
+    <state width="1531" height="308" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741270" />
     <state width="1877" height="222" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558749" />
     <state width="1527" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1877" height="222" key="GridCell.Tab.0.center" timestamp="1589906558748">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1531" height="308" key="GridCell.Tab.0.center" timestamp="1589970741269">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="272" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284055" />
+    <state width="1531" height="308" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741269" />
     <state width="1877" height="222" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558748" />
     <state width="1527" height="298" key="GridCell.Tab.0.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1877" height="222" key="GridCell.Tab.0.left" timestamp="1589906558748">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1531" height="308" key="GridCell.Tab.0.left" timestamp="1589970741269">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="272" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284055" />
+    <state width="1531" height="308" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741269" />
     <state width="1877" height="222" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558748" />
     <state width="1527" height="298" key="GridCell.Tab.0.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1877" height="222" key="GridCell.Tab.0.right" timestamp="1589906558749">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1531" height="308" key="GridCell.Tab.0.right" timestamp="1589970741269">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="272" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589795284055" />
+    <state width="1531" height="308" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741269" />
     <state width="1877" height="222" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589906558749" />
     <state width="1527" height="298" key="GridCell.Tab.0.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1531" height="266" key="GridCell.Tab.1.bottom" timestamp="1589535813792">
+    <state width="1531" height="308" key="GridCell.Tab.1.bottom" timestamp="1589970741271">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1531" height="266" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589535813792" />
+    <state width="1531" height="308" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741271" />
     <state width="1502" height="310" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="298" key="GridCell.Tab.1.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1531" height="266" key="GridCell.Tab.1.center" timestamp="1589535813792">
+    <state width="1531" height="308" key="GridCell.Tab.1.center" timestamp="1589970741270">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1531" height="266" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589535813792" />
+    <state width="1531" height="308" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741270" />
     <state width="1502" height="310" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="298" key="GridCell.Tab.1.center/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1531" height="266" key="GridCell.Tab.1.left" timestamp="1589535813792">
+    <state width="1531" height="308" key="GridCell.Tab.1.left" timestamp="1589970741270">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1531" height="266" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589535813792" />
+    <state width="1531" height="308" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741270" />
     <state width="1502" height="310" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="298" key="GridCell.Tab.1.left/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
-    <state width="1531" height="266" key="GridCell.Tab.1.right" timestamp="1589535813792">
+    <state width="1531" height="308" key="GridCell.Tab.1.right" timestamp="1589970741270">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1531" height="266" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589535813792" />
+    <state width="1531" height="308" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589970741270" />
     <state width="1502" height="310" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="298" key="GridCell.Tab.1.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583515512761" />
     <state width="1502" height="310" key="GridCell.Tab.2.bottom" timestamp="1585149915376">
@@ -1333,13 +1335,14 @@
     </state>
     <state width="1502" height="310" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585149915376" />
     <state width="1527" height="293" key="GridCell.Tab.2.right/0.0.1920.1049@0.0.1920.1049" timestamp="1583497256363" />
-    <state x="2520" y="218" key="NewModule_or_Project.wizard" timestamp="1589530439538">
+    <state x="2520" y="218" key="NewModule_or_Project.wizard" timestamp="1590491650083">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2520" y="218" key="NewModule_or_Project.wizard/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589530439538" />
-    <state x="524" y="233" key="RollbackChangesDialog" timestamp="1584634183778">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2520" y="218" key="NewModule_or_Project.wizard/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590491650083" />
+    <state x="2444" y="233" key="RollbackChangesDialog" timestamp="1590491341043">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="2444" y="233" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590491341043" />
     <state x="524" y="233" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584634183778" />
     <state x="524" y="235" key="RollbackChangesDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1582986322428" />
     <state x="2522" y="182" key="SettingsEditor" timestamp="1589530440580">
@@ -1369,10 +1372,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2400" y="256" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589525543274" />
-    <state x="534" y="296" width="1263" height="744" key="find.popup" timestamp="1589902080666">
+    <state x="292" y="31" width="1504" height="995" key="dock-window-1" timestamp="1590490427927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2454" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589794589962" />
+    <state x="292" y="31" width="1504" height="995" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590490427927" />
+    <state x="1944" y="292" width="1263" height="744" key="find.popup" timestamp="1590492136760">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1944" y="292" width="1263" height="744" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590492136760" />
     <state x="534" y="296" width="1263" height="744" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589902080666" />
     <state x="534" y="299" width="1263" height="750" key="find.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583492457668" />
     <state width="650" height="123" key="javadoc.popup.new" timestamp="1589010699883">
@@ -1389,10 +1396,10 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583328762165" />
-    <state x="2543" y="225" width="672" height="679" key="search.everywhere.popup" timestamp="1589528590721">
+    <state x="2543" y="225" width="672" height="679" key="search.everywhere.popup" timestamp="1590059912475">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2543" y="225" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589528590721" />
+    <state x="2543" y="225" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1590059912475" />
     <state x="623" y="225" width="672" height="679" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584867036774" />
     <state x="623" y="227" width="672" height="684" key="search.everywhere.popup/0.0.1920.1049@0.0.1920.1049" timestamp="1583510071897" />
   </component>
