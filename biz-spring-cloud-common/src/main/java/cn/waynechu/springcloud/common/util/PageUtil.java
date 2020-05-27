@@ -93,6 +93,38 @@ public class PageUtil {
         return returnValue;
     }
 
+    /**
+     * 根据页数和页大小获取起始行数
+     *
+     * @param pageNum  页数(1 ~ N+)
+     * @param pageSize 页大小
+     * @return 起始行数(0 ~ N +)
+     */
+    public Integer toFrom(Integer pageNum, Integer pageSize) {
+        if (pageNum < 1) {
+            throw new IllegalArgumentException("页数不能小于1");
+        }
+        return (pageNum - 1) * pageSize;
+    }
+
+    /**
+     * 计算总页数
+     *
+     * @param total    总大小
+     * @param pageSize 页大小
+     * @return 总页数
+     */
+    public Integer getPage(Integer total, Integer pageSize) {
+        int pages;
+        long remainder = total % pageSize;
+        if (remainder > 0) {
+            pages = Math.toIntExact(total / pageSize + 1);
+        } else {
+            pages = Math.toIntExact(total / pageSize);
+        }
+        return pages;
+    }
+
     public static void main(String[] args) {
         List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
         List<Integer> page = PageUtil.getPage(integers, 1, 5);
