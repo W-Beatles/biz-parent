@@ -1,4 +1,4 @@
-package com.waynechu;
+package com.waynechu.dynamicdatasource;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @MapperScan("com.waynechu.dynamicdatasource.dal.mapper")
-@SpringBootApplication(scanBasePackages = {"com.waynechu"})
+@SpringBootApplication
 public class StartMain {
 
     public static void main(String[] args) {

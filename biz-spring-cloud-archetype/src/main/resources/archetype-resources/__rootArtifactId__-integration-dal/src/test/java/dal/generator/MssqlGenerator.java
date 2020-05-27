@@ -4,13 +4,9 @@
 
 package ${package}.dal.generator;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
-import com.baomidou.mybatisplus.generator.config.rules.DbType;
+import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 public class MssqlGenerator {
@@ -59,7 +55,7 @@ public class MssqlGenerator {
         gc.setXmlName("%sMapper");
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
-        gc.setEntitySuffix("%sDAO");
+        gc.setEntityName("%sDAO");
         mpg.setGlobalConfig(gc);
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
@@ -72,7 +68,7 @@ public class MssqlGenerator {
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         //        strategy.setTablePrefix("app_");// 此处可以修改为您的表前缀
-        strategy.setNaming(NamingStrategy.nochange);// 表名生成策略
+        strategy.setNaming(NamingStrategy.no_change);// 表名生成策略
         strategy.setInclude(includeTables); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类

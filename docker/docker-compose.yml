@@ -219,7 +219,7 @@ services:
       - skywalking-oap
 
   service-order:
-    image: waynechu/service-order:latest
+    image: waynechu/biz-spring-cloud-api-service-order:latest
     networks:
       - biz-net
     ports:
@@ -238,7 +238,7 @@ services:
       - eureka
 
   service-product:
-    image: waynechu/service-product:latest
+    image: waynechu/biz-spring-cloud-api-service-product:latest
     networks:
       - biz-net
     ports:
@@ -257,7 +257,7 @@ services:
       - eureka
 
   service-utility:
-    image: waynechu/service-utility:latest
+    image: waynechu/biz-spring-cloud-api-service-utility:latest
     networks:
       - biz-net
     ports:

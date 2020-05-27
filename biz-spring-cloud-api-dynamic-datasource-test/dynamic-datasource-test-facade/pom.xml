@@ -5,7 +5,7 @@
 
     <parent>
         <groupId>com.waynechu</groupId>
-        <artifactId>dynamic-datasource-test-parent</artifactId>
+        <artifactId>biz-spring-cloud-api-dynamic-datasource-test</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

@@ -1,0 +1,1 @@
+package com.waynechu.dynamicdatasource.remote.feign;

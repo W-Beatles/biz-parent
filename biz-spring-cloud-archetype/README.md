@@ -5,7 +5,7 @@
 2. 该基础jar包可deploy到公司的maven库中，这样开发同学直接使用脚本即可构建项目基础骨架
 
 ### 使用方法
-进入`../scripts/CreateProject-latest.bat`所在目录，执行命令 `CreateProject-latest.bat 项目名 包名`
+进入`../script/CreateProject-latest.bat`目录，执行命令 `CreateProject-latest.bat 项目名 包名`
 
 例如:
 ```shell

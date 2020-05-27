@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -20,12 +20,15 @@
 
     <properties>
         <maven.test.skip>true</maven.test.skip>
+        <dockerfile.skip>true</dockerfile.skip>
+
+        <docker-image.prefix>waynechu</docker-image.prefix>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <apollo-client.version>1.4.0</apollo-client.version>
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
+        <apollo-client.version>1.4.0</apollo-client.version>
         <spring-cloud-dependencies.version>Hoxton.SR2</spring-cloud-dependencies.version>
         <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
         <dubbo.version>2.7.3</dubbo.version>
@@ -78,6 +81,11 @@
         <module>biz-spring-cloud-archetype</module>
         <module>biz-spring-cloud-common</module>
         <module>biz-spring-cloud-api-starter</module>
+
+        <module>biz-spring-cloud-api-dynamic-datasource-test</module>
+        <module>biz-spring-cloud-api-service-order</module>
+        <module>biz-spring-cloud-api-service-product</module>
+        <module>biz-spring-cloud-api-service-utility</module>
     </modules>
 
     <repositories>
@@ -391,29 +399,13 @@
                     <groupId>com.spotify</groupId>
                     <artifactId>dockerfile-maven-plugin</artifactId>
                     <version>${dockerfile-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>build-image</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>push-image</id>
-                            <phase>deploy</phase>
-                            <goals>
-                                <goal>push</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
     <profiles>
-        <!-- 本地开发环境 -->
+        <!-- ??????????? -->
         <profile>
             <id>local</id>
             <properties>
@@ -423,28 +415,28 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-        <!-- 开发环境 -->
+        <!-- ???????? -->
         <profile>
             <id>work</id>
             <properties>
                 <profiles.active>work</profiles.active>
             </properties>
         </profile>
-        <!-- 测试环境 -->
+        <!-- ??????? -->
         <profile>
             <id>test</id>
             <properties>
                 <profiles.active>test</profiles.active>
             </properties>
         </profile>
-        <!-- 预发布环境 -->
+        <!-- ????????? -->
         <profile>
             <id>ut</id>
             <properties>
                 <profiles.active>ut</profiles.active>
             </properties>
         </profile>
-        <!-- 生产环境 -->
+        <!-- ???????? -->
         <profile>
             <id>prd</id>
             <properties>

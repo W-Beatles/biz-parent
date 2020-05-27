@@ -1,4 +1,4 @@
-package com.waynechu;
+package com.waynechu.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = {"com.waynechu"})
+@SpringBootApplication
 public class StartMain {
 
     public static void main(String[] args) {

@@ -5,13 +5,12 @@
 
     <parent>
         <groupId>${groupId}</groupId>
-        <artifactId>${rootArtifactId}-parent</artifactId>
+        <artifactId>biz-spring-cloud-api-${rootArtifactId}</artifactId>
         <version>${version}</version>
     </parent>
 
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
-
     <name>${artifactId}</name>
     <description>${artifactId} module for SpringCloud</description>
 

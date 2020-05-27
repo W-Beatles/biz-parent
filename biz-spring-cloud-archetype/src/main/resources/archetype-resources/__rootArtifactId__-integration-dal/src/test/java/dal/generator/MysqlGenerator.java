@@ -4,17 +4,13 @@
 
 package ${package}.dal.generator;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
-import com.baomidou.mybatisplus.generator.config.rules.DbType;
+import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 public class MysqlGenerator {
-	
+
 	/**
 	 * 生成文件所在目录
 	 */
@@ -39,9 +35,9 @@ public class MysqlGenerator {
 	 * 要生成代码的数据表
 	 */
 	private static final String[] includeTables = new String[] {"tbl_order"};
-	
-	
-	
+
+
+
     public static void main(String[] args) {
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
@@ -59,7 +55,7 @@ public class MysqlGenerator {
         gc.setXmlName("%Mapper");
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
-        gc.setEntitySuffix("%sDO");
+        gc.setEntityName("%sDAO");
         mpg.setGlobalConfig(gc);
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
@@ -120,11 +116,11 @@ public class MysqlGenerator {
         pc.setService("service");
         pc.setServiceImpl("service.impl");
         mpg.setPackageInfo(pc);
-        
+
         TemplateConfig tc  = new TemplateConfig();
         tc.setController(null);
         mpg.setTemplate(tc);
-        
+
         mpg.execute();
     }
 }

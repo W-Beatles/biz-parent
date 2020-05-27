@@ -10,12 +10,12 @@
     </parent>
 
     <groupId>com.waynechu</groupId>
-    <artifactId>dynamic-datasource-test-parent</artifactId>
+    <artifactId>biz-spring-cloud-api-dynamic-datasource-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>dynamic-datasource-test-parent</name>
-    <description>dynamic-datasource-test parent</description>
+    <name>biz-spring-cloud-api-dynamic-datasource-test</name>
+    <description>biz-spring-cloud-api-dynamic-datasource-test parent</description>
 
     <repositories>
         <repository>

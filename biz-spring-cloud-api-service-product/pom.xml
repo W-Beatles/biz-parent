@@ -10,12 +10,12 @@
     </parent>
 
     <groupId>com.waynechu</groupId>
-    <artifactId>service-product-parent</artifactId>
+    <artifactId>biz-spring-cloud-api-service-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>service-product-parent</name>
-    <description>service-product parent</description>
+    <name>biz-spring-cloud-api-service-product</name>
+    <description>biz-spring-cloud-api-service-product parent</description>
 
     <repositories>
         <repository>

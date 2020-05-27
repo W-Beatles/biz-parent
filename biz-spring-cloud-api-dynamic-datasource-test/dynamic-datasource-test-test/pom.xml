@@ -5,7 +5,7 @@
 
     <parent>
         <groupId>com.waynechu</groupId>
-        <artifactId>dynamic-datasource-test-parent</artifactId>
+        <artifactId>biz-spring-cloud-api-dynamic-datasource-test</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -16,18 +16,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.waynechu</groupId>
-            <artifactId>dynamic-datasource-test-common</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.waynechu</groupId>
             <artifactId>dynamic-datasource-test-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.waynechu</groupId>
-            <artifactId>dynamic-datasource-test-facade</artifactId>
         </dependency>
     </dependencies>
 </project>
