@@ -30,6 +30,7 @@ public interface BloomOperations<K, V> {
      * @param values 值列表
      * @return true if success
      */
+    @SuppressWarnings("unchecked")
     Boolean[] addMulti(K key, V... values);
 
     /**

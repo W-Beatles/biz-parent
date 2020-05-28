@@ -37,6 +37,7 @@ public class DefaultBloomOperations<K, V> extends AbstractOperations<K, V> imple
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Boolean[] addMulti(K key, V... values) {
         byte[][] rawArgs = rawArgs(key, values);
         return execute(connection -> {
