@@ -59,7 +59,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repository>${docker-image.prefix}/${project.parent.artifactId}</repository>
+                    <repository>${docker.registry}/${docker-image.prefix}/${project.parent.artifactId}</repository>
                     <tag>${project.version}</tag>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                     <buildArgs>

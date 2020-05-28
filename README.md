@@ -8,39 +8,39 @@ SpringCloud微服务开发脚手架
 
 > 注: 详细介绍请参考各模块的 **README.md** 文档
 
-1. biz-boot-starter-dynamic-datasource  
-    动态数据源模块。支持读写分离、多数据源动态切换、健康检查
-2. biz-boot-starter-logger  
-    elk&sentry starter模块。用于日志上传ELK及Sentry报警
-3. biz-facade-common  
-    通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
-4. biz-spring-boot-admin  
-    SpringBoot Admin监控模块
-5. biz-spring-cloud-api-dynamic-datasource-test  
-    动态数据源测试模块
-6. biz-spring-cloud-api-service-order  
-    微服务测试模块 - 订单模块
-7. biz-spring-cloud-api-service-product  
-    微服务测试模块 - 产品测试
-8. biz-spring-cloud-api-service-utility  
-    公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
-9. biz-spring-cloud-api-starter  
-    spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
-10.biz-spring-cloud-archetype  
-     用于一键生成spring-cloud项目基础开发骨架。可开箱即用，直接编写业务代码即可
-11.biz-spring-cloud-common  
-     spring-cloud项目通用类库
-12.~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
-     推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
-13.biz-spring-cloud-dashboard-turbine  
-     用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
-14.biz-spring-cloud-eureka  
-     Eureka注册中心
-15.biz-spring-cloud-gateway  
-     API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
-16.biz-spring-cloud-oauth-server  
-     oauth2统一认证授权中心
-17.biz-spring-cloud-test  
+1.  biz-boot-starter-dynamic-datasource  
+     动态数据源模块。支持读写分离、多数据源动态切换、健康检查
+2.  biz-boot-starter-logger  
+     elk&sentry starter模块。用于日志上传ELK及Sentry报警
+3.  biz-facade-common  
+     通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
+4.  biz-spring-boot-admin  
+     SpringBoot Admin监控模块
+5.  biz-spring-cloud-api-dynamic-datasource-test  
+     动态数据源测试模块
+6.  biz-spring-cloud-api-service-order  
+     微服务测试模块 - 订单模块
+7.  biz-spring-cloud-api-service-product  
+     微服务测试模块 - 产品测试
+8.  biz-spring-cloud-api-service-utility  
+     公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
+9.  biz-spring-cloud-api-starter  
+     spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
+10. biz-spring-cloud-archetype  
+      用于一键生成spring-cloud项目基础开发骨架。可开箱即用，直接编写业务代码即可
+11. biz-spring-cloud-common  
+      spring-cloud项目通用类库
+12. ~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
+      推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
+13. biz-spring-cloud-dashboard-turbine  
+      用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
+14. biz-spring-cloud-eureka  
+      Eureka注册中心
+15. biz-spring-cloud-gateway  
+      API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
+16. biz-spring-cloud-oauth-server  
+      oauth2统一认证授权中心
+17. biz-spring-cloud-test  
      测试模块
 
 ### TODO LIST
@@ -56,7 +56,7 @@ SpringCloud微服务开发脚手架
 3. 完善动态数据源模块  
    - ~~支持注解声明式指定数据源~~
    - 集成`seata`分布式事务解决方案
-5. 添加文件上传模块 `biz-spring-cloud-file-upload`，并提供基础SDK  
+5. 添加文件上传模块 `biz-spring-cloud-api-file-upload`，并提供基础SDK  
    - 支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储  
 6. ~~添加统一认证鉴权模块biz-spring-cloud-oauth-server(待完善)~~  
 7. SpringCloud Gateway网关支持多种业务渠道认证和授权。如企业微信，Oauth2等  
@@ -87,19 +87,21 @@ docker-compose stop                    # 停止容器
 
 #### 快速启动
 
-进入docker目录, 执行`docker-compose up -d`，或者`docker-compose up -d 服务名1 服务名2`启动指定服务，服务名如下: 
+进入`./docker`目录, 执行`docker-compose up -d`，或者`docker-compose up -d 服务名1 服务名2`启动指定服务，服务名如下: 
 
 说明:  
-1. 使用--scale参数可设置水平扩容。如: docker-compose up -d --scale service-order=2 service-order  
-2. 服务前加*代表必须依赖  
-3. 普通服务的image已经上传docker hub，如果下载较慢，请自行构建相应镜像  
+1. 使用`--scale`参数可对服务进行水平扩容。如: `docker-compose up -d --scale service-order=2 service-order`  
+2. 服务前加`*`代表必须依赖的服务  
+3. 服务的image已经上传docker hub，如果下载较慢，可使用maven插件来自行打包并构建相应docker镜像  
     ```
-    cd ./biz-parent/biz-spring-cloud-api-service-order/docker/
-    docker build -t waynechu/service-order .
+    # 进入项目根目录
+    cd ./biz-parent
+    # 打包所有模块并构建docker镜像
+    mvn clean install -Ddockerfile.skip=false
     ```
-4. 依赖之前存在依赖关系，depends_on无法决定依赖的服务是否完全启动。推荐按以下顺序初始化容器：  
-    - mysql-master mysql-slave1 mysql-slave2 redis rabbitmq  
-    - apollo-db apollo elasticsearch  
+4. 依赖之前存在依赖关系，`depends_on`无法决定依赖的服务是否完全启动。推荐按以下顺序初始化容器：  
+    - mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db  
+    - apollo elasticsearch  
     - skywalking-oap logstash kibana  
     - eureka  
     - inner-gateway boot-admin skywalking-ui  
@@ -120,13 +122,14 @@ docker-compose stop                    # 停止容器
 |  *配置中心        |  apollo                 |  9070        |  apollo/admin     |  http://localhost:8070                  |
 |  *配置中心db      |  apollo-db              |  3316        |                   |                                         |
 |  *注册中心        |  eureka                 |  9001-9009   |                   |  http://localhost:9001                  |
-|  网关             |  inner-gateway          |  9011        |                   |  http://localhost:9011/swagger-ui.html  |
+|  网关             |  inner-gateway          |  9010        |                   |  http://localhost:9010/swagger-ui.html  |
 |  监控中心         |  boot-admin             |  9020        |                   |  http://localhost:9020                   |
 |  skywalking-oap  |  skywalking-oap         |  12800       |                   |                                          |
 |  skywalking-ui   |  skywalking-ui          |  8090        |                   |  http://localhost:8090                   |
 |  订单服务         |  service-order          |  10010-10019 |                   |  http://localhost:10010/swagger-ui.html  |
 |  订单服务         |  service-product        |  10020-10029 |                   |  http://localhost:10020/swagger-ui.html  |
 |  公共服务         |  service-utility        |  10030-10039 |                   |  http://localhost:10030/swagger-ui.html  |
+|  动态数据源测试服务|  dynamic-datasource-test|  10040-10049 |                   |  http://localhost:10040/swagger-ui.html  |
 
 **扩展:** 配置MySQL主从链路
 
