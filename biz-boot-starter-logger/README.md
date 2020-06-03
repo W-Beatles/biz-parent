@@ -8,7 +8,7 @@
 RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展示。  
 2. 该模块会将error级别日志通过SentryAppender发送到指定的Sentry DSN地址，便于错误日志汇总、Bug排查定位，
 还能及时收到应用的错误报警。
-3. 该模块还添加调用链路信息到请求头和MDC上下文中，实现微服务直接调用的全链路追踪。
+3. 该模块还添加调用链路信息到请求头和MDC上下文中，实现微服务的全链路追踪。
 4. elk中记录的信息除当前服务的基础信息之外，还包含微服务调用链路信息。
     ```
      ---------- 基础信息 ----------
@@ -107,56 +107,3 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
         自定义配置
     </included>
     ```
-
-### 附: Docker快速搭建ELK环境
-
-这里我们固定了elk的ip地址，防止重启ip地址发生变动
-
-```
-// 创建网络
-docker network create --subnet=172.18.0.0/16 elk
-// 启动ES
-docker run -d --name es --net elk --ip 172.18.0.2 -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.5.1
-// 启动Kibana
-docker run -d --name kibana -e ELASTICSEARCH_URL=http://172.18.0.2:9200 --net elk --ip 172.18.0.3 -p 5601:5601 kibana:7.5.1
-注: 若无法连接到es，需修改/usr/share/kibana/config的 elasticsearch.hosts: [ "http://172.18.0.2:9200" ]
-// 启动Rabbitmq
-docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 --net elk --ip 172.18.0.4 -e RABBITMQ_DEFAULT_USER=waynechu -e RABBITMQ_DEFAULT_PASS=123456 -e RABBITMQ_DEFAULT_VHOST=/logback rabbitmq:3-management
-// 启动Logstash
-(Linux) docker run -d --name logstash -p 7002:7002 --net elk --ip 172.18.0.5 -it -v /root/tools/logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf logstash:7.5.1
-(Windows) docker run -d --name logstash -p 7002:7002 --net elk --ip 172.18.0.5 -it -v /E/work/Tools/logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf logstash:7.5.1
-```
-
-### 附: logstash收集RabbitMQ消息到elasticsearch
-
-示例pipeline配置 `logstash.conf`: 
-
-```
-input {
-  rabbitmq {
-    host => "xxx.xxx.xxx.xxx"
-    port => 5672
-    user => "waynechu"
-    password =>"yourpassword"
-    vhost => "/logback"
-    exchange => "topic.loggingExchange"
-    exchange_type => "topic"
-    queue => "logback"
-    key => "logback.#"
-    codec => json
-    durable => true
-	_type => logback
-  }
-}
-
-output {
-  elasticsearch {
-    hosts => ["xxx.xxx.xxx.xxx:9200"]
-    index => "logstash-logback-%{+YYYY.MM.dd}"
-  }
-
-  #stdout{
-  #  codec => rubydebug
-  #}
-}
-```

@@ -2,6 +2,10 @@
 
 统一认证授权服务
 
+### OAuth2 简介
+
+OAuth 2.0是用于授权的行业标准协议。OAuth 2.0为简化客户端开发提供了特定的授权流，包括Web应用、桌面应用、移动端应用等
+
 ### OAuth2 角色
 
 - 资源所有者(Resource Owner) - 用户
@@ -10,40 +14,30 @@
 - 资源服务器 (Resource Server） - 提供用户资源的服务器
 
 ### OAuth2 4种授权模式
-- `authorization_code` 授权码模式：是功能最完整、流程最严密的授权模式。它的特点就是通过客户端服务器与服务端服务器交互，常见的第三方平台登录功能基本使用这种模式
-- `implicit` 简化模式：不需要客户端服务器参与，直接通过浏览器向授权服务器申请令牌
-- `password` 密码模式：用户将账号和密码直接告诉第三方客户端，客户端使用这些信息向授权服务器申请令牌（需要用户对客户端高度信任）
-- `client_credentials` 客户端模式：客户端使用自身向授权服务器申请授权，不需要用户参与
+- `authorization_code` 授权码模式：是功能最完整、流程最严密的授权模式。它的特点就是通过客户端服务器与服务端服务器交互，常见的第三方平台登录功能基本使用这种模式(标准方式)(支持refresh token)
+- `implicit` 简化模式：不需要客户端服务器参与，直接通过浏览器向授权服务器申请令牌(为web浏览器应用设计)(不支持refresh token)
+- `password` 密码模式：用户将账号和密码直接告诉第三方客户端，客户端使用这些信息向授权服务器申请令牌(为遗留系统设计)(支持refresh token)
+- `client_credentials` 客户端模式：客户端使用自身向授权服务器申请授权，不需要用户参与(为后台api服务消费者设计)(不支持refresh token)
 
 ### Oauth2 Token
 
-token基本内容如下
+token基本内容如下：
 
-* access_token：表示访问令牌，必选项
-* token_type：表示令牌类型，该值大小写不敏感，必选项，可以是Bearer类型或其它类型
-* expires_in：表示过期时间，单位为秒。如果省略该参数，必须其他方式设置过期时间
-* refresh_token：表示更新令牌，用来获取下一次的访问令牌，可选项
-* scope：表示权限范围，如果与客户端申请的范围一致，此项可省略
-
-**密码模式使用的例子**
-
-以某App登陆为例，用户请求获取授权信息
-
-```
-+-----------+                                     +-------------+
-|           |       1-Request Authorization       |             |
-|           |------------------------------------>|             |
-|           |     grant_type&username&password    |             |--+
-|           |                                     |Authorization|  | 2-Gen
-|  Client   |                                     |Service      |  |   JWT
-|           |       3-Response Authorization      |             |<-+
-|           |<------------------------------------| Private Key |
-|           |    access_token / refresh_token     |             |
-|           |    token_type / expire_in / jti     |             |
-+-----------+                                     +-------------+
-```
+- access_token：表示访问令牌，必选项
+- token_type：表示令牌类型，该值大小写不敏感，必选项，可以是Bearer类型或其它类型
+- expires_in：表示过期时间，单位为秒。如果省略该参数，必须其他方式设置过期时间
+- refresh_token：表示更新令牌，用来获取下一次的访问令牌，可选项
+- scope：表示权限范围，如果与客户端申请的范围一致，此项可省略
 
 ### Spring OAuth2 + JWT Token简介
+
+#### Spring OAuth2默认提供的端点
+- /oauth/authorize：授权端点
+- /oauth/token：令牌端点
+- /oauth/confirm_access：用户确认授权提交端点
+- /oauth/error：授权服务错误信息端点
+- /oauth/check_token：用于资源服务访问的令牌解析端点
+- /oauth/token_key：提供公有密匙的端点，如果使用JWT令牌的话
 
 #### JWT(JSON Web Tokens)简介
 
@@ -101,24 +95,122 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 
 #### Spring OAuth2表结构
 
-| 表名                     |   简介                        |           说明                       |
-|-------------------------|-------------------------------|-----------------------------------------|
+| 表名                     |   简介                        |           说明                           |
+|-------------------------|-------------------------------|------------------------------------------|
 | oauth_client_details    |   client持久化表               |                                          |
-| oauth_client_token      |   用户客户端存储从服务端获取的token|                                         |
+| oauth_client_token      |   用户客户端存储从服务端获取的token|                                        |
 | oauth_access_token      |   access_token的持久表          |                                         |
-| oauth_refresh_token     |   refresh_token的持久化表       |                                          |
-| oauth_approvals         |   授权码模式授权信息持久化表      |  用户授权记录                             |
-| oauth_code              |   授权码模式code持久化表         |  code临时存放，code使用过就删除            |
+| oauth_refresh_token     |   refresh_token的持久化表       |                                         |
+| oauth_approvals         |   授权码模式授权信息持久化表      |  用户授权记录                            |
+| oauth_code              |   授权码模式code持久化表         |  code临时存放，code使用过就删除           |
 
 具体表结构请参考[spring-oauth-server 数据库表说明](http://andaily.com/spring-oauth-server/db_table_description.html)
 
 #### 用户角色资源等表结构
 
-| 表名        |   简介        |  备注                    |
-|------------|---------------|-------------------------|
-| users      |   用户表       |  使用应用的用户           |
+| 表名        |   简介        |  备注                                          |
+|------------|---------------|------------------------------------------------|
+| users      |   用户表       |  使用应用的用户                                 |
 | groups     |   组织表       |  通过user_group_relation与users关联，多对多     |
 | position   |   岗位表       |  通过user_position_relation与users关联，多对多  |
 | roles      |   角色表       |  通过user_role_relation与users关联，多对多      |
 | menu       |   菜单表       |  通过role_menu_relation与roles关联，多对多      |
 | resource   |   资源表       |  通过role_resource_relation与roles关联，多对多  |
+
+### 授权码模式(authorization_code)
+
+流程图：
+![1.png](./docs/1.png "授权码模式流程图")  
+
+1. 三方应用程序引导用户进入授权请求页，获取`authorization_code`:  
+    ```
+    http://localhost:9050/oauth/authorize?client_id=h5&response_type=code&scope=all&redirect_uri=https://www.baidu.com&state=home
+    ```
+   **注意**： 这个code只能用一次,如果这一次失败了则需要重新申请
+   
+2. 跳转回三方应用，三方应用需要校验`state`和请求时的是否一致：  
+    ```
+    https://www.baidu.com/?code=jqc8JE&state=home
+    ```
+
+3. 三方应用通过`code`换取`access_token`  
+    ```
+    POST http://localhost:9050/oauth/token
+    ```
+   
+    ![2.png](./docs/2.png "授权码模式 - 获取token")
+
+    返回结果：
+    ```json
+    {
+        "access_token": "567750d0-ba45-4731-8d7a-37430c8b5600",
+        "token_type": "bearer",
+        "refresh_token": "c18d0cff-eb9a-43ec-b903-903f7451bc5d",
+        "expires_in": 3548,
+        "scope": "all"
+    }
+    ```
+
+4. 刷新`access_token`  
+    ```
+    POST http://localhost:9050/oauth/token
+    ```
+   
+    ![3.png](./docs/3.png "授权码模式 - 刷新token")
+
+### 简化模式(implicit)
+
+   ![4.png](./docs/4.png "简化模式")
+
+1. 三方应用程序引导用户进入授权请求页，并请求获取`access_token`:  
+    ```
+    http://localhost:9050/oauth/authorize?client_id=web&response_type=token&scope=all&redirect_uri=https://www.baidu.com&state=home
+    ```
+   
+2. 跳转回三方应用，三方应用需要校验`state`和请求时的是否一致：  
+    ```
+    https://www.baidu.com/#access_token=cdb00d51-b9c8-483a-ba09-2f7c37be664d&token_type=bearer&state=home&expires_in=43199
+    ```
+
+**说明**: 简化模式没有获取 code 的步骤，整个过程只传递了`client_id`，并没有传递`client_secret`，因而无法验证`client`的真实性。获得的
+token 只有`access_token`没有`refresh token`
+
+### 密码模式(password)
+
+   ![5.png](./docs/5.png "密码模式")
+   
+1. 请求获取`access_token`：  
+    ```
+    POST http://localhost:9050/oauth/token?grant_type=password&client_id=android&client_secret=123456&scope=all&username=user&password=123456
+    ```
+   
+    返回结果：
+    ```json
+    {
+        "access_token": "ebdc9803-45a8-4f56-8f18-d1bcf65deaed",
+        "token_type": "bearer",
+        "expires_in": 2119,
+        "scope": "all"
+    }
+    ```
+   
+   **说明**: 密码模式简单，但是授权服务器和三方应用必须有超高的信赖，否则密码容易泄露
+
+### 客户端模式(client_credentials)
+
+   ![6.png](./docs/6.png "客户端模式")
+   
+1. 请求获取`access_token`：  
+   ```
+   POST http://localhost:9050/oauth/token?grant_type=client_credentials&client_id=gateway&client_secret=123456&scope=api
+   ```
+   
+   返回结果：
+   ```json
+    {
+        "access_token": "0729d9bf-8683-43b6-a341-c52e9dd9623e",
+        "token_type": "bearer",
+        "expires_in": 3366,
+        "scope": "api"
+    }
+   ```

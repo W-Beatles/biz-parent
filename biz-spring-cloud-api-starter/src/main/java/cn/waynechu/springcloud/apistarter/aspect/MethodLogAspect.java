@@ -134,9 +134,9 @@ public class MethodLogAspect {
     private String toJsonString(Object obj, boolean isFormat) {
         String printStr;
         if (isFormat) {
-            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJson(obj);
+            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJsonString(obj);
         } else {
-            printStr = JsonBinder.buildAlwaysBinder().toJson(obj);
+            printStr = JsonBinder.buildAlwaysBinder().toJsonString(obj);
         }
         return printStr;
     }

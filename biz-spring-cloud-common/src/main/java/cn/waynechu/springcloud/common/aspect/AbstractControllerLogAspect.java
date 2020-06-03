@@ -69,7 +69,7 @@ public abstract class AbstractControllerLogAspect {
         // 添加MDC记录  timeTaken: 调用耗时
         MDC.put(MDC_KEY_TIME_TAKEN, String.valueOf(timeTaken));
 
-        String jsonResult = JsonBinder.buildAlwaysBinder().toJson(result);
+        String jsonResult = JsonBinder.buildAlwaysBinder().toJsonString(result);
         log.info("{}调用结束, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, jsonResult);
 
         // clear
@@ -108,6 +108,6 @@ public abstract class AbstractControllerLogAspect {
                 returnValue.add(arg);
             }
         }
-        return JsonBinder.buildAlwaysBinder().toJson(returnValue);
+        return JsonBinder.buildAlwaysBinder().toJsonString(returnValue);
     }
 }

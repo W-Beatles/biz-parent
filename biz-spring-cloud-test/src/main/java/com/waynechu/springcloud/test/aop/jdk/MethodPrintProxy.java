@@ -78,9 +78,9 @@ public class MethodPrintProxy implements InvocationHandler {
     private String getJsonStr(Object args, boolean isFormat) {
         String printStr;
         if (isFormat) {
-            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJson(args);
+            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJsonString(args);
         } else {
-            printStr = JsonBinder.buildAlwaysBinder().toJson(args);
+            printStr = JsonBinder.buildAlwaysBinder().toJsonString(args);
         }
         return printStr;
     }

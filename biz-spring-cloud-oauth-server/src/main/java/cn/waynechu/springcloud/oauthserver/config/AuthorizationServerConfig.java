@@ -48,6 +48,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        // 客户端配置
         ClientDetailsService clientDetailsService = new ClientDetailsServiceBuilder<>()
                 .jdbc().dataSource(dataSource)
                 .passwordEncoder(passwordEncoder)

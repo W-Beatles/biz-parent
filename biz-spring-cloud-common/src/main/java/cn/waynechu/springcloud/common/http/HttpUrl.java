@@ -203,6 +203,6 @@ public class HttpUrl {
 
     @Override
     public String toString() {
-        return JsonBinder.buildNonDefaultBinder().toJson(this);
+        return JsonBinder.buildNonDefaultBinder().toJsonString(this);
     }
 }

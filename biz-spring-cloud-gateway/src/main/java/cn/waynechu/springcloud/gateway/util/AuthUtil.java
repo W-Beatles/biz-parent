@@ -9,6 +9,7 @@ import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.server.ServerWebExchange;
@@ -70,7 +71,7 @@ public class AuthUtil {
     public static Mono<Void> unauthorized(ServerWebExchange serverWebExchange, String message) {
         ServerHttpResponse response = serverWebExchange.getResponse();
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
-        response.getHeaders().add("Content-Type", "text/plain;charset=UTF-8");
+        response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
         DataBuffer buffer = response.bufferFactory()
                 .wrap(StringUtil.isBlank(message) ? HttpStatus.UNAUTHORIZED.getReasonPhrase().getBytes()
                         : message.getBytes());
