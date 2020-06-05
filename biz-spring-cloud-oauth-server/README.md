@@ -14,10 +14,10 @@ OAuth 2.0是用于授权的行业标准协议。OAuth 2.0为简化客户端开�
 - 资源服务器 (Resource Server） - 提供用户资源的服务器
 
 ### OAuth2 4种授权模式
-- `authorization_code` 授权码模式：是功能最完整、流程最严密的授权模式。它的特点就是通过客户端服务器与服务端服务器交互，常见的第三方平台登录功能基本使用这种模式(标准方式)(支持refresh token)
+- `authorization_code` 授权码模式：是功能最完整、流程最严密的授权模式。它的特点就是通过客户端服务器与服务端服务器交互，常见的第三方平台登录功能基本使用这种模式(标准方式)
 - `implicit` 简化模式：不需要客户端服务器参与，直接通过浏览器向授权服务器申请令牌(为web浏览器应用设计)(不支持refresh token)
-- `password` 密码模式：用户将账号和密码直接告诉第三方客户端，客户端使用这些信息向授权服务器申请令牌(为遗留系统设计)(支持refresh token)
-- `client_credentials` 客户端模式：客户端使用自身向授权服务器申请授权，不需要用户参与(为后台api服务消费者设计)(不支持refresh token)
+- `password` 密码模式：用户将账号和密码直接告诉第三方客户端，客户端使用这些信息向授权服务器申请令牌
+- `client_credentials` 客户端模式：客户端使用自身向授权服务器申请授权，不需要用户参与 (不支持refresh token)
 
 ### Oauth2 Token
 
@@ -110,12 +110,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 
 | 表名        |   简介        |  备注                                          |
 |------------|---------------|------------------------------------------------|
-| users      |   用户表       |  使用应用的用户                                 |
-| groups     |   组织表       |  通过user_group_relation与users关联，多对多     |
-| position   |   岗位表       |  通过user_position_relation与users关联，多对多  |
-| roles      |   角色表       |  通过user_role_relation与users关联，多对多      |
-| menu       |   菜单表       |  通过role_menu_relation与roles关联，多对多      |
-| resource   |   资源表       |  通过role_resource_relation与roles关联，多对多  |
+| user       |   用户表       |  使用应用的用户                                 |
+| group      |   组织表       |  通过user_group_relation与user关联，多对多     |
+| position   |   岗位表       |  通过user_position_relation与user关联，多对多  |
+| role       |   角色表       |  通过user_role_relation与user关联，多对多      |
+| menu       |   菜单表       |  通过role_menu_relation与role关联，多对多      |
+| resource   |   资源表       |  通过role_resource_relation与role关联，多对多  |
 
 ### 授权码模式(authorization_code)
 
@@ -214,3 +214,8 @@ token 只有`access_token`没有`refresh token`
         "scope": "api"
     }
    ```
+   **说明**: 客户端模式不需要用户参与，所以token中拿不到用户信息
+
+### 网关鉴权
+
+![7.png](./docs/7.png "网关鉴权")

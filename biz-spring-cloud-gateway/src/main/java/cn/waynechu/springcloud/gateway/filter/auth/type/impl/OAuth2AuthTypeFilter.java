@@ -32,7 +32,7 @@ public class OAuth2AuthTypeFilter implements AuthTypeFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        String authToken = request.getHeaders().getFirst("Authorization");
+        String authToken = request.getHeaders().getFirst("token");
         if (StringUtil.isEmpty(authToken)) {
             return AuthUtil.unauthorized(exchange, "缺少token信息");
         }
@@ -47,7 +47,7 @@ public class OAuth2AuthTypeFilter implements AuthTypeFilter {
             tokenInfo: {"active":true,"aud":["biz-spring-cloud-gateway"],"authorities":["ROLE_ADMIN"],"client_id":"gateway","exp":1583683328,"scope":["read","write"],"user_name":"waynechu"}
             {"error":"invalid_token","error_description":"Token was not recognised"}
              */
-            TokenInfo tokenInfo = getTokenInfo(authToken);
+            TokenInfo tokenInfo = this.getTokenInfo(authToken);
             if (tokenInfo != null && tokenInfo.isActive()) {
                 ServerHttpRequest mutateRequest = request.mutate()
                         .header("user", JSON.toJSONString(tokenInfo)).build();

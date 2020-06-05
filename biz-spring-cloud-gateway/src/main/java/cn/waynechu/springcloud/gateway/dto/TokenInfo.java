@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.gateway.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -13,10 +14,12 @@ public class TokenInfo {
 
     private boolean active;
 
+    @JsonProperty("client_id")
     private String clientId;
 
     private String[] scope;
 
+    @JsonProperty("user_name")
     private String userName;
 
     private String[] aud;

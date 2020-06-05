@@ -65,8 +65,6 @@ public class AccessGatewayFilter implements GlobalFilter {
             return AuthUtil.unauthorized(exchange, "该authType不可用");
         }
 
-        // TODO 2020-03-07 23:49 判断当前服务是否开通此鉴权渠道
-
         ApplicationContext applicationContext = exchange.getApplicationContext();
         if (applicationContext == null) {
             return AuthUtil.unauthorized(exchange, "applicationContext无效");
