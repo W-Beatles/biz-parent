@@ -34,7 +34,7 @@
         <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
         <dubbo.version>2.7.3</dubbo.version>
         <zookeeper.version>3.4.14</zookeeper.version>
-        <curator.version>4.0.1</curator.version>
+        <curator.version>5.0.0</curator.version>
         <poi.version>3.17</poi.version>
         <xmlbeans.version>3.1.0</xmlbeans.version>
         <protostuff.version>1.6.0</protostuff.version>
@@ -70,6 +70,7 @@
 
         <module>biz-boot-starter-dynamic-datasource</module>
         <module>biz-boot-starter-logger</module>
+        <module>biz-boot-starter-sequence</module>
 
         <module>biz-spring-cloud-eureka</module>
         <module>biz-spring-cloud-dashboard-hystrix</module>
@@ -161,40 +162,19 @@
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
                 <version>${zookeeper.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
+            <!-- Curator -->
             <dependency>
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-framework</artifactId>
                 <version>${curator.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.zookeeper</groupId>
-                        <artifactId>zookeeper</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <dependency>
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-recipes</artifactId>
                 <version>${curator.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.zookeeper</groupId>
-                        <artifactId>zookeeper</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- POI -->

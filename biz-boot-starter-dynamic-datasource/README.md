@@ -19,7 +19,6 @@
     <dependency>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-        <version>1.0.2020032201-RELEASE</version>
     </dependency>
     ```
 2. 启动类添加注解配置 `mapper` java文件扫描路径
