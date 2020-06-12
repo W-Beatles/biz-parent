@@ -33,7 +33,7 @@
         <spring-cloud-dependencies.version>Hoxton.SR2</spring-cloud-dependencies.version>
         <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
         <dubbo.version>2.7.3</dubbo.version>
-        <zookeeper.version>3.4.14</zookeeper.version>
+        <zookeeper.version>3.6.0</zookeeper.version>
         <curator.version>5.0.0</curator.version>
         <poi.version>3.17</poi.version>
         <xmlbeans.version>3.1.0</xmlbeans.version>

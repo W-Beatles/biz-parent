@@ -3,8 +3,10 @@ package cn.waynechu.bootstarter.sequence.registry;
 import cn.waynechu.bootstarter.sequence.exception.RegExceptionHandler;
 import cn.waynechu.bootstarter.sequence.exception.SequenceErrorCode;
 import cn.waynechu.bootstarter.sequence.exception.SequenceException;
-import cn.waynechu.bootstarter.sequence.property.SequenceProperty;
+import cn.waynechu.bootstarter.sequence.property.ZookeeperConfiguration;
 import com.google.common.base.Charsets;
+import com.google.common.base.Preconditions;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -13,16 +15,15 @@ import org.apache.curator.framework.recipes.cache.ChildData;
 import org.apache.curator.framework.recipes.cache.CuratorCache;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.utils.CloseableUtils;
+import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.data.ACL;
+import org.apache.zookeeper.data.Stat;
 import org.springframework.util.StringUtils;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,36 +35,33 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
 
+    @Getter
     private CuratorFramework client;
 
-    private SequenceProperty sequenceProperty;
+    private ZookeeperConfiguration zkConfig;
 
     private final Map<String, CuratorCache> caches = new HashMap<>();
 
-    public ZookeeperRegistryCenter(SequenceProperty sequenceProperty) {
-        this.sequenceProperty = sequenceProperty;
+    public ZookeeperRegistryCenter(ZookeeperConfiguration zkConfig) {
+        this.zkConfig = zkConfig;
     }
 
     @Override
     public void init() {
-        if (client != null) {
-            return;
-        }
-
-        log.debug("init zookeeper connector, connect to servers : {}", sequenceProperty.getServerLists());
+        log.debug("[sequence]: zookeeper registry center init, server lists is: {}", zkConfig.getServerLists());
         CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
-                .connectString(sequenceProperty.getServerLists())
-                .retryPolicy(new ExponentialBackoffRetry(sequenceProperty.getBaseSleepTimeMilliseconds(),
-                        sequenceProperty.getMaxRetries(), sequenceProperty.getMaxSleepTimeMilliseconds()))
-                .namespace(sequenceProperty.getNamespace());
-        if (sequenceProperty.getSessionTimeoutMilliseconds() != 0) {
-            builder.sessionTimeoutMs(sequenceProperty.getSessionTimeoutMilliseconds());
+                .connectString(zkConfig.getServerLists())
+                .retryPolicy(new ExponentialBackoffRetry(zkConfig.getBaseSleepTimeMilliseconds(),
+                        zkConfig.getMaxRetries(), zkConfig.getMaxSleepTimeMilliseconds()))
+                .namespace(zkConfig.getNamespace());
+        if (zkConfig.getSessionTimeoutMilliseconds() != 0) {
+            builder.sessionTimeoutMs(zkConfig.getSessionTimeoutMilliseconds());
         }
-        if (sequenceProperty.getConnectionTimeoutMilliseconds() != 0) {
-            builder.connectionTimeoutMs(sequenceProperty.getConnectionTimeoutMilliseconds());
+        if (zkConfig.getConnectionTimeoutMilliseconds() != 0) {
+            builder.connectionTimeoutMs(zkConfig.getConnectionTimeoutMilliseconds());
         }
-        if (!StringUtils.isEmpty(sequenceProperty.getDigest())) {
-            builder.authorization("digest", sequenceProperty.getDigest().getBytes(StandardCharsets.UTF_8))
+        if (!StringUtils.isEmpty(zkConfig.getDigest())) {
+            builder.authorization("digest", zkConfig.getDigest().getBytes(StandardCharsets.UTF_8))
                     .aclProvider(new ACLProvider() {
 
                         @Override
@@ -80,7 +78,7 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
         client = builder.build();
         client.start();
         try {
-            if (!client.blockUntilConnected(sequenceProperty.getMaxSleepTimeMilliseconds() * sequenceProperty.getMaxRetries(), TimeUnit.MILLISECONDS)) {
+            if (!client.blockUntilConnected(zkConfig.getMaxSleepTimeMilliseconds() * zkConfig.getMaxRetries(), TimeUnit.MILLISECONDS)) {
                 client.close();
                 throw new KeeperException.OperationTimeoutException();
             }
@@ -94,13 +92,28 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
         for (Map.Entry<String, CuratorCache> each : caches.entrySet()) {
             each.getValue().close();
         }
+        waitForCacheClose();
         CloseableUtils.closeQuietly(client);
+    }
+
+    /**
+     * TODO 等待500ms, cache先关闭再关闭client, 否则会抛异常
+     * 因为异步处理, 可能会导致client先关闭而cache还未关闭结束.
+     * 等待Curator新版本解决这个bug.
+     * BUG地址：https://issues.apache.org/jira/browse/CURATOR-157
+     */
+    private void waitForCacheClose() {
+        try {
+            Thread.sleep(500L);
+        } catch (final InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     @Override
     public String get(String key) {
         CuratorCache cache = findTreeCache(key);
-        if (null == cache) {
+        if (cache == null) {
             return getDirectly(key);
         }
         Optional<ChildData> childDataOptional = cache.get(key);
@@ -118,82 +131,154 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
     }
 
     @Override
-    public boolean isExisted(String key) {
-        return false;
-    }
-
-    @Override
-    public void persist(String key, String value) {
-
-    }
-
-    @Override
-    public void update(String key, String value) {
-
-    }
-
-    @Override
-    public void remove(String key) {
-
-    }
-
-    @Override
-    public long getRegistryCenterTime(String key) {
-        return 0;
-    }
-
-    @Override
-    public Object getRawClient() {
-        return null;
-    }
-
-    @Override
     public String getDirectly(String key) {
         try {
             return new String(client.getData().forPath(key), Charsets.UTF_8);
-        } catch (Exception ex) {
-            RegExceptionHandler.handleException(ex);
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
             return null;
         }
     }
 
     @Override
     public List<String> getChildrenKeys(String key) {
-        return null;
+        try {
+            List<String> result = client.getChildren().forPath(key);
+            result.sort(Comparator.reverseOrder());
+            return result;
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+            return Collections.emptyList();
+        }
     }
 
     @Override
     public int getNumChildren(String key) {
+        try {
+            Stat stat = client.checkExists().forPath(key);
+            if (stat != null) {
+                return stat.getNumChildren();
+            }
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
         return 0;
     }
 
     @Override
-    public void persistEphemeral(String key, String value) {
+    public boolean isExisted(String key) {
+        try {
+            return client.checkExists().forPath(key) != null;
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+            return false;
+        }
+    }
 
+    @Override
+    public void persist(String key, String value) {
+        try {
+            if (!isExisted(key)) {
+                client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT)
+                        .forPath(key, value.getBytes(StandardCharsets.UTF_8));
+            } else {
+                update(key, value);
+            }
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
+    }
+
+    @Override
+    public void update(String key, String value) {
+        try {
+            client.inTransaction().check().forPath(key)
+                    .and().setData().forPath(key, value.getBytes(Charsets.UTF_8))
+                    .and().commit();
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
+    }
+
+    @Override
+    public void persistEphemeral(String key, String value) {
+        try {
+            if (isExisted(key)) {
+                client.delete().deletingChildrenIfNeeded().forPath(key);
+            }
+            client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(key, value.getBytes(Charsets.UTF_8));
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
     }
 
     @Override
     public String persistSequential(String key, String value) {
+        try {
+            return client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(key, value.getBytes(Charsets.UTF_8));
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
         return null;
     }
 
     @Override
     public void persistEphemeralSequential(String key) {
+        try {
+            client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(key);
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
+    }
 
+    @Override
+    public void remove(String key) {
+        try {
+            client.delete().deletingChildrenIfNeeded().forPath(key);
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
+    }
+
+    @Override
+    public long getRegistryCenterTime(String key) {
+        long result = 0L;
+        try {
+            persist(key, "");
+            result = client.checkExists().forPath(key).getMtime();
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
+        Preconditions.checkState(0L != result, "Cannot get registry center time.");
+        return result;
+    }
+
+    @Override
+    public Object getRawClient() {
+        return client;
     }
 
     @Override
     public void addCacheData(String cachePath) {
-
+        CuratorCache cache = CuratorCache.build(client, cachePath);
+        try {
+            cache.start();
+        } catch (Exception e) {
+            RegExceptionHandler.handleException(e);
+        }
+        caches.put(cachePath + "/", cache);
     }
 
     @Override
     public void evictCacheData(String cachePath) {
-
+        CuratorCache cache = caches.remove(cachePath + "/");
+        if (null != cache) {
+            cache.close();
+        }
     }
 
     @Override
     public Object getRawCache(String cachePath) {
-        return null;
+        return caches.get(cachePath + "/");
     }
 }

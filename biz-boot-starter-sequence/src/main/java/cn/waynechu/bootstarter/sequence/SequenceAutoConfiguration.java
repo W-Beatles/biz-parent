@@ -1,7 +1,7 @@
 package cn.waynechu.bootstarter.sequence;
 
 import cn.waynechu.bootstarter.sequence.generator.IdGenerator;
-import cn.waynechu.bootstarter.sequence.property.SequenceProperty;
+import cn.waynechu.bootstarter.sequence.property.ZookeeperConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -15,12 +15,12 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-@EnableConfigurationProperties(SequenceProperty.class)
-@ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
+@EnableConfigurationProperties(ZookeeperConfiguration.class)
+@ConditionalOnProperty(value = ZookeeperConfiguration.SEQUENCE_PREFIX + ".enable", havingValue = "true")
 public class SequenceAutoConfiguration {
 
     @Autowired
-    private SequenceProperty sequenceProperty;
+    private ZookeeperConfiguration zookeeperConfiguration;
 
     @Bean
     public IdGenerator idGenerator() {

@@ -8,8 +8,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2020/6/11 16:01
  */
 @Data
-@ConfigurationProperties(prefix = SequenceProperty.SEQUENCE_PREFIX)
-public class SequenceProperty {
+@ConfigurationProperties(prefix = ZookeeperConfiguration.SEQUENCE_PREFIX)
+public class ZookeeperConfiguration {
 
     public static final String SEQUENCE_PREFIX = "sequence";
 

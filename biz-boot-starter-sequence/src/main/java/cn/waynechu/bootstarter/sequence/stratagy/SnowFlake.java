@@ -110,11 +110,4 @@ public class SnowFlake {
         return System.currentTimeMillis();
     }
 
-    public static void main(String[] args) {
-        long[] ids = new SnowFlake(22).nextIds(100000);
-        for (long id : ids) {
-            System.out.println(id);
-        }
-        System.out.println(ids.length);
-    }
 }
