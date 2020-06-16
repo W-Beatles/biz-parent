@@ -1,5 +1,6 @@
-package com.waynechu.order;
+package com.waynechu.dynamicdatasource;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -15,11 +16,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableDiscoveryClient
+@MapperScan("com.waynechu.dynamicdatasource.dal.mapper")
 @SpringBootApplication
-public class StartMain {
+public class DynamicDatasourceStartMain {
 
     public static void main(String[] args) {
-        SpringApplication.run(StartMain.class, args);
+        SpringApplication.run(DynamicDatasourceStartMain.class, args);
     }
 
 }

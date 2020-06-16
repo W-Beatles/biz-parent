@@ -1,4 +1,4 @@
-package com.waynechu.product;
+package com.waynechu.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,10 +16,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @SpringBootApplication
-public class StartMain {
+public class OrderStartMain {
 
     public static void main(String[] args) {
-        SpringApplication.run(StartMain.class, args);
+        SpringApplication.run(OrderStartMain.class, args);
     }
 
 }

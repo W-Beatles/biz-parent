@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ApolloConfigChangeService {
 
-    @Value("${apollo.refresh-value}")
+    @Value("${apollo.refresh-value:-1}")
     private String refreshValue;
 
     @Autowired

@@ -1,5 +1,7 @@
-package com.waynechu.dynamicdatasource;
+package com.waynechu.utility;
 
+import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
+import com.alicp.jetcache.anno.config.EnableMethodCache;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,12 +18,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@MapperScan("com.waynechu.dynamicdatasource.dal.mapper")
+@MapperScan("com.waynechu.utility.dal.mapper")
+@EnableMethodCache(basePackages = "com.waynechu.utility.domain.repository")
+@EnableCreateCacheAnnotation
 @SpringBootApplication
-public class StartMain {
+public class UtilityStartMain {
 
     public static void main(String[] args) {
-        SpringApplication.run(StartMain.class, args);
+        SpringApplication.run(UtilityStartMain.class, args);
     }
 
 }

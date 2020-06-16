@@ -1705,7 +1705,7 @@ INSERT INTO `Item` VALUES (230, 3, 'eureka.client.fetch-registry', 'true', '', 1
 INSERT INTO `Item` VALUES (231, 3, '', '', '# 使用actuator健康检查', 19, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
 INSERT INTO `Item` VALUES (232, 3, 'eureka.client.healthcheck.enabled', 'true', '', 20, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
 INSERT INTO `Item` VALUES (233, 3, '', '', '# 注册中心地址', 21, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
-INSERT INTO `Item` VALUES (234, 3, '', '', '#eureka.client.service-url.defaultZone=http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/', 22, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
+INSERT INTO `Item` VALUES (234, 3, '', '', '#eureka.client.service-url.defaultZone=http://admin:123456@localhost:9001/eureka/', 22, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
 INSERT INTO `Item` VALUES (235, 3, '', '', '# 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注册信息)', 23, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
 INSERT INTO `Item` VALUES (236, 3, 'eureka.client.registry-fetch-interval-seconds', '30', '', 24, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
 INSERT INTO `Item` VALUES (237, 3, '', '', '# 使用IP注册', 25, b'0', 'apollo', '2020-05-19 14:30:04', 'apollo', '2020-05-19 14:30:04');
@@ -1757,7 +1757,7 @@ INSERT INTO `Item` VALUES (282, 11, 'eureka.client.fetch-registry', 'true', '', 
 INSERT INTO `Item` VALUES (283, 11, '', '', '# 使用actuator健康检查', 6, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');
 INSERT INTO `Item` VALUES (284, 11, 'eureka.client.healthcheck.enabled', 'true', '', 7, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');
 INSERT INTO `Item` VALUES (285, 11, '', '', '# 注册中心地址', 8, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');
-INSERT INTO `Item` VALUES (286, 11, '', '', '#eureka.client.service-url.defaultZone=http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/', 9, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');
+INSERT INTO `Item` VALUES (286, 11, '', '', '#eureka.client.service-url.defaultZone=http://admin:123456@localhost:9001/eureka/', 9, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');
 INSERT INTO `Item` VALUES (287, 11, '', '', '# 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注册信息)', 10, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');
 INSERT INTO `Item` VALUES (288, 11, 'eureka.client.registry-fetch-interval-seconds', '5', '', 11, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');
 INSERT INTO `Item` VALUES (289, 11, '', '', '## rabbitmq', 12, b'0', 'apollo', '2020-05-19 15:18:25', 'apollo', '2020-05-19 15:18:25');

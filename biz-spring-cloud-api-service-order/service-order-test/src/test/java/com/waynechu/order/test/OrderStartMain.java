@@ -1,4 +1,4 @@
-package com.waynechu.dynamicdatasource.test;
+package com.waynechu.order.test;
 
 
 import org.junit.Test;
@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2019/4/2 10:15
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = StartMain.class)
-public class StartMain {
+@SpringBootTest(classes = OrderStartMain.class)
+public class OrderStartMain {
 
     @Test
     public void test() {
