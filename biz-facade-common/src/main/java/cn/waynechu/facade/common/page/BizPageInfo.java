@@ -72,7 +72,7 @@ public class BizPageInfo<T> extends PageSerializable<T> {
                 this.pages = Math.toIntExact(total / pageSize);
             }
         }
-        hasNextPage = pageNum >= pages;
+        hasNextPage = pageNum < pages;
     }
 
     public static <T> BizPageInfo<T> of(List<T> list) {
