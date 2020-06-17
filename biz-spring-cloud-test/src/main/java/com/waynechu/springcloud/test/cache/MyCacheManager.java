@@ -1,4 +1,4 @@
-package com.waynechu.springcloud.test.cache;
+package cn.waynechu.springcloud.test.cache;
 
 import org.springframework.cache.support.AbstractCacheManager;
 

@@ -1,4 +1,4 @@
-package com.waynechu.springcloud.test.aop.cglib;
+package cn.waynechu.springcloud.test.aop.cglib;
 
 import cn.waynechu.springcloud.common.annotation.MethodLog;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.waynechu.springcloud.test.bloom;
+package cn.waynechu.springcloud.test.bloom;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;

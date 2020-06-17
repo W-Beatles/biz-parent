@@ -1,4 +1,4 @@
-package com.waynechu.springcloud.test;
+package cn.waynechu.springcloud.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

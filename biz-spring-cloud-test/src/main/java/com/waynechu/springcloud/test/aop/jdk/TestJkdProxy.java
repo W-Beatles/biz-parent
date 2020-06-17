@@ -1,4 +1,4 @@
-package com.waynechu.springcloud.test.aop.jdk;
+package cn.waynechu.springcloud.test.aop.jdk;
 
 /**
  * @author zhuwei

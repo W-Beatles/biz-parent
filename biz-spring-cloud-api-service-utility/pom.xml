@@ -9,7 +9,7 @@
         <version>1.0.2019091701-RELEASE</version>
     </parent>
 
-    <groupId>com.waynechu</groupId>
+    <groupId>cn.waynechu</groupId>
     <artifactId>biz-spring-cloud-api-service-utility</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -40,43 +40,43 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-utility-common</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-utility-facade</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-utility-remote</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-utility-integration-dal</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-utility-domain</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-utility-api</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-utility-test</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>

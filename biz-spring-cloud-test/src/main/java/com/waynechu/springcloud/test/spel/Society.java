@@ -1,4 +1,4 @@
-package com.waynechu.springcloud.test.spel;
+package cn.waynechu.springcloud.test.spel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

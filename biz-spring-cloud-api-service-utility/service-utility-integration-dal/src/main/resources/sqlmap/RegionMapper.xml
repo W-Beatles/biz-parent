@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.waynechu.utility.dal.mapper.RegionMapper">
-    <resultMap id="BaseResultMap" type="com.waynechu.utility.dal.dataobject.RegionDO">
+<mapper namespace="cn.waynechu.utility.dal.mapper.RegionMapper">
+    <resultMap id="BaseResultMap" type="cn.waynechu.utility.dal.dataobject.RegionDO">
         <!--@mbg.generated-->
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="pid" jdbcType="INTEGER" property="pid"/>
@@ -100,7 +100,7 @@
             )
         </foreach>
     </insert>
-    <insert id="insertOrUpdate" parameterType="com.waynechu.utility.dal.dataobject.RegionDO">
+    <insert id="insertOrUpdate" parameterType="cn.waynechu.utility.dal.dataobject.RegionDO">
         <!--@mbg.generated-->
         insert into region
         (id, pid, `level`, region_name, simple_name, city_code, postal_code, merge_name,
@@ -124,7 +124,7 @@
         pinyin = #{pinyin,jdbcType=VARCHAR},
         deleted = #{deleted,jdbcType=BOOLEAN}
     </insert>
-    <insert id="insertOrUpdateSelective" parameterType="com.waynechu.utility.dal.dataobject.RegionDO">
+    <insert id="insertOrUpdateSelective" parameterType="cn.waynechu.utility.dal.dataobject.RegionDO">
         <!--@mbg.generated-->
         insert into region
         <trim prefix="(" suffix=")" suffixOverrides=",">

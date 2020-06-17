@@ -1,4 +1,4 @@
-package com.waynechu.springcloud.test.spi;
+package cn.waynechu.springcloud.test.spi;
 
 /**
  * @author zhuwei

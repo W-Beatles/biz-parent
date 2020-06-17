@@ -1,2 +1,2 @@
-com.waynechu.springcloud.test.spi.Bumblebee
-com.waynechu.springcloud.test.spi.OptimusPrime
+cn.waynechu.springcloud.test.spi.Bumblebee
+cn.waynechu.springcloud.test.spi.OptimusPrime

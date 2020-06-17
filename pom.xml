@@ -68,6 +68,7 @@
     <modules>
         <module>biz-facade-common</module>
 
+        <module>biz-archetype</module>
         <module>biz-boot-starter-dynamic-datasource</module>
         <module>biz-boot-starter-logger</module>
         <module>biz-boot-starter-sequence</module>
@@ -80,7 +81,6 @@
         <module>biz-spring-boot-admin</module>
         <module>biz-spring-cloud-test</module>
 
-        <module>biz-spring-cloud-archetype</module>
         <module>biz-spring-cloud-common</module>
         <module>biz-spring-cloud-api-starter</module>
 

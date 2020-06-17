@@ -1,9 +1,9 @@
-package com.waynechu.springcloud.test.aop;
+package cn.waynechu.springcloud.test.aop;
 
-import com.waynechu.springcloud.test.aop.cglib.Foo;
-import com.waynechu.springcloud.test.aop.cglib.MethodPrintAdvice;
-import com.waynechu.springcloud.test.aop.jdk.Sub;
-import com.waynechu.springcloud.test.aop.jdk.SubImpl;
+import cn.waynechu.springcloud.test.aop.cglib.Foo;
+import cn.waynechu.springcloud.test.aop.cglib.MethodPrintAdvice;
+import cn.waynechu.springcloud.test.aop.jdk.Sub;
+import cn.waynechu.springcloud.test.aop.jdk.SubImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.framework.ProxyFactory;

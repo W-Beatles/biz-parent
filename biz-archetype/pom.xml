@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>biz-parent</artifactId>
+        <groupId>cn.waynechu</groupId>
+        <version>1.0.2019091701-RELEASE</version>
+    </parent>
+
+    <artifactId>biz-archetype</artifactId>
+    <version>1.0.2020061601-RELEASE</version>
+    <packaging>pom</packaging>
+
+    <name>biz-archetype</name>
+    <description>biz-archetype parent</description>
+
+    <modules>
+        <module>biz-archetype-portal</module>
+        <module>biz-archetype-template</module>
+    </modules>
+</project>

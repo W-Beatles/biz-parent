@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.waynechu</groupId>
+        <groupId>cn.waynechu</groupId>
         <artifactId>biz-spring-cloud-api-service-product</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -16,7 +16,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.waynechu</groupId>
+            <groupId>cn.waynechu</groupId>
             <artifactId>service-product-domain</artifactId>
         </dependency>
     </dependencies>

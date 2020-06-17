@@ -60,7 +60,7 @@ spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql=true
 ### 打开Web应用监控
 spring.datasource.dynamic.druid.web-stat-filter.enabled=true
 ### 设置Spring监控AOP包路径
-spring.datasource.dynamic.druid.aop-patterns=com.waynechu.dynamicdatasource.api.controller.*,com.waynechu.dynamicdatasource.domain.service.*
+spring.datasource.dynamic.druid.aop-patterns=cn.waynechu.dynamicdatasource.api.controller.*,cn.waynechu.dynamicdatasource.domain.service.*
 ### 多数据源配置
 #### order database 订单库
 spring.datasource.dynamic.datasource.order-master.username=root
@@ -146,7 +146,7 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
     把属于不同数据库的 **XxxMapper.java** 文件放在 **对应数据库组名** 的文件夹下
     
     比如：
-    - com.waynechu.dynamicdatasource.dal
+    - cn.waynechu.dynamicdatasource.dal
        - mapper
           - order
              - OrderMapper.java

@@ -9,7 +9,7 @@
         <version>1.0.2019091701-RELEASE</version>
     </parent>
 
-    <groupId>com.waynechu</groupId>
+    <groupId>cn.waynechu</groupId>
     <artifactId>biz-spring-cloud-api-service-order</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -40,43 +40,43 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-order-common</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-order-facade</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-order-remote</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-order-integration-dal</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-order-domain</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-order-api</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>service-order-test</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>

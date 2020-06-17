@@ -9,7 +9,7 @@
         <version>1.0.2019091701-RELEASE</version>
     </parent>
 
-    <groupId>com.waynechu</groupId>
+    <groupId>cn.waynechu</groupId>
     <artifactId>biz-spring-cloud-api-dynamic-datasource-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -40,43 +40,43 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>dynamic-datasource-test-common</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>dynamic-datasource-test-facade</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>dynamic-datasource-test-remote</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>dynamic-datasource-test-integration-dal</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>dynamic-datasource-test-domain</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>dynamic-datasource-test-api</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.waynechu</groupId>
+                <groupId>cn.waynechu</groupId>
                 <artifactId>dynamic-datasource-test-test</artifactId>
                 <version>${parent-project.version}</version>
             </dependency>

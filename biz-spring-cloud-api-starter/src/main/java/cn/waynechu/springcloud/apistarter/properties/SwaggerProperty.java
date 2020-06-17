@@ -35,7 +35,7 @@ public class SwaggerProperty {
     /**
      * 扫描的基础包
      */
-    private String scanPackage = "com.waynechu";
+    private String scanPackage = "cn.waynechu";
 
     /**
      * 联系人姓名

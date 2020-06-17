@@ -1,1 +1,0 @@
-package com.waynechu.order.common.consts;

@@ -51,7 +51,7 @@
     biz.api.starter.swagger.api-title=文档标题
     biz.api.starter.swagger.api-description=文档描述
     biz.api.starter.swagger.api-version=1.0.0
-    biz.api.starter.swagger.scan-package=com.waynechu
+    biz.api.starter.swagger.scan-package=cn.waynechu
     biz.api.starter.swagger.contact-name=联系人名称
     biz.api.starter.swagger.contact-url=联系人主页
     biz.api.starter.swagger.contact-email=联系人邮箱

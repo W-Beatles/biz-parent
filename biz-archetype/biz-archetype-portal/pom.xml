@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>biz-archetype</artifactId>
+        <groupId>cn.waynechu</groupId>
+        <version>1.0.2020061601-RELEASE</version>
+    </parent>
+
+    <artifactId>biz-archetype-portal</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>biz-archetype-portal</name>
+    <description>biz-archetype-portal parent</description>
+
+    <repositories>
+        <repository>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Aliyun</id>
+            <name>Nexus Aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <parent-project.version>0.0.1-SNAPSHOT</parent-project.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-archetype-portal-common</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-archetype-portal-facade</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-archetype-portal-remote</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-archetype-portal-dal</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-archetype-portal-domain</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-archetype-portal-api</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.waynechu</groupId>
+                <artifactId>biz-archetype-portal-test</artifactId>
+                <version>${parent-project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <profiles.active>local</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>work</id>
+            <properties>
+                <profiles.active>work</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>ut</id>
+            <properties>
+                <profiles.active>ut</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <profiles.active>prd</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+    <modules>
+        <module>biz-archetype-portal-api</module>
+        <module>biz-archetype-portal-common</module>
+        <module>biz-archetype-portal-domain</module>
+        <module>biz-archetype-portal-facade</module>
+        <module>biz-archetype-portal-dal</module>
+        <module>biz-archetype-portal-remote</module>
+        <module>biz-archetype-portal-test</module>
+    </modules>
+</project>

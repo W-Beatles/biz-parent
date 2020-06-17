@@ -11,37 +11,39 @@ SpringCloud微服务开发脚手架
 1.  biz-boot-starter-dynamic-datasource  
      动态数据源模块。支持读写分离、多数据源动态切换、健康检查
 2.  biz-boot-starter-logger  
-     elk&sentry starter模块。用于日志上传ELK及Sentry报警
-3.  biz-facade-common  
+     `elk`&`sentry`starter模块。用于日志上传ELK及Sentry报警
+3.  biz-boot-starter-sequence  
+     基于`zookeeper`和`snowflake`算法的分布式id生成器
+4.  biz-facade-common  
      通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
-4.  biz-spring-boot-admin  
+5.  biz-spring-boot-admin  
      SpringBoot Admin监控模块
-5.  biz-spring-cloud-api-dynamic-datasource-test  
+6.  biz-spring-cloud-api-dynamic-datasource-test  
      动态数据源测试模块
-6.  biz-spring-cloud-api-service-order  
+7.  biz-spring-cloud-api-service-order  
      微服务测试模块 - 订单模块
-7.  biz-spring-cloud-api-service-product  
+8.  biz-spring-cloud-api-service-product  
      微服务测试模块 - 产品测试
-8.  biz-spring-cloud-api-service-utility  
+9.  biz-spring-cloud-api-service-utility  
      公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
-9.  biz-spring-cloud-api-starter  
+10. biz-spring-cloud-api-starter  
      spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
-10. biz-spring-cloud-archetype  
+11. biz-spring-cloud-archetype  
       用于一键生成spring-cloud项目基础开发骨架。可开箱即用，直接编写业务代码即可
-11. biz-spring-cloud-common  
+12. biz-spring-cloud-common  
       spring-cloud项目通用类库
-12. ~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
+13. ~~(已废弃)biz-spring-cloud-dashboard-hystrix~~  
       推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
-13. biz-spring-cloud-dashboard-turbine  
+14. biz-spring-cloud-dashboard-turbine  
       用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
-14. biz-spring-cloud-eureka  
+15. biz-spring-cloud-eureka  
       Eureka注册中心
-15. biz-spring-cloud-gateway  
+16. biz-spring-cloud-gateway  
       API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
-16. biz-spring-cloud-oauth-server  
+17. biz-spring-cloud-oauth-server  
       oauth2统一认证授权中心
-17. biz-spring-cloud-test  
-     测试模块
+18. biz-spring-cloud-test  
+      测试模块
 
 ### TODO LIST
 
@@ -99,7 +101,7 @@ docker-compose stop                    # 停止容器
     # 打包所有模块并构建docker镜像
     mvn clean install -Ddockerfile.skip=false
     ```
-4. 依赖之前存在依赖关系，`depends_on`无法决定依赖的服务是否完全启动。推荐按以下顺序初始化容器：  
+4. 服务之间存在依赖关系，`depends_on`无法决定依赖的服务是否完全启动。推荐按以下顺序初始化容器：  
     - mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db  
     - apollo elasticsearch  
     - skywalking-oap logstash kibana  
