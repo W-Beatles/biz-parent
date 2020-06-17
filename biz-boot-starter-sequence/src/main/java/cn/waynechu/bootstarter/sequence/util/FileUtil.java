@@ -1,7 +1,6 @@
-package cn.waynechu.springcloud.common.util;
+package cn.waynechu.bootstarter.sequence.util;
 
 import lombok.experimental.UtilityClass;
-import org.apache.commons.codec.Charsets;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -20,7 +19,7 @@ public class FileUtil {
     public static void writeStringToFile(final File file, final String data, final Charset encoding, boolean append) throws IOException {
         try (OutputStream out = openOutputStream(file, append)) {
             if (data != null) {
-                out.write(data.getBytes(Charsets.toCharset(encoding)));
+                out.write(data.getBytes(encoding));
             }
         }
     }
