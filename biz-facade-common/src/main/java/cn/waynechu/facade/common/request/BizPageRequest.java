@@ -13,9 +13,9 @@ import lombok.Data;
 public class BizPageRequest {
     private static final long serialVersionUID = 2789603649153042060L;
 
-    @ApiModelProperty(value = "当前页。默认第1页")
+    @ApiModelProperty(value = "当前页。默认第1页", example = "1")
     private Integer pageNum = 1;
 
-    @ApiModelProperty(value = "页大小。默认10条")
+    @ApiModelProperty(value = "页大小。默认10条", example = "10")
     private Integer pageSize = 10;
 }

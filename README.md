@@ -129,6 +129,7 @@ docker-compose stop                    # 停止容器
 |  skywalking-oap  |  skywalking-oap         |  12800       |                   |                                          |
 |  skywalking-ui   |  skywalking-ui          |  8090        |                   |  http://localhost:8090                   |
 |  认证服务         |  oauth-server           |  9050        |                   |  http://localhost:9050                   |
+|  代码生成后端服务  |  archetype-portal       |  9060        |                   |  http://localhost:9060                   |
 |  订单服务         |  service-order          |  10010-10019 |                   |  http://localhost:10010/swagger-ui.html  |
 |  订单服务         |  service-product        |  10020-10029 |                   |  http://localhost:10020/swagger-ui.html  |
 |  公共服务         |  service-utility        |  10030-10039 |                   |  http://localhost:10030/swagger-ui.html  |

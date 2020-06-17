@@ -21,10 +21,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @SpringBootApplication
-public class StartMain {
+public class ArchetypePortalStartMain {
 
     public static void main(String[] args) {
-        SpringApplication.run(StartMain.class, args);
+        SpringApplication.run(ArchetypePortalStartMain.class, args);
     }
 
 }

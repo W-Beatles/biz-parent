@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2019/4/2 10:15
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = StartMain.class)
-public class StartMain {
+@SpringBootTest(classes = ArchetypePortalStartMain.class)
+public class ArchetypePortalStartMain {
 
     @Test
     public void test() {
