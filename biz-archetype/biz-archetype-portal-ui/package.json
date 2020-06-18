@@ -1,5 +1,5 @@
 {
-  "name": "a",
+  "name": "w-beatles",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -35,6 +35,8 @@
     "script-ext-html-webpack-plugin": "2.1.3",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

@@ -37,7 +37,8 @@ export default {
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/projectFrame', meta: { title: 'ProjectFrame' } }].concat(matched)
+        // matched = [{ path: '/projectFrame', meta: { title: 'ProjectFrame' } }].concat(matched)
+        matched = matched
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)

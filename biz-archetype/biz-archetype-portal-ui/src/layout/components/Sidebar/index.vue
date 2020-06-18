@@ -52,8 +52,6 @@ export default {
     }
   },
   mounted() {
-    console.log('permission_routes', this.permission_routes)
-    console.log('permission_routes', this.showLogo)
   }
 }
 </script>

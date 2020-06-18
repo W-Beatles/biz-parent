@@ -1,0 +1,283 @@
+@btn-name: m-button;
+@btn-border-radius: 4px;
+@btn-border-default-color: var(--color);
+
+@btn-default-color: #fff;
+@btn-default-bgcolor: var(--color);
+
+@btn-info-color: #666;
+@btn-primary-color: #FFF;
+@btn-success-color: #FFF;
+@btn-danger-color: #FFF;
+@btn-warning-color: #FFF;
+
+
+@btn-info-border-color: #ddd;
+@btn-primary-border-color: #FFF;
+@btn-success-border-color: #FFF;
+@btn-danger-border-color: #F03744;
+@btn-warning-border-color: #FFF;
+
+
+@btn-info-bgcolor: #FFF;
+@btn-primary-bgcolor: #3D86FF;
+@btn-success-bgcolor: #03B976;
+@btn-danger-bgcolor: #F03744;
+@btn-warning-bgcolor: #F9AA40;
+
+@info-disabled-bgcolor: #DDD;
+@primary-disabled-bgcolor: #9E98CE;
+@success-disabled-bgcolor: #56ceb0;
+@danger-disabled-bgcolor: #FAB6B6;
+@warning-disabled-bgcolor: #ffc576;
+
+@color-default-light: var(--color);
+@color-primary-light: #8E74B4;
+@color-info-light: #fff;
+@color-success-light: #05a56a;
+@color-danger-light: #F03744;
+@color-warning-light: #FAB458;
+
+a.@{btn-name} {
+  text-decoration: none;
+  color: inherit;
+}
+
+.@{btn-name} {
+  background-image: none;
+  background-color: @btn-default-bgcolor;
+  display: inline-block;
+  padding: 7px 21px;
+  font-size: 14px;
+  font: inherit;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  touch-action: manipulation;
+  cursor: pointer;
+  outline: none;
+  border-radius: @btn-border-radius;
+  border: solid 1px @btn-border-default-color;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  user-select: none;
+  moz-user-select: -moz-none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  &:active,
+  &.active {
+    opacity: 0.8;
+    position: relative;
+  }
+
+  &.active:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: -4px;
+    left: -4px;
+    bottom: -4px;
+    right: -4px;
+    opacity: 0.35;
+    border: solid 6px;
+    border-radius: 6px;
+    border-color: inherit;
+  }
+
+  & + & {
+    margin-left: 10px;
+  }
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    // pointer-events: none;
+    color: rgba(0, 0, 0, 0.25);
+    background-color: #f5f5f5;
+    border-color: #d9d9d9;
+  }
+
+  &&-rounded {
+    border-radius: 50px;
+  }
+
+  &&-max {
+    padding: 15px 45px;
+    font-size: 18px;
+  }
+
+  &&-large {
+    padding: 10px 30px;
+  }
+
+  &&-small {
+    padding: 5px 15px;
+    font-size: 13px;
+  }
+
+  &&-mini {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+
+  &&-block {
+    display: block;
+    width: 100%;
+
+    & + & {
+      margin-left: auto;
+      margin-top: 10px;
+    }
+  }
+
+  .make-btn-theme(info);
+  .make-btn-theme(primary);
+  .make-btn-theme(success);
+  .make-btn-theme(danger);
+  .make-btn-theme(warning);
+
+  .make-btn-clicked();
+
+  &&-type-plain {
+    color: #606266;
+    border-color: #ddd;
+    background-color: transparent;
+
+
+    .make-btn-type-plain-theme(info);
+    .make-btn-type-plain-theme(primary);
+    .make-btn-type-plain-theme(success);
+    .make-btn-type-plain-theme(danger);
+    .make-btn-type-plain-theme(warning);
+  }
+}
+
+.make-btn-theme(@theme) {
+  &&-@{theme} {
+    color: ~"@{btn-@{theme}-color}";
+    background-color: ~"@{btn-@{theme}-bgcolor}";
+    border: 1px solid ~"@{btn-@{theme}-border-color}";
+
+    &:hover {
+      border: 1px solid ~"@{btn-@{theme}-border-color}";
+      color: ~"@{btn-@{theme}-color}";
+    }
+
+    &:disabled,
+    &.disabled {
+      cursor: not-allowed;
+      // pointer-events: none;
+      background-color: ~"@{@{theme}-disabled-bgcolor}";
+      border-color: ~"@{@{theme}-disabled-bgcolor}";
+    }
+  }
+}
+
+// 点击涟漪效果
+.make-btn-clicked() {
+  &.clicked {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: -1px;
+      left: -1px;
+      bottom: -1px;
+      right: -1px;
+      opacity: .8;
+      border: solid 0px;
+      border-color: inherit;
+      border-radius: inherit;
+      animation: btn-clicked-effect .5s;
+    }
+  }
+}
+
+.make-btn-type-plain-theme(@theme) {
+  &.@{btn-name}-@{theme} {
+    color: ~"@{btn-@{theme}-bgcolor}";
+    border-color: ~"@{color-@{theme}-light}";
+
+  }
+}
+
+.@{btn-name}-block + .@{btn-name}-block {
+  margin-top: 5px;
+}
+
+.@{btn-name}-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.@{btn-name}-group .@{btn-name} {
+  position: relative;
+  float: left;
+  border-radius: 0;
+  margin-left: -1px;
+
+  &:first-child {
+    margin-left: 0;
+    border-top-left-radius: @btn-border-radius;
+    border-bottom-left-radius: @btn-border-radius;
+  }
+
+  &:last-child {
+    border-top-right-radius: @btn-border-radius;
+    border-bottom-right-radius: @btn-border-radius;
+  }
+}
+
+
+/**
+* animation
+* e.g keyframes(effect-test, all, {css})
+*/
+.keyframes (@name, @prefix, @content) when (@prefix = def) {
+  @keyframes @name {
+    @content();
+  }
+}
+
+.keyframes (@name, @prefix, @content) when (@prefix = moz) {
+  @-moz-keyframes @name {
+    @content();
+  }
+}
+
+.keyframes (@name, @prefix, @content) when (@prefix = o) {
+  @-o-keyframes @name {
+    @content();
+  }
+}
+
+.keyframes (@name, @prefix, @content) when (@prefix = webkit) {
+  @-webkit-keyframes @name {
+    @content();
+  }
+}
+
+.keyframes (@name, @prefix, @content) when (@prefix = all) {
+  .keyframes(@name, moz, @content);
+  .keyframes(@name, o, @content);
+  .keyframes(@name, webkit, @content);
+  .keyframes(@name, def, @content);
+}
+
+.keyframes(btn-clicked-effect, all, { to {
+  top: -6px;
+  left: -6px;
+  bottom: -6px;
+  right: -6px;
+  border-width: 6px;
+  opacity: 0;
+} });
