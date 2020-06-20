@@ -9,7 +9,6 @@
         <version>1.0.2019091701-RELEASE</version>
     </parent>
 
-    <groupId>cn.waynechu</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
     <packaging>pom</packaging>
