@@ -22,11 +22,16 @@ public class ArchetypeRepository {
     public List<ArchetypeDO> listByCondition(ListArchetypeCondition condition) {
         QueryWrapper<ArchetypeDO> wrapper = new QueryWrapper<>();
         if (condition.getId() != null) {
-            wrapper.eq(ArchetypeDO.COL_ID, condition.getAppId());
+            wrapper.eq(ArchetypeDO.COL_ID, condition.getId());
         }
         if (condition.getAppId() != null) {
-            wrapper.eq(ArchetypeDO.COL_APP_ID, condition.getAppId());
+            wrapper.like(ArchetypeDO.COL_APP_ID, condition.getAppId());
         }
         return mapper.selectList(wrapper);
+    }
+
+    public Long insert(ArchetypeDO archetypeDO) {
+        mapper.insert(archetypeDO);
+        return archetypeDO.getId();
     }
 }

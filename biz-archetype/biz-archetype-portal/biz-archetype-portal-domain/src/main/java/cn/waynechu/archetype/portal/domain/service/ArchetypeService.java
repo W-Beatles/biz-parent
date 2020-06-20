@@ -1,5 +1,6 @@
 package cn.waynechu.archetype.portal.domain.service;
 
+import cn.waynechu.archetype.portal.facade.request.CreateArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.request.SearchArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.page.BizPageInfo;
@@ -17,6 +18,14 @@ public interface ArchetypeService {
      * @return 原型列表
      */
     BizPageInfo<SearchArchetypeResponse> search(SearchArchetypeRequest request);
+
+    /**
+     * 新增项目原型
+     *
+     * @param request req
+     * @return 原型id
+     */
+    Long create(CreateArchetypeRequest request);
 }
 
 

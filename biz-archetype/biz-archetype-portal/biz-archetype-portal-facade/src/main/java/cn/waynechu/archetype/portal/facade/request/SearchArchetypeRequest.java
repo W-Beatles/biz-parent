@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(description = "原型列表查询请求对象")
+@ApiModel
 public class SearchArchetypeRequest extends BizPageRequest {
 
     @ApiModelProperty("原型id")

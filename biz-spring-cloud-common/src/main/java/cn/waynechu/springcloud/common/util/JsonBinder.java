@@ -200,4 +200,11 @@ public class JsonBinder {
         return mapper;
     }
 
+    public static <T> T fromJson(String jsonString, Class<T> clazz) {
+        return buildAlwaysBinder().parseObject(jsonString, clazz);
+    }
+
+    public static String toJson(Object object) {
+        return buildAlwaysBinder().toJsonString(object, false);
+    }
 }
