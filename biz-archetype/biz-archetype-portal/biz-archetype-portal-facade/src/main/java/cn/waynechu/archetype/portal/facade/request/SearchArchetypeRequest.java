@@ -12,11 +12,11 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(description = "任务列表查询请求对象")
-public class SearchTaskRequest extends BizPageRequest {
+@ApiModel(description = "原型列表查询请求对象")
+public class SearchArchetypeRequest extends BizPageRequest {
 
-    @ApiModelProperty("任务id")
-    private Long taskId;
+    @ApiModelProperty("原型id")
+    private Long id;
 
     @ApiModelProperty("AppId")
     private String appId;
