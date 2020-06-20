@@ -33,6 +33,12 @@ public class BizPageInfo<T> extends PageSerializable<T> {
     @ApiModelProperty("总页数")
     private int pages;
 
+    @ApiModelProperty("总数量")
+    private long total;
+
+    @ApiModelProperty("分页数据")
+    private List<T> list;
+
     @ApiModelProperty("是否有下一页")
     private Boolean hasNextPage = false;
 

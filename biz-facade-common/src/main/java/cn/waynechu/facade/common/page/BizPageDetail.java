@@ -41,6 +41,11 @@ public class BizPageDetail<T> extends BizPageInfo<T> {
     @ApiModelProperty("下页号")
     private int nextPage;
 
+    @ApiModelProperty("总数量")
+    private long total;
+    @ApiModelProperty("分页数据")
+    private List<T> list;
+
     @ApiModelProperty("是否为第一页")
     private Boolean isFirstPage = false;
     @ApiModelProperty("是否为最后一页")

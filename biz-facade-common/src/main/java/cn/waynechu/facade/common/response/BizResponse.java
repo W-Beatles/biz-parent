@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class BizResponse<T> implements Serializable {
     private static final long serialVersionUID = 9111238562185215154L;
 
-    @ApiModelProperty(value = "返回状态码", allowableValues = "10000,....")
+    @ApiModelProperty(value = "返回状态码")
     private int code;
 
     @ApiModelProperty(value = "提示信息")
