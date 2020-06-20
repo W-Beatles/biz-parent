@@ -4,13 +4,14 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2020-06-20 22:14
+ * @date 2020-06-21 00:07
  */
 @Data
 @TableName(value = "archetype")
@@ -60,8 +61,8 @@ public class ArchetypeDO implements Serializable {
     /**
      * 上传git: 0否 1是
      */
-    @TableField(value = "git_upload_status")
-    private Boolean gitUploadStatus;
+    @TableField(value = "git_upload_type")
+    private Boolean gitUploadType;
 
     /**
      * git仓库地址
@@ -121,7 +122,7 @@ public class ArchetypeDO implements Serializable {
 
     public static final String COL_STATUS_CODE = "status_code";
 
-    public static final String COL_GIT_UPLOAD_STATUS = "git_upload_status";
+    public static final String COL_GIT_UPLOAD_TYPE = "git_upload_type";
 
     public static final String COL_GIT_URL = "git_url";
 

@@ -28,7 +28,7 @@ public class SearchArchetypeResponse {
     private Integer appType;
 
     @ApiModelProperty("项目类型描述")
-    private Integer appTypeDesc;
+    private String appTypeDesc;
 
     @ApiModelProperty("包名")
     private String packageName;

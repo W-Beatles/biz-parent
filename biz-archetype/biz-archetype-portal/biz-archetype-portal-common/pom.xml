@@ -14,4 +14,10 @@
     <name>biz-archetype-portal-common</name>
     <description>biz-archetype-portal-common module for SpringCloud</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-spring-cloud-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>
