@@ -70,4 +70,22 @@ public class FileUtil {
         }
         return new FileInputStream(file);
     }
+
+    /**
+     * 删除文件或文件夹
+     *
+     * @param file 文件或文件夹
+     */
+    public void delDir(File file) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            if (files != null) {
+                for (File childFile : files) {
+                    delDir(childFile);
+                }
+            }
+        }
+        //noinspection ResultOfMethodCallIgnored
+        file.delete();
+    }
 }

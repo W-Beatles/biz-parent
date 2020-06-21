@@ -3,6 +3,7 @@ package cn.waynechu.archetype.portal.domain.repository;
 import cn.waynechu.archetype.portal.dal.condition.ListArchetypeCondition;
 import cn.waynechu.archetype.portal.dal.dataobject.ArchetypeDO;
 import cn.waynechu.archetype.portal.dal.mapper.project.ArchetypeMapper;
+import cn.waynechu.springcloud.common.util.StringUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,11 +28,19 @@ public class ArchetypeRepository {
         if (condition.getAppId() != null) {
             wrapper.like(ArchetypeDO.COL_APP_ID, condition.getAppId());
         }
+        if (StringUtil.isNotEmpty(condition.getAppName())) {
+            wrapper.eq(ArchetypeDO.COL_APP_NAME, condition.getAppName());
+        }
+        wrapper.eq(ArchetypeDO.COL_DELETED_STATUS, false);
         return mapper.selectList(wrapper);
     }
 
     public Long insert(ArchetypeDO archetypeDO) {
         mapper.insert(archetypeDO);
         return archetypeDO.getId();
+    }
+
+    public void updateById(ArchetypeDO archetypeDO) {
+        mapper.updateById(archetypeDO);
     }
 }

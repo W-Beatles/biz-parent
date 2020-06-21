@@ -18,4 +18,9 @@ public class ListArchetypeCondition {
      * AppID
      */
     private String appId;
+
+    /**
+     * 项目名称
+     */
+    private String appName;
 }

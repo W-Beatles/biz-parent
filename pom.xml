@@ -35,6 +35,7 @@
         <dubbo.version>2.7.3</dubbo.version>
         <zookeeper.version>3.6.1</zookeeper.version>
         <curator.version>5.0.0</curator.version>
+        <hutool-core.version>5.3.8</hutool-core.version>
         <poi.version>3.17</poi.version>
         <xmlbeans.version>3.1.0</xmlbeans.version>
         <protostuff.version>1.6.0</protostuff.version>
@@ -175,6 +176,13 @@
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-recipes</artifactId>
                 <version>${curator.version}</version>
+            </dependency>
+
+            <!-- Hutool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool-core.version}</version>
             </dependency>
 
             <!-- POI -->
