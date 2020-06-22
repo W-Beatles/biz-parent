@@ -56,6 +56,8 @@ public enum BizErrorCodeEnum implements BizEnum {
     DATA_ALREADY_EXIST(10500, "DATA_ALREADY_EXIST", "数据已存在"),
     DATA_NOT_EXIST(10501, "DATA_NOT_EXIST", "数据不存在"),
 
+    // 状态相关 10600~10699
+    ILLEGAL_STATE_ERROR(10060, "ILLEGAL_STATE_ERROR", "状态错误"),
 
     // 其它 19000~19999
     ILLEGAL_OPERATION(19000, "ILLEGAL_OPERATION", "非法操作"),

@@ -14,6 +14,7 @@ import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.page.BizPageInfo;
+import cn.waynechu.springcloud.common.http.HttpUtil;
 import cn.waynechu.springcloud.common.util.BeanUtil;
 import cn.waynechu.springcloud.common.util.CollectionUtil;
 import cn.waynechu.springcloud.common.util.FileUtil;
@@ -24,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -93,6 +95,30 @@ public class ArchetypeServiceImpl implements ArchetypeService {
         return archetypeId;
     }
 
+    @Override
+    public void download(Long id, HttpServletResponse response) {
+        ArchetypeDO archetypeDO = this.checkArchetypeExist(id);
+        if (!StatusCodeEnum.SUCCEED.getCode().equals(archetypeDO.getStatusCode())) {
+            throw new BizException(BizErrorCodeEnum.ILLEGAL_STATE_ERROR, "项目骨架尚未生成");
+        }
+        String projectPath = workingRootPath + "project" + File.separator + id + File.separator;
+        HttpUtil.downloadFile(response, projectPath, archetypeDO.getAppName(), false);
+    }
+
+    @Override
+    public ArchetypeDO checkArchetypeExist(Long id) {
+        ArchetypeDO archetypeDO = archetypeRepository.selectById(id);
+        if (archetypeDO == null) {
+            throw new BizException(BizErrorCodeEnum.DATA_NOT_EXIST, "原型不存在");
+        }
+        return archetypeDO;
+    }
+
+    /**
+     * 校验appName是否存在
+     *
+     * @param request req
+     */
     private void checkAppNameExist(CreateArchetypeRequest request) {
         ListArchetypeCondition condition = new ListArchetypeCondition();
         condition.setAppName(request.getAppName());
@@ -117,6 +143,14 @@ public class ArchetypeServiceImpl implements ArchetypeService {
         archetypeRepository.updateById(updateArchetypeDO);
     }
 
+    /**
+     * 执行脚本创建项目骨架原型文件
+     *
+     * @param archetypeId 原型id
+     * @param appName     项目名称
+     * @param packageName 包名
+     * @throws IOException e
+     */
     private void createProjectArchetype(Long archetypeId, String appName, String packageName) throws IOException {
         String scriptName = SystemUtil.isWindows() ? "CreateProject.bat" : "CreateProject.sh";
         // d:\archetype-generator\script\CreateProject.bat appName packageName

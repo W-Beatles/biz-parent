@@ -8,12 +8,11 @@ import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.response.BizResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
@@ -40,5 +39,11 @@ public class ArchetypeController {
     public BizResponse<Long> create(@Valid @RequestBody CreateArchetypeRequest request) {
         Long id = archetypeService.create(request);
         return BizResponse.success(id);
+    }
+
+    @ApiOperation("下载项目原型")
+    @GetMapping("/download/{id}")
+    public void download(@ApiParam(name = "原型id") @PathVariable Long id, HttpServletResponse response) {
+        archetypeService.download(id, response);
     }
 }

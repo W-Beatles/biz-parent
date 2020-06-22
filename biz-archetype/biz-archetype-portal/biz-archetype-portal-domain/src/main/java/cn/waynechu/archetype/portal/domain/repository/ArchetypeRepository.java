@@ -43,4 +43,8 @@ public class ArchetypeRepository {
     public void updateById(ArchetypeDO archetypeDO) {
         mapper.updateById(archetypeDO);
     }
+
+    public ArchetypeDO selectById(Long id) {
+        return mapper.selectById(id);
+    }
 }
