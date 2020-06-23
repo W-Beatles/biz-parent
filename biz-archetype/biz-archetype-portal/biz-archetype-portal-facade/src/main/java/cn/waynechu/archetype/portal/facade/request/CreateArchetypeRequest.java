@@ -15,26 +15,26 @@ import javax.validation.constraints.NotNull;
 @ApiModel
 public class CreateArchetypeRequest {
 
-    @ApiModelProperty("AppID")
+    @ApiModelProperty(value = "AppID", required = true)
     @NotBlank(message = "AppID不能为空")
     private String appId;
 
-    @ApiModelProperty("项目名称")
+    @ApiModelProperty(value = "项目名称", required = true)
     @NotBlank(message = "项目名称不能为空")
     private String appName;
 
-    @ApiModelProperty("项目类型: 0Service 1SDK")
+    @ApiModelProperty(value = "项目类型: 0Service 1SDK", required = true)
     @NotNull(message = "项目类型不能为空")
     private Integer appType;
 
-    @ApiModelProperty("包名")
+    @ApiModelProperty(value = "包名", required = true)
     @NotBlank(message = "包名不能为空")
     private String packageName;
 
     @ApiModelProperty("项目描述")
     private String description;
 
-    @ApiModelProperty("上传git: 0否 1是")
+    @ApiModelProperty(value = "上传git: 0否 1是", required = true)
     @NotNull(message = "上传git不能为空")
     private Boolean gitUploadType;
 }

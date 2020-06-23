@@ -391,11 +391,10 @@ public class HttpUtil {
         OutputStream os = null;
         File file = null;
         try {
-            res.setHeader("content-type", "application/octet-stream");
             res.setContentType("application/octet-stream");
             res.setHeader("Content-Disposition",
                     "attachment;filename=" + new String(fileName.getBytes(), "ISO-8859-1"));
-
+            res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
             file = new File(filePath + "/" + fileName);
             os = res.getOutputStream();
             bis = new BufferedInputStream(new FileInputStream(file));
@@ -408,7 +407,7 @@ public class HttpUtil {
                 i = bis.read(buff);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             if (bis != null) {
                 try {

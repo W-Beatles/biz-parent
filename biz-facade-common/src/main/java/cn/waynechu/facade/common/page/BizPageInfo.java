@@ -53,18 +53,20 @@ public class BizPageInfo<T> extends PageSerializable<T> {
      * @param list page对象
      */
     public BizPageInfo(List<T> list) {
-        super(list);
         if (list instanceof Page) {
             Page<T> page = (Page<T>) list;
             this.pageNum = page.getPageNum();
             this.pageSize = page.getPageSize();
             this.pages = page.getPages();
+            this.total = ((Page) list).getTotal();
         } else {
             this.pageNum = 1;
             this.pageSize = list.size();
             this.pages = this.pageSize > 0 ? 1 : 0;
+            this.total = list.size();
         }
-        hasNextPage = pageNum < pages;
+        this.list = list;
+        this.hasNextPage = pageNum < pages;
     }
 
     @Override
@@ -78,7 +80,7 @@ public class BizPageInfo<T> extends PageSerializable<T> {
                 this.pages = Math.toIntExact(total / pageSize);
             }
         }
-        hasNextPage = pageNum < pages;
+        this.hasNextPage = pageNum < pages;
     }
 
     public static <T> BizPageInfo<T> of(List<T> list) {

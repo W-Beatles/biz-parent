@@ -31,7 +31,7 @@ public class ArchetypeConvert {
                         Optional.ofNullable(AppTypeEnum.getByCode(archetypeDO.getAppType()))
                                 .map(AppTypeEnum::getName).orElse(""));
                 response.setStatusCodeDesc(Optional.ofNullable(StatusCodeEnum.getByCode(archetypeDO.getStatusCode()))
-                        .map(StatusCodeEnum::getName).orElse(""));
+                        .map(StatusCodeEnum::getDesc).orElse(""));
                 returnValue.add(response);
             }
         }

@@ -8,7 +8,6 @@ import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.response.BizResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +42,7 @@ public class ArchetypeController {
 
     @ApiOperation("下载项目原型")
     @GetMapping("/download/{id}")
-    public void download(@ApiParam(name = "原型id") @PathVariable Long id, HttpServletResponse response) {
+    public void download(@PathVariable Long id, HttpServletResponse response) {
         archetypeService.download(id, response);
     }
 }

@@ -19,8 +19,10 @@ import cn.waynechu.springcloud.common.util.BeanUtil;
 import cn.waynechu.springcloud.common.util.CollectionUtil;
 import cn.waynechu.springcloud.common.util.FileUtil;
 import cn.waynechu.springcloud.common.util.UserUtil;
+import com.github.pagehelper.PageHelper;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -51,7 +53,11 @@ public class ArchetypeServiceImpl implements ArchetypeService {
 
     @Override
     public BizPageInfo<SearchArchetypeResponse> search(SearchArchetypeRequest request) {
-        ListArchetypeCondition condition = BeanUtil.beanTransfer(request, ListArchetypeCondition.class);
+        ListArchetypeCondition condition = new ListArchetypeCondition();
+        BeanUtils.copyProperties(request, condition);
+        condition.setOrderBy(ArchetypeDO.COL_UPDATED_TIME).setIsAsc(false);
+
+        PageHelper.startPage(request.getPageNum(), request.getPageSize());
         List<ArchetypeDO> archetypeDOList = archetypeRepository.listByCondition(condition);
         List<SearchArchetypeResponse> list = ArchetypeConvert.toSearchArchetypeResponse(archetypeDOList);
         return BizPageInfo.of(archetypeDOList).replace(list);
@@ -83,7 +89,7 @@ public class ArchetypeServiceImpl implements ArchetypeService {
                 // 压缩ZIP
                 String projectPath = workingRootPath + "project" + File.separator + archetypeId + File.separator;
                 String zipFileName = projectPath + request.getAppName();
-                ZipUtil.zip(zipFileName, zipFileName + ".zip");
+                ZipUtil.zip(zipFileName, zipFileName + ".zip", true);
 
                 // 同步原型生成状态
                 this.syncArchetypeStatus(archetypeId, StatusCodeEnum.SUCCEED);
@@ -102,7 +108,8 @@ public class ArchetypeServiceImpl implements ArchetypeService {
             throw new BizException(BizErrorCodeEnum.ILLEGAL_STATE_ERROR, "项目骨架尚未生成");
         }
         String projectPath = workingRootPath + "project" + File.separator + id + File.separator;
-        HttpUtil.downloadFile(response, projectPath, archetypeDO.getAppName(), false);
+        String fileName = archetypeDO.getAppName() + ".zip";
+        HttpUtil.downloadFile(response, projectPath, fileName, false);
     }
 
     @Override
