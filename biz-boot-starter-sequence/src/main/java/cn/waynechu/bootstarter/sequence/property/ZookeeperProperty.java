@@ -1,22 +1,13 @@
 package cn.waynechu.bootstarter.sequence.property;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author zhuwei
  * @since 2020/6/11 16:01
  */
 @Data
-@ConfigurationProperties(prefix = ZookeeperConfiguration.SEQUENCE_PREFIX)
-public class ZookeeperConfiguration {
-
-    public static final String SEQUENCE_PREFIX = "sequence";
-
-    /**
-     * 是否开启sequence服务
-     */
-    private boolean enable;
+public class ZookeeperProperty {
 
     /**
      * 连接Zookeeper服务器的列表
@@ -69,5 +60,4 @@ public class ZookeeperConfiguration {
      * 缺省为不需要权限验证
      */
     private String digest;
-
 }

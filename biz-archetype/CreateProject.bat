@@ -16,4 +16,4 @@ echo Y | mvn archetype:generate ^
     -DgroupId=cn.waynechu ^
     -DartifactId=%projectName% ^
     -Dversion=0.0.1-SNAPSHOT ^
-    -Dpackage=cn.waynechu.%packageName% ^
+    -Dpackage=cn.waynechu.%packageName%

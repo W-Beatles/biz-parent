@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,6 +41,11 @@ public class BizPageDetail<T> extends BizPageInfo<T> {
     private int prePage;
     @ApiModelProperty("下页号")
     private int nextPage;
+
+    @ApiModelProperty("总数量")
+    private long total;
+    @ApiModelProperty("分页数据")
+    private List<T> list;
 
     @ApiModelProperty("是否为第一页")
     private Boolean isFirstPage = false;
@@ -80,13 +86,11 @@ public class BizPageDetail<T> extends BizPageInfo<T> {
      * @param navigatePages 导航页码数
      */
     public BizPageDetail(List<T> list, int navigatePages) {
-        super(list);
         if (list instanceof Page) {
             Page<T> page = (Page<T>) list;
             this.pageNum = page.getPageNum();
             this.pageSize = page.getPageSize();
 
-            this.pages = page.getPages();
             this.size = page.size();
             // 由于结果是 > startRow的，所以实际的需要+1
             if (this.size == 0) {
@@ -97,14 +101,19 @@ public class BizPageDetail<T> extends BizPageInfo<T> {
                 // 计算实际的endRow（最后一页的时候特殊）
                 this.endRow = this.startRow - 1 + this.size;
             }
+
+            this.pages = page.getPages();
+            this.total = ((Page) list).getTotal();
         } else {
             this.pageNum = 1;
             this.pageSize = list.size();
 
-            this.pages = this.pageSize > 0 ? 1 : 0;
             this.size = list.size();
             this.startRow = 0;
             this.endRow = list.isEmpty() ? 0 : list.size() - 1;
+
+            this.pages = this.pageSize > 0 ? 1 : 0;
+            this.total = list.size();
         }
 
         this.navigatePages = navigatePages;
@@ -184,6 +193,28 @@ public class BizPageDetail<T> extends BizPageInfo<T> {
         isLastPage = pageNum == pages || pages == 0;
         hasPreviousPage = pageNum > 1;
         hasNextPage = pageNum < pages;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <E> BizPageDetail<E> replace(List<E> replaceList) {
+        BizPageDetail replace = this;
+        replace.setList(replaceList);
+        return replace;
+    }
+
+    @Override
+    public BizPageDetail<T> emptyPage() {
+        this.setList(Collections.emptyList());
+        return this;
+    }
+
+    @Override
+    public BizPageDetail<T> emptyPage(int pageNum, int pageSize) {
+        this.setPageNum(pageNum);
+        this.setPageSize(pageSize);
+        this.setList(Collections.emptyList());
+        return this;
     }
 }
 

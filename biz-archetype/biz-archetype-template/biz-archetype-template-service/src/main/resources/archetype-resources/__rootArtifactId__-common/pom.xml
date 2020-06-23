@@ -14,4 +14,10 @@
     <name>${artifactId}</name>
     <description>${artifactId} module for SpringCloud</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-spring-cloud-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>

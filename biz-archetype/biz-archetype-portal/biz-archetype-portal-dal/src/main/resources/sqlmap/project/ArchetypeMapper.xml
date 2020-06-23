@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.waynechu.archetype.portal.dal.mapper.project.ArchetypeMapper">
+    <resultMap id="BaseResultMap" type="cn.waynechu.archetype.portal.dal.dataobject.ArchetypeDO">
+        <!--@mbg.generated-->
+        <!--@Table archetype-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="app_id" jdbcType="VARCHAR" property="appId"/>
+        <result column="app_name" jdbcType="VARCHAR" property="appName"/>
+        <result column="app_type" jdbcType="TINYINT" property="appType"/>
+        <result column="package_name" jdbcType="VARCHAR" property="packageName"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="status_code" jdbcType="TINYINT" property="statusCode"/>
+        <result column="git_upload_type" jdbcType="BOOLEAN" property="gitUploadType"/>
+        <result column="git_url" jdbcType="VARCHAR" property="gitUrl"/>
+        <result column="download_url" jdbcType="VARCHAR" property="downloadUrl"/>
+        <result column="created_user" jdbcType="VARCHAR" property="createdUser"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="updated_user" jdbcType="VARCHAR" property="updatedUser"/>
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+        <result column="deleted_status" jdbcType="BOOLEAN" property="deletedStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, app_id, app_name, app_type, package_name, description, status_code, git_upload_type,
+        git_url, download_url, created_user, created_time, updated_user, updated_time, deleted_status
+    </sql>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update archetype
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="app_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.appId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="app_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.appName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="app_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.appType,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="package_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.packageName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="description = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="status_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.statusCode,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="git_upload_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.gitUploadType,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+            <trim prefix="git_url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.gitUrl,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="download_url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.downloadUrl,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="created_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createdUser,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="created_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createdTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updated_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updatedUser,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="updated_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updatedTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="deleted_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deletedStatus,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into archetype
+        (app_id, app_name, app_type, package_name, description, status_code, git_upload_type,
+        git_url, download_url, created_user, created_time, updated_user, updated_time,
+        deleted_status)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.appId,jdbcType=VARCHAR}, #{item.appName,jdbcType=VARCHAR}, #{item.appType,jdbcType=TINYINT},
+            #{item.packageName,jdbcType=VARCHAR}, #{item.description,jdbcType=VARCHAR},
+            #{item.statusCode,jdbcType=TINYINT},
+            #{item.gitUploadType,jdbcType=BOOLEAN}, #{item.gitUrl,jdbcType=VARCHAR},
+            #{item.downloadUrl,jdbcType=VARCHAR},
+            #{item.createdUser,jdbcType=VARCHAR}, #{item.createdTime,jdbcType=TIMESTAMP},
+            #{item.updatedUser,jdbcType=VARCHAR},
+            #{item.updatedTime,jdbcType=TIMESTAMP}, #{item.deletedStatus,jdbcType=BOOLEAN})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.archetype.portal.dal.dataobject.ArchetypeDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into archetype
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            app_id,
+            app_name,
+            app_type,
+            package_name,
+            description,
+            status_code,
+            git_upload_type,
+            git_url,
+            download_url,
+            created_user,
+            created_time,
+            updated_user,
+            updated_time,
+            deleted_status,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{appId,jdbcType=VARCHAR},
+            #{appName,jdbcType=VARCHAR},
+            #{appType,jdbcType=TINYINT},
+            #{packageName,jdbcType=VARCHAR},
+            #{description,jdbcType=VARCHAR},
+            #{statusCode,jdbcType=TINYINT},
+            #{gitUploadType,jdbcType=BOOLEAN},
+            #{gitUrl,jdbcType=VARCHAR},
+            #{downloadUrl,jdbcType=VARCHAR},
+            #{createdUser,jdbcType=VARCHAR},
+            #{createdTime,jdbcType=TIMESTAMP},
+            #{updatedUser,jdbcType=VARCHAR},
+            #{updatedTime,jdbcType=TIMESTAMP},
+            #{deletedStatus,jdbcType=BOOLEAN},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            app_id = #{appId,jdbcType=VARCHAR},
+            app_name = #{appName,jdbcType=VARCHAR},
+            app_type = #{appType,jdbcType=TINYINT},
+            package_name = #{packageName,jdbcType=VARCHAR},
+            description = #{description,jdbcType=VARCHAR},
+            status_code = #{statusCode,jdbcType=TINYINT},
+            git_upload_type = #{gitUploadType,jdbcType=BOOLEAN},
+            git_url = #{gitUrl,jdbcType=VARCHAR},
+            download_url = #{downloadUrl,jdbcType=VARCHAR},
+            created_user = #{createdUser,jdbcType=VARCHAR},
+            created_time = #{createdTime,jdbcType=TIMESTAMP},
+            updated_user = #{updatedUser,jdbcType=VARCHAR},
+            updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            deleted_status = #{deletedStatus,jdbcType=BOOLEAN},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.archetype.portal.dal.dataobject.ArchetypeDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into archetype
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="appId != null">
+                app_id,
+            </if>
+            <if test="appName != null">
+                app_name,
+            </if>
+            <if test="appType != null">
+                app_type,
+            </if>
+            <if test="packageName != null">
+                package_name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="statusCode != null">
+                status_code,
+            </if>
+            <if test="gitUploadType != null">
+                git_upload_type,
+            </if>
+            <if test="gitUrl != null">
+                git_url,
+            </if>
+            <if test="downloadUrl != null">
+                download_url,
+            </if>
+            <if test="createdUser != null">
+                created_user,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedUser != null">
+                updated_user,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+            <if test="deletedStatus != null">
+                deleted_status,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="appId != null">
+                #{appId,jdbcType=VARCHAR},
+            </if>
+            <if test="appName != null">
+                #{appName,jdbcType=VARCHAR},
+            </if>
+            <if test="appType != null">
+                #{appType,jdbcType=TINYINT},
+            </if>
+            <if test="packageName != null">
+                #{packageName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                #{statusCode,jdbcType=TINYINT},
+            </if>
+            <if test="gitUploadType != null">
+                #{gitUploadType,jdbcType=BOOLEAN},
+            </if>
+            <if test="gitUrl != null">
+                #{gitUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadUrl != null">
+                #{downloadUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createdUser != null">
+                #{createdUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedUser != null">
+                #{updatedUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedStatus != null">
+                #{deletedStatus,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="appId != null">
+                app_id = #{appId,jdbcType=VARCHAR},
+            </if>
+            <if test="appName != null">
+                app_name = #{appName,jdbcType=VARCHAR},
+            </if>
+            <if test="appType != null">
+                app_type = #{appType,jdbcType=TINYINT},
+            </if>
+            <if test="packageName != null">
+                package_name = #{packageName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                status_code = #{statusCode,jdbcType=TINYINT},
+            </if>
+            <if test="gitUploadType != null">
+                git_upload_type = #{gitUploadType,jdbcType=BOOLEAN},
+            </if>
+            <if test="gitUrl != null">
+                git_url = #{gitUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadUrl != null">
+                download_url = #{downloadUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createdUser != null">
+                created_user = #{createdUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedUser != null">
+                updated_user = #{updatedUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedStatus != null">
+                deleted_status = #{deletedStatus,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+</mapper>

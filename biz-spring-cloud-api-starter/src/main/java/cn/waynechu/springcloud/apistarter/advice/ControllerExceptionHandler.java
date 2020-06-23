@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Objects;
 
-import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_REQUEST_ID;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_REQUEST_ID;
 
 /**
  * 统一异常处理切面
@@ -57,14 +57,14 @@ public class ControllerExceptionHandler {
             log.error("[BizError] {}", e.getErrorMessage(), e);
         }
         log.info("[BizError] {}", e.getErrorMessage());
-        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(HEADER_KEY_REQUEST_ID).substring(0, 5));
+        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDC_KEY_REQUEST_ID).substring(0, 5));
     }
 
     @ExceptionHandler(Exception.class)
     public BizResponse<String> unknownException(Exception e) {
         log.error("[SystemError] ", e);
         return BizResponse.error(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
-                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(HEADER_KEY_REQUEST_ID).substring(0, 5));
+                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDC_KEY_REQUEST_ID).substring(0, 5));
     }
 
 }

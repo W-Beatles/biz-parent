@@ -1,8 +1,8 @@
 package cn.waynechu.bootstarter.sequence;
 
 import cn.waynechu.bootstarter.sequence.generator.SnowFlakeIdGenerator;
-import cn.waynechu.bootstarter.sequence.property.ApplicationConfiguration;
-import cn.waynechu.bootstarter.sequence.property.ZookeeperConfiguration;
+import cn.waynechu.bootstarter.sequence.property.SequenceProperty;
+import cn.waynechu.bootstarter.sequence.property.ZookeeperProperty;
 import cn.waynechu.bootstarter.sequence.register.zookeeper.ZookeeperWorkerRegister;
 import cn.waynechu.bootstarter.sequence.registry.ZookeeperRegistryCenter;
 import org.junit.jupiter.api.Test;
@@ -18,23 +18,23 @@ public class ProducerTest {
     @Test
     public void test() {
         try {
-            ZookeeperConfiguration configuration = new ZookeeperConfiguration();
+            ZookeeperProperty configuration = new ZookeeperProperty();
             configuration.setServerLists("127.0.0.1:2181");
             configuration.setNamespace("sequence");
 
             ZookeeperRegistryCenter zookeeperRegistryCenter = new ZookeeperRegistryCenter(configuration);
             zookeeperRegistryCenter.init();
 
-            ApplicationConfiguration applicationConfiguration = new ApplicationConfiguration();
-            applicationConfiguration.setGroup("default_group");
+            SequenceProperty sequenceProperty = new SequenceProperty();
+            sequenceProperty.setGroup("default_group");
+            sequenceProperty.setDurable(true);
 
-            ZookeeperWorkerRegister zookeeperWorkerRegister = new ZookeeperWorkerRegister(zookeeperRegistryCenter, applicationConfiguration);
+            ZookeeperWorkerRegister zookeeperWorkerRegister = new ZookeeperWorkerRegister(zookeeperRegistryCenter, sequenceProperty);
             SnowFlakeIdGenerator generator = new SnowFlakeIdGenerator(zookeeperWorkerRegister);
 
             generator.init();
             System.out.println(generator.nextId());
             generator.close();
-
 
             generator.init();
             System.out.println(generator.nextId());
