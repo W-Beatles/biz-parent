@@ -3,7 +3,7 @@ package cn.waynechu.bootstarter.sequence.registry;
 import cn.waynechu.bootstarter.sequence.exception.RegExceptionHandler;
 import cn.waynechu.bootstarter.sequence.exception.SequenceErrorCode;
 import cn.waynechu.bootstarter.sequence.exception.SequenceException;
-import cn.waynechu.bootstarter.sequence.property.ZookeeperConfiguration;
+import cn.waynechu.bootstarter.sequence.property.ZookeeperProperty;
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import lombok.Getter;
@@ -38,30 +38,30 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
     @Getter
     private CuratorFramework client;
 
-    private ZookeeperConfiguration zkConfig;
+    private ZookeeperProperty zookeeperProperty;
 
     private final Map<String, CuratorCache> caches = new HashMap<>();
 
-    public ZookeeperRegistryCenter(ZookeeperConfiguration zkConfig) {
-        this.zkConfig = zkConfig;
+    public ZookeeperRegistryCenter(ZookeeperProperty zookeeperProperty) {
+        this.zookeeperProperty = zookeeperProperty;
     }
 
     @Override
     public void init() {
-        log.debug("[sequence]: zookeeper registry center init, server lists is: {}", zkConfig.getServerLists());
+        log.debug("[sequence]: zookeeper registry center init, server lists is: {}", zookeeperProperty.getServerLists());
         CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
-                .connectString(zkConfig.getServerLists())
-                .retryPolicy(new ExponentialBackoffRetry(zkConfig.getBaseSleepTimeMilliseconds(),
-                        zkConfig.getMaxRetries(), zkConfig.getMaxSleepTimeMilliseconds()))
-                .namespace(zkConfig.getNamespace());
-        if (zkConfig.getSessionTimeoutMilliseconds() != 0) {
-            builder.sessionTimeoutMs(zkConfig.getSessionTimeoutMilliseconds());
+                .connectString(zookeeperProperty.getServerLists())
+                .retryPolicy(new ExponentialBackoffRetry(zookeeperProperty.getBaseSleepTimeMilliseconds(),
+                        zookeeperProperty.getMaxRetries(), zookeeperProperty.getMaxSleepTimeMilliseconds()))
+                .namespace(zookeeperProperty.getNamespace());
+        if (zookeeperProperty.getSessionTimeoutMilliseconds() != 0) {
+            builder.sessionTimeoutMs(zookeeperProperty.getSessionTimeoutMilliseconds());
         }
-        if (zkConfig.getConnectionTimeoutMilliseconds() != 0) {
-            builder.connectionTimeoutMs(zkConfig.getConnectionTimeoutMilliseconds());
+        if (zookeeperProperty.getConnectionTimeoutMilliseconds() != 0) {
+            builder.connectionTimeoutMs(zookeeperProperty.getConnectionTimeoutMilliseconds());
         }
-        if (!StringUtils.isEmpty(zkConfig.getDigest())) {
-            builder.authorization("digest", zkConfig.getDigest().getBytes(StandardCharsets.UTF_8))
+        if (!StringUtils.isEmpty(zookeeperProperty.getDigest())) {
+            builder.authorization("digest", zookeeperProperty.getDigest().getBytes(StandardCharsets.UTF_8))
                     .aclProvider(new ACLProvider() {
 
                         @Override
@@ -78,7 +78,7 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
         client = builder.build();
         client.start();
         try {
-            if (!client.blockUntilConnected(zkConfig.getMaxSleepTimeMilliseconds() * zkConfig.getMaxRetries(), TimeUnit.MILLISECONDS)) {
+            if (!client.blockUntilConnected(zookeeperProperty.getMaxSleepTimeMilliseconds() * zookeeperProperty.getMaxRetries(), TimeUnit.MILLISECONDS)) {
                 client.close();
                 throw new KeeperException.OperationTimeoutException();
             }

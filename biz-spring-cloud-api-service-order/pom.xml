@@ -9,7 +9,6 @@
         <version>1.0.2019091701-RELEASE</version>
     </parent>
 
-    <groupId>cn.waynechu</groupId>
     <artifactId>biz-spring-cloud-api-service-order</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>

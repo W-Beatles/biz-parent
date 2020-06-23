@@ -1,7 +1,9 @@
 package cn.waynechu.bootstarter.sequence;
 
-import cn.waynechu.bootstarter.sequence.generator.IdGenerator;
-import cn.waynechu.bootstarter.sequence.property.ZookeeperConfiguration;
+import cn.waynechu.bootstarter.sequence.generator.SnowFlakeIdGenerator;
+import cn.waynechu.bootstarter.sequence.property.SequenceProperty;
+import cn.waynechu.bootstarter.sequence.register.zookeeper.ZookeeperWorkerRegister;
+import cn.waynechu.bootstarter.sequence.registry.ZookeeperRegistryCenter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -15,15 +17,21 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-@EnableConfigurationProperties(ZookeeperConfiguration.class)
-@ConditionalOnProperty(value = ZookeeperConfiguration.SEQUENCE_PREFIX + ".enable", havingValue = "true")
+@EnableConfigurationProperties(SequenceProperty.class)
+@ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
 public class SequenceAutoConfiguration {
 
     @Autowired
-    private ZookeeperConfiguration zookeeperConfiguration;
+    private SequenceProperty sequenceProperty;
 
-    @Bean
-    public IdGenerator idGenerator() {
-        return null;
+    @Bean(initMethod = "init")
+    public ZookeeperRegistryCenter zookeeperRegistryCenter() {
+        return new ZookeeperRegistryCenter(sequenceProperty.getZookeeper());
+    }
+
+    @Bean(initMethod = "init", destroyMethod = "close")
+    public SnowFlakeIdGenerator generator() {
+        ZookeeperWorkerRegister zookeeperWorkerRegister = new ZookeeperWorkerRegister(zookeeperRegistryCenter(), sequenceProperty);
+        return new SnowFlakeIdGenerator(zookeeperWorkerRegister);
     }
 }
