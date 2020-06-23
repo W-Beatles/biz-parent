@@ -29,11 +29,12 @@ axios.interceptors.request.use(config => {
  */
 const httpAsync = {
     request(url, method = 'get', param, download) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             axios({
                 method: method,
                 url,
-                [method === 'get' ? 'params' : 'data']: param
+                [method === 'get' ? 'params' : 'data']: param,
+                [download ? 'responseType' : 'blob']: 'blob'
             }).then((res) => {
                 if (res) {
                     const resData = res['data'] || res['Data']
