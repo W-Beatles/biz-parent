@@ -2,48 +2,51 @@
     <div class="TaskSearch">
         <div class="SearchHeader">
             <div class="SearchItem">
-                <p class="label">任务ID:</p>
-                <el-input v-model="taskId" placeholder="请输入内容"></el-input>
+                <p class="label">原型 ID:</p>
+                <el-input v-model="appTypeParams.id" placeholder="请输入内容"></el-input>
             </div>
             <div class="SearchItem">
                 <p class="label">AppID:</p>
-                <el-input v-model="appId" placeholder="请输入内容"></el-input>
+                <el-input v-model="appTypeParams.appId" placeholder="请输入内容"></el-input>
             </div>
-            <m-button type="info" class="clear">清空</m-button>
-            <m-button class="search">查询</m-button>
+            <m-button type="info" class="clear" @click="resetSearch">清空</m-button>
+            <m-button class="search" @click="queryAppType">查询</m-button>
+            <m-button class="add" @click="addAsync">新建</m-button>
         </div>
         <el-table class="taskListTable" :data="taskList" style="width: 100%">
             <el-table-column type="expand">
                 <template slot-scope="{row}">
                     <el-form label-position="left" inline class="demo-table-expand">
                         <el-form-item label="项目描述">
-                            <span>{{ row.desc }}</span>
+                            <span>{{ row.appTypeDesc }}</span>
                         </el-form-item>
                     </el-form>
                 </template>
             </el-table-column>
+            <el-table-column label="原型 ID" prop="id"></el-table-column>
             <el-table-column label="APP ID" prop="appId"></el-table-column>
-            <el-table-column label="项目类型" prop="taskType"></el-table-column>
-            <el-table-column label="项目模式" prop="modal"></el-table-column>
+            <el-table-column label="项目类型" prop="appTypeDesc"></el-table-column>
             <el-table-column label="项目名称" prop="appName"></el-table-column>
-            <el-table-column label="状态" prop="statusCode">
+            <el-table-column label="状态" prop="statusCodeDesc"></el-table-column>
+            <el-table-column label="创建人" prop="createdUser"></el-table-column>
+            <el-table-column label="创建人创建时间" prop="createdTime"></el-table-column>
+            <el-table-column label="操作">
                 <template slot-scope="{row}">
-                    {{Enum.StatusCodeEnum[row.statusCode]}}
+                    <m-button class="downLoad" @click="download(row.id)"><i class="el-icon-download"/>下载</m-button>
                 </template>
             </el-table-column>
-            <el-table-column label="创建人" prop="creator"></el-table-column>
-            <el-table-column label="创建人创建时间" prop="createTime"></el-table-column>
-            <el-table-column label="操作">
-                <m-button class="downLoad"><i class="el-icon-download"/> 下载</m-button>
-            </el-table-column>
         </el-table>
+        <add :visible.sync="visibleDialog"
+             title="测试弹框"
+             @submit="submitAddForm"
+        ></add>
         <el-pagination
                 @size-change="pageSizeChange"
-                :current-page="pageNum"
-                :page-size="pageSize"
+                :current-page="appTypeParams.pageNum"
+                :page-size="appTypeParams.pageSize"
                 background
                 @current-change="currentChange"
-                :page-sizes="[10, 20, 50]"
+                :page-sizes="[5, 10, 20, 50]"
                 layout="prev, pager, next, sizes, jumper"
                 :total="total">
         </el-pagination>
@@ -52,54 +55,24 @@
 
 <script>
     import AuthModel from '@/api/Model/authModel.js'
+    import {mixinModule, cmpModule} from './autoImport.js'
 
     const authModel = new AuthModel()
     export default {
         name: 'index',
+        components: cmpModule,
+        mixins: mixinModule,
         data() {
             return {
-                taskId: '',
-                appId: '',
-                pageNum: 1,
-                pageSize: 10,
+                appTypeParams: {
+                    id: '',
+                    appId: '',
+                    pageNum: 1,
+                    pageSize: 10,
+                },
                 total: 10,
-                taskList: [{
-                    appId: "int-spring-cl-tire-installation-service",
-                    appName: "string",
-                    archetypeCode: 0,
-                    createTime: "2020-06-16 01:29:31",
-                    creator: "WayneChu",
-                    taskType: "server",
-                    modal: "普通模式",
-                    statusCode: 1,
-                    taskId: 191,
-                    url: "string",
-                    desc: '轮胎安装服务'
-                }, {
-                    appId: "int-spring-cl-tire-installation-service",
-                    appName: "string",
-                    archetypeCode: 0,
-                    createTime: "2020-06-16 01:29:31",
-                    creator: "WayneChu",
-                    taskType: "server",
-                    modal: "普通模式",
-                    statusCode: 1,
-                    taskId: 191,
-                    url: "string",
-                    desc: '轮胎安装服务'
-                }, {
-                    appId: "int-spring-cl-tire-installation-service",
-                    appName: "string",
-                    archetypeCode: 0,
-                    createTime: "2020-06-16 01:29:31",
-                    creator: "WayneChu",
-                    taskType: "server",
-                    modal: "普通模式",
-                    statusCode: 1,
-                    taskId: 191,
-                    url: "string",
-                    desc: '轮胎安装服务'
-                }]
+                taskList: [],
+                visibleDialog: false
             }
         },
         created() {
@@ -107,23 +80,38 @@
         },
         methods: {
             async getTaskList() {
-                const res = await authModel.testApi()
+                const res = await authModel.testApi(this.appTypeParams)
                 if (res) {
                     const {list, total} = res
                     this.total = total
                     this.taskList = list || []
                 }
-
             },
-            currentChange(val) {
-                this.pageNum = val
-                this.getTaskList()
+            async download(id) {
+                const {data, fileName} = await authModel.downloadArcFile(id)
+                const blob = new Blob([data], {type: "application/zip"})
+                if ('download' in document.createElement('a')) { // 非IE下载
+                    const elink = document.createElement('a')
+                    elink.download = fileName
+                    elink.style.display = 'none'
+                    elink.href = window.URL.createObjectURL(blob)
+                    document.body.appendChild(elink)
+                    elink.click()
+                    window.URL.revokeObjectURL(elink.href) // 释放URL 对象
+                    document.body.removeChild(elink)
+                } else { // IE10+下载
+                    navigator.msSaveBlob(blob, fileName)
+                }
             },
-            pageSizeChange(val) {
-                // 重置页数
-                this.pageNum = 1
-                this.pageSize = val
-                this.getTaskList()
+            addAsync() {
+                this.visibleDialog = true
+            },
+            async submitAddForm(form) {
+                const status = await authModel.addArchetypes(form)
+                if (status) {
+                    this.visibleDialog = false
+                    this.getTaskList()
+                }
             }
         }
     }
@@ -146,6 +134,10 @@
 
             .search
                 background $activeText
+                color #fff
+
+            .add
+                background: #ff9f1c;
                 color #fff
 
             .SearchItem

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
 
 axios.defaults.headers = {
     'Content-Type': 'application/json; charset=UTF-8',
@@ -29,7 +28,7 @@ axios.interceptors.request.use(config => {
  * @type {{request(url, method, param): *}}
  */
 const httpAsync = {
-    request(url, method = 'get', param) {
+    request(url, method = 'get', param, download) {
         return new Promise((resolve, reject) => {
             axios({
                 method: method,
@@ -38,7 +37,11 @@ const httpAsync = {
             }).then((res) => {
                 if (res) {
                     const resData = res['data'] || res['Data']
-                    resolve(resData)
+                    if (download) {
+                        resolve(res)
+                    } else {
+                        resolve(resData)
+                    }
                 }
             })
         })

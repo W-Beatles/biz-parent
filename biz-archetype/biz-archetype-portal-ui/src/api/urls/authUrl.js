@@ -1,5 +1,7 @@
 const AuthUrls = {
-    taskSearch: '/tasks/search',
+    taskSearch: '/archetypes/search',
+    downloadArc: '/archetypes/download',
+    addArch: '/archetypes',
 }
 
 export default AuthUrls
