@@ -6,11 +6,11 @@
     <parent>
         <artifactId>biz-archetype</artifactId>
         <groupId>cn.waynechu</groupId>
-        <version>1.0.2020061601-RELEASE</version>
+        <version>0.1.2020061601-RELEASE</version>
     </parent>
 
     <artifactId>biz-archetype-portal</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>biz-archetype-portal</name>
@@ -32,7 +32,7 @@
     </pluginRepositories>
 
     <properties>
-        <parent-project.version>0.0.1-SNAPSHOT</parent-project.version>
+        <parent-project.version>0.1.0-SNAPSHOT</parent-project.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

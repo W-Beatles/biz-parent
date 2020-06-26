@@ -15,7 +15,7 @@ public enum AppTypeEnum implements BizEnum {
      * 项目类型: 0Service 1SDK
      */
     SERVICE(0, "SERVICE", "Service项目"),
-    SDK(0, "SDK", "SDK项目"),
+    SDK(1, "SDK", "SDK项目"),
     ;
 
     private Integer code;

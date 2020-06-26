@@ -13,7 +13,7 @@
 
     <groupId>cn.waynechu</groupId>
     <artifactId>biz-parent</artifactId>
-    <version>1.0.2019091701-RELEASE</version>
+    <version>0.1.2019091701-RELEASE</version>
 
     <name>biz-parent</name>
     <description>biz-parent pom for SpringCloud</description>

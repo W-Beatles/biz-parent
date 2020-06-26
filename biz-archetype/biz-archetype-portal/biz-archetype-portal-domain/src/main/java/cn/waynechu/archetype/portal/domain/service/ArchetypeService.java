@@ -4,6 +4,7 @@ import cn.waynechu.archetype.portal.dal.dataobject.ArchetypeDO;
 import cn.waynechu.archetype.portal.facade.request.CreateArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.request.SearchArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.request.UpdateArchetypeRequest;
+import cn.waynechu.archetype.portal.facade.response.ArchetypeResponse;
 import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.page.BizPageInfo;
 
@@ -22,6 +23,14 @@ public interface ArchetypeService {
      * @return 原型列表
      */
     BizPageInfo<SearchArchetypeResponse> search(SearchArchetypeRequest request);
+
+    /**
+     * 根据原型id获取原型信息
+     *
+     * @param id 原型id
+     * @return 原型信息
+     */
+    ArchetypeResponse getById(Long id);
 
     /**
      * 新增项目原型

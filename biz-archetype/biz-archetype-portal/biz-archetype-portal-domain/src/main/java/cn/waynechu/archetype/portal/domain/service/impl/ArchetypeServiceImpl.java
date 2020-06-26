@@ -11,6 +11,7 @@ import cn.waynechu.archetype.portal.domain.service.ArchetypeService;
 import cn.waynechu.archetype.portal.facade.request.CreateArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.request.SearchArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.request.UpdateArchetypeRequest;
+import cn.waynechu.archetype.portal.facade.response.ArchetypeResponse;
 import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
@@ -121,6 +122,12 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
             throw new BizException(BizErrorCodeEnum.DATA_NOT_EXIST, "原型不存在");
         }
         return archetypeDO;
+    }
+
+    @Override
+    public ArchetypeResponse getById(Long id) {
+        ArchetypeDO archetypeDO = this.checkArchetypeExist(id);
+        return ArchetypeConvert.toArchetypeResponse(archetypeDO);
     }
 
     @Override

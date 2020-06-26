@@ -6,11 +6,11 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-parent</artifactId>
-        <version>1.0.2019091701-RELEASE</version>
+        <version>0.1.2019091701-RELEASE</version>
     </parent>
 
     <artifactId>biz-spring-cloud-common</artifactId>
-    <version>1.0.2020032201-RELEASE</version>
+    <version>0.1.2020032201-RELEASE</version>
     <name>biz-spring-cloud-common</name>
     <description>biz-spring-cloud-common module for SpringCloud</description>
 

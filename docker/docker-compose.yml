@@ -219,7 +219,7 @@ services:
       - skywalking-oap
 
   service-order:
-    image: waynechu/biz-spring-cloud-api-service-order:0.0.1-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-service-order:0.1.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -238,7 +238,7 @@ services:
       - eureka
 
   service-product:
-    image: waynechu/biz-spring-cloud-api-service-product:0.0.1-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-service-product:0.1.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -257,7 +257,7 @@ services:
       - eureka
 
   service-utility:
-    image: waynechu/biz-spring-cloud-api-service-utility:0.0.1-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-service-utility:0.1.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -276,7 +276,7 @@ services:
       - eureka
 
   dynamic-datasource-test:
-    image: waynechu/biz-spring-cloud-api-dynamic-datasource-test:0.0.1-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-dynamic-datasource-test:0.1.0-SNAPSHOT
     networks:
       - biz-net
     ports:
