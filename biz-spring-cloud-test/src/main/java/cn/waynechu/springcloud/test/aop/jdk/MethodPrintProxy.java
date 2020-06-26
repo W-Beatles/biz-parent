@@ -1,7 +1,6 @@
 package cn.waynechu.springcloud.test.aop.jdk;
 
 import cn.waynechu.springcloud.common.annotation.MethodLog;
-import cn.waynechu.springcloud.common.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
@@ -37,18 +36,14 @@ public class MethodPrintProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object returnValue;
-
         MethodLog printAnnotation = method.getAnnotation(MethodLog.class);
 
         if (printAnnotation != null) {
             String methodName = this.getPrintMethodName(printAnnotation, targetObj);
-            String argsStr = this.getJsonStr(args, printAnnotation.isFormat());
-            log.info("[MethodPrintProxy] {} 调用开始, 参数: {}", methodName, argsStr);
+            log.info("[MethodPrintProxy] {} 调用开始, 参数: {}", methodName, args);
 
             returnValue = method.invoke(this.targetObj, args);
-
-            String returnStr = this.getJsonStr(returnValue, printAnnotation.isFormat());
-            log.debug("[MethodPrintProxy] {} 调用结束，返回值: {}", methodName, returnStr);
+            log.debug("[MethodPrintProxy] {} 调用结束，返回值: {}", methodName, returnValue);
         } else {
             returnValue = method.invoke(this.targetObj, args);
         }
@@ -73,15 +68,5 @@ public class MethodPrintProxy implements InvocationHandler {
             }
         }
         return methodName;
-    }
-
-    private String getJsonStr(Object args, boolean isFormat) {
-        String printStr;
-        if (isFormat) {
-            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJsonString(args);
-        } else {
-            printStr = JsonBinder.buildAlwaysBinder().toJsonString(args);
-        }
-        return printStr;
     }
 }

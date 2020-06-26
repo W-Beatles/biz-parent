@@ -1,6 +1,5 @@
 package cn.waynechu.springcloud.common.aspect;
 
-import cn.waynechu.springcloud.common.util.JsonBinder;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -11,12 +10,6 @@ import org.slf4j.MDC;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Controller层方法调用情况切面
@@ -46,8 +39,7 @@ public abstract class AbstractControllerLogAspect {
 
     @Before(value = "controllerLog() && @annotation(logAnnotation)")
     public void doBefore(JoinPoint joinPoint, ApiOperation logAnnotation) {
-        log.info("{}调用开始, 参数: {}", logAnnotation.value(), this.getPrintArgsJsonStr(joinPoint.getArgs()));
-
+        log.info("{}调用开始, 参数: {}", logAnnotation.value(), joinPoint.getArgs());
         // 记录调用开始的时间
         threadLocal.set(System.currentTimeMillis());
 
@@ -69,45 +61,9 @@ public abstract class AbstractControllerLogAspect {
         // 添加MDC记录  timeTaken: 调用耗时
         MDC.put(MDC_KEY_TIME_TAKEN, String.valueOf(timeTaken));
 
-        String jsonResult = JsonBinder.buildAlwaysBinder().toJsonString(result);
-        log.info("{}调用结束, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, jsonResult);
-
+        log.info("{}调用结束, 耗时: {}ms, 返回值: {}", logAnnotation.value(), timeTaken, result);
         // clear
         threadLocal.remove();
         MDC.clear();
-    }
-
-    /**
-     * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
-     * <p>
-     * 默认提供 {@code HttpServletRequest}、{@code HttpServletResponse}、{@code MultipartFile}、{@code Invisible} 三种类型
-     *
-     * @return 不打印的入参类型
-     */
-    protected Collection<Class<?>> excludePrintClass() {
-        ArrayList<Class<?>> excludePrintClass = new ArrayList<>(4);
-        excludePrintClass.add(HttpServletRequest.class);
-        excludePrintClass.add(HttpServletResponse.class);
-        excludePrintClass.add(MultipartFile.class);
-        excludePrintClass.add(Invisible.class);
-        return excludePrintClass;
-    }
-
-    private String getPrintArgsJsonStr(Object[] args) {
-        ArrayList<Object> returnValue = new ArrayList<>();
-        for (Object arg : args) {
-            boolean isInstance = false;
-            for (Class<?> clazz : this.excludePrintClass()) {
-                if (clazz.isInstance(arg)) {
-                    isInstance = true;
-                    break;
-                }
-            }
-
-            if (!isInstance) {
-                returnValue.add(arg);
-            }
-        }
-        return JsonBinder.buildAlwaysBinder().toJsonString(returnValue);
     }
 }

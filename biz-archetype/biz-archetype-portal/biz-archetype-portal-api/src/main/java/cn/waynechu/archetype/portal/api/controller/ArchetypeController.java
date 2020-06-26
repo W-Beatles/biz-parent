@@ -3,16 +3,20 @@ package cn.waynechu.archetype.portal.api.controller;
 import cn.waynechu.archetype.portal.domain.service.ArchetypeService;
 import cn.waynechu.archetype.portal.facade.request.CreateArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.request.SearchArchetypeRequest;
+import cn.waynechu.archetype.portal.facade.request.UpdateArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.response.BizResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Objects;
 
 /**
  * @author zhuwei
@@ -38,6 +42,21 @@ public class ArchetypeController {
     public BizResponse<Long> create(@Valid @RequestBody CreateArchetypeRequest request) {
         Long id = archetypeService.create(request);
         return BizResponse.success(id);
+    }
+
+    @ApiOperation(value = "编辑项目原型", notes = "编辑后会重新生成原型文件")
+    @PutMapping("/{id}")
+    public BizResponse<Long> update(@ApiParam(value = "原型id", required = true) @PathVariable Long id, @Valid @RequestBody UpdateArchetypeRequest request) {
+        Assert.isTrue(Objects.equals(id, request.getId()), "参数错误");
+        Long id2 = archetypeService.update(request);
+        return BizResponse.success(id2);
+    }
+
+    @ApiOperation("删除项目原型")
+    @DeleteMapping("/{id}")
+    public BizResponse<Void> remove(@ApiParam(value = "原型id", required = true) @PathVariable Long id) {
+        archetypeService.remove(id);
+        return BizResponse.success();
     }
 
     @ApiOperation("下载项目原型")

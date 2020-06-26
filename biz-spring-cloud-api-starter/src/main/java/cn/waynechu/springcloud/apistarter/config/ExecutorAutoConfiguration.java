@@ -68,5 +68,4 @@ public class ExecutorAutoConfiguration {
         executor.initialize();
         return TtlExecutors.getTtlExecutor(executor);
     }
-
 }
