@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.waynechu.utility.dal.mapper.DictionaryMapper">
+    <resultMap id="BaseResultMap" type="cn.waynechu.utility.dal.dataobject.DictionaryDO">
+        <!--@mbg.generated-->
+        <!--@Table dictionary-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="pid" jdbcType="BIGINT" property="pid"/>
+        <result column="dic_type_code" jdbcType="VARCHAR" property="dicTypeCode"/>
+        <result column="dic_code" jdbcType="VARCHAR" property="dicCode"/>
+        <result column="dic_value" jdbcType="VARCHAR" property="dicValue"/>
+        <result column="dic_desc" jdbcType="VARCHAR" property="dicDesc"/>
+        <result column="sort_num" jdbcType="INTEGER" property="sortNum"/>
+        <result column="fixed_status" jdbcType="INTEGER" property="fixedStatus"/>
+        <result column="created_user" jdbcType="VARCHAR" property="createdUser"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="updated_user" jdbcType="VARCHAR" property="updatedUser"/>
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+        <result column="deleted_status" jdbcType="BOOLEAN" property="deletedStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, pid, dic_type_code, dic_code, dic_value, dic_desc, sort_num, fixed_status, created_user,
+        created_time, updated_user, updated_time, deleted_status
+    </sql>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update dictionary
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="pid = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.pid,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="dic_type_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.dicTypeCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="dic_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.dicCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="dic_value = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.dicValue,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="dic_desc = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.dicDesc,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="sort_num = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.sortNum,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="fixed_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.fixedStatus,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="created_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createdUser,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="created_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createdTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updated_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updatedUser,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="updated_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updatedTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="deleted_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deletedStatus,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dictionary
+        (pid, dic_type_code, dic_code, dic_value, dic_desc, sort_num, fixed_status, created_user,
+        created_time, updated_user, updated_time, deleted_status)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.pid,jdbcType=BIGINT}, #{item.dicTypeCode,jdbcType=VARCHAR}, #{item.dicCode,jdbcType=VARCHAR},
+            #{item.dicValue,jdbcType=VARCHAR}, #{item.dicDesc,jdbcType=VARCHAR}, #{item.sortNum,jdbcType=INTEGER},
+            #{item.fixedStatus,jdbcType=INTEGER}, #{item.createdUser,jdbcType=VARCHAR},
+            #{item.createdTime,jdbcType=TIMESTAMP},
+            #{item.updatedUser,jdbcType=VARCHAR}, #{item.updatedTime,jdbcType=TIMESTAMP},
+            #{item.deletedStatus,jdbcType=BOOLEAN}
+            )
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.utility.dal.dataobject.DictionaryDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dictionary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            pid,
+            dic_type_code,
+            dic_code,
+            dic_value,
+            dic_desc,
+            sort_num,
+            fixed_status,
+            created_user,
+            created_time,
+            updated_user,
+            updated_time,
+            deleted_status,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{pid,jdbcType=BIGINT},
+            #{dicTypeCode,jdbcType=VARCHAR},
+            #{dicCode,jdbcType=VARCHAR},
+            #{dicValue,jdbcType=VARCHAR},
+            #{dicDesc,jdbcType=VARCHAR},
+            #{sortNum,jdbcType=INTEGER},
+            #{fixedStatus,jdbcType=INTEGER},
+            #{createdUser,jdbcType=VARCHAR},
+            #{createdTime,jdbcType=TIMESTAMP},
+            #{updatedUser,jdbcType=VARCHAR},
+            #{updatedTime,jdbcType=TIMESTAMP},
+            #{deletedStatus,jdbcType=BOOLEAN},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            pid = #{pid,jdbcType=BIGINT},
+            dic_type_code = #{dicTypeCode,jdbcType=VARCHAR},
+            dic_code = #{dicCode,jdbcType=VARCHAR},
+            dic_value = #{dicValue,jdbcType=VARCHAR},
+            dic_desc = #{dicDesc,jdbcType=VARCHAR},
+            sort_num = #{sortNum,jdbcType=INTEGER},
+            fixed_status = #{fixedStatus,jdbcType=INTEGER},
+            created_user = #{createdUser,jdbcType=VARCHAR},
+            created_time = #{createdTime,jdbcType=TIMESTAMP},
+            updated_user = #{updatedUser,jdbcType=VARCHAR},
+            updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            deleted_status = #{deletedStatus,jdbcType=BOOLEAN},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.utility.dal.dataobject.DictionaryDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dictionary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="dicTypeCode != null">
+                dic_type_code,
+            </if>
+            <if test="dicCode != null">
+                dic_code,
+            </if>
+            <if test="dicValue != null">
+                dic_value,
+            </if>
+            <if test="dicDesc != null">
+                dic_desc,
+            </if>
+            <if test="sortNum != null">
+                sort_num,
+            </if>
+            <if test="fixedStatus != null">
+                fixed_status,
+            </if>
+            <if test="createdUser != null">
+                created_user,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedUser != null">
+                updated_user,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+            <if test="deletedStatus != null">
+                deleted_status,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=BIGINT},
+            </if>
+            <if test="dicTypeCode != null">
+                #{dicTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dicCode != null">
+                #{dicCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dicValue != null">
+                #{dicValue,jdbcType=VARCHAR},
+            </if>
+            <if test="dicDesc != null">
+                #{dicDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNum != null">
+                #{sortNum,jdbcType=INTEGER},
+            </if>
+            <if test="fixedStatus != null">
+                #{fixedStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createdUser != null">
+                #{createdUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedUser != null">
+                #{updatedUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedStatus != null">
+                #{deletedStatus,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=BIGINT},
+            </if>
+            <if test="dicTypeCode != null">
+                dic_type_code = #{dicTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dicCode != null">
+                dic_code = #{dicCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dicValue != null">
+                dic_value = #{dicValue,jdbcType=VARCHAR},
+            </if>
+            <if test="dicDesc != null">
+                dic_desc = #{dicDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNum != null">
+                sort_num = #{sortNum,jdbcType=INTEGER},
+            </if>
+            <if test="fixedStatus != null">
+                fixed_status = #{fixedStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createdUser != null">
+                created_user = #{createdUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedUser != null">
+                updated_user = #{updatedUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedStatus != null">
+                deleted_status = #{deletedStatus,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+</mapper>

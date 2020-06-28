@@ -61,5 +61,4 @@ public class CandlerService {
         candlerResponse.setDayDates(candlerItems);
         return candlerResponse;
     }
-
 }

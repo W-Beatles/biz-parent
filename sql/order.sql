@@ -17,8 +17,7 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP DATABASE IF EXISTS `order`;
-CREATE DATABASE `order` DEFAULT CHARSET utf8mb4;
+CREATE DATABASE IF NOT EXISTS `order` DEFAULT CHARSET utf8mb4;
 USE `order`;
 
 -- ----------------------------

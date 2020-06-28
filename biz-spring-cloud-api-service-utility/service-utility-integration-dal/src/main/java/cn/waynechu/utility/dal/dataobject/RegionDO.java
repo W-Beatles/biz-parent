@@ -7,6 +7,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import lombok.Data;
 
+/**
+ * @author zhuwei
+ * @date 2019-08-16 23:22
+ */
 @Data
 @TableName(value = "region")
 public class RegionDO implements Serializable {
@@ -79,8 +83,8 @@ public class RegionDO implements Serializable {
     /**
      * 是否删除: 0否 1是 默认0
      */
-    @TableField(value = "deleted")
-    private Boolean deleted;
+    @TableField(value = "deleted_status")
+    private Boolean deletedStatus;
 
     private static final long serialVersionUID = 1L;
 
@@ -104,5 +108,5 @@ public class RegionDO implements Serializable {
 
     public static final String COL_PINYIN = "pinyin";
 
-    public static final String COL_DELETED = "deleted";
+    public static final String COL_DELETED_STATUS = "deleted_status";
 }

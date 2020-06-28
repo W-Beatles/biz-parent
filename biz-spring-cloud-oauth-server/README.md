@@ -172,8 +172,11 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
     https://www.baidu.com/#access_token=cdb00d51-b9c8-483a-ba09-2f7c37be664d&token_type=bearer&state=home&expires_in=43199
     ```
 
-**说明**: 简化模式没有获取 code 的步骤，整个过程只传递了`client_id`，并没有传递`client_secret`，因而无法验证`client`的真实性。获得的
-token 只有`access_token`没有`refresh token`
+**说明**: 
+1. 简化模式没有获取 code 的步骤，整个过程只传递了`client_id`，并没有传递`client_secret`，因而无法验证`client`的真实性。获得的
+token 只有`access_token`没有`refresh token`。  
+2. 令牌的位置是 URL 锚点（fragment），而不是查询字符串（querystring），这是因为 OAuth 2.0 允许跳转网址是 HTTP 协议，因此存在"中
+间人攻击"的风险，而浏览器跳转时，锚点不会发到服务器，就减少了泄漏令牌的风险。
 
 ### 密码模式(password)
 

@@ -14,12 +14,12 @@
         <result column="lng" jdbcType="FLOAT" property="lng"/>
         <result column="lat" jdbcType="FLOAT" property="lat"/>
         <result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
-        <result column="deleted" jdbcType="BOOLEAN" property="deleted"/>
+        <result column="deleted_status" jdbcType="BOOLEAN" property="deletedStatus"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         id, pid, `level`, region_name, simple_name, city_code, postal_code, merge_name, lng,
-        lat, pinyin, deleted
+        lat, pinyin, deleted_status
     </sql>
     <update id="updateBatch" parameterType="java.util.List">
         <!--@mbg.generated-->
@@ -75,9 +75,9 @@
                     when id = #{item.id,jdbcType=INTEGER} then #{item.pinyin,jdbcType=VARCHAR}
                 </foreach>
             </trim>
-            <trim prefix="deleted = case" suffix="end,">
+            <trim prefix="deleted_status = case" suffix="end,">
                 <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=INTEGER} then #{item.deleted,jdbcType=BOOLEAN}
+                    when id = #{item.id,jdbcType=INTEGER} then #{item.deletedStatus,jdbcType=BOOLEAN}
                 </foreach>
             </trim>
         </trim>
@@ -90,13 +90,13 @@
         <!--@mbg.generated-->
         insert into region
         (id, pid, `level`, region_name, simple_name, city_code, postal_code, merge_name,
-        lng, lat, pinyin, deleted)
+        lng, lat, pinyin, deleted_status)
         values
         <foreach collection="list" item="item" separator=",">
             (#{item.id,jdbcType=INTEGER}, #{item.pid,jdbcType=INTEGER}, #{item.level,jdbcType=INTEGER},
             #{item.regionName,jdbcType=VARCHAR}, #{item.simpleName,jdbcType=VARCHAR}, #{item.cityCode,jdbcType=VARCHAR},
             #{item.postalCode,jdbcType=VARCHAR}, #{item.mergeName,jdbcType=VARCHAR}, #{item.lng,jdbcType=FLOAT},
-            #{item.lat,jdbcType=FLOAT}, #{item.pinyin,jdbcType=VARCHAR}, #{item.deleted,jdbcType=BOOLEAN}
+            #{item.lat,jdbcType=FLOAT}, #{item.pinyin,jdbcType=VARCHAR}, #{item.deletedStatus,jdbcType=BOOLEAN}
             )
         </foreach>
     </insert>
@@ -104,12 +104,12 @@
         <!--@mbg.generated-->
         insert into region
         (id, pid, `level`, region_name, simple_name, city_code, postal_code, merge_name,
-        lng, lat, pinyin, deleted)
+        lng, lat, pinyin, deleted_status)
         values
         (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR},
         #{simpleName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR},
         #{mergeName,jdbcType=VARCHAR}, #{lng,jdbcType=FLOAT}, #{lat,jdbcType=FLOAT}, #{pinyin,jdbcType=VARCHAR},
-        #{deleted,jdbcType=BOOLEAN})
+        #{deletedStatus,jdbcType=BOOLEAN})
         on duplicate key update
         id = #{id,jdbcType=INTEGER},
         pid = #{pid,jdbcType=INTEGER},
@@ -122,7 +122,7 @@
         lng = #{lng,jdbcType=FLOAT},
         lat = #{lat,jdbcType=FLOAT},
         pinyin = #{pinyin,jdbcType=VARCHAR},
-        deleted = #{deleted,jdbcType=BOOLEAN}
+        deleted_status = #{deletedStatus,jdbcType=BOOLEAN}
     </insert>
     <insert id="insertOrUpdateSelective" parameterType="cn.waynechu.utility.dal.dataobject.RegionDO">
         <!--@mbg.generated-->
@@ -161,8 +161,8 @@
             <if test="pinyin != null">
                 pinyin,
             </if>
-            <if test="deleted != null">
-                deleted,
+            <if test="deletedStatus != null">
+                deleted_status,
             </if>
         </trim>
         values
@@ -200,8 +200,8 @@
             <if test="pinyin != null">
                 #{pinyin,jdbcType=VARCHAR},
             </if>
-            <if test="deleted != null">
-                #{deleted,jdbcType=BOOLEAN},
+            <if test="deletedStatus != null">
+                #{deletedStatus,jdbcType=BOOLEAN},
             </if>
         </trim>
         on duplicate key update
@@ -239,8 +239,8 @@
             <if test="pinyin != null">
                 pinyin = #{pinyin,jdbcType=VARCHAR},
             </if>
-            <if test="deleted != null">
-                deleted = #{deleted,jdbcType=BOOLEAN},
+            <if test="deletedStatus != null">
+                deleted_status = #{deletedStatus,jdbcType=BOOLEAN},
             </if>
         </trim>
     </insert>

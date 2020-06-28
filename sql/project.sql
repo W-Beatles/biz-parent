@@ -17,8 +17,7 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP DATABASE IF EXISTS project;
-CREATE DATABASE project DEFAULT CHARSET utf8mb4;
+CREATE DATABASE IF NOT EXISTS project DEFAULT CHARSET utf8mb4;
 USE project;
 
 -- ----------------------------

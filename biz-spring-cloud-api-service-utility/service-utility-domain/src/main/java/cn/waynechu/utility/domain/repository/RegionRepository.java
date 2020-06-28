@@ -29,7 +29,7 @@ public class RegionRepository {
     public List<RegionDO> listByPid(Integer pid) {
         QueryWrapper<RegionDO> wrapper = new QueryWrapper<>();
         wrapper.eq(RegionDO.COL_PID, pid);
-        wrapper.eq(RegionDO.COL_DELETED, false);
+        wrapper.eq(RegionDO.COL_DELETED_STATUS, false);
         return regionMapper.selectList(wrapper);
     }
 }

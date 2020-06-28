@@ -61,7 +61,7 @@ SpringCloud微服务开发脚手架
 5. 添加文件上传模块 `biz-spring-cloud-api-file-upload`，并提供基础SDK  
    - 支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储  
 6. ~~添加统一认证鉴权模块biz-spring-cloud-oauth-server(待完善)~~  
-7. SpringCloud Gateway网关支持多种业务渠道认证和授权。如企业微信，Oauth2等  
+7. SpringCloud Gateway网关支持多种业务渠道认证和授权。支持多平台，如企业微信、网页、小程序。支持多种登录方式，如密码、验证码、扫码  
 8. SpringCloud Gateway网关支持限流  
 9. 添加分布式任务调度系统模块(扩展xxl-job)  
    - 支持任务前置依赖配置
