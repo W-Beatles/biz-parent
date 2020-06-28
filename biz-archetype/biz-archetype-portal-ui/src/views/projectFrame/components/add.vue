@@ -20,6 +20,7 @@
                         <el-input :style="{width: genAppItemPx(appNameItemArr[typeIndex])}"
                                   v-if="typeIndex !== appNameItemArr.length"
                                   v-model="appNameItemArr[typeIndex]" autocomplete="off"
+                                  @input="inputAppName($event, typeIndex)"
                         ></el-input>
                     </template>
                 </el-form-item>
@@ -121,8 +122,12 @@
                 if (!item) return CHAR_LEN_DEFAULT
                 let regM = /m/g
                 regM.exec(item)
-                console.log('regM.exec(item)', regM.exec(item))
                 return `${item.length * CHAR_NORMAL_LEN + 10}px`
+            },
+            inputAppName(value, index) {
+                const regName = value.replace(/[^\a-z]/g, '')
+                this.$set(this.appNameItemArr, index, regName)
+                return 0
             },
             getReverseReg(appType) {
                 const splitReg = new RegExp(SPlIT_FLAG, 'g')
