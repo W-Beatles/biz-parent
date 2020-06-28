@@ -3,10 +3,11 @@ package cn.waynechu.archetype.portal.domain.convert;
 import cn.waynechu.archetype.portal.common.enums.AppTypeEnum;
 import cn.waynechu.archetype.portal.common.enums.StatusCodeEnum;
 import cn.waynechu.archetype.portal.dal.dataobject.ArchetypeDO;
+import cn.waynechu.archetype.portal.facade.response.ArchetypeResponse;
 import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
-import cn.waynechu.springcloud.common.util.BeanUtil;
 import cn.waynechu.springcloud.common.util.CollectionUtil;
 import lombok.experimental.UtilityClass;
+import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ArchetypeConvert {
             SearchArchetypeResponse response;
             for (ArchetypeDO archetypeDO : archetypeDOList) {
                 response = new SearchArchetypeResponse();
-                BeanUtil.copyProperties(archetypeDO, response);
+                BeanUtils.copyProperties(archetypeDO, response);
                 response.setAppTypeDesc(
                         Optional.ofNullable(AppTypeEnum.getByCode(archetypeDO.getAppType()))
                                 .map(AppTypeEnum::getName).orElse(""));
@@ -35,6 +36,15 @@ public class ArchetypeConvert {
                 returnValue.add(response);
             }
         }
+        return returnValue;
+    }
+
+    public static ArchetypeResponse toArchetypeResponse(ArchetypeDO archetypeDO) {
+        ArchetypeResponse returnValue = new ArchetypeResponse();
+        BeanUtils.copyProperties(archetypeDO, returnValue);
+        returnValue.setAppTypeDesc(
+                Optional.ofNullable(AppTypeEnum.getByCode(archetypeDO.getAppType()))
+                        .map(AppTypeEnum::getName).orElse(""));
         return returnValue;
     }
 }

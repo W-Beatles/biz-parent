@@ -97,7 +97,7 @@ public class DynamicDataSourceInterceptor implements Interceptor {
             }
 
             if (properties.isLoggerEnable()) {
-                log.info("SQL类型为 [{}]，将使用 [{}] 组的 [{}] 类型数据源", sqlType, groupName, dataSourceType);
+                log.info("The SQL type is [{}], the [{}] type datasource of the [{}] group will be used", sqlType, dataSourceType, groupName);
             }
 
             // lookupKey格式：组名_数据源类型。比如：订单库主库 order_master

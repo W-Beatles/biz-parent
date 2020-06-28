@@ -38,22 +38,10 @@ public class MethodPrintAdvice implements MethodInterceptor {
             Object[] arguments = invocation.getArguments();
             log.info("[MethodPrintAdvice] {} 调用开始, 参数: {}", methodName, arguments);
             returnValue = invocation.proceed();
-
-            String returnStr = this.getJsonStr(returnValue, printAnnotation.isFormat());
-            log.debug("[MethodPrintAdvice] {} 调用结束，返回值: {}", methodName, returnStr);
+            log.debug("[MethodPrintAdvice] {} 调用结束，返回值: {}", methodName, returnValue);
         } else {
             returnValue = invocation.proceed();
         }
         return returnValue;
-    }
-
-    private String getJsonStr(Object args, boolean isFormat) {
-        String printStr;
-        if (isFormat) {
-            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJsonString(args);
-        } else {
-            printStr = JsonBinder.buildAlwaysBinder().toJsonString(args);
-        }
-        return printStr;
     }
 }

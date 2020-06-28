@@ -34,13 +34,6 @@ public @interface MethodLog {
     boolean isPrintParameter() default true;
 
     /**
-     * Json格式化打印
-     *
-     * @return default false
-     */
-    boolean isFormat() default false;
-
-    /**
      * 打印返回值
      *
      * @return default true

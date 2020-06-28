@@ -6,11 +6,11 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-parent</artifactId>
-        <version>1.0.2019091701-RELEASE</version>
+        <version>0.1.2019091701-RELEASE</version>
     </parent>
 
     <artifactId>biz-spring-cloud-oauth-server</artifactId>
-    <version>1.0.2020022601-SNAPSHOT</version>
+    <version>0.1.2020022601-SNAPSHOT</version>
     <name>biz-spring-cloud-oauth-server</name>
     <description>biz-spring-cloud-oauth-server module for SpringCloud</description>
 

@@ -80,7 +80,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         if (dataSource instanceof DruidDataSource) {
             String dataSourceName = ((DruidDataSource) dataSource).getName();
             if (loggerEnable) {
-                log.info("使用动态数据源 [{}]", dataSourceName);
+                log.info("Using dynamic datasource [{}]", dataSourceName);
             }
         }
         return dataSource;
@@ -90,10 +90,10 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
     public void afterPropertiesSet() {
         allDataSource = provider.loadDataSources();
         if (CollectionUtils.isEmpty(allDataSource)) {
-            throw new IllegalArgumentException("未获取到数据源配置信息");
+            throw new IllegalArgumentException("No datasource configuration information was obtained");
         }
 
-        log.info("读取到 [{}] 个数据源, 开始动态数据源分组...", allDataSource.size());
+        log.info("Read [{}] datasource, start dynamic datasource grouping...", allDataSource.size());
         for (Map.Entry<String, DataSource> entry : allDataSource.entrySet()) {
             // 选择读取到的第一个数据源作为主数据源
             if (primaryDataSource == null) {
@@ -105,7 +105,7 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
 
     @Override
     public void destroy() throws Exception {
-        log.info("开始销毁动态数据源");
+        log.info("Start destroying dynamic datasource...");
         for (Map.Entry<String, DataSource> item : allDataSource.entrySet()) {
             DataSource dataSource = item.getValue();
             Class<? extends DataSource> clazz = dataSource.getClass();
@@ -113,10 +113,10 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
                 Method closeMethod = clazz.getDeclaredMethod("close");
                 closeMethod.invoke(dataSource);
             } catch (NoSuchMethodException e) {
-                log.warn("销毁动态数据源 {} 失败", item.getKey());
+                log.warn("Destruction of dynamic datasource {} failed !", item.getKey());
             }
         }
-        log.info("销毁动态数据源结束");
+        log.info("Destruction of dynamic datasource ends.");
     }
 
     /**
@@ -160,10 +160,10 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
                 }
                 groupDataSources.put(groupName, groupDatasource);
             } catch (Exception e) {
-                log.error("数据源 [{}] 分组失败", dataSourceName, e);
+                log.error("Data source [{}] grouping failed !", dataSourceName, e);
             }
         }
-        log.info("添加数据源 [{}] 至 [{}] 分组, 该数据源类型为 [{}]", dataSourceName, groupName, dataSourceType);
+        log.info("Add datasource [{}] to [{}] group, The datasource type is [{}]", dataSourceName, groupName, dataSourceType);
     }
 
     /**

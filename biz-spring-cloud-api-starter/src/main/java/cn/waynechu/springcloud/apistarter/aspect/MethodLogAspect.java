@@ -1,7 +1,6 @@
 package cn.waynechu.springcloud.apistarter.aspect;
 
 import cn.waynechu.springcloud.common.annotation.MethodLog;
-import cn.waynechu.springcloud.common.aspect.Invisible;
 import cn.waynechu.springcloud.common.util.DequeThreadLocal;
 import cn.waynechu.springcloud.common.util.JsonBinder;
 import cn.waynechu.springcloud.common.util.StringUtil;
@@ -40,9 +39,8 @@ public class MethodLogAspect {
     @Before("@annotation(printAnnotation)")
     public void doBefore(JoinPoint joinPoint, MethodLog printAnnotation) {
         if (printAnnotation.isPrintParameter()) {
-            String methodName = this.getPrintMethodName(joinPoint, printAnnotation);
-            String argsStr = this.getPrintArgsJsonStr(joinPoint, printAnnotation);
-            log.info("{}调用开始, 参数: {}", methodName, argsStr);
+            String methodName = printAnnotation.value();
+            log.info("{}调用开始, 参数: {}", methodName, joinPoint.getArgs());
         }
 
         // 记录调用开始时间
@@ -55,33 +53,8 @@ public class MethodLogAspect {
     public void doAfterReturning(JoinPoint joinPoint, Object result, MethodLog printAnnotation) {
         if (printAnnotation.isPrintReturn()) {
             String methodName = getPrintMethodName(joinPoint, printAnnotation);
-            String returnStr = getPrintReturnStr(result, printAnnotation);
-            log.info("{}调用结束, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - DEQUE_THREAD_LOCAL.pollFirst(), returnStr);
+            log.info("{}调用结束, 耗时: {}ms, 返回值: {}", methodName, System.currentTimeMillis() - DEQUE_THREAD_LOCAL.pollFirst(), result);
         }
-    }
-
-    /**
-     * 获取不打印的入参类型，覆写该方法可过滤指定类型的方法参数
-     * <p>
-     * 比如：包含密码等私密数据类型<br>
-     * 默认提供 {@code Invisible} 类型
-     *
-     * @return 不打印的入参类型
-     */
-    private static Collection<Class<?>> excludePrintClass() {
-        ArrayList<Class<?>> excludePrintClass = new ArrayList<>(1);
-        excludePrintClass.add(Invisible.class);
-        return excludePrintClass;
-    }
-
-    /**
-     * 获取方法返回值。覆写该方法可过滤指定类型的方法返回值
-     *
-     * @param result 返回值
-     * @return result
-     */
-    private Object getReturn(Object result) {
-        return result;
     }
 
     /**
@@ -107,38 +80,6 @@ public class MethodLogAspect {
                 return joinPoint.getSignature().toShortString();
             }
         }
-    }
-
-    private String getPrintArgsJsonStr(JoinPoint joinPoint, MethodLog printAnnotation) {
-        ArrayList<Object> args = new ArrayList<>();
-        for (Object arg : joinPoint.getArgs()) {
-            boolean isInstance = false;
-            for (Class<?> clazz : excludePrintClass()) {
-                if (clazz.isInstance(arg)) {
-                    isInstance = true;
-                    break;
-                }
-            }
-
-            if (!isInstance) {
-                args.add(arg);
-            }
-        }
-        return toJsonString(args, printAnnotation.isFormat());
-    }
-
-    private String getPrintReturnStr(Object result, MethodLog printAnnotation) {
-        return toJsonString(this.getReturn(result), printAnnotation.isFormat());
-    }
-
-    private String toJsonString(Object obj, boolean isFormat) {
-        String printStr;
-        if (isFormat) {
-            printStr = "\n" + JsonBinder.buildAlwaysBinder().toPrettyJsonString(obj);
-        } else {
-            printStr = JsonBinder.buildAlwaysBinder().toJsonString(obj);
-        }
-        return printStr;
     }
 
     /**

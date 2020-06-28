@@ -10,6 +10,8 @@ import cn.waynechu.archetype.portal.domain.repository.ArchetypeRepository;
 import cn.waynechu.archetype.portal.domain.service.ArchetypeService;
 import cn.waynechu.archetype.portal.facade.request.CreateArchetypeRequest;
 import cn.waynechu.archetype.portal.facade.request.SearchArchetypeRequest;
+import cn.waynechu.archetype.portal.facade.request.UpdateArchetypeRequest;
+import cn.waynechu.archetype.portal.facade.response.ArchetypeResponse;
 import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
@@ -23,6 +25,7 @@ import com.github.pagehelper.PageHelper;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -31,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 
 /**
@@ -39,7 +43,7 @@ import java.util.concurrent.Executor;
  */
 @Slf4j
 @Service
-public class ArchetypeServiceImpl implements ArchetypeService {
+public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean {
 
     @Autowired
     private ArchetypeRepository archetypeRepository;
@@ -65,8 +69,8 @@ public class ArchetypeServiceImpl implements ArchetypeService {
 
     @Override
     public Long create(CreateArchetypeRequest request) {
-        // 校验应用名
-        this.checkAppNameExist(request);
+        // 校验AppID是否重复
+        this.checkAppIdExist(request.getAppId());
 
         // 保存项目基本信息
         ArchetypeDO insertArchetypeDO = new ArchetypeDO();
@@ -76,6 +80,87 @@ public class ArchetypeServiceImpl implements ArchetypeService {
         insertArchetypeDO.setCreatedTime(LocalDateTime.now());
         Long archetypeId = archetypeRepository.insert(insertArchetypeDO);
 
+        this.asyncCreateArchetype(request, archetypeId);
+        return archetypeId;
+    }
+
+    @Override
+    public Long update(UpdateArchetypeRequest request) {
+        Long archetypeId = request.getId();
+        ArchetypeDO archetypeDO = this.checkArchetypeExist(archetypeId);
+        if (Objects.equals(StatusCodeEnum.PENDING.getCode(), archetypeDO.getStatusCode())) {
+            throw new BizException(BizErrorCodeEnum.ILLEGAL_STATE_ERROR, "原型正在生成，请稍候...");
+        }
+
+        // 更新项目基本信息
+        ArchetypeDO updateArchetypeDO = new ArchetypeDO();
+        BeanUtil.copyProperties(request, updateArchetypeDO);
+        updateArchetypeDO.setStatusCode(StatusCodeEnum.PENDING.getCode());
+        updateArchetypeDO.setUpdatedUser(UserUtil.getEmail());
+        updateArchetypeDO.setUpdatedTime(LocalDateTime.now());
+        archetypeRepository.updateById(updateArchetypeDO);
+
+        this.asyncCreateArchetype(request, archetypeId);
+        return archetypeId;
+    }
+
+    @Override
+    public void download(Long id, HttpServletResponse response) {
+        ArchetypeDO archetypeDO = this.checkArchetypeExist(id);
+        if (!StatusCodeEnum.SUCCEED.getCode().equals(archetypeDO.getStatusCode())) {
+            throw new BizException(BizErrorCodeEnum.ILLEGAL_STATE_ERROR, "项目骨架尚未生成");
+        }
+        String projectPath = workingRootPath + "project" + File.separator + id + File.separator;
+        String fileName = archetypeDO.getAppName() + ".zip";
+        HttpUtil.downloadFile(response, projectPath, fileName, false);
+    }
+
+    @Override
+    public ArchetypeDO checkArchetypeExist(Long id) {
+        ArchetypeDO archetypeDO = archetypeRepository.selectById(id);
+        if (archetypeDO == null || Boolean.TRUE.equals(archetypeDO.getDeletedStatus())) {
+            throw new BizException(BizErrorCodeEnum.DATA_NOT_EXIST, "原型不存在");
+        }
+        return archetypeDO;
+    }
+
+    @Override
+    public ArchetypeResponse getById(Long id) {
+        ArchetypeDO archetypeDO = this.checkArchetypeExist(id);
+        return ArchetypeConvert.toArchetypeResponse(archetypeDO);
+    }
+
+    @Override
+    public void remove(Long id) {
+        this.checkArchetypeExist(id);
+        archetypeRepository.removeById(id);
+
+        String projectPath = workingRootPath + "project" + File.separator;
+        File projectDir = new File(projectPath + id + File.separator);
+        FileUtil.delDir(projectDir);
+    }
+
+    /**
+     * 校验appId是否存在
+     *
+     * @param appId AppId
+     */
+    private void checkAppIdExist(String appId) {
+        ListArchetypeCondition condition = new ListArchetypeCondition();
+        condition.setAppId(appId);
+        List<ArchetypeDO> archetypeDOList = archetypeRepository.listByCondition(condition);
+        if (CollectionUtil.isNotNullOrEmpty(archetypeDOList)) {
+            throw new BizException(BizErrorCodeEnum.DATA_ALREADY_EXIST, "该AppId已存在");
+        }
+    }
+
+    /**
+     * 异步创建项目原型
+     *
+     * @param request     req
+     * @param archetypeId 原型id
+     */
+    private void asyncCreateArchetype(CreateArchetypeRequest request, Long archetypeId) {
         bizExecutor.execute(() -> {
             try {
                 // 生成项目原型文件
@@ -94,45 +179,10 @@ public class ArchetypeServiceImpl implements ArchetypeService {
                 // 同步原型生成状态
                 this.syncArchetypeStatus(archetypeId, StatusCodeEnum.SUCCEED);
             } catch (Exception e) {
-                log.warn("create project archetype failed", e);
+                log.warn("Create project archetype failed", e);
                 this.syncArchetypeStatus(archetypeId, StatusCodeEnum.FAILED);
             }
         });
-        return archetypeId;
-    }
-
-    @Override
-    public void download(Long id, HttpServletResponse response) {
-        ArchetypeDO archetypeDO = this.checkArchetypeExist(id);
-        if (!StatusCodeEnum.SUCCEED.getCode().equals(archetypeDO.getStatusCode())) {
-            throw new BizException(BizErrorCodeEnum.ILLEGAL_STATE_ERROR, "项目骨架尚未生成");
-        }
-        String projectPath = workingRootPath + "project" + File.separator + id + File.separator;
-        String fileName = archetypeDO.getAppName() + ".zip";
-        HttpUtil.downloadFile(response, projectPath, fileName, false);
-    }
-
-    @Override
-    public ArchetypeDO checkArchetypeExist(Long id) {
-        ArchetypeDO archetypeDO = archetypeRepository.selectById(id);
-        if (archetypeDO == null) {
-            throw new BizException(BizErrorCodeEnum.DATA_NOT_EXIST, "原型不存在");
-        }
-        return archetypeDO;
-    }
-
-    /**
-     * 校验appName是否存在
-     *
-     * @param request req
-     */
-    private void checkAppNameExist(CreateArchetypeRequest request) {
-        ListArchetypeCondition condition = new ListArchetypeCondition();
-        condition.setAppName(request.getAppName());
-        List<ArchetypeDO> archetypeDOList = archetypeRepository.listByCondition(condition);
-        if (CollectionUtil.isNotNullOrEmpty(archetypeDOList)) {
-            throw new BizException(BizErrorCodeEnum.DATA_ALREADY_EXIST, "该应用已存在");
-        }
     }
 
     /**
@@ -179,12 +229,52 @@ public class ArchetypeServiceImpl implements ArchetypeService {
         for (String res; (res = bufferedReader.readLine()) != null; ) {
             result.append(res).append("\n");
         }
-        log.info("create project archetype info: {}", result.toString());
+        log.info("Create project archetype info: {}", result.toString());
 
         bufferedReader.close();
         reader.close();
         is.close();
         process.getOutputStream().close();
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        this.initWorkingPath(workingRootPath);
+    }
+
+    /**
+     * 初始化工作路径
+     * <p>
+     * 包括 script脚本 和 project文件夹
+     *
+     * @param workingRootPath 根路径
+     */
+    private void initWorkingPath(String workingRootPath) throws IOException {
+        // 复制script脚本
+        String[] scriptNames = {"CreateProject.bat", "CreateProject.sh"};
+        String scriptPath = workingRootPath + "script" + File.separator;
+        for (String scriptName : scriptNames) {
+            this.copyScript(scriptName, scriptPath);
+        }
+
+        // 创建project文件夹
+        String projectPath = workingRootPath + "project" + File.separator;
+        File projectFilePath = new File(projectPath);
+        if (!projectFilePath.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            projectFilePath.mkdir();
+        }
+    }
+
+    /**
+     * 拷贝 /resources/script/ 目录下文件到指定路径
+     *
+     * @param scriptName 文件名字
+     * @param scriptPath 指定路径
+     */
+    private void copyScript(String scriptName, String scriptPath) {
+        InputStream is = this.getClass().getResourceAsStream("/script/" + scriptName);
+        cn.hutool.core.io.FileUtil.writeFromStream(is, new File(scriptPath + scriptName));
     }
 }
 

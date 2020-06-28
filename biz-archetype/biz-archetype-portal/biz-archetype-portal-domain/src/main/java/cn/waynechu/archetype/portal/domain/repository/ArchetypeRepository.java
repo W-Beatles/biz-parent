@@ -46,6 +46,18 @@ public class ArchetypeRepository {
     }
 
     public ArchetypeDO selectById(Long id) {
-        return mapper.selectById(id);
+        ArchetypeDO archetypeDO = mapper.selectById(id);
+        return (archetypeDO != null
+                && Boolean.FALSE.equals(archetypeDO.getDeletedStatus()))
+                ? archetypeDO : null;
+    }
+
+    public void removeById(Long id) {
+        QueryWrapper<ArchetypeDO> wrapper = new QueryWrapper<>();
+        wrapper.eq(ArchetypeDO.COL_ID, id);
+
+        ArchetypeDO archetypeDO = new ArchetypeDO();
+        archetypeDO.setDeletedStatus(true);
+        mapper.update(archetypeDO, wrapper);
     }
 }

@@ -6,12 +6,12 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-spring-cloud-api-dynamic-datasource-test</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>dynamic-datasource-test-remote</artifactId>
     <name>dynamic-datasource-test-remote</name>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <description>dynamic-datasource-test-remote module for SpringCloud</description>
 
     <dependencies>
