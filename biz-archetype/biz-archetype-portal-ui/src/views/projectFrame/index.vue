@@ -16,29 +16,50 @@
         <el-table class="taskListTable" :data="taskList" style="width: 100%">
             <el-table-column type="expand">
                 <template slot-scope="{row}">
-                    <el-form label-position="left" inline class="demo-table-expand">
+                    <el-form label-position="left" class="demo-table-expand">
+                        <el-form-item label="包名">
+                            <span>{{ PACKAGE_PREFIX + row.packageName }}</span>
+                        </el-form-item>
                         <el-form-item label="项目描述">
-                            <span>{{ row.appTypeDesc }}</span>
+                            <span>{{ row.description || '-' }}</span>
                         </el-form-item>
                     </el-form>
                 </template>
             </el-table-column>
-            <el-table-column label="原型 ID" prop="id"></el-table-column>
-            <el-table-column label="APP ID" prop="appId"></el-table-column>
+            <el-table-column label="原型ID" prop="id" width="80"></el-table-column>
+            <el-table-column label="AppID" prop="appId" width="300"></el-table-column>
+            <el-table-column label="项目名称" prop="appName" width="300"></el-table-column>
             <el-table-column label="项目类型" prop="appTypeDesc"></el-table-column>
-            <el-table-column label="项目名称" prop="appName"></el-table-column>
-            <el-table-column label="状态" prop="statusCodeDesc"></el-table-column>
-            <el-table-column label="创建人" prop="createdUser"></el-table-column>
-            <el-table-column label="创建人创建时间" prop="createdTime"></el-table-column>
-            <el-table-column label="操作">
+            <el-table-column label="状态">
                 <template slot-scope="{row}">
-                    <m-button class="downLoad" @click="download(row.id)"><i class="el-icon-download"/>下载</m-button>
+                    <el-tag :type="StatusCodeTagType[row.statusCode]">
+                        <i :class="StatusCodeTag[row.statusCode]"/>{{` ${row.statusCodeDesc}`}}
+                    </el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column label="创建人" prop="createdUser"></el-table-column>
+            <el-table-column label="创建时间" prop="createdTime"></el-table-column>
+            <el-table-column label="操作" width="200" fixed="right">
+                <template slot-scope="{row}">
+                    <div class="optBtnBlock">
+                        <m-button
+                                v-for="(opt, index) in optBtnTypeList"
+                                v-if="index || opt.optShowCode === row.statusCode"
+                                :key="index"
+                                :class="opt.optClass"
+                                @click="optClick(opt.optFnc, row.id)">
+                            <i :class="opt.iconClass"/>&nbsp;&nbsp;{{opt.optText}}
+                        </m-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
         <add :visible.sync="visibleDialog"
              title="测试弹框"
+             :id="optId"
+             :loading="addLoading"
              @submit="submitAddForm"
+             @close="visibleDialog = false"
         ></add>
         <el-pagination
                 @size-change="pageSizeChange"
@@ -57,6 +78,8 @@
     import AuthModel from '@/api/Model/authModel.js'
     import {mixinModule, cmpModule} from './autoImport.js'
 
+    const SUCCESS_CODE = 1
+    const PACKAGE_PREFIX = 'cn.waynechu.'
     const authModel = new AuthModel()
     export default {
         name: 'index',
@@ -64,15 +87,38 @@
         mixins: mixinModule,
         data() {
             return {
+                StatusCodeTagType: ['', 'success', 'danger'],
+                StatusCodeTag: [{'el-icon-loading': true}, {'el-icon-check': true}, {'el-icon-warning-outline': true}],
+                SUCCESS_CODE: SUCCESS_CODE,
+                PACKAGE_PREFIX: PACKAGE_PREFIX,
                 appTypeParams: {
                     id: '',
                     appId: '',
                     pageNum: 1,
                     pageSize: 10,
                 },
+                optBtnTypeList: [{
+                    optText: '下载',
+                    optFnc: 'download',
+                    optShowCode: SUCCESS_CODE,
+                    optClass: {'downLoad': true},
+                    iconClass: {'el-icon-download': true},
+                }, {
+                    optText: '编辑',
+                    optFnc: 'editAppType',
+                    optClass: {'edit': true},
+                    iconClass: {'el-icon-edit': true},
+                }, {
+                    optText: '删除',
+                    optFnc: 'delAppType',
+                    optClass: {'delete': true},
+                    iconClass: {'el-icon-delete': true},
+                }], // 0： 删除，1：编辑，2：下载
                 total: 10,
                 taskList: [],
-                visibleDialog: false
+                visibleDialog: false,
+                addLoading: false,
+                optId: -1
             }
         },
         created() {
@@ -80,12 +126,23 @@
         },
         methods: {
             async getTaskList() {
-                const res = await authModel.testApi(this.appTypeParams)
+                const res = await authModel.getAppTypeList(this.appTypeParams)
                 if (res) {
                     const {list, total} = res
                     this.total = total
                     this.taskList = list || []
                 }
+            },
+            optClick(optFnc, id) {
+                this[optFnc](id)
+            },
+            async delAppType(id) {
+                const {status} = await authModel.delArchetype(id, 'delete')
+                status && this.getTaskList()
+            },
+            editAppType(id) {
+                this.optId = id
+                this.visibleDialog = true
             },
             async download(id) {
                 const {data, fileName} = await authModel.downloadArcFile(id)
@@ -104,14 +161,21 @@
                 }
             },
             addAsync() {
+                this.optId = -1
                 this.visibleDialog = true
             },
             async submitAddForm(form) {
-                const status = await authModel.addArchetypes(form)
-                if (status) {
-                    this.visibleDialog = false
-                    this.getTaskList()
-                }
+                this.addLoading = true
+                const submitType = form.isEdit ? 'editArchetype' : 'addArchetypes'
+                const status = await authModel[submitType](form, this.closeLoadingCb, this.submitCallback)
+                console.log('status', status)
+            },
+            closeLoadingCb() {
+                this.addLoading = false
+            },
+            submitCallback() {
+                this.getTaskList()
+                this.visibleDialog = false
             }
         }
     }
@@ -153,7 +217,23 @@
         .taskListTable
             margin-bottom: 10px;
 
+            .optBtnBlock
+                display flex
+                justify-content center
+
+            .m-button
+                width 60px
+                text-align center
+                padding 0
+                line-height 30px
+                color #fff
+
             .downLoad
                 background: #4cae50;
-                color #fff
+
+            .edit
+                background: #48cae4;
+
+            .delete
+                background: #ee6c4d;
 </style>
