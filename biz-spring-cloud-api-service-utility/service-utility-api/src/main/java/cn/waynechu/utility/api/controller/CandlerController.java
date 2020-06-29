@@ -33,5 +33,4 @@ public class CandlerController {
         CandlerResponse candler = candlerService.getCandler(year, month);
         return BizResponse.success(candler);
     }
-
 }
