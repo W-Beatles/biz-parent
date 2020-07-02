@@ -29,18 +29,19 @@ public class ExcelService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public String getSid(JSONObject params, String dataExportUrl) {
-        String url = gatewayUrl + dataExportUrl;
-        ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(url,
+    public String getSid(String url, JSONObject params) {
+        String fullUrl = gatewayUrl + url;
+        // 转发请求到具体的导出项目
+        ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(fullUrl,
                 HttpMethod.POST, new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
                 });
         if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
             return responseEntity.getBody().getData();
         } else {
             if (HttpStatus.NOT_FOUND.equals(responseEntity.getStatusCode())) {
-                throw new IllegalArgumentException("导出地址不存在 " + dataExportUrl);
+                throw new IllegalArgumentException("导出地址不存在, url: " + url);
             }
-            log.warn("导出失败 url: {} params: {}", url, JSONObject.toJSONString(params));
+            log.warn("导出失败, url: {} params: {}", url, JSONObject.toJSONString(params));
             throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败");
         }
     }

@@ -386,43 +386,6 @@ public class HttpUtil {
         return returnValue;
     }
 
-    public static void downloadFile(HttpServletResponse res, String filePath, String fileName, boolean removeFile) {
-        BufferedInputStream bis = null;
-        OutputStream os = null;
-        File file = null;
-        try {
-            res.setContentType("application/octet-stream");
-            res.setHeader("Content-Disposition",
-                    "attachment;filename=" + new String(fileName.getBytes(), "ISO-8859-1"));
-            res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
-            file = new File(filePath + "/" + fileName);
-            os = res.getOutputStream();
-            bis = new BufferedInputStream(new FileInputStream(file));
-
-            byte[] buff = new byte[1024];
-            int i = bis.read(buff);
-            while (i != -1) {
-                os.write(buff, 0, buff.length);
-                os.flush();
-                i = bis.read(buff);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (removeFile && file.exists()) {
-                file.delete();
-            }
-        }
-    }
-
     public static void main(String[] args) {
 //        src:http://www.waynechu.cn:8080/aaa/bbb.xml?p=0&q=1#ref001
 //        HOST:www.waynechu.cn

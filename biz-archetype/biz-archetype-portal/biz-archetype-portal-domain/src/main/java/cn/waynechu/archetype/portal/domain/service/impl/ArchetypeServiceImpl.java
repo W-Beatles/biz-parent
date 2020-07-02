@@ -16,11 +16,7 @@ import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.page.BizPageInfo;
-import cn.waynechu.springcloud.common.http.HttpUtil;
-import cn.waynechu.springcloud.common.util.BeanUtil;
-import cn.waynechu.springcloud.common.util.CollectionUtil;
-import cn.waynechu.springcloud.common.util.FileUtil;
-import cn.waynechu.springcloud.common.util.UserUtil;
+import cn.waynechu.springcloud.common.util.*;
 import com.github.pagehelper.PageHelper;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -112,7 +108,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         }
         String projectPath = workingRootPath + "project" + File.separator + id + File.separator;
         String fileName = archetypeDO.getAppName() + ".zip";
-        HttpUtil.downloadFile(response, projectPath, fileName, false);
+        FileUploadUtil.download(response, projectPath, fileName);
     }
 
     @Override

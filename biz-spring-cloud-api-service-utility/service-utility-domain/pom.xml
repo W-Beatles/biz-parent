@@ -23,6 +23,11 @@
 
         <dependency>
             <groupId>cn.waynechu</groupId>
+            <artifactId>service-utility-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
             <artifactId>service-utility-facade</artifactId>
         </dependency>
 

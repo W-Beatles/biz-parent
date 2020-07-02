@@ -57,13 +57,13 @@
         <jetcache-starter-redis-lettuce.version>2.5.14</jetcache-starter-redis-lettuce.version>
         <xxl-job-core.version>2.1.0</xxl-job-core.version>
 
-        <biz-facade-common.version>1.0.2019070901-RELEASE</biz-facade-common.version>
-        <biz-spring-cloud-common.version>1.0.2020032201-RELEASE</biz-spring-cloud-common.version>
-        <biz-spring-cloud-api-starter.version>1.0.2020032201-RELEASE</biz-spring-cloud-api-starter.version>
-        <biz-boot-starter-dynamic-datasource.version>1.0.2020032201-RELEASE
+        <biz-facade-common.version>0.1.2019070901-RELEASE</biz-facade-common.version>
+        <biz-spring-cloud-common.version>0.1.2020032201-RELEASE</biz-spring-cloud-common.version>
+        <biz-spring-cloud-api-starter.version>0.1.2020032201-RELEASE</biz-spring-cloud-api-starter.version>
+        <biz-boot-starter-dynamic-datasource.version>0.1.2020032201-RELEASE
         </biz-boot-starter-dynamic-datasource.version>
-        <biz-boot-starter-logger.version>1.0.2019123001-RELEASE</biz-boot-starter-logger.version>
-        <biz-boot-starter-elastic-job.version>1.0.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
+        <biz-boot-starter-logger.version>0.1.2019123001-RELEASE</biz-boot-starter-logger.version>
+        <biz-boot-starter-elastic-job.version>0.1.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
     </properties>
 
     <modules>

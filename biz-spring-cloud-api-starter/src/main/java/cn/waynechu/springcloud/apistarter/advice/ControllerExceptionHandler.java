@@ -64,6 +64,6 @@ public class ControllerExceptionHandler {
     public BizResponse<String> unknownException(Exception e) {
         log.error("[SystemError] ", e);
         return BizResponse.error(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
-                BizErrorCodeEnum.SYSTEM_ERROR.getDesc() + ": " + MDC.get(MDC_KEY_REQUEST_ID).substring(0, 6));
+                BizErrorCodeEnum.SYSTEM_ERROR.getDesc(), MDC.get(MDC_KEY_REQUEST_ID).substring(0, 6));
     }
 }
