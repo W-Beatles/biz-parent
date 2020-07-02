@@ -2,6 +2,8 @@ package cn.waynechu.springcloud.common.executor;
 
 import org.slf4j.MDC;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.Map;
 
@@ -23,30 +25,38 @@ public class BizThreadPoolExecutor extends ThreadPoolTaskExecutor {
      */
     @Override
     public void execute(Runnable runnable) {
-        // 获取父线程MDC中的内容，必须在run方法之前，否则等异步线程执行的时候有可能MDC里面的值已经被清空了，这个时候就会返回null
-        Map<String, String> context = MDC.getCopyOfContextMap();
-        super.execute(() -> run(runnable, context));
+        // 获取父线程MDC信息
+        Map<String, String> contextMap = MDC.getCopyOfContextMap();
+        // 获取父线程request属性
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        super.execute(() -> run(runnable, contextMap, requestAttributes));
     }
 
     /**
      * 子线程委托的执行方法
      *
-     * @param runnable {@link Runnable}
-     * @param context  父线程MDC内容
+     * @param runnable          {@link Runnable}
+     * @param contextMap        父线程MDC内容
+     * @param requestAttributes ra
      */
-    private void run(Runnable runnable, Map<String, String> context) {
-        // 将父线程的MDC内容传给子线程
-        if (context != null) {
-            MDC.setContextMap(context);
+    private void run(Runnable runnable, Map<String, String> contextMap, RequestAttributes requestAttributes) {
+        // 传MDC信息到子线程
+        if (contextMap != null) {
+            MDC.setContextMap(contextMap);
+        }
+        // 传request属性到子线程
+        if (requestAttributes != null) {
+            RequestContextHolder.setRequestAttributes(requestAttributes);
         }
 
         try {
             // 执行异步操作
             runnable.run();
         } finally {
-            // 清空MDC内容
+            // 清空当前子线程MDC内容
             MDC.clear();
+            // 重置当前子线程request属性
+            RequestContextHolder.resetRequestAttributes();
         }
     }
-
 }

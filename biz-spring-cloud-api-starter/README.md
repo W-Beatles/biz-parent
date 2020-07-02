@@ -73,11 +73,12 @@
     设计原则:  
     - 解耦excel导出服务与业务站点服务
     - 后端接口统一化、前端导出组件化
-    - 封装公共组件方法，管理整个生命周期，简化开发。详见`ExcelUtil.java`
+    - 封装公共组件方法，管理整个生命周期，简化开发。详见`ExcelExporter.java`
     - 使用自定义线程池异步处理数据，避免导出服务占用大量服务器资源，导致其它接口无法正常响应
     - 引入文件系统，避免网关超时、请求大小限制等的问题
     
-13. ExecutorAutoConfiguration 通用线程池配置
-    - 使用自定义线程池`BizThreadPoolExecutor`，解决异步线程`MDC`信息、ThreadLocal信息无法传递问题
+13. ExecutorAutoConfiguration 自定义线程池`BizThreadPoolExecutor`
+    - 解决异步线程`MDC`信息、`ThreadLocal`信息无法传递的问题
+    - 解决异步线程`requestAttributes`信息无法传递的问题
     - 提供 `Executor`、`ExecutorService` 实例供开发使用
     - 兼容Spring框架提供的`applicationTaskExecutor`、`taskExecutor`实例，使用`@Async`注解的异步线程也能打印日志到ELK中

@@ -4,6 +4,7 @@ import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.request.BizPageRequest;
+import cn.waynechu.facade.common.response.BizResponse;
 import cn.waynechu.springcloud.common.enums.ExportStatusEnum;
 import cn.waynechu.springcloud.common.model.ExportResultModel;
 import cn.waynechu.springcloud.common.util.PageLoopUtil;
@@ -13,12 +14,20 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.WriteTable;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -40,9 +49,12 @@ public class ExcelExporter {
 
     private RedisTemplate<Object, Object> redisTemplate;
 
-    public ExcelExporter(Executor executor, RedisTemplate<Object, Object> redisTemplate) {
+    private RestTemplate restTemplate;
+
+    public ExcelExporter(Executor executor, RedisTemplate<Object, Object> redisTemplate, RestTemplate restTemplate) {
         this.executor = executor;
         this.redisTemplate = redisTemplate;
+        this.restTemplate = restTemplate;
     }
 
     /**
@@ -100,49 +112,12 @@ public class ExcelExporter {
         this.syncResult(sid, fileName, ExportStatusEnum.GENERATED, null);
 
         executor.execute(() -> {
-            // 设置导出文件名
-            String sheetName = this.encodeFileName(fileName);
-
-            File tempFile = this.getExcelFile(fileName, clazz, request, supplier, sheetName);
+            // 生成excel
+            File excelFile = this.generateExcelFile(sid, fileName, clazz, request, supplier);
             // 上传excel
-            this.processExcelStream(sid, fileName, tempFile);
+            this.processExcelFile(sid, fileName, excelFile);
         });
         return sid;
-    }
-
-    private <T> File getExcelFile(String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier, String sheetName) {
-        File tempFile;
-        try {
-            tempFile = File.createTempFile(fileName, EXPORT_UPLOAD_EXTENSIONS);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
-        // 使用table方式写入，设置sheet不需要头
-        WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE).build();
-
-        WriteTable writeTable;
-        BizPageInfo<T> bizPageInfo;
-        int pageIndex = 1;
-        // 默认从第一页开始查
-        request.setPageNum(1);
-        // 限制查询条数
-        request.setPageSize(QUERY_LIMIT);
-
-        do {
-            // 第一次写入会创建头，后面直接写入数据
-            writeTable = EasyExcel.writerTable(pageIndex).needHead(pageIndex == 1).build();
-
-            // 分页查询
-            request.setPageNum(pageIndex);
-            bizPageInfo = supplier.get();
-            excelWriter.write(bizPageInfo.getList(), writeSheet, writeTable);
-            pageIndex++;
-        } while (bizPageInfo.getHasNextPage() && pageIndex < PageLoopUtil.PAGE_LOOP_LIMIT);
-
-        excelWriter.finish();
-        return tempFile;
     }
 
     /**
@@ -163,17 +138,64 @@ public class ExcelExporter {
         this.syncResult(sid, fileName, ExportStatusEnum.GENERATED, null);
 
         executor.execute(() -> {
-            String sheetName = this.encodeFileName(fileName);
-
-            ExcelWriter excelWriter = EasyExcel.write(stream, clazz).build();
-            WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).build();
-            excelWriter.write(data, writeSheet);
-            excelWriter.finish();
-
+            // 生成excel
+            File tempFile = this.generateExcelFile(sid, fileName, clazz, data);
             // 上传excel
-            this.processExcelStream(sid, fileName, stream);
+            this.processExcelFile(sid, fileName, tempFile);
         });
         return sid;
+    }
+
+    private <T> File generateExcelFile(String sid, String fileName, Class<T> clazz, List<T> data) {
+        try {
+            File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+            ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
+
+            String sheetName = this.encodeFileName(fileName);
+            WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
+                    .registerConverter(new LocalDateTimeConvert()).build();
+            excelWriter.write(data, writeSheet);
+            excelWriter.finish();
+            return tempFile;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private <T> File generateExcelFile(String sid, String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
+        try {
+            File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+            ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
+            // 使用table方式写入，设置sheet不需要头
+            String sheetName = this.encodeFileName(fileName);
+            WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE)
+                    .registerConverter(new LocalDateTimeConvert()).build();
+
+            WriteTable writeTable;
+            BizPageInfo<T> bizPageInfo;
+            int pageIndex = 1;
+            // 默认从第一页开始查
+            request.setPageNum(1);
+            // 限制单次查询条数
+            request.setPageSize(QUERY_LIMIT);
+
+            do {
+                // 第一次写入会创建头，后面直接写入数据
+                writeTable = EasyExcel.writerTable(pageIndex).needHead(pageIndex == 1).build();
+
+                // 循环分页查询
+                request.setPageNum(pageIndex);
+                bizPageInfo = supplier.get();
+                excelWriter.write(bizPageInfo.getList(), writeSheet, writeTable);
+                pageIndex++;
+            } while (bizPageInfo.getHasNextPage() && pageIndex < PageLoopUtil.PAGE_LOOP_LIMIT);
+
+            excelWriter.finish();
+            return tempFile;
+        } catch (Exception e) {
+            log.error("导出失败", e);
+            throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败");
+        }
     }
 
     /**
@@ -204,19 +226,26 @@ public class ExcelExporter {
      * @param fileName 导出文件名
      * @param file     文件
      */
-    private void processExcelStream(String sid, String fileName, File file) {
+    private void processExcelFile(String sid, String fileName, File file) {
         ExportStatusEnum statusEnum = ExportStatusEnum.FAIL;
         String url = "";
         if (file == null) {
             statusEnum = ExportStatusEnum.NULL;
         } else {
-            try {
-                url = this.processUpload(file);
-                if (StringUtil.isNotBlank(url)) {
+            FileSystemResource resource = new FileSystemResource(file);
+            MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+            params.add("file", resource);
+
+            String uploadUrl = "http://service-utility/files/upload";
+            ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(uploadUrl, HttpMethod.POST
+                    , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
+                    });
+            if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
+                String downloadUrl = responseEntity.getBody().getData();
+                if (StringUtil.isNotBlank(downloadUrl)) {
+                    url = downloadUrl;
                     statusEnum = ExportStatusEnum.SUCCESS;
                 }
-            } catch (Exception ex) {
-                log.info("处理excel异常", ex);
             }
         }
         this.syncResult(sid, fileName, statusEnum, url);
@@ -241,18 +270,6 @@ public class ExcelExporter {
     }
 
     /**
-     * 上传excel并获取文件地址
-     *
-     * @param file 文件
-     * @return 文件地址
-     */
-    private String processUpload(File file) {
-        // TODO 2020-03-22 18:12 待文件上传模块完成后添加上传逻辑
-        return "http://img.waynechu.cn/1.excel";
-    }
-
-
-    /**
      * 导出限制每次查询的数据行数
      */
     public static final int QUERY_LIMIT = 1000;
@@ -261,11 +278,6 @@ public class ExcelExporter {
      * 缓存KEY前缀
      */
     public static final String EXPORT_CACHE_KEY = "export_cache_";
-
-    /**
-     * 导出文件名缓存KEY前缀
-     */
-    public static final String EXPORT_FILE_NAME_CACHE_KEY = "export_file_name_cache_";
 
     /**
      * 缓存过期时间

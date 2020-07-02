@@ -72,6 +72,6 @@ public class CommonAutoConfiguration {
 
     @Bean
     public ExcelExporter excelUtil(Executor bizExecutor, RedisTemplate<Object, Object> redisTemplate) {
-        return new ExcelExporter(bizExecutor, redisTemplate);
+        return new ExcelExporter(bizExecutor, redisTemplate, restTemplate());
     }
 }
