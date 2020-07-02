@@ -6,7 +6,6 @@ import cn.waynechu.facade.common.response.BizResponse;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -23,17 +22,14 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ExcelService {
 
-    @Value("${utility.gateway-url}")
-    private String gatewayUrl;
-
     @Autowired
     private RestTemplate restTemplate;
 
     public String getSid(String url, JSONObject params) {
-        String fullUrl = gatewayUrl + url;
-        // 转发请求到具体的导出项目
-        ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(fullUrl,
-                HttpMethod.POST, new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
+        // 通过服务名转发请求到具体的项目 如: http://biz-archetype-portal/archetypes/export
+        String serviceUrl = "http://" + url;
+        ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(serviceUrl, HttpMethod.POST
+                , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
                 });
         if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
             return responseEntity.getBody().getData();

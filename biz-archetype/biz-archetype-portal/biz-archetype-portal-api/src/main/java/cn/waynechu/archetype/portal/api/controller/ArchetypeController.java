@@ -38,6 +38,13 @@ public class ArchetypeController {
         return BizResponse.success(pageInfo);
     }
 
+    @ApiOperation("导出项目原型列表")
+    @PostMapping("/export")
+    public BizResponse<String> export(@RequestBody SearchArchetypeRequest request) {
+        String sid = archetypeService.export(request);
+        return BizResponse.success(sid);
+    }
+
     @ApiOperation("根据原型id获取原型信息")
     @GetMapping("/{id}")
     public BizResponse<ArchetypeResponse> getById(@ApiParam(value = "原型id", required = true, example = "0") @PathVariable Long id) {

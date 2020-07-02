@@ -16,9 +16,9 @@ import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.page.BizPageInfo;
+import cn.waynechu.springcloud.common.excel.ExcelExporter;
 import cn.waynechu.springcloud.common.util.*;
 import com.github.pagehelper.PageHelper;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.InitializingBean;
@@ -41,15 +41,22 @@ import java.util.concurrent.Executor;
 @Service
 public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean {
 
+    @Value("${working.root.path}")
+    private String workingRootPath;
+
     @Autowired
     private ArchetypeRepository archetypeRepository;
 
     @Autowired
     private Executor bizExecutor;
 
-    @Setter
-    @Value("${working.root.path}")
-    private String workingRootPath;
+    @Autowired
+    private ExcelExporter excelExporter;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        this.initWorkingPath(workingRootPath);
+    }
 
     @Override
     public BizPageInfo<SearchArchetypeResponse> search(SearchArchetypeRequest request) {
@@ -61,6 +68,12 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         List<ArchetypeDO> archetypeDOList = archetypeRepository.listByCondition(condition);
         List<SearchArchetypeResponse> list = ArchetypeConvert.toSearchArchetypeResponse(archetypeDOList);
         return BizPageInfo.of(archetypeDOList).replace(list);
+    }
+
+    @Override
+    public String export(SearchArchetypeRequest request) {
+        String fileName = "原型列表 " + LocalDateTime.now();
+        return excelExporter.exportForSid(fileName, SearchArchetypeResponse.class, request, () -> search(request));
     }
 
     @Override
@@ -233,11 +246,6 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         process.getOutputStream().close();
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        this.initWorkingPath(workingRootPath);
-    }
-
     /**
      * 初始化工作路径
      * <p>
@@ -245,12 +253,15 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
      *
      * @param workingRootPath 根路径
      */
-    private void initWorkingPath(String workingRootPath) throws IOException {
+    private void initWorkingPath(String workingRootPath) {
         // 复制script脚本
-        String[] scriptNames = {"CreateProject.bat", "CreateProject.sh"};
         String scriptPath = workingRootPath + "script" + File.separator;
-        for (String scriptName : scriptNames) {
-            this.copyScript(scriptName, scriptPath);
+        File scriptFilePath = new File(scriptPath);
+        if (!scriptFilePath.exists()) {
+            String[] scriptNames = {"CreateProject.bat", "CreateProject.sh"};
+            for (String scriptName : scriptNames) {
+                this.copyScript(scriptName, scriptPath);
+            }
         }
 
         // 创建project文件夹

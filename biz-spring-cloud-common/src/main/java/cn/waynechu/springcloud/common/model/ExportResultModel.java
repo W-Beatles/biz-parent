@@ -18,6 +18,11 @@ public class ExportResultModel implements Serializable {
     private String sid;
 
     /**
+     * 导出文件名
+     */
+    private String fileName;
+
+    /**
      * 导出状态
      */
     private ExportStatusEnum status;

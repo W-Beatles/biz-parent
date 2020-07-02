@@ -64,7 +64,7 @@ public class OAuth2AuthTypeFilter implements AuthTypeFilter {
 
     private TokenInfo getTokenInfo(String authToken) {
         String token = StringUtils.substringAfter(authToken, "bearer ");
-        String oauthServiceUrl = "http://localhost:9050/oauth/check_token";
+        String oauthServiceUrl = "http://biz-spring-cloud-oauth-server/oauth/check_token";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);

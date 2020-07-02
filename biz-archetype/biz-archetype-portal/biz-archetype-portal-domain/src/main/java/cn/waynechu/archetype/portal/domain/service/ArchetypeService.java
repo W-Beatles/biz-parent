@@ -25,6 +25,14 @@ public interface ArchetypeService {
     BizPageInfo<SearchArchetypeResponse> search(SearchArchetypeRequest request);
 
     /**
+     * 导出项目原型列表
+     *
+     * @param request req
+     * @return sid
+     */
+    String export(SearchArchetypeRequest request);
+
+    /**
      * 根据原型id获取原型信息
      *
      * @param id 原型id

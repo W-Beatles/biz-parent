@@ -24,8 +24,7 @@ public class ExcelController {
 
     @ApiOperation("获取sid")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "url", value = "导出URL", example = "/order-service/orders/export", required = true),
-            @ApiImplicitParam(name = "params", value = "导出参数")
+            @ApiImplicitParam(name = "url", value = "导出URL", example = "biz-archetype-portal/archetypes/export", required = true)
     })
     @PostMapping("/sid")
     public BizResponse<String> getSid(@RequestParam String url, @RequestBody JSONObject params) {

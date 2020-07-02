@@ -9,7 +9,7 @@ import cn.waynechu.springcloud.apistarter.cache.RedisUtil;
 import cn.waynechu.springcloud.apistarter.interceptor.FeignTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.interceptor.RestTemplateTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
-import cn.waynechu.springcloud.common.excel.ExcelUtil;
+import cn.waynechu.springcloud.common.excel.ExcelExporter;
 import cn.waynechu.springcloud.common.util.PageLoopUtil;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -71,8 +71,7 @@ public class CommonAutoConfiguration {
     }
 
     @Bean
-    public ExcelUtil excelUtil(Executor bizExecutor, RedisTemplate<Object, Object> redisTemplate) {
-        return new ExcelUtil(bizExecutor, redisTemplate);
+    public ExcelExporter excelUtil(Executor bizExecutor, RedisTemplate<Object, Object> redisTemplate) {
+        return new ExcelExporter(bizExecutor, redisTemplate);
     }
-
 }
