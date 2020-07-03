@@ -6,8 +6,9 @@ import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.request.BizPageRequest;
 import cn.waynechu.facade.common.response.BizResponse;
 import cn.waynechu.springcloud.common.enums.ExportStatusEnum;
-import cn.waynechu.springcloud.common.model.ExportResultModel;
-import cn.waynechu.springcloud.common.util.PageLoopUtil;
+import cn.waynechu.springcloud.common.model.ExportResultResponse;
+import cn.waynechu.springcloud.common.util.JsonBinder;
+import cn.waynechu.springcloud.common.util.PageLoopHelper;
 import cn.waynechu.springcloud.common.util.StringUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
@@ -16,7 +17,7 @@ import com.alibaba.excel.write.metadata.WriteTable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -39,19 +40,21 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
+ * excel解析、导出工具类
+ *
  * @author zhuwei
  * @date 2020-03-22 17:57
  */
 @Slf4j
-public class ExcelExporter {
+public class ExcelHelper {
 
     private Executor executor;
 
-    private RedisTemplate<Object, Object> redisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     private RestTemplate restTemplate;
 
-    public ExcelExporter(Executor executor, RedisTemplate<Object, Object> redisTemplate, RestTemplate restTemplate) {
+    public ExcelHelper(Executor executor, StringRedisTemplate redisTemplate, RestTemplate restTemplate) {
         this.executor = executor;
         this.redisTemplate = redisTemplate;
         this.restTemplate = restTemplate;
@@ -100,7 +103,7 @@ public class ExcelExporter {
     /**
      * 导出并获取excel的sid
      *
-     * @param fileName 文件名
+     * @param fileName 文件名，无需拼接.xlsx后缀
      * @param clazz    excel对象类型
      * @param request  查询参数
      * @param supplier 分页查询方法
@@ -127,9 +130,9 @@ public class ExcelExporter {
      *     适用于数据量比较小的导出，推荐1W行下使用
      * </pre>
      *
-     * @param fileName 文件名
-     * @param clazz    excel对象类型
-     * @param data     要导出的数据
+     * @param fileName 文件名，无需拼接.xlsx后缀
+     * @param clazz    excel对象模型
+     * @param data     导出的数据
      * @return sid 导出唯一标识
      */
     public <T> String exportForSid(String fileName, Class<T> clazz, List<T> data) {
@@ -139,35 +142,55 @@ public class ExcelExporter {
 
         executor.execute(() -> {
             // 生成excel
-            File tempFile = this.generateExcelFile(sid, fileName, clazz, data);
+            File excelFile = this.generateExcelFile(sid, fileName, clazz, data);
             // 上传excel
-            this.processExcelFile(sid, fileName, tempFile);
+            this.processExcelFile(sid, fileName, excelFile);
         });
         return sid;
     }
 
-    private <T> File generateExcelFile(String sid, String fileName, Class<T> clazz, List<T> data) {
+    /**
+     * 生成excel文件
+     *
+     * @param sid       导出唯一标识
+     * @param sheetName 导出sheet名称
+     * @param clazz     excel对象模型
+     * @param data      导出的数据
+     * @return excel文件
+     */
+    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, List<T> data) {
         try {
             File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
             ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
 
-            String sheetName = this.encodeFileName(fileName);
+            sheetName = this.encodeFileName(sheetName);
             WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
                     .registerConverter(new LocalDateTimeConvert()).build();
             excelWriter.write(data, writeSheet);
             excelWriter.finish();
             return tempFile;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error("导出失败", e);
+            return null;
         }
     }
 
-    private <T> File generateExcelFile(String sid, String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
+    /**
+     * 生成excel文件
+     *
+     * @param sid       导出唯一标识
+     * @param sheetName 导出sheet名称
+     * @param clazz     excel对象模型
+     * @param request   查询参数
+     * @param supplier  分页查询方法
+     * @return excel文件
+     */
+    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
         try {
             File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
             ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
             // 使用table方式写入，设置sheet不需要头
-            String sheetName = this.encodeFileName(fileName);
+            sheetName = this.encodeFileName(sheetName);
             WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE)
                     .registerConverter(new LocalDateTimeConvert()).build();
 
@@ -188,13 +211,13 @@ public class ExcelExporter {
                 bizPageInfo = supplier.get();
                 excelWriter.write(bizPageInfo.getList(), writeSheet, writeTable);
                 pageIndex++;
-            } while (bizPageInfo.getHasNextPage() && pageIndex < PageLoopUtil.PAGE_LOOP_LIMIT);
+            } while (bizPageInfo.getHasNextPage() && pageIndex < PageLoopHelper.PAGE_LOOP_LIMIT);
 
             excelWriter.finish();
             return tempFile;
         } catch (Exception e) {
             log.error("导出失败", e);
-            throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败");
+            return null;
         }
     }
 
@@ -220,35 +243,46 @@ public class ExcelExporter {
     }
 
     /**
-     * 处理excel流
+     * 上传excel文件
      *
      * @param sid      导出唯一id
      * @param fileName 导出文件名
      * @param file     文件
      */
     private void processExcelFile(String sid, String fileName, File file) {
+        String url = null;
         ExportStatusEnum statusEnum = ExportStatusEnum.FAIL;
-        String url = "";
-        if (file == null) {
-            statusEnum = ExportStatusEnum.NULL;
-        } else {
-            FileSystemResource resource = new FileSystemResource(file);
-            MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-            params.add("file", resource);
 
-            String uploadUrl = "http://service-utility/files/upload";
-            ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(uploadUrl, HttpMethod.POST
-                    , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
-                    });
-            if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
-                String downloadUrl = responseEntity.getBody().getData();
-                if (StringUtil.isNotBlank(downloadUrl)) {
-                    url = downloadUrl;
-                    statusEnum = ExportStatusEnum.SUCCESS;
+        try {
+            if (file != null) {
+                FileSystemResource resource = new FileSystemResource(file);
+                MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+                params.add("file", resource);
+
+                // 上传excel文件
+                ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(FILE_UPLOAD_URL, HttpMethod.POST
+                        , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
+                        });
+                if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
+                    String downloadUrl = responseEntity.getBody().getData();
+                    if (StringUtil.isNotBlank(downloadUrl)) {
+                        url = downloadUrl;
+                        statusEnum = ExportStatusEnum.SUCCESS;
+                    }
                 }
             }
+        } catch (Exception e) {
+            log.error("导出失败", e);
+        } finally {
+            // 同步导出状态
+            this.syncResult(sid, fileName, statusEnum, url);
+
+            // 删除临时excel文件
+            if (file != null) {
+                // noinspection ResultOfMethodCallIgnored
+                file.delete();
+            }
         }
-        this.syncResult(sid, fileName, statusEnum, url);
     }
 
     /**
@@ -260,27 +294,29 @@ public class ExcelExporter {
      * @param url        导出的excel文件地址
      */
     private void syncResult(String sid, String fileName, ExportStatusEnum statusEnum, String url) {
-        ExportResultModel exportResultModel = new ExportResultModel();
-        exportResultModel.setStatus(statusEnum);
-        exportResultModel.setFileName(fileName);
-        exportResultModel.setUrl(url);
-        exportResultModel.setSid(sid);
-        redisTemplate.opsForValue().set(EXPORT_CACHE_KEY + sid, exportResultModel,
-                EXPORT_CACHE_TIME_OUT, EXPORT_CACHE_TIME_OUT_UNIT);
+        ExportResultResponse exportResultResponse = new ExportResultResponse();
+        exportResultResponse.setStatus(statusEnum.getCode());
+        exportResultResponse.setFileName(fileName + EXPORT_UPLOAD_EXTENSIONS);
+        exportResultResponse.setUrl(url);
+        exportResultResponse.setSid(sid);
+
+        String key = EXPORT_CACHE_KEY + sid;
+        String value = JsonBinder.toJson(exportResultResponse);
+        redisTemplate.opsForValue().set(key, value, EXPORT_CACHE_TIME_OUT, EXPORT_CACHE_TIME_OUT_UNIT);
     }
 
     /**
-     * 导出限制每次查询的数据行数
+     * 导出限制单次查询条数
      */
     public static final int QUERY_LIMIT = 1000;
 
     /**
      * 缓存KEY前缀
      */
-    public static final String EXPORT_CACHE_KEY = "export_cache_";
+    public static final String EXPORT_CACHE_KEY = "utility-excel-export:";
 
     /**
-     * 缓存过期时间
+     * 缓存过期时间. 默认30分钟
      */
     public static final Long EXPORT_CACHE_TIME_OUT = 30L;
 
@@ -293,4 +329,9 @@ public class ExcelExporter {
      * 导出文件上传文件后缀名
      */
     public static final String EXPORT_UPLOAD_EXTENSIONS = ".xlsx";
+
+    /**
+     * 文件上传地址
+     */
+    public static final String FILE_UPLOAD_URL = "http://service-utility/files/upload";
 }

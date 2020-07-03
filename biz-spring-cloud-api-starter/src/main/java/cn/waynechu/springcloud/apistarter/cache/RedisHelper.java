@@ -10,17 +10,19 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * redis工具类
+ *
  * @author zhuwei
  * @date 2018/12/28 16:09
  */
 @Slf4j
 @Getter
-public class RedisUtil {
+public class RedisHelper {
 
     private StringRedisTemplate stringRedisTemplate;
     private BloomOperations<String, String> bloomOperations;
 
-    public RedisUtil(StringRedisTemplate stringRedisTemplate, BloomOperations<String, String> bloomOperations) {
+    public RedisHelper(StringRedisTemplate stringRedisTemplate, BloomOperations<String, String> bloomOperations) {
         this.stringRedisTemplate = stringRedisTemplate;
         this.bloomOperations = bloomOperations;
     }
@@ -112,5 +114,4 @@ public class RedisUtil {
         }
         return -1;
     }
-
 }

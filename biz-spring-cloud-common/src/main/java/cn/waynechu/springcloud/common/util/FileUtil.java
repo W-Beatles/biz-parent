@@ -85,7 +85,7 @@ public class FileUtil {
                 }
             }
         }
-        //noinspection ResultOfMethodCallIgnored
+        // noinspection ResultOfMethodCallIgnored
         file.delete();
     }
 }

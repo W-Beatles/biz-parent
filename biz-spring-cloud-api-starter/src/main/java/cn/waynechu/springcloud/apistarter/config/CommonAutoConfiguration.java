@@ -5,12 +5,12 @@ import cn.waynechu.springcloud.apistarter.aspect.ControllerLogAspect;
 import cn.waynechu.springcloud.apistarter.aspect.DistributedLockAspect;
 import cn.waynechu.springcloud.apistarter.aspect.MethodLogAspect;
 import cn.waynechu.springcloud.apistarter.cache.DefaultBloomOperations;
-import cn.waynechu.springcloud.apistarter.cache.RedisUtil;
+import cn.waynechu.springcloud.apistarter.cache.RedisHelper;
 import cn.waynechu.springcloud.apistarter.interceptor.FeignTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.interceptor.RestTemplateTraceInterceptor;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
-import cn.waynechu.springcloud.common.excel.ExcelExporter;
-import cn.waynechu.springcloud.common.util.PageLoopUtil;
+import cn.waynechu.springcloud.common.excel.ExcelHelper;
+import cn.waynechu.springcloud.common.util.PageLoopHelper;
 import cn.waynechu.springcloud.common.util.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,6 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.client.RestTemplate;
 
@@ -60,18 +59,18 @@ public class CommonAutoConfiguration {
     }
 
     @Bean
-    public RedisUtil redisUtil(StringRedisTemplate stringRedisTemplate) {
+    public RedisHelper redisHelper(StringRedisTemplate stringRedisTemplate) {
         DefaultBloomOperations<String, String> bloomOperations = new DefaultBloomOperations<>(stringRedisTemplate);
-        return new RedisUtil(stringRedisTemplate, bloomOperations);
+        return new RedisHelper(stringRedisTemplate, bloomOperations);
     }
 
     @Bean
-    public PageLoopUtil pageLoopHelper(Executor bizExecutor) {
-        return new PageLoopUtil(bizExecutor);
+    public PageLoopHelper pageLoopHelper(Executor bizExecutor) {
+        return new PageLoopHelper(bizExecutor);
     }
 
     @Bean
-    public ExcelExporter excelUtil(Executor bizExecutor, RedisTemplate<Object, Object> redisTemplate) {
-        return new ExcelExporter(bizExecutor, redisTemplate, restTemplate());
+    public ExcelHelper excelHelper(Executor bizExecutor, StringRedisTemplate redisTemplate) {
+        return new ExcelHelper(bizExecutor, redisTemplate, restTemplate());
     }
 }

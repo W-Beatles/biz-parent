@@ -1,7 +1,7 @@
 package cn.waynechu.order.api.runner;
 
 import cn.waynechu.springcloud.apistarter.cache.BloomOperations;
-import cn.waynechu.springcloud.apistarter.cache.RedisUtil;
+import cn.waynechu.springcloud.apistarter.cache.RedisHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -20,13 +20,13 @@ import java.util.Arrays;
 public class BloomFilterRunner implements ApplicationRunner {
 
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisHelper redisHelper;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         String key = "TEST";
 
-        BloomOperations<String, String> bloomOperations = redisUtil.getBloomOperations();
+        BloomOperations<String, String> bloomOperations = redisHelper.getBloomOperations();
         // 1.创建布隆过滤器
         bloomOperations.createFilter(key, 0.01, 100);
 

@@ -2,10 +2,10 @@ package cn.waynechu.springcloud.apistarter.aspect;
 
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
+import cn.waynechu.springcloud.apistarter.cache.RedisHelper;
 import cn.waynechu.springcloud.apistarter.properties.CommonProperty;
 import cn.waynechu.springcloud.apistarter.properties.nested.DistributedLockProperty;
 import cn.waynechu.springcloud.common.annotation.DistributedLock;
-import cn.waynechu.springcloud.apistarter.cache.RedisUtil;
 import cn.waynechu.springcloud.common.util.DequeThreadLocal;
 import cn.waynechu.springcloud.common.util.SpelUtil;
 import cn.waynechu.springcloud.common.util.UUIDUtil;
@@ -51,7 +51,7 @@ public class DistributedLockAspect {
     private CommonProperty commonProperty;
 
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisHelper redisHelper;
 
     @Value("${spring.application.name}")
     private String applicationName;
@@ -88,7 +88,7 @@ public class DistributedLockAspect {
         lockHolder.setRequestId(requestId == null ? UUIDUtil.getShortUUID() : requestId);
         DEQUE_THREAD_LOCAL.offerFirst(lockHolder);
 
-        Boolean getLock = redisUtil.getLock(lockFullName, requestId, distributedLock.expire(), distributedLock.timeUnit());
+        Boolean getLock = redisHelper.getLock(lockFullName, requestId, distributedLock.expire(), distributedLock.timeUnit());
         if (Boolean.FALSE.equals(getLock)) {
             throw new BizException(BizErrorCodeEnum.RESOURCE_HAS_BEEN_LOCKED);
         }
@@ -99,7 +99,7 @@ public class DistributedLockAspect {
         if (distributedLock.autoRelease()) {
             DistributeLockHolder localHolder = DEQUE_THREAD_LOCAL.pollFirst();
             if (localHolder != null) {
-                redisUtil.delLock(localHolder.getLockFullName(), localHolder.getRequestId());
+                redisHelper.delLock(localHolder.getLockFullName(), localHolder.getRequestId());
             }
         }
     }

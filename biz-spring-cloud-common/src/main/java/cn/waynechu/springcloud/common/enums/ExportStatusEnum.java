@@ -15,15 +15,14 @@ import lombok.Getter;
 public enum ExportStatusEnum implements BizEnum {
 
     /**
-     * 导出状态: 1生成中 2生成成功 3数据为空 4生成失败
+     * 导出状态: -1失败 0生成中 1生成成功
      */
-    GENERATED(1, "GENERATED", "生成中"),
-    SUCCESS(2, "SUCCESS", "生成成功"),
-    NULL(3, "NULL", "数据为空"),
-    FAIL(4, "FAIL", "生成失败");
+    FAIL(-1, "FAIL", "生成失败"),
+    GENERATED(0, "GENERATED", "生成中"),
+    SUCCESS(1, "SUCCESS", "生成成功"),
+    ;
 
     private Integer code;
     private String name;
     private String desc;
-
 }

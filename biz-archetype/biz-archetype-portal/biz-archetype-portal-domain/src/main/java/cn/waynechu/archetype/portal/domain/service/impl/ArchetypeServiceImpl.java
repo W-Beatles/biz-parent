@@ -16,7 +16,7 @@ import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.page.BizPageInfo;
-import cn.waynechu.springcloud.common.excel.ExcelExporter;
+import cn.waynechu.springcloud.common.excel.ExcelHelper;
 import cn.waynechu.springcloud.common.util.*;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
@@ -51,10 +52,10 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
     private Executor bizExecutor;
 
     @Autowired
-    private ExcelExporter excelExporter;
+    private ExcelHelper excelHelper;
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         this.initWorkingPath(workingRootPath);
     }
 
@@ -72,8 +73,8 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
 
     @Override
     public String export(SearchArchetypeRequest request) {
-        String fileName = "原型列表 " + LocalDateTime.now();
-        return excelExporter.exportForSid(fileName, SearchArchetypeResponse.class, request, () -> search(request));
+        String fileName = "原型列表 " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return excelHelper.exportForSid(fileName, SearchArchetypeResponse.class, request, () -> search(request));
     }
 
     @Override
@@ -227,7 +228,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         if (projectDir.exists()) {
             FileUtil.delDir(projectDir);
         }
-        //noinspection ResultOfMethodCallIgnored
+        // noinspection ResultOfMethodCallIgnored
         projectDir.mkdir();
 
         Process process = Runtime.getRuntime().exec(cmd, null, projectDir);
@@ -268,7 +269,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         String projectPath = workingRootPath + "project" + File.separator;
         File projectFilePath = new File(projectPath);
         if (!projectFilePath.exists()) {
-            //noinspection ResultOfMethodCallIgnored
+            // noinspection ResultOfMethodCallIgnored
             projectFilePath.mkdir();
         }
     }

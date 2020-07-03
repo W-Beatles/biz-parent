@@ -29,9 +29,9 @@ public class FileUploadUtil {
         // 创建目录
         File fileDir = new File(path);
         if (!fileDir.exists()) {
-            //noinspection ResultOfMethodCallIgnored
+            // noinspection ResultOfMethodCallIgnored
             fileDir.setWritable(true);
-            //noinspection ResultOfMethodCallIgnored
+            // noinspection ResultOfMethodCallIgnored
             fileDir.mkdirs();
         }
         // 指定文件
@@ -55,7 +55,7 @@ public class FileUploadUtil {
      */
     public static void delete(String targetFileName, String path) {
         File file = new File(path, targetFileName);
-        //noinspection ResultOfMethodCallIgnored
+        // noinspection ResultOfMethodCallIgnored
         file.delete();
     }
 
@@ -119,7 +119,7 @@ public class FileUploadUtil {
             throw new RuntimeException(e);
         } finally {
             if (removeFile && file.exists()) {
-                //noinspection ResultOfMethodCallIgnored
+                // noinspection ResultOfMethodCallIgnored
                 file.delete();
             }
         }

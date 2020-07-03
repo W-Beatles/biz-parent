@@ -13,11 +13,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
+ * 分页请求工具类
+ *
  * @author zhuwei
  * @date 2020-03-04 21:25
  */
 @Slf4j
-public class PageLoopUtil {
+public class PageLoopHelper {
 
     /**
      * 循环翻页的最大值。默认10000
@@ -26,7 +28,7 @@ public class PageLoopUtil {
 
     private Executor executor;
 
-    public PageLoopUtil(Executor executor) {
+    public PageLoopHelper(Executor executor) {
         this.executor = executor;
     }
 
@@ -126,5 +128,4 @@ public class PageLoopUtil {
         }
         return returnValue;
     }
-
 }
