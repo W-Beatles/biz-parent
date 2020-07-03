@@ -17,5 +17,4 @@ public class UtilityStartMain {
     @Test
     public void test() {
     }
-
 }

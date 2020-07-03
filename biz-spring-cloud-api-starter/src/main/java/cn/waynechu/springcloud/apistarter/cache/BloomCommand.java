@@ -21,5 +21,4 @@ public enum BloomCommand {
     MEXISTS("BF.MEXISTS");
 
     private String command;
-
 }

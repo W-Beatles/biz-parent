@@ -7,5 +7,4 @@ package cn.waynechu.bootstarter.sequence.exception;
 public class SequenceErrorCode {
 
     public final static int SEQUENCE_DEFAULT_ERROR_CODE = -1;
-
 }

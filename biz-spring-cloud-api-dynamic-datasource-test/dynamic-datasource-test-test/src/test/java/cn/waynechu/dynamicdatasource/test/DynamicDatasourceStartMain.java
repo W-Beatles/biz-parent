@@ -17,5 +17,4 @@ public class DynamicDatasourceStartMain {
     @Test
     public void test() {
     }
-
 }

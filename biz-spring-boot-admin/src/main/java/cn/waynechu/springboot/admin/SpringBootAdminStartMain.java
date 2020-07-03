@@ -11,5 +11,4 @@ public class SpringBootAdminStartMain {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootAdminStartMain.class, args);
     }
-
 }

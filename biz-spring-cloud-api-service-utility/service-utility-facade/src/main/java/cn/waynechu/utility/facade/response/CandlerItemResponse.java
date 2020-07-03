@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2020/4/9 10:19
  */
 @Data
-@ApiModel(description = "每天日历信息返回对象")
+@ApiModel
 public class CandlerItemResponse {
 
     @ApiModelProperty("阳历")
@@ -23,5 +23,4 @@ public class CandlerItemResponse {
 
     @ApiModelProperty("是否当天: 0否 1是")
     private Integer isCurDay;
-
 }

@@ -81,5 +81,4 @@ public class DefaultBloomOperations<K, V> extends AbstractOperations<K, V> imple
         }
         return rawArgs;
     }
-
 }

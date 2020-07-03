@@ -70,5 +70,4 @@ public interface RegistryCenter {
      * @return 注册中心的原生客户端
      */
     Object getRawClient();
-
 }

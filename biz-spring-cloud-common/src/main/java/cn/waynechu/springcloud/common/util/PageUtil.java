@@ -133,5 +133,4 @@ public class PageUtil {
         BizPageInfo<Integer> pageInfo = PageUtil.getPageInfo(integers, 1, 2);
         System.out.println(pageInfo);
     }
-
 }

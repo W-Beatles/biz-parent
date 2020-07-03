@@ -30,5 +30,4 @@ public interface BizEnum extends Serializable {
      * @return desc
      */
     String getDesc();
-
 }

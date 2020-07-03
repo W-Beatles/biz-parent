@@ -98,5 +98,4 @@ public enum BizErrorCodeEnum implements BizEnum {
         }
         return null;
     }
-
 }

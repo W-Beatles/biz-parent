@@ -37,5 +37,4 @@ public class LoggerAutoConfiguration {
         registrationBean.setOrder(1);
         return registrationBean;
     }
-
 }

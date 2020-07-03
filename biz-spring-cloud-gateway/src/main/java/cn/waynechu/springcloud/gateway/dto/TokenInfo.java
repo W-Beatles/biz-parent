@@ -27,5 +27,4 @@ public class TokenInfo {
     private Date exp;
 
     private String[] authorities;
-
 }

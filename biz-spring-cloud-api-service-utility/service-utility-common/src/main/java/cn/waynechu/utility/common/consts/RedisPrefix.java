@@ -22,5 +22,4 @@ public class RedisPrefix {
 
         String STATISTICS_PREFIX = "statistic:";
     }
-
 }

@@ -15,5 +15,4 @@ public class TurbineDashboardStartMain {
     public static void main(String[] args) {
         SpringApplication.run(TurbineDashboardStartMain.class, args);
     }
-
 }

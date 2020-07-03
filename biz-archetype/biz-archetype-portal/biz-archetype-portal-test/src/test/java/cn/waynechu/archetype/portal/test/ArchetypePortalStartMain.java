@@ -17,5 +17,4 @@ public class ArchetypePortalStartMain {
     @Test
     public void test() {
     }
-
 }

@@ -36,5 +36,4 @@ public class NodePath {
     public String getWorkerIdPath() {
         return String.format("/%s/%s/%s", groupName, WORKER_NODE, workerId);
     }
-
 }

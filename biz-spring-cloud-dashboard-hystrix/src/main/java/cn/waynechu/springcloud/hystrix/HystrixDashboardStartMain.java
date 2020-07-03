@@ -15,5 +15,4 @@ public class HystrixDashboardStartMain {
     public static void main(String[] args) {
         SpringApplication.run(HystrixDashboardStartMain.class, args);
     }
-
 }

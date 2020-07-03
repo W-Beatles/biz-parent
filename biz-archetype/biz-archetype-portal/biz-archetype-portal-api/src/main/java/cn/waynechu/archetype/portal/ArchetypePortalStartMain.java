@@ -28,5 +28,4 @@ public class ArchetypePortalStartMain {
     public static void main(String[] args) {
         SpringApplication.run(ArchetypePortalStartMain.class, args);
     }
-
 }

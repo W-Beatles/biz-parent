@@ -34,5 +34,4 @@ public class ApolloConfigChangeController {
         String value = apolloConfigChangeService.refreshConfigurationProperties();
         return BizResponse.success(value);
     }
-
 }

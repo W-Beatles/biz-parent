@@ -37,5 +37,4 @@ public class RestTemplateTraceInterceptor extends BaseTraceInterceptor implement
         }
         return execution.execute(request, body);
     }
-
 }

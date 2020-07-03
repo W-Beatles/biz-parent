@@ -9,5 +9,4 @@ public class SpringCloudTestApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringCloudTestApplication.class, args);
     }
-
 }

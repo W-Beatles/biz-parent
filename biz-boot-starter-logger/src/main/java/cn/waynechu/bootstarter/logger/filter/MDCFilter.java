@@ -97,5 +97,4 @@ public class MDCFilter implements Filter {
 
         return httpServletRequestWrapper;
     }
-
 }

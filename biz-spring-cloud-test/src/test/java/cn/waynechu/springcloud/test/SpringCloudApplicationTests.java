@@ -12,5 +12,4 @@ public class SpringCloudApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

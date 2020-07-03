@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 @ApiModel
 public class CreateDicTypeRequest {
 
-    @ApiModelProperty("类型编码")
+    @ApiModelProperty(value = "类型编码", required = true)
     @NotEmpty(message = "类型编码不能为空")
     private String typeCode;
 

@@ -961,5 +961,4 @@ public class NumberUtil {
     public static BigDecimal roundDown(BigDecimal value, int scale) {
         return round(value, scale, RoundingMode.DOWN);
     }
-
 }

@@ -22,5 +22,4 @@ public class ShortUrlProperty {
      * 存储短网址 到 原始地址的映射  key: redisUrlKeyPrefix + shortUrl  value: originUrl
      */
     private String redisUrlKeyPrefix;
-
 }

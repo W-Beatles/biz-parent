@@ -71,5 +71,4 @@ public class TraceInitialFilter implements GlobalFilter {
         ServerWebExchange serverWebExchange = exchange.mutate().request(mutateRequest).build();
         return chain.filter(serverWebExchange);
     }
-
 }

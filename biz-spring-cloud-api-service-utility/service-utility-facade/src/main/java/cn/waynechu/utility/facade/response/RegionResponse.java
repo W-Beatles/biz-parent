@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2019-08-11 16:36
  */
 @Data
-@ApiModel(description = "行政区信息返回对象")
+@ApiModel
 public class RegionResponse {
 
     @ApiModelProperty("区域id")

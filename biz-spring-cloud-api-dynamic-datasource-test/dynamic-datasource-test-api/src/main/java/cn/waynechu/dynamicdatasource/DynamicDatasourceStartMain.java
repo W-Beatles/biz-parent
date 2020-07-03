@@ -23,5 +23,4 @@ public class DynamicDatasourceStartMain {
     public static void main(String[] args) {
         SpringApplication.run(DynamicDatasourceStartMain.class, args);
     }
-
 }

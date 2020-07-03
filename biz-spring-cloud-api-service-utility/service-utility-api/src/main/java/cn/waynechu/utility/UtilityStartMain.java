@@ -27,5 +27,4 @@ public class UtilityStartMain {
     public static void main(String[] args) {
         SpringApplication.run(UtilityStartMain.class, args);
     }
-
 }

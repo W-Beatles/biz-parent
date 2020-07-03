@@ -111,5 +111,4 @@ public class DruidWallConfig {
     private Integer insertValuesCheckSize;
 
     private Integer selectLimit;
-
 }

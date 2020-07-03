@@ -9,5 +9,4 @@ class SequenceApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

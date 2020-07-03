@@ -25,5 +25,4 @@ public class ApolloConfigChangeService {
     public String refreshConfigurationProperties() {
         return apolloRefreshProperty.getRefreshProperty();
     }
-
 }

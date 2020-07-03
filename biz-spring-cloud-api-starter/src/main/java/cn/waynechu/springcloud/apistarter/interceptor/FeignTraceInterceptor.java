@@ -31,5 +31,4 @@ public class FeignTraceInterceptor extends BaseTraceInterceptor implements Reque
             }
         }
     }
-
 }

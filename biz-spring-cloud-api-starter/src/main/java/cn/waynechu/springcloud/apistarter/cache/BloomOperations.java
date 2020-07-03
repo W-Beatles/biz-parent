@@ -58,5 +58,4 @@ public interface BloomOperations<K, V> {
      * @return true if success
      */
     Boolean delete(K key);
-
 }

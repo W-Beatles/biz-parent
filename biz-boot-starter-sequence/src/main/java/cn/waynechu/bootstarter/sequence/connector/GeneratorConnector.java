@@ -29,5 +29,4 @@ public interface GeneratorConnector extends Closeable {
      * @return true if connecting
      */
     boolean isConnecting();
-
 }

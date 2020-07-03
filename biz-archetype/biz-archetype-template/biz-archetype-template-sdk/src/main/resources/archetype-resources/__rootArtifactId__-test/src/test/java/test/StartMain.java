@@ -20,5 +20,4 @@ public class StartMain {
     @Test
     public void test() {
     }
-
 }

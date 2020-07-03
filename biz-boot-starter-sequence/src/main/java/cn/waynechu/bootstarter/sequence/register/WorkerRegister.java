@@ -17,5 +17,4 @@ public interface WorkerRegister {
      * 退出注册
      */
     void logout();
-
 }

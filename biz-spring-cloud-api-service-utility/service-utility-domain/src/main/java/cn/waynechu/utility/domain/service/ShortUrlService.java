@@ -80,5 +80,4 @@ public class ShortUrlService {
         ValueOperations<String, String> valueOperations = stringRedisTemplate.opsForValue();
         return Long.valueOf(Optional.ofNullable(valueOperations.get(shortUrlProperty.getRedisUrlKeyPrefix() + RedisPrefix.ShortUrls.STATISTICS_PREFIX + shortUrl)).orElse("0"));
     }
-
 }

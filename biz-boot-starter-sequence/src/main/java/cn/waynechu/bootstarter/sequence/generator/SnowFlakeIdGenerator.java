@@ -89,5 +89,4 @@ public class SnowFlakeIdGenerator extends BaseGeneratorConnector implements IdGe
     public String nextFixedStringId() {
         return String.format(FIXED_STRING_FORMAT, nextId());
     }
-
 }

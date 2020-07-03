@@ -61,5 +61,4 @@ public class ShortUrlController {
         shortUrlService.asyncStatistic(shortUrl);
         return "redirect:" + redisTemplate.opsForValue().get(shortUrlProperty.getRedisUrlKeyPrefix() + shortUrl);
     }
-
 }

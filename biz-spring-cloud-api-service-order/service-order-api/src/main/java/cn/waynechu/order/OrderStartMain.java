@@ -21,5 +21,4 @@ public class OrderStartMain {
     public static void main(String[] args) {
         SpringApplication.run(OrderStartMain.class, args);
     }
-
 }

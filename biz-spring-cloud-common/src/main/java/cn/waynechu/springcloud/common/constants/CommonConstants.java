@@ -10,5 +10,4 @@ public interface CommonConstants {
      * default application namespace
      */
     String DEFAULT_NAMESPACE = "application";
-
 }

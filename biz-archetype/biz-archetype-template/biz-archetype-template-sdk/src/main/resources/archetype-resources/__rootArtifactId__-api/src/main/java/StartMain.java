@@ -29,5 +29,4 @@ public class StartMain {
     public static void main(String[] args) {
         SpringApplication.run(StartMain.class, args);
     }
-
 }

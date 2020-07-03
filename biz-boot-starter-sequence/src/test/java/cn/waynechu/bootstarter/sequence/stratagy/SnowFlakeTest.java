@@ -23,5 +23,4 @@ class SnowFlakeTest {
             System.out.println(id);
         }
     }
-
 }

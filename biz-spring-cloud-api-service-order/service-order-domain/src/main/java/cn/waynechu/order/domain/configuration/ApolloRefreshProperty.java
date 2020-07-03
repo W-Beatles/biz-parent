@@ -14,5 +14,4 @@ import org.springframework.stereotype.Component;
 public class ApolloRefreshProperty {
 
     private String refreshProperty;
-
 }

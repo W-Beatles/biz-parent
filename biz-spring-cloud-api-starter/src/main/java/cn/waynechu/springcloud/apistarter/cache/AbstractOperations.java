@@ -344,5 +344,4 @@ public class AbstractOperations<K,V> {
 
         return Converters.deserializingGeoResultsConverter((RedisSerializer<V>) valueSerializer()).convert(source);
     }
-
 }

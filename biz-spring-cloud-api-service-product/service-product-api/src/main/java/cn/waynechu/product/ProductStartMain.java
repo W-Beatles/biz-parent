@@ -21,5 +21,4 @@ public class ProductStartMain {
     public static void main(String[] args) {
         SpringApplication.run(ProductStartMain.class, args);
     }
-
 }

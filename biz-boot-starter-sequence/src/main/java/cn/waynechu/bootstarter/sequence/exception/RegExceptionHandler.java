@@ -33,5 +33,4 @@ public class RegExceptionHandler {
     private static boolean isIgnoredException(final Throwable cause) {
         return cause instanceof KeeperException.ConnectionLossException || cause instanceof KeeperException.NoNodeException || cause instanceof KeeperException.NodeExistsException;
     }
-
 }

@@ -42,5 +42,4 @@ public interface IdGenerator {
      * @return id
      */
     String nextFixedStringId();
-
 }

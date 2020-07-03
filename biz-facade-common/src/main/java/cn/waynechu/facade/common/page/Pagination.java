@@ -136,5 +136,4 @@ public class Pagination implements Serializable {
             endRowIdx = 0;
         }
     }
-
 }

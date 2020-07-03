@@ -9,14 +9,14 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author zhuwei
- * @since 2020/6/29 19:58
+ * @since 2020/7/3 18:27
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ApiModel
-public class UpdateDicTypeRequest extends CreateDicTypeRequest {
+public class UpdateDictionaryRequest extends CreateDictionaryRequest {
 
-    @ApiModelProperty(value = "类型id", required = true)
-    @NotNull(message = "类型id不能为空")
+    @ApiModelProperty(value = "字典id", required = true)
+    @NotNull(message = "字典id不能为空")
     private Long id;
 }

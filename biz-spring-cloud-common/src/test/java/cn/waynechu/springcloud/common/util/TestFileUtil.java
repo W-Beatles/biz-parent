@@ -32,5 +32,4 @@ public class TestFileUtil {
     public static File readFile(String pathName) {
         return new File(getPath() + pathName);
     }
-
 }

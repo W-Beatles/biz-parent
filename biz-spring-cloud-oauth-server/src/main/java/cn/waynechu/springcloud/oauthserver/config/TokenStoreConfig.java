@@ -62,5 +62,4 @@ public class TokenStoreConfig {
             return accessToken;
         };
     }
-
 }

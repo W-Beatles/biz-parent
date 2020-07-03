@@ -64,5 +64,4 @@ public enum ApolloUtil {
     public void unRegistryChangeListener(ConfigChangeListener listener) {
         config.removeChangeListener(listener);
     }
-
 }

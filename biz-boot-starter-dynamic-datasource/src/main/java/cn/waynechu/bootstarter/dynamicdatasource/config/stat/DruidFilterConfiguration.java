@@ -120,5 +120,4 @@ public class DruidFilterConfiguration {
     private static final String FILTER_COMMONS_LOG_PREFIX = "spring.datasource.dynamic.druid.filter.commons-log";
     private static final String FILTER_WALL_PREFIX = "spring.datasource.dynamic.druid.filter.wall";
     private static final String FILTER_WALL_CONFIG_PREFIX = FILTER_WALL_PREFIX + ".config";
-
 }
