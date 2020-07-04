@@ -15,12 +15,12 @@ import lombok.Setter;
 public class DictionaryTypeCondition extends DictionaryTypeDO {
 
     /**
-     * 类型编码(支持模糊查询)
+     * 类型编码
      */
     private String typeCodeLike;
 
     /**
-     * 所属AppID(支持模糊查询)
+     * 所属AppID
      */
     private String appIdLike;
 }

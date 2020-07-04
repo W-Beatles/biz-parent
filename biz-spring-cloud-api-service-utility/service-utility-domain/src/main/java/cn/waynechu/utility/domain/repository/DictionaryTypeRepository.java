@@ -20,14 +20,31 @@ public class DictionaryTypeRepository {
     @Autowired
     private DictionaryTypeMapper mapper;
 
-    public int countByCondition(DictionaryTypeCondition condition) {
-        QueryWrapper<DictionaryTypeDO> wrapper = this.buildWrapper(condition);
-        return mapper.selectCount(wrapper);
+    private void fillWrapper(QueryWrapper<DictionaryTypeDO> wrapper, DictionaryTypeCondition condition) {
+        if (StringUtil.isNotEmpty(condition.getTypeCode())) {
+            wrapper.eq(DictionaryTypeDO.COL_TYPE_CODE, condition.getTypeCode());
+        }
+        if (StringUtil.isNotEmpty(condition.getTypeCodeLike())) {
+            wrapper.like(DictionaryTypeDO.COL_TYPE_CODE, condition.getTypeCode());
+        }
+        if (StringUtil.isNotEmpty(condition.getAppIdLike())) {
+            wrapper.like(DictionaryTypeDO.COL_TYPE_CODE, condition.getAppIdLike());
+        }
+        if (condition.getDeletedStatus() != null) {
+            wrapper.eq(DictionaryTypeDO.COL_DELETED_STATUS, condition.getDeletedStatus());
+        }
     }
 
     public List<DictionaryTypeDO> selectByCondition(DictionaryTypeCondition condition) {
-        QueryWrapper<DictionaryTypeDO> wrapper = this.buildWrapper(condition);
+        QueryWrapper<DictionaryTypeDO> wrapper = new QueryWrapper<>();
+        this.fillWrapper(wrapper, condition);
         return mapper.selectList(wrapper);
+    }
+
+    public int countByCondition(DictionaryTypeCondition condition) {
+        QueryWrapper<DictionaryTypeDO> wrapper = new QueryWrapper<>();
+        this.fillWrapper(wrapper, condition);
+        return mapper.selectCount(wrapper);
     }
 
     public Long create(DictionaryTypeDO typeDO) {
@@ -40,25 +57,5 @@ public class DictionaryTypeRepository {
         typeDO.setId(id);
         typeDO.setDeletedStatus(true);
         mapper.updateById(typeDO);
-    }
-
-    private QueryWrapper<DictionaryTypeDO> buildWrapper(DictionaryTypeCondition condition) {
-        QueryWrapper<DictionaryTypeDO> wrapper = new QueryWrapper<>();
-        if (StringUtil.isNotEmpty(condition.getTypeCode())) {
-            wrapper.eq(DictionaryTypeDO.COL_TYPE_CODE, condition.getTypeCode());
-        }
-        if (condition.getDeletedStatus() != null) {
-            wrapper.eq(DictionaryTypeDO.COL_DELETED_STATUS, condition.getDeletedStatus());
-        }
-        if (StringUtil.isNotEmpty(condition.getTypeCodeLike())) {
-            wrapper.like(DictionaryTypeDO.COL_TYPE_CODE, condition.getTypeCode());
-        }
-        if (StringUtil.isNotEmpty(condition.getAppIdLike())) {
-            wrapper.like(DictionaryTypeDO.COL_TYPE_CODE, condition.getAppIdLike());
-        }
-        if (condition.getDeletedStatus() != null) {
-            wrapper.eq(DictionaryTypeDO.COL_DELETED_STATUS, condition.getDeletedStatus());
-        }
-        return wrapper;
     }
 }

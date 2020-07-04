@@ -2,12 +2,13 @@ package cn.waynechu.utility.dal.mapper;
 
 import cn.waynechu.utility.dal.dataobject.DictionaryDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2020-06-28 23:22
+ * @date 2020-07-04 15:28
  */
 public interface DictionaryMapper extends BaseMapper<DictionaryDO> {
     int updateBatch(List<DictionaryDO> list);

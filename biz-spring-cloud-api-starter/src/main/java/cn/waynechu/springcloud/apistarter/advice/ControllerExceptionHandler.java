@@ -29,7 +29,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public BizResponse<String> httpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.info("请求参数格式不正确: {}", e.getMessage());
-        return BizResponse.error(BizErrorCodeEnum.REQUEST_PARAM_INCORRECT);
+        return BizResponse.error(BizErrorCodeEnum.REQUEST_PARAM_INVALID);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

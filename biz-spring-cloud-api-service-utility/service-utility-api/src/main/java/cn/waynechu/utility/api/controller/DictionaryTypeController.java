@@ -19,28 +19,28 @@ import javax.validation.Valid;
  */
 @RestController
 @Api(tags = "字典类型服务")
-@RequestMapping("/dictionary-types")
+@RequestMapping("")
 public class DictionaryTypeController {
 
     @Autowired
     private DictionaryTypeService dictionaryTypeService;
 
     @ApiOperation("搜索字典类型列表")
-    @PostMapping("/search")
+    @PostMapping("/dictionary-types/search")
     public BizResponse<BizPageInfo<DicTypeResponse>> search(@Valid @RequestBody SearchDicTypeRequest request) {
         BizPageInfo<DicTypeResponse> pageInfo = dictionaryTypeService.search(request);
         return BizResponse.success(pageInfo);
     }
 
     @ApiOperation("添加字典类型")
-    @PostMapping
+    @PostMapping("/dictionary-types")
     public BizResponse<Long> create(@Valid @RequestBody CreateDicTypeRequest request) {
         Long id = dictionaryTypeService.create(request);
         return BizResponse.success(id);
     }
 
     @ApiOperation("删除字典类型")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/dictionary-types/{id}")
     public BizResponse<Void> remove(@PathVariable Long id) {
         dictionaryTypeService.remove(id);
         return BizResponse.success();

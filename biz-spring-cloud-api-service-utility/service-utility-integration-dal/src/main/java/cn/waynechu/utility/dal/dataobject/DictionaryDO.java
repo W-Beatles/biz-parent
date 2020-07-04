@@ -4,13 +4,14 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2020-06-28 23:22
+ * @date 2020-07-04 15:28
  */
 @Data
 @TableName(value = "dictionary")
@@ -28,7 +29,7 @@ public class DictionaryDO implements Serializable {
     private Long pid;
 
     /**
-     * 字典类型编码
+     * 类型编码
      */
     @TableField(value = "dic_type_code")
     private String dicTypeCode;

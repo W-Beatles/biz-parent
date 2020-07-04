@@ -11,4 +11,19 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class DictionaryCondition extends DictionaryDO {
+
+    /**
+     * 类型编码
+     */
+    private String dicTypeCodeLike;
+
+    /**
+     * 字典编码
+     */
+    private String dicCodeLike;
+
+    /**
+     * 字典描述
+     */
+    private String dicDescLike;
 }

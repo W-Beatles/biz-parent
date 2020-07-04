@@ -1,5 +1,7 @@
 package cn.waynechu.utility.domain.service;
 
+import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
+import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.springcloud.common.util.UserUtil;
 import cn.waynechu.utility.dal.condition.DictionaryCondition;
@@ -26,6 +28,9 @@ public class DictionaryService {
     @Autowired
     private DictionaryRepository dictionaryRepository;
 
+    @Autowired
+    private DictionaryTypeService dictionaryTypeService;
+
     /**
      * 搜索字典列表
      *
@@ -34,6 +39,10 @@ public class DictionaryService {
      */
     public BizPageInfo<DictionaryResponse> search(SearchDictionaryRequest request) {
         DictionaryCondition condition = new DictionaryCondition();
+        condition.setPid(request.getPid());
+        condition.setDicTypeCodeLike(request.getDicTypeCodeLike());
+        condition.setDicCodeLike(request.getDicCodeLike());
+        condition.setDicDescLike(request.getDicDescLike());
 
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
         List<DictionaryDO> dictionaryDOList = dictionaryRepository.selectByCondition(condition);
@@ -48,15 +57,25 @@ public class DictionaryService {
      * @return 字典id
      */
     public Long create(CreateDictionaryRequest request) {
-        // TODO 2020/7/3 18:56 查找最大序号
-        Integer sortNum = null;
+        // 校验类型编码
+        String dicTypeCode = request.getDicTypeCode();
+        dictionaryTypeService.checkTypeCodeExist(dicTypeCode);
+
+        // 校验字典编码
+        String dicCode = request.getDicCode();
+        this.checkDicCodeNotExist(dicTypeCode, dicCode);
+
+        // 查找最大排序号
+        DictionaryDO maxSortDictionary = dictionaryRepository.selectMaxSortNum(dicTypeCode);
+        int maxSort = maxSortDictionary == null ? 0 : maxSortDictionary.getSortNum();
 
         DictionaryDO dictionaryDO = new DictionaryDO();
         dictionaryDO.setPid(request.getPid());
+        dictionaryDO.setDicTypeCode(dicTypeCode);
         dictionaryDO.setDicCode(request.getDicCode());
         dictionaryDO.setDicValue(request.getDicValue());
         dictionaryDO.setDicDesc(request.getDicDesc());
-        dictionaryDO.setSortNum(sortNum);
+        dictionaryDO.setSortNum(maxSort + 1);
         dictionaryDO.setFixedStatus(request.getFixedStatus());
         dictionaryDO.setCreatedUser(UserUtil.getEmail());
         dictionaryDO.setCreatedTime(LocalDateTime.now());
@@ -70,5 +89,22 @@ public class DictionaryService {
      */
     public void remove(Long id) {
         dictionaryRepository.remove(id);
+    }
+
+    /**
+     * 校验字典编码不存在
+     *
+     * @param dicTypeCode 类型编码
+     * @param dicCode     字典编码
+     */
+    public void checkDicCodeNotExist(String dicTypeCode, String dicCode) {
+        DictionaryCondition condition = new DictionaryCondition();
+        condition.setDicTypeCode(dicTypeCode);
+        condition.setDicCode(dicCode);
+        condition.setDeletedStatus(false);
+        int count = dictionaryRepository.countByCondition(condition);
+        if (count > 0) {
+            throw new BizException(BizErrorCodeEnum.DATA_ALREADY_EXIST, "字典编码已存在");
+        }
     }
 }

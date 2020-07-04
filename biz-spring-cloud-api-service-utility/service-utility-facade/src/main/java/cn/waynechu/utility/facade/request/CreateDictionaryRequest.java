@@ -6,7 +6,6 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author zhuwei
@@ -19,9 +18,9 @@ public class CreateDictionaryRequest {
     @ApiModelProperty("父节点id")
     private Long pid;
 
-    @ApiModelProperty(value = "字典类型id", required = true)
-    @NotNull(message = "字典类型id不能为空")
-    private Long dicTypeId;
+    @ApiModelProperty(value = "类型编码", required = true)
+    @NotBlank(message = "类型编码不能为空")
+    private String dicTypeCode;
 
     @ApiModelProperty(value = "字典编码", required = true)
     @NotBlank(message = "字典编码不能为空")

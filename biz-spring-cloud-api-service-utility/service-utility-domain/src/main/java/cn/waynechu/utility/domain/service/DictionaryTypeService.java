@@ -3,6 +3,7 @@ package cn.waynechu.utility.domain.service;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.page.BizPageInfo;
+import cn.waynechu.springcloud.common.util.CollectionUtil;
 import cn.waynechu.springcloud.common.util.UserUtil;
 import cn.waynechu.utility.dal.condition.DictionaryTypeCondition;
 import cn.waynechu.utility.dal.dataobject.DictionaryTypeDO;
@@ -51,7 +52,7 @@ public class DictionaryTypeService {
      * @return 字典类型id
      */
     public Long create(CreateDicTypeRequest request) {
-        this.checkTypeCodeExist(request.getTypeCode());
+        this.checkTypeCodeNotExist(request.getTypeCode());
 
         DictionaryTypeDO typeDO = new DictionaryTypeDO();
         typeDO.setTypeCode(request.getTypeCode());
@@ -70,13 +71,28 @@ public class DictionaryTypeService {
         dictionaryTypeRepository.remove(id);
     }
 
-
     /**
-     * 校验字典类型编码是否存在
+     * 校验类型编码是否存在
      *
      * @param typeCode 类型编码
      */
-    private void checkTypeCodeExist(String typeCode) {
+    public DictionaryTypeDO checkTypeCodeExist(String typeCode) {
+        DictionaryTypeCondition condition = new DictionaryTypeCondition();
+        condition.setTypeCode(typeCode);
+        condition.setDeletedStatus(false);
+        List<DictionaryTypeDO> dictionaryTypeDOList = dictionaryTypeRepository.selectByCondition(condition);
+        if (CollectionUtil.isEmpty(dictionaryTypeDOList)) {
+            throw new BizException(BizErrorCodeEnum.DATA_NOT_EXIST, "类型编码不存在");
+        }
+        return dictionaryTypeDOList.get(0);
+    }
+
+    /**
+     * 校验类型编码不存在
+     *
+     * @param typeCode 类型编码
+     */
+    public void checkTypeCodeNotExist(String typeCode) {
         DictionaryTypeCondition condition = new DictionaryTypeCondition();
         condition.setTypeCode(typeCode);
         condition.setDeletedStatus(false);

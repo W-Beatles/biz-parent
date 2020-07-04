@@ -15,9 +15,9 @@ import lombok.EqualsAndHashCode;
 @ApiModel
 public class SearchDicTypeRequest extends BizPageRequest {
 
-    @ApiModelProperty("类型编码(支持模糊查询)")
+    @ApiModelProperty("类型编码")
     private String typeCodeLike;
 
-    @ApiModelProperty("所属AppID(支持模糊查询)")
+    @ApiModelProperty("所属AppID")
     private String appIdLike;
 }
