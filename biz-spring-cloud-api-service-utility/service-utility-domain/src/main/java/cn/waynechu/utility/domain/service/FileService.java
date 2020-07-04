@@ -23,11 +23,23 @@ public class FileService {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    public String fileUpload(MultipartFile file) {
+    /**
+     * 文件上传
+     *
+     * @param file 文件
+     * @return 文件地址
+     */
+    public String upload(MultipartFile file) {
         String fileName = FileUploadUtil.upload(file, filePath);
         return gatewayUrl + "/" + applicationName + "/files/download/" + fileName;
     }
 
+    /**
+     * 文件下载
+     *
+     * @param fileName 文件名
+     * @param response res
+     */
     public void download(String fileName, HttpServletResponse response) {
         FileUploadUtil.download(response, filePath, fileName);
     }

@@ -6,6 +6,9 @@ import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.request.BizPageRequest;
 import cn.waynechu.facade.common.response.BizResponse;
 import cn.waynechu.springcloud.common.enums.ExportStatusEnum;
+import cn.waynechu.springcloud.common.excel.convert.LocalDateConvert;
+import cn.waynechu.springcloud.common.excel.convert.LocalDateTimeConvert;
+import cn.waynechu.springcloud.common.excel.convert.LocalTimeConvert;
 import cn.waynechu.springcloud.common.model.ExportResultResponse;
 import cn.waynechu.springcloud.common.util.JsonBinder;
 import cn.waynechu.springcloud.common.util.PageLoopHelper;
@@ -165,7 +168,11 @@ public class ExcelHelper {
 
             sheetName = this.encodeFileName(sheetName);
             WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
-                    .registerConverter(new LocalDateTimeConvert()).build();
+                    // 添加 java8 时间类库支持
+                    .registerConverter(new LocalTimeConvert())
+                    .registerConverter(new LocalDateConvert())
+                    .registerConverter(new LocalDateTimeConvert())
+                    .build();
             excelWriter.write(data, writeSheet);
             excelWriter.finish();
             return tempFile;
@@ -192,7 +199,11 @@ public class ExcelHelper {
             // 使用table方式写入，设置sheet不需要头
             sheetName = this.encodeFileName(sheetName);
             WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE)
-                    .registerConverter(new LocalDateTimeConvert()).build();
+                    // 添加 java8 时间类库支持
+                    .registerConverter(new LocalTimeConvert())
+                    .registerConverter(new LocalDateConvert())
+                    .registerConverter(new LocalDateTimeConvert())
+                    .build();
 
             WriteTable writeTable;
             BizPageInfo<T> bizPageInfo;

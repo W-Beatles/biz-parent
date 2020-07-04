@@ -25,7 +25,7 @@ public class FileController {
     @ApiOperation("文件上传")
     @PostMapping("/upload")
     public BizResponse<String> upload(@RequestParam("file") MultipartFile file) {
-        String url = fileService.fileUpload(file);
+        String url = fileService.upload(file);
         return BizResponse.success(url);
     }
 

@@ -34,7 +34,18 @@ public class ExcelService {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    /**
+     * 获取sid
+     *
+     * @param url    导出URL
+     * @param params 导出参数
+     * @return 导出唯一标识
+     */
     public String getSid(String url, JSONObject params) {
+        if (url.startsWith("/")) {
+            url = url.substring(1);
+        }
+
         // 通过服务名转发请求到具体的项目 如: http://biz-archetype-portal/archetypes/export
         String serviceUrl = "http://" + url;
         ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(serviceUrl, HttpMethod.POST
@@ -51,6 +62,12 @@ public class ExcelService {
         }
     }
 
+    /**
+     * 查询导出状态
+     *
+     * @param sid 导出唯一标识
+     * @return 导出状态
+     */
     public ExportResultResponse status(String sid) {
         String key = EXPORT_CACHE_KEY + sid;
         String valueStr = redisTemplate.opsForValue().get(key);
