@@ -109,11 +109,10 @@ public class FileUploadUtil {
             os = response.getOutputStream();
 
             byte[] buff = new byte[1024];
-            int i = bis.read(buff);
-            while (i != -1) {
-                os.write(buff, 0, buff.length);
+            int len;
+            while ((len = bis.read(buff)) != -1) {
+                os.write(buff, 0, len);
                 os.flush();
-                i = bis.read(buff);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
