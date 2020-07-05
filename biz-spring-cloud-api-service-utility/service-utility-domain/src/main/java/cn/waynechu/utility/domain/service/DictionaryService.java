@@ -10,6 +10,7 @@ import cn.waynechu.utility.domain.convert.DictionaryConvert;
 import cn.waynechu.utility.domain.repository.DictionaryRepository;
 import cn.waynechu.utility.facade.request.CreateDictionaryRequest;
 import cn.waynechu.utility.facade.request.SearchDictionaryRequest;
+import cn.waynechu.utility.facade.request.UpdateDictionaryRequest;
 import cn.waynechu.utility.facade.response.DictionaryResponse;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class DictionaryService {
         condition.setDicTypeCodeLike(request.getDicTypeCodeLike());
         condition.setDicCodeLike(request.getDicCodeLike());
         condition.setDicDescLike(request.getDicDescLike());
+        condition.setOrderBy(DictionaryDO.COL_SORT_NUM);
 
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
         List<DictionaryDO> dictionaryDOList = dictionaryRepository.selectByCondition(condition);
@@ -80,6 +82,29 @@ public class DictionaryService {
         dictionaryDO.setCreatedUser(UserUtil.getEmail());
         dictionaryDO.setCreatedTime(LocalDateTime.now());
         return dictionaryRepository.create(dictionaryDO);
+    }
+
+    /**
+     * 编辑字典
+     *
+     * @param request req
+     * @return 字典id
+     */
+    public Long update(UpdateDictionaryRequest request) {
+        // 校验字典编码
+        String dicCode = request.getDicCode();
+        this.checkDicCodeNotExist(request.getDicTypeCode(), dicCode);
+
+        DictionaryDO dictionaryDO = new DictionaryDO();
+        dictionaryDO.setId(request.getId());
+        dictionaryDO.setPid(request.getPid());
+        dictionaryDO.setDicCode(request.getDicCode());
+        dictionaryDO.setDicValue(request.getDicValue());
+        dictionaryDO.setDicDesc(request.getDicDesc());
+        dictionaryDO.setFixedStatus(request.getFixedStatus());
+        dictionaryDO.setUpdatedUser(UserUtil.getEmail());
+        dictionaryDO.setUpdatedTime(LocalDateTime.now());
+        return dictionaryRepository.update(dictionaryDO);
     }
 
     /**

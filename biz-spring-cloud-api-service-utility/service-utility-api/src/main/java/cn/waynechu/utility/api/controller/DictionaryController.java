@@ -5,6 +5,7 @@ import cn.waynechu.facade.common.response.BizResponse;
 import cn.waynechu.utility.domain.service.DictionaryService;
 import cn.waynechu.utility.facade.request.CreateDictionaryRequest;
 import cn.waynechu.utility.facade.request.SearchDictionaryRequest;
+import cn.waynechu.utility.facade.request.UpdateDictionaryRequest;
 import cn.waynechu.utility.facade.response.DictionaryResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,6 +37,13 @@ public class DictionaryController {
     @PostMapping
     public BizResponse<Long> create(@Valid @RequestBody CreateDictionaryRequest request) {
         Long id = dictionaryService.create(request);
+        return BizResponse.success(id);
+    }
+
+    @ApiOperation("编辑字典")
+    @PutMapping
+    public BizResponse<Long> update(@Valid @RequestBody UpdateDictionaryRequest request) {
+        Long id = dictionaryService.update(request);
         return BizResponse.success(id);
     }
 

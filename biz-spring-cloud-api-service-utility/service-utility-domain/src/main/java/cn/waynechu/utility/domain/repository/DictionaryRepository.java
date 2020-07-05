@@ -39,6 +39,9 @@ public class DictionaryRepository {
         if (StringUtil.isNotEmpty(condition.getDicDescLike())) {
             wrapper.like(DictionaryDO.COL_DIC_DESC, condition.getDicDescLike());
         }
+        if (StringUtil.isNotEmpty(condition.getOrderBy())) {
+            wrapper.orderByDesc(condition.getOrderBy());
+        }
         wrapper.eq(DictionaryDO.COL_DELETED_STATUS, false);
     }
 
@@ -73,5 +76,10 @@ public class DictionaryRepository {
         wrapper.orderByDesc(DictionaryDO.COL_SORT_NUM);
         wrapper.last("limit 1");
         return mapper.selectOne(wrapper);
+    }
+
+    public Long update(DictionaryDO dictionaryDO) {
+        mapper.updateById(dictionaryDO);
+        return dictionaryDO.getId();
     }
 }

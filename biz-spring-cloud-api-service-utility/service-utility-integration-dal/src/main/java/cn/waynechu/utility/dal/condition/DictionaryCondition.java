@@ -26,4 +26,9 @@ public class DictionaryCondition extends DictionaryDO {
      * 字典描述
      */
     private String dicDescLike;
+
+    /**
+     * 排序
+     */
+    private String orderBy;
 }
