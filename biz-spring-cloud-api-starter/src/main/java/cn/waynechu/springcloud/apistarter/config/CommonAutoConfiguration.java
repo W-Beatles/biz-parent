@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -47,7 +48,7 @@ public class CommonAutoConfiguration {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate(new OkHttp3ClientHttpRequestFactory());
         RestTemplateTraceInterceptor traceInterceptor = new RestTemplateTraceInterceptor(commonProperty.getNeedTraceHeaders());
         restTemplate.setInterceptors(Collections.singletonList(traceInterceptor));
         return restTemplate;
