@@ -11,6 +11,7 @@ import cn.waynechu.utility.domain.repository.DictionaryRepository;
 import cn.waynechu.utility.facade.request.CreateDictionaryRequest;
 import cn.waynechu.utility.facade.request.SearchDictionaryRequest;
 import cn.waynechu.utility.facade.request.UpdateDictionaryRequest;
+import cn.waynechu.utility.facade.response.DictionaryMiniResponse;
 import cn.waynechu.utility.facade.response.DictionaryResponse;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,19 @@ public class DictionaryService {
         List<DictionaryDO> dictionaryDOList = dictionaryRepository.selectByCondition(condition);
         List<DictionaryResponse> dictionaryResponseList = DictionaryConvert.toDictionaryResponseList(dictionaryDOList);
         return BizPageInfo.of(dictionaryDOList).replace(dictionaryResponseList);
+    }
+
+    /**
+     * 根据字典类型编码查询字典列表
+     *
+     * @param dicTypeCode 字典类型编码
+     * @return 字典列表
+     */
+    public List<DictionaryMiniResponse> listByType(String dicTypeCode) {
+        DictionaryCondition condition = new DictionaryCondition();
+        condition.setDicTypeCode(dicTypeCode);
+        List<DictionaryDO> dictionaryDOList = dictionaryRepository.selectByCondition(condition);
+        return DictionaryConvert.toDictionaryMinResponseList(dictionaryDOList);
     }
 
     /**

@@ -6,6 +6,7 @@ import cn.waynechu.utility.domain.service.DictionaryService;
 import cn.waynechu.utility.facade.request.CreateDictionaryRequest;
 import cn.waynechu.utility.facade.request.SearchDictionaryRequest;
 import cn.waynechu.utility.facade.request.UpdateDictionaryRequest;
+import cn.waynechu.utility.facade.response.DictionaryMiniResponse;
 import cn.waynechu.utility.facade.response.DictionaryResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author zhuwei
@@ -31,6 +33,13 @@ public class DictionaryController {
     public BizResponse<BizPageInfo<DictionaryResponse>> search(@Valid @RequestBody SearchDictionaryRequest request) {
         BizPageInfo<DictionaryResponse> pageInfo = dictionaryService.search(request);
         return BizResponse.success(pageInfo);
+    }
+
+    @ApiOperation("根据字典类型编码查询字典列表")
+    @GetMapping("/list-by-type")
+    public BizResponse<List<DictionaryMiniResponse>> listByType(@RequestParam String dicTypeCode) {
+        List<DictionaryMiniResponse> responses = dictionaryService.listByType(dicTypeCode);
+        return BizResponse.success(responses);
     }
 
     @ApiOperation("添加字典")
