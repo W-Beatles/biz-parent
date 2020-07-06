@@ -1,24 +1,75 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : localhost-slave-3307
  Source Server Type    : MySQL
  Source Server Version : 80012
- Source Host           : localhost:3306
+ Source Host           : localhost:3307
  Source Schema         : common
 
  Target Server Type    : MySQL
  Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 12/08/2019 11:13:21
+ Date: 07/07/2020 00:53:35
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE DATABASE IF NOT EXISTS `common` DEFAULT CHARSET utf8mb4;
-USE `common`;
+CREATE DATABASE IF NOT EXISTS common DEFAULT CHARSET utf8mb4;
+USE common;
+
+-- ----------------------------
+-- Table structure for dictionary
+-- ----------------------------
+DROP TABLE IF EXISTS `dictionary`;
+CREATE TABLE `dictionary`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典id',
+  `pid` bigint(20) NOT NULL DEFAULT 0 COMMENT '父节点id',
+  `dic_type_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '字典类型编码',
+  `dic_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '字典编码',
+  `dic_value` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '字典值',
+  `dic_desc` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '字典描述',
+  `sort_num` int(10) NOT NULL DEFAULT 0 COMMENT '排序号',
+  `fixed_status` int(1) NOT NULL COMMENT '是否固定: 0否 1是',
+  `created_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '创建人',
+  `created_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `updated_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '更新人',
+  `updated_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  `deleted_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除: 0否 1是',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_dic_type_code_dic_code`(`dic_code`) USING BTREE COMMENT '字典类型编码字典编码索引'
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dictionary
+-- ----------------------------
+INSERT INTO `dictionary` VALUES (1, 0, 'APP_TYPE_ENUM', '0', 'biz-spring-cloud-service-%%', 'SERVICE', 1, 0, '', '2020-07-06 16:10:26', '', '2020-07-07 00:14:19', 0);
+INSERT INTO `dictionary` VALUES (2, 0, 'APP_TYPE_ENUM', '1', 'biz-%%-boot-starter', 'SDK', 2, 0, '', '2020-07-06 16:11:00', '', '2020-07-07 00:14:21', 0);
+INSERT INTO `dictionary` VALUES (3, 0, 'APP_TYPE_ENUM', '2', 'biz-dubbo-service-%%', 'DUBBO', 3, 0, '', '2020-07-06 16:50:05', '', '2020-07-07 00:50:04', 0);
+
+-- ----------------------------
+-- Table structure for dictionary_type
+-- ----------------------------
+DROP TABLE IF EXISTS `dictionary_type`;
+CREATE TABLE `dictionary_type`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '类型id',
+  `type_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '类型编码',
+  `app_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '所属AppID',
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '类型描述',
+  `created_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '创建人',
+  `created_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `updated_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '更新人',
+  `updated_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  `deleted_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除: 0否 1是',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '字典类型表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dictionary_type
+-- ----------------------------
+INSERT INTO `dictionary_type` VALUES (1, 'APP_TYPE_ENUM', 'biz-archetype-portal', '项目骨架原型类型枚举', '', '2020-07-07 00:07:24', '', '2020-07-07 00:13:39', 0);
 
 -- ----------------------------
 -- Table structure for region
@@ -36,7 +87,7 @@ CREATE TABLE `region`  (
   `lng` float NOT NULL DEFAULT 0 COMMENT '经度',
   `lat` float NOT NULL DEFAULT 0 COMMENT '纬度',
   `pinyin` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '区域拼音',
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除: 0否 1是 默认0',
+  `deleted_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除: 0否 1是 默认0',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '行政区表 (http://www.mca.gov.cn/article/sj/xzqh/2019/)' ROW_FORMAT = Dynamic;
 
