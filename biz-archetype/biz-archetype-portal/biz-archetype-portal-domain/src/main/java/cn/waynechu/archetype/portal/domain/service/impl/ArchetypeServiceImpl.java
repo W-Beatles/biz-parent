@@ -187,10 +187,10 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
                 ZipUtil.zip(zipFileName, zipFileName + ".zip", true);
 
                 // 同步原型生成状态
-                this.syncArchetypeStatus(archetypeId, StatusCodeEnum.SUCCEED);
+                this.syncArchetypeStatus(archetypeId, StatusCodeEnum.SUCCEED, null, null);
             } catch (Exception e) {
                 log.warn("Create project archetype failed", e);
-                this.syncArchetypeStatus(archetypeId, StatusCodeEnum.FAILED);
+                this.syncArchetypeStatus(archetypeId, StatusCodeEnum.FAILED, null, null);
             }
         });
     }
@@ -200,11 +200,15 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
      *
      * @param archetypeId    原型id
      * @param statusCodeEnum 状态
+     * @param downloadUrl    项目下载地址
+     * @param gitUrl         项目git地址
      */
-    private void syncArchetypeStatus(Long archetypeId, StatusCodeEnum statusCodeEnum) {
+    private void syncArchetypeStatus(Long archetypeId, StatusCodeEnum statusCodeEnum, String downloadUrl, String gitUrl) {
         ArchetypeDO updateArchetypeDO = new ArchetypeDO();
         updateArchetypeDO.setId(archetypeId);
         updateArchetypeDO.setStatusCode(statusCodeEnum.getCode());
+        updateArchetypeDO.setGitUrl(gitUrl);
+        updateArchetypeDO.setDownloadUrl(downloadUrl);
         updateArchetypeDO.setUpdatedUser(UserUtil.getEmail());
         updateArchetypeDO.setUpdatedTime(LocalDateTime.now());
         archetypeRepository.updateById(updateArchetypeDO);
