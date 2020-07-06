@@ -24,9 +24,6 @@ public class ArchetypeResponse {
     @ApiModelProperty("项目类型: 0Service 1SDK")
     private Integer appType;
 
-    @ApiModelProperty("项目类型描述")
-    private String appTypeDesc;
-
     @ApiModelProperty("包名")
     private String packageName;
 

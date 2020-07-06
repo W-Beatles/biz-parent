@@ -42,9 +42,6 @@ public class ArchetypeConvert {
     public static ArchetypeResponse toArchetypeResponse(ArchetypeDO archetypeDO) {
         ArchetypeResponse returnValue = new ArchetypeResponse();
         BeanUtils.copyProperties(archetypeDO, returnValue);
-        returnValue.setAppTypeDesc(
-                Optional.ofNullable(AppTypeEnum.getByCode(archetypeDO.getAppType()))
-                        .map(AppTypeEnum::getName).orElse(""));
         return returnValue;
     }
 }

@@ -31,7 +31,9 @@ public class ArchetypeRepository {
         if (StringUtil.isNotEmpty(condition.getAppName())) {
             wrapper.eq(ArchetypeDO.COL_APP_NAME, condition.getAppName());
         }
-        wrapper.orderBy(StringUtil.isNotEmpty(condition.getOrderBy()), condition.getIsAsc(), condition.getOrderBy());
+        if (StringUtil.isNotEmpty(condition.getOrderBy())) {
+            wrapper.orderByDesc(condition.getOrderBy());
+        }
         wrapper.eq(ArchetypeDO.COL_DELETED_STATUS, false);
         return mapper.selectList(wrapper);
     }

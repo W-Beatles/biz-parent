@@ -1,14 +1,12 @@
 package cn.waynechu.archetype.portal.dal.condition;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 /**
  * @author zhuwei
  * @date 2020-06-20 21:39
  */
 @Data
-@Accessors(chain = true)
 public class ListArchetypeCondition {
 
     /**
@@ -30,9 +28,4 @@ public class ListArchetypeCondition {
      * 排序字段
      */
     private String orderBy;
-
-    /**
-     * 是否升序
-     */
-    private Boolean isAsc = true;
 }

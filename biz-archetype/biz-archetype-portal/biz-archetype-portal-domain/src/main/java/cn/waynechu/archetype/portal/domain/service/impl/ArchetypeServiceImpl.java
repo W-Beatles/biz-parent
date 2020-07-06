@@ -63,7 +63,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
     public BizPageInfo<SearchArchetypeResponse> search(SearchArchetypeRequest request) {
         ListArchetypeCondition condition = new ListArchetypeCondition();
         BeanUtils.copyProperties(request, condition);
-        condition.setOrderBy(ArchetypeDO.COL_UPDATED_TIME).setIsAsc(false);
+        condition.setOrderBy(ArchetypeDO.COL_UPDATED_TIME);
 
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
         List<ArchetypeDO> archetypeDOList = archetypeRepository.listByCondition(condition);
