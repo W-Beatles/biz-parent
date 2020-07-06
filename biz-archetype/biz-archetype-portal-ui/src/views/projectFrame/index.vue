@@ -33,7 +33,7 @@
             <el-table-column label="状态">
                 <template slot-scope="{row}">
                     <el-tag :type="StatusCodeTagType[row.statusCode]">
-                        <i :class="StatusCodeTag[row.statusCode]"/>{{` ${row.statusCodeDesc}`}}
+                        <i :class="[StatusCodeTag[row.statusCode]]"/>{{` ${row.statusCodeDesc}`}}
                     </el-tag>
                 </template>
             </el-table-column>
@@ -75,10 +75,10 @@
 </template>
 
 <script>
-    import AuthModel from '@/api/Model/authModel.js'
+    import AuthModel from '@/api/Model/AppType/authModel.js'
     import {mixinModule, cmpModule} from './autoImport.js'
+    import Enum from './Enum'
 
-    const SUCCESS_CODE = 1
     const PACKAGE_PREFIX = 'cn.waynechu.'
     const authModel = new AuthModel()
     export default {
@@ -88,8 +88,7 @@
         data() {
             return {
                 StatusCodeTagType: ['', 'success', 'danger'],
-                StatusCodeTag: [{'el-icon-loading': true}, {'el-icon-check': true}, {'el-icon-warning-outline': true}],
-                SUCCESS_CODE: SUCCESS_CODE,
+                StatusCodeTag: ['el-icon-loading', 'el-icon-check', 'el-icon-warning-outline'],
                 PACKAGE_PREFIX: PACKAGE_PREFIX,
                 appTypeParams: {
                     id: '',
@@ -97,23 +96,7 @@
                     pageNum: 1,
                     pageSize: 10,
                 },
-                optBtnTypeList: [{
-                    optText: '下载',
-                    optFnc: 'download',
-                    optShowCode: SUCCESS_CODE,
-                    optClass: {'downLoad': true},
-                    iconClass: {'el-icon-download': true},
-                }, {
-                    optText: '编辑',
-                    optFnc: 'editAppType',
-                    optClass: {'edit': true},
-                    iconClass: {'el-icon-edit': true},
-                }, {
-                    optText: '删除',
-                    optFnc: 'delAppType',
-                    optClass: {'delete': true},
-                    iconClass: {'el-icon-delete': true},
-                }], // 0： 删除，1：编辑，2：下载
+                optBtnTypeList: Enum.OptBtnEnum,
                 total: 10,
                 taskList: [],
                 visibleDialog: false,
