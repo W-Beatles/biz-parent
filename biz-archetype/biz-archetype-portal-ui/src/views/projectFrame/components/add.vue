@@ -1,5 +1,5 @@
 <template>
-    <div class="addAppTypeDia">
+    <div class="addAppTypeDia" v-if="$attrs.visible">
         <el-dialog :title="form.isEdit ? '编辑原型' : '新建原型'"
                    v-bind="$attrs"
                    width="34%"
@@ -10,8 +10,8 @@
                 </el-form-item>
                 <el-form-item label="项目类型" :label-width="formLabelWidth" required>
                     <el-select v-model="form.appType" placeholder="请选择项目类型" @change="appNameItemArr = []">
-                        <el-option label="Service" :value="0"></el-option>
-                        <el-option label="SDK" :value="1"></el-option>
+                        <el-option v-for="(option, optIndex) in appTypeOptions" :key="optIndex"
+                                   :label="option.dicDesc" :value="parseInt(option.dicCode)"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="项目名称" :label-width="formLabelWidth" required>
@@ -23,6 +23,8 @@
                                   @input="inputAppName($event, typeIndex)"
                         ></el-input>
                     </template>
+                    <span class="errorInput"
+                          v-if="form.appName.length > 50">* 项目名称不得超过50字符（当前：{{form.appName.length}}）</span>
                 </el-form-item>
                 <el-form-item label="包名" :label-width="formLabelWidth" required>
                     <el-input v-model="form.packageName" autocomplete="off">
@@ -46,17 +48,18 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="$emit('close')">取 消</el-button>
-                <el-button type="primary" @click="$emit('submit', form)">确 定</el-button>
+                <el-button type="primary" @click="validInput">确 定</el-button>
             </div>
         </el-dialog>
     </div>
 </template>
 
 <script>
-    import AuthModel from '@/api/Model/authModel.js'
+    import AuthModel from '@/api/Model/AppType/authModel.js'
+    import UtilityModel from '@/api/Model/AppType/utilityModel.js'
 
     const authModel = new AuthModel()
-    const CHAR_M_LEN = 13
+    const utilityModel = new UtilityModel()
     const CHAR_NORMAL_LEN = 7
     const CHAR_LEN_DEFAULT = '20px'
     const SPlIT_FLAG = '%%'
@@ -81,7 +84,8 @@
         },
         data() {
             return {
-                AppNameTemplateList: ['%%-biz-spring%%-cloud-service-%%', 'biz-%%-boot-%%-starter'],
+                appTypeOptions: [],
+                appTypeTempMap: null,
                 formLabelWidth: '80px',
                 form: InitForm,
                 popItem: '',
@@ -93,7 +97,7 @@
             appNameItemArr: {
                 handler(arr) {
                     let concatAppName = ''
-                    let tempOriArr = this.AppNameTemplateList[this.form.appType].split(SPlIT_FLAG)
+                    let tempOriArr = this.geneTypeTemp(this.form.appType).split(SPlIT_FLAG)
                     tempOriArr.forEach((oriItem, oriIndex) => {
                         concatAppName += `${oriItem}${arr[oriIndex] || ''}`
                     })
@@ -112,9 +116,12 @@
                 this.$set(this.form, 'isEdit', isEdit)
             }
         },
+        async created() {
+            await this.getAppTypeList()
+        },
         methods: {
             generaAppType(type) {
-                let tempArr = this.AppNameTemplateList[type].split(SPlIT_FLAG)
+                let tempArr = this.geneTypeTemp(type).split(SPlIT_FLAG)
                 this.appNameItemArr.length = tempArr.length - 1
                 return tempArr
             },
@@ -127,22 +134,46 @@
             inputAppName(value, index) {
                 const regName = value.replace(/[^\a-z]/g, '')
                 this.$set(this.appNameItemArr, index, regName)
-                return 0
             },
             getReverseReg(appType) {
                 const splitReg = new RegExp(SPlIT_FLAG, 'g')
-                return this.AppNameTemplateList[appType].replace(splitReg, '(\\w+)')
+                return this.geneTypeTemp(appType).replace(splitReg, '(\\w+)')
             },
             reverseAppName({appType, appName}) {
                 const matchReg = new RegExp(this.getReverseReg(appType))
                 let arr = appName.match(matchReg) || []
                 arr.shift()
                 this.appNameItemArr = arr
+            },
+            validInput() {
+                const errClass = document.getElementsByClassName('errorInput')
+                if (!errClass || errClass.length === 0) {
+                    this.$emit('submit', this.form)
+                    return
+                }
+                return errClass && errClass.length > 0
+            },
+            async getAppTypeList() {
+                this.appTypeOptions = await utilityModel.getAppTypeDiction()
+                this.geneAppTemplate(this.appTypeOptions)
+            },
+            geneAppTemplate(options) {
+                let appTypeMap = {}
+                options.forEach(opt => {
+                    appTypeMap[opt.dicCode] = opt
+                })
+                this.appTypeTempMap = appTypeMap
+            },
+            geneTypeTemp(appType) {
+                return this.appTypeTempMap[appType].dicValue
             }
         }
     }
 </script>
 
 <style lang="stylus" scoped>
-
+    .errorInput
+        color: red;
+        margin-left: 20px;
+        font-size: 12px
 </style>

@@ -1,5 +1,5 @@
-import Request from './index.js'
-import Urls from '../urls/authUrl'
+import Request from '../index.js'
+import Urls from '../../urls/authUrl'
 import {
     MessageBox
 } from 'element-ui'
@@ -49,6 +49,8 @@ class AuthModel {
         const res = await Request.requestWholeModel(this.generateUrl('addArch'), 'post', param)
         this.errCbTip(res, cbLoading, cb)
     }
+
+
 
     async errTip({code, data = null, message = '接口异常'}, cb) {
         let status = code === SUCCESS_CODE
