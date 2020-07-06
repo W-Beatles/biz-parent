@@ -29,7 +29,11 @@
             <el-table-column label="原型ID" prop="id" width="80"></el-table-column>
             <el-table-column label="AppID" prop="appId" width="300"></el-table-column>
             <el-table-column label="项目名称" prop="appName" width="300"></el-table-column>
-            <el-table-column label="项目类型" prop="appTypeDesc"></el-table-column>
+            <el-table-column label="项目类型" prop="appTypeDesc">
+                <template slot-scope="{row}">
+                    {{geneTypeDesc(row.appType)}}
+                </template>
+            </el-table-column>
             <el-table-column label="状态">
                 <template slot-scope="{row}">
                     <el-tag :type="StatusCodeTagType[row.statusCode]">
@@ -58,6 +62,8 @@
              title="测试弹框"
              :id="optId"
              :loading="addLoading"
+             :appTypeTempMap="appTypeTempMap"
+             :appTypeOptions="appTypeOptions"
              @submit="submitAddForm"
              @close="visibleDialog = false"
         ></add>
@@ -78,9 +84,11 @@
     import AuthModel from '@/api/Model/AppType/authModel.js'
     import {mixinModule, cmpModule} from './autoImport.js'
     import Enum from './Enum'
+    import UtilityModel from "@/api/Model/AppType/utilityModel";
 
     const PACKAGE_PREFIX = 'cn.waynechu.'
     const authModel = new AuthModel()
+    const utilityModel = new UtilityModel()
     export default {
         name: 'index',
         components: cmpModule,
@@ -101,11 +109,14 @@
                 taskList: [],
                 visibleDialog: false,
                 addLoading: false,
-                optId: -1
+                optId: -1,
+                appTypeTempMap: null,
+                appTypeOptions: []
             }
         },
         created() {
             this.getTaskList()
+            this.getAppTypeList()
         },
         methods: {
             async getTaskList() {
@@ -159,6 +170,20 @@
             submitCallback() {
                 this.getTaskList()
                 this.visibleDialog = false
+            },
+            async getAppTypeList() {
+                this.appTypeOptions = await utilityModel.getAppTypeDiction()
+                this.geneAppTemplate(this.appTypeOptions)
+            },
+            geneAppTemplate(options) {
+                let appTypeMap = {}
+                options.forEach(opt => {
+                    appTypeMap[opt.dicCode] = opt
+                })
+                this.appTypeTempMap = appTypeMap
+            },
+            geneTypeDesc(appType) {
+                return this.appTypeTempMap[appType].dicDesc
             }
         }
     }
