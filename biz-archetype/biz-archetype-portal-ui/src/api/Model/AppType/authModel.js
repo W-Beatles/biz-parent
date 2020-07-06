@@ -50,8 +50,6 @@ class AuthModel {
         this.errCbTip(res, cbLoading, cb)
     }
 
-
-
     async errTip({code, data = null, message = '接口异常'}, cb) {
         let status = code === SUCCESS_CODE
         await MessageBox.alert(message, '提示', {

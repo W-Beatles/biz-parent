@@ -56,10 +56,8 @@
 
 <script>
     import AuthModel from '@/api/Model/AppType/authModel.js'
-    import UtilityModel from '@/api/Model/AppType/utilityModel.js'
 
     const authModel = new AuthModel()
-    const utilityModel = new UtilityModel()
     const CHAR_NORMAL_LEN = 7
     const CHAR_LEN_DEFAULT = '20px'
     const SPlIT_FLAG = '%%'
@@ -77,6 +75,8 @@
         name: "add",
         props: {
             loading: Boolean,
+            appTypeTempMap: Object,
+            appTypeOptions: Array,
             id: {
                 type: Number,
                 default: () => -1
@@ -84,8 +84,6 @@
         },
         data() {
             return {
-                appTypeOptions: [],
-                appTypeTempMap: null,
                 formLabelWidth: '80px',
                 form: InitForm,
                 popItem: '',
@@ -115,9 +113,6 @@
                 }
                 this.$set(this.form, 'isEdit', isEdit)
             }
-        },
-        async created() {
-            await this.getAppTypeList()
         },
         methods: {
             generaAppType(type) {
@@ -152,17 +147,6 @@
                     return
                 }
                 return errClass && errClass.length > 0
-            },
-            async getAppTypeList() {
-                this.appTypeOptions = await utilityModel.getAppTypeDiction()
-                this.geneAppTemplate(this.appTypeOptions)
-            },
-            geneAppTemplate(options) {
-                let appTypeMap = {}
-                options.forEach(opt => {
-                    appTypeMap[opt.dicCode] = opt
-                })
-                this.appTypeTempMap = appTypeMap
             },
             geneTypeTemp(appType) {
                 return this.appTypeTempMap[appType].dicValue
