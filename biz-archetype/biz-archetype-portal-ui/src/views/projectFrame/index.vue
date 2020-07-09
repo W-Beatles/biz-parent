@@ -12,6 +12,7 @@
             <m-button type="info" class="clear" @click="resetSearch">清空</m-button>
             <m-button class="search" @click="queryAppType">查询</m-button>
             <m-button class="add" @click="addAsync">新建</m-button>
+            <m-button class="export" @click="getAppTypeExportSid">导出</m-button>
         </div>
         <el-table class="taskListTable" :data="taskList" style="width: 100%">
             <el-table-column type="expand">
@@ -86,7 +87,9 @@
     import Enum from './Enum'
     import UtilityModel from "@/api/Model/AppType/utilityModel";
 
+    const EXPORT_POW = 2
     const PACKAGE_PREFIX = 'cn.waynechu.'
+    const EXPORT_URL = 'biz-archetype-portal/archetypes/export'
     const authModel = new AuthModel()
     const utilityModel = new UtilityModel()
     export default {
@@ -111,7 +114,8 @@
                 addLoading: false,
                 optId: -1,
                 appTypeTempMap: null,
-                appTypeOptions: []
+                appTypeOptions: [],
+                sid: ''
             }
         },
         created() {
@@ -184,6 +188,40 @@
             },
             geneTypeDesc(appType) {
                 return this.appTypeTempMap[appType].dicDesc
+            },
+            async getAppTypeExportSid() {
+                const {data} = await utilityModel.getExportSid(EXPORT_URL, this.appTypeParams)
+                this.sid = data
+                let n = 0
+                this.exportTimer = setInterval(async () => {
+                    await this.getAppTypeExportStatus()
+                    n++
+                    console.log('n-----', Math.pow(EXPORT_POW, n))
+                }, Math.pow(EXPORT_POW, n) * 1000)
+                this.$once('hook:beforeDestroy', () => {
+                    clearInterval(this.exportTimer)
+                })
+            },
+            async getAppTypeExportStatus() {
+                const {status, fileName, url} = await utilityModel.getExportStatus(this.sid)
+                console.log('fileName', fileName)
+                if (status === 1) {
+                    clearInterval(this.exportTimer)
+                    if ('download' in document.createElement('a')) { // 非IE下载
+                        const elink = document.createElement('a')
+                        elink.download = fileName
+                        elink.style.display = 'none'
+                        elink.href = url
+                        document.body.appendChild(elink)
+                        elink.click()
+                        window.URL.revokeObjectURL(elink.href) // 释放URL 对象
+                        document.body.removeChild(elink)
+                    }
+                    return false
+                } else if (status === -1) {
+                    clearInterval(this.exportTimer)
+                    return false
+                }
             }
         }
     }
@@ -195,7 +233,7 @@
 
         .SearchHeader
             display flex
-            width 1005
+            width 100%
             align-items center
 
             .m-button
@@ -211,6 +249,11 @@
             .add
                 background: #ff9f1c;
                 color #fff
+
+            .export
+                background: #8bb1d7;
+                color #fff
+                margin-left 10%
 
             .SearchItem
                 width 300px
