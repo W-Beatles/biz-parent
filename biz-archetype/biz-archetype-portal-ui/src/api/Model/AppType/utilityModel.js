@@ -1,12 +1,24 @@
-import AuthModel from '@/api/Model/AppType/authModel.js'
 import Request from "@/api/Model";
 
-class UtilityModel extends AuthModel {
+class UtilityModel {
     appName = '/service-utility'
 
-    async getAppTypeDiction(param, cbLoading, cb) {
+    geneUri(key) {
+        return Request.generateUrl(this.appName, key)
+    }
+
+    async getAppTypeDiction(param) {
         const KEY = 'APP_TYPE_ENUM'
-        const {data} = await Request.requestWholeModel(`${this.generateUrl('appTypeDic')}${KEY}`, 'get', param)
+        const {data} = await Request.requestWholeModel(`${this.geneUri('SU_AppTypeDic')}${KEY}`, 'get', param)
+        return data
+    }
+
+    async getExportSid(exportUrl, param) {
+        return await Request.requestWholeModel(`${this.geneUri('SU_ExportSid')}${exportUrl}`, 'POST', param)
+    }
+
+    async getExportStatus(sid) {
+        const {data} = await Request.requestWholeModel(`${this.geneUri('SU_ExportStatus')}${sid}`, 'POST', {})
         return data
     }
 }
