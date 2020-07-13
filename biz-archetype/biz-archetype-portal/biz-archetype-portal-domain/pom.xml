@@ -39,10 +39,5 @@
             <groupId>cn.waynechu</groupId>
             <artifactId>biz-archetype-portal-dal</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
-        </dependency>
     </dependencies>
 </project>
