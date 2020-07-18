@@ -80,7 +80,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
     @Override
     public Long create(CreateArchetypeRequest request) {
         // 校验AppID是否重复
-        this.checkAppIdExist(request.getAppId());
+        this.checkAppIdNotExist(request.getAppId());
 
         // 保存项目基本信息
         ArchetypeDO insertArchetypeDO = new ArchetypeDO();
@@ -155,7 +155,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
      *
      * @param appId AppId
      */
-    private void checkAppIdExist(String appId) {
+    private void checkAppIdNotExist(String appId) {
         ListArchetypeCondition condition = new ListArchetypeCondition();
         condition.setAppId(appId);
         List<ArchetypeDO> archetypeDOList = archetypeRepository.listByCondition(condition);
@@ -170,27 +170,27 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
      * @param request     req
      * @param archetypeId 原型id
      */
-    private void asyncCreateArchetype(CreateArchetypeRequest request, Long archetypeId) {
+    private void asyncCreateArchetype(CreateArchetypeRequest request, final Long archetypeId) {
         bizExecutor.execute(() -> {
+            StatusCodeEnum statusCode = StatusCodeEnum.FAILED;
             try {
                 // 生成项目原型文件
                 this.createProjectArchetype(archetypeId, request.getAppName(), request.getPackageName());
+
+                // 打包压缩为ZIP
+                String projectPath = workingRootPath + "project" + File.separator + archetypeId + File.separator;
+                String zipFileName = projectPath + request.getAppName();
+                ZipUtil.zip(zipFileName, zipFileName + ".zip", true);
 
                 // 上传git仓库
                 if (Boolean.TRUE.equals(request.getGitUploadType())) {
                     // TODO 2020-06-22 01:17
                 }
-
-                // 压缩ZIP
-                String projectPath = workingRootPath + "project" + File.separator + archetypeId + File.separator;
-                String zipFileName = projectPath + request.getAppName();
-                ZipUtil.zip(zipFileName, zipFileName + ".zip", true);
-
-                // 同步原型生成状态
-                this.syncArchetypeStatus(archetypeId, StatusCodeEnum.SUCCEED, null, null);
             } catch (Exception e) {
                 log.warn("Create project archetype failed", e);
-                this.syncArchetypeStatus(archetypeId, StatusCodeEnum.FAILED, null, null);
+            } finally {
+                // 同步原型生成状态
+                this.syncArchetypeStatus(archetypeId, statusCode, null, null);
             }
         });
     }

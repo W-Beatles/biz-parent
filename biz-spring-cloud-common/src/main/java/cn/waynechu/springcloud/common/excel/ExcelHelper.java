@@ -112,16 +112,33 @@ public class ExcelHelper {
      * @param supplier 分页查询方法
      * @return sid 导出唯一标识
      */
-    public <T> String exportForSid(String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
-        // 同步sid状态
-        String sid = UUID.randomUUID().toString();
-        this.syncResult(sid, fileName, ExportStatusEnum.GENERATED, null);
+    public <T> String exportForSid(final String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
+        final String sid = UUID.randomUUID().toString();
+        this.syncExportResult(sid, fileName, ExportStatusEnum.GENERATED, null);
 
         executor.execute(() -> {
-            // 生成excel
-            File excelFile = this.generateExcelFile(sid, fileName, clazz, request, supplier);
-            // 上传excel
-            this.processExcelFile(sid, fileName, excelFile);
+            File tempFile = null;
+            ExportStatusEnum exportStatus = ExportStatusEnum.FAIL;
+            String url = null;
+            try {
+                // 生成excel
+                tempFile = this.generateExcelFile(sid, fileName, clazz, request, supplier);
+                // 上传excel
+                url = this.uploadExcelFile(tempFile);
+                if (StringUtil.isNotEmpty(url)) {
+                    exportStatus = ExportStatusEnum.SUCCESS;
+                }
+            } catch (Exception e) {
+                log.error("导出失败", e);
+            } finally {
+                // 同步导出状态
+                this.syncExportResult(sid, fileName, exportStatus, url);
+                // 删除临时excel文件
+                if (tempFile != null && tempFile.exists()) {
+                    // noinspection ResultOfMethodCallIgnored
+                    tempFile.delete();
+                }
+            }
         });
         return sid;
     }
@@ -138,16 +155,33 @@ public class ExcelHelper {
      * @param data     导出的数据
      * @return sid 导出唯一标识
      */
-    public <T> String exportForSid(String fileName, Class<T> clazz, List<T> data) {
-        // 同步sid状态
-        String sid = UUID.randomUUID().toString();
-        this.syncResult(sid, fileName, ExportStatusEnum.GENERATED, null);
+    public <T> String exportForSid(final String fileName, Class<T> clazz, List<T> data) {
+        final String sid = UUID.randomUUID().toString();
+        this.syncExportResult(sid, fileName, ExportStatusEnum.GENERATED, null);
 
         executor.execute(() -> {
-            // 生成excel
-            File excelFile = this.generateExcelFile(sid, fileName, clazz, data);
-            // 上传excel
-            this.processExcelFile(sid, fileName, excelFile);
+            File tempFile = null;
+            ExportStatusEnum exportStatus = ExportStatusEnum.FAIL;
+            String url = null;
+            try {
+                // 生成excel
+                tempFile = this.generateExcelFile(sid, fileName, clazz, data);
+                // 上传excel文件
+                url = this.uploadExcelFile(tempFile);
+                if (StringUtil.isNotEmpty(url)) {
+                    exportStatus = ExportStatusEnum.SUCCESS;
+                }
+            } catch (Exception e) {
+                log.error("导出失败", e);
+            } finally {
+                // 同步导出状态
+                this.syncExportResult(sid, fileName, exportStatus, url);
+                // 删除临时excel文件
+                if (tempFile != null && tempFile.exists()) {
+                    // noinspection ResultOfMethodCallIgnored
+                    tempFile.delete();
+                }
+            }
         });
         return sid;
     }
@@ -161,25 +195,20 @@ public class ExcelHelper {
      * @param data      导出的数据
      * @return excel文件
      */
-    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, List<T> data) {
-        try {
-            File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
-            ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
+    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, List<T> data) throws IOException {
+        File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+        ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
 
-            sheetName = this.encodeFileName(sheetName);
-            WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
-                    // 添加 java8 时间类库支持
-                    .registerConverter(new LocalTimeConvert())
-                    .registerConverter(new LocalDateConvert())
-                    .registerConverter(new LocalDateTimeConvert())
-                    .build();
-            excelWriter.write(data, writeSheet);
-            excelWriter.finish();
-            return tempFile;
-        } catch (IOException e) {
-            log.error("导出失败", e);
-            return null;
-        }
+        sheetName = this.encodeFileName(sheetName);
+        WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
+                // 添加 java8 时间类库支持
+                .registerConverter(new LocalTimeConvert())
+                .registerConverter(new LocalDateConvert())
+                .registerConverter(new LocalDateTimeConvert())
+                .build();
+        excelWriter.write(data, writeSheet);
+        excelWriter.finish();
+        return tempFile;
     }
 
     /**
@@ -192,44 +221,39 @@ public class ExcelHelper {
      * @param supplier  分页查询方法
      * @return excel文件
      */
-    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
-        try {
-            File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
-            ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
-            // 使用table方式写入，设置sheet不需要头
-            sheetName = this.encodeFileName(sheetName);
-            WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE)
-                    // 添加 java8 时间类库支持
-                    .registerConverter(new LocalTimeConvert())
-                    .registerConverter(new LocalDateConvert())
-                    .registerConverter(new LocalDateTimeConvert())
-                    .build();
+    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) throws IOException {
+        File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+        ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
+        // 使用table方式写入，设置sheet不需要头
+        sheetName = this.encodeFileName(sheetName);
+        WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE)
+                // 添加 java8 时间类库支持
+                .registerConverter(new LocalTimeConvert())
+                .registerConverter(new LocalDateConvert())
+                .registerConverter(new LocalDateTimeConvert())
+                .build();
 
-            WriteTable writeTable;
-            BizPageInfo<T> bizPageInfo;
-            int pageIndex = 1;
-            // 默认从第一页开始查
-            request.setPageNum(1);
-            // 限制单次查询条数
-            request.setPageSize(QUERY_LIMIT);
+        WriteTable writeTable;
+        BizPageInfo<T> bizPageInfo;
+        int pageIndex = 1;
+        // 默认从第一页开始查
+        request.setPageNum(1);
+        // 限制单次查询条数
+        request.setPageSize(QUERY_LIMIT);
 
-            do {
-                // 第一次写入会创建头，后面直接写入数据
-                writeTable = EasyExcel.writerTable(pageIndex).needHead(pageIndex == 1).build();
+        do {
+            // 第一次写入会创建头，后面直接写入数据
+            writeTable = EasyExcel.writerTable(pageIndex).needHead(pageIndex == 1).build();
 
-                // 循环分页查询
-                request.setPageNum(pageIndex);
-                bizPageInfo = supplier.get();
-                excelWriter.write(bizPageInfo.getList(), writeSheet, writeTable);
-                pageIndex++;
-            } while (bizPageInfo.getHasNextPage() && pageIndex < PageLoopHelper.PAGE_LOOP_LIMIT);
+            // 循环分页查询
+            request.setPageNum(pageIndex);
+            bizPageInfo = supplier.get();
+            excelWriter.write(bizPageInfo.getList(), writeSheet, writeTable);
+            pageIndex++;
+        } while (bizPageInfo.getHasNextPage() && pageIndex < PageLoopHelper.PAGE_LOOP_LIMIT);
 
-            excelWriter.finish();
-            return tempFile;
-        } catch (Exception e) {
-            log.error("导出失败", e);
-            return null;
-        }
+        excelWriter.finish();
+        return tempFile;
     }
 
     /**
@@ -256,44 +280,23 @@ public class ExcelHelper {
     /**
      * 上传excel文件
      *
-     * @param sid      导出唯一id
-     * @param fileName 导出文件名
-     * @param file     文件
+     * @param file 文件
      */
-    private void processExcelFile(String sid, String fileName, File file) {
+    private String uploadExcelFile(File file) {
         String url = null;
-        ExportStatusEnum statusEnum = ExportStatusEnum.FAIL;
 
-        try {
-            if (file != null) {
-                FileSystemResource resource = new FileSystemResource(file);
-                MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-                params.add("file", resource);
+        FileSystemResource resource = new FileSystemResource(file);
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        params.add("file", resource);
 
-                // 上传excel文件
-                ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(FILE_UPLOAD_URL, HttpMethod.POST
-                        , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
-                        });
-                if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
-                    String downloadUrl = responseEntity.getBody().getData();
-                    if (StringUtil.isNotBlank(downloadUrl)) {
-                        url = downloadUrl;
-                        statusEnum = ExportStatusEnum.SUCCESS;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            log.error("导出失败", e);
-        } finally {
-            // 同步导出状态
-            this.syncResult(sid, fileName, statusEnum, url);
-
-            // 删除临时excel文件
-            if (file != null) {
-                // noinspection ResultOfMethodCallIgnored
-                file.delete();
-            }
+        // 上传excel文件
+        ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(FILE_UPLOAD_URL, HttpMethod.POST
+                , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
+                });
+        if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
+            url = responseEntity.getBody().getData();
         }
+        return url;
     }
 
     /**
@@ -304,7 +307,7 @@ public class ExcelHelper {
      * @param statusEnum 导出状态
      * @param url        导出的excel文件地址
      */
-    private void syncResult(String sid, String fileName, ExportStatusEnum statusEnum, String url) {
+    private void syncExportResult(String sid, String fileName, ExportStatusEnum statusEnum, String url) {
         ExportResultResponse exportResultResponse = new ExportResultResponse();
         exportResultResponse.setStatus(statusEnum.getCode());
         exportResultResponse.setFileName(fileName + EXPORT_UPLOAD_EXTENSIONS);

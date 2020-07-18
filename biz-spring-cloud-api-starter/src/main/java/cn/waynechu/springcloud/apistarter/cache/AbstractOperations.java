@@ -22,10 +22,10 @@ import java.util.*;
 public class AbstractOperations<K,V> {
 
     // utility methods for the template internal methods
-    abstract class ValueDeserializingRedisCallback implements RedisCallback<V> {
+    abstract class ValueDeSerializingRedisCallback implements RedisCallback<V> {
         private Object key;
 
-        public ValueDeserializingRedisCallback(Object key) {
+        public ValueDeSerializingRedisCallback(Object key) {
             this.key = key;
         }
 

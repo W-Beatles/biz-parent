@@ -66,18 +66,18 @@
 10. RedisUtil Redis缓存工具类  
     注入`RedisUtil`即可使用
 
-11. PageLoopUtil 基于BizPageInfo的分页查询工具  
-    注入`PageLoopUtil`即可使用
+11. PageLoopHelper 基于BizPageInfo的分页查询工具  
+    注入`PageLoopHelper`即可使用
 
-12. ExcelUtil excel解析、异步下载工具
+12. RedisHelper excel解析、异步下载工具
     设计原则:  
     - 解耦excel导出服务与业务站点服务
     - 后端接口统一化、前端导出组件化
-    - 封装公共组件方法，管理整个生命周期，简化开发。详见`ExcelExporter.java`
+    - 封装公共组件方法，管理整个生命周期，简化开发。详见`ExcelHelper.java`
     - 使用自定义线程池异步处理数据，避免导出服务占用大量服务器资源，导致其它接口无法正常响应
     - 引入文件系统，避免网关超时、请求大小限制等的问题
     
-13. ExecutorAutoConfiguration 自定义线程池`BizThreadPoolExecutor`
+13. BizThreadPoolExecutor自定义线程池
     - 解决异步线程`MDC`信息、`ThreadLocal`信息无法传递的问题
     - 解决异步线程`requestAttributes`信息无法传递的问题
     - 提供 `Executor`、`ExecutorService` 实例供开发使用
