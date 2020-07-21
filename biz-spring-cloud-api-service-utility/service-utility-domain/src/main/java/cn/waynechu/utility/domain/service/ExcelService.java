@@ -48,17 +48,23 @@ public class ExcelService {
 
         // 通过服务名转发请求到具体的项目 如: http://biz-archetype-portal/archetypes/export
         String serviceUrl = "http://" + url;
-        ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(serviceUrl, HttpMethod.POST
-                , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
-                });
-        if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
-            return responseEntity.getBody().getData();
-        } else {
-            if (HttpStatus.NOT_FOUND.equals(responseEntity.getStatusCode())) {
-                throw new IllegalArgumentException("导出地址不存在, url: " + url);
+        ResponseEntity<BizResponse<String>> responseEntity;
+        try {
+            responseEntity = restTemplate.exchange(serviceUrl, HttpMethod.POST
+                    , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
+                    });
+            if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
+                return responseEntity.getBody().getData();
+            } else {
+                if (HttpStatus.NOT_FOUND.equals(responseEntity.getStatusCode())) {
+                    throw new IllegalArgumentException("导出地址不存在, url: " + url);
+                }
+                log.warn("导出失败, url: {}, params: {}", url, JsonBinder.toJson(params));
+                throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败");
             }
+        } catch (Exception e) {
             log.warn("导出失败, url: {}, params: {}", url, JsonBinder.toJson(params));
-            throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败");
+            throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败: " + e.getMessage());
         }
     }
 
