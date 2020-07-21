@@ -53,17 +53,18 @@ public class ExcelService {
             responseEntity = restTemplate.exchange(serviceUrl, HttpMethod.POST
                     , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
                     });
-            if (HttpStatus.OK.equals(responseEntity.getStatusCode())
-                    && responseEntity.getBody() != null
-                    && BizErrorCodeEnum.SUCCESS.getCode().equals(responseEntity.getBody().getCode())) {
-                return responseEntity.getBody().getData();
-            } else {
-                log.warn("导出失败, url: {}, params: {}", url, JsonBinder.toJson(params));
-                throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败");
-            }
         } catch (Exception e) {
             log.warn("导出失败, url: {}, params: {}", url, JsonBinder.toJson(params));
             throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败: " + e.getMessage());
+        }
+
+        if (HttpStatus.OK.equals(responseEntity.getStatusCode())
+                && responseEntity.getBody() != null
+                && BizErrorCodeEnum.SUCCESS.getCode().equals(responseEntity.getBody().getCode())) {
+            return responseEntity.getBody().getData();
+        } else {
+            log.warn("导出失败, url: {}, params: {}", url, JsonBinder.toJson(params));
+            throw new BizException(BizErrorCodeEnum.OPERATION_FAILED, "导出失败");
         }
     }
 
