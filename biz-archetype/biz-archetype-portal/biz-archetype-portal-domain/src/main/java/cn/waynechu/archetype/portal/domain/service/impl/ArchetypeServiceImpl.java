@@ -186,6 +186,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
                 if (Boolean.TRUE.equals(request.getGitUploadType())) {
                     // TODO 2020-06-22 01:17
                 }
+                statusCode = StatusCodeEnum.SUCCEED;
             } catch (Exception e) {
                 log.warn("Create project archetype failed", e);
             } finally {
