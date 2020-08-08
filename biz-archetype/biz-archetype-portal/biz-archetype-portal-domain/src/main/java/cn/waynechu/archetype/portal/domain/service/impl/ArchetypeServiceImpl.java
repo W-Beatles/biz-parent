@@ -20,6 +20,9 @@ import cn.waynechu.springcloud.common.excel.ExcelHelper;
 import cn.waynechu.springcloud.common.util.*;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.transport.RefSpec;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,12 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
 
     @Value("${working.root.path}")
     private String workingRootPath;
+
+    @Value("${git.user-name}")
+    private String gitUserName;
+
+    @Value("${git.password}")
+    private String gitPassword;
 
     @Autowired
     private ArchetypeRepository archetypeRepository;
@@ -178,13 +187,23 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
                 this.createProjectArchetype(archetypeId, request.getAppName(), request.getPackageName());
 
                 // 打包压缩为ZIP
-                String projectPath = workingRootPath + "project" + File.separator + archetypeId + File.separator;
-                String zipFileName = projectPath + request.getAppName();
-                ZipUtil.zip(zipFileName, zipFileName + ".zip", true);
+                String workPath = workingRootPath + "project" + File.separator + archetypeId + File.separator;
+                String projectPath = workPath + request.getAppName();
+                ZipUtil.zip(projectPath, projectPath + ".zip", true);
 
                 // 上传git仓库
                 if (Boolean.TRUE.equals(request.getGitUploadType())) {
-                    // TODO 2020-06-22 01:17
+                    UsernamePasswordCredentialsProvider provider = new UsernamePasswordCredentialsProvider(gitUserName, gitPassword);
+                    String gitProjectPath = projectPath + "-repo";
+                    Git git = Git.cloneRepository()
+                            .setCredentialsProvider(provider)
+                            .setURI(request.getGitUploadUrl()).setDirectory(new File(gitProjectPath))
+                            .setBranch("master")
+                            .call();
+                    cn.hutool.core.io.FileUtil.copy(projectPath, gitProjectPath, true);
+                    git.add().addFilepattern(".").call();
+                    git.commit().setAuthor("developer", "developer@waynechu.cn").setMessage("initial project").call();
+                    git.push().setRemote("origin").setRefSpecs(new RefSpec("master")).call();
                 }
                 statusCode = StatusCodeEnum.SUCCEED;
             } catch (Exception e) {

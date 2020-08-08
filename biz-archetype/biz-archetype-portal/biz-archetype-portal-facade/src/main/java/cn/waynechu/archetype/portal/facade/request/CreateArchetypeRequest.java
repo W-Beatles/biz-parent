@@ -42,4 +42,7 @@ public class CreateArchetypeRequest {
     @ApiModelProperty(value = "上传git: 0否 1是", required = true)
     @NotNull(message = "上传git不能为空")
     private Boolean gitUploadType;
+
+    @ApiModelProperty(value = "git仓库地址")
+    private String gitUploadUrl;
 }
