@@ -22,7 +22,5 @@
 
 ### 方式二: 页面生成（推荐）
 1. 启动`biz-archetype-portal`后端项目
-
 2. 启动`biz-archetype-portal-ui`前端项目
-
 3. 在页面上配置项目信息即可生成并下载项目骨架原型

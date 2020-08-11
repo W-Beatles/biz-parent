@@ -1,7 +1,6 @@
 # biz-boot-starter-dynamic-datasource
 
 ### 项目介绍
-
 1. 基于Spring提供的 `LazyConnectionDataSourceProxy` 实现多数据源路由选择
 2. 基于MyBatis拦截器实现主从数据源的动态切换
 3. 支持类、方法级别添加注解 `SwitchDataSource` 来手动切换目标数据源
@@ -13,7 +12,6 @@
 > 注：使用方式可参考 `biz-spring-cloud-api-dynamic-datasource-test` 测试项目
 
 ### 使用方法
-
 1. 添加pom依赖
     ```
     <dependency>
@@ -29,7 +27,6 @@
     参数配置参考下一节，更多配置可查阅Druid官方文档。除多数据源配置不一致外，Druid其他特性配置都能够很好地支持。
 
 ### 参考配置    
-
 ```
 ## mybatis-plus
 mybatis-plus.mapper-locations=classpath:sqlmap/**/*Mapper.xml
@@ -92,9 +89,7 @@ management.health.dynamic-datasource.enabled=false
 ```
 
 ### 约定与说明
-
 比如：
-
 ```
 spring.datasource.dynamic.datasource.order-master.balalala...
 spring.datasource.dynamic.datasource.order-slave1.balalala...
@@ -103,13 +98,10 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
 ```
 
 1. 其中 **order-master**、**order-slave1**、**order-slave2** 代表数据源的名称，动态数据源会将 **-** 之前字符相同的数据源划分到同一组数据源中
-
 2. 减号 **-** 后面的部分为数据源名称，你可以起任何有意义的名称。要想配置某个组内的某个数据源为主数据源，只需要数据源名称中包含 **master** 字符标记即可
-
 3. 如果不使用 **master** 标记主数据源，会使用添加到该组的第一个数据源作为主数据源。有时候这将会因为从数据源的只读设置带来读写失败异常的情况发生，所以最好给主数据源名称加个 **master** 标记符哦！
 
 ### 当前版本局限
-
 1. 不支持跨库事务/分布式事务
 
     比如以下事务方法中同时操作两个数据源的情况：

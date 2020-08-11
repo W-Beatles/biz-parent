@@ -1,15 +1,15 @@
 # biz-boot-starter-logger
 
 ### 项目介绍
-
 该模块用于日志上传到elk中(支持RabbitMQ或Kafka两种上传方式)，并且还能将异常信息上传到sentry中实现错误报警。
 
-1. 该模块会将logback日志通过Appender发送到指定RabbitMQ消息队列/Kafka消息队列中，然后通过配置logstash的input为
-RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展示。  
-2. 该模块会将error级别日志通过SentryAppender发送到指定的Sentry DSN地址，便于错误日志汇总、Bug排查定位，
-还能及时收到应用的错误报警。
-3. 该模块还添加调用链路信息到请求头和MDC上下文中，实现微服务的全链路追踪。
-4. elk中记录的信息除当前服务的基础信息之外，还包含微服务调用链路信息。
+1. 将logback日志通过Appender发送到指定RabbitMQ消息队列/Kafka消息队列中，然后通过配置logstash的input为
+RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展示
+2. 将error级别日志通过SentryAppender发送到指定的Sentry DSN地址，便于错误日志汇总、Bug排查定位，还能及时收到应用的错误报警
+3. 添加调用链路信息到请求头和MDC上下文中，实现微服务的全链路追踪
+4. 定制化banner样式
+5. 添加默认的 `logback-spring.xml` 配置，项目代码无需再添加日志配置文件
+6. elk中记录的信息除当前服务的基础信息之外，还包含微服务调用链路信息
     ```
      ---------- 基础信息 ----------
      parentProjectVersion - 父项目版本号。该值为 `biz.logger.version.parent-project` 的赋值，方便定位基础服务框架的一些问题
@@ -23,15 +23,10 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
      time                 - 日志时间。格式为 yyyy-MM-dd HH:mm:ss.SSS
      message              - 日志内容
     ```
-5. 定制化banner样式。
-6. 添加默认的 `logback-spring.xml` 配置，项目代码无需再添加日志配置文件。
 
 ### 过滤器 & 拦截器
-
 1. MDCFilter过滤器
-
     该过滤器用于添加请求信息到 MDC上下文中 及 在请求头中传递调用链路信息。
-
     添加的MDC上下文和请求头中的信息有:
     ```
     ---------- MDC ----------
@@ -48,11 +43,8 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
     trace-host-addresses       - hostAddress调用链路追踪记录。来自header并由该过滤器追加，以`,`分割
    ```
 
-
 ### 使用方式
-
 1. 添加依赖
-
     ```
     <dependency>
         <groupId>cn.waynechu</groupId>
@@ -60,7 +52,6 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
     </dependency>
     ```
 2. 添加配置
-
     ```
     ## sentry
     sentry.enable=true
