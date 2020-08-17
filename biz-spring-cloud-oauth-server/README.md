@@ -3,11 +3,9 @@
 统一认证授权服务
 
 ### OAuth2 简介
-
 OAuth 2.0是用于授权的行业标准协议。OAuth 2.0为简化客户端开发提供了特定的授权流，包括Web应用、桌面应用、移动端应用等
 
 ### OAuth2 角色
-
 - 资源所有者(Resource Owner) - 用户
 - 客户端 (Client) - 第三方应用
 - 授权服务器 (Authorization Server） - 对客户端发送的请求信息进行验证并返回token的服务器
@@ -20,7 +18,6 @@ OAuth 2.0是用于授权的行业标准协议。OAuth 2.0为简化客户端开�
 - `client_credentials` 客户端模式：客户端使用自身向授权服务器申请授权，不需要用户参与 (不支持refresh token)
 
 ### Oauth2 Token
-
 token基本内容如下：
 
 - access_token：表示访问令牌，必选项
@@ -40,7 +37,6 @@ token基本内容如下：
 - /oauth/token_key：提供公有密匙的端点，如果使用JWT令牌的话
 
 #### JWT(JSON Web Tokens)简介
-
 >JWT是一种用于双方之间传递安全信息的简洁的、URL安全的表述性声明规范。JWT作为一个开放的标准（RFC 7519），定义了一种简洁的，自包含的方法用于通信双方之间以Json对象的形式安全的传递信息。因为数字签名的存在，这些信息是可信的，JWT可以使用HMAC算法或者是RSA的公私秘钥对进行签名。
 >* 简洁(Compact): 可以通过URL，POST参数或者在HTTP header发送，因为数据量小，传输速度也很快。
 >* 自包含(Self-contained)：负载中包含了所有用户所需要的信息，避免了多次查询数据库。
@@ -108,14 +104,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 
 #### 用户角色资源等表结构
 
-| 表名        |   简介        |  备注                                          |
-|------------|---------------|------------------------------------------------|
-| user       |   用户表       |  使用应用的用户                                 |
-| group      |   组织表       |  通过user_group_relation与user关联，多对多     |
-| position   |   岗位表       |  通过user_position_relation与user关联，多对多  |
-| role       |   角色表       |  通过user_role_relation与user关联，多对多      |
-| menu       |   菜单表       |  通过role_menu_relation与role关联，多对多      |
-| resource   |   资源表       |  通过role_resource_relation与role关联，多对多  |
+| 表名               |   简介         |  备注                                          |
+|--------------------|---------------|------------------------------------------------|
+| sys_user           |   用户表       |  使用应用的用户                                 |
+| sys_role           |   角色表       |  通过sys_user_role与user关联，多对多             |
+| sys_permission     |   权限表       |  通过sys_role_permission与role关联，多对多   |
+| sys_organization   |   组织表       |  通过sys_user_group与user关联，多对多     |
 
 ### 授权码模式(authorization_code)
 
