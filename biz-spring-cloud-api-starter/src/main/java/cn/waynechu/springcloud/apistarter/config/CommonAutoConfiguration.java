@@ -20,10 +20,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 
 /**
@@ -48,9 +53,18 @@ public class CommonAutoConfiguration {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
+        // 使用OkHttp替换默认的URLConnection请求工具，提升请求性能
         RestTemplate restTemplate = new RestTemplate(new OkHttp3ClientHttpRequestFactory());
+        // 添加拦截器用于传递请求头
         RestTemplateTraceInterceptor traceInterceptor = new RestTemplateTraceInterceptor(commonProperty.getNeedTraceHeaders());
-        restTemplate.setInterceptors(Collections.singletonList(traceInterceptor));
+        ArrayList<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+        interceptors.add(traceInterceptor);
+        restTemplate.setInterceptors(interceptors);
+        // 替换默认的String解码器字符编码，防止调用方解码String类型的返回出现乱码问题
+        Optional<HttpMessageConverter<?>> converter = restTemplate.getMessageConverters().stream()
+                .filter(e -> e instanceof StringHttpMessageConverter).findAny();
+        converter.ifPresent(httpMessageConverter -> ((StringHttpMessageConverter) httpMessageConverter)
+                .setDefaultCharset(StandardCharsets.UTF_8));
         return restTemplate;
     }
 

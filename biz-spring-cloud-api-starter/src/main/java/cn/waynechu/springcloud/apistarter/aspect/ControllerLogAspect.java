@@ -4,6 +4,8 @@ import cn.waynechu.springcloud.common.aspect.AbstractControllerLogAspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 /**
  * Controller层日志切面默认实现
@@ -22,6 +24,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
  */
 @Aspect
 @ConditionalOnMissingBean(name = "controllerLogAspect")
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class ControllerLogAspect extends AbstractControllerLogAspect {
 
     @Pointcut("execution(* *..controller.*.*(..))")
