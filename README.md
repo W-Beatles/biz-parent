@@ -7,57 +7,57 @@ SpringCloud微服务开发脚手架
 > 注: 详细介绍请参考各模块的 **README.md** 文档
 1.  biz-archetype  
      项目骨架生成模块。包括前端和后端站点、以及项目模版
-     [更多](./biz-parent/blob/cloud/biz-archetype/README.md)  
+     [更多](./biz-archetype/README.md)  
 2.  biz-boot-starter-dynamic-datasource  
      动态数据源模块。支持读写分离、多数据源动态切换、健康检查
-     [更多](./biz-parent/blob/cloud/biz-boot-starter-dynamic-datasource/README.md)  
+     [更多](./biz-boot-starter-dynamic-datasource/README.md)  
 3.  biz-boot-starter-logger  
      `elk`&`sentry`starter模块。用于日志上传ELK及Sentry报警
-     [更多](./biz-parent/blob/cloud/biz-boot-starter-logger/README.md)
+     [更多](./biz-boot-starter-logger/README.md)
 4.  biz-boot-starter-sequence  
      基于`zookeeper`和`snowflake`算法的分布式id生成器
-     [更多](./biz-parent/blob/cloud/biz-boot-starter-sequence/README.md)
+     [更多](./biz-boot-starter-sequence/README.md)
 5.  biz-facade-common  
      通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
-     [更多](./biz-parent/blob/cloud/biz-facade-common/README.md)
+     [更多](./biz-facade-common/README.md)
 6.  biz-spring-boot-admin  
      SpringBoot Admin监控模块
-     [更多](./biz-parent/blob/cloud/biz-spring-boot-admin/README.md)
+     [更多](./biz-spring-boot-admin/README.md)
 7.  biz-spring-cloud-api-dynamic-datasource-test  
      动态数据源测试模块
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-dynamic-datasource-test/README.md)
+     [更多](./biz-spring-cloud-api-dynamic-datasource-test/README.md)
 8.  biz-spring-cloud-api-service-order  
      微服务测试模块 - 订单模块
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-service-order/README.md)
+     [更多](./biz-spring-cloud-api-service-order/README.md)
 9.  biz-spring-cloud-api-service-product  
      微服务测试模块 - 产品模块
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-service-product/README.md)
+     [更多](./biz-spring-cloud-api-service-product/README.md)
 10. biz-spring-cloud-api-service-utility  
      公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-service-utility/README.md)
+     [更多](./biz-spring-cloud-api-service-utility/README.md)
 11. biz-spring-cloud-api-starter  
      spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-starter/README.md)
+     [更多](./biz-spring-cloud-api-starter/README.md)
 12. biz-spring-cloud-common  
       spring-cloud项目通用类库
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-common/README.md)
+     [更多](./biz-spring-cloud-common/README.md)
 13. ~~biz-spring-cloud-dashboard-hystrix(已废弃)~~  
       推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
 14. biz-spring-cloud-dashboard-turbine  
       用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-dashboard-turbineREADME.md)
+     [更多](./biz-spring-cloud-dashboard-turbineREADME.md)
 15. biz-spring-cloud-eureka  
       Eureka注册中心
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-eureka/README.md)
+     [更多](./biz-spring-cloud-eureka/README.md)
 16. biz-spring-cloud-gateway  
       API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-gateway/README.md)
+     [更多](./biz-spring-cloud-gateway/README.md)
 17. biz-spring-cloud-oauth-server  
       oauth2统一认证授权中心
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-oauth-server/README.md)
+     [更多](./biz-spring-cloud-oauth-server/README.md)
 18. biz-spring-cloud-test  
       测试模块
-     [更多](./biz-parent/blob/cloud/biz-spring-cloud-test/README.md)
+     [更多](./biz-spring-cloud-test/README.md)
 
 ### TODO LIST
 > 注: ~~ ~~划线部分为已完成功能~~ ~~
