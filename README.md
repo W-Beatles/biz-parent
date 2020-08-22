@@ -7,57 +7,57 @@ SpringCloud微服务开发脚手架
 > 注: 详细介绍请参考各模块的 **README.md** 文档
 1.  biz-archetype  
      项目骨架生成模块。包括前端和后端站点、以及项目模版
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-archetype/README.md)  
+     [更多](./biz-parent/blob/cloud/biz-archetype/README.md)  
 2.  biz-boot-starter-dynamic-datasource  
      动态数据源模块。支持读写分离、多数据源动态切换、健康检查
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-boot-starter-dynamic-datasource/README.md)  
+     [更多](./biz-parent/blob/cloud/biz-boot-starter-dynamic-datasource/README.md)  
 3.  biz-boot-starter-logger  
      `elk`&`sentry`starter模块。用于日志上传ELK及Sentry报警
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-boot-starter-logger/README.md)
+     [更多](./biz-parent/blob/cloud/biz-boot-starter-logger/README.md)
 4.  biz-boot-starter-sequence  
      基于`zookeeper`和`snowflake`算法的分布式id生成器
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-boot-starter-sequence/README.md)
+     [更多](./biz-parent/blob/cloud/biz-boot-starter-sequence/README.md)
 5.  biz-facade-common  
      通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-facade-common/README.md)
+     [更多](./biz-parent/blob/cloud/biz-facade-common/README.md)
 6.  biz-spring-boot-admin  
      SpringBoot Admin监控模块
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-boot-admin/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-boot-admin/README.md)
 7.  biz-spring-cloud-api-dynamic-datasource-test  
      动态数据源测试模块
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-api-dynamic-datasource-test/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-dynamic-datasource-test/README.md)
 8.  biz-spring-cloud-api-service-order  
      微服务测试模块 - 订单模块
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-api-service-order/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-service-order/README.md)
 9.  biz-spring-cloud-api-service-product  
      微服务测试模块 - 产品模块
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-api-service-product/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-service-product/README.md)
 10. biz-spring-cloud-api-service-utility  
      公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-api-service-utility/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-service-utility/README.md)
 11. biz-spring-cloud-api-starter  
      spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-api-starter/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-api-starter/README.md)
 12. biz-spring-cloud-common  
       spring-cloud项目通用类库
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-common/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-common/README.md)
 13. ~~biz-spring-cloud-dashboard-hystrix(已废弃)~~  
       推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
 14. biz-spring-cloud-dashboard-turbine  
       用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-dashboard-turbineREADME.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-dashboard-turbineREADME.md)
 15. biz-spring-cloud-eureka  
       Eureka注册中心
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-eureka/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-eureka/README.md)
 16. biz-spring-cloud-gateway  
       API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-gateway/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-gateway/README.md)
 17. biz-spring-cloud-oauth-server  
       oauth2统一认证授权中心
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-oauth-server/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-oauth-server/README.md)
 18. biz-spring-cloud-test  
       测试模块
-     [更多](https://github.com/W-Beatles/biz-parent/blob/cloud/biz-spring-cloud-test/README.md)
+     [更多](./biz-parent/blob/cloud/biz-spring-cloud-test/README.md)
 
 ### TODO LIST
 > 注: ~~ ~~划线部分为已完成功能~~ ~~
@@ -147,30 +147,57 @@ docker-compose -h                      # 查看更多相关命令
 5. 使用`--scale`参数可对服务进行水平扩容。如: `docker-compose up -d --scale service-order=2 service-order`  
 
 #### 启动步骤说明
-1. 打包所有模块并构建`docker`镜像
+1. 打包所有模块并构建`docker`镜像  
     ```
     # 进入项目根目录
     cd ./biz-parent
     # 打包所有模块并构建docker镜像
     mvn clean install -Ddockerfile.skip=false
     ```
-2. 启动基础服务  
-    **扩展:** 配置MySQL主从链路
-    
-    首次启动主从集群后，需要手动建立主从同步链路
-    
-    1. 登录主库并配置链路用户权限
+2. 启动基础服务，包括主从库、apollodb、rabbitmq等  
+    ```
+    docker-compose up -d mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db  
+    ```
+    注：可使用 `docker-compose logs -f --tail=10` 查看`compose`日志，然后等待基础服务启动完成
+
+3. 配置MySQL主从链路  
+    首次启动MySQL主从集群后，需要手动建立主从同步链路  
+    1. 登录主库并配置主从同步链路用户权限
         ```
         CREATE USER 'replication'@'172.20.0.%' IDENTIFIED WITH mysql_native_password BY 'EiO8Rx4W.T3';
         GRANT REPLICATION SLAVE ON *.* to 'replication'@'172.20.0.%';
-        flush privileges;
-        show master status; --记下File、Position信息，配置从库时需要用到
+        flush privileges; -- 刷新权限
+        show master status; -- 记下File、Position信息，配置从库时需要用到
         ```
-    
+       ![配置主库](./docs/mysql-master.png "配置主库")
+        
     2. 登录从库并启动复制链路(从库都需要执行)
         ```
-        change master to master_host='mysql-master',master_user='replication',master_password='EiO8Rx4W.T3',master_log_file='mysql-bin.000003',master_log_pos=445,master_port=3306;
-        start slave;
+        change master to master_host='mysql-master',master_user='replication',master_password='EiO8Rx4W.T3',master_log_file='mysql-bin.000003',master_log_pos=837,master_port=3306;
+        start slave; -- 开启主从复制链路
         show slave status; -- Slave_IO_Running 和 Slave_SQL_Running 为 YES 代表配置成功
         ```
-   
+        ![配置从库](./docs/mysql-slave.png "配置从库")
+    3. 检测主从链路是否同步成功。修改主库数据，检查从库是否同步即可  
+
+4. 启动apollo、elasticsearch服务
+    ```
+    docker-compose up -d apollo elasticsearch
+    ```
+5. 启动skywalking-oap、logstash、kibana服务
+    ```
+    docker-compose up -d skywalking-oap logstash kibana
+    ```
+6. 启动eureka注册中心
+    ```
+    docker-compose up -d eureka
+    ```
+6. 启动网关、boot-admin监控、skywalking控制台
+    ```
+    docker-compose up -d inner-gateway boot-admin skywalking-ui
+    ```
+7. 启动公共服务
+    ```
+    docker-compose up -d service-utility
+    ```
+8. 启动其他服务

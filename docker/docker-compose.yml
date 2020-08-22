@@ -105,7 +105,7 @@ services:
       - ./config/apollo:/docker-entrypoint-initdb.d
 
   inner-gateway:
-    image: waynechu/biz-spring-cloud-gateway:1.0.2019070901-RELEASE
+    image: waynechu/biz-spring-cloud-gateway:0.1.2019070901-RELEASE
     container_name: inner-gateway
     networks:
       - biz-net
@@ -120,7 +120,7 @@ services:
       - eureka
 
   boot-admin:
-    image: waynechu/biz-spring-boot-admin:1.0.2019070901-RELEASE
+    image: waynechu/biz-spring-boot-admin:0.1.2019070901-RELEASE
     container_name: boot-admin
     networks:
       - biz-net
@@ -180,7 +180,7 @@ services:
       - kibana
 
   eureka:
-    image: waynechu/biz-spring-cloud-eureka:1.0.2019070901-RELEASE
+    image: waynechu/biz-spring-cloud-eureka:0.1.2019070901-RELEASE
     networks:
       - biz-net
     ports:

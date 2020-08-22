@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 05/06/2020 18:40:14
+ Date: 22/08/2020 18:59:36
 */
 
 SET NAMES utf8mb4;
@@ -63,7 +63,7 @@ CREATE TABLE `App`  (
   INDEX `AppId`(`AppId`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Name`(`Name`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of App
@@ -82,6 +82,7 @@ INSERT INTO `App` VALUES (11, 'dynamic-datasource-test', 'dynamic-datasource-tes
 INSERT INTO `App` VALUES (12, 'dynamic-datasource-all', 'dynamic-datasource-all', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'1', 'apollo', '2020-05-28 14:15:35', 'apollo', '2020-05-28 14:23:21');
 INSERT INTO `App` VALUES (13, 'biz-dynamic-datasource-all', 'biz-dynamic-datasource-all', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-28 14:28:21', 'apollo', '2020-05-28 14:28:21');
 INSERT INTO `App` VALUES (14, 'service-order', 'service-order', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-05-28 15:53:15', 'apollo', '2020-05-28 15:53:15');
+INSERT INTO `App` VALUES (15, 'service-utility', 'service-utility', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-08-22 15:17:18', 'apollo', '2020-08-22 15:17:18');
 
 -- ----------------------------
 -- Table structure for AppNamespace
@@ -103,7 +104,7 @@ CREATE TABLE `AppNamespace`  (
   INDEX `IX_AppId`(`AppId`) USING BTREE,
   INDEX `Name_AppId`(`Name`, `AppId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of AppNamespace
@@ -128,6 +129,8 @@ INSERT INTO `AppNamespace` VALUES (17, 'application', 'biz-dynamic-datasource-al
 INSERT INTO `AppNamespace` VALUES (18, 'Archer.datasource-order', 'biz-dynamic-datasource-all', 'properties', b'1', '', b'0', 'apollo', '2020-05-28 14:28:38', 'apollo', '2020-05-28 14:28:38');
 INSERT INTO `AppNamespace` VALUES (19, 'Archer.datasource-product', 'biz-dynamic-datasource-all', 'properties', b'1', '', b'0', 'apollo', '2020-05-28 14:30:12', 'apollo', '2020-05-28 14:30:12');
 INSERT INTO `AppNamespace` VALUES (20, 'application', 'service-order', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-05-28 15:53:16', 'apollo', '2020-05-28 15:53:16');
+INSERT INTO `AppNamespace` VALUES (21, 'application', 'service-utility', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-08-22 15:17:19', 'apollo', '2020-08-22 15:17:19');
+INSERT INTO `AppNamespace` VALUES (22, 'Archer.datasource-common', 'biz-dynamic-datasource-all', 'properties', b'1', 'common库', b'0', 'apollo', '2020-08-22 15:19:28', 'apollo', '2020-08-22 15:19:28');
 
 -- ----------------------------
 -- Table structure for Audit
@@ -146,7 +149,7 @@ CREATE TABLE `Audit`  (
   `DataChange_LastTime` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '最后修改时间',
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 955 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '日志审计表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 968 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '日志审计表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Audit
@@ -1105,6 +1108,19 @@ INSERT INTO `Audit` VALUES (951, 'ReleaseHistory', 62, 'INSERT', NULL, b'0', 'ap
 INSERT INTO `Audit` VALUES (952, 'Item', 219, 'UPDATE', NULL, b'0', 'apollo', '2020-06-05 18:38:59', NULL, '2020-06-05 18:38:59');
 INSERT INTO `Audit` VALUES (953, 'Release', 61, 'INSERT', NULL, b'0', 'apollo', '2020-06-05 18:39:02', NULL, '2020-06-05 18:39:02');
 INSERT INTO `Audit` VALUES (954, 'ReleaseHistory', 63, 'INSERT', NULL, b'0', 'apollo', '2020-06-05 18:39:02', NULL, '2020-06-05 18:39:02');
+INSERT INTO `Audit` VALUES (955, 'App', 15, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:17:19', NULL, '2020-08-22 15:17:19');
+INSERT INTO `Audit` VALUES (956, 'AppNamespace', 21, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:17:19', NULL, '2020-08-22 15:17:19');
+INSERT INTO `Audit` VALUES (957, 'Cluster', 15, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:17:19', NULL, '2020-08-22 15:17:19');
+INSERT INTO `Audit` VALUES (958, 'Namespace', 23, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:17:19', NULL, '2020-08-22 15:17:19');
+INSERT INTO `Audit` VALUES (959, 'Item', 517, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:18:18', NULL, '2020-08-22 15:18:18');
+INSERT INTO `Audit` VALUES (960, 'Item', 518, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:18:18', NULL, '2020-08-22 15:18:18');
+INSERT INTO `Audit` VALUES (961, 'Item', 519, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:18:18', NULL, '2020-08-22 15:18:18');
+INSERT INTO `Audit` VALUES (962, 'Item', 520, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:18:18', NULL, '2020-08-22 15:18:18');
+INSERT INTO `Audit` VALUES (963, 'ItemSet', NULL, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:18:18', NULL, '2020-08-22 15:18:18');
+INSERT INTO `Audit` VALUES (964, 'Release', 62, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:18:21', NULL, '2020-08-22 15:18:21');
+INSERT INTO `Audit` VALUES (965, 'ReleaseHistory', 64, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:18:21', NULL, '2020-08-22 15:18:21');
+INSERT INTO `Audit` VALUES (966, 'Namespace', 24, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:19:28', NULL, '2020-08-22 15:19:28');
+INSERT INTO `Audit` VALUES (967, 'AppNamespace', 22, 'INSERT', NULL, b'0', 'apollo', '2020-08-22 15:19:28', NULL, '2020-08-22 15:19:28');
 
 -- ----------------------------
 -- Table structure for Cluster
@@ -1124,7 +1140,7 @@ CREATE TABLE `Cluster`  (
   INDEX `IX_AppId_Name`(`AppId`, `Name`) USING BTREE,
   INDEX `IX_ParentClusterId`(`ParentClusterId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '集群' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '集群' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Cluster
@@ -1143,6 +1159,7 @@ INSERT INTO `Cluster` VALUES (11, 'default', 'dynamic-datasource-test', 0, b'1',
 INSERT INTO `Cluster` VALUES (12, 'default', 'dynamic-datasource-all', 0, b'1', 'apollo', '2020-05-28 14:15:35', 'apollo', '2020-05-28 14:23:21');
 INSERT INTO `Cluster` VALUES (13, 'default', 'biz-dynamic-datasource-all', 0, b'0', 'apollo', '2020-05-28 14:28:21', 'apollo', '2020-05-28 14:28:21');
 INSERT INTO `Cluster` VALUES (14, 'default', 'service-order', 0, b'0', 'apollo', '2020-05-28 15:53:16', 'apollo', '2020-05-28 15:53:16');
+INSERT INTO `Cluster` VALUES (15, 'default', 'service-utility', 0, b'0', 'apollo', '2020-08-22 15:17:19', 'apollo', '2020-08-22 15:17:19');
 
 -- ----------------------------
 -- Table structure for Commit
@@ -1165,7 +1182,7 @@ CREATE TABLE `Commit`  (
   INDEX `AppId`(`AppId`(191)) USING BTREE,
   INDEX `ClusterName`(`ClusterName`(191)) USING BTREE,
   INDEX `NamespaceName`(`NamespaceName`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 68 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'commit 历史表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'commit 历史表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Commit
@@ -1237,6 +1254,7 @@ INSERT INTO `Commit` VALUES (64, '{\"createItems\":[],\"updateItems\":[{\"oldIte
 INSERT INTO `Commit` VALUES (65, '{\"createItems\":[{\"namespaceId\":22,\"key\":\"apollo.refresh-value\",\"value\":\"a\",\"comment\":\"\",\"lineNum\":1,\"id\":507,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 15:55:41\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 15:55:41\"}],\"updateItems\":[],\"deleteItems\":[]}', 'service-order', 'default', 'application', NULL, b'0', 'apollo', '2020-05-28 15:55:42', 'apollo', '2020-05-28 15:55:42');
 INSERT INTO `Commit` VALUES (66, '{\"createItems\":[{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-master.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":2,\"id\":508,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-master.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":3,\"id\":509,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-master.url\",\"value\":\"jdbc:mysql://mysql-master:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":4,\"id\":510,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-slave1.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":5,\"id\":511,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-slave1.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":6,\"id\":512,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-slave1.url\",\"value\":\"jdbc:mysql://mysql-slave1:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":7,\"id\":513,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-slave2.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":8,\"id\":514,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-slave2.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":9,\"id\":515,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.product-slave2.url\",\"value\":\"jdbc:mysql://mysql-slave2:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":10,\"id\":516,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 16:18:13\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"}],\"updateItems\":[],\"deleteItems\":[{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-slave2.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":9,\"id\":468,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-slave2.url\",\"value\":\"jdbc:mysql://mysql-slave2:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":10,\"id\":469,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-slave2.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":8,\"id\":467,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-master.url\",\"value\":\"jdbc:mysql://mysql-master:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":4,\"id\":463,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-master.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":3,\"id\":462,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-slave1.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":5,\"id\":464,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-slave1.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":6,\"id\":465,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-slave1.url\",\"value\":\"jdbc:mysql://mysql-slave1:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":7,\"id\":466,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"},{\"namespaceId\":21,\"key\":\"spring.datasource.dynamic.datasource.order-master.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":2,\"id\":461,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-28 14:30:59\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-28 16:18:13\"}]}', 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', NULL, b'0', 'apollo', '2020-05-28 16:18:14', 'apollo', '2020-05-28 16:18:14');
 INSERT INTO `Commit` VALUES (67, '{\"createItems\":[],\"updateItems\":[{\"oldItem\":{\"namespaceId\":3,\"key\":\"gateway.permit-urls\",\"value\":\"/**\",\"comment\":\"\",\"lineNum\":7,\"id\":219,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-19 14:30:04\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-05-19 14:40:24\"},\"newItem\":{\"namespaceId\":3,\"key\":\"gateway.permit-urls\",\"value\":\"/**/v2/api-docs,/biz-spring-cloud-oauth-server/**\",\"comment\":\"\",\"lineNum\":7,\"id\":219,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-05-19 14:30:04\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-06-05 18:38:58\"}}],\"deleteItems\":[]}', 'biz-spring-cloud-gateway', 'default', 'application', NULL, b'0', 'apollo', '2020-06-05 18:38:59', 'apollo', '2020-06-05 18:38:59');
+INSERT INTO `Commit` VALUES (68, '{\"createItems\":[{\"namespaceId\":23,\"key\":\"utility.gateway-url\",\"value\":\"http://inner-gateway:9010\",\"comment\":\"\",\"lineNum\":2,\"id\":518,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-22 15:18:17\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-22 15:18:17\"},{\"namespaceId\":23,\"key\":\"utility.file.path\",\"value\":\"d:\\\\\\\\service-utility-upload\\\\\\\\\",\"comment\":\"\",\"lineNum\":4,\"id\":520,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-22 15:18:17\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-22 15:18:17\"}],\"updateItems\":[],\"deleteItems\":[]}', 'service-utility', 'default', 'application', NULL, b'0', 'apollo', '2020-08-22 15:18:18', 'apollo', '2020-08-22 15:18:18');
 
 -- ----------------------------
 -- Table structure for GrayReleaseRule
@@ -1277,7 +1295,7 @@ CREATE TABLE `Instance`  (
   UNIQUE INDEX `IX_UNIQUE_KEY`(`AppId`, `ClusterName`, `Ip`, `DataCenter`) USING BTREE,
   INDEX `IX_IP`(`Ip`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '使用配置的应用实例' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 63 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '使用配置的应用实例' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Instance
@@ -1343,6 +1361,7 @@ INSERT INTO `Instance` VALUES (58, 'dynamic-datasource-test', 'default', '', '17
 INSERT INTO `Instance` VALUES (59, 'dynamic-datasource-test', 'default', '', '172.20.0.12', '2020-05-28 16:34:07', '2020-05-28 16:34:07');
 INSERT INTO `Instance` VALUES (60, 'service-product', 'default', '', '172.20.0.19', '2020-05-28 16:35:34', '2020-05-28 16:35:34');
 INSERT INTO `Instance` VALUES (61, 'service-utility', 'default', '', '172.20.0.20', '2020-05-28 16:36:01', '2020-05-28 16:36:01');
+INSERT INTO `Instance` VALUES (62, 'biz-spring-cloud-gateway', 'default', '', '172.20.0.15', '2020-08-22 15:04:18', '2020-08-22 15:04:18');
 
 -- ----------------------------
 -- Table structure for InstanceConfig
@@ -1363,7 +1382,7 @@ CREATE TABLE `InstanceConfig`  (
   INDEX `IX_ReleaseKey`(`ReleaseKey`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Valid_Namespace`(`ConfigAppId`, `ConfigClusterName`, `ConfigNamespaceName`, `DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用实例的配置信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 115 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用实例的配置信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of InstanceConfig
@@ -1371,18 +1390,18 @@ CREATE TABLE `InstanceConfig`  (
 INSERT INTO `InstanceConfig` VALUES (1, 1, 'biz-spring-cloud-eureka', 'default', 'application', '20200515115229-6be5f871e0516ae9', '2020-05-15 11:52:30', '2020-05-15 11:49:47', '2020-05-15 15:03:24');
 INSERT INTO `InstanceConfig` VALUES (2, 2, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200515144452-9941f871e037854c', '2020-05-15 15:06:12', '2020-05-15 15:06:12', '2020-05-15 15:06:12');
 INSERT INTO `InstanceConfig` VALUES (4, 3, 'biz-spring-cloud-eureka', 'default', 'application', '20200518172305-6be5f871e056f9e0', '2020-05-18 17:23:05', '2020-05-15 18:29:44', '2020-05-19 13:50:20');
-INSERT INTO `InstanceConfig` VALUES (5, 4, 'biz-spring-cloud-eureka', 'default', 'application', '20200518172305-6be5f871e056f9e0', '2020-05-18 17:23:05', '2020-05-18 17:06:44', '2020-05-19 13:50:20');
+INSERT INTO `InstanceConfig` VALUES (5, 4, 'biz-spring-cloud-eureka', 'default', 'application', '20200519235150-6be5496ca435046c', '2020-08-22 15:00:18', '2020-05-18 17:06:44', '2020-08-22 15:00:18');
 INSERT INTO `InstanceConfig` VALUES (8, 6, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519235038-9941496ca4350469', '2020-05-20 00:23:52', '2020-05-18 18:07:25', '2020-05-20 00:23:52');
 INSERT INTO `InstanceConfig` VALUES (9, 5, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200518180031-9941f871e056f9e2', '2020-05-18 18:07:25', '2020-05-18 18:07:25', '2020-05-18 18:07:25');
 INSERT INTO `InstanceConfig` VALUES (11, 7, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:06', '2020-05-18 19:18:00', '2020-05-19 16:09:06');
 INSERT INTO `InstanceConfig` VALUES (14, 8, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200518180031-9941f871e056f9e2', '2020-05-18 19:28:06', '2020-05-18 19:28:06', '2020-05-18 19:28:06');
 INSERT INTO `InstanceConfig` VALUES (15, 9, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:06', '2020-05-18 19:28:06', '2020-05-19 16:09:06');
 INSERT INTO `InstanceConfig` VALUES (16, 10, 'biz-spring-cloud-gateway', 'default', 'application', '20200519144028-2974f871e02fccb1', '2020-05-19 14:40:30', '2020-05-19 14:30:27', '2020-05-19 14:40:30');
-INSERT INTO `InstanceConfig` VALUES (17, 11, 'biz-spring-boot-admin', 'default', 'application', '20200519151829-6748f871e02fccb2', '2020-05-19 15:18:56', '2020-05-19 15:18:56', '2020-05-19 15:18:56');
+INSERT INTO `InstanceConfig` VALUES (17, 11, 'biz-spring-boot-admin', 'default', 'application', '20200519235213-6748496ca435046e', '2020-08-22 15:04:17', '2020-05-19 15:18:56', '2020-08-22 15:04:17');
 INSERT INTO `InstanceConfig` VALUES (18, 12, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200518180031-9941f871e056f9e2', '2020-05-19 15:34:47', '2020-05-19 15:34:47', '2020-05-19 15:34:47');
 INSERT INTO `InstanceConfig` VALUES (19, 13, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:06', '2020-05-19 15:34:47', '2020-05-19 16:09:06');
 INSERT INTO `InstanceConfig` VALUES (23, 14, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:44', '2020-05-19 15:41:28', '2020-05-19 16:09:44');
-INSERT INTO `InstanceConfig` VALUES (25, 15, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:06', '2020-05-19 15:59:56', '2020-05-19 16:09:06');
+INSERT INTO `InstanceConfig` VALUES (25, 15, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200528150102-9941f264def41d75', '2020-08-22 15:07:56', '2020-05-19 15:59:56', '2020-08-22 15:07:56');
 INSERT INTO `InstanceConfig` VALUES (26, 16, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200526233150-9941756b5f0b63aa', '2020-05-26 23:36:53', '2020-05-19 15:59:57', '2020-05-26 23:36:53');
 INSERT INTO `InstanceConfig` VALUES (27, 17, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519235038-9941496ca4350469', '2020-05-20 00:27:33', '2020-05-19 16:06:17', '2020-05-20 00:27:34');
 INSERT INTO `InstanceConfig` VALUES (31, 18, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:41', '2020-05-19 16:09:41', '2020-05-19 16:09:41');
@@ -1447,6 +1466,8 @@ INSERT INTO `InstanceConfig` VALUES (109, 60, 'biz-spring-cloud-public', 'defaul
 INSERT INTO `InstanceConfig` VALUES (110, 60, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-order', '20200528154414-d210f264def41d7a', '2020-05-28 16:35:33', '2020-05-28 16:35:33', '2020-05-28 16:35:33');
 INSERT INTO `InstanceConfig` VALUES (111, 60, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', '20200528161821-caf1f264de0fd228', '2020-05-28 16:35:33', '2020-05-28 16:35:33', '2020-05-28 16:35:33');
 INSERT INTO `InstanceConfig` VALUES (112, 61, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200528150102-9941f264def41d75', '2020-05-28 16:36:01', '2020-05-28 16:36:01', '2020-05-28 16:36:01');
+INSERT INTO `InstanceConfig` VALUES (113, 62, 'biz-spring-cloud-gateway', 'default', 'application', '20200605183902-2974f264de63020f', '2020-08-22 15:04:18', '2020-08-22 15:04:18', '2020-08-22 15:04:18');
+INSERT INTO `InstanceConfig` VALUES (114, 15, 'service-utility', 'default', 'application', '20200822151820-dce2756b5f236c30', '2020-08-22 15:18:22', '2020-08-22 15:18:22', '2020-08-22 15:18:22');
 
 -- ----------------------------
 -- Table structure for Item
@@ -1467,7 +1488,7 @@ CREATE TABLE `Item`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `IX_GroupId`(`NamespaceId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 517 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '配置项目' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 521 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '配置项目' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Item
@@ -1988,6 +2009,10 @@ INSERT INTO `Item` VALUES (513, 21, 'spring.datasource.dynamic.datasource.produc
 INSERT INTO `Item` VALUES (514, 21, 'spring.datasource.dynamic.datasource.product-slave2.username', 'root', '', 8, b'0', 'apollo', '2020-05-28 16:18:14', 'apollo', '2020-05-28 16:18:14');
 INSERT INTO `Item` VALUES (515, 21, 'spring.datasource.dynamic.datasource.product-slave2.password', 'LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==', '', 9, b'0', 'apollo', '2020-05-28 16:18:14', 'apollo', '2020-05-28 16:18:14');
 INSERT INTO `Item` VALUES (516, 21, 'spring.datasource.dynamic.datasource.product-slave2.url', 'jdbc:mysql://mysql-slave2:3306/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true', '', 10, b'0', 'apollo', '2020-05-28 16:18:14', 'apollo', '2020-05-28 16:18:14');
+INSERT INTO `Item` VALUES (517, 23, '', '', '## 网关地址', 1, b'0', 'apollo', '2020-08-22 15:18:18', 'apollo', '2020-08-22 15:18:18');
+INSERT INTO `Item` VALUES (518, 23, 'utility.gateway-url', 'http://inner-gateway:9010', '', 2, b'0', 'apollo', '2020-08-22 15:18:18', 'apollo', '2020-08-22 15:18:18');
+INSERT INTO `Item` VALUES (519, 23, '', '', '## 文件存储路径', 3, b'0', 'apollo', '2020-08-22 15:18:18', 'apollo', '2020-08-22 15:18:18');
+INSERT INTO `Item` VALUES (520, 23, 'utility.file.path', 'd:\\\\service-utility-upload\\\\', '', 4, b'0', 'apollo', '2020-08-22 15:18:18', 'apollo', '2020-08-22 15:18:18');
 
 -- ----------------------------
 -- Table structure for Namespace
@@ -2007,7 +2032,7 @@ CREATE TABLE `Namespace`  (
   INDEX `AppId_ClusterName_NamespaceName`(`AppId`(191), `ClusterName`(191), `NamespaceName`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_NamespaceName`(`NamespaceName`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '命名空间' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '命名空间' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Namespace
@@ -2034,6 +2059,8 @@ INSERT INTO `Namespace` VALUES (19, 'biz-dynamic-datasource-all', 'default', 'ap
 INSERT INTO `Namespace` VALUES (20, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-order', b'0', 'apollo', '2020-05-28 14:28:38', 'apollo', '2020-05-28 14:28:38');
 INSERT INTO `Namespace` VALUES (21, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', b'0', 'apollo', '2020-05-28 14:30:12', 'apollo', '2020-05-28 14:30:12');
 INSERT INTO `Namespace` VALUES (22, 'service-order', 'default', 'application', b'0', 'apollo', '2020-05-28 15:53:16', 'apollo', '2020-05-28 15:53:16');
+INSERT INTO `Namespace` VALUES (23, 'service-utility', 'default', 'application', b'0', 'apollo', '2020-08-22 15:17:19', 'apollo', '2020-08-22 15:17:19');
+INSERT INTO `Namespace` VALUES (24, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-common', b'0', 'apollo', '2020-08-22 15:19:28', 'apollo', '2020-08-22 15:19:28');
 
 -- ----------------------------
 -- Table structure for NamespaceLock
@@ -2075,7 +2102,7 @@ CREATE TABLE `Release`  (
   INDEX `AppId_ClusterName_GroupName`(`AppId`(191), `ClusterName`(191), `NamespaceName`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_ReleaseKey`(`ReleaseKey`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 63 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Release
@@ -2141,6 +2168,7 @@ INSERT INTO `Release` VALUES (58, '20200528154414-d210f264def41d7a', '2020052815
 INSERT INTO `Release` VALUES (59, '20200528155545-7c44f264def41d7b', '20200528155543-release', '', 'service-order', 'default', 'application', '{\"apollo.refresh-value\":\"a\"}', b'0', b'0', 'apollo', '2020-05-28 15:55:45', 'apollo', '2020-05-28 15:55:45');
 INSERT INTO `Release` VALUES (60, '20200528161821-caf1f264de0fd228', '20200528161815-release', '', 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', '{\"spring.datasource.dynamic.datasource.product-master.username\":\"root\",\"spring.datasource.dynamic.datasource.product-master.password\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"spring.datasource.dynamic.datasource.product-master.url\":\"jdbc:mysql://mysql-master:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"spring.datasource.dynamic.datasource.product-slave1.username\":\"root\",\"spring.datasource.dynamic.datasource.product-slave1.password\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"spring.datasource.dynamic.datasource.product-slave1.url\":\"jdbc:mysql://mysql-slave1:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"spring.datasource.dynamic.datasource.product-slave2.username\":\"root\",\"spring.datasource.dynamic.datasource.product-slave2.password\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"spring.datasource.dynamic.datasource.product-slave2.url\":\"jdbc:mysql://mysql-slave2:3306/product?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\"}', b'0', b'0', 'apollo', '2020-05-28 16:18:21', 'apollo', '2020-05-28 16:18:21');
 INSERT INTO `Release` VALUES (61, '20200605183902-2974f264de63020f', '20200605183900-release', '', 'biz-spring-cloud-gateway', 'default', 'application', '{\"spring.cloud.gateway.discovery.locator.enabled\":\"true\",\"spring.cloud.gateway.discovery.locator.lower-case-service-id\":\"true\",\"gateway.permit-urls\":\"/**/v2/api-docs,/biz-spring-cloud-oauth-server/**\",\"gateway.swagger.exclude-applications\":\"biz-spring-cloud-eureka,biz-spring-cloud-gateway,biz-spring-boot-admin,biz-spring-cloud-turbine,biz-spring-cloud-oauth-server\",\"gateway.auth-type.switch.open-all\":\"false\",\"gateway.auth-type.switch.opens\":\"oauth2\",\"eureka.client.register-with-eureka\":\"true\",\"eureka.client.fetch-registry\":\"true\",\"eureka.client.healthcheck.enabled\":\"true\",\"eureka.client.registry-fetch-interval-seconds\":\"30\",\"eureka.instance.prefer-ip-address\":\"true\",\"eureka.instance.lease-renewal-interval-in-seconds\":\"30\",\"eureka.instance.lease-expiration-duration-in-seconds\":\"90\",\"eureka.instance.metadata-map.startup\":\"${random.int}\",\"spring.cloud.gateway.httpclient.wiretap\":\"true\",\"spring.cloud.gateway.httpserver.wiretap\":\"true\",\"spring.rabbitmq.host\":\"rabbitmq\",\"spring.rabbitmq.port\":\"5672\",\"spring.rabbitmq.username\":\"waynechu\",\"spring.rabbitmq.password\":\"123456\",\"spring.rabbitmq.virtual-host\":\"/logback\",\"spring.rabbitmq.publisher-confirm-type\":\"correlated\",\"spring.rabbitmq.publisher-returns\":\"true\",\"spring.rabbitmq.template.mandatory\":\"true\",\"elk.rabbitmq.enable\":\"false\",\"elk.rabbitmq.host\":\"${spring.rabbitmq.host}\",\"elk.rabbitmq.port\":\"${spring.rabbitmq.port}\",\"elk.rabbitmq.username\":\"${spring.rabbitmq.username}\",\"elk.rabbitmq.password\":\"${spring.rabbitmq.password}\",\"elk.rabbitmq.application-id\":\"${spring.application.name}\",\"elk.rabbitmq.virtual-host\":\"/logback\",\"elk.rabbitmq.exchange\":\"topic.loggingExchange\",\"elk.rabbitmq.routing-key\":\"logback.#\",\"elk.rabbitmq.connection-name\":\"biz|${spring.application.name}\",\"spring.main.allow-bean-definition-overriding\":\"true\"}', b'0', b'0', 'apollo', '2020-06-05 18:39:02', 'apollo', '2020-06-05 18:39:02');
+INSERT INTO `Release` VALUES (62, '20200822151820-dce2756b5f236c30', '20200822151819-release', '', 'service-utility', 'default', 'application', '{\"utility.gateway-url\":\"http://inner-gateway:9010\",\"utility.file.path\":\"d:\\\\\\\\service-utility-upload\\\\\\\\\"}', b'0', b'0', 'apollo', '2020-08-22 15:18:21', 'apollo', '2020-08-22 15:18:21');
 
 -- ----------------------------
 -- Table structure for ReleaseHistory
@@ -2165,7 +2193,7 @@ CREATE TABLE `ReleaseHistory`  (
   INDEX `IX_Namespace`(`AppId`, `ClusterName`, `NamespaceName`, `BranchName`) USING BTREE,
   INDEX `IX_ReleaseId`(`ReleaseId`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布历史' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 65 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布历史' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ReleaseHistory
@@ -2233,6 +2261,7 @@ INSERT INTO `ReleaseHistory` VALUES (60, 'biz-dynamic-datasource-all', 'default'
 INSERT INTO `ReleaseHistory` VALUES (61, 'service-order', 'default', 'application', 'default', 59, 0, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-05-28 15:55:45', 'apollo', '2020-05-28 15:55:45');
 INSERT INTO `ReleaseHistory` VALUES (62, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', 'default', 60, 57, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-05-28 16:18:21', 'apollo', '2020-05-28 16:18:21');
 INSERT INTO `ReleaseHistory` VALUES (63, 'biz-spring-cloud-gateway', 'default', 'application', 'default', 61, 36, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-06-05 18:39:02', 'apollo', '2020-06-05 18:39:02');
+INSERT INTO `ReleaseHistory` VALUES (64, 'service-utility', 'default', 'application', 'default', 62, 0, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-08-22 15:18:21', 'apollo', '2020-08-22 15:18:21');
 
 -- ----------------------------
 -- Table structure for ReleaseMessage
@@ -2245,7 +2274,7 @@ CREATE TABLE `ReleaseMessage`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Message`(`Message`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布消息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布消息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ReleaseMessage
@@ -2261,7 +2290,6 @@ INSERT INTO `ReleaseMessage` VALUES (55, 'dynamic-datasource-all+default+applica
 INSERT INTO `ReleaseMessage` VALUES (56, 'dynamic-datasource-all+default+Archer.biz-dynamic-datasource', '2020-05-28 14:23:21');
 INSERT INTO `ReleaseMessage` VALUES (58, 'biz-dynamic-datasource+default+Archer.biz-dynamic-datasource', '2020-05-28 14:27:43');
 INSERT INTO `ReleaseMessage` VALUES (59, 'biz-dynamic-datasource+default+application', '2020-05-28 14:28:00');
-INSERT INTO `ReleaseMessage` VALUES (63, 'service-utility+default+application', '2020-05-28 14:40:39');
 INSERT INTO `ReleaseMessage` VALUES (65, 'service-product+default+application', '2020-05-28 14:41:11');
 INSERT INTO `ReleaseMessage` VALUES (66, 'dynamic-datasource-test+default+application', '2020-05-28 14:41:25');
 INSERT INTO `ReleaseMessage` VALUES (67, 'biz-spring-cloud-public+default+Archer.biz-spring-cloud-public', '2020-05-28 15:01:03');
@@ -2269,6 +2297,7 @@ INSERT INTO `ReleaseMessage` VALUES (72, 'biz-dynamic-datasource-all+default+Arc
 INSERT INTO `ReleaseMessage` VALUES (73, 'service-order+default+application', '2020-05-28 15:55:45');
 INSERT INTO `ReleaseMessage` VALUES (74, 'biz-dynamic-datasource-all+default+Archer.datasource-product', '2020-05-28 16:18:21');
 INSERT INTO `ReleaseMessage` VALUES (75, 'biz-spring-cloud-gateway+default+application', '2020-06-05 18:39:02');
+INSERT INTO `ReleaseMessage` VALUES (76, 'service-utility+default+application', '2020-08-22 15:18:21');
 
 -- ----------------------------
 -- Table structure for ServerConfig
