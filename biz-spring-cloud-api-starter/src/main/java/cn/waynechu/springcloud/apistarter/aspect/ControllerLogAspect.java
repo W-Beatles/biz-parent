@@ -24,7 +24,7 @@ import org.springframework.core.annotation.Order;
  */
 @Aspect
 @ConditionalOnMissingBean(name = "controllerLogAspect")
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE + 2)
 public class ControllerLogAspect extends AbstractControllerLogAspect {
 
     @Pointcut("execution(* *..controller.*.*(..))")
