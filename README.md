@@ -125,7 +125,7 @@ docker-compose -h                      # 查看更多相关命令
     |  监控中心         |  boot-admin             |  9020        |                   |  http://localhost:9020                   |
     |  skywalking-oap  |  skywalking-oap         |  12800       |                   |                                          |
     |  skywalking-ui   |  skywalking-ui          |  8090        |                   |  http://localhost:8090                   |
-    |  认证服务         |  oauth-server           |  9050        |                   |  http://localhost:9050                   |
+    |  * 统一认证服务   |  oauth-server           |  9050-9059   |                   |  http://localhost:9050                   |
     |  代码生成后端服务  |  archetype-portal       |  9060        |                   |  http://localhost:9060                   |
     |  订单服务         |  service-order          |  10010-10019 |                   |  http://localhost:10010/swagger-ui.html  |
     |  订单服务         |  service-product        |  10020-10029 |                   |  http://localhost:10020/swagger-ui.html  |
@@ -154,9 +154,9 @@ docker-compose -h                      # 查看更多相关命令
     # 打包所有模块并构建docker镜像
     mvn clean install -Ddockerfile.skip=false
     ```
-2. 启动基础服务，包括主从库、apollodb、rabbitmq等  
+2. 启动基础服务，包括主从库、apollo数据库、rabbitmq等  
     ```
-    docker-compose up -d mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db  
+    docker-compose up -d mysql-master mysql-slave1 mysql-slave2 apollo-db redis rabbitmq  
     ```
     注：可使用 `docker-compose logs -f --tail=10` 查看`compose`日志，然后等待基础服务启动完成
 
@@ -180,24 +180,22 @@ docker-compose -h                      # 查看更多相关命令
         ![配置从库](./docs/mysql-slave.png "配置从库")
     3. 检测主从链路是否同步成功。修改主库数据，检查从库是否同步即可  
 
-4. 启动apollo、elasticsearch服务
+4. 启动eureka、apollo、elasticsearch服务。其中eureka、apollo为必须依赖，es可选启动
     ```
-    docker-compose up -d apollo elasticsearch
+    docker-compose up -d eureka apollo elasticsearch
     ```
-5. 启动skywalking-oap、logstash、kibana服务
+5. 启动skywalking-oap、logstash、kibana服务。这三个都是可选服务
     ```
     docker-compose up -d skywalking-oap logstash kibana
     ```
-6. 启动eureka注册中心
-    ```
-    docker-compose up -d eureka
-    ```
-6. 启动网关、boot-admin监控、skywalking控制台
+6. 启动网关、boot-admin监控、skywalking控制台。网关为必须依赖服务，其他两个可选
     ```
     docker-compose up -d inner-gateway boot-admin skywalking-ui
     ```
-7. 启动公共服务
+7. 启动其他服务
     ```
+    docker-compose up -d oauth-server
     docker-compose up -d service-utility
+    docker-compose up -d service-order
+    docker-compose up -d service-product
     ```
-8. 启动其他服务
