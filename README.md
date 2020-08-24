@@ -154,7 +154,12 @@ docker-compose -h                      # 查看更多相关命令
     # 打包所有模块并构建docker镜像
     mvn clean install -Ddockerfile.skip=false
     ```
-2. 启动基础服务，包括主从库、apollo数据库、rabbitmq等  
+   注: 如果只更改了单个模块的代码，可手动为该模块单独重新构建镜像
+   ```
+   docker build -t waynechu/biz-archetype-portal:0.1.0-SNAPSHOT . --build-arg JAR_FILE=./target/biz-archetype-portal-api-0.1.0-SNAPSHOT.jar
+   ```
+
+2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  
     ```
     docker-compose up -d mysql-master mysql-slave1 mysql-slave2 apollo-db redis rabbitmq  
     ```
@@ -192,10 +197,14 @@ docker-compose -h                      # 查看更多相关命令
     ```
     docker-compose up -d inner-gateway boot-admin skywalking-ui
     ```
-7. 启动其他服务
+7. 启动统一认证服务
     ```
     docker-compose up -d oauth-server
+    ```
+8. 启动统一其它服务
+    ```
     docker-compose up -d service-utility
+    docker-compose up -d archetype-portal
     docker-compose up -d service-order
     docker-compose up -d service-product
     ```

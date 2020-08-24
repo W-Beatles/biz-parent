@@ -4,14 +4,15 @@ setlocal enabledelayedexpansion
 if "%1"=="" goto BLANK
 if "%2"=="" goto BLANK
 
-set PROJECT_NAME=%1
-set PACKAGE_NAME=%2
+set ARCHETYPE_ARTIFACT_ID=%1
 set ARCHETYPE_VERSION=LATEST
+set PROJECT_NAME=%2
+set PACKAGE_NAME=%3
 
 echo Y | mvn archetype:generate ^
     -DarchetypeCatalog=local ^
     -DarchetypeGroupId=cn.waynechu ^
-    -DarchetypeArtifactId=biz-archetype-template-service ^
+    -DarchetypeArtifactId=%ARCHETYPE_ARTIFACT_ID% ^
     -DarchetypeVersion=%ARCHETYPE_VERSION% ^
     -DgroupId=cn.waynechu ^
     -DartifactId=%PROJECT_NAME% ^

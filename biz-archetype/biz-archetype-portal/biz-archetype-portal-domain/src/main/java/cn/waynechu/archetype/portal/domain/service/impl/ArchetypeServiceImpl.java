@@ -183,8 +183,10 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         bizExecutor.execute(() -> {
             StatusCodeEnum statusCode = StatusCodeEnum.FAILED;
             try {
+                // TODO 2020/8/24 19:52 先默认一个archetype，等字典服务提供多级缓存懒加载工具后支持切换骨架模型
+                String archetypeArtifactId = "biz-archetype-template-service";
                 // 生成项目原型文件
-                this.createProjectArchetype(archetypeId, request.getAppName(), request.getPackageName());
+                this.createProjectArchetype(archetypeId, archetypeArtifactId, request.getAppName(), request.getPackageName());
 
                 // 打包压缩为ZIP
                 String workPath = workingRootPath + "project" + File.separator + archetypeId + File.separator;
@@ -242,11 +244,19 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
      * @param packageName 包名
      * @throws IOException e
      */
-    private void createProjectArchetype(Long archetypeId, String appName, String packageName) throws IOException {
-        String scriptName = SystemUtil.isWindows() ? "CreateProject.bat" : "CreateProject.sh";
-        // d:\archetype-generator\script\CreateProject.bat appName packageName
-        String cmd = workingRootPath + "script" + File.separator + scriptName + " " + appName + " " + packageName;
-        // d:\archetype-generator\project\1\
+    private void createProjectArchetype(Long archetypeId, String archetypeArtifactId, String appName, String packageName) throws IOException {
+        String cmd;
+        if (SystemUtil.isWindows()) {
+            // d:\archetype-generator\script\CreateProject.bat archetypeArtifactId appName packageName
+            cmd = workingRootPath + "script" + File.separator + "CreateProject.bat "
+                    + archetypeArtifactId + " " + appName + " " + packageName;
+        } else {
+            // /script/CreateProject.sh -a archetypeArtifactId -n appName -p packageName
+            cmd = workingRootPath + "script" + File.separator + "CreateProject.sh"
+                    + " -a " + archetypeArtifactId + " -n " + appName + " -p " + packageName;
+        }
+
+        // 存放项目的目录
         String projectPath = workingRootPath + "project" + File.separator + archetypeId + File.separator;
         File projectDir = new File(projectPath);
         if (projectDir.exists()) {
@@ -255,6 +265,8 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         // noinspection ResultOfMethodCallIgnored
         projectDir.mkdir();
 
+        // 生成项目骨架文件
+        log.info("Cmd: {}", cmd);
         Process process = Runtime.getRuntime().exec(cmd, null, projectDir);
         StringBuilder result = new StringBuilder();
         InputStream is = process.getInputStream();
@@ -282,11 +294,13 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         // 复制script脚本
         String scriptPath = workingRootPath + "script" + File.separator;
         File scriptFilePath = new File(scriptPath);
+        String[] scriptNames = {"CreateProject.bat", "CreateProject.sh"};
         if (!scriptFilePath.exists()) {
-            String[] scriptNames = {"CreateProject.bat", "CreateProject.sh"};
             for (String scriptName : scriptNames) {
                 this.copyScript(scriptName, scriptPath);
             }
+            // 脚本授权
+            SystemUtil.setShellPermission(scriptPath + scriptNames[1]);
         }
 
         // 创建project文件夹

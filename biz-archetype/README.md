@@ -10,17 +10,17 @@
 
 #### 方式一: 脚本生成
 1. 进入`biz-archetype/biz-archetype-portal/biz-archetype-portal-api/src/main/resources/CreateProject.bat`目录
-2. 执行命令 `CreateProject.bat 项目名 包名`
+2. 执行命令 `CreateProject.bat 骨架名称 项目名 包名`
 
 例如:
 ```shell
-(Windows) CreateProject.bat biz-spring-cloud-service-order order
-(Linux) CreateProject.sh -n biz-spring-cloud-service-order -p order
+(Windows) CreateProject.bat biz-archetype-template-service biz-spring-cloud-service-order order
+(Linux) CreateProject.sh -a biz-archetype-template-service -n biz-spring-cloud-service-order -p order
 ```
 
 即可生成项目骨架原型 `biz-spring-cloud-service-order`，并且包名为 `cn.waynechu.order`
 
 ### 方式二: 页面生成（推荐）
-1. 启动`biz-archetype-portal`后端项目
+1. 启动`biz-archetype-portal`后端服务
 2. 启动`biz-archetype-portal-ui`前端项目
 3. 在页面上配置项目信息即可生成并下载项目骨架原型

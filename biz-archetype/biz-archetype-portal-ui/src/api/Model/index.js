@@ -1,7 +1,7 @@
 import httpAsync from '../req.js'
 import Urls from "@/api/urls/index";
 
-const host = 'http://192.168.43.118:9010'
+const host = 'http://localhost:9010'
 
 class Request {
     static generateUrl(appName, key) {

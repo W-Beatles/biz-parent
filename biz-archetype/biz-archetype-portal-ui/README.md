@@ -1,5 +1,8 @@
-# biz-spring-cloud-archetype-web
+# biz-archetype-portal
 
 SpringCloud项目骨架生成前端项目
 
-## 说明
+### 启动
+```
+npm run serve
+```
