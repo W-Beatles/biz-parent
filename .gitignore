@@ -32,7 +32,8 @@
 /docker/data/*
 !.gitkeep
 
-/docker/config/skywalking/apache-skywalking-apm-bin/
+**/apache-skywalking-apm-bin/
+**/config/maven/apache-maven-3.5.4/
 
 
 ### Font End ###

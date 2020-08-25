@@ -2,6 +2,7 @@ FROM waynechu/java-skywalking
 LABEL maintainer="waynechu@waynechu.cn"
 LABEL version="1.0.2020022601-SNAPSHOT"
 LABEL description="biz-spring-cloud-oauth-server"
+ENV TZ='Asia/Shanghai'
 VOLUME /tmp
 ARG JAR_FILE
 ADD ${JAR_FILE} /app.jar

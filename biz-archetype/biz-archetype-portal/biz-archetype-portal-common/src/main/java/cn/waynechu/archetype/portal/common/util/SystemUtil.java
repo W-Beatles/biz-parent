@@ -42,7 +42,7 @@ public class SystemUtil {
      */
     public static void setShellPermission(String... scriptPaths) {
         for (String scriptPath : scriptPaths) {
-            if (SystemUtil.isLinux()) {
+            if (!SystemUtil.isWindows()) {
                 Set<PosixFilePermission> permissions = new HashSet<>();
                 permissions.add(PosixFilePermission.OWNER_READ);
                 permissions.add(PosixFilePermission.OWNER_WRITE);

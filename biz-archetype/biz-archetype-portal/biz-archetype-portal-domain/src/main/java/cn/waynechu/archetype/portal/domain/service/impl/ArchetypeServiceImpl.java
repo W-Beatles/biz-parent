@@ -209,7 +209,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
                 }
                 statusCode = StatusCodeEnum.SUCCEED;
             } catch (Exception e) {
-                log.warn("Create project archetype failed", e);
+                log.warn("Create project archetype failed, archetypeId: {}, appId: {}", archetypeId, request.getAppId(), e);
             } finally {
                 // 同步原型生成状态
                 this.syncArchetypeStatus(archetypeId, statusCode, null, null);
@@ -252,7 +252,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
                     + archetypeArtifactId + " " + appName + " " + packageName;
         } else {
             // /script/CreateProject.sh -a archetypeArtifactId -n appName -p packageName
-            cmd = workingRootPath + "script" + File.separator + "CreateProject.sh"
+            cmd = "sh " + workingRootPath + "script" + File.separator + "CreateProject.sh"
                     + " -a " + archetypeArtifactId + " -n " + appName + " -p " + packageName;
         }
 
@@ -293,15 +293,13 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
     private void initWorkingPath(String workingRootPath) {
         // 复制script脚本
         String scriptPath = workingRootPath + "script" + File.separator;
-        File scriptFilePath = new File(scriptPath);
         String[] scriptNames = {"CreateProject.bat", "CreateProject.sh"};
-        if (!scriptFilePath.exists()) {
-            for (String scriptName : scriptNames) {
-                this.copyScript(scriptName, scriptPath);
-            }
-            // 脚本授权
-            SystemUtil.setShellPermission(scriptPath + scriptNames[1]);
+        for (String scriptName : scriptNames) {
+            this.copyScript(scriptName, scriptPath);
         }
+        // 脚本授权
+        SystemUtil.setShellPermission(scriptPath + scriptNames[1]);
+
 
         // 创建project文件夹
         String projectPath = workingRootPath + "project" + File.separator;
