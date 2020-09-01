@@ -50,6 +50,7 @@ public class MDCFilter implements Filter {
 
         String requestId = WebUtil.getReqHeader(HEADER_KEY_REQUEST_ID, request);
         if (StringUtil.isBlank(requestId)) {
+            // 除了网关传递过来requestId外，应用本身也能产生requestId
             requestId = UUIDUtil.getShortUUID();
             httpServletRequestWrapper.putHeader(HEADER_KEY_REQUEST_ID, requestId);
         }

@@ -5,6 +5,8 @@ import cn.waynechu.springcloud.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
@@ -20,6 +22,7 @@ import java.util.Properties;
  */
 @Slf4j
 @Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class ApplicationProvider implements InitializingBean {
 
     private static String hostName = "-";

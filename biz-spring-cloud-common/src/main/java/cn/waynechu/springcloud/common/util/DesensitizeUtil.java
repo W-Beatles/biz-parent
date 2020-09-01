@@ -116,13 +116,12 @@ public class DesensitizeUtil {
                         // 寻找值的开始位置
                         int valueStart = getValueStartIndex(tempMsg, index + key.length());
 
-                        // 查找值的结束位置（逗号，分号）........................
+                        // 查找值的结束位置（逗号，分号）
                         int valueEnd = getValueEndIndex(tempMsg, valueStart);
 
                         // 对获取的值进行脱敏
                         String subStr = tempMsg.substring(valueStart, valueEnd);
                         subStr = invokeMsg(subStr, key);
-                        ///////////////////////////
                         tempMsg = tempMsg.substring(0, valueStart) + subStr + tempMsg.substring(valueEnd);
                     }
                 } while (index != -1);
@@ -137,7 +136,7 @@ public class DesensitizeUtil {
      * @return
      */
     private static boolean isWordChar(String msg, String key, int index) {
-        // 必须确定key是一个单词.............................
+        // 必须确定key是一个单词
         // 判断key前面一个字符
         if (index != 0) {
             char preCh = msg.charAt(index - 1);
@@ -160,7 +159,7 @@ public class DesensitizeUtil {
      * @return
      */
     private static int getValueStartIndex(String msg, int valueStart) {
-        // 寻找值的开始位置.................................
+        // 寻找值的开始位置
         do {
             char ch = msg.charAt(valueStart);
             // key与 value的分隔符

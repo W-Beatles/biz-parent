@@ -185,23 +185,27 @@ docker-compose -h                      # 查看更多相关命令
         ![配置从库](./docs/mysql-slave.png "配置从库")
     3. 检测主从链路是否同步成功。修改主库数据，检查从库是否同步即可  
 
-4. 启动eureka、apollo、elasticsearch服务。其中eureka、apollo为必须依赖，es可选启动
+4. 启动apollo、elasticsearch服务。其中apollo为必须依赖，es可选启动
     ```
-    docker-compose up -d eureka apollo elasticsearch
+    docker-compose up -d apollo elasticsearch
     ```
-5. 启动skywalking-oap、logstash、kibana服务。这三个都是可选服务
+5. 启动logstash、kibana、skywalking-oap服务。这三个都是可选服务
     ```
-    docker-compose up -d skywalking-oap logstash kibana
+    docker-compose up -d logstash kibana skywalking-oap
     ```
-6. 启动网关、boot-admin监控、skywalking控制台。网关为必须依赖服务，其他两个可选
+6. 启动eureka服务
+    ```
+    docker-compose up -d eureka
+    ```
+7. 启动网关、boot-admin监控、skywalking控制台。网关为必须依赖服务，其他两个可选
     ```
     docker-compose up -d inner-gateway boot-admin skywalking-ui
     ```
-7. 启动统一认证服务
+8. 启动统一认证服务
     ```
     docker-compose up -d oauth-server
     ```
-8. 启动统一其它服务
+9. 启动统一其它服务
     ```
     docker-compose up -d service-utility
     docker-compose up -d archetype-portal
