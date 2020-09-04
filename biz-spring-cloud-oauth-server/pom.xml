@@ -112,6 +112,8 @@
                     <tag>${project.version}</tag>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                     <buildArgs>
+                        <VERSION>${project.version}</VERSION>
+                        <DESCRIPTION>${project.description}</DESCRIPTION>
                         <JAR_FILE>./target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
                     <dockerfile>Dockerfile</dockerfile>

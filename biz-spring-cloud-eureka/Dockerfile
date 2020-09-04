@@ -1,11 +1,16 @@
 FROM waynechu/java-skywalking
-LABEL maintainer="waynechu@waynechu.cn"
-LABEL version="1.0.2019070901-RELEASE"
-LABEL description="biz-spring-cloud-eureka"
-ENV TZ='Asia/Shanghai'
-VOLUME /tmp
+
+ARG VERSION
+ARG DESCRIPTION
 ARG JAR_FILE
-ADD ${JAR_FILE} /app.jar
+ENV TZ='Asia/Shanghai'
 ENV JAVA_OPTS="-server -Xms256m -Xmx256m -Xmn100m -Xss256k"
+VOLUME /tmp
+
+LABEL maintainer="waynechu@waynechu.cn"
+LABEL version=${VERSION}
+LABEL description=${DESCRIPTION}
+
+ADD ${JAR_FILE} /app.jar
 ENTRYPOINT java ${JAVA_OPTS} -jar /app.jar
 EXPOSE 8080

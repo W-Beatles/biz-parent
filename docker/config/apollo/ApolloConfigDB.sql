@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 24/08/2020 20:49:20
+ Date: 03/09/2020 15:16:10
 */
 
 SET NAMES utf8mb4;
@@ -63,7 +63,7 @@ CREATE TABLE `App`  (
   INDEX `AppId`(`AppId`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Name`(`Name`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of App
@@ -85,6 +85,7 @@ INSERT INTO `App` VALUES (14, 'service-order', 'service-order', 'Archer', '中�
 INSERT INTO `App` VALUES (15, 'service-utility', 'service-utility', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-08-22 15:17:18', 'apollo', '2020-08-22 15:17:18');
 INSERT INTO `App` VALUES (16, 'biz-spring-cloud-oauth-server', 'biz-spring-cloud-oauth-server', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-08-24 14:54:41', 'apollo', '2020-08-24 14:54:41');
 INSERT INTO `App` VALUES (17, 'biz-archetype-portal', 'biz-archetype-portal', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-08-24 17:47:28', 'apollo', '2020-08-24 17:47:28');
+INSERT INTO `App` VALUES (18, 'service-product', 'service-product', 'Archer', '中间件组', 'waynechu', 'waynechu@waynechu.cn', b'0', 'apollo', '2020-09-02 15:18:29', 'apollo', '2020-09-02 15:18:29');
 
 -- ----------------------------
 -- Table structure for AppNamespace
@@ -106,7 +107,7 @@ CREATE TABLE `AppNamespace`  (
   INDEX `IX_AppId`(`AppId`) USING BTREE,
   INDEX `Name_AppId`(`Name`, `AppId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用namespace定义' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of AppNamespace
@@ -136,6 +137,7 @@ INSERT INTO `AppNamespace` VALUES (22, 'Archer.datasource-common', 'biz-dynamic-
 INSERT INTO `AppNamespace` VALUES (23, 'application', 'biz-spring-cloud-oauth-server', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-08-24 14:54:41', 'apollo', '2020-08-24 14:54:41');
 INSERT INTO `AppNamespace` VALUES (24, 'Archer.datasource-project', 'biz-dynamic-datasource-all', 'properties', b'1', '项目库', b'0', 'apollo', '2020-08-24 17:20:40', 'apollo', '2020-08-24 17:20:40');
 INSERT INTO `AppNamespace` VALUES (25, 'application', 'biz-archetype-portal', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-08-24 17:47:28', 'apollo', '2020-08-24 17:47:28');
+INSERT INTO `AppNamespace` VALUES (26, 'application', 'service-product', 'properties', b'0', 'default app namespace', b'0', 'apollo', '2020-09-02 15:18:29', 'apollo', '2020-09-02 15:18:29');
 
 -- ----------------------------
 -- Table structure for Audit
@@ -154,7 +156,7 @@ CREATE TABLE `Audit`  (
   `DataChange_LastTime` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '最后修改时间',
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1174 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '日志审计表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1337 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '日志审计表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Audit
@@ -1332,6 +1334,169 @@ INSERT INTO `Audit` VALUES (1170, 'Item', 583, 'UPDATE', NULL, b'0', 'apollo', '
 INSERT INTO `Audit` VALUES (1171, 'ItemSet', NULL, 'UPDATE', NULL, b'0', 'apollo', '2020-08-24 18:46:03', NULL, '2020-08-24 18:46:03');
 INSERT INTO `Audit` VALUES (1172, 'Release', 72, 'INSERT', NULL, b'0', 'apollo', '2020-08-24 18:46:06', NULL, '2020-08-24 18:46:06');
 INSERT INTO `Audit` VALUES (1173, 'ReleaseHistory', 74, 'INSERT', NULL, b'0', 'apollo', '2020-08-24 18:46:06', NULL, '2020-08-24 18:46:06');
+INSERT INTO `Audit` VALUES (1174, 'App', 18, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:18:29', NULL, '2020-09-02 15:18:29');
+INSERT INTO `Audit` VALUES (1175, 'AppNamespace', 26, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:18:29', NULL, '2020-09-02 15:18:29');
+INSERT INTO `Audit` VALUES (1176, 'Cluster', 18, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:18:29', NULL, '2020-09-02 15:18:29');
+INSERT INTO `Audit` VALUES (1177, 'Namespace', 28, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:18:29', NULL, '2020-09-02 15:18:29');
+INSERT INTO `Audit` VALUES (1178, 'Release', 73, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:20:45', NULL, '2020-09-02 15:20:45');
+INSERT INTO `Audit` VALUES (1179, 'ReleaseHistory', 75, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:20:45', NULL, '2020-09-02 15:20:45');
+INSERT INTO `Audit` VALUES (1180, 'Item', 594, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1181, 'Item', 595, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1182, 'Item', 596, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1183, 'Item', 597, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1184, 'Item', 598, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1185, 'Item', 599, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1186, 'Item', 600, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1187, 'Item', 601, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1188, 'Item', 602, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1189, 'Item', 603, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1190, 'Item', 604, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1191, 'Item', 605, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1192, 'Item', 606, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1193, 'Item', 607, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1194, 'Item', 608, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1195, 'Item', 609, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1196, 'Item', 610, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1197, 'Item', 611, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1198, 'Item', 612, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1199, 'Item', 613, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1200, 'Item', 614, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1201, 'Item', 615, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1202, 'Item', 616, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1203, 'Item', 617, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1204, 'Item', 618, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1205, 'Item', 619, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1206, 'Item', 620, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1207, 'Item', 621, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1208, 'ItemSet', NULL, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1209, 'Item', 80, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1210, 'Item', 81, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1211, 'Item', 82, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1212, 'Item', 83, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1213, 'Item', 84, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1214, 'Item', 85, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1215, 'Item', 86, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1216, 'Item', 87, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1217, 'Item', 89, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1218, 'Item', 90, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1219, 'Item', 91, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1220, 'Item', 92, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1221, 'Item', 93, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1222, 'Item', 94, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1223, 'Item', 95, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1224, 'Item', 96, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1225, 'Item', 97, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1226, 'Item', 99, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1227, 'Item', 100, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1228, 'Item', 101, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1229, 'Item', 102, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1230, 'Item', 103, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1231, 'Item', 104, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1232, 'Item', 105, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1233, 'Item', 106, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1234, 'Item', 108, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1235, 'Item', 109, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1236, 'Item', 110, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1237, 'Item', 112, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1238, 'Item', 113, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1239, 'Item', 114, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1240, 'Item', 115, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1241, 'Item', 116, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1242, 'Item', 117, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1243, 'Item', 118, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1244, 'Item', 119, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1245, 'Item', 137, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1246, 'Item', 138, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1247, 'Item', 139, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1248, 'Item', 140, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1249, 'Item', 142, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1250, 'Item', 143, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1251, 'Item', 144, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1252, 'Item', 145, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1253, 'Item', 146, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1254, 'Item', 147, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1255, 'Item', 148, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1256, 'Item', 149, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1257, 'Item', 150, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1258, 'Item', 151, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1259, 'Item', 152, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1260, 'Item', 153, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1261, 'Item', 154, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1262, 'Item', 155, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1263, 'Item', 121, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1264, 'Item', 122, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1265, 'Item', 123, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1266, 'Item', 124, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1267, 'Item', 125, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1268, 'Item', 126, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1269, 'Item', 127, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1270, 'Item', 128, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1271, 'Item', 129, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1272, 'Item', 130, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1273, 'Item', 490, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1274, 'Item', 491, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1275, 'Item', 492, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1276, 'Item', 157, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1277, 'Item', 158, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1278, 'Item', 159, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1279, 'Item', 160, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1280, 'Item', 161, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1281, 'Item', 390, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1282, 'Item', 391, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1283, 'Item', 392, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1284, 'Item', 393, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1285, 'Item', 396, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1286, 'Item', 397, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1287, 'Item', 398, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1288, 'Item', 399, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1289, 'Item', 400, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1290, 'Item', 401, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1291, 'Item', 402, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1292, 'Item', 403, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1293, 'Item', 429, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1294, 'Item', 431, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1295, 'Item', 433, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1296, 'Item', 435, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1297, 'Item', 436, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1298, 'Item', 437, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1299, 'Item', 439, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1300, 'Item', 441, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1301, 'Item', 443, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1302, 'Item', 444, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1303, 'Item', 445, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1304, 'Item', 447, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1305, 'Item', 449, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1306, 'ItemSet', NULL, 'UPDATE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1307, 'Item', 477, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1308, 'Item', 478, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1309, 'Item', 479, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1310, 'Item', 480, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1311, 'Item', 481, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1312, 'Item', 482, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1313, 'Item', 483, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1314, 'Item', 484, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1315, 'Item', 485, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1316, 'Item', 486, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1317, 'Item', 487, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1318, 'Item', 488, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1319, 'Item', 489, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1320, 'Item', 493, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1321, 'Item', 494, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1322, 'Item', 495, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1323, 'Item', 496, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1324, 'Item', 497, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1325, 'Item', 498, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1326, 'Item', 499, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1327, 'Item', 500, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1328, 'Item', 501, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1329, 'Item', 502, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1330, 'Item', 503, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1331, 'Item', 504, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1332, 'Item', 505, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1333, 'Item', 506, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1334, 'ItemSet', NULL, 'DELETE', NULL, b'0', 'apollo', '2020-09-02 15:28:39', NULL, '2020-09-02 15:28:39');
+INSERT INTO `Audit` VALUES (1335, 'Release', 74, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:42', NULL, '2020-09-02 15:28:42');
+INSERT INTO `Audit` VALUES (1336, 'ReleaseHistory', 76, 'INSERT', NULL, b'0', 'apollo', '2020-09-02 15:28:42', NULL, '2020-09-02 15:28:42');
 
 -- ----------------------------
 -- Table structure for Cluster
@@ -1351,7 +1516,7 @@ CREATE TABLE `Cluster`  (
   INDEX `IX_AppId_Name`(`AppId`, `Name`) USING BTREE,
   INDEX `IX_ParentClusterId`(`ParentClusterId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '集群' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '集群' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Cluster
@@ -1373,6 +1538,7 @@ INSERT INTO `Cluster` VALUES (14, 'default', 'service-order', 0, b'0', 'apollo',
 INSERT INTO `Cluster` VALUES (15, 'default', 'service-utility', 0, b'0', 'apollo', '2020-08-22 15:17:19', 'apollo', '2020-08-22 15:17:19');
 INSERT INTO `Cluster` VALUES (16, 'default', 'biz-spring-cloud-oauth-server', 0, b'0', 'apollo', '2020-08-24 14:54:41', 'apollo', '2020-08-24 14:54:41');
 INSERT INTO `Cluster` VALUES (17, 'default', 'biz-archetype-portal', 0, b'0', 'apollo', '2020-08-24 17:47:28', 'apollo', '2020-08-24 17:47:28');
+INSERT INTO `Cluster` VALUES (18, 'default', 'service-product', 0, b'0', 'apollo', '2020-09-02 15:18:29', 'apollo', '2020-09-02 15:18:29');
 
 -- ----------------------------
 -- Table structure for Commit
@@ -1395,7 +1561,7 @@ CREATE TABLE `Commit`  (
   INDEX `AppId`(`AppId`(191)) USING BTREE,
   INDEX `ClusterName`(`ClusterName`(191)) USING BTREE,
   INDEX `NamespaceName`(`NamespaceName`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'commit 历史表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 80 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'commit 历史表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Commit
@@ -1478,6 +1644,7 @@ INSERT INTO `Commit` VALUES (75, '{\"createItems\":[{\"namespaceId\":27,\"key\":
 INSERT INTO `Commit` VALUES (76, '{\"createItems\":[{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-master.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":2,\"id\":584,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-master.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":3,\"id\":585,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-master.url\",\"value\":\"jdbc:mysql://mysql-master:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":4,\"id\":586,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-slave1.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":5,\"id\":587,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-slave1.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":6,\"id\":588,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-slave1.url\",\"value\":\"jdbc:mysql://mysql-slave1:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":7,\"id\":589,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-slave2.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":8,\"id\":590,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-slave2.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":9,\"id\":591,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.project-slave2.url\",\"value\":\"jdbc:mysql://mysql-slave2:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":10,\"id\":592,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 18:33:43\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"}],\"updateItems\":[],\"deleteItems\":[{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-master.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":3,\"id\":572,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-slave1.url\",\"value\":\"jdbc:mysql://mysql-slave1:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":7,\"id\":576,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-slave1.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":5,\"id\":574,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-master.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":2,\"id\":571,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-slave1.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":6,\"id\":575,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-slave2.username\",\"value\":\"root\",\"comment\":\"\",\"lineNum\":8,\"id\":577,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-slave2.url\",\"value\":\"jdbc:mysql://mysql-slave2:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":10,\"id\":579,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-slave2.password\",\"value\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"comment\":\"\",\"lineNum\":9,\"id\":578,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"},{\"namespaceId\":26,\"key\":\"spring.datasource.dynamic.datasource.product-master.url\",\"value\":\"jdbc:mysql://mysql-master:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"comment\":\"\",\"lineNum\":4,\"id\":573,\"isDeleted\":true,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:21:54\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:33:43\"}]}', 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-project', NULL, b'0', 'apollo', '2020-08-24 18:33:43', 'apollo', '2020-08-24 18:33:43');
 INSERT INTO `Commit` VALUES (77, '{\"createItems\":[],\"updateItems\":[{\"oldItem\":{\"namespaceId\":27,\"key\":\"working.root.path\",\"value\":\"d:\\\\\\\\archetype-generator\\\\\\\\\",\"comment\":\"\",\"lineNum\":2,\"id\":581,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:48:12\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 17:48:12\"},\"newItem\":{\"namespaceId\":27,\"key\":\"working.root.path\",\"value\":\"/archetype-generator\",\"comment\":\"\",\"lineNum\":2,\"id\":581,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:48:12\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:42:11\"}}],\"deleteItems\":[]}', 'biz-archetype-portal', 'default', 'application', NULL, b'0', 'apollo', '2020-08-24 18:42:11', 'apollo', '2020-08-24 18:42:11');
 INSERT INTO `Commit` VALUES (78, '{\"createItems\":[],\"updateItems\":[{\"oldItem\":{\"namespaceId\":27,\"key\":\"working.root.path\",\"value\":\"/archetype-generator\",\"comment\":\"\",\"lineNum\":2,\"id\":581,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:48:12\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:42:11\"},\"newItem\":{\"namespaceId\":27,\"key\":\"working.root.path\",\"value\":\"/archetype-generator/\",\"comment\":\"\",\"lineNum\":2,\"id\":581,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-08-24 17:48:12\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-08-24 18:45:41\"}}],\"deleteItems\":[]}', 'biz-archetype-portal', 'default', 'application', NULL, b'0', 'apollo', '2020-08-24 18:45:42', 'apollo', '2020-08-24 18:45:42');
+INSERT INTO `Commit` VALUES (79, '{\"createItems\":[{\"namespaceId\":7,\"key\":\"feign.okhttp.enabled\",\"value\":\"true\",\"comment\":\"\",\"lineNum\":17,\"id\":594,\"isDeleted\":false,\"dataChangeCreatedBy\":\"apollo\",\"dataChangeCreatedTime\":\"2020-09-02 15:28:38\",\"dataChangeLastModifiedBy\":\"apollo\",\"dataChangeLastModifiedTime\":\"2020-09-02 15:28:39\"}],\"updateItems\":[],\"deleteItems\":[]}', 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', NULL, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
 
 -- ----------------------------
 -- Table structure for GrayReleaseRule
@@ -1518,7 +1685,7 @@ CREATE TABLE `Instance`  (
   UNIQUE INDEX `IX_UNIQUE_KEY`(`AppId`, `ClusterName`, `Ip`, `DataCenter`) USING BTREE,
   INDEX `IX_IP`(`Ip`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 68 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '使用配置的应用实例' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '使用配置的应用实例' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Instance
@@ -1590,6 +1757,7 @@ INSERT INTO `Instance` VALUES (64, 'biz-spring-cloud-oauth-server', 'default', '
 INSERT INTO `Instance` VALUES (65, 'service-utility', 'default', '', '172.20.0.10', '2020-08-24 16:25:49', '2020-08-24 16:25:49');
 INSERT INTO `Instance` VALUES (66, 'biz-archetype-portal', 'default', '', '172.20.0.12', '2020-08-24 17:38:13', '2020-08-24 17:38:13');
 INSERT INTO `Instance` VALUES (67, 'biz-archetype-portal', 'default', '', '172.20.0.11', '2020-08-24 19:46:31', '2020-08-24 19:46:31');
+INSERT INTO `Instance` VALUES (68, 'biz-spring-cloud-gateway', 'default', '', '172.20.0.13', '2020-09-02 15:01:51', '2020-09-02 15:01:51');
 
 -- ----------------------------
 -- Table structure for InstanceConfig
@@ -1610,19 +1778,19 @@ CREATE TABLE `InstanceConfig`  (
   INDEX `IX_ReleaseKey`(`ReleaseKey`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Valid_Namespace`(`ConfigAppId`, `ConfigClusterName`, `ConfigNamespaceName`, `DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 126 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用实例的配置信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 131 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '应用实例的配置信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of InstanceConfig
 -- ----------------------------
 INSERT INTO `InstanceConfig` VALUES (1, 1, 'biz-spring-cloud-eureka', 'default', 'application', '20200515115229-6be5f871e0516ae9', '2020-05-15 11:52:30', '2020-05-15 11:49:47', '2020-05-15 15:03:24');
 INSERT INTO `InstanceConfig` VALUES (2, 2, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200515144452-9941f871e037854c', '2020-05-15 15:06:12', '2020-05-15 15:06:12', '2020-05-15 15:06:12');
-INSERT INTO `InstanceConfig` VALUES (4, 3, 'biz-spring-cloud-eureka', 'default', 'application', '20200518172305-6be5f871e056f9e0', '2020-05-18 17:23:05', '2020-05-15 18:29:44', '2020-05-19 13:50:20');
+INSERT INTO `InstanceConfig` VALUES (4, 3, 'biz-spring-cloud-eureka', 'default', 'application', '20200519235150-6be5496ca435046c', '2020-09-02 14:58:24', '2020-05-15 18:29:44', '2020-09-02 14:58:24');
 INSERT INTO `InstanceConfig` VALUES (5, 4, 'biz-spring-cloud-eureka', 'default', 'application', '20200519235150-6be5496ca435046c', '2020-08-22 15:00:18', '2020-05-18 17:06:44', '2020-08-22 15:00:18');
 INSERT INTO `InstanceConfig` VALUES (8, 6, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519235038-9941496ca4350469', '2020-05-20 00:23:52', '2020-05-18 18:07:25', '2020-05-20 00:23:52');
 INSERT INTO `InstanceConfig` VALUES (9, 5, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200518180031-9941f871e056f9e2', '2020-05-18 18:07:25', '2020-05-18 18:07:25', '2020-05-18 18:07:25');
 INSERT INTO `InstanceConfig` VALUES (11, 7, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:06', '2020-05-18 19:18:00', '2020-05-19 16:09:06');
-INSERT INTO `InstanceConfig` VALUES (14, 8, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200518180031-9941f871e056f9e2', '2020-05-18 19:28:06', '2020-05-18 19:28:06', '2020-05-18 19:28:06');
+INSERT INTO `InstanceConfig` VALUES (14, 8, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200528150102-9941f264def41d75', '2020-09-02 15:02:55', '2020-05-18 19:28:06', '2020-09-02 15:02:56');
 INSERT INTO `InstanceConfig` VALUES (15, 9, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519160905-9941f871e02fccb8', '2020-05-19 16:09:06', '2020-05-18 19:28:06', '2020-05-19 16:09:06');
 INSERT INTO `InstanceConfig` VALUES (16, 10, 'biz-spring-cloud-gateway', 'default', 'application', '20200519144028-2974f871e02fccb1', '2020-05-19 14:40:30', '2020-05-19 14:30:27', '2020-05-19 14:40:30');
 INSERT INTO `InstanceConfig` VALUES (17, 11, 'biz-spring-boot-admin', 'default', 'application', '20200519235213-6748496ca435046e', '2020-08-22 15:04:17', '2020-05-19 15:18:56', '2020-08-22 15:04:17');
@@ -1654,7 +1822,7 @@ INSERT INTO `InstanceConfig` VALUES (63, 36, 'biz-spring-cloud-public', 'default
 INSERT INTO `InstanceConfig` VALUES (64, 37, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519235038-9941496ca4350469', '2020-05-20 00:27:35', '2020-05-20 00:27:35', '2020-05-20 00:27:35');
 INSERT INTO `InstanceConfig` VALUES (67, 38, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519235038-9941496ca4350469', '2020-05-20 00:30:25', '2020-05-20 00:30:25', '2020-05-20 00:30:25');
 INSERT INTO `InstanceConfig` VALUES (68, 39, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200519235038-9941496ca4350469', '2020-05-20 00:30:25', '2020-05-20 00:30:25', '2020-05-20 00:30:25');
-INSERT INTO `InstanceConfig` VALUES (69, 40, 'biz-spring-cloud-eureka', 'default', 'application', '20200519235150-6be5496ca435046c', '2020-05-26 23:20:09', '2020-05-26 23:20:09', '2020-05-26 23:20:09');
+INSERT INTO `InstanceConfig` VALUES (69, 40, 'biz-spring-cloud-eureka', 'default', 'application', '20200519235150-6be5496ca435046c', '2020-05-26 23:20:09', '2020-05-26 23:20:09', '2020-09-03 10:57:44');
 INSERT INTO `InstanceConfig` VALUES (70, 41, 'biz-spring-boot-admin', 'default', 'application', '20200519235213-6748496ca435046e', '2020-05-26 23:21:31', '2020-05-26 23:21:31', '2020-05-26 23:21:31');
 INSERT INTO `InstanceConfig` VALUES (71, 42, 'biz-spring-cloud-gateway', 'default', 'application', '20200824151036-2974f264de85a7b9', '2020-08-24 16:28:35', '2020-05-26 23:21:31', '2020-08-24 16:28:35');
 INSERT INTO `InstanceConfig` VALUES (74, 43, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200526233150-9941756b5f0b63aa', '2020-05-26 23:38:46', '2020-05-26 23:38:46', '2020-05-26 23:38:46');
@@ -1669,9 +1837,9 @@ INSERT INTO `InstanceConfig` VALUES (84, 51, 'biz-spring-cloud-public', 'default
 INSERT INTO `InstanceConfig` VALUES (85, 52, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200528150102-9941f264def41d75', '2020-05-28 15:01:03', '2020-05-28 14:59:55', '2020-05-28 16:23:31');
 INSERT INTO `InstanceConfig` VALUES (86, 52, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-order', '20200528154414-d210f264def41d7a', '2020-05-28 15:50:40', '2020-05-28 14:59:55', '2020-05-28 16:23:31');
 INSERT INTO `InstanceConfig` VALUES (87, 52, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', '20200528161821-caf1f264de0fd228', '2020-05-28 16:23:31', '2020-05-28 14:59:55', '2020-05-28 16:23:31');
-INSERT INTO `InstanceConfig` VALUES (88, 53, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200528150102-9941f264def41d75', '2020-05-28 15:14:11', '2020-05-28 15:14:11', '2020-05-28 15:14:11');
-INSERT INTO `InstanceConfig` VALUES (89, 53, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-order', '20200528153709-d210f264def41d78', '2020-05-28 15:37:10', '2020-05-28 15:14:11', '2020-05-28 15:37:11');
-INSERT INTO `InstanceConfig` VALUES (90, 53, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', '20200528153948-caf1f264def41d79', '2020-05-28 15:39:48', '2020-05-28 15:14:11', '2020-05-28 15:39:49');
+INSERT INTO `InstanceConfig` VALUES (88, 53, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200902152842-9941f264dea29cb0', '2020-09-02 15:28:43', '2020-05-28 15:14:11', '2020-09-02 15:28:43');
+INSERT INTO `InstanceConfig` VALUES (89, 53, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-order', '20200528154414-d210f264def41d7a', '2020-09-02 15:16:40', '2020-05-28 15:14:11', '2020-09-02 15:16:41');
+INSERT INTO `InstanceConfig` VALUES (90, 53, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', '20200528161821-caf1f264de0fd228', '2020-09-02 15:16:40', '2020-05-28 15:14:11', '2020-09-02 15:16:41');
 INSERT INTO `InstanceConfig` VALUES (91, 54, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200528150102-9941f264def41d75', '2020-05-28 15:40:44', '2020-05-28 15:40:44', '2020-05-28 15:40:44');
 INSERT INTO `InstanceConfig` VALUES (92, 54, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-order', '20200528153709-d210f264def41d78', '2020-05-28 15:40:44', '2020-05-28 15:40:44', '2020-05-28 15:40:44');
 INSERT INTO `InstanceConfig` VALUES (93, 54, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', '20200528153948-caf1f264def41d79', '2020-05-28 15:40:44', '2020-05-28 15:40:44', '2020-05-28 15:40:44');
@@ -1707,6 +1875,11 @@ INSERT INTO `InstanceConfig` VALUES (122, 66, 'biz-archetype-portal', 'default',
 INSERT INTO `InstanceConfig` VALUES (123, 67, 'biz-archetype-portal', 'default', 'application', '20200824184606-86b8f264de85a7bf', '2020-08-24 19:46:30', '2020-08-24 19:46:30', '2020-08-24 19:46:30');
 INSERT INTO `InstanceConfig` VALUES (124, 67, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '20200528150102-9941f264def41d75', '2020-08-24 19:46:30', '2020-08-24 19:46:30', '2020-08-24 19:46:30');
 INSERT INTO `InstanceConfig` VALUES (125, 67, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-project', '20200824183347-491bf264de85a7bd', '2020-08-24 19:46:30', '2020-08-24 19:46:30', '2020-08-24 19:46:30');
+INSERT INTO `InstanceConfig` VALUES (126, 68, 'biz-spring-cloud-gateway', 'default', 'application', '20200824151036-2974f264de85a7b9', '2020-09-02 15:01:50', '2020-09-02 15:01:50', '2020-09-02 15:01:50');
+INSERT INTO `InstanceConfig` VALUES (127, 8, 'service-order', 'default', 'application', '20200528155545-7c44f264def41d7b', '2020-09-02 15:02:55', '2020-09-02 15:02:55', '2020-09-02 15:02:55');
+INSERT INTO `InstanceConfig` VALUES (128, 8, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-order', '20200528154414-d210f264def41d7a', '2020-09-02 15:02:55', '2020-09-02 15:02:55', '2020-09-02 15:02:55');
+INSERT INTO `InstanceConfig` VALUES (129, 8, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-product', '20200528161821-caf1f264de0fd228', '2020-09-02 15:02:55', '2020-09-02 15:02:55', '2020-09-02 15:02:55');
+INSERT INTO `InstanceConfig` VALUES (130, 53, 'service-product', 'default', 'application', '20200902152045-43a5f264dea29caf', '2020-09-02 15:20:45', '2020-09-02 15:20:45', '2020-09-02 15:20:45');
 
 -- ----------------------------
 -- Table structure for Item
@@ -1727,7 +1900,7 @@ CREATE TABLE `Item`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `IX_GroupId`(`NamespaceId`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 594 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '配置项目' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 622 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '配置项目' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Item
@@ -1811,88 +1984,88 @@ INSERT INTO `Item` VALUES (76, 7, 'eureka.client.healthcheck.enabled', 'true', '
 INSERT INTO `Item` VALUES (77, 7, 'eureka.client.service-url.defaultZone', 'http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/', '', 9, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-18 18:00:27');
 INSERT INTO `Item` VALUES (78, 7, 'eureka.client.registry-fetch-interval-seconds', '30', '', 15, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (79, 7, '', '', '## feign', 11, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (80, 7, 'feign.compression.request.enabled', 'true', '', 17, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (81, 7, 'feign.compression.response.enabled', 'true', '', 18, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (82, 7, 'feign.compression.request.mime-types', 'text/xml,application/xml,application/json', '', 19, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (83, 7, 'feign.compression.request.min-request-size', '2048', '', 20, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (84, 7, 'feign.client.config.github-client.loggerLevel', 'full', '', 21, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (85, 7, 'feign.client.config.github-client.connectTimeout', '5000', '', 22, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (86, 7, 'feign.client.config.github-client.readTimeout', '5000', '', 23, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (87, 7, 'feign.hystrix.enabled', 'true', '', 24, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (80, 7, 'feign.compression.request.enabled', 'true', '', 18, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (81, 7, 'feign.compression.response.enabled', 'true', '', 19, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (82, 7, 'feign.compression.request.mime-types', 'text/xml,application/xml,application/json', '', 20, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (83, 7, 'feign.compression.request.min-request-size', '2048', '', 21, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (84, 7, 'feign.client.config.github-client.loggerLevel', 'full', '', 22, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (85, 7, 'feign.client.config.github-client.connectTimeout', '5000', '', 23, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (86, 7, 'feign.client.config.github-client.readTimeout', '5000', '', 24, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (87, 7, 'feign.hystrix.enabled', 'true', '', 25, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (88, 7, '', '', '## hystrix', 20, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (89, 7, 'hystrix.command.default.execution.isolation.strategy', 'SEMAPHORE', '', 26, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (90, 7, 'hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds', '30000', '', 27, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (91, 7, 'hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests', '1000', '', 28, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (92, 7, 'hystrix.command.default.fallback.isolation.semaphore.maxConcurrentRequests', '500', '', 29, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (93, 7, 'hystrix.command.default.circuitBreaker.requestVolumeThreshold', '1000', '', 30, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (94, 7, 'hystrix.threadpool.default.coreSize', '500', '', 31, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (95, 7, 'hystrix.threadpool.default.maxQueueSize', '1000', '', 32, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (96, 7, 'hystrix.threadpool.default.queueSizeRejectionThreshold', '1000', '', 33, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (97, 7, 'hystrix.threadpool.default.keepAliveTimeMinutes', '1', '', 34, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (89, 7, 'hystrix.command.default.execution.isolation.strategy', 'SEMAPHORE', '', 27, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (90, 7, 'hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds', '30000', '', 28, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (91, 7, 'hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests', '1000', '', 29, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (92, 7, 'hystrix.command.default.fallback.isolation.semaphore.maxConcurrentRequests', '500', '', 30, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (93, 7, 'hystrix.command.default.circuitBreaker.requestVolumeThreshold', '1000', '', 31, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (94, 7, 'hystrix.threadpool.default.coreSize', '500', '', 32, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (95, 7, 'hystrix.threadpool.default.maxQueueSize', '1000', '', 33, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (96, 7, 'hystrix.threadpool.default.queueSizeRejectionThreshold', '1000', '', 34, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (97, 7, 'hystrix.threadpool.default.keepAliveTimeMinutes', '1', '', 35, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (98, 7, '', '', '## ribbon', 30, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (99, 7, 'ribbon.ConnectTimeout', '5000', '', 36, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (100, 7, 'ribbon.ReadTimeout', '10000', '', 37, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (101, 7, 'ribbon.okToRetryOnAllOperations', 'false', '', 38, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (102, 7, 'ribbon.retryableStatusCodes', '404,502', '', 39, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (103, 7, 'ribbon.okToRetryOnConnectErrors', 'true', '', 40, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (104, 7, 'ribbon.MaxAutoRetries', '1', '', 41, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (105, 7, 'ribbon.MaxAutoRetriesNextServer', '1', '', 42, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (106, 7, 'ribbon.ServerListRefreshInterval', '3000', '', 43, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (99, 7, 'ribbon.ConnectTimeout', '5000', '', 37, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (100, 7, 'ribbon.ReadTimeout', '10000', '', 38, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (101, 7, 'ribbon.okToRetryOnAllOperations', 'false', '', 39, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (102, 7, 'ribbon.retryableStatusCodes', '404,502', '', 40, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (103, 7, 'ribbon.okToRetryOnConnectErrors', 'true', '', 41, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (104, 7, 'ribbon.MaxAutoRetries', '1', '', 42, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (105, 7, 'ribbon.MaxAutoRetriesNextServer', '1', '', 43, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (106, 7, 'ribbon.ServerListRefreshInterval', '3000', '', 44, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (107, 7, '', '', '## endpoint', 39, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (108, 7, 'management.endpoint.shutdown.enabled', 'true', '', 45, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (109, 7, 'management.endpoints.web.exposure.include', '*', '', 46, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (110, 7, 'management.endpoint.health.show-details', 'always', '', 47, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (108, 7, 'management.endpoint.shutdown.enabled', 'true', '', 46, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (109, 7, 'management.endpoints.web.exposure.include', '*', '', 47, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (110, 7, 'management.endpoint.health.show-details', 'always', '', 48, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (111, 7, '', '', '## rabbitmq', 43, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (112, 7, 'spring.rabbitmq.host', 'rabbitmq', '', 49, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (113, 7, 'spring.rabbitmq.port', '5672', '', 50, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (114, 7, 'spring.rabbitmq.username', 'waynechu', '', 51, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (115, 7, 'spring.rabbitmq.password', '123456', '', 52, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (116, 7, 'spring.rabbitmq.virtual-host', '/logback', '', 53, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (117, 7, 'spring.rabbitmq.publisher-confirm-type', 'correlated', '', 54, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (118, 7, 'spring.rabbitmq.publisher-returns', 'true', '', 55, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (119, 7, 'spring.rabbitmq.template.mandatory', 'true', '', 56, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (112, 7, 'spring.rabbitmq.host', 'rabbitmq', '', 50, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (113, 7, 'spring.rabbitmq.port', '5672', '', 51, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (114, 7, 'spring.rabbitmq.username', 'waynechu', '', 52, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (115, 7, 'spring.rabbitmq.password', '123456', '', 53, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (116, 7, 'spring.rabbitmq.virtual-host', '/logback', '', 54, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (117, 7, 'spring.rabbitmq.publisher-confirm-type', 'correlated', '', 55, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (118, 7, 'spring.rabbitmq.publisher-returns', 'true', '', 56, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (119, 7, 'spring.rabbitmq.template.mandatory', 'true', '', 57, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (120, 7, '', '', '## elk-rabbit', 52, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (121, 7, 'elk.rabbitmq.enable', 'true', '', 78, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (122, 7, 'elk.rabbitmq.host', '${spring.rabbitmq.host}', '', 79, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (123, 7, 'elk.rabbitmq.port', '${spring.rabbitmq.port}', '', 80, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (124, 7, 'elk.rabbitmq.username', '${spring.rabbitmq.username}', '', 81, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (125, 7, 'elk.rabbitmq.password', '${spring.rabbitmq.password}', '', 82, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (126, 7, 'elk.rabbitmq.application-id', '${spring.application.name}', '', 83, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (127, 7, 'elk.rabbitmq.virtual-host', '/logback', '', 84, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (128, 7, 'elk.rabbitmq.exchange', 'topic.loggingExchange', '', 85, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (129, 7, 'elk.rabbitmq.routing-key', 'logback.#', '', 86, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (130, 7, 'elk.rabbitmq.connection-name', 'biz|${spring.application.name}', '', 87, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (121, 7, 'elk.rabbitmq.enable', 'true', '', 79, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (122, 7, 'elk.rabbitmq.host', '${spring.rabbitmq.host}', '', 80, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (123, 7, 'elk.rabbitmq.port', '${spring.rabbitmq.port}', '', 81, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (124, 7, 'elk.rabbitmq.username', '${spring.rabbitmq.username}', '', 82, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (125, 7, 'elk.rabbitmq.password', '${spring.rabbitmq.password}', '', 83, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (126, 7, 'elk.rabbitmq.application-id', '${spring.application.name}', '', 84, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (127, 7, 'elk.rabbitmq.virtual-host', '/logback', '', 85, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (128, 7, 'elk.rabbitmq.exchange', 'topic.loggingExchange', '', 86, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (129, 7, 'elk.rabbitmq.routing-key', 'logback.#', '', 87, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (130, 7, 'elk.rabbitmq.connection-name', 'biz|${spring.application.name}', '', 88, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (131, 7, '', '', '### elk-kafka', 63, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (132, 7, '', '', '#elk.kafka.enable=false', 64, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (133, 7, '', '', '#elk.kafka.host=localhost', 65, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (134, 7, '', '', '#elk.kafka.port=9092', 66, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (135, 7, '', '', '#elk.kafka.topic=logback', 67, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (136, 7, '', '', '## spring-redis', 68, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (137, 7, 'spring.redis.database', '0', '', 58, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (138, 7, 'spring.redis.host', 'redis', '', 59, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (139, 7, 'spring.redis.port', '6379', '', 60, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (140, 7, 'spring.redis.password', '123456', '', 61, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (137, 7, 'spring.redis.database', '0', '', 59, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (138, 7, 'spring.redis.host', 'redis', '', 60, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (139, 7, 'spring.redis.port', '6379', '', 61, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (140, 7, 'spring.redis.password', '123456', '', 62, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (141, 7, '', '', '## jetcache', 73, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (142, 7, 'jetcache.statIntervalMinutes', '15', '', 63, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (143, 7, 'jetcache.areaInCacheName', 'false', '', 64, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (144, 7, 'jetcache.local.default.type', 'linkedhashmap', '', 65, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (145, 7, 'jetcache.local.default.keyConvertor', 'fastjson', '', 66, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (146, 7, 'jetcache.local.default.limit', '100', '', 67, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (147, 7, 'jetcache.remote.default.type', 'redis.lettuce', '', 68, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (148, 7, 'jetcache.remote.default.keyPrefix', 'prd.waynechu.cn', '', 69, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (149, 7, 'jetcache.remote.default.keyConvertor', 'fastjson', '', 70, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (150, 7, 'jetcache.remote.default.valueEncoder', 'java', '', 71, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (151, 7, 'jetcache.remote.default.valueDecoder', 'java', '', 72, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (152, 7, 'jetcache.remote.default.poolConfig.minIdle', '5', '', 73, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (153, 7, 'jetcache.remote.default.poolConfig.maxIdle', '20', '', 74, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (154, 7, 'jetcache.remote.default.poolConfig.maxTotal', '50', '', 75, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (155, 7, 'jetcache.remote.default.uri', 'redis://${spring.redis.password}@${spring.redis.host}:${spring.redis.port}', '', 76, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (142, 7, 'jetcache.statIntervalMinutes', '15', '', 64, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (143, 7, 'jetcache.areaInCacheName', 'false', '', 65, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (144, 7, 'jetcache.local.default.type', 'linkedhashmap', '', 66, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (145, 7, 'jetcache.local.default.keyConvertor', 'fastjson', '', 67, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (146, 7, 'jetcache.local.default.limit', '100', '', 68, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (147, 7, 'jetcache.remote.default.type', 'redis.lettuce', '', 69, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (148, 7, 'jetcache.remote.default.keyPrefix', 'prd.waynechu.cn', '', 70, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (149, 7, 'jetcache.remote.default.keyConvertor', 'fastjson', '', 71, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (150, 7, 'jetcache.remote.default.valueEncoder', 'java', '', 72, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (151, 7, 'jetcache.remote.default.valueDecoder', 'java', '', 73, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (152, 7, 'jetcache.remote.default.poolConfig.minIdle', '5', '', 74, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (153, 7, 'jetcache.remote.default.poolConfig.maxIdle', '20', '', 75, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (154, 7, 'jetcache.remote.default.poolConfig.maxTotal', '50', '', 76, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (155, 7, 'jetcache.remote.default.uri', 'redis://${spring.redis.password}@${spring.redis.host}:${spring.redis.port}', '', 77, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (156, 7, '', '', '## mybatis-plus', 88, b'1', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (157, 7, 'mybatis-plus.mapper-locations', 'classpath:sqlmap/**/*Mapper.xml', '', 98, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (158, 7, 'mybatis-plus.configuration.cache-enabled', 'false', '', 99, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (159, 7, 'mybatis-plus.configuration.map-underscore-to-camel-case', 'true', '', 100, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (160, 7, 'mybatis-plus.configuration.use-generated-keys', 'true', '', 101, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (161, 7, 'mybatis-plus.configuration.log-impl', 'org.apache.ibatis.logging.stdout.StdOutImpl', '', 102, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (157, 7, 'mybatis-plus.mapper-locations', 'classpath:sqlmap/**/*Mapper.xml', '', 99, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (158, 7, 'mybatis-plus.configuration.cache-enabled', 'false', '', 100, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (159, 7, 'mybatis-plus.configuration.map-underscore-to-camel-case', 'true', '', 101, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (160, 7, 'mybatis-plus.configuration.use-generated-keys', 'true', '', 102, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (161, 7, 'mybatis-plus.configuration.log-impl', 'org.apache.ibatis.logging.stdout.StdOutImpl', '', 103, b'0', 'apollo', '2020-05-15 14:44:47', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (162, 5, '', '', '## api-starter', 1, b'1', 'apollo', '2020-05-15 15:09:04', 'apollo', '2020-05-28 14:40:54');
 INSERT INTO `Item` VALUES (163, 5, '', '', '### swagger', 2, b'1', 'apollo', '2020-05-15 15:09:04', 'apollo', '2020-05-28 14:40:54');
 INSERT INTO `Item` VALUES (164, 5, 'biz.api.starter.swagger.enable', 'true', '', 3, b'1', 'apollo', '2020-05-15 15:09:04', 'apollo', '2020-05-28 14:40:54');
@@ -2121,20 +2294,20 @@ INSERT INTO `Item` VALUES (386, 12, 'spring.datasource.dynamic.datasource.produc
 INSERT INTO `Item` VALUES (387, 12, 'spring.datasource.dynamic.datasource.product-slave2.password', 'LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==', '', 47, b'1', 'apollo', '2020-05-19 16:08:35', 'apollo', '2020-05-28 14:41:11');
 INSERT INTO `Item` VALUES (388, 12, 'spring.datasource.dynamic.datasource.product-slave2.url', 'jdbc:mysql://mysql-slave2:3306/product?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true', '', 48, b'1', 'apollo', '2020-05-19 16:08:35', 'apollo', '2020-05-28 14:41:11');
 INSERT INTO `Item` VALUES (389, 7, '', '', '## pageHelper', 94, b'1', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (390, 7, 'pagehelper.reasonable', 'false', '', 104, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (391, 7, 'pagehelper.page-size-zero', 'true', '', 105, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (392, 7, 'pagehelper.auto-runtime-dialect', 'true', '', 106, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (393, 7, 'pagehelper.close-conn', 'true', '', 107, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (390, 7, 'pagehelper.reasonable', 'false', '', 105, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (391, 7, 'pagehelper.page-size-zero', 'true', '', 106, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (392, 7, 'pagehelper.auto-runtime-dialect', 'true', '', 107, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (393, 7, 'pagehelper.close-conn', 'true', '', 108, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (394, 7, '', '', '## api-starter', 99, b'1', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (395, 7, '', '', '### swagger', 100, b'1', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (396, 7, 'biz.api.starter.swagger.enable', 'true', '', 110, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (397, 7, 'biz.api.starter.swagger.api-title', 'SpringCloud微服务项目', '', 111, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (398, 7, 'biz.api.starter.swagger.api-description', 'SpringCloud微服务项目', '', 112, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (399, 7, 'biz.api.starter.swagger.api-version', '1.0.0', '', 113, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (400, 7, 'biz.api.starter.swagger.scan-package', 'cn.waynechu', '', 114, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (401, 7, 'biz.api.starter.swagger.contact-name', 'waynechu', '', 115, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (402, 7, 'biz.api.starter.swagger.contact-url', 'www.waynechu.cn', '', 116, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (403, 7, 'biz.api.starter.swagger.contact-email', 'waynechu@waynechu.cn', '', 117, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (396, 7, 'biz.api.starter.swagger.enable', 'true', '', 111, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (397, 7, 'biz.api.starter.swagger.api-title', 'SpringCloud微服务项目', '', 112, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (398, 7, 'biz.api.starter.swagger.api-description', 'SpringCloud微服务项目', '', 113, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (399, 7, 'biz.api.starter.swagger.api-version', '1.0.0', '', 114, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (400, 7, 'biz.api.starter.swagger.scan-package', 'cn.waynechu', '', 115, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (401, 7, 'biz.api.starter.swagger.contact-name', 'waynechu', '', 116, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (402, 7, 'biz.api.starter.swagger.contact-url', 'www.waynechu.cn', '', 117, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (403, 7, 'biz.api.starter.swagger.contact-email', 'waynechu@waynechu.cn', '', 118, b'0', 'apollo', '2020-05-28 14:06:05', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (404, 14, '', '', '## dynamic datasource', 1, b'1', 'apollo', '2020-05-28 14:09:31', 'apollo', '2020-05-28 14:27:42');
 INSERT INTO `Item` VALUES (405, 14, '', '', '### 打印动态数据源执行情况', 2, b'1', 'apollo', '2020-05-28 14:09:31', 'apollo', '2020-05-28 14:27:42');
 INSERT INTO `Item` VALUES (406, 14, 'spring.datasource.dynamic.logger-enable', 'false', '', 3, b'1', 'apollo', '2020-05-28 14:09:31', 'apollo', '2020-05-28 14:27:42');
@@ -2160,27 +2333,27 @@ INSERT INTO `Item` VALUES (425, 14, '', '', '### 设置Spring监控AOP包路径'
 INSERT INTO `Item` VALUES (426, 14, 'spring.datasource.dynamic.druid.aop-patterns', 'cn.waynechu.*.api.controller.*,cn.waynechu.*.service.*', '', 23, b'1', 'apollo', '2020-05-28 14:09:31', 'apollo', '2020-05-28 14:27:42');
 INSERT INTO `Item` VALUES (427, 7, '', '', '## dynamic datasource', 109, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (428, 7, '', '', '### 打印动态数据源执行情况', 110, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (429, 7, 'spring.datasource.dynamic.logger-enable', 'false', '', 120, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (429, 7, 'spring.datasource.dynamic.logger-enable', 'false', '', 121, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (430, 7, '', '', '### 设置动态数据源选择策略。不配置默认使用轮询策略', 112, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (431, 7, 'spring.datasource.dynamic.strategy', 'cn.waynechu.bootstarter.dynamicdatasource.strategy.RoundRobinDynamicDataSourceStrategy', '', 122, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (431, 7, 'spring.datasource.dynamic.strategy', 'cn.waynechu.bootstarter.dynamicdatasource.strategy.RoundRobinDynamicDataSourceStrategy', '', 123, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (432, 7, '', '', '### 设置Druid密码加密公钥', 114, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (433, 7, 'spring.datasource.dynamic.druid.public-key', 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIxH6Gne6flG+enZOeGsbg4hoiGFi1ORqvsi8EzlObP3Gz/NVQpJACcBidowsWolaYKyfv8jHUClNja3GCE2x+kCAwEAAQ==', '', 124, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (433, 7, 'spring.datasource.dynamic.druid.public-key', 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIxH6Gne6flG+enZOeGsbg4hoiGFi1ORqvsi8EzlObP3Gz/NVQpJACcBidowsWolaYKyfv8jHUClNja3GCE2x+kCAwEAAQ==', '', 125, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (434, 7, '', '', '### 开启stat后台监控页面', 116, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (435, 7, 'spring.datasource.dynamic.druid.stat-view-servlet.enabled', 'true', '', 126, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (436, 7, 'spring.datasource.dynamic.druid.stat-view-servlet.login-username', 'admin', '', 127, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (437, 7, 'spring.datasource.dynamic.druid.stat-view-servlet.login-password', '123456', '', 128, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (435, 7, 'spring.datasource.dynamic.druid.stat-view-servlet.enabled', 'true', '', 127, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (436, 7, 'spring.datasource.dynamic.druid.stat-view-servlet.login-username', 'admin', '', 128, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (437, 7, 'spring.datasource.dynamic.druid.stat-view-servlet.login-password', '123456', '', 129, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (438, 7, '', '', '### 打开SQL监控、防火墙监控', 120, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (439, 7, 'spring.datasource.dynamic.druid.filters', 'stat,wall', '', 130, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (439, 7, 'spring.datasource.dynamic.druid.filters', 'stat,wall', '', 131, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (440, 7, '', '', '### 限制单次查询数量', 122, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (441, 7, 'spring.datasource.dynamic.druid.wall.select-limit', '100000', '', 132, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (441, 7, 'spring.datasource.dynamic.druid.wall.select-limit', '100000', '', 133, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (442, 7, '', '', '### 多数据源SQL合并，开启慢查询日志记录', 124, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (443, 7, 'spring.datasource.dynamic.druid.connection-properties.druid.stat.mergeSql', 'true', '', 134, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (444, 7, 'spring.datasource.dynamic.druid.connection-properties.druid.stat.slowSqlMillis', '1000', '', 135, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (445, 7, 'spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql', 'true', '', 136, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (443, 7, 'spring.datasource.dynamic.druid.connection-properties.druid.stat.mergeSql', 'true', '', 135, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (444, 7, 'spring.datasource.dynamic.druid.connection-properties.druid.stat.slowSqlMillis', '1000', '', 136, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (445, 7, 'spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql', 'true', '', 137, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (446, 7, '', '', '### 打开Web应用监控', 128, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (447, 7, 'spring.datasource.dynamic.druid.web-stat-filter.enabled', 'true', '', 138, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (447, 7, 'spring.datasource.dynamic.druid.web-stat-filter.enabled', 'true', '', 139, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (448, 7, '', '', '### 设置Spring监控AOP包路径', 130, b'1', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (449, 7, 'spring.datasource.dynamic.druid.aop-patterns', 'cn.waynechu.*.api.controller.*,cn.waynechu.*.service.*', '', 140, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-05-28 15:00:59');
+INSERT INTO `Item` VALUES (449, 7, 'spring.datasource.dynamic.druid.aop-patterns', 'cn.waynechu.*.api.controller.*,cn.waynechu.*.service.*', '', 141, b'0', 'apollo', '2020-05-28 14:26:43', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (450, 20, '', '', '#### order database 订单库', 1, b'0', 'apollo', '2020-05-28 14:29:40', 'apollo', '2020-05-28 14:29:40');
 INSERT INTO `Item` VALUES (451, 20, 'spring.datasource.dynamic.datasource.order-master.username', 'root', '', 2, b'0', 'apollo', '2020-05-28 14:29:40', 'apollo', '2020-05-28 14:29:40');
 INSERT INTO `Item` VALUES (452, 20, 'spring.datasource.dynamic.datasource.order-master.password', 'LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==', '', 3, b'0', 'apollo', '2020-05-28 14:29:40', 'apollo', '2020-05-28 14:29:40');
@@ -2208,36 +2381,36 @@ INSERT INTO `Item` VALUES (473, 7, '', '', '# 注册中心地址', 12, b'0', 'ap
 INSERT INTO `Item` VALUES (474, 7, '', '', '#eureka.client.service-url.defaultZone = http://admin:123456@localhost:9001/eureka/,http://admin:123456@localhost:9002/eureka/', 13, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (475, 7, '', '', '# 拉取注册信息间隔。默认30秒 (测试环境，可适当降低该值来保证及时获取注册信息)', 14, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
 INSERT INTO `Item` VALUES (476, 7, '', '', '## feign', 16, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (477, 7, '', '', '## hystrix', 25, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (478, 7, '', '', '## ribbon', 35, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (479, 7, '', '', '## endpoint', 44, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (480, 7, '', '', '## rabbitmq', 48, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (481, 7, '', '', '## spring-redis', 57, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (482, 7, '', '', '## jetcache', 62, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (483, 7, '', '', '## elk-rabbit', 77, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (484, 7, '', '', '### elk-kafka', 88, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (485, 7, '', '', '#elk.kafka.enable=false', 89, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (486, 7, '', '', '#elk.kafka.host=localhost', 90, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (487, 7, '', '', '#elk.kafka.port=9092', 91, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (488, 7, '', '', '#elk.kafka.topic=logback', 92, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (489, 7, '', '', '## sentry', 93, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (490, 7, 'sentry.enable', 'false', '', 94, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (491, 7, 'sentry.dsn', 'http://a1c395c85d244742ae2a50b90f1535b8@localhost:9000/1', '', 95, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (492, 7, 'sentry.stacktrace-app-packages', '', '', 96, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (493, 7, '', '', '## mybatis-plus', 97, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (494, 7, '', '', '## pageHelper', 103, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (495, 7, '', '', '## api-starter', 108, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (496, 7, '', '', '### swagger', 109, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (497, 7, '', '', '## dynamic datasource', 118, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (498, 7, '', '', '### 打印动态数据源执行情况', 119, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (499, 7, '', '', '### 设置动态数据源选择策略。不配置默认使用轮询策略', 121, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (500, 7, '', '', '### 设置Druid密码加密公钥', 123, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (501, 7, '', '', '### 开启stat后台监控页面', 125, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (502, 7, '', '', '### 打开SQL监控、防火墙监控', 129, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (503, 7, '', '', '### 限制单次查询数量', 131, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (504, 7, '', '', '### 多数据源SQL合并，开启慢查询日志记录', 133, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (505, 7, '', '', '### 打开Web应用监控', 137, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
-INSERT INTO `Item` VALUES (506, 7, '', '', '### 设置Spring监控AOP包路径', 139, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-05-28 14:36:10');
+INSERT INTO `Item` VALUES (477, 7, '', '', '## hystrix', 25, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (478, 7, '', '', '## ribbon', 35, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (479, 7, '', '', '## endpoint', 44, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (480, 7, '', '', '## rabbitmq', 48, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (481, 7, '', '', '## spring-redis', 57, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (482, 7, '', '', '## jetcache', 62, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (483, 7, '', '', '## elk-rabbit', 77, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (484, 7, '', '', '### elk-kafka', 88, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (485, 7, '', '', '#elk.kafka.enable=false', 89, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (486, 7, '', '', '#elk.kafka.host=localhost', 90, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (487, 7, '', '', '#elk.kafka.port=9092', 91, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (488, 7, '', '', '#elk.kafka.topic=logback', 92, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (489, 7, '', '', '## sentry', 93, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (490, 7, 'sentry.enable', 'false', '', 95, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (491, 7, 'sentry.dsn', 'http://a1c395c85d244742ae2a50b90f1535b8@localhost:9000/1', '', 96, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (492, 7, 'sentry.stacktrace-app-packages', '', '', 97, b'0', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (493, 7, '', '', '## mybatis-plus', 97, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (494, 7, '', '', '## pageHelper', 103, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (495, 7, '', '', '## api-starter', 108, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (496, 7, '', '', '### swagger', 109, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (497, 7, '', '', '## dynamic datasource', 118, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (498, 7, '', '', '### 打印动态数据源执行情况', 119, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (499, 7, '', '', '### 设置动态数据源选择策略。不配置默认使用轮询策略', 121, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (500, 7, '', '', '### 设置Druid密码加密公钥', 123, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (501, 7, '', '', '### 开启stat后台监控页面', 125, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (502, 7, '', '', '### 打开SQL监控、防火墙监控', 129, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (503, 7, '', '', '### 限制单次查询数量', 131, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (504, 7, '', '', '### 多数据源SQL合并，开启慢查询日志记录', 133, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (505, 7, '', '', '### 打开Web应用监控', 137, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (506, 7, '', '', '### 设置Spring监控AOP包路径', 139, b'1', 'apollo', '2020-05-28 14:36:10', 'apollo', '2020-09-02 15:28:39');
 INSERT INTO `Item` VALUES (507, 22, 'apollo.refresh-value', 'a', '', 1, b'0', 'apollo', '2020-05-28 15:55:42', 'apollo', '2020-05-28 15:55:42');
 INSERT INTO `Item` VALUES (508, 21, 'spring.datasource.dynamic.datasource.product-master.username', 'root', '', 2, b'0', 'apollo', '2020-05-28 16:18:14', 'apollo', '2020-05-28 16:18:14');
 INSERT INTO `Item` VALUES (509, 21, 'spring.datasource.dynamic.datasource.product-master.password', 'LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==', '', 3, b'0', 'apollo', '2020-05-28 16:18:14', 'apollo', '2020-05-28 16:18:14');
@@ -2325,6 +2498,34 @@ INSERT INTO `Item` VALUES (590, 26, 'spring.datasource.dynamic.datasource.projec
 INSERT INTO `Item` VALUES (591, 26, 'spring.datasource.dynamic.datasource.project-slave2.password', 'LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA==', '', 9, b'0', 'apollo', '2020-08-24 18:33:43', 'apollo', '2020-08-24 18:33:43');
 INSERT INTO `Item` VALUES (592, 26, 'spring.datasource.dynamic.datasource.project-slave2.url', 'jdbc:mysql://mysql-slave2:3306/project?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true', '', 10, b'0', 'apollo', '2020-08-24 18:33:43', 'apollo', '2020-08-24 18:33:43');
 INSERT INTO `Item` VALUES (593, 27, '', '', '#working.root.path=d:\\\\archetype-generator\\\\', 2, b'0', 'apollo', '2020-08-24 18:46:03', 'apollo', '2020-08-24 18:46:03');
+INSERT INTO `Item` VALUES (594, 7, 'feign.okhttp.enabled', 'true', '', 17, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (595, 7, '', '', '## hystrix', 26, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (596, 7, '', '', '## ribbon', 36, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (597, 7, '', '', '## endpoint', 45, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (598, 7, '', '', '## rabbitmq', 49, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (599, 7, '', '', '## spring-redis', 58, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (600, 7, '', '', '## jetcache', 63, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (601, 7, '', '', '## elk-rabbit', 78, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (602, 7, '', '', '### elk-kafka', 89, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (603, 7, '', '', '#elk.kafka.enable=false', 90, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (604, 7, '', '', '#elk.kafka.host=localhost', 91, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (605, 7, '', '', '#elk.kafka.port=9092', 92, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (606, 7, '', '', '#elk.kafka.topic=logback', 93, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (607, 7, '', '', '## sentry', 94, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (608, 7, '', '', '## mybatis-plus', 98, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (609, 7, '', '', '## pageHelper', 104, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (610, 7, '', '', '## api-starter', 109, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (611, 7, '', '', '### swagger', 110, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (612, 7, '', '', '## dynamic datasource', 119, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (613, 7, '', '', '### 打印动态数据源执行情况', 120, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (614, 7, '', '', '### 设置动态数据源选择策略。不配置默认使用轮询策略', 122, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (615, 7, '', '', '### 设置Druid密码加密公钥', 124, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (616, 7, '', '', '### 开启stat后台监控页面', 126, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (617, 7, '', '', '### 打开SQL监控、防火墙监控', 130, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (618, 7, '', '', '### 限制单次查询数量', 132, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (619, 7, '', '', '### 多数据源SQL合并，开启慢查询日志记录', 134, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (620, 7, '', '', '### 打开Web应用监控', 138, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
+INSERT INTO `Item` VALUES (621, 7, '', '', '### 设置Spring监控AOP包路径', 140, b'0', 'apollo', '2020-09-02 15:28:39', 'apollo', '2020-09-02 15:28:39');
 
 -- ----------------------------
 -- Table structure for Namespace
@@ -2344,7 +2545,7 @@ CREATE TABLE `Namespace`  (
   INDEX `AppId_ClusterName_NamespaceName`(`AppId`(191), `ClusterName`(191), `NamespaceName`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_NamespaceName`(`NamespaceName`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '命名空间' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '命名空间' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Namespace
@@ -2376,6 +2577,7 @@ INSERT INTO `Namespace` VALUES (24, 'biz-dynamic-datasource-all', 'default', 'Ar
 INSERT INTO `Namespace` VALUES (25, 'biz-spring-cloud-oauth-server', 'default', 'application', b'0', 'apollo', '2020-08-24 14:54:41', 'apollo', '2020-08-24 14:54:41');
 INSERT INTO `Namespace` VALUES (26, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-project', b'0', 'apollo', '2020-08-24 17:20:40', 'apollo', '2020-08-24 17:20:40');
 INSERT INTO `Namespace` VALUES (27, 'biz-archetype-portal', 'default', 'application', b'0', 'apollo', '2020-08-24 17:47:28', 'apollo', '2020-08-24 17:47:28');
+INSERT INTO `Namespace` VALUES (28, 'service-product', 'default', 'application', b'0', 'apollo', '2020-09-02 15:18:29', 'apollo', '2020-09-02 15:18:29');
 
 -- ----------------------------
 -- Table structure for NamespaceLock
@@ -2417,7 +2619,7 @@ CREATE TABLE `Release`  (
   INDEX `AppId_ClusterName_GroupName`(`AppId`(191), `ClusterName`(191), `NamespaceName`(191)) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_ReleaseKey`(`ReleaseKey`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of Release
@@ -2494,6 +2696,8 @@ INSERT INTO `Release` VALUES (69, '20200824174814-86b8f264de85a7bc', '2020082417
 INSERT INTO `Release` VALUES (70, '20200824183347-491bf264de85a7bd', '20200824183344-release', '', 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-project', '{\"spring.datasource.dynamic.datasource.project-master.username\":\"root\",\"spring.datasource.dynamic.datasource.project-master.password\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"spring.datasource.dynamic.datasource.project-master.url\":\"jdbc:mysql://mysql-master:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"spring.datasource.dynamic.datasource.project-slave1.username\":\"root\",\"spring.datasource.dynamic.datasource.project-slave1.password\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"spring.datasource.dynamic.datasource.project-slave1.url\":\"jdbc:mysql://mysql-slave1:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\",\"spring.datasource.dynamic.datasource.project-slave2.username\":\"root\",\"spring.datasource.dynamic.datasource.project-slave2.password\":\"LP1lXJ+2jrs+QhjLUJJRv3iALW9dgsoHAWyzVihmGW5Oooiw0Gyhi4nzeRW/JWrTxwUSgxnkt5pcbtppXjtbqA\\u003d\\u003d\",\"spring.datasource.dynamic.datasource.project-slave2.url\":\"jdbc:mysql://mysql-slave2:3306/project?characterEncoding\\u003dutf-8\\u0026useSSL\\u003dfalse\\u0026serverTimezone\\u003dUTC\\u0026allowPublicKeyRetrieval\\u003dtrue\"}', b'0', b'0', 'apollo', '2020-08-24 18:33:47', 'apollo', '2020-08-24 18:33:47');
 INSERT INTO `Release` VALUES (71, '20200824184213-86b8f264de85a7be', '20200824184212-release', '', 'biz-archetype-portal', 'default', 'application', '{\"working.root.path\":\"/archetype-generator\",\"git.user-name\":\"\",\"git.password\":\"\"}', b'0', b'0', 'apollo', '2020-08-24 18:42:14', 'apollo', '2020-08-24 18:42:14');
 INSERT INTO `Release` VALUES (72, '20200824184606-86b8f264de85a7bf', '20200824184603-release', '', 'biz-archetype-portal', 'default', 'application', '{\"working.root.path\":\"/archetype-generator/\",\"git.user-name\":\"\",\"git.password\":\"\"}', b'0', b'0', 'apollo', '2020-08-24 18:46:06', 'apollo', '2020-08-24 18:46:06');
+INSERT INTO `Release` VALUES (73, '20200902152045-43a5f264dea29caf', '20200902152044-release', '', 'service-product', 'default', 'application', '{}', b'0', b'0', 'apollo', '2020-09-02 15:20:45', 'apollo', '2020-09-02 15:20:45');
+INSERT INTO `Release` VALUES (74, '20200902152842-9941f264dea29cb0', '20200902152840-release', '', 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', '{\"eureka.instance.prefer-ip-address\":\"true\",\"eureka.instance.lease-renewal-interval-in-seconds\":\"30\",\"eureka.instance.lease-expiration-duration-in-seconds\":\"90\",\"eureka.instance.metadata-map.startup\":\"${random.int}\",\"eureka.client.register-with-eureka\":\"true\",\"eureka.client.fetch-registry\":\"true\",\"eureka.client.healthcheck.enabled\":\"true\",\"eureka.client.registry-fetch-interval-seconds\":\"30\",\"feign.okhttp.enabled\":\"true\",\"feign.compression.request.enabled\":\"true\",\"feign.compression.response.enabled\":\"true\",\"feign.compression.request.mime-types\":\"text/xml,application/xml,application/json\",\"feign.compression.request.min-request-size\":\"2048\",\"feign.client.config.github-client.loggerLevel\":\"full\",\"feign.client.config.github-client.connectTimeout\":\"5000\",\"feign.client.config.github-client.readTimeout\":\"5000\",\"feign.hystrix.enabled\":\"true\",\"hystrix.command.default.execution.isolation.strategy\":\"SEMAPHORE\",\"hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds\":\"30000\",\"hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests\":\"1000\",\"hystrix.command.default.fallback.isolation.semaphore.maxConcurrentRequests\":\"500\",\"hystrix.command.default.circuitBreaker.requestVolumeThreshold\":\"1000\",\"hystrix.threadpool.default.coreSize\":\"500\",\"hystrix.threadpool.default.maxQueueSize\":\"1000\",\"hystrix.threadpool.default.queueSizeRejectionThreshold\":\"1000\",\"hystrix.threadpool.default.keepAliveTimeMinutes\":\"1\",\"ribbon.ConnectTimeout\":\"5000\",\"ribbon.ReadTimeout\":\"10000\",\"ribbon.okToRetryOnAllOperations\":\"false\",\"ribbon.retryableStatusCodes\":\"404,502\",\"ribbon.okToRetryOnConnectErrors\":\"true\",\"ribbon.MaxAutoRetries\":\"1\",\"ribbon.MaxAutoRetriesNextServer\":\"1\",\"ribbon.ServerListRefreshInterval\":\"3000\",\"management.endpoint.shutdown.enabled\":\"true\",\"management.endpoints.web.exposure.include\":\"*\",\"management.endpoint.health.show-details\":\"always\",\"spring.rabbitmq.host\":\"rabbitmq\",\"spring.rabbitmq.port\":\"5672\",\"spring.rabbitmq.username\":\"waynechu\",\"spring.rabbitmq.password\":\"123456\",\"spring.rabbitmq.virtual-host\":\"/logback\",\"spring.rabbitmq.publisher-confirm-type\":\"correlated\",\"spring.rabbitmq.publisher-returns\":\"true\",\"spring.rabbitmq.template.mandatory\":\"true\",\"spring.redis.database\":\"0\",\"spring.redis.host\":\"redis\",\"spring.redis.port\":\"6379\",\"spring.redis.password\":\"123456\",\"jetcache.statIntervalMinutes\":\"15\",\"jetcache.areaInCacheName\":\"false\",\"jetcache.local.default.type\":\"linkedhashmap\",\"jetcache.local.default.keyConvertor\":\"fastjson\",\"jetcache.local.default.limit\":\"100\",\"jetcache.remote.default.type\":\"redis.lettuce\",\"jetcache.remote.default.keyPrefix\":\"prd.waynechu.cn\",\"jetcache.remote.default.keyConvertor\":\"fastjson\",\"jetcache.remote.default.valueEncoder\":\"java\",\"jetcache.remote.default.valueDecoder\":\"java\",\"jetcache.remote.default.poolConfig.minIdle\":\"5\",\"jetcache.remote.default.poolConfig.maxIdle\":\"20\",\"jetcache.remote.default.poolConfig.maxTotal\":\"50\",\"jetcache.remote.default.uri\":\"redis://${spring.redis.password}@${spring.redis.host}:${spring.redis.port}\",\"elk.rabbitmq.enable\":\"true\",\"elk.rabbitmq.host\":\"${spring.rabbitmq.host}\",\"elk.rabbitmq.port\":\"${spring.rabbitmq.port}\",\"elk.rabbitmq.username\":\"${spring.rabbitmq.username}\",\"elk.rabbitmq.password\":\"${spring.rabbitmq.password}\",\"elk.rabbitmq.application-id\":\"${spring.application.name}\",\"elk.rabbitmq.virtual-host\":\"/logback\",\"elk.rabbitmq.exchange\":\"topic.loggingExchange\",\"elk.rabbitmq.routing-key\":\"logback.#\",\"elk.rabbitmq.connection-name\":\"biz|${spring.application.name}\",\"sentry.enable\":\"false\",\"sentry.dsn\":\"http://a1c395c85d244742ae2a50b90f1535b8@localhost:9000/1\",\"sentry.stacktrace-app-packages\":\"\",\"mybatis-plus.mapper-locations\":\"classpath:sqlmap/**/*Mapper.xml\",\"mybatis-plus.configuration.cache-enabled\":\"false\",\"mybatis-plus.configuration.map-underscore-to-camel-case\":\"true\",\"mybatis-plus.configuration.use-generated-keys\":\"true\",\"mybatis-plus.configuration.log-impl\":\"org.apache.ibatis.logging.stdout.StdOutImpl\",\"pagehelper.reasonable\":\"false\",\"pagehelper.page-size-zero\":\"true\",\"pagehelper.auto-runtime-dialect\":\"true\",\"pagehelper.close-conn\":\"true\",\"biz.api.starter.swagger.enable\":\"true\",\"biz.api.starter.swagger.api-title\":\"SpringCloud微服务项目\",\"biz.api.starter.swagger.api-description\":\"SpringCloud微服务项目\",\"biz.api.starter.swagger.api-version\":\"1.0.0\",\"biz.api.starter.swagger.scan-package\":\"cn.waynechu\",\"biz.api.starter.swagger.contact-name\":\"waynechu\",\"biz.api.starter.swagger.contact-url\":\"www.waynechu.cn\",\"biz.api.starter.swagger.contact-email\":\"waynechu@waynechu.cn\",\"spring.datasource.dynamic.logger-enable\":\"false\",\"spring.datasource.dynamic.strategy\":\"cn.waynechu.bootstarter.dynamicdatasource.strategy.RoundRobinDynamicDataSourceStrategy\",\"spring.datasource.dynamic.druid.public-key\":\"MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIxH6Gne6flG+enZOeGsbg4hoiGFi1ORqvsi8EzlObP3Gz/NVQpJACcBidowsWolaYKyfv8jHUClNja3GCE2x+kCAwEAAQ\\u003d\\u003d\",\"spring.datasource.dynamic.druid.stat-view-servlet.enabled\":\"true\",\"spring.datasource.dynamic.druid.stat-view-servlet.login-username\":\"admin\",\"spring.datasource.dynamic.druid.stat-view-servlet.login-password\":\"123456\",\"spring.datasource.dynamic.druid.filters\":\"stat,wall\",\"spring.datasource.dynamic.druid.wall.select-limit\":\"100000\",\"spring.datasource.dynamic.druid.connection-properties.druid.stat.mergeSql\":\"true\",\"spring.datasource.dynamic.druid.connection-properties.druid.stat.slowSqlMillis\":\"1000\",\"spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql\":\"true\",\"spring.datasource.dynamic.druid.web-stat-filter.enabled\":\"true\",\"spring.datasource.dynamic.druid.aop-patterns\":\"cn.waynechu.*.api.controller.*,cn.waynechu.*.service.*\"}', b'0', b'0', 'apollo', '2020-09-02 15:28:42', 'apollo', '2020-09-02 15:28:42');
 
 -- ----------------------------
 -- Table structure for ReleaseHistory
@@ -2518,7 +2722,7 @@ CREATE TABLE `ReleaseHistory`  (
   INDEX `IX_Namespace`(`AppId`, `ClusterName`, `NamespaceName`, `BranchName`) USING BTREE,
   INDEX `IX_ReleaseId`(`ReleaseId`) USING BTREE,
   INDEX `IX_DataChange_LastTime`(`DataChange_LastTime`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布历史' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布历史' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ReleaseHistory
@@ -2597,6 +2801,8 @@ INSERT INTO `ReleaseHistory` VALUES (71, 'biz-archetype-portal', 'default', 'app
 INSERT INTO `ReleaseHistory` VALUES (72, 'biz-dynamic-datasource-all', 'default', 'Archer.datasource-project', 'default', 70, 68, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-08-24 18:33:47', 'apollo', '2020-08-24 18:33:47');
 INSERT INTO `ReleaseHistory` VALUES (73, 'biz-archetype-portal', 'default', 'application', 'default', 71, 69, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-08-24 18:42:14', 'apollo', '2020-08-24 18:42:14');
 INSERT INTO `ReleaseHistory` VALUES (74, 'biz-archetype-portal', 'default', 'application', 'default', 72, 71, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-08-24 18:46:06', 'apollo', '2020-08-24 18:46:06');
+INSERT INTO `ReleaseHistory` VALUES (75, 'service-product', 'default', 'application', 'default', 73, 0, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-09-02 15:20:45', 'apollo', '2020-09-02 15:20:45');
+INSERT INTO `ReleaseHistory` VALUES (76, 'biz-spring-cloud-public', 'default', 'Archer.biz-spring-cloud-public', 'default', 74, 53, 0, '{\"isEmergencyPublish\":false}', b'0', 'apollo', '2020-09-02 15:28:42', 'apollo', '2020-09-02 15:28:42');
 
 -- ----------------------------
 -- Table structure for ReleaseMessage
@@ -2609,7 +2815,7 @@ CREATE TABLE `ReleaseMessage`  (
   PRIMARY KEY (`Id`) USING BTREE,
   INDEX `DataChange_LastTime`(`DataChange_LastTime`) USING BTREE,
   INDEX `IX_Message`(`Message`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 87 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布消息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 89 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '发布消息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ReleaseMessage
@@ -2625,9 +2831,7 @@ INSERT INTO `ReleaseMessage` VALUES (55, 'dynamic-datasource-all+default+applica
 INSERT INTO `ReleaseMessage` VALUES (56, 'dynamic-datasource-all+default+Archer.biz-dynamic-datasource', '2020-05-28 14:23:21');
 INSERT INTO `ReleaseMessage` VALUES (58, 'biz-dynamic-datasource+default+Archer.biz-dynamic-datasource', '2020-05-28 14:27:43');
 INSERT INTO `ReleaseMessage` VALUES (59, 'biz-dynamic-datasource+default+application', '2020-05-28 14:28:00');
-INSERT INTO `ReleaseMessage` VALUES (65, 'service-product+default+application', '2020-05-28 14:41:11');
 INSERT INTO `ReleaseMessage` VALUES (66, 'dynamic-datasource-test+default+application', '2020-05-28 14:41:25');
-INSERT INTO `ReleaseMessage` VALUES (67, 'biz-spring-cloud-public+default+Archer.biz-spring-cloud-public', '2020-05-28 15:01:03');
 INSERT INTO `ReleaseMessage` VALUES (72, 'biz-dynamic-datasource-all+default+Archer.datasource-order', '2020-05-28 15:44:14');
 INSERT INTO `ReleaseMessage` VALUES (73, 'service-order+default+application', '2020-05-28 15:55:45');
 INSERT INTO `ReleaseMessage` VALUES (74, 'biz-dynamic-datasource-all+default+Archer.datasource-product', '2020-05-28 16:18:21');
@@ -2636,6 +2840,8 @@ INSERT INTO `ReleaseMessage` VALUES (80, 'biz-spring-cloud-gateway+default+appli
 INSERT INTO `ReleaseMessage` VALUES (81, 'service-utility+default+application', '2020-08-24 16:40:57');
 INSERT INTO `ReleaseMessage` VALUES (84, 'biz-dynamic-datasource-all+default+Archer.datasource-project', '2020-08-24 18:33:47');
 INSERT INTO `ReleaseMessage` VALUES (86, 'biz-archetype-portal+default+application', '2020-08-24 18:46:06');
+INSERT INTO `ReleaseMessage` VALUES (87, 'service-product+default+application', '2020-09-02 15:20:45');
+INSERT INTO `ReleaseMessage` VALUES (88, 'biz-spring-cloud-public+default+Archer.biz-spring-cloud-public', '2020-09-02 15:28:42');
 
 -- ----------------------------
 -- Table structure for ServerConfig

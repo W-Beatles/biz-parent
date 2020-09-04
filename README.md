@@ -12,7 +12,7 @@ SpringCloud微服务开发脚手架
      动态数据源模块。支持读写分离、多数据源动态切换、健康检查
      [更多](./biz-boot-starter-dynamic-datasource/README.md)  
 3.  biz-boot-starter-logger  
-     `elk`&`sentry`starter模块。用于日志上传ELK及Sentry报警
+     `elk`&`sentry`日志模块。用于日志上传ELK及Sentry报警
      [更多](./biz-boot-starter-logger/README.md)
 4.  biz-boot-starter-sequence  
      基于`zookeeper`和`snowflake`算法的分布式id生成器
@@ -23,39 +23,36 @@ SpringCloud微服务开发脚手架
 6.  biz-spring-boot-admin  
      SpringBoot Admin监控模块
      [更多](./biz-spring-boot-admin/README.md)
-7.  biz-spring-cloud-api-dynamic-datasource-test  
-     动态数据源测试模块
-     [更多](./biz-spring-cloud-api-dynamic-datasource-test/README.md)
-8.  biz-spring-cloud-api-service-order  
+7.  biz-spring-cloud-api-service-order  
      微服务测试模块 - 订单模块
      [更多](./biz-spring-cloud-api-service-order/README.md)
-9.  biz-spring-cloud-api-service-product  
+8.  biz-spring-cloud-api-service-product  
      微服务测试模块 - 产品模块
      [更多](./biz-spring-cloud-api-service-product/README.md)
-10. biz-spring-cloud-api-service-utility  
-     公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等服务
+9. biz-spring-cloud-api-service-utility  
+     公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等基础服务
      [更多](./biz-spring-cloud-api-service-utility/README.md)
-11. biz-spring-cloud-api-starter  
-     spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等基础功能
+10. biz-spring-cloud-api-starter  
+     spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等开箱即用的功能
      [更多](./biz-spring-cloud-api-starter/README.md)
-12. biz-spring-cloud-common  
+11. biz-spring-cloud-common  
       spring-cloud项目通用类库
      [更多](./biz-spring-cloud-common/README.md)
-13. ~~biz-spring-cloud-dashboard-hystrix(已废弃)~~  
+12. ~~biz-spring-cloud-dashboard-hystrix(已废弃)~~  
       推荐使用biz-spring-cloud-dashboard-turbine来进行hystrix断路器监控
-14. biz-spring-cloud-dashboard-turbine  
+13. biz-spring-cloud-dashboard-turbine  
       用于监控应用hystrix.stream端点，并进行hystrix断路器信息聚合
-     [更多](./biz-spring-cloud-dashboard-turbineREADME.md)
-15. biz-spring-cloud-eureka  
+     [更多](./biz-spring-cloud-dashboard-turbine/README.md)
+14. biz-spring-cloud-eureka  
       Eureka注册中心
      [更多](./biz-spring-cloud-eureka/README.md)
-16. biz-spring-cloud-gateway  
+15. biz-spring-cloud-gateway  
       API网关。用于微服务代理及网关鉴权，并提供swagger文档聚合功能
      [更多](./biz-spring-cloud-gateway/README.md)
-17. biz-spring-cloud-oauth-server  
+16. biz-spring-cloud-oauth-server  
       oauth2统一认证授权中心
      [更多](./biz-spring-cloud-oauth-server/README.md)
-18. biz-spring-cloud-test  
+17. biz-spring-cloud-test  
       测试模块
      [更多](./biz-spring-cloud-test/README.md)
 
@@ -125,12 +122,11 @@ docker-compose -h                      # 查看更多相关命令
     |  监控中心         |  boot-admin             |  9020        |                   |  http://localhost:9020                   |
     |  skywalking-oap  |  skywalking-oap         |  12800       |                   |                                          |
     |  skywalking-ui   |  skywalking-ui          |  8090        |                   |  http://localhost:8090                   |
-    |  * 统一认证服务   |  oauth-server           |  9050-9059   |                   |  http://localhost:9050                   |
+    |  统一认证服务     |  oauth-server           |  9050-9059   |                   |  http://localhost:9050                   |
     |  代码生成后端服务  |  archetype-portal       |  9060        |                   |  http://localhost:9060                   |
     |  订单服务         |  service-order          |  10010-10019 |                   |  http://localhost:10010/swagger-ui.html  |
     |  订单服务         |  service-product        |  10020-10029 |                   |  http://localhost:10020/swagger-ui.html  |
     |  公共服务         |  service-utility        |  10030-10039 |                   |  http://localhost:10030/swagger-ui.html  |
-    |  动态数据源测试服务|  dynamic-datasource-test|  10040-10049 |                   |  http://localhost:10040/swagger-ui.html  |
 
 2. 服务前加`*`代表必须依赖的基础服务，需优先启动  
 3. 启动所有服务会消耗大量的内存，除基础服务外，其它服务可根据需要选择性启动

@@ -115,6 +115,9 @@ public class DesensitizeUtil {
                         }
                         // 寻找值的开始位置
                         int valueStart = getValueStartIndex(tempMsg, index + key.length());
+                        if (valueStart == -1) {
+                            continue;
+                        }
 
                         // 查找值的结束位置（逗号，分号）
                         int valueEnd = getValueEndIndex(tempMsg, valueStart);
@@ -173,6 +176,9 @@ public class DesensitizeUtil {
                 break;
             } else {
                 valueStart++;
+                if (valueStart >= msg.length()) {
+                    return -1;
+                }
             }
         } while (true);
         return valueStart;
