@@ -74,11 +74,8 @@
 
     <if condition='property("elkRabbitmqEnable").contains("true")'>
         <then>
-            <appender name="ELK_RABBITMQ" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+            <appender name="ELK_RABBITMQ" class="cn.waynechu.bootstarter.logger.appender.AmqpAppender">
                 <layout class="cn.waynechu.bootstarter.logger.layout.RabbitmqLayout"/>
-                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                    <level>INFO</level>
-                </filter>
 
                 <host>${elkRabbitmqHost}</host>
                 <port>${elkRabbitmqPort}</port>
