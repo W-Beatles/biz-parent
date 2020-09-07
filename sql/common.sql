@@ -40,7 +40,7 @@ CREATE TABLE `dictionary`  (
   `deleted_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除: 0否 1是',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_dic_type_code_dic_code`(`dic_code`) USING BTREE COMMENT '字典类型编码字典编码索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '字典表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dictionary

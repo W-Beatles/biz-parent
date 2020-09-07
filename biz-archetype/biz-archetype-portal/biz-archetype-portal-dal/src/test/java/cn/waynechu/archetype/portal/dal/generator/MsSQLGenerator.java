@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
-public class MysqlGenerator {
-
+public class MsSQLGenerator {
+	
 	/**
 	 * 生成文件所在目录
 	 */
@@ -27,14 +27,14 @@ public class MysqlGenerator {
 	/**
 	 * 数据库连接url
 	 */
-	private static final String dbUrl = "jdbc:mysql://localhost:3306/order?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true";
+	private static final String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=test";
 	/**
 	 * 要生成代码的数据表
 	 */
 	private static final String[] includeTables = new String[] {"tbl_order"};
-
-
-
+	
+	
+	
     public static void main(String[] args) {
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
@@ -49,22 +49,23 @@ public class MysqlGenerator {
         gc.setAuthor(author);
         // 自定义文件命名，注意 %s 会自动填充表实体属性！
         gc.setMapperName("%sMapper");
-        gc.setXmlName("%Mapper");
+        gc.setXmlName("%sMapper");
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
         gc.setEntityName("%sDAO");
         mpg.setGlobalConfig(gc);
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setDbType(DbType.MYSQL);
-        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setDbType(DbType.SQL_SERVER);
+        dsc.setDriverName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         dsc.setUsername(dbUserName);
         dsc.setPassword(dbPassword);
         dsc.setUrl(dbUrl);
         mpg.setDataSource(dsc);
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
+        //        strategy.setTablePrefix("app_");// 此处可以修改为您的表前缀
+        strategy.setNaming(NamingStrategy.no_change);// 表名生成策略
         strategy.setInclude(includeTables); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
@@ -78,10 +79,10 @@ public class MysqlGenerator {
         strategy.setSuperServiceClass("cn.waynechu.base.service.IBaseService");
         // 自定义 service 实现类父类
         strategy.setSuperServiceImplClass("cn.waynechu.base.service.impl.BaseServiceImpl");
-//        // 自定义 controller 父类
-//        strategy.setSuperControllerClass("cn.waynechu.springcloud.common.controller.BaseController");
+        // 自定义 controller 父类
+        strategy.setSuperControllerClass("cn.waynechu.springcloud.common.controller.BaseController");
         //生成 <code>@RestController</code> 控制器
-//        strategy.setRestControllerStyle(true);
+        strategy.setRestControllerStyle(true);
         // 【实体】是否生成字段常量（默认 false）
         // public static final String ID = "test_id";
         // strategy.setEntityColumnConstant(true);
@@ -113,11 +114,11 @@ public class MysqlGenerator {
         pc.setService("service");
         pc.setServiceImpl("service.impl");
         mpg.setPackageInfo(pc);
-
+        
         TemplateConfig tc  = new TemplateConfig();
         tc.setController(null);
         mpg.setTemplate(tc);
-
+        
         mpg.execute();
     }
 }

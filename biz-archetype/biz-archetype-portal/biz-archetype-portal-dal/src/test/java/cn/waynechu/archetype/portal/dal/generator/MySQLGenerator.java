@@ -1,8 +1,5 @@
-#set($symbol_pound='#')
-#set($symbol_dollar='$')
-#set($symbol_escape='\' )
 
-package ${package}.dal.generator;
+package cn.waynechu.archetype.portal.dal.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
