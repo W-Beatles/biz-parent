@@ -7,9 +7,7 @@
 4. 可实现 `DynamicDataSourceStrategy` 接口并自定义动态数据源选择策略。默认提供轮询、随机两种
 5. 集成Druid数据源，支持原生SQL监控、防火墙监控、慢查询监控、Url监控、Spring监控等
 6. 兼容 `mybatis-plus3` 持久层框架，简化CRUD开发
-7. 默认添加 `mybatis-typehandlers-jsr310` 日期API依赖，支持数据库时间类型到Java8 `LocalData`、`LocalDataTime`时间类型的映射
-
-> 注：使用方式可参考 `biz-spring-cloud-api-dynamic-datasource-test` 测试项目
+7. 默认添加 `mybatis-typehandlers-jsr310` 时间类库依赖，支持数据库时间类型到Java8 `LocalData`、`LocalDataTime`时间类型的映射
 
 ### 使用方法
 1. 添加pom依赖
@@ -123,7 +121,7 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
     当方法执行到创建订单时，因为此时操作的还是产品库，会抛出异常。在事务控制下，无法实现数据源的切换。
 
 2. 限制了 **XxxMapper.java** 文件放置的位置。当前查询要使用的数据库是通过MyBatis拦截器拿到的。  
-   取值为 **MappedStatement** 对象的 **resource** 字符串。其中 **resource** 代表了当前查询的 **XxxMapper.java** 存放路径。
+   取值为 **MappedStatement** 对象的 **resource** 字符，即当前查询的 **XxxMapper.java** 存放路径。
      
      关键代码如下：
      ```
@@ -138,7 +136,7 @@ spring.datasource.dynamic.datasource.order-slave3.balalala...
     把属于不同数据库的 **XxxMapper.java** 文件放在 **对应数据库组名** 的文件夹下
     
     比如：
-    - cn.waynechu.dynamicdatasource.dal
+    - cn.waynechu.demo.dal
        - mapper
           - order
              - OrderMapper.java

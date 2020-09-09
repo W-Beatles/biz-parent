@@ -114,7 +114,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 ### 授权码模式(authorization_code)
 
 流程图：
-![1.png](./docs/1.png "授权码模式流程图")  
+![1.png](../docs/oauth/1.png "授权码模式流程图")  
 
 1. 三方应用程序引导用户进入授权请求页，获取`authorization_code`:  
     ```
@@ -132,7 +132,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
     POST http://localhost:9050/oauth/token
     ```
    
-    ![2.png](./docs/2.png "授权码模式 - 获取token")
+    ![2.png](../docs/oauth/2.png "授权码模式 - 获取token")
 
     返回结果：
     ```json
@@ -150,11 +150,11 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
     POST http://localhost:9050/oauth/token
     ```
    
-    ![3.png](./docs/3.png "授权码模式 - 刷新token")
+    ![3.png](../docs/oauth/3.png "授权码模式 - 刷新token")
 
 ### 简化模式(implicit)
 
-   ![4.png](./docs/4.png "简化模式")
+   ![4.png](../docs/oauth/4.png "简化模式")
 
 1. 三方应用程序引导用户进入授权请求页，并请求获取`access_token`:  
     ```
@@ -174,7 +174,7 @@ token 只有`access_token`没有`refresh token`。
 
 ### 密码模式(password)
 
-   ![5.png](./docs/5.png "密码模式")
+   ![5.png](../docs/oauth/5.png "密码模式")
    
 1. 请求获取`access_token`：  
     ```
@@ -195,7 +195,7 @@ token 只有`access_token`没有`refresh token`。
 
 ### 客户端模式(client_credentials)
 
-   ![6.png](./docs/6.png "客户端模式")
+   ![6.png](../docs/oauth/6.png "客户端模式")
    
 1. 请求获取`access_token`：  
    ```
@@ -212,7 +212,3 @@ token 只有`access_token`没有`refresh token`。
     }
    ```
    **说明**: 客户端模式不需要用户参与，所以token中拿不到用户信息
-
-### 网关鉴权
-
-![7.png](./docs/7.png "网关鉴权")

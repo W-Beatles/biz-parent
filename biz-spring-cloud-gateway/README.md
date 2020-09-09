@@ -3,10 +3,23 @@
 ### 项目介绍
 微服务网关
 
-### 使用说明
-可以自定义swagger文档聚合名称，配置如下:
+### 功能点
+- 负载均衡
+- 服务聚合
+- 动态路由
+- 权限控制
+- 版本控制(灰度)
+- 黑白名单
+- 熔断限流
+- 链路追踪
+
+### 网关鉴权
+![7.png](../docs/oauth/7.png "网关鉴权")
+
+### 相关配置说明
+自定义swagger文档聚合名称，配置如下:
 ```
-eureka.instance.metadata-map.swagger-name=默认使用applicationName
+eureka.instance.metadata-map.swagger-name=${spring.applicationName}
 ```
 
 ###  配置版本路由权重

@@ -6,7 +6,6 @@
 ### 功能清单
 - Base64Util 
 - BeanUtil
-- BigDecimalUtil
 - BinaryUtil
 - ByteUtil
 - CollectionUtil

@@ -75,7 +75,7 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
     elk.rabbitmq.connection-name=biz|${spring.application.name}
    
     ## elk-kafka (两种方式二选一即可)
-    elk.kafka.enable=true
+    elk.kafka.enable=false
     elk.kafka.host=kafka.waynechu.cn
     elk.kafka.port=9092
     elk.kafka.topic=logback
