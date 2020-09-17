@@ -25,11 +25,6 @@ public class SequenceProperty {
     private String group = "default";
 
     /**
-     * 生成策略，默认snowflake
-     */
-    private String strategy = "snowflake";
-
-    /**
      * zk节点信息本地缓存文件路径
      */
     private String registryFile;

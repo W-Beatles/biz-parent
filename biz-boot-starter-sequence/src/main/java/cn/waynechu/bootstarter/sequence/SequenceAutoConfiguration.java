@@ -18,18 +18,19 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(SequenceProperty.class)
-@ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
 public class SequenceAutoConfiguration {
 
     @Autowired
     private SequenceProperty sequenceProperty;
 
     @Bean(initMethod = "init")
+    @ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
     public ZookeeperRegistryCenter zookeeperRegistryCenter() {
         return new ZookeeperRegistryCenter(sequenceProperty.getZookeeper());
     }
 
     @Bean(initMethod = "init", destroyMethod = "close")
+    @ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
     public SnowFlakeIdGenerator generator() {
         ZookeeperWorkerRegister zookeeperWorkerRegister = new ZookeeperWorkerRegister(zookeeperRegistryCenter(), sequenceProperty);
         return new SnowFlakeIdGenerator(zookeeperWorkerRegister);

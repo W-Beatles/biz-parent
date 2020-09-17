@@ -35,5 +35,10 @@
             <groupId>cn.waynechu</groupId>
             <artifactId>service-order-integration-dal</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-boot-starter-sequence</artifactId>
+        </dependency>
     </dependencies>
 </project>

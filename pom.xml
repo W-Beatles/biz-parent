@@ -64,7 +64,7 @@
         <biz-boot-starter-dynamic-datasource.version>0.1.2020032201-RELEASE
         </biz-boot-starter-dynamic-datasource.version>
         <biz-boot-starter-logger.version>0.1.2019123001-RELEASE</biz-boot-starter-logger.version>
-        <biz-boot-starter-elastic-job.version>0.1.2019070901-RELEASE</biz-boot-starter-elastic-job.version>
+        <biz-boot-starter-sequence.version>0.1.2020032201-RELEASE</biz-boot-starter-sequence.version>
     </properties>
 
     <modules>
@@ -363,8 +363,8 @@
 
             <dependency>
                 <groupId>cn.waynechu</groupId>
-                <artifactId>biz-boot-starter-elastic-job</artifactId>
-                <version>${biz-boot-starter-elastic-job.version}</version>
+                <artifactId>biz-boot-starter-sequence</artifactId>
+                <version>${biz-boot-starter-sequence.version}</version>
             </dependency>
 
             <dependency>

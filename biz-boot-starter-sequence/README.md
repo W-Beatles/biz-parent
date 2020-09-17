@@ -21,10 +21,10 @@
     sequence.zookeeper.serverLists=localhost:2181,localhost:2182
     sequence.zookeeper.namespace=sequence
     ```
-2. 注入`SnowFlakeIdGenerator`对象
+2. 注入`IdGenerator`对象
     ```
     @Autowire
-    private SnowFlakeIdGenerator generator;
+    private IdGenerator generator;
     ```
 3. 生成分布式id
     ```
