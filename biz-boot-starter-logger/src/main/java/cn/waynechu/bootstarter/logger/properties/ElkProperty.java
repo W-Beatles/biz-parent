@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * @author zhuwei
- * @date 2019/4/29 17:40
+ * @since 2019/4/29 17:40
  */
 @Data
 @ConfigurationProperties(prefix = ElkProperty.ELK_CONFIG_PREFIX)

@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author zhuwei
- * @date 2019/4/23 17:00
+ * @since 2019/4/23 17:00
  */
 @Data
 @ConfigurationProperties(prefix = CorsProperty.CORS_CONFIG_PREFIX)

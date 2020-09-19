@@ -23,7 +23,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * </pre>
  *
  * @author zhuwei
- * @date 2019/03/22 14:16
+ * @since 2019/03/22 14:16
  */
 @Slf4j
 public abstract class AbstractControllerLogAspect {

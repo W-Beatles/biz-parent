@@ -34,7 +34,7 @@ import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
 /**
  * @author zhuwei
- * @date 2018/11/7 14:28
+ * @since 2018/11/7 14:28
  */
 @Slf4j
 @Configuration

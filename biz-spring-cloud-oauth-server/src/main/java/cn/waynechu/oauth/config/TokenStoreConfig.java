@@ -1,10 +1,11 @@
-package cn.waynechu.springcloud.oauthserver.config;
+package cn.waynechu.oauth.config;
 
+import cn.waynechu.oauth.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter;
@@ -19,19 +20,22 @@ import java.util.Map;
 
 /**
  * @author zhuwei
- * @date 2020-02-27 21:57
+ * @since 2020-02-27 21:57
  */
 @Configuration
 public class TokenStoreConfig {
 
     @Autowired
+    private DataSource dataSource;
+
+    @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
     @Autowired
-    private UserDetailsService bizUserDetailsService;
+    private SysUserService sysUserService;
 
-    @Autowired
-    private DataSource dataSource;
+    @Value("${oauth2.jwt.signingKey}")
+    private String signingKey;
 
     @Bean
     public TokenStore jwtTokenStore() {
@@ -45,18 +49,18 @@ public class TokenStoreConfig {
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
         DefaultAccessTokenConverter defaultAccessTokenConverter = (DefaultAccessTokenConverter) accessTokenConverter.getAccessTokenConverter();
         DefaultUserAuthenticationConverter userAuthenticationConverter = new DefaultUserAuthenticationConverter();
-        userAuthenticationConverter.setUserDetailsService(bizUserDetailsService);
+        userAuthenticationConverter.setUserDetailsService(sysUserService);
         defaultAccessTokenConverter.setUserTokenConverter(userAuthenticationConverter);
-        // TODO 2020/6/8 14:54 signingKey外部配置化
-        accessTokenConverter.setSigningKey("123456");
+        accessTokenConverter.setSigningKey(signingKey);
         return accessTokenConverter;
     }
 
     @Bean
     public TokenEnhancer jwtTokenEnhancer() {
         return (accessToken, authentication) -> {
-            // TODO 2020/6/8 14:33 扩展token字段
             Map<String, Object> info = new HashMap<>(1);
+            // 自定义token内容，加入组织机构信息
+            info.put("organization", authentication.getName());
             info.put("version", "1.0.0");
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
             return accessToken;

@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * @author zhuwei
- * @date 2019/3/26 13:20
+ * @since 2019/3/26 13:20
  */
 @Data
 public class Society {

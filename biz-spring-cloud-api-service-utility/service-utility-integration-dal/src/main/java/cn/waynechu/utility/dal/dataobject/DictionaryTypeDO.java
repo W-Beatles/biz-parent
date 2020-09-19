@@ -10,7 +10,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2020-06-28 23:22
+ * @since 2020-06-28 23:22
  */
 @Data
 @TableName(value = "dictionary_type")

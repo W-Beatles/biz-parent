@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2020-06-21 00:07
+ * @since 2020-06-21 00:07
  */
 public interface ArchetypeMapper extends BaseMapper<ArchetypeDO> {
     int updateBatch(List<ArchetypeDO> list);

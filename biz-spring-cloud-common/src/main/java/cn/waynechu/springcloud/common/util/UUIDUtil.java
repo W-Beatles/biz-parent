@@ -6,7 +6,7 @@ import java.util.UUID;
 
 /**
  * @author zhuwei
- * @date 2019/5/9 10:08
+ * @since 2019/5/9 10:08
  */
 public class UUIDUtil {
     /**

@@ -17,7 +17,7 @@ import java.util.function.Predicate;
  * 只有当时间在配置的时间范围内网关才会转发
  *
  * @author zhuwei
- * @date 2020-02-23 22:56
+ * @since 2020-02-23 22:56
  */
 @Component
 public class TimeBetweenRoutePredicateFactory extends AbstractRoutePredicateFactory<TimeBetweenConfig> {

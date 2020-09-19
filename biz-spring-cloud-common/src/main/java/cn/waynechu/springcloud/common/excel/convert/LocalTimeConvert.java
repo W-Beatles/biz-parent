@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
  * 时间格式读取 {@code JsonFormat} 注解的pattern属性
  *
  * @author zhuwei
- * @date 2020-07-03 01:05
+ * @since 2020-07-03 01:05
  */
 public class LocalTimeConvert implements Converter<LocalTime> {
 

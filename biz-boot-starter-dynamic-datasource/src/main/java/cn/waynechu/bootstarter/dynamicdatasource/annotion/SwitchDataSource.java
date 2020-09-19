@@ -23,7 +23,7 @@ import java.lang.annotation.*;
  * 用于手动指定需要使用的数据源
  *
  * @author zhuwei
- * @date 2019/12/27 13:33
+ * @since 2019/12/27 13:33
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

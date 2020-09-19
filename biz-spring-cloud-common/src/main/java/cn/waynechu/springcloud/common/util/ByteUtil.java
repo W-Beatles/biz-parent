@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 
 /**
  * @author zhuwei
- * @date 2019/1/23 15:59
+ * @since 2019/1/23 15:59
  */
 @UtilityClass
 public class ByteUtil {

@@ -8,7 +8,7 @@ import java.nio.charset.Charset;
 
 /**
  * @author zhuwei
- * @date 2019/6/26 23:01
+ * @since 2019/6/26 23:01
  */
 @UtilityClass
 public class FileUtil {

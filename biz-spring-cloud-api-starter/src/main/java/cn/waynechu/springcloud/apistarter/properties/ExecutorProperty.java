@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author zhuwei
- * @date 2019/10/18 16:19
+ * @since 2019/10/18 16:19
  */
 @Data
 @ConfigurationProperties(prefix = ExecutorProperty.EXECUTOR_CONFIG_PREFIX)

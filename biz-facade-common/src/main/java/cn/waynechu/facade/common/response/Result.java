@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  * @author zhuwei
- * @date 2018/11/15 13:35
+ * @since 2018/11/15 13:35
  * @deprecated 已废弃。请使用 {@code BizResponse}
  */
 @Data

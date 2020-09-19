@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2018/11/15 11:56
+ * @since 2018/11/15 11:56
  */
 @Data
 @ApiModel(description = "分页请求对象")

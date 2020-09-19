@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2020-06-28 23:15
+ * @since 2020-06-28 23:15
  */
 @RestController
 @Api(tags = "字典服务")

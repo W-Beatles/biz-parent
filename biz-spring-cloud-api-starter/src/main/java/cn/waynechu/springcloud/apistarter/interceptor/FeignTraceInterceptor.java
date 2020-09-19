@@ -12,7 +12,7 @@ import java.util.List;
  * Feign调用传递header信息
  *
  * @author zhuwei
- * @date 2019/9/25 14:32
+ * @since 2019/9/25 14:32
  */
 @Slf4j
 public class FeignTraceInterceptor extends BaseTraceInterceptor implements RequestInterceptor {

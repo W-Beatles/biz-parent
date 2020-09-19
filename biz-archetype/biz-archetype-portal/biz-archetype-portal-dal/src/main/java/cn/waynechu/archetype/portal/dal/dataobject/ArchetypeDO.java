@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author zhuwei
- * @date 2020-06-21 00:07
+ * @since 2020-06-21 00:07
  */
 @Data
 @TableName(value = "archetype")

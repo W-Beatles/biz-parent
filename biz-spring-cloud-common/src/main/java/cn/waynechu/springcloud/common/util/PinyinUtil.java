@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
  * 汉字转拼音工具类
  *
  * @author zhuwei
- * @date 2019/4/9 17:31
+ * @since 2019/4/9 17:31
  * @see "https://github.com/promeG/TinyPinyin"
  */
 public class PinyinUtil {

@@ -19,7 +19,7 @@ import java.util.Date;
  * </pre>
  *
  * @author zhuwei
- * @date 2019/7/17 22:14
+ * @since 2019/7/17 22:14
  */
 @UtilityClass
 public class DBUtil {

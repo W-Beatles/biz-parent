@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2020-06-20 21:39
+ * @since 2020-06-20 21:39
  */
 @Data
 public class ListArchetypeCondition {

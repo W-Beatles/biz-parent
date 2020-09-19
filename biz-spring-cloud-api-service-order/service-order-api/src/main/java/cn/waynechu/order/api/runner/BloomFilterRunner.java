@@ -13,7 +13,7 @@ import java.util.Arrays;
  * lettuce客户端暂不支持CommandType.BF.RESERVE
  *
  * @author zhuwei
- * @date 2020-04-20 22:28
+ * @since 2020-04-20 22:28
  */
 @Slf4j
 //@Component

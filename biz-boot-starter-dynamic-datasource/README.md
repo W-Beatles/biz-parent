@@ -55,7 +55,7 @@ spring.datasource.dynamic.druid.connection-properties.druid.stat.logSlowSql=true
 ### 打开Web应用监控
 spring.datasource.dynamic.druid.web-stat-filter.enabled=true
 ### 设置Spring监控AOP包路径
-spring.datasource.dynamic.druid.aop-patterns=cn.waynechu.dynamicdatasource.api.controller.*,cn.waynechu.dynamicdatasource.domain.service.*
+spring.datasource.dynamic.druid.aop-patterns=cn.waynechu.*.api.controller.*,cn.waynechu.*.domain.service.*
 ### 多数据源配置
 #### order database 订单库
 spring.datasource.dynamic.datasource.order-master.username=root

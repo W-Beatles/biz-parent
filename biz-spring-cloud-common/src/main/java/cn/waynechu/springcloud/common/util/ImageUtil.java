@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * @author zhuwei
- * @date 2019/6/26 21:49
+ * @since 2019/6/26 21:49
  */
 @UtilityClass
 public class ImageUtil {

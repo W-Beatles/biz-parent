@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2019-08-16 23:22
+ * @since 2019-08-16 23:22
  */
 public interface RegionMapper extends BaseMapper<RegionDO> {
     int updateBatch(List<RegionDO> list);

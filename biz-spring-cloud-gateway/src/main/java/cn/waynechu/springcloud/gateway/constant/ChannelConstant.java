@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 
 /**
  * @author zhuwei
- * @date 2020-03-07 16:25
+ * @since 2020-03-07 16:25
  */
 @UtilityClass
 public class ChannelConstant {

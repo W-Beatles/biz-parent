@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author zhuwei
- * @date 2019/7/11 19:55
+ * @since 2019/7/11 19:55
  */
 @Slf4j
 @Configuration

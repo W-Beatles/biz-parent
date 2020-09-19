@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.waynechu.oauth.mapper.oauth.SysUserMapper">
+    <resultMap id="BaseResultMap" type="cn.waynechu.oauth.entity.SysUserDO">
+        <!--@mbg.generated-->
+        <!--@Table sys_user-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="head_img_url" jdbcType="VARCHAR" property="headImgUrl"/>
+        <result column="sex" jdbcType="BOOLEAN" property="sex"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="id_card" jdbcType="CHAR" property="idCard"/>
+        <result column="user_status" jdbcType="TINYINT" property="userStatus"/>
+        <result column="created_user" jdbcType="VARCHAR" property="createdUser"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="updated_user" jdbcType="VARCHAR" property="updatedUser"/>
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+        <result column="deleted_status" jdbcType="BOOLEAN" property="deletedStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, username, nickname, `password`, head_img_url, sex, email, mobile, id_card, user_status,
+        created_user, created_time, updated_user, updated_time, deleted_status
+    </sql>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sys_user
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="username = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.username,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="nickname = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.nickname,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`password` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="head_img_url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.headImgUrl,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="sex = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.sex,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+            <trim prefix="email = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="mobile = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="id_card = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.idCard,jdbcType=CHAR}
+                </foreach>
+            </trim>
+            <trim prefix="user_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.userStatus,jdbcType=TINYINT}
+                </foreach>
+            </trim>
+            <trim prefix="created_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createdUser,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="created_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createdTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="updated_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updatedUser,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="updated_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updatedTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="deleted_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deletedStatus,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sys_user
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="username = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.username != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.username,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="nickname = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.nickname != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.nickname,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`password` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.password != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="head_img_url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.headImgUrl != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.headImgUrl,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sex = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.sex != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.sex,jdbcType=BOOLEAN}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="email = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.email != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="mobile = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.mobile != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="id_card = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.idCard != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.idCard,jdbcType=CHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="user_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.userStatus != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.userStatus,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="created_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createdUser != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createdUser,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="created_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createdTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createdTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="updated_user = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updatedUser != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updatedUser,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="updated_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updatedTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updatedTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="deleted_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deletedStatus != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.deletedStatus,jdbcType=BOOLEAN}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sys_user
+                (username, nickname, `password`, head_img_url, sex, email, mobile, id_card, user_status,
+                 created_user, created_time, updated_user, updated_time, deleted_status)
+                values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.username,jdbcType=VARCHAR}, #{item.nickname,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR},
+             #{item.headImgUrl,jdbcType=VARCHAR}, #{item.sex,jdbcType=BOOLEAN}, #{item.email,jdbcType=VARCHAR},
+             #{item.mobile,jdbcType=VARCHAR}, #{item.idCard,jdbcType=CHAR}, #{item.userStatus,jdbcType=TINYINT},
+             #{item.createdUser,jdbcType=VARCHAR}, #{item.createdTime,jdbcType=TIMESTAMP},
+             #{item.updatedUser,jdbcType=VARCHAR},
+             #{item.updatedTime,jdbcType=TIMESTAMP}, #{item.deletedStatus,jdbcType=BOOLEAN})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.oauth.entity.SysUserDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            username,
+            nickname,
+            `password`,
+            head_img_url,
+            sex,
+            email,
+            mobile,
+            id_card,
+            user_status,
+            created_user,
+            created_time,
+            updated_user,
+            updated_time,
+            deleted_status,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{username,jdbcType=VARCHAR},
+            #{nickname,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR},
+            #{headImgUrl,jdbcType=VARCHAR},
+            #{sex,jdbcType=BOOLEAN},
+            #{email,jdbcType=VARCHAR},
+            #{mobile,jdbcType=VARCHAR},
+            #{idCard,jdbcType=CHAR},
+            #{userStatus,jdbcType=TINYINT},
+            #{createdUser,jdbcType=VARCHAR},
+            #{createdTime,jdbcType=TIMESTAMP},
+            #{updatedUser,jdbcType=VARCHAR},
+            #{updatedTime,jdbcType=TIMESTAMP},
+            #{deletedStatus,jdbcType=BOOLEAN},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            username       = #{username,jdbcType=VARCHAR},
+            nickname       = #{nickname,jdbcType=VARCHAR},
+            `password`     = #{password,jdbcType=VARCHAR},
+            head_img_url   = #{headImgUrl,jdbcType=VARCHAR},
+            sex            = #{sex,jdbcType=BOOLEAN},
+            email          = #{email,jdbcType=VARCHAR},
+            mobile         = #{mobile,jdbcType=VARCHAR},
+            id_card        = #{idCard,jdbcType=CHAR},
+            user_status    = #{userStatus,jdbcType=TINYINT},
+            created_user   = #{createdUser,jdbcType=VARCHAR},
+            created_time   = #{createdTime,jdbcType=TIMESTAMP},
+            updated_user   = #{updatedUser,jdbcType=VARCHAR},
+            updated_time   = #{updatedTime,jdbcType=TIMESTAMP},
+            deleted_status = #{deletedStatus,jdbcType=BOOLEAN},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.oauth.entity.SysUserDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="headImgUrl != null">
+                head_img_url,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="userStatus != null">
+                user_status,
+            </if>
+            <if test="createdUser != null">
+                created_user,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedUser != null">
+                updated_user,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+            <if test="deletedStatus != null">
+                deleted_status,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="headImgUrl != null">
+                #{headImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=BOOLEAN},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=CHAR},
+            </if>
+            <if test="userStatus != null">
+                #{userStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createdUser != null">
+                #{createdUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedUser != null">
+                #{updatedUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedStatus != null">
+                #{deletedStatus,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="headImgUrl != null">
+                head_img_url = #{headImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=BOOLEAN},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=CHAR},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createdUser != null">
+                created_user = #{createdUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedUser != null">
+                updated_user = #{updatedUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deletedStatus != null">
+                deleted_status = #{deletedStatus,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+</mapper>

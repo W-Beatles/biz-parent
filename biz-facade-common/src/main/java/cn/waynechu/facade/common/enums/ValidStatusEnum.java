@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * @author zhuwei
- * @date 2018/11/6 17:24
+ * @since 2018/11/6 17:24
  */
 public enum ValidStatusEnum implements BizEnum {
     /**

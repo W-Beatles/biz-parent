@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2018/12/27 18:52
+ * @since 2018/12/27 18:52
  */
 @Slf4j
 public class RabbitmqLayout extends LayoutBase<ILoggingEvent> {

@@ -40,7 +40,7 @@ import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KE
  * </pre>
  *
  * @author zhuwei
- * @date 2019/9/11 11:14
+ * @since 2019/9/11 11:14
  */
 @Slf4j
 @Aspect

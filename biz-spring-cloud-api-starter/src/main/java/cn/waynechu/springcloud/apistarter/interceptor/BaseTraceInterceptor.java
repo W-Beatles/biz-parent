@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2019/12/30 19:27
+ * @since 2019/12/30 19:27
  */
 @Slf4j
 public abstract class BaseTraceInterceptor {

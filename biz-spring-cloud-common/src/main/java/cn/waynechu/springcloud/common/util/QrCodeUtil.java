@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * @author zhuwei
- * @date 2019/6/21 19:46
+ * @since 2019/6/21 19:46
  */
 @UtilityClass
 public class QrCodeUtil {

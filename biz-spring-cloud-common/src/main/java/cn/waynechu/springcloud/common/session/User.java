@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2018/12/24 13:54
+ * @since 2018/12/24 13:54
  */
 @Data
 public class User {

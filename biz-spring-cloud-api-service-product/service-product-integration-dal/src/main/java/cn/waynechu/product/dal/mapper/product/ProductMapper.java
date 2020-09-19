@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2019/9/20 15:35
+ * @since 2019/9/20 15:35
  */
 @Mapper
 public interface ProductMapper extends BaseMapper<ProductDO> {

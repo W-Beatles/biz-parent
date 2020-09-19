@@ -26,7 +26,7 @@ import java.util.LinkedList;
  * 取组内第一个数据源为主数据源
  *
  * @author zhuwei
- * @date 2019/1/15 19:20
+ * @since 2019/1/15 19:20
  */
 @Data
 public class DynamicGroupDataSource {

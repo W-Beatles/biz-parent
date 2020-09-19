@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author zhuwei
- * @date 2020-06-20 09:31
+ * @since 2020-06-20 09:31
  */
 public interface ArchetypeService {
 

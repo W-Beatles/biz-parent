@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 动态数据源选择策略 - 轮询策略
  *
  * @author zhuwei
- * @date 2019/1/15 16:48
+ * @since 2019/1/15 16:48
  */
 @Slf4j
 public class RoundRobinDynamicDataSourceStrategy extends AbstractDynamicDataSourceStrategy {

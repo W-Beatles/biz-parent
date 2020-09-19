@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContextAware;
 
 /**
  * @author zhuwei
- * @date 2018/11/7 12:33
+ * @since 2018/11/7 12:33
  */
 public class SpringContextHolder implements ApplicationContextAware {
     private static ApplicationContext applicationContext = null;

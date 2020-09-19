@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @author zhuwei
- * @date 2020-06-18 00:21
+ * @since 2020-06-18 00:21
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

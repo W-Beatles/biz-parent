@@ -20,7 +20,7 @@ import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_R
  * 统一异常处理切面
  *
  * @author zhuwei
- * @date 2018/11/15 10:45
+ * @since 2018/11/15 10:45
  */
 @Slf4j
 @RestControllerAdvice

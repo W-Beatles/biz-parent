@@ -19,7 +19,7 @@ import java.util.zip.GZIPOutputStream;
 
 /**
  * @author zhuwei
- * @date 2018/11/6 18:51
+ * @since 2018/11/6 18:51
  */
 public class HttpUtil {
     public static final String HEADER_KEY_USER_AGENT = "User-Agent";

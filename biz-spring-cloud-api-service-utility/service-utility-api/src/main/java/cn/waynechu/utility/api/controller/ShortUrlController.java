@@ -12,7 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @author zhuwei
- * @date 2019/8/13 20:47
+ * @since 2019/8/13 20:47
  */
 @Controller
 @Api(tags = "短链服务")

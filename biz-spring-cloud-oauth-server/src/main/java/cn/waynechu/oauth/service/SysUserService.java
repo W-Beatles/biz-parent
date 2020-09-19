@@ -1,6 +1,8 @@
-package cn.waynechu.springcloud.oauthserver.service;
+package cn.waynechu.oauth.service;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.waynechu.oauth.mapper.oauth.SysUserMapper;
+import cn.waynechu.oauth.entity.SysUserDO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,22 +17,36 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2020-02-27 21:51
+ * @since 2020/9/19 17:50
  */
-@Slf4j
-@Service("bizUserDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Service
+public class SysUserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private SysUserMapper sysUserMapper;
+
+    /**
+     * 根据用户名查询用户信息
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
+    public SysUserDO getByUserName(String username) {
+        QueryWrapper<SysUserDO> wrapper = new QueryWrapper<>();
+        wrapper.eq(SysUserDO.COL_USERNAME, username);
+        return sysUserMapper.selectOne(wrapper);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // 查询数据库操作
         String role = "ROLE_ADMIN";
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role));
-        String password = passwordEncoder.encode("123456");
+        SysUserDO sysUserDO = this.getByUserName(username);
+        String password = passwordEncoder.encode(sysUserDO.getPassword());
         return User.withUsername(username).password(password)
                 .authorities(authorities).build();
     }

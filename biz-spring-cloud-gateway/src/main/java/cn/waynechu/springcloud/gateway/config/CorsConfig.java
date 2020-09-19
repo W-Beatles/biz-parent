@@ -12,7 +12,7 @@ import java.time.Duration;
  * 跨域配置
  *
  * @author zhuwei
- * @date 2020-06-18 21:14
+ * @since 2020-06-18 21:14
  */
 @Configuration
 public class CorsConfig {

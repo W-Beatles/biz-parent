@@ -17,7 +17,7 @@ package cn.waynechu.bootstarter.dynamicdatasource.constant;
 
 /**
  * @author zhuwei
- * @date 2020-03-19 22:46
+ * @since 2020-03-19 22:46
  */
 public class DruidConst {
 

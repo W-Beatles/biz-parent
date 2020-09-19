@@ -11,7 +11,7 @@ import com.alibaba.excel.metadata.property.ExcelContentProperty;
  * 布尔类型转换器
  *
  * @author zhuwei
- * @date 2020-07-04 10:17
+ * @since 2020-07-04 10:17
  */
 public class BooleanConvert implements Converter<Boolean> {
 

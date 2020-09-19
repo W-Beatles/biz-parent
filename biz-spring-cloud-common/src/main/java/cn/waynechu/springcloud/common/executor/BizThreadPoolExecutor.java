@@ -13,7 +13,7 @@ import java.util.Map;
  * 拷贝MDC信息，防止由于异步线程造成的日志信息丢失问题
  *
  * @author zhuwei
- * @date 2019/10/18 16:49
+ * @since 2019/10/18 16:49
  */
 public class BizThreadPoolExecutor extends ThreadPoolTaskExecutor {
 

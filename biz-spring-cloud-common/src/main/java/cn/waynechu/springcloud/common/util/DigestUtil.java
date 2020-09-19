@@ -8,7 +8,7 @@ import java.security.MessageDigest;
  * 摘要算法
  *
  * @author zhuwei
- * @date 2019/1/2 17:53
+ * @since 2019/1/2 17:53
  * @see org.springframework.util.DigestUtils
  */
 @UtilityClass

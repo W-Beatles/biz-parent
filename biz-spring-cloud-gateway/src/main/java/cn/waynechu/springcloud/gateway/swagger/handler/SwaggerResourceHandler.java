@@ -13,7 +13,7 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
 /**
  * @author zhuwei
- * @date 2019/8/16 11:00
+ * @since 2019/8/16 11:00
  */
 @Slf4j
 @Component

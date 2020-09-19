@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2018/12/28 16:17
+ * @since 2018/12/28 16:17
  */
 @Data
 @ConfigurationProperties(prefix = CommonProperty.COMMON_CONFIG_PREFIX)

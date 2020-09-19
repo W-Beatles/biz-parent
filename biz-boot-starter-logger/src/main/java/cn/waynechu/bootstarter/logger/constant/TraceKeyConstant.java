@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 
 /**
  * @author zhuwei
- * @date 2020/3/26 11:39
+ * @since 2020/3/26 11:39
  */
 @UtilityClass
 public class TraceKeyConstant {

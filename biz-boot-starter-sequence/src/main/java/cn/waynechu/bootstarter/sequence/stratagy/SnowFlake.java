@@ -27,7 +27,7 @@ import java.util.Random;
  * </pre>
  *
  * @author zhuwei
- * @date 2019/5/5 16:46
+ * @since 2019/5/5 16:46
  */
 public class SnowFlake {
     /**

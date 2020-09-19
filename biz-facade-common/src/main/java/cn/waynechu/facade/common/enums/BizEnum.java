@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 枚举基类
  *
  * @author zhuwei
- * @date 2018/11/6 17:31
+ * @since 2018/11/6 17:31
  */
 public interface BizEnum extends Serializable {
 

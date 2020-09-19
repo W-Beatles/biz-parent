@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2019/9/17 16:55
+ * @since 2019/9/17 16:55
  */
 @Data
 public class DistributedLockProperty {

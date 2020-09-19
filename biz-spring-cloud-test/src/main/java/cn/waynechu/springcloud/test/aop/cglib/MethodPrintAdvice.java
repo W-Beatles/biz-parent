@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author zhuwei
- * @date 2019/1/14 20:42
+ * @since 2019/1/14 20:42
  */
 @Slf4j
 public class MethodPrintAdvice implements MethodInterceptor {

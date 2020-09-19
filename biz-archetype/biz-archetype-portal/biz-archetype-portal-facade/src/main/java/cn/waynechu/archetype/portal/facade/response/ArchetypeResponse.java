@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2020-06-26 18:30
+ * @since 2020-06-26 18:30
  */
 @Data
 @ApiModel

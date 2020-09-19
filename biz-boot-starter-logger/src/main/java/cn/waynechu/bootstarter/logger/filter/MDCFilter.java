@@ -22,7 +22,7 @@ import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.*;
  * 该过滤器用于添加请求信息到MDC上下文中，并且添加header追踪信息
  *
  * @author zhuwei
- * @date 2019/1/4 15:10
+ * @since 2019/1/4 15:10
  */
 @Slf4j
 @Data

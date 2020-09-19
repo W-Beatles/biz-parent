@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2020-07-04 15:28
+ * @since 2020-07-04 15:28
  */
 public interface DictionaryMapper extends BaseMapper<DictionaryDO> {
     int updateBatch(List<DictionaryDO> list);

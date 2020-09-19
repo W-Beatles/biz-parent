@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @author zhuwei
- * @date 2018/11/6 16:18
+ * @since 2018/11/6 16:18
  */
 @UtilityClass
 public class CollectionUtil {

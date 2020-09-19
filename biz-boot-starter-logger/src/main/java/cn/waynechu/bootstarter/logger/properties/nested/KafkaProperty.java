@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2019/10/31 15:46
+ * @since 2019/10/31 15:46
  */
 @Data
 public class KafkaProperty {

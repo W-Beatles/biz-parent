@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 
 /**
  * @author zhuwei
- * @date 2019/8/12 14:59
+ * @since 2019/8/12 14:59
  */
 @UtilityClass
 public class RedisPrefix {

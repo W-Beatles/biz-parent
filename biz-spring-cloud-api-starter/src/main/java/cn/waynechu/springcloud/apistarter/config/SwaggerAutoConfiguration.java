@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2019/1/2 9:42
+ * @since 2019/1/2 9:42
  */
 @EnableSwagger2
 @Configuration

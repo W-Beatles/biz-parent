@@ -29,7 +29,7 @@ import java.util.Map;
  * 动态数据源配置
  *
  * @author zhuwei
- * @date 2019/1/15 16:42
+ * @since 2019/1/15 16:42
  */
 @Data
 @ConfigurationProperties(prefix = DynamicDataSourceProperties.DYNAMIC_DATA_SOURCE_PREFIX)

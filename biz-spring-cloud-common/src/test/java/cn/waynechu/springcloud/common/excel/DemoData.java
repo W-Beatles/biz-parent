@@ -17,7 +17,7 @@ import java.util.Date;
  * </pre>
  *
  * @author zhuwei
- * @date 2020/1/6 19:02
+ * @since 2020/1/6 19:02
  */
 @Data
 public class DemoData {

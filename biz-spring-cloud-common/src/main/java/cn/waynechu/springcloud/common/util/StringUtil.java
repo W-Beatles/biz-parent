@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 
 /**
  * @author zhuwei
- * @date 2018/11/6 16:21
+ * @since 2018/11/6 16:21
  */
 @UtilityClass
 public class StringUtil {

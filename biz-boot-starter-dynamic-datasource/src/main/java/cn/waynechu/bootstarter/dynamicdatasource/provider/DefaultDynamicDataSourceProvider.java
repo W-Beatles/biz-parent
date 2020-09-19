@@ -40,7 +40,7 @@ import java.util.*;
  * 默认的从配置文件中加载所有数据源
  *
  * @author zhuwei
- * @date 2019/1/15 17:24
+ * @since 2019/1/15 17:24
  */
 @Slf4j
 public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvider {

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author zhuwei
- * @date 2020-06-26 12:30
+ * @since 2020-06-26 12:30
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

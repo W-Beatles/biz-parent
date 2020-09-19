@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
 
 /**
  * @author zhuwei
- * @date 2019/1/8 13:26
+ * @since 2019/1/8 13:26
  */
 public class SentryContextAware implements ApplicationContextAware, PriorityOrdered {
     public static final String SENTRY_ENABLE = "sentry.enable";

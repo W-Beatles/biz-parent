@@ -12,7 +12,7 @@ import org.springframework.aop.support.JdkRegexpMethodPointcut;
 
 /**
  * @author zhuwei
- * @date 2019/1/14 20:50
+ * @since 2019/1/14 20:50
  */
 @Slf4j
 public class TestProxyFactory {

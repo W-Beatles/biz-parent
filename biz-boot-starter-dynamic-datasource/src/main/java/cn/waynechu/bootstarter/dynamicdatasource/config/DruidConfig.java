@@ -30,7 +30,7 @@ import static com.alibaba.druid.pool.DruidAbstractDataSource.*;
  * Druid数据源配置
  *
  * @author zhuwei
- * @date 2019/1/15 15:50
+ * @since 2019/1/15 15:50
  */
 @Slf4j
 @Data

@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author zhuwei
- * @date 2019/1/30 15:49
+ * @since 2019/1/30 15:49
  */
 @UtilityClass
 public class ProtoStuffSerializeUtil {

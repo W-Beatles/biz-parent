@@ -7,7 +7,7 @@ import lombok.experimental.UtilityClass;
 
 /**
  * @author zhuwei
- * @date 2019/9/20 14:39
+ * @since 2019/9/20 14:39
  */
 @UtilityClass
 public class ProductConvert {

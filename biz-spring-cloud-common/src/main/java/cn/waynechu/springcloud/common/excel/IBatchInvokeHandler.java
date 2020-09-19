@@ -6,7 +6,7 @@ import java.util.List;
  * 批量解析回调处理器
  *
  * @author zhuwei
- * @date 2020/1/6 17:41
+ * @since 2020/1/6 17:41
  */
 public interface IBatchInvokeHandler<T> {
 

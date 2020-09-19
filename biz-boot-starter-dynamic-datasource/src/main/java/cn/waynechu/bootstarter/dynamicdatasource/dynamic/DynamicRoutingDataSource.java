@@ -36,7 +36,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 动态数据源核心组件
  *
  * @author zhuwei
- * @date 2019/1/15 17:29
+ * @since 2019/1/15 17:29
  */
 @Slf4j
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource implements InitializingBean, DisposableBean {

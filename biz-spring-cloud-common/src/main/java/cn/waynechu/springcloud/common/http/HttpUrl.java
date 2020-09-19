@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @author zhuwei
- * @date 2018/11/6 18:51
+ * @since 2018/11/6 18:51
  */
 public class HttpUrl {
     private static final Logger logger = LoggerFactory.getLogger(HttpUrl.class);

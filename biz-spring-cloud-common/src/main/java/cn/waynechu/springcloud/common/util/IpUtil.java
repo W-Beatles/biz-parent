@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * @author zhuwei
- * @date 2018/11/6 20:42
+ * @since 2018/11/6 20:42
  */
 @UtilityClass
 public class IpUtil {

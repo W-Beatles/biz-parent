@@ -6,7 +6,7 @@ import java.util.Objects;
  * 响应枚举
  *
  * @author zhuwei
- * @date 2018/11/6 18:49
+ * @since 2018/11/6 18:49
  */
 public enum BizErrorCodeEnum implements BizEnum {
 

@@ -2,7 +2,7 @@ package cn.waynechu.springcloud.common.util;
 
 /**
  * @author zhuwei
- * @date 2019/6/10 10:14
+ * @since 2019/6/10 10:14
  */
 public class MoneyUtil {
     private static final String UNIT = "万千佰拾亿千佰拾万千佰拾元角分";

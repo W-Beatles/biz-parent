@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * redis工具类
  *
  * @author zhuwei
- * @date 2018/12/28 16:09
+ * @since 2018/12/28 16:09
  */
 @Slf4j
 @Getter

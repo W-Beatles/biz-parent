@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * @author zhuwei
- * @date 2020-06-28 23:22
+ * @since 2020-06-28 23:22
  */
 public interface DictionaryTypeMapper extends BaseMapper<DictionaryTypeDO> {
     int updateBatch(List<DictionaryTypeDO> list);

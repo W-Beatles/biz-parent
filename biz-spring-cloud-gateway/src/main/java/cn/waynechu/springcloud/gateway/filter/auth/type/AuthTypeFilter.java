@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
  * 鉴权渠道鉴权
  *
  * @author zhuwei
- * @date 2020-03-07 18:02
+ * @since 2020-03-07 18:02
  */
 public interface AuthTypeFilter {
 

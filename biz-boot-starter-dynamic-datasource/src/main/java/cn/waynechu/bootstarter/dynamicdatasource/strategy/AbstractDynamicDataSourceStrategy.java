@@ -22,7 +22,7 @@ import java.util.List;
  * 默认使用组数据源中的第一个作为主数据源
  *
  * @author zhuwei
- * @date 2019/1/18 9:57
+ * @since 2019/1/18 9:57
  */
 public abstract class AbstractDynamicDataSourceStrategy implements DynamicDataSourceStrategy {
 

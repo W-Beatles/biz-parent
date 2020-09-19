@@ -36,7 +36,7 @@ import java.util.Properties;
  * 自定义Mybatis拦截器，用于动态数据源的选择
  *
  * @author zhuwei
- * @date 2018/11/6 13:12
+ * @since 2018/11/6 13:12
  */
 @Intercepts({
         @Signature(

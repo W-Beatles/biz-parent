@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 业务异常
  *
  * @author zhuwei
- * @date 2018/11/6 19:27
+ * @since 2018/11/6 19:27
  */
 public class BizException extends RuntimeException implements Serializable {
     private static final long serialVersionUID = 771762126749223759L;

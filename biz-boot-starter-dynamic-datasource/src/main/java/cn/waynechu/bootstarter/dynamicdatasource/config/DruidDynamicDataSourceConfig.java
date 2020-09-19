@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  * @author zhuwei
- * @date 2019/1/15 17:11
+ * @since 2019/1/15 17:11
  */
 @Configuration
 @ConditionalOnClass(DruidDataSourceAutoConfigure.class)

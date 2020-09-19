@@ -22,7 +22,7 @@ import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.*;
  * 初始化requestId以及trace信息过滤器
  *
  * @author zhuwei
- * @date 2019/9/24 17:49
+ * @since 2019/9/24 17:49
  */
 @Component
 @Order(1)

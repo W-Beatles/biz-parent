@@ -13,7 +13,7 @@ public class RegExceptionHandler {
     /**
      * 处理异常.
      *
-     * <p>处理掉中断和连接失效异常并继续抛注册中心.</p>
+     * <p>处理掉中断和连接失效异常</p>
      *
      * @param cause 待处理异常.
      */

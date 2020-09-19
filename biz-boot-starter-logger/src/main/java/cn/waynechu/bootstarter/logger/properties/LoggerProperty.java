@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author zhuwei
- * @date 2019/7/10 20:34
+ * @since 2019/7/10 20:34
  */
 @Data
 @ConfigurationProperties(prefix = LoggerProperty.LOGGER_PREFIX)

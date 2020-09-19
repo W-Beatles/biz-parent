@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2019/8/13 15:07
+ * @since 2019/8/13 15:07
  */
 @UtilityClass
 public class BinaryUtil {

@@ -16,7 +16,6 @@
 package cn.waynechu.bootstarter.dynamicdatasource.strategy;
 
 import javax.sql.DataSource;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -24,7 +23,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * 动态数据源选择策略 - 随机策略
  *
  * @author zhuwei
- * @date 2019/1/15 16:50
+ * @since 2019/1/15 16:50
  */
 public class RandomDynamicDataSourceStrategy extends AbstractDynamicDataSourceStrategy {
 

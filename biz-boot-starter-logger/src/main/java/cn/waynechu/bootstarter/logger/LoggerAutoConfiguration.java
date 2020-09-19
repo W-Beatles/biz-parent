@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  * @author zhuwei
- * @date 2019/1/8 13:50
+ * @since 2019/1/8 13:50
  */
 @Configuration
 @EnableConfigurationProperties({SentryProperties.class, ElkProperty.class, LoggerProperty.class})

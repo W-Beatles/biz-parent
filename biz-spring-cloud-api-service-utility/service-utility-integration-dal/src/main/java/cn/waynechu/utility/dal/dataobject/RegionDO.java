@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * @author zhuwei
- * @date 2019-08-16 23:22
+ * @since 2019-08-16 23:22
  */
 @Data
 @TableName(value = "region")

@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * 防火墙配置工具类 解决打war包外部部署的异常
  *
  * @author zhuwei
- * @date 2020-03-19 23:52
+ * @since 2020-03-19 23:52
  */
 @UtilityClass
 public class DruidWallConfigUtil {

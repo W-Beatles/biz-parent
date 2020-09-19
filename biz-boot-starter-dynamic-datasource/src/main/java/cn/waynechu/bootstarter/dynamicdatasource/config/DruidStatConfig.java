@@ -21,7 +21,7 @@ import lombok.Data;
  * Druid监控配置
  *
  * @author zhuwei
- * @date 2020-03-19 23:39
+ * @since 2020-03-19 23:39
  */
 @Data
 public class DruidStatConfig {

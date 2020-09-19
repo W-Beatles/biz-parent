@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * @author zhuwei
- * @date 2019/1/2 17:12
+ * @since 2019/1/2 17:12
  */
 public class FastJsonSerializer<T> implements RedisSerializer<T> {
 

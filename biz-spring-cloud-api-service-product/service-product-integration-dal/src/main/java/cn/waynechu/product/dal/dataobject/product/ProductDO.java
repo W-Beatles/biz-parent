@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author zhuwei
- * @date 2019/9/20 15:35
+ * @since 2019/9/20 15:35
  */
 @Data
 @TableName(value = "tbl_product")

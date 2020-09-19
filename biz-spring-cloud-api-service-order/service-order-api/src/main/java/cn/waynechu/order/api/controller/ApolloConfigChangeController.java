@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author zhuwei
- * @date 2020/5/15 15:11
+ * @since 2020/5/15 15:11
  */
 @RestController
 @Api(tags = "动态配置")

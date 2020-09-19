@@ -16,21 +16,21 @@
     ```
     sequence.enable=true
     sequence.group=default
-    sequence.strategy=snowflake
-    sequence.registryFile=snowflake
+    sequence.registryFile=./tmp/sequence/default.cache
     sequence.zookeeper.serverLists=localhost:2181,localhost:2182
     sequence.zookeeper.namespace=sequence
     ```
 2. 注入`IdGenerator`对象
     ```
     @Autowire
-    private IdGenerator generator;
+    private IdGenerator idGenerator;
     ```
 3. 生成分布式id
     ```
-    long id = generator.nextId();
-    long[] ids = generator.nextIds();
-    String idStr = generator.nextStringId();
+    long id = idGenerator.nextId();
+    long[] ids = idGenerator.nextIds(1000);
+    String idStr = idGenerator.nextStringId();
+    String[] idsStr = idGenerator.nextStringIds(1000);
     ...
     ```
    

@@ -2,7 +2,7 @@ package cn.waynechu.springcloud.test.aop.jdk;
 
 /**
  * @author zhuwei
- * @date 2019/1/15 10:35
+ * @since 2019/1/15 10:35
  */
 public class TestJkdProxy {
 

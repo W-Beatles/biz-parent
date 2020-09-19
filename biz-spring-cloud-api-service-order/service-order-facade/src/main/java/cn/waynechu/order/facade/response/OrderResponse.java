@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author zhuwei
- * @date 2019/9/19 18:15
+ * @since 2019/9/19 18:15
  */
 @Data
 @ApiModel(description = "订单信息返回对象")

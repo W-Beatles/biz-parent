@@ -21,7 +21,7 @@ package cn.waynechu.springcloud.common.util;
  * </pre>
  *
  * @author zhuwei
- * @date 2019/5/5 16:46
+ * @since 2019/5/5 16:46
  */
 public class SnowFlakeGenerator {
     /**

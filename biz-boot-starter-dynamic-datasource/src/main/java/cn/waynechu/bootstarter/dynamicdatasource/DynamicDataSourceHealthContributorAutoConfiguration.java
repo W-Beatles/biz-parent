@@ -33,7 +33,7 @@ import java.util.Map;
 
 /**
  * @author zhuwei
- * @date 2020/3/5 18:24
+ * @since 2020/3/5 18:24
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(JdbcTemplate.class)

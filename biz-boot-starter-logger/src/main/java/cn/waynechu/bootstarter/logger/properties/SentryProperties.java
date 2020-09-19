@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author zhuwei
- * @date 2019/1/8 12:52
+ * @since 2019/1/8 12:52
  */
 @Data
 @ConfigurationProperties(prefix = "sentry")

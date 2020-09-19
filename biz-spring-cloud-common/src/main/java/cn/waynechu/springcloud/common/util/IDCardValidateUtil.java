@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * 身份证合法性校验
  *
  * @author zhuwei
- * @date 2019/4/9 16:31
+ * @since 2019/4/9 16:31
  */
 public class IDCardValidateUtil {
 

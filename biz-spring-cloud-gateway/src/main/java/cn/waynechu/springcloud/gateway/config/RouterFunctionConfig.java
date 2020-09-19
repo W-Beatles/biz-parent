@@ -17,7 +17,7 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
  * 路由配置
  *
  * @author zhuwei
- * @date 2019/8/16 11:09
+ * @since 2019/8/16 11:09
  */
 @Configuration
 @AllArgsConstructor

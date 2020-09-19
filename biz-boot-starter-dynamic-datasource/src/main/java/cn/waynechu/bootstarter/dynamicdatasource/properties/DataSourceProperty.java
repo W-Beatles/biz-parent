@@ -22,7 +22,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * @author zhuwei
- * @date 2019/1/15 15:49
+ * @since 2019/1/15 15:49
  */
 @Data
 @Accessors(chain = true)

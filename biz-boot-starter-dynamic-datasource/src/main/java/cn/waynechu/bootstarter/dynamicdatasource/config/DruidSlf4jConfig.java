@@ -21,7 +21,7 @@ import lombok.Data;
  * Druid日志配置
  *
  * @author zhuwei
- * @date 2020-03-19 23:40
+ * @since 2020-03-19 23:40
  */
 @Data
 public class DruidSlf4jConfig {

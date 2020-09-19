@@ -21,7 +21,7 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * @author zhuwei
- * @date 2019/10/18 16:17
+ * @since 2019/10/18 16:17
  */
 @Configuration
 @ConditionalOnClass(ThreadPoolTaskExecutor.class)

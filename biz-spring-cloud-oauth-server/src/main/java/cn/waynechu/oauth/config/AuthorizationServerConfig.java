@@ -1,9 +1,9 @@
-package cn.waynechu.springcloud.oauthserver.config;
+package cn.waynechu.oauth.config;
 
+import cn.waynechu.oauth.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.builders.ClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * @author zhuwei
- * @date 2020-02-27 21:53
+ * @since 2020-02-27 21:53
  */
 @Configuration
 @EnableAuthorizationServer
@@ -33,7 +33,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserDetailsService bizUserDetailsService;
+    private SysUserService sysUserService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -59,7 +59,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // 客户端配置
+        // 配置客户端信息，从数据库中读取，对应oauth_client_details表
         ClientDetailsService clientDetailsService = new ClientDetailsServiceBuilder<>()
                 .jdbc().dataSource(dataSource)
                 .passwordEncoder(passwordEncoder)
@@ -76,7 +76,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         enhancerChain.setTokenEnhancers(delegates);
 
         endpoints.authenticationManager(authenticationManager)
-                .userDetailsService(bizUserDetailsService)
+                .userDetailsService(sysUserService)
                 .tokenStore(jwtTokenStore)
                 .accessTokenConverter(jwtAccessTokenConverter)
                 .tokenEnhancer(enhancerChain);

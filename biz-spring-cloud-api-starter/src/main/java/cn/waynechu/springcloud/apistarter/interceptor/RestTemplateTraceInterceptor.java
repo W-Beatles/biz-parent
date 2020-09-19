@@ -15,7 +15,7 @@ import java.util.List;
  * RestTemplate调用传递header信息
  *
  * @author zhuwei
- * @date 2019/12/30 19:03
+ * @since 2019/12/30 19:03
  */
 @Slf4j
 public class RestTemplateTraceInterceptor extends BaseTraceInterceptor implements ClientHttpRequestInterceptor {

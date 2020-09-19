@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 跨域配置
  *
  * @author zhuwei
- * @date 2019/3/27 13:23
+ * @since 2019/3/27 13:23
  */
 @Configuration
 @EnableConfigurationProperties({CorsProperty.class})

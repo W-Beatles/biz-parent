@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author zhuwei
- * @date 2019/3/18 20:54
+ * @since 2019/3/18 20:54
  */
 @UtilityClass
 public class RegexUtil {
