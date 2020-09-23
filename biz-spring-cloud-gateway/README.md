@@ -14,7 +14,7 @@
 - 链路追踪
 
 ### 网关鉴权
-![7.png](../docs/oauth/7.png "网关鉴权")
+![gateway-authentication.png](../docs/gateway/gateway-authentication.png "网关鉴权")
 
 ### 相关配置说明
 自定义swagger文档聚合名称，配置如下:

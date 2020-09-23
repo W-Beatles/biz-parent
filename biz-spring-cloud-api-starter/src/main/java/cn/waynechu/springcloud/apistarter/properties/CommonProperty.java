@@ -22,7 +22,7 @@ public class CommonProperty {
      */
     public List<String> needTraceHeaders = Arrays.asList(
             "request-id", "sc-client-ip", "origin-url",
-            "trace-app-ids", "trace-app-names", "trace-host-names", "trace-host-addresses");
+            "trace-app-ids", "trace-app-names", "trace-host-names", "trace-host-addresses", "x-client-user");
 
     /**
      * 分布式锁配置

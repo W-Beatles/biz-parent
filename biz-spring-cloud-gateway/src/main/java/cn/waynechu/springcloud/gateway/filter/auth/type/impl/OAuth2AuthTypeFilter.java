@@ -1,19 +1,16 @@
 package cn.waynechu.springcloud.gateway.filter.auth.type.impl;
 
-import cn.waynechu.springcloud.common.util.StringUtil;
-import cn.waynechu.springcloud.gateway.dto.TokenInfo;
 import cn.waynechu.springcloud.gateway.filter.auth.type.AuthTypeFilter;
 import cn.waynechu.springcloud.gateway.util.AuthUtil;
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
-import org.springframework.http.*;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -25,57 +22,68 @@ import reactor.core.publisher.Mono;
 @Component("oauth2AuthTypeFilter")
 public class OAuth2AuthTypeFilter implements AuthTypeFilter {
 
-    // TODO 2020-04-28 23:03 使用WebClient优化接口调用，减少NIO请求
-    private RestTemplate restTemplate = new RestTemplate();
+    private static final String BEARER = "Bearer ";
+
+    @Value("${oauth2.jwt.signingKey}")
+    private String signingKey;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
+        String authentication = request.getHeaders().getFirst("token");
+        String method = request.getMethodValue();
+        String url = request.getPath().value();
 
-        String authToken = request.getHeaders().getFirst("token");
-        if (StringUtil.isEmpty(authToken)) {
-            return AuthUtil.unauthorized(exchange, "缺少token信息");
+        // 查看用户是否有权限，若有权限进入下一个filter
+        if (this.hasPermission(authentication, url, method)) {
+            ServerHttpRequest.Builder builder = request.mutate();
+            // 将token中的用户信息传给下游服务
+            builder.header("user", getUserToken(authentication));
+            return chain.filter(exchange.mutate().request(builder.build()).build());
         }
-
-        if (!StringUtils.startsWithIgnoreCase(authToken, "bearer ")) {
-            return AuthUtil.unauthorized(exchange, "token无效");
-        }
-
-        ServerWebExchange serverWebExchange;
-        try {
-            /*
-            tokenInfo: {"active":true,"aud":["biz-spring-cloud-gateway"],"authorities":["ROLE_ADMIN"],"client_id":"gateway","exp":1583683328,"scope":["read","write"],"user_name":"waynechu"}
-            {"error":"invalid_token","error_description":"Token was not recognised"}
-             */
-            TokenInfo tokenInfo = this.getTokenInfo(authToken);
-            if (tokenInfo != null && tokenInfo.isActive()) {
-                ServerHttpRequest mutateRequest = request.mutate()
-                        .header("user", JSON.toJSONString(tokenInfo)).build();
-                serverWebExchange = exchange.mutate().request(mutateRequest).build();
-            } else {
-                return AuthUtil.unauthorized(exchange, "认证失败");
-            }
-        } catch (Exception e) {
-            log.info("get tokenInfo fail", e);
-            return AuthUtil.unauthorized(exchange, "认证失败");
-        }
-        return chain.filter(serverWebExchange);
+        return AuthUtil.unauthorized(exchange, "无访问权限");
     }
 
-    private TokenInfo getTokenInfo(String authToken) {
-        String token = StringUtils.substringAfter(authToken, "bearer ");
-        String oauthServiceUrl = "http://biz-spring-cloud-oauth-server/oauth/check_token";
+    private String getUserToken(String authentication) {
+        String token = "{}";
+        try {
+            token = new ObjectMapper().writeValueAsString(this.parserJwt(authentication).getBody());
+            return token;
+        } catch (JsonProcessingException e) {
+            log.error("token json error:{}", e.getMessage());
+        }
+        return token;
+    }
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.setBasicAuth("gateway", "123456");
+    public boolean hasPermission(String authentication, String url, String method) {
+        // 如果请求未携带token信息，直接返回无权限
+        if (StringUtils.isBlank(authentication) || !authentication.startsWith(BEARER)) {
+            return Boolean.FALSE;
+        }
+        // token是否有效，在网关进行校验，无效/过期等
+        if (!isValidJwtAccessToken(authentication)) {
+            return Boolean.FALSE;
+        }
 
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("token", token);
+        // TODO 2020/9/23 16:00 远程调用认证服务获取是否有权限
+        return Boolean.TRUE;
+    }
 
-        HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, headers);
-        ResponseEntity<TokenInfo> response = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);
-        log.info("tokenInfo: {}", JSON.toJSONString(response.getBody()));
-        return response.getBody();
+    public boolean isValidJwtAccessToken(String authentication) {
+        boolean invalid = Boolean.FALSE;
+        try {
+            this.parserJwt(authentication);
+            invalid = Boolean.TRUE;
+        } catch (SignatureException | ExpiredJwtException | MalformedJwtException ex) {
+            log.error("user token error :{}", ex.getMessage());
+        }
+        return invalid;
+    }
+
+    public Jws<Claims> parserJwt(String jwtToken) {
+        if (jwtToken.startsWith(BEARER)) {
+            jwtToken = StringUtils.substring(jwtToken, BEARER.length());
+        }
+        return Jwts.parser().setSigningKey(signingKey.getBytes()).parseClaimsJws(jwtToken);
     }
 }

@@ -1,7 +1,7 @@
 package cn.waynechu.oauth.service;
 
-import cn.waynechu.oauth.mapper.oauth.SysUserMapper;
 import cn.waynechu.oauth.entity.SysUserDO;
+import cn.waynechu.oauth.mapper.oauth.SysUserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -46,8 +46,12 @@ public class SysUserService implements UserDetailsService {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role));
         SysUserDO sysUserDO = this.getByUserName(username);
-        String password = passwordEncoder.encode(sysUserDO.getPassword());
-        return User.withUsername(username).password(password)
+        if (sysUserDO == null) {
+            throw new UsernameNotFoundException(username);
+        }
+
+        return User.withUsername(username)
+                .password(sysUserDO.getPassword())
                 .authorities(authorities).build();
     }
 }

@@ -59,8 +59,7 @@ public class TokenStoreConfig {
     public TokenEnhancer jwtTokenEnhancer() {
         return (accessToken, authentication) -> {
             Map<String, Object> info = new HashMap<>(1);
-            // 自定义token内容，加入组织机构信息
-            info.put("organization", authentication.getName());
+            // 自定义token内容
             info.put("version", "1.0.0");
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
             return accessToken;

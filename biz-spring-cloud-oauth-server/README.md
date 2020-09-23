@@ -85,7 +85,7 @@ Jwt Token例子：
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiYWRtaW4iLCJleHAiOjE1MzE5NzU2MjEsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6IjIzNDA4ZDM4LThjZGMtNDQ2MC1iZWFjLTI0Yzc2ZGM3NjI5YSIsImNsaWVudF9pZCI6InRlc3RfY2xpZW50In0.qawS1Z4j_h4vNx10GBC_Y_PHM1LLSQt64eniWLGzsJY
 ```
-可到`http://www.bejson.com/enc/base64`解码，注意分3部分分别解，也可使用官网解码工具[官网解码](https://jwt.io/)
+可到`http://www.bejson.com/enc/base64`解码，也可使用官网解码工具[官网解码](https://jwt.io/)
 
 ### 表结构简介
 
@@ -114,7 +114,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 ### 授权码模式(authorization_code)
 
 流程图：
-![1.png](../docs/oauth/1.png "授权码模式流程图")  
+![authorization_code-model.png](../docs/oauth/authorization_code-model.png "授权码模式流程图")  
 
 1. 三方应用程序引导用户进入授权请求页，获取`authorization_code`:  
     ```
@@ -131,8 +131,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
     ```
     POST http://localhost:9050/oauth/token
     ```
-   
-    ![2.png](../docs/oauth/2.png "授权码模式 - 获取token")
+    ![authorization_code-model2.png](../docs/oauth/authorization_code-model2.png "授权码模式 - 获取token")
 
     返回结果：
     ```json
@@ -145,16 +144,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
     }
     ```
 
-4. 刷新`access_token`  
-    ```
-    POST http://localhost:9050/oauth/token
-    ```
-   
-    ![3.png](../docs/oauth/3.png "授权码模式 - 刷新token")
-
 ### 简化模式(implicit)
 
-   ![4.png](../docs/oauth/4.png "简化模式")
+   ![implicit-model.png](../docs/oauth/implicit-model.png "简化模式")
 
 1. 三方应用程序引导用户进入授权请求页，并请求获取`access_token`:  
     ```
@@ -174,20 +166,23 @@ token 只有`access_token`没有`refresh token`。
 
 ### 密码模式(password)
 
-   ![5.png](../docs/oauth/5.png "密码模式")
+   ![password-model.png](../docs/oauth/password-model.png "密码模式")
    
 1. 请求获取`access_token`：  
     ```
-    POST http://localhost:9050/oauth/token?grant_type=password&client_id=android&client_secret=123456&scope=all&username=user&password=123456
+    POST http://localhost:9050/oauth/token?grant_type=password&client_id=android&client_secret=123456&scope=all&username=admin&password=123456
     ```
    
     返回结果：
     ```json
     {
-        "access_token": "ebdc9803-45a8-4f56-8f18-d1bcf65deaed",
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYW5kcm9pZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJvcmdhbml6YXRpb24iOiJhZG1pbiIsImV4cCI6MTYwMDc4NzMzMSwidmVyc2lvbiI6IjEuMC4wIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5NmY3Y2U0Mi03ZDAzLTQyZDgtOGRmMS0wYmMzZDUwN2UzZTIiLCJjbGllbnRfaWQiOiJhbmRyb2lkIn0.oq7ubE13_0utBk1VFjzjpzanrA3E2FlmCEFn6_uMEqE",
         "token_type": "bearer",
-        "expires_in": 2119,
-        "scope": "all"
+        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYW5kcm9pZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJvcmdhbml6YXRpb24iOiJhZG1pbiIsImF0aSI6Ijk2ZjdjZTQyLTdkMDMtNDJkOC04ZGYxLTBiYzNkNTA3ZTNlMiIsImV4cCI6MTYwMzM3NTczMSwidmVyc2lvbiI6IjEuMC4wIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIyOTc2ZmQyMC1kNzRhLTQxYmYtYTJlNi1mYzM5OWYxMzlkYWYiLCJjbGllbnRfaWQiOiJhbmRyb2lkIn0.T8l99Q5dvxM4mw_PulBw_qTZgzSMBAqVL3RsaPB3MJk",
+        "expires_in": 3599,
+        "scope": "all",
+        "version": "1.0.0",
+        "jti": "96f7ce42-7d03-42d8-8df1-0bc3d507e3e2"
     }
     ```
    
@@ -195,7 +190,7 @@ token 只有`access_token`没有`refresh token`。
 
 ### 客户端模式(client_credentials)
 
-   ![6.png](../docs/oauth/6.png "客户端模式")
+   ![client_credentials-model.png](../docs/oauth/client_credentials-model.png "客户端模式")
    
 1. 请求获取`access_token`：  
    ```
@@ -212,3 +207,48 @@ token 只有`access_token`没有`refresh token`。
     }
    ```
    **说明**: 客户端模式不需要用户参与，所以token中拿不到用户信息
+   
+### token校验及刷新
+1. 校验token
+   ```
+   POST http://localhost:9050/oauth/check_token
+   ```
+   
+   返回结果：
+   ```json
+    {
+        "aud": [
+            "android"
+        ],
+        "user_name": "admin",
+        "scope": [
+            "all"
+        ],
+        "active": true,
+        "exp": 1600835528,
+        "version": "1.0.0",
+        "authorities": [
+            "ROLE_ADMIN"
+        ],
+        "jti": "5ccf7304-abba-4b6c-8cb9-f5018ffcb1e1",
+        "client_id": "android"
+    }
+   ```
+2. 刷新token
+   ```
+   POST http://localhost:9050/oauth/token
+   ```
+   ![refresh-token.png](../docs/oauth/refresh-token.png "refresh-token.png")
+   
+   返回结果：
+   ```json
+    {
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYW5kcm9pZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2MDA4MzYwOTUsInZlcnNpb24iOiIxLjAuMCIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiOGI2YjM2ZGMtMjM1Zi00OGM0LWE2NTctMzA5OGQzZjZmYWEzIiwiY2xpZW50X2lkIjoiYW5kcm9pZCJ9.UoPND92Gl_UqQb19ywpcopShbQEVjlx-wZi_P-klvGs",
+        "token_type": "bearer",
+        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYW5kcm9pZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJhdGkiOiI4YjZiMzZkYy0yMzVmLTQ4YzQtYTY1Ny0zMDk4ZDNmNmZhYTMiLCJleHAiOjE2MDM0MjM5MjgsInZlcnNpb24iOiIxLjAuMCIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZDUzZDI2MjEtN2I5Ny00NDk3LThjZWYtYzM2MGU5YTFmNTY3IiwiY2xpZW50X2lkIjoiYW5kcm9pZCJ9.J1g04Fz1Qdfi9STTn_idDBeADxB2kBmSv-yxFcRLQ3c",
+        "expires_in": 3599,
+        "scope": "all",
+        "version": "1.0.0",
+        "jti": "8b6b36dc-235f-48c4-a657-3098d3f6faa3"
+    }
+   ```

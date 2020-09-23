@@ -11,7 +11,7 @@
  Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 19/09/2020 18:11:28
+ Date: 23/09/2020 13:43:24
 */
 
 SET NAMES utf8mb4;
@@ -193,7 +193,7 @@ CREATE TABLE `sys_role_permission`  (
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户姓',
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户名',
   `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户昵称',
   `password` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '密码',
   `head_img_url` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '头像地址',
@@ -207,13 +207,14 @@ CREATE TABLE `sys_user`  (
   `updated_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '更新人',
   `updated_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   `deleted_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除: 0否 1是',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `idx_username`(`username`) USING BTREE COMMENT '用户名唯一索引'
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'admin', 'Admin', '123456', 'https://lh3.googleusercontent.com/ogw/ADGmqu_djYKZsukov_iWsXXDmyWyDMq0AAaHhb4UO47V=s32-c-mo', 1, 'waynechu@waynechu.cn', '', '', 0, 'admin', '2020-09-19 18:01:57', '', '2020-09-19 18:01:57', 0);
+INSERT INTO `sys_user` VALUES (1, 'admin', 'Admin', '$2a$10$wUVJMEcLN7rsuWjdEMqXeeis.w5Y/C9bCrq/Oo1RLAJ6PH5cclX96', 'https://lh3.googleusercontent.com/ogw/ADGmqu_djYKZsukov_iWsXXDmyWyDMq0AAaHhb4UO47V=s32-c-mo', 1, 'waynechu@waynechu.cn', '', '', 0, 'admin', '2020-09-19 18:01:57', '', '2020-09-19 18:01:57', 0);
 
 -- ----------------------------
 -- Table structure for sys_user_role
