@@ -85,7 +85,9 @@ public class ExcelHelper {
      * @param clazz    导出模型类
      * @param filename 导出文件名
      * @param response httpServletResponse
+     * @deprecated 推荐使用 {@code exportForSid} 异步导出方法
      */
+    @Deprecated
     public static <T> void export(List<T> list, Class<T> clazz, String filename, HttpServletResponse response) {
         try {
             filename = URLEncoder.encode(filename, "UTF-8");

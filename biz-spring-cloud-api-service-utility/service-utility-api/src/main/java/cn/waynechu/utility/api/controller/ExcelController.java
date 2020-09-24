@@ -4,10 +4,7 @@ import cn.waynechu.facade.common.response.BizResponse;
 import cn.waynechu.springcloud.common.model.ExportResultResponse;
 import cn.waynechu.utility.domain.service.ExcelService;
 import com.alibaba.fastjson.JSONObject;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +25,7 @@ public class ExcelController {
             @ApiImplicitParam(name = "url", value = "导出URL", example = "biz-archetype-portal/archetypes/export", required = true)
     })
     @PostMapping("/export/sid")
-    public BizResponse<String> sid(@RequestParam String url, @RequestBody JSONObject params) {
+    public BizResponse<String> sid(@RequestParam String url, @ApiParam("导出查询参数") @RequestBody JSONObject params) {
         String sid = excelService.getSid(url, params);
         return BizResponse.success(sid);
     }
