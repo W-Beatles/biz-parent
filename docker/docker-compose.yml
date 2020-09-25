@@ -11,14 +11,21 @@ services:
     volumes:   #数据卷或者文件挂载到容器
 #      - ./data/mysql/master/mysql:/var/lib/mysql
       - ./data/mysql/master/mysql-files:/var/lib/mysql-files
-      - ./config/mysql/mysql-master.cnf:/etc/mysql/my.cnf
-      - ../sql:/docker-entrypoint-initdb.d/   #MySQL第一次启动时执行会执行该路径下的SQL脚本
+      - ../sql:/docker-entrypoint-initdb.d/   #MySQL第一次启动时执行会执行该路径下的脚本
+      - ../script/init-master.sh:/docker-entrypoint-initdb.d/init-master.sh
+    env_file:
+      - .env
     environment:
-      TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: 123456
-    depends_on:   #容器依赖关系
-      - mysql-slave1
-      - mysql-slave2
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=${MASTER_MYSQL_ROOT_PASSWORD}
+    command: [
+      "--server-id=${MASTER_SERVER_ID}",
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_unicode_ci",
+      "--log-bin=mysql-bin",
+      "--innodb_flush_log_at_trx_commit=1",
+      "--sync_binlog=1"
+    ]
 
   mysql-slave1:
     image: mysql:8.0.12
@@ -31,11 +38,23 @@ services:
     volumes:
 #      - ./data/mysql/slave1/mysql:/var/lib/mysql
       - ./data/mysql/slave1/mysql-files:/var/lib/mysql-files
-      - ./config/mysql/mysql-slave1.cnf:/etc/mysql/my.cnf
       - ../sql:/docker-entrypoint-initdb.d/
+      - ../script/init-slave.sh:/docker-entrypoint-initdb.d/init-slave.sh
+    env_file:
+      - .env
     environment:
-      TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: 123456
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PASSWORD}
+    depends_on:   #容器依赖关系
+      - mysql-master
+    command: [
+      "--server-id=${SLAVE1_SERVER_ID}",
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_unicode_ci",
+      "--log-bin=mysql-bin",
+      "--relay_log=mysql-relay-bin",
+      "--read_only=on"
+    ]
 
   mysql-slave2:
     image: mysql:8.0.12
@@ -48,11 +67,23 @@ services:
     volumes:
 #      - ./data/mysql/slave2/mysql:/var/lib/mysql
       - ./data/mysql/slave2/mysql-files:/var/lib/mysql-files
-      - ./config/mysql/mysql-slave2.cnf:/etc/mysql/my.cnf
       - ../sql:/docker-entrypoint-initdb.d/
+      - ../script/init-slave.sh:/docker-entrypoint-initdb.d/init-slave.sh
+    env_file:
+      - .env
     environment:
-      TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: 123456
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - mysql-master
+    command: [
+      "--server-id=${SLAVE2_SERVER_ID}",
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_unicode_ci",
+      "--log-bin=mysql-bin",
+      "--relay_log=mysql-relay-bin",
+      "--read_only=on"
+    ]
 
   redis:
     image: redis:latest
