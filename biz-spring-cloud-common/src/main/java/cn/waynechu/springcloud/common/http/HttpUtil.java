@@ -76,7 +76,6 @@ public class HttpUtil {
 
     public static void removeCookie(HttpServletResponse response, Cookie removeCookie) {
         removeCookie.setMaxAge(0);
-
         response.addCookie(removeCookie);
     }
 

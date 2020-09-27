@@ -156,6 +156,11 @@ docker-compose -h                      # 查看更多相关命令
    ```
 
 2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  
+    如果是在window环境，启动前需修改`/script/*/*.sh`下的脚本为linux格式。
+    ```
+    vim ./init-master.sh  (vim ./init-slave.sh)
+    :set ff=unix
+    ```
     ```
     docker-compose up -d mysql-master mysql-slave1 mysql-slave2 apollo-db redis rabbitmq  
     ```
