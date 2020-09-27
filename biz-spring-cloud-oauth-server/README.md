@@ -133,6 +133,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
     ```
     ![authorization_code-model2.png](../docs/oauth/authorization_code-model2.png "授权码模式 - 获取token")
 
+    参数说明 (参数以`x-www-form-urlencoded`方式提交):  
+    grant_type=authorization_code  
+    code=第2步返回的code  
+    client_id=h5  
+    client_secret=123456  
+    redirect_uri=https://www.baidu.com  
+    
     返回结果：
     ```json
     {

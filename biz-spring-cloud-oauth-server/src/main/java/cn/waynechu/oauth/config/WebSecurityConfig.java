@@ -1,7 +1,6 @@
 package cn.waynechu.oauth.config;
 
 import cn.waynechu.oauth.provider.MobileAuthenticationProvider;
-import cn.waynechu.oauth.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,9 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests().anyRequest().permitAll()
                 .and().formLogin(formLogin -> formLogin
                 .loginPage("/login").permitAll())
-                .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout") /* supports GET /logout */)
-                        .permitAll());
+                .logout(logout -> logout.logoutRequestMatcher(
+                        new AntPathRequestMatcher("/logout") /* supports GET /logout */).permitAll());
     }
 
     @Override
