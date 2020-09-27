@@ -1,7 +1,7 @@
 <template>
     <div>
         <svg-icon v-if="icon" :icon-class='icon' />
-        <span v-if="title" slot='title'>{{title}}</span><span v-if="isSubMenu" style="float: right;margin-right: 40px"> + </span>
+        <span v-if="title" slot='title'>{{title}}</span><span v-if="isSubMenu" style="float: right;margin-right: 40px"> </span>
     </div>
 </template>
 <script>

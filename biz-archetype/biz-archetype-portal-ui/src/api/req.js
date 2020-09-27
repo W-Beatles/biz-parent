@@ -1,13 +1,8 @@
 import axios from 'axios'
+import Auth from '@/api/auth.js'
 
-axios.defaults.headers = {
-    'Content-Type': 'application/json; charset=UTF-8',
-    'authType': 'qpl_merchant',
-    'QPL-INFO': 'QPL/WEB-B-VUE',
-    'Authorization': localStorage.getItem('vueBToken')
-}
+const auth = new Auth()
 axios.defaults.timeout = 60 * 1000 // 默认请求超时时间
-
 let cancel, promiseArr = {}
 // 请求拦截器
 axios.interceptors.request.use(config => {
@@ -34,7 +29,12 @@ const httpAsync = {
                 method: method,
                 url,
                 [method === 'get' ? 'params' : 'data']: param,
-                [download ? 'responseType' : 'blob']: 'blob'
+                [download ? 'responseType' : 'blob']: 'blob',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                    'authType': 'oauth2',
+                    'token': localStorage.getItem('Token')
+                }
             }).then((res) => {
                 if (res) {
                     const resData = res['data'] || res['Data']
@@ -60,6 +60,7 @@ axios.interceptors.response.use(response => {
                 break
             case 401:
                 error.message = '未授权，请重新登录'
+                auth.authRedirect()
                 break
             case 403:
                 error.message = '拒绝访问'
