@@ -136,9 +136,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
     返回结果：
     ```json
     {
-        "access_token": "567750d0-ba45-4731-8d7a-37430c8b5600",
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYW5kcm9pZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJvcmdhbml6YXRpb24iOiJhZG1pbiIsImV4cCI6MTYwMDc4NzMzMSwidmVyc2lvbiI6IjEuMC4wIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5NmY3Y2U0Mi03ZDAzLTQyZDgtOGRmMS0wYmMzZDUwN2UzZTIiLCJjbGllbnRfaWQiOiJhbmRyb2lkIn0.oq7ubE13_0utBk1VFjzjpzanrA3E2FlmCEFn6_uMEqE",
         "token_type": "bearer",
-        "refresh_token": "c18d0cff-eb9a-43ec-b903-903f7451bc5d",
+        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYW5kcm9pZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJvcmdhbml6YXRpb24iOiJhZG1pbiIsImF0aSI6Ijk2ZjdjZTQyLTdkMDMtNDJkOC04ZGYxLTBiYzNkNTA3ZTNlMiIsImV4cCI6MTYwMzM3NTczMSwidmVyc2lvbiI6IjEuMC4wIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIyOTc2ZmQyMC1kNzRhLTQxYmYtYTJlNi1mYzM5OWYxMzlkYWYiLCJjbGllbnRfaWQiOiJhbmRyb2lkIn0.T8l99Q5dvxM4mw_PulBw_qTZgzSMBAqVL3RsaPB3MJk",
         "expires_in": 3548,
         "scope": "all"
     }
@@ -200,7 +200,7 @@ token 只有`access_token`没有`refresh token`。
    返回结果：
    ```json
     {
-        "access_token": "0729d9bf-8683-43b6-a341-c52e9dd9623e",
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYW5kcm9pZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJvcmdhbml6YXRpb24iOiJhZG1pbiIsImV4cCI6MTYwMDc4NzMzMSwidmVyc2lvbiI6IjEuMC4wIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5NmY3Y2U0Mi03ZDAzLTQyZDgtOGRmMS0wYmMzZDUwN2UzZTIiLCJjbGllbnRfaWQiOiJhbmRyb2lkIn0.oq7ubE13_0utBk1VFjzjpzanrA3E2FlmCEFn6_uMEqE",
         "token_type": "bearer",
         "expires_in": 3366,
         "scope": "api"

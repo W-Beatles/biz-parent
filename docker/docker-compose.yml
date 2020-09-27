@@ -11,8 +11,8 @@ services:
     volumes:   #数据卷或者文件挂载到容器
 #      - ./data/mysql/master/mysql:/var/lib/mysql
       - ./data/mysql/master/mysql-files:/var/lib/mysql-files
-      - ../sql:/docker-entrypoint-initdb.d/   #MySQL第一次启动时执行会执行该路径下的脚本
-      - ../script/init-master.sh:/docker-entrypoint-initdb.d/init-master.sh
+      - ../sql:/sql
+      - ../script/master/init-master.sh:/docker-entrypoint-initdb.d/init-master.sh
     env_file:
       - .env
     environment:
@@ -38,8 +38,8 @@ services:
     volumes:
 #      - ./data/mysql/slave1/mysql:/var/lib/mysql
       - ./data/mysql/slave1/mysql-files:/var/lib/mysql-files
-      - ../sql:/docker-entrypoint-initdb.d/
-      - ../script/init-slave.sh:/docker-entrypoint-initdb.d/init-slave.sh
+      - ../sql:/sql
+      - ../script/slave/init-slave.sh:/docker-entrypoint-initdb.d/init-slave.sh
     env_file:
       - .env
     environment:
@@ -67,8 +67,8 @@ services:
     volumes:
 #      - ./data/mysql/slave2/mysql:/var/lib/mysql
       - ./data/mysql/slave2/mysql-files:/var/lib/mysql-files
-      - ../sql:/docker-entrypoint-initdb.d/
-      - ../script/init-slave.sh:/docker-entrypoint-initdb.d/init-slave.sh
+      - ../sql:/sql
+      - ../script/slave/init-slave.sh:/docker-entrypoint-initdb.d/init-slave.sh
     env_file:
       - .env
     environment:

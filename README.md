@@ -161,8 +161,8 @@ docker-compose -h                      # 查看更多相关命令
     ```
     注：可使用 `docker-compose logs -f --tail=10` 查看`compose`日志，然后等待基础服务启动完成
 
-3. 配置MySQL主从链路  
-    首次启动MySQL主从集群后，需要手动建立主从同步链路  
+3. ~~配置MySQL主从链路~~  
+    **最新版本已经支持脚本自动配置主从复制链路，已无需手动配置，详见`init-master.sh`、`init-slave.sh`**。如出现未自动同步复制链路的情况，可执行以下命令手动配置  
     1. 登录主库并配置主从同步链路用户权限
         ```
         CREATE USER 'replication'@'172.20.0.%' IDENTIFIED WITH mysql_native_password BY 'EiO8Rx4W.T3';
