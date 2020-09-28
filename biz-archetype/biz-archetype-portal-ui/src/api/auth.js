@@ -10,16 +10,7 @@ class Auth {
     }
 
     authRedirect() {
-        alert(this.auth_url)
-        console.log('this.auth_url', this.auth_url)
         window.location.href = this.auth_url
-    }
-
-    static async getToken({code}) {
-        const urlStr = `grant_type=authorization_code&code=${code}&client_id=h5&client_secret=123456`
-        console.log('code----------', urlStr)
-        const {access_token} = await Request.requestNormal(`/oauth/token?${urlStr}`, 'post')
-        localStorage.setItem('Token', access_token)
     }
 
 }

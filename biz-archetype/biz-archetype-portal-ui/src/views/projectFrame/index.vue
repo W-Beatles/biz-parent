@@ -30,11 +30,7 @@
             <el-table-column label="原型ID" prop="id" width="80"></el-table-column>
             <el-table-column label="AppID" prop="appId" width="300"></el-table-column>
             <el-table-column label="项目名称" prop="appName" width="300"></el-table-column>
-            <el-table-column label="项目类型" prop="appTypeDesc">
-                <template slot-scope="{row}">
-                    {{geneTypeDesc(row.appType)}}
-                </template>
-            </el-table-column>
+            <el-table-column label="项目类型" prop="appTypeDesc"></el-table-column>
             <el-table-column label="状态">
                 <template slot-scope="{row}">
                     <el-tag :type="StatusCodeTagType[row.statusCode]">
@@ -60,6 +56,7 @@
             </el-table-column>
         </el-table>
         <add :visible.sync="visibleDialog"
+             v-if="visibleDialog"
              title="测试弹框"
              :id="optId"
              :loading="addLoading"
@@ -120,7 +117,7 @@
         },
         created() {
             this.getTaskList()
-            this.getAppTypeList()
+            // this.getAppTypeList()
         },
         methods: {
             async getTaskList() {

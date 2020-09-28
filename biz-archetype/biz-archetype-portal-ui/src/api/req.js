@@ -25,6 +25,7 @@ axios.interceptors.request.use(config => {
 const httpAsync = {
     request(url, method = 'get', param, download) {
         return new Promise((resolve) => {
+            console.log('localStorage.getItem(\'Token\')', localStorage.getItem('Token'))
             axios({
                 method: method,
                 url,

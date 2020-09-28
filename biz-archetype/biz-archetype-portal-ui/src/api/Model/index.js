@@ -19,6 +19,10 @@ class Request {
         return resData.data
     }
 
+    static async requestAccess(url, method, param) {
+        return await httpAsync.request(`${access_host}${url}`, method, param)
+    }
+
     static async requestWholeModel(url, method, param) {
         return await httpAsync.request(url, method, param)
     }
