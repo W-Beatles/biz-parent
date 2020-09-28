@@ -69,7 +69,7 @@ public class SnowFlakeGenerator {
             sequence = (sequence + 1) & SEQUENCE_MASK;
             // 毫秒内序列溢出
             if (sequence == 0) {
-                // 阻塞到下一个毫秒,获得新的时间戳
+                // 阻塞到下一个毫秒，获得新的时间戳
                 timestamp = tilNextMillis(lastTimestamp);
             }
         } else {

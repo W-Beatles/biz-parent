@@ -34,7 +34,7 @@ router.beforeEach(async (to, from, next) => {
     const code = new URLSearchParams(window.location.search).get('code')
     console.log('----code-----', code)
     if (code) {
-        const urlStr = `grant_type=authorization_code&code=${code}&client_id=h5&client_secret=123456`
+        const urlStr = `grant_type=authorization_code&code=${code}&client_id=h5&client_secret=123456&redirect_uri=http://admin.gezimm.com:9527/index`
         console.log('code----------', urlStr)
         const {access_token} = await Request.requestNormal(`/oauth/token?${urlStr}`, 'post')
         localStorage.setItem('Token', access_token)
