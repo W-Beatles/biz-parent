@@ -39,16 +39,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .requestMatchers().antMatchers(HttpMethod.OPTIONS, "/oauth/token")
                 .and().csrf().disable()
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login").permitAll())
-                .logout(logout -> logout.logoutRequestMatcher(
-                        new AntPathRequestMatcher("/logout") /* supports GET /logout */).permitAll())
+                .formLogin(formLogin -> formLogin.loginPage("/login").permitAll())
+                .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll())
                 .requestMatchers(requestMatchers -> requestMatchers
-                        .mvcMatchers("/", "/login", "/logout", "/oauth/authorize", "token_keys")
+                        .mvcMatchers("/", "/login", "/logout", "/oauth/authorize")
                         .requestMatchers(EndpointRequest.toAnyEndpoint()))
                 .authorizeRequests(authorize -> authorize
-                        .mvcMatchers("/oauth/authorize", "/token_keys").permitAll()
-                        .requestMatchers(EndpointRequest.to("actuator/**", "info", "health", "prometheus")).permitAll()
+                        .mvcMatchers("/oauth/authorize").permitAll()
+                        .requestMatchers(EndpointRequest.to("info", "health")).permitAll()
                         .anyRequest().authenticated());
     }
 

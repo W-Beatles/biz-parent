@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.time.Duration;
+
 /**
  * 跨域配置
  *
@@ -25,11 +27,11 @@ public class CorsAutoConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(corsProperty.getAllowedOrigins())
                 .allowCredentials(true)
+                .allowedOrigins(corsProperty.getAllowedOrigins())
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 // 预检请求有效时间。默认1800
-                .maxAge(3600);
+                .maxAge(Duration.ofSeconds(3600).getSeconds());
     }
 }
