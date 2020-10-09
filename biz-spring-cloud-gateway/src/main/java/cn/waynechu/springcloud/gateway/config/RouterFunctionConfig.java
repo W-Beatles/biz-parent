@@ -8,10 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.server.HandlerFunction;
-import org.springframework.web.reactive.function.server.RequestPredicates;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.*;
 
 /**
  * 路由配置
@@ -34,7 +31,7 @@ public class RouterFunctionConfig {
      * @return Represents a function that routes to a {@linkplain HandlerFunction handler function}.
      */
     @Bean
-    public RouterFunction routerFunction() {
+    public RouterFunction<ServerResponse> routerFunction() {
         return RouterFunctions.route(
                 RequestPredicates.path("/fallback")
                         .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), hystrixFallbackHandler)

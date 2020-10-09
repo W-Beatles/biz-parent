@@ -54,9 +54,14 @@ public class TraceInitialFilter implements GlobalFilter {
         MDC.put(MDC_KEY_TRACE_HOST_ADDRESSES, hostAddress);
 
         // 添加来源url信息
-        Map<String, Object> attributes = exchange.getAttributes();
-        Object originalUrlObj = attributes.get(ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
-        String originalUrl = originalUrlObj.toString().split(",")[0].substring(1);
+        String originalUrl = null;
+        try {
+            Map<String, Object> attributes = exchange.getAttributes();
+            Object originalUrlObj = attributes.get(ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
+            originalUrl = originalUrlObj.toString().split(",")[0].substring(1);
+        } catch (Exception e) {
+            // do nothing here.
+        }
 
         // 添加请求头trace信息
         ServerHttpRequest mutateRequest = request.mutate()

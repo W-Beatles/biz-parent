@@ -22,7 +22,7 @@
 eureka.instance.metadata-map.swagger-name=${spring.applicationName}
 ```
 
-###  配置版本路由权重
+### 示例: 配置权重路由规则
 ```
 spring:
   application:
@@ -34,16 +34,45 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-      # 配置版本路由权重
+      # 配置权重路由规则
       routes:
-        - id: users_service_v1
-          uri: http://localhost:8081/api/v1
+        - id: service-utility_v1
+          uri: http://localhost:10030/service-utility/test/v1
           predicates:
-            - Path=/api/v1
-            - Weight=service1, 5
-        - id: users_service_v2
-            uri: http://localhost:8081/api/v2
-            predicates:
-              - Path=/api/v1
-              - Weight=service1, 5
+            - Path=/service-utility/test
+            - Weight=service1, 1
+        - id: service-utility_v2
+          uri: http://localhost:10030/service-utility/test/v2
+          predicates:
+            - Path=/service-utility/test
+            - Weight=service2, 2
+```
+
+### 示例: 配置限流路由规则
+```
+spring:
+  application:
+    name: biz-spring-cloud-gateway
+  cloud:
+    gateway:
+      # 开启基于服务发现的路由规则
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      # 配置限流路由规则
+      routes:
+        - id: service-utility-route
+          uri: lb://service-utility
+          order: -1  # 配置优先级高于默认0
+          predicates:
+            - Path=/service-utility/**
+            - TimeBetween=上午9:00,下午6:00  # 基于时间的谓词规则
+          filters:
+            - StripPrefix=1  # 从二级url路径开始转发
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.burstCapacity: 1000  # 令牌桶容量(最大并发量)
+                redis-rate-limiter.replenishRate: 100  # 流速(平均并发量)
+                key-resolver: "#{@remoteAddrKeyResolver}" # SPEL表达式获取对应的bean
 ```

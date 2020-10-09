@@ -43,13 +43,13 @@ public class TimeBetweenRoutePredicateFactory extends AbstractRoutePredicateFact
 
     public static void main(String[] args) {
         /*
-         * property的谓词配置示例:
+         * 谓词配置示例:
          *
          * routes:
          *   - id: service-order
          *     uri: lb://service-order
          *     predicates:
-         *       - TimeBetween=下午9:00,下午6:00
+         *       - TimeBetween=上午9:00,下午6:00
          */
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
         System.out.println(dateTimeFormatter.format(LocalTime.now()));
