@@ -4,6 +4,8 @@ import cn.waynechu.facade.common.response.BizResponse;
 import cn.waynechu.springcloud.common.model.ExportResultResponse;
 import cn.waynechu.utility.domain.service.ExcelService;
 import com.alibaba.fastjson.JSONObject;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,11 @@ public class ExcelController {
     @Autowired
     private ExcelService excelService;
 
+    @HystrixCommand(
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.semaphore.maxConcurrentRequests", value = "200")
+            }
+    )
     @ApiOperation(value = "获取sid", notes = "sid为当前excel导出请求唯一标识，用于异步获取导出状态")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "url", value = "导出URL", example = "biz-archetype-portal/archetypes/export", required = true)

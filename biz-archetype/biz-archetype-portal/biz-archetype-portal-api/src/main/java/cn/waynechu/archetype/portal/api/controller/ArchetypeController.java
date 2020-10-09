@@ -8,6 +8,8 @@ import cn.waynechu.archetype.portal.facade.response.ArchetypeResponse;
 import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.page.BizPageInfo;
 import cn.waynechu.facade.common.response.BizResponse;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -38,6 +40,11 @@ public class ArchetypeController {
         return BizResponse.success(pageInfo);
     }
 
+    @HystrixCommand(
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.semaphore.maxConcurrentRequests", value = "100")
+            }
+    )
     @ApiOperation("导出项目原型列表")
     @PostMapping("/export")
     public BizResponse<String> export(@RequestBody SearchArchetypeRequest request) {

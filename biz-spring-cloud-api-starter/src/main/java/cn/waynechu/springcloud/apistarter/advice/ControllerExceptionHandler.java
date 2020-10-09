@@ -3,8 +3,8 @@ package cn.waynechu.springcloud.apistarter.advice;
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
 import cn.waynechu.facade.common.response.BizResponse;
+import com.netflix.hystrix.exception.HystrixRuntimeException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Objects;
-
-import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_REQUEST_ID;
 
 /**
  * 统一异常处理切面
@@ -57,13 +55,18 @@ public class ControllerExceptionHandler {
             log.error("[BizError] {}", e.getErrorMessage(), e);
         }
         log.info("[BizError] {}", e.getErrorMessage());
-        return BizResponse.error(e.getErrorCode(), e.getErrorMessage(), MDC.get(MDC_KEY_REQUEST_ID).substring(0, 6));
+        return BizResponse.error(e.getErrorCode(), e.getErrorMessage());
+    }
+
+    @ExceptionHandler(HystrixRuntimeException.class)
+    public BizResponse<String> hystrixRuntimeException(HystrixRuntimeException e) {
+        log.warn("Hystrix 熔断: {}", e.getMessage());
+        return BizResponse.error(BizErrorCodeEnum.CALL_SERVICE_ERROR.getCode(), BizErrorCodeEnum.CALL_SERVICE_ERROR.getDesc());
     }
 
     @ExceptionHandler(Exception.class)
     public BizResponse<String> unknownException(Exception e) {
         log.error("[SystemError] ", e);
-        return BizResponse.error(BizErrorCodeEnum.SYSTEM_ERROR.getCode(),
-                BizErrorCodeEnum.SYSTEM_ERROR.getDesc(), MDC.get(MDC_KEY_REQUEST_ID).substring(0, 6));
+        return BizResponse.error(BizErrorCodeEnum.SYSTEM_ERROR.getCode(), BizErrorCodeEnum.SYSTEM_ERROR.getDesc());
     }
 }
