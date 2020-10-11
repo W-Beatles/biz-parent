@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
 @Component("oauth2AuthTypeFilter")
 public class OAuth2AuthTypeFilter implements AuthTypeFilter {
 
-    private static final String BEARER = "Bearer ";
+    private static final String BEARER = "bearer ";
 
     @Value("${oauth2.jwt.signingKey}")
     private String signingKey;

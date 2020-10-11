@@ -82,8 +82,8 @@ CREATE TABLE `oauth_client_details`  (
 -- ----------------------------
 INSERT INTO `oauth_client_details` VALUES ('android', 'android', '$2a$10$UQr5dQtKmgTXsRLGrcANk.uW0zZtDl9FhkhEnsXQd9MCFwKlmqhwi', 'all', 'password,refresh_token', '', NULL, 3600, NULL, NULL, NULL);
 INSERT INTO `oauth_client_details` VALUES ('gateway', 'biz-spring-cloud-gateway', '$2a$10$UQr5dQtKmgTXsRLGrcANk.uW0zZtDl9FhkhEnsXQd9MCFwKlmqhwi', 'api', 'client_credentials', '', NULL, 3600, NULL, NULL, NULL);
-INSERT INTO `oauth_client_details` VALUES ('h5', 'h5', '$2a$10$UQr5dQtKmgTXsRLGrcANk.uW0zZtDl9FhkhEnsXQd9MCFwKlmqhwi', 'all', 'authorization_code,refresh_token', 'https://www.baidu.com', NULL, 3600, NULL, NULL, '');
-INSERT INTO `oauth_client_details` VALUES ('web', 'web', '$2a$10$UQr5dQtKmgTXsRLGrcANk.uW0zZtDl9FhkhEnsXQd9MCFwKlmqhwi', 'all', 'implicit', 'https://www.baidu.com', NULL, 3600, NULL, NULL, NULL);
+INSERT INTO `oauth_client_details` VALUES ('h5', 'h5', '$2a$10$UQr5dQtKmgTXsRLGrcANk.uW0zZtDl9FhkhEnsXQd9MCFwKlmqhwi', 'all', 'authorization_code,refresh_token', 'http://admin.gezimm.com:9527', NULL, 3600, NULL, NULL, '');
+INSERT INTO `oauth_client_details` VALUES ('web', 'web', '$2a$10$UQr5dQtKmgTXsRLGrcANk.uW0zZtDl9FhkhEnsXQd9MCFwKlmqhwi', 'all', 'implicit', 'http://admin.gezimm.com:9527', NULL, 3600, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oauth_client_token
