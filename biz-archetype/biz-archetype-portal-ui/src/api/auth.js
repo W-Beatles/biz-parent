@@ -1,5 +1,5 @@
 import Request from "@/api/Model";
-
+import { redirect } from './authUtil'
 class Auth {
     constructor() {
         this.redirect_uri = 'http://admin.gezimm.com:9527/index'
@@ -10,7 +10,7 @@ class Auth {
     }
 
     authRedirect() {
-        window.location.href = this.auth_url
+        redirect()
     }
 
 }

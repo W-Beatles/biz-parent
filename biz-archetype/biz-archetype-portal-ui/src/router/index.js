@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Request from "@/api/Model";
+import {getToken, refreshToken} from "@/api/authUtil"
 
 Vue.use(Router);
 
@@ -31,14 +31,8 @@ export function resetRouter() {
 }
 
 router.beforeEach(async (to, from, next) => {
-    const code = new URLSearchParams(window.location.search).get('code')
-    let {origin, hash} = window.location
-    if (code && !window.location.hash) {
-        const urlStr = `grant_type=authorization_code&code=${code}&client_id=h5&client_secret=123456&redirect_uri=http://admin.gezimm.com:9527/index`
-        const {access_token} = await Request.requestAccess(`/oauth/token?${urlStr}`, 'post')
-        localStorage.setItem('Token', `Bearer ${access_token}`)
-        window.location.href = `${origin}/${hash}`
-    }
+    await getToken()
     next()
+    await refreshToken()
 })
 export default router;

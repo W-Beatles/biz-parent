@@ -25,7 +25,7 @@ axios.interceptors.request.use(config => {
 const httpAsync = {
     request(url, method = 'get', param, download) {
         return new Promise((resolve) => {
-            console.log('localStorage.getItem(\'Token\')', localStorage.getItem('Token'))
+            const {token_type, access_token} = JSON.parse(localStorage.getItem('TOKEN_INFO')) || {}
             axios({
                 method: method,
                 url,
@@ -34,7 +34,7 @@ const httpAsync = {
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8',
                     'authType': 'oauth2',
-                    'token': localStorage.getItem('Token')
+                    'token': `${token_type} ${access_token}`
                 }
             }).then((res) => {
                 if (res) {
