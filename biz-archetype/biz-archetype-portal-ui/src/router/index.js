@@ -33,7 +33,7 @@ export function resetRouter() {
 router.beforeEach(async (to, from, next) => {
     const code = new URLSearchParams(window.location.search).get('code')
     let {origin, hash} = window.location
-    if (code && !window.location.hash) {
+    if (code) {
         const urlStr = `grant_type=authorization_code&code=${code}&client_id=h5&client_secret=123456&redirect_uri=http://admin.gezimm.com:9527/index`
         const {access_token} = await Request.requestAccess(`/oauth/token?${urlStr}`, 'post')
         localStorage.setItem('Token', `Bearer ${access_token}`)
