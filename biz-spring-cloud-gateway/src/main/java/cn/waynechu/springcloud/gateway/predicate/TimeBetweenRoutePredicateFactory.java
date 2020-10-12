@@ -13,8 +13,14 @@ import java.util.function.Predicate;
 
 /**
  * 自定义基于开始时间和结束时间的谓词工厂
- * <p>
- * 只有当时间在配置的时间范围内网关才会转发
+ * <pre>
+ * 只有当时间在配置的时间范围内网关才会转发。谓词配置示例:
+ * routes:
+ *   - id: service-order
+ *     uri: lb://service-order
+ *     predicates:
+ *       - TimeBetween=09:00,18:00
+ *       </pre>
  *
  * @author zhuwei
  * @since 2020-02-23 22:56
@@ -39,19 +45,5 @@ public class TimeBetweenRoutePredicateFactory extends AbstractRoutePredicateFact
     @Override
     public List<String> shortcutFieldOrder() {
         return Arrays.asList("start", "end");
-    }
-
-    public static void main(String[] args) {
-        /*
-         * 谓词配置示例:
-         *
-         * routes:
-         *   - id: service-order
-         *     uri: lb://service-order
-         *     predicates:
-         *       - TimeBetween=上午9:00,下午6:00
-         */
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
-        System.out.println(dateTimeFormatter.format(LocalTime.now()));
     }
 }

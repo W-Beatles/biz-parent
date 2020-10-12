@@ -135,9 +135,9 @@ services:
 #      - ./data/apollo/mysql:/var/lib/mysql
       - ./config/apollo:/docker-entrypoint-initdb.d
 
-  inner-gateway:
+  gateway:
     image: waynechu/biz-spring-cloud-gateway:0.1.2019070901-RELEASE
-    container_name: inner-gateway
+    container_name: gateway
     networks:
       - biz-net
     ports:

@@ -95,6 +95,7 @@ SpringCloud微服务开发脚手架
 docker-compose up -d                   # 初始化容器，如果容器不存在根据镜像自动创建
 docker-compose down -v                 # 停止容器并删除容器
 docker-compose start                   # 启动容器
+docker-compose restart                 # 重启容器
 docker-compose stop                    # 停止容器
 docker-compose ps                      # 查看服务启动情况
 docker-compose logs -f --tail=10       # 查看compose日志
@@ -118,7 +119,7 @@ docker-compose -h                      # 查看更多相关命令
     |  配置中心         |  apollo                 |  9070        |  apollo/admin     |  http://localhost:8070                  |
     |  配置中心db       |  apollo-db              |  3316        |                   |                                         |
     |  * 注册中心       |  eureka                 |  9001-9009   |                   |  http://localhost:9001                  |
-    |  网关             |  inner-gateway          |  9010        |                   |  http://localhost:9010/swagger-ui.html  |
+    |  网关             |  gateway               |  9010        |                   |  http://localhost:9010/swagger-ui.html  |
     |  监控中心         |  boot-admin             |  9020        |                   |  http://localhost:9020                   |
     |  skywalking-oap  |  skywalking-oap         |  12800       |                   |                                          |
     |  skywalking-ui   |  skywalking-ui          |  8090        |                   |  http://localhost:8090                   |
@@ -137,7 +138,7 @@ docker-compose -h                      # 查看更多相关命令
    docker-compose up -d apollo elasticsearch  
    docker-compose up -d skywalking-oap logstash kibana  
    docker-compose up -d eureka  
-   docker-compose up -d inner-gateway boot-admin skywalking-ui  
+   docker-compose up -d gateway boot-admin skywalking-ui  
    docker-compose up -d {other services}  
    ```
 5. 使用`--scale`参数可对服务进行水平扩容。如: `docker-compose up -d --scale service-order=2 service-order`  
@@ -156,13 +157,13 @@ docker-compose -h                      # 查看更多相关命令
    ```
 
 2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  
-    如果是在window环境，启动前需修改`/script/*/*.sh`下的脚本为linux格式。
+    **如果是在window环境，启动前需修改`/script/*/*.sh`下的脚本为linux格式。否则服务器无法执行初始化脚本而报错**
     ```
     vim ./init-master.sh  (vim ./init-slave.sh)
     :set ff=unix
     ```
     ```
-    docker-compose up -d mysql-master mysql-slave1 mysql-slave2 apollo-db redis rabbitmq  
+    docker-compose up -d mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db
     ```
     注：可使用 `docker-compose logs -f --tail=10` 查看`compose`日志，然后等待基础服务启动完成
 
@@ -200,7 +201,7 @@ docker-compose -h                      # 查看更多相关命令
     ```
 7. 启动网关、boot-admin监控、skywalking控制台。网关为必须依赖服务，其他两个可选
     ```
-    docker-compose up -d inner-gateway boot-admin skywalking-ui
+    docker-compose up -d gateway boot-admin skywalking-ui
     ```
 8. 启动统一认证服务
     ```
