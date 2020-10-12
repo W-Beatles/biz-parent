@@ -117,7 +117,7 @@
         },
         created() {
             this.getTaskList()
-            // this.getAppTypeList()
+            this.getAppTypeList()
         },
         methods: {
             async getTaskList() {

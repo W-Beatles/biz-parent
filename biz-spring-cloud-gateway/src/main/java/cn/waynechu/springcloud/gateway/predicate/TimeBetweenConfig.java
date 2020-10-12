@@ -1,6 +1,7 @@
 package cn.waynechu.springcloud.gateway.predicate;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalTime;
 
@@ -13,7 +14,9 @@ import java.time.LocalTime;
 @Data
 public class TimeBetweenConfig {
 
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime start;
 
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime end;
 }
