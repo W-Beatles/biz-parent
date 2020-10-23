@@ -41,7 +41,7 @@
         <artifactId>biz-spring-cloud-api-starter</artifactId>
     </dependency>
     ```
-2. 在本地项目中添加导出接口，返回sid (即导出唯一标识)
+2. 在本地项目中添加导出接口，返回参数为String类型的sid (即导出唯一标识)
     ```
         @ApiOperation("导出项目原型列表")
         @PostMapping("/export")
@@ -97,7 +97,11 @@
     |  @NumberFormat("#.##%")(可选)                          |   自定义数值类型格式。如加上百分号等                |
    > 注：如果想要自定义类型转化器，可参考 `cn.waynechu.springcloud.common.excel.convert` 包下的转化器实现。
 
-4. 定义分页查询的方法
+4. 使用导出工具类导出
+
+    **方式一：直接使用list数据导出**  
+    该方式推荐在数据量比较小的情况下使用。如果要查询的数据量很大，会增大获取sid接口的耗时
+    
     ```
     @Service
     public class ArchetypeServiceImpl implements ArchetypeService {
@@ -106,13 +110,44 @@
         private ExcelHelper excelHelper;
 
         @Override
-        public BizPageInfo<SearchArchetypeResponse> search(SearchArchetypeRequest request) {
+        public List<SearchArchetypeResponse> listArchetypes(SearchArchetypeRequest request) {
             ····
+        }
+   
+        @Override
+        public String export(SearchArchetypeRequest request) {
+            // 查询导出数据
+            List<SearchArchetypeResponse> data = this.listArchetypes(request);
+            // 导出excel
+            return excelHelper.exportForSid("原型列表", SearchArchetypeResponse.class, data);
         }
     }
     ```
+
+    **方式二（推荐）：使用查询list数据的方法导出**  
+    因为传入查询方法后内部会异步去查询，故该方式不会产生接口超时的问题。推荐老的项目改造时使用该方式
+    ```
+    @Service
+    public class ArchetypeServiceImpl implements ArchetypeService {
+    
+        @Autowired
+        private ExcelHelper excelHelper;
+
+        @Override
+        public List<SearchArchetypeResponse> listArchetypes(SearchArchetypeRequest request) {
+            ····
+        }
    
-5. 使用导出工具类导出
+        @Override
+        public String export(SearchArchetypeRequest request) {
+            return excelHelper.exportForSid("原型列表", SearchArchetypeResponse.class, () -> listArchetypes(request));
+        }
+    }
+    ```
+
+    **方式三：使用列表查询分页数据的方法导出**  
+    使用该方式需满足分页查询规范，入参继承`BizPageRequest`类、出参返回`BizPageInfo`类型。
+    该方式可复用列表查询的方法，推荐新项目接入时可采用该方式
     ```
     @Service
     public class ArchetypeServiceImpl implements ArchetypeService {
@@ -127,14 +162,12 @@
    
         @Override
         public String export(SearchArchetypeRequest request) {
-            String fileName = "原型列表 " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            return excelHelper.exportForSid(fileName, SearchArchetypeResponse.class, request, () -> search(request));
+            return excelHelper.exportForSid("原型列表", SearchArchetypeResponse.class, request, () -> search(request));
         }
     }
     ```
-   > 注：导出工具还提供 exportForSid(final String fileName, Class<T> clazz, List<T> data) 导出方式，该方法只需要传入要导出的list即可。当导出数据量比较小的时候使用该方式比较灵活
 
-6. 前后端联调
+5. 前后端联调
     1. 前端请求通用导出地址获取sid。接口地址为: `POST /service-utility/excels/export/sid`  
     2. 通用导出根据地址转发请求到业务放项目的导出接口上。导出地址格式为项目名 + 接口路径  
     3. 前端拿到sid之后调用通用服务接口获取导出结果。 接口地址为: `POST /service-utility/excels/export/status` 
