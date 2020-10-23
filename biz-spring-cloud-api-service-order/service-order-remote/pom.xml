@@ -6,12 +6,12 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-spring-cloud-api-service-order</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>service-order-remote</artifactId>
     <name>service-order-remote</name>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <description>service-order-remote module for SpringCloud</description>
 
     <dependencies>

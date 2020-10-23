@@ -6,11 +6,11 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-parent</artifactId>
-        <version>0.1.2019091701-RELEASE</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>biz-spring-cloud-dashboard-turbine</artifactId>
-    <version>0.1.2019070901-RELEASE</version>
+    <version>1.0.0-RELEASE</version>
     <name>biz-spring-cloud-dashboard-turbine</name>
     <description>biz-spring-cloud-dashboard-turbine for SpringCloud</description>
 

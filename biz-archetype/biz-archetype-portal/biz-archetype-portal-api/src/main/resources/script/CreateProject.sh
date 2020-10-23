@@ -10,7 +10,7 @@ generate() {
       -DarchetypeVersion="$ARCHETYPE_VERSION" \
       -DgroupId=cn.waynechu \
       -DartifactId="$PROJECT_NAME" \
-      -Dversion=0.1.0-SNAPSHOT \
+      -Dversion=1.0.0-SNAPSHOT \
       -Dpackage=cn.waynechu."$PACKAGE_NAME"
 }
 

@@ -31,7 +31,7 @@ public class BooleanConvert implements Converter<Boolean> {
         if (StringUtil.isEmpty(booleanStr)) {
             return false;
         }
-        return booleanStr.equals("是");
+        return "是".equals(booleanStr);
     }
 
     @Override

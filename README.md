@@ -153,7 +153,7 @@ docker-compose -h                      # 查看更多相关命令
     ```
    注: 如果只更改了单个模块的代码，可手动为该模块单独重新构建镜像
    ```
-   docker build -t waynechu/biz-archetype-portal:0.1.0-SNAPSHOT . --build-arg JAR_FILE=./target/biz-archetype-portal-api-0.1.0-SNAPSHOT.jar
+   docker build -t waynechu/biz-archetype-portal:1.0.0-SNAPSHOT . --build-arg JAR_FILE=./target/biz-archetype-portal-api-1.0.0-SNAPSHOT.jar
    ```
 
 2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  

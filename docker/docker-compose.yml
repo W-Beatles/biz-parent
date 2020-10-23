@@ -136,7 +136,7 @@ services:
       - ./config/apollo:/docker-entrypoint-initdb.d
 
   gateway:
-    image: waynechu/biz-spring-cloud-gateway:0.1.2019070901-RELEASE
+    image: waynechu/biz-spring-cloud-gateway:1.0.0-RELEASE
     container_name: gateway
     networks:
       - biz-net
@@ -151,7 +151,7 @@ services:
       - eureka
 
   boot-admin:
-    image: waynechu/biz-spring-boot-admin:0.1.2019070901-RELEASE
+    image: waynechu/biz-spring-boot-admin:1.0.0-RELEASE
     container_name: boot-admin
     networks:
       - biz-net
@@ -211,7 +211,7 @@ services:
       - kibana
 
   eureka:
-    image: waynechu/biz-spring-cloud-eureka:0.1.2019070901-RELEASE
+    image: waynechu/biz-spring-cloud-eureka:1.0.0-RELEASE
     networks:
       - biz-net
     ports:
@@ -250,7 +250,7 @@ services:
       - skywalking-oap
 
   oauth-server:
-    image: waynechu/biz-spring-cloud-oauth-server:0.1.2020022601-SNAPSHOT
+    image: waynechu/biz-spring-cloud-oauth-server:1.0.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -269,7 +269,7 @@ services:
       - eureka
 
   archetype-portal:
-    image: waynechu/biz-archetype-portal:0.1.0-SNAPSHOT
+    image: waynechu/biz-archetype-portal:1.0.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -288,7 +288,7 @@ services:
       - eureka
 
   service-utility:
-    image: waynechu/biz-spring-cloud-api-service-utility:0.1.0-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-service-utility:1.0.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -307,7 +307,7 @@ services:
       - eureka
 
   service-order:
-    image: waynechu/biz-spring-cloud-api-service-order:0.1.0-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-service-order:1.0.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -326,7 +326,7 @@ services:
       - eureka
 
   service-product:
-    image: waynechu/biz-spring-cloud-api-service-product:0.1.0-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-service-product:1.0.0-SNAPSHOT
     networks:
       - biz-net
     ports:
@@ -345,7 +345,7 @@ services:
       - eureka
 
   dynamic-datasource-test:
-    image: waynechu/biz-spring-cloud-api-dynamic-datasource-test:0.1.0-SNAPSHOT
+    image: waynechu/biz-spring-cloud-api-dynamic-datasource-test:1.0.0-SNAPSHOT
     networks:
       - biz-net
     ports:

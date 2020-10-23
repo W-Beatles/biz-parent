@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -108,56 +109,68 @@ public class ExcelHelper {
     /**
      * 导出并获取excel的sid
      *
-     * @param fileName 文件名，无需拼接.xlsx后缀
+     * <pre>
+     *     使用list数据导出。适用于数据量比较小的导出，推荐1W行下使用
+     *     注意，如果需要查询的数据量较大，会增大获取sid接口耗时
+     * </pre>
+     *
+     * @param fileName 文件名
      * @param clazz    excel对象类型
-     * @param request  查询参数
-     * @param supplier 分页查询方法
+     * @param data     要导出的数据
+     * @param <T>      excel对象类
      * @return sid 导出唯一标识
      */
-    public <T> String exportForSid(final String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
-        final String sid = UUID.randomUUID().toString();
-        this.syncExportResult(sid, fileName, ExportStatusEnum.GENERATED, null);
-
-        executor.execute(() -> {
-            File tempFile = null;
-            ExportStatusEnum exportStatus = ExportStatusEnum.FAIL;
-            String url = null;
-            try {
-                // 生成excel
-                tempFile = this.generateExcelFile(sid, fileName, clazz, request, supplier);
-                // 上传excel
-                url = this.uploadExcelFile(tempFile);
-                if (StringUtil.isNotEmpty(url)) {
-                    exportStatus = ExportStatusEnum.SUCCESS;
-                }
-            } catch (Exception e) {
-                log.error("导出失败", e);
-            } finally {
-                // 同步导出状态
-                this.syncExportResult(sid, fileName, exportStatus, url);
-                // 删除临时excel文件
-                if (tempFile != null && tempFile.exists()) {
-                    // noinspection ResultOfMethodCallIgnored
-                    tempFile.delete();
-                }
-            }
-        });
-        return sid;
+    public <T> String exportForSid(final String fileName, Class<T> clazz, List<T> data) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, clazz, data));
     }
 
     /**
      * 导出并获取excel的sid
      *
      * <pre>
-     *     适用于数据量比较小的导出，推荐1W行下使用
+     *      根据查询列表的方法导出excel。
+     *      因为传入查询方法后内部会异步去查询，故该方式不会产生接口超时的问题
+     *      该方式可复用列表查询的方法，推荐老项目改造时使用该方式
      * </pre>
      *
-     * @param fileName 文件名，无需拼接.xlsx后缀
-     * @param clazz    excel对象模型
-     * @param data     导出的数据
+     * @param fileName 文件名。无需拼接.xlsx后缀
+     * @param clazz    excel对象类型
+     * @param supplier 查询数据列表的方法
+     * @param <T>      excel对象类
      * @return sid 导出唯一标识
      */
-    public <T> String exportForSid(final String fileName, Class<T> clazz, List<T> data) {
+    public <T> String exportForSid(final String fileName, Class<T> clazz, Supplier<List<T>> supplier) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, clazz, supplier.get()));
+    }
+
+    /**
+     * 导出并获取excel的sid
+     *
+     * <pre>
+     *     根据分页查询的方法导出excel
+     *     注意该分页查询的方法入参必须继承 {@code BizPageRequest}，且返回值类型为 {@code BizPageInfo}
+     *     该方式可复用列表查询的方法，推荐新项目接入时采用该方式
+     * </pre>
+     *
+     * @param fileName 文件名。无需拼接.xlsx后缀
+     * @param clazz    excel对象类型
+     * @param request  查询参数
+     * @param supplier 分页查询方法
+     * @param <T>      excel对象类
+     * @return sid 导出唯一标识
+     */
+    public <T> String exportForSid(final String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, clazz, request, supplier));
+    }
+
+    /**
+     * 导出并获取excel的sid
+     *
+     * @param fileName             文件名
+     * @param generateFileFunction 生成excel文件的方法
+     * @return sid 导出唯一标识
+     */
+    private <T> String exportForSid(final String fileName, Function<String, File> generateFileFunction) {
         final String sid = UUID.randomUUID().toString();
         this.syncExportResult(sid, fileName, ExportStatusEnum.GENERATED, null);
 
@@ -167,8 +180,8 @@ public class ExcelHelper {
             String url = null;
             try {
                 // 生成excel
-                tempFile = this.generateExcelFile(sid, fileName, clazz, data);
-                // 上传excel文件
+                tempFile = generateFileFunction.apply(sid);
+                // 上传excel
                 url = this.uploadExcelFile(tempFile);
                 if (StringUtil.isNotEmpty(url)) {
                     exportStatus = ExportStatusEnum.SUCCESS;
@@ -197,8 +210,14 @@ public class ExcelHelper {
      * @param data      导出的数据
      * @return excel文件
      */
-    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, List<T> data) throws IOException {
-        File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, List<T> data) {
+        File tempFile;
+        try {
+            tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
 
         sheetName = this.encodeFileName(sheetName);
@@ -223,8 +242,14 @@ public class ExcelHelper {
      * @param supplier  分页查询方法
      * @return excel文件
      */
-    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) throws IOException {
-        File tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
+        File tempFile;
+        try {
+            tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
         // 使用table方式写入，设置sheet不需要头
         sheetName = this.encodeFileName(sheetName);

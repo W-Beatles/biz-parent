@@ -6,11 +6,11 @@
     <parent>
         <groupId>cn.waynechu</groupId>
         <artifactId>biz-parent</artifactId>
-        <version>0.1.2019091701-RELEASE</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
-    <version>0.1.2020032201-RELEASE</version>
+    <version>1.0.0-RELEASE</version>
     <name>biz-boot-starter-dynamic-datasource</name>
     <description>biz-boot-starter-dynamic-datasource module</description>
 
