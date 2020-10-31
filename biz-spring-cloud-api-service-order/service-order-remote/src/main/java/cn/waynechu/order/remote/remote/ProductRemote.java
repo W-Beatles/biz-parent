@@ -5,6 +5,7 @@ import cn.waynechu.order.remote.model.response.ProductResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author zhuwei
@@ -18,4 +19,10 @@ public interface ProductRemote {
      */
     @GetMapping("/{productId}")
     BizResponse<ProductResponse> getById(@PathVariable Long productId);
+
+    /**
+     * 扣减库存
+     */
+    @GetMapping
+    BizResponse<Void> reduceStock(@RequestParam Long productId, @RequestParam Integer amount);
 }

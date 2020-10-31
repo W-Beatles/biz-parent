@@ -2,21 +2,27 @@ package cn.waynechu.order.domain.service;
 
 import cn.waynechu.facade.common.enums.BizErrorCodeEnum;
 import cn.waynechu.facade.common.exception.BizException;
-import cn.waynechu.springcloud.common.util.BeanUtil;
+import cn.waynechu.order.common.enums.OrderStatusEnum;
 import cn.waynechu.order.dal.dataobject.order.OrderDO;
 import cn.waynechu.order.domain.convert.OrderConvert;
 import cn.waynechu.order.domain.repository.OrderRepository;
 import cn.waynechu.order.facade.response.OrderDetailResponse;
 import cn.waynechu.order.facade.response.OrderResponse;
 import cn.waynechu.order.remote.model.response.ProductResponse;
+import cn.waynechu.springcloud.common.util.BeanUtil;
+import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 /**
  * @author zhuwei
  * @since 2019/9/19 18:13
  */
+@Slf4j
 @Service
 public class OrderService {
 
@@ -59,5 +65,21 @@ public class OrderService {
             BeanUtil.copyProperties(product, orderDetailResponse);
         }
         return orderDetailResponse;
+    }
+
+    public void placeOrder(Long userId, Long productId) {
+        log.info("当前 XID: {}", RootContext.getXID());
+
+        OrderDO orderDO = new OrderDO();
+        orderDO.setUserId(userId);
+        orderDO.setProductId(productId);
+        orderDO.setOrderStatus(OrderStatusEnum.INIT.getCode());
+        orderDO.setCreateTime(LocalDateTime.now());
+        Integer createOrderFlag = orderRepository.create(orderDO);
+
+        log.info("保存订单{}", createOrderFlag > 0 ? "成功" : "失败");
+
+        // 扣减库存
+        productService.reduceStock(productId, 1);
     }
 }

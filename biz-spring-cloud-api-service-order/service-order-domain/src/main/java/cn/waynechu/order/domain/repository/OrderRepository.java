@@ -36,4 +36,14 @@ public class OrderRepository {
     public OrderDO getByIdFromMaster(Long orderId) {
         return orderMapper.selectById(orderId);
     }
+
+    /**
+     * 创建订单
+     *
+     * @param orderDO 订单信息
+     * @return 影响行数
+     */
+    public Integer create(OrderDO orderDO) {
+        return orderMapper.insert(orderDO);
+    }
 }

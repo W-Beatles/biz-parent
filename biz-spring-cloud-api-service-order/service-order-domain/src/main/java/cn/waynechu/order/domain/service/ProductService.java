@@ -29,4 +29,8 @@ public class ProductService {
         }
         return null;
     }
+
+    public void reduceStock(Long productId, Integer amount) {
+        productRemote.reduceStock(productId, amount);
+    }
 }

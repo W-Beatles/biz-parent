@@ -22,6 +22,12 @@ public class ProductRemoteFallbackFactory implements FallbackFactory<ProductRemo
                 log.error("根据产品id获取产品信息调用失败, message: {}", throwable.getMessage());
                 return null;
             }
+
+            @Override
+            public BizResponse<Void> reduceStock(Long productId, Integer amount) {
+                log.error("扣减库存调用失败, message: {}", throwable.getMessage());
+                return null;
+            }
         };
     }
 }

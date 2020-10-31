@@ -7,10 +7,7 @@ import cn.waynechu.order.facade.response.OrderResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author zhuwei
@@ -36,5 +33,12 @@ public class OrderController {
     public BizResponse<OrderDetailResponse> getDetailById(@PathVariable Long orderId) {
         OrderDetailResponse orderdetailResponse = orderService.getDetailById(orderId);
         return BizResponse.success(orderdetailResponse);
+    }
+
+    @ApiOperation(value = "下单", notes = "测试分布式事务")
+    @GetMapping("/placeOrder")
+    public BizResponse<Void> placeOrder(@RequestParam Long userId, @RequestParam Long productId) {
+         orderService.placeOrder(userId, productId);
+        return BizResponse.success();
     }
 }

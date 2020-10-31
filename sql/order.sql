@@ -28,7 +28,7 @@ CREATE TABLE `tbl_order`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单ID',
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   `product_id` bigint(20) NOT NULL COMMENT '套餐ID',
-  `order_status` tinyint(3) NOT NULL DEFAULT 1 COMMENT '订单状态：1已下单，2已送达（部门代理人领餐成功），3已领取（代理人确认成员领餐），4未领取（9点后代理人未确认领取的全部设为未领取）。取消订单删除该条记录）',
+  `order_status` tinyint(3) NOT NULL DEFAULT 1 COMMENT '订单状态: 1创建 2成功 3失败',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE

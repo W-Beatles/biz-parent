@@ -34,7 +34,7 @@ public class OrderDO {
     private Long productId;
 
     /**
-     * 订单状态：1已下单，2已送达（部门代理人领餐成功），3已领取（代理人确认成员领餐），4未领取（9点后代理人未确认领取的全部设为未领取）。取消订单删除该条记录）
+     * 订单状态: 1创建 2成功 3失败
      */
     @TableField(value = "order_status")
     private Integer orderStatus;
