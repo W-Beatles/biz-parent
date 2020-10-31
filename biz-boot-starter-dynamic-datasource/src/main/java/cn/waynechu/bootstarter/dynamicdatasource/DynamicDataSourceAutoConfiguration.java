@@ -22,15 +22,20 @@ import cn.waynechu.bootstarter.dynamicdatasource.dynamic.DynamicRoutingDataSourc
 import cn.waynechu.bootstarter.dynamicdatasource.interceptor.DynamicDataSourceInterceptor;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DefaultDynamicDataSourceProvider;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
+
+import javax.sql.DataSource;
 
 /**
  * @author zhuwei
@@ -69,5 +74,13 @@ public class DynamicDataSourceAutoConfiguration {
     @Bean
     public DynamicDataSourceInterceptor dynamicDataSourceInterceptor() {
         return new DynamicDataSourceInterceptor();
+    }
+
+    @Bean
+    public MybatisSqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier("dynamicRoutingDataSource") DataSource dataSource) {
+        // 这里用 MybatisSqlSessionFactoryBean 代替了 SqlSessionFactoryBean，否则 MyBatisPlus 不会生效
+        MybatisSqlSessionFactoryBean mybatisSqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
+        mybatisSqlSessionFactoryBean.setDataSource(dataSource);
+        return mybatisSqlSessionFactoryBean;
     }
 }

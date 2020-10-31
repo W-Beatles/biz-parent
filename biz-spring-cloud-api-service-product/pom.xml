@@ -82,6 +82,14 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.waynechu</groupId>
+            <artifactId>biz-boot-starter-dynamic-datasource</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <profiles>
         <profile>
             <id>local</id>

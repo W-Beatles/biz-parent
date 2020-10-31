@@ -9,6 +9,7 @@ import cn.waynechu.order.domain.repository.OrderRepository;
 import cn.waynechu.order.facade.response.OrderDetailResponse;
 import cn.waynechu.order.facade.response.OrderResponse;
 import cn.waynechu.order.remote.model.response.ProductResponse;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,7 @@ public class OrderService {
      * @param orderId 订单id
      * @return 订单详情
      */
+    @GlobalTransactional
     public OrderDetailResponse getDetailById(Long orderId) {
         // 状态判断、时效性要求高的查询优先走主库，防止主从同步延迟导致读取脏数据
         OrderDO order = orderRepository.getByIdFromMaster(orderId);

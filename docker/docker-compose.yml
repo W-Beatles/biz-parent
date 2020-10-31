@@ -85,6 +85,18 @@ services:
       "--read_only=on"
     ]
 
+  seata-server:
+    image: seataio/seata-server
+    container_name: seata-server
+    restart: always
+    networks:
+      - biz-net
+    ports:
+      - "8091:8091"
+    environment:
+      - SEATA_PORT=8091
+      - STORE_MODE=file
+
   redis:
     image: redis:latest
     container_name: redis

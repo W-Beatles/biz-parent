@@ -1,12 +1,12 @@
 /**
  * Copyright © 2018 organization waynechu
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,6 +26,7 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.wall.WallConfig;
 import com.alibaba.druid.wall.WallFilter;
+import io.seata.rm.datasource.DataSourceProxy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
@@ -162,6 +163,6 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
         } catch (SQLException e) {
             log.error("Druid datasource creation failed", e);
         }
-        return dataSource;
+        return new DataSourceProxy(dataSource);
     }
 }
