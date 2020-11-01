@@ -24,4 +24,15 @@ public class ProductRepository {
     public ProductDO getById(Long productId) {
         return productMapper.selectById(productId);
     }
+
+    /**
+     * 扣减库存
+     *
+     * @param productId 产品id
+     * @param amount    数量
+     * @return true if success
+     */
+    public Boolean reduceStock(Long productId, Integer amount) {
+        return productMapper.reduceStock(productId, amount) > 0;
+    }
 }

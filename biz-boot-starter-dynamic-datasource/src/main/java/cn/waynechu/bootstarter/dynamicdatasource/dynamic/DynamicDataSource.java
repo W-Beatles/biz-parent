@@ -18,7 +18,7 @@ package cn.waynechu.bootstarter.dynamicdatasource.dynamic;
 import cn.waynechu.bootstarter.dynamicdatasource.provider.DynamicDataSourceProvider;
 import cn.waynechu.bootstarter.dynamicdatasource.strategy.DynamicDataSourceStrategy;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
-import com.alibaba.druid.pool.DruidDataSource;
+import io.seata.rm.datasource.DataSourceProxy;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +39,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2019/1/15 17:29
  */
 @Slf4j
-public class DynamicRoutingDataSource extends AbstractRoutingDataSource implements InitializingBean, DisposableBean {
+public class DynamicDataSource extends AbstractRoutingDataSource implements InitializingBean, DisposableBean {
 
     /**
      * 分组标识。如 order-slave1，order-slave2 会划分到 order 组中
@@ -77,11 +77,8 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         String lookUpKey = DynamicDataSourceContextHolder.peek();
         DataSource dataSource = this.getDataSource(lookUpKey);
 
-        if (dataSource instanceof DruidDataSource) {
-            String dataSourceName = ((DruidDataSource) dataSource).getName();
-            if (loggerEnable) {
-                log.info("Using dynamic datasource [{}]", dataSourceName);
-            }
+        if (loggerEnable) {
+            log.info("Using dynamic datasource [{}]", lookUpKey);
         }
         return dataSource;
     }
@@ -108,6 +105,12 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource implemen
         log.info("Start destroying dynamic datasource...");
         for (Map.Entry<String, DataSource> item : allDataSource.entrySet()) {
             DataSource dataSource = item.getValue();
+
+            if (dataSource instanceof DataSourceProxy) {
+                DataSourceProxy dataSourceProxy = (DataSourceProxy) dataSource;
+                dataSource = dataSourceProxy.getTargetDataSource();
+            }
+
             Class<? extends DataSource> clazz = dataSource.getClass();
             try {
                 Method closeMethod = clazz.getDeclaredMethod("close");

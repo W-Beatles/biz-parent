@@ -1,6 +1,7 @@
 package cn.waynechu.order.domain.repository;
 
 import cn.waynechu.bootstarter.dynamicdatasource.annotion.SwitchDataSource;
+import cn.waynechu.order.common.enums.OrderStatusEnum;
 import cn.waynechu.order.dal.dataobject.order.OrderDO;
 import cn.waynechu.order.dal.mapper.order.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,18 @@ public class OrderRepository {
      */
     public Integer create(OrderDO orderDO) {
         return orderMapper.insert(orderDO);
+    }
+
+    /**
+     * 更新订单状态
+     *
+     * @param orderId 订单id
+     * @param status  订单状态
+     */
+    public void updateStatus(Long orderId, OrderStatusEnum status) {
+        OrderDO orderDO = new OrderDO();
+        orderDO.setId(orderId);
+        orderDO.setOrderStatus(status.getCode());
+        orderMapper.updateById(orderDO);
     }
 }

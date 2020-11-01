@@ -20,7 +20,7 @@ public class OrderResponse {
     @ApiModelProperty("用户ID")
     private Long userId;
 
-    @ApiModelProperty("套餐ID")
+    @ApiModelProperty("产品ID")
     private Long productId;
 
     @ApiModelProperty("订单状态: 1创建 2成功 3失败")

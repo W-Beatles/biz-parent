@@ -96,6 +96,10 @@ services:
     environment:
       - SEATA_PORT=8091
       - STORE_MODE=file
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+      - mysql-slave2
 
   redis:
     image: redis:latest
@@ -121,6 +125,14 @@ services:
       - 5672:5672
       - 15672:15672
     env_file: .env   #从文件添加环境变量
+
+  zk:
+    image: zookeeper
+    container_name: zk
+    networks:
+      - biz-net
+    ports:
+      - 2181:2181
 
   apollo:
     image: nobodyiam/apollo-quick-start

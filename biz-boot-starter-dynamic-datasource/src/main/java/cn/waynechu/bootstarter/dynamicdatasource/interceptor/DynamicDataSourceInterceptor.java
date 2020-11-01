@@ -15,7 +15,7 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource.interceptor;
 
-import cn.waynechu.bootstarter.dynamicdatasource.dynamic.DynamicRoutingDataSource;
+import cn.waynechu.bootstarter.dynamicdatasource.dynamic.DynamicDataSource;
 import cn.waynechu.bootstarter.dynamicdatasource.properties.DynamicDataSourceProperties;
 import cn.waynechu.bootstarter.dynamicdatasource.toolkit.DynamicDataSourceContextHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -101,7 +101,7 @@ public class DynamicDataSourceInterceptor implements Interceptor {
             }
 
             // lookupKey格式：组名_数据源类型。比如：订单库主库 order_master
-            lookUpKey = groupName + DynamicRoutingDataSource.GROUP_FLAG + dataSourceType;
+            lookUpKey = groupName + DynamicDataSource.GROUP_FLAG + dataSourceType;
             DynamicDataSourceContextHolder.push(lookUpKey);
         }
 

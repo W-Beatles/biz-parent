@@ -23,6 +23,6 @@ public interface ProductRemote {
     /**
      * 扣减库存
      */
-    @GetMapping
+    @GetMapping("/reduce-stock")
     BizResponse<Void> reduceStock(@RequestParam Long productId, @RequestParam Integer amount);
 }

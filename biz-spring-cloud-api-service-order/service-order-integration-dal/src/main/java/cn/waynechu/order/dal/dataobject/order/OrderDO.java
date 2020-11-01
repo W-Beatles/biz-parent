@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author zhuwei
- * @since 2019/9/20 15:34
+ * @date 2020-11-01 17:18
  */
 @Data
 @TableName(value = "tbl_order")
@@ -28,7 +28,7 @@ public class OrderDO {
     private Long userId;
 
     /**
-     * 套餐ID
+     * 产品ID
      */
     @TableField(value = "product_id")
     private Long productId;

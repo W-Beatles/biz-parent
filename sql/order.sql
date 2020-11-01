@@ -26,9 +26,9 @@ USE `order`;
 DROP TABLE IF EXISTS `tbl_order`;
 CREATE TABLE `tbl_order`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单ID',
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `product_id` bigint(20) NOT NULL COMMENT '套餐ID',
-  `order_status` tinyint(3) NOT NULL DEFAULT 1 COMMENT '订单状态: 1创建 2成功 3失败',
+  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户ID',
+  `product_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '产品ID',
+  `order_status` tinyint(3) NOT NULL DEFAULT 0 COMMENT '订单状态: 1创建 2成功 3失败',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
@@ -37,6 +37,6 @@ CREATE TABLE `tbl_order`  (
 -- ----------------------------
 -- Records of tbl_order
 -- ----------------------------
-INSERT INTO `tbl_order` VALUES (1, 1, 1, 1, '2019-09-20 15:03:13', '2019-09-20 15:03:13');
+INSERT INTO `tbl_order` VALUES (1, 1, 1, 3, '2019-09-20 15:03:13', '2019-09-20 15:03:13');
 
 SET FOREIGN_KEY_CHECKS = 1;

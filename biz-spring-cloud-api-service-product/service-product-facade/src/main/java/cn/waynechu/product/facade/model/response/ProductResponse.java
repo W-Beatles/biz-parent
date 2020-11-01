@@ -11,17 +11,26 @@ import java.time.LocalDateTime;
  * @since 2019/9/20 14:36
  */
 @Data
-@ApiModel(description = "套餐信息返回对象")
+@ApiModel(description = "产品信息返回对象")
 public class ProductResponse {
 
-    @ApiModelProperty("套餐ID")
+    @ApiModelProperty("产品ID")
     private Long id;
 
-    @ApiModelProperty("套餐名称")
+    @ApiModelProperty("产品名称")
     private String name;
 
-    @ApiModelProperty("套餐状态：0下架，1上架")
+    @ApiModelProperty("产品状态：0下架，1上架")
     private Boolean productStatus;
+
+    @ApiModelProperty("总量")
+    private Integer total;
+
+    @ApiModelProperty("使用量")
+    private Integer used;
+
+    @ApiModelProperty("剩余量")
+    private Integer residue;
 
     @ApiModelProperty("创建时间")
     private LocalDateTime createTime;

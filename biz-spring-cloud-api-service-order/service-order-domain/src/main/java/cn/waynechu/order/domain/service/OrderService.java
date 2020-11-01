@@ -15,6 +15,7 @@ import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -49,7 +50,6 @@ public class OrderService {
      * @param orderId 订单id
      * @return 订单详情
      */
-    @GlobalTransactional
     public OrderDetailResponse getDetailById(Long orderId) {
         // 状态判断、时效性要求高的查询优先走主库，防止主从同步延迟导致读取脏数据
         OrderDO order = orderRepository.getByIdFromMaster(orderId);
@@ -67,7 +67,9 @@ public class OrderService {
         return orderDetailResponse;
     }
 
-    public void placeOrder(Long userId, Long productId) {
+    @Transactional(rollbackFor = Exception.class)
+    @GlobalTransactional
+    public void placeOrder(Long userId, Long productId, Integer amount) {
         log.info("当前 XID: {}", RootContext.getXID());
 
         OrderDO orderDO = new OrderDO();
@@ -80,6 +82,7 @@ public class OrderService {
         log.info("保存订单{}", createOrderFlag > 0 ? "成功" : "失败");
 
         // 扣减库存
-        productService.reduceStock(productId, 1);
+        productService.reduceStock(productId, amount);
+        orderRepository.updateStatus(orderDO.getId(), OrderStatusEnum.SUCCESS);
     }
 }

@@ -27,6 +27,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.wall.WallConfig;
 import com.alibaba.druid.wall.WallFilter;
 import io.seata.rm.datasource.DataSourceProxy;
+import io.seata.spring.boot.autoconfigure.properties.SeataProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
@@ -88,12 +89,12 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
         dataSource.setName(dataSourceProperty.getDataSourceName());
 
         DruidConfig config = dataSourceProperty.getDruid();
-        Properties properties = config.toProperties(druidGlobalConfig);
-        String filters = properties.getProperty("druid.filters");
+        Properties globalConfig = config.toProperties(druidGlobalConfig);
+        String filters = globalConfig.getProperty("druid.filters");
         List<Filter> proxyFilters = new ArrayList<>(2);
         if (!StringUtils.isEmpty(filters) && filters.contains("stat")) {
             StatFilter statFilter = new StatFilter();
-            statFilter.configFromProperties(properties);
+            statFilter.configFromProperties(globalConfig);
             proxyFilters.add(statFilter);
         }
         if (!StringUtils.isEmpty(filters) && filters.contains("wall")) {
@@ -116,7 +117,7 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
             }
         }
         dataSource.setProxyFilters(proxyFilters);
-        dataSource.configFromPropety(properties);
+        dataSource.configFromPropety(globalConfig);
         // 连接参数单独设置
         dataSource.setConnectProperties(config.getConnectionProperties());
         // 设置druid内置properties不支持的的参数
@@ -163,6 +164,16 @@ public class DefaultDynamicDataSourceProvider implements DynamicDataSourceProvid
         } catch (SQLException e) {
             log.error("Druid datasource creation failed", e);
         }
-        return new DataSourceProxy(dataSource);
+
+        // 开启分布式事务
+        try {
+            SeataProperties seataProperties = applicationContext.getBean(SeataProperties.class);
+            if (seataProperties.isEnabled()) {
+                return new DataSourceProxy(dataSource);
+            }
+        } catch (Exception e) {
+            // do nothing here.
+        }
+        return dataSource;
     }
 }

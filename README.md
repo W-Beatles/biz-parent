@@ -65,14 +65,14 @@ SpringCloud微服务开发脚手架
    - ~~支持Feign调用传递请求头信息~~
    - ~~支持RestTemplate调用传递请求头信息~~
 2. ~~日志模块支持kafka日志上传~~  
-3. 完善动态数据源模块  
+3. ~~完善动态数据源模块~~
    - ~~支持注解声明式指定数据源~~
-   - 集成`seata`分布式事务解决方案
+   - ~~集成`seata`分布式事务解决方案~~
 5. 添加文件上传模块 `biz-spring-cloud-api-file-upload`，并提供基础SDK  
    - 支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储  
 6. ~~添加统一认证鉴权模块biz-spring-cloud-oauth-server(待完善)~~  
 7. SpringCloud Gateway网关支持多种业务渠道认证和授权。支持多平台，如企业微信、网页、小程序。支持多种登录方式，如密码、验证码、扫码  
-8. SpringCloud Gateway网关支持限流  
+8. ~~SpringCloud Gateway网关支持限流~~
 9. 添加分布式任务调度系统模块(扩展xxl-job)  
    - 支持任务前置依赖配置
    - 支持任务优先级配置
@@ -85,7 +85,7 @@ SpringCloud微服务开发脚手架
 12. 添加Email发送服务模块，并提供基础SDK  
 13. 添加企业微信通知服务模块，并提供基础SDK  
 14. utility模块添加ip地址反查、手机号归属查询服务  
-15. [perf] gateway使用WebClient优化接口调用，减少NIO请求  
+15. [perf]~~gateway使用WebClient优化接口调用，减少NIO请求~~
 
 ### docker快速启动
 为方便快速启动相关服务，提供`docker-compose`容器编排脚本，使用几个简单的命令即可启动相关服务模块
@@ -108,22 +108,24 @@ docker-compose -h                      # 查看更多相关命令
     
     |  服务            |   服务名                 |  端口        |  帐号/密码         |  地址                                     |
     |------------------|-------------------------|--------------|-------------------|------------------------------------------|
-    |  * 数据库(主)     |   mysql-master          |  3306        |  root/123456  |                                          |
-    |  * 数据库(从)     |   mysql-slave1          |  3307        |  root/123456  |                                          |
-    |  * 数据库(从)     |   mysql-slave2          |  3308        |  root/123456  |                                          |
-    |  * KV缓存        |   redis                 |  6379         |  123456           |                                         |
-    |  * 消息中间件     |   rabbitmq              |  5672        |  waynechu/123456  |  http://localhost:15672                 |
+    |  * 数据库(主)     |   mysql-master          |  3306        |  root/123456      |                                          |
+    |  * 数据库(从)     |   mysql-slave1          |  3307        |  root/123456      |                                          |
+    |  * 数据库(从)     |   mysql-slave2          |  3308        |  root/123456      |                                          |
+    |  分布式事务服务    |   seata-server          |  8091        |                   |                                          |
+    |  * KV缓存        |   redis                 |  6379         |  123456           |                                          |
+    |  * 消息中间件     |   rabbitmq              |  5672        |  waynechu/123456  |  http://localhost:15672                  |
+    |  分布式协调器     |   zk                    |  2181        |                   |                                          |
     |  搜索引擎         |  elasticsearch          |  9200        |                   |                                          |
     |  日志分析工具     |  kibana                 |  5601         |                   |  http://localhost:5601                  |
     |  日志收集工具     |  logstash               |  7002         |                   |                                         |
-    |  配置中心         |  apollo                 |  9070        |  apollo/admin     |  http://localhost:8070                  |
-    |  配置中心db       |  apollo-db              |  3316        |                   |                                         |
-    |  * 注册中心       |  eureka                 |  9001-9009   |                   |  http://localhost:9001                  |
-    |  网关             |  gateway               |  9010        |                   |  http://localhost:9010/swagger-ui.html  |
+    |  配置中心         |  apollo                 |  9070        |  apollo/admin     |  http://localhost:8070                   |
+    |  配置中心db       |  apollo-db              |  3316        |                   |                                          |
+    |  * 注册中心       |  eureka                 |  9001-9009   |                   |  http://localhost:9001                   |
+    |  网关             |  gateway               |  9010        |                   |  http://localhost:9010/swagger-ui.html    |
     |  监控中心         |  boot-admin             |  9020        |                   |  http://localhost:9020                   |
     |  skywalking-oap  |  skywalking-oap         |  12800       |                   |                                          |
     |  skywalking-ui   |  skywalking-ui          |  8090        |                   |  http://localhost:8090                   |
-    |  统一认证服务     |  oauth-server           |  9050-9059   |                   |  http://localhost:9050                   |
+    |  统一认证服务     |  oauth-server           |  9050-9059   |                   |  http://localhost:9050                    |
     |  代码生成后端服务  |  archetype-portal       |  9060        |                   |  http://localhost:9060                   |
     |  订单服务         |  service-order          |  10010-10019 |                   |  http://localhost:10010/swagger-ui.html  |
     |  订单服务         |  service-product        |  10020-10029 |                   |  http://localhost:10020/swagger-ui.html  |
@@ -134,7 +136,7 @@ docker-compose -h                      # 查看更多相关命令
 4. 服务之间存在依赖关系，compose脚本配置的`depends_on`属性无法决定依赖的服务是否完全启动，如果依赖的服务尚未启动完毕，后续相关服务会报出大量的错误。  
    推荐按以下顺序初始化容器：  
    ```
-   docker-compose up -d mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db  
+   docker-compose up -d mysql-master mysql-slave1 mysql-slave2 seata-server redis rabbitmq apollo-db zk  
    docker-compose up -d apollo elasticsearch  
    docker-compose up -d skywalking-oap logstash kibana  
    docker-compose up -d eureka  

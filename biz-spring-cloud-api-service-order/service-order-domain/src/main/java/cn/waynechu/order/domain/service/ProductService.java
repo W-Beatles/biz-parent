@@ -30,7 +30,13 @@ public class ProductService {
         return null;
     }
 
+    /**
+     * 扣减库存
+     *
+     * @param productId 产品id
+     * @param amount    数量
+     */
     public void reduceStock(Long productId, Integer amount) {
-        productRemote.reduceStock(productId, amount);
+        productRemote.reduceStock(productId, amount).getData();
     }
 }

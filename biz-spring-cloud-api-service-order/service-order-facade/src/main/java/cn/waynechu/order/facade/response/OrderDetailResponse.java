@@ -20,13 +20,13 @@ public class OrderDetailResponse {
     @ApiModelProperty("用户ID")
     private Long userId;
 
-    @ApiModelProperty("套餐ID")
+    @ApiModelProperty("产品ID")
     private Long productId;
 
-    @ApiModelProperty("套餐名称")
+    @ApiModelProperty("产品名称")
     private String name;
 
-    @ApiModelProperty("套餐状态：0下架，1上架")
+    @ApiModelProperty("产品状态：0下架，1上架")
     private Boolean productStatus;
 
     @ApiModelProperty("订单状态: 1创建 2成功 3失败")

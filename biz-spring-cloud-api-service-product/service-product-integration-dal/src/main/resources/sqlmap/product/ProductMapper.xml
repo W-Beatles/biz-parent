@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.waynechu.product.dal.mapper.product.ProductMapper">
+    <resultMap id="BaseResultMap" type="cn.waynechu.product.dal.dataobject.product.ProductDO">
+        <!--@mbg.generated-->
+        <!--@Table tbl_product-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="product_status" jdbcType="BOOLEAN" property="productStatus"/>
+        <result column="total" jdbcType="INTEGER" property="total"/>
+        <result column="used" jdbcType="INTEGER" property="used"/>
+        <result column="residue" jdbcType="INTEGER" property="residue"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, product_status, total, used, residue, create_time, update_time
+    </sql>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update tbl_product
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="product_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productStatus,jdbcType=BOOLEAN}
+                </foreach>
+            </trim>
+            <trim prefix="total = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.total,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="used = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.used,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="residue = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.residue,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update tbl_product
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.name != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productStatus != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productStatus,jdbcType=BOOLEAN}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="total = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.total != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.total,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="used = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.used != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.used,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="residue = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.residue != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.residue,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tbl_product
+        (`name`, product_status, total, used, residue, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.name,jdbcType=VARCHAR}, #{item.productStatus,jdbcType=BOOLEAN}, #{item.total,jdbcType=INTEGER},
+            #{item.used,jdbcType=INTEGER}, #{item.residue,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.product.dal.dataobject.product.ProductDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tbl_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            `name`,
+            product_status,
+            total,
+            used,
+            residue,
+            create_time,
+            update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{name,jdbcType=VARCHAR},
+            #{productStatus,jdbcType=BOOLEAN},
+            #{total,jdbcType=INTEGER},
+            #{used,jdbcType=INTEGER},
+            #{residue,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            `name` = #{name,jdbcType=VARCHAR},
+            product_status = #{productStatus,jdbcType=BOOLEAN},
+            total = #{total,jdbcType=INTEGER},
+            used = #{used,jdbcType=INTEGER},
+            residue = #{residue,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="cn.waynechu.product.dal.dataobject.product.ProductDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tbl_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="productStatus != null">
+                product_status,
+            </if>
+            <if test="total != null">
+                total,
+            </if>
+            <if test="used != null">
+                used,
+            </if>
+            <if test="residue != null">
+                residue,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="productStatus != null">
+                #{productStatus,jdbcType=BOOLEAN},
+            </if>
+            <if test="total != null">
+                #{total,jdbcType=INTEGER},
+            </if>
+            <if test="used != null">
+                #{used,jdbcType=INTEGER},
+            </if>
+            <if test="residue != null">
+                #{residue,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="productStatus != null">
+                product_status = #{productStatus,jdbcType=BOOLEAN},
+            </if>
+            <if test="total != null">
+                total = #{total,jdbcType=INTEGER},
+            </if>
+            <if test="used != null">
+                used = #{used,jdbcType=INTEGER},
+            </if>
+            <if test="residue != null">
+                residue = #{residue,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="reduceStock">
+        UPDATE tbl_product
+        SET used    = used + #{amount},
+        residue = residue - #{amount}
+        WHERE id = #{productId}
+    </update>
+</mapper>

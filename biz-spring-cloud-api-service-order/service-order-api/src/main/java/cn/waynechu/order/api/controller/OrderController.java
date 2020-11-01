@@ -37,8 +37,8 @@ public class OrderController {
 
     @ApiOperation(value = "下单", notes = "测试分布式事务")
     @GetMapping("/placeOrder")
-    public BizResponse<Void> placeOrder(@RequestParam Long userId, @RequestParam Long productId) {
-         orderService.placeOrder(userId, productId);
+    public BizResponse<Void> placeOrder(@RequestParam Long userId, @RequestParam Long productId, @RequestParam Integer amount) {
+        orderService.placeOrder(userId, productId, amount);
         return BizResponse.success();
     }
 }

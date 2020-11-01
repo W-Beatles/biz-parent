@@ -1,19 +1,18 @@
 package cn.waynechu.order.dal.mapper.order;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import cn.waynechu.order.dal.dataobject.order.OrderDO;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author zhuwei
- * @since 2019/9/20 15:34
+ * @date 2020-11-01 17:18
  */
-@Mapper
 public interface OrderMapper extends BaseMapper<OrderDO> {
     int updateBatch(List<OrderDO> list);
+
+    int updateBatchSelective(List<OrderDO> list);
 
     int batchInsert(@Param("list") List<OrderDO> list);
 

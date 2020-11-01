@@ -6,10 +6,7 @@ import cn.waynechu.product.facade.model.response.ProductResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author zhuwei
@@ -28,5 +25,12 @@ public class ProductController {
     public BizResponse<ProductResponse> getById(@PathVariable Long productId) {
         ProductResponse productResponse = productService.getById(productId);
         return BizResponse.success(productResponse);
+    }
+
+    @ApiOperation(value = "扣减库存", notes = "查询product从库")
+    @GetMapping("/reduce-stock")
+    public BizResponse<Void> reduceStock(@RequestParam Long productId, @RequestParam Integer amount) {
+        productService.reduceStock(productId, amount);
+        return BizResponse.success();
     }
 }

@@ -15,7 +15,7 @@
  */
 package cn.waynechu.bootstarter.dynamicdatasource;
 
-import cn.waynechu.bootstarter.dynamicdatasource.dynamic.DynamicRoutingDataSource;
+import cn.waynechu.bootstarter.dynamicdatasource.dynamic.DynamicDataSource;
 import org.springframework.boot.actuate.autoconfigure.health.CompositeHealthContributorConfiguration;
 import org.springframework.boot.actuate.autoconfigure.health.ConditionalOnEnabledHealthIndicator;
 import org.springframework.boot.actuate.autoconfigure.jdbc.DataSourceHealthContributorAutoConfiguration;
@@ -43,8 +43,8 @@ import java.util.Map;
 public class DynamicDataSourceHealthContributorAutoConfiguration extends CompositeHealthContributorConfiguration<DataSourceHealthIndicator, DataSource> {
 
     @Bean
-    public HealthContributor dbHealthContributor(DynamicRoutingDataSource dynamicRoutingDataSource) {
-        Map<String, DataSource> allDataSource = dynamicRoutingDataSource.getAllDataSource();
+    public HealthContributor dbHealthContributor(DynamicDataSource dynamicDataSource) {
+        Map<String, DataSource> allDataSource = dynamicDataSource.getAllDataSource();
         return createContributor(allDataSource);
     }
 }
