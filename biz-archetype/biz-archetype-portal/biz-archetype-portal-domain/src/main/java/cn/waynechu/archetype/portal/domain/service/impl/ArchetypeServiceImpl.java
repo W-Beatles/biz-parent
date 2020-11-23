@@ -83,7 +83,7 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
     @Override
     public String export(SearchArchetypeRequest request) {
         String fileName = "原型列表 " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        return excelHelper.exportForSid(fileName, SearchArchetypeResponse.class, request, () -> search(request));
+        return excelHelper.exportForSid(fileName, request, () -> search(request), SearchArchetypeResponse.class);
     }
 
     @Override

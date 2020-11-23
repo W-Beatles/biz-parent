@@ -119,7 +119,7 @@
             // 查询导出数据
             List<SearchArchetypeResponse> data = this.listArchetypes(request);
             // 导出excel
-            return excelHelper.exportForSid("原型列表", SearchArchetypeResponse.class, data);
+            return excelHelper.exportForSid("原型列表", data, SearchArchetypeResponse.class);
         }
     }
     ```
@@ -140,7 +140,7 @@
    
         @Override
         public String export(SearchArchetypeRequest request) {
-            return excelHelper.exportForSid("原型列表", SearchArchetypeResponse.class, () -> listArchetypes(request));
+            return excelHelper.exportForSid("原型列表", () -> listArchetypes(request), SearchArchetypeResponse.class);
         }
     }
     ```
@@ -162,7 +162,7 @@
    
         @Override
         public String export(SearchArchetypeRequest request) {
-            return excelHelper.exportForSid("原型列表", SearchArchetypeResponse.class, request, () -> search(request));
+            return excelHelper.exportForSid("原型列表", request, () -> search(request), SearchArchetypeResponse.class);
         }
     }
     ```
