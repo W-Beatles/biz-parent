@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
  * @author zhuwei
  * @since 2020-07-03 01:05
  */
-public class LocalDateTimeConvert implements Converter<LocalDateTime> {
+public class LocalDateTimeConvert extends BaseLocalDateTimeConvert implements Converter<LocalDateTime> {
 
     private static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
@@ -35,15 +35,19 @@ public class LocalDateTimeConvert implements Converter<LocalDateTime> {
 
     @Override
     public LocalDateTime convertToJavaData(CellData cellData, ExcelContentProperty contentProperty, GlobalConfiguration globalConfiguration) {
-        JsonFormat pattern = contentProperty.getField().getAnnotation(JsonFormat.class);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern != null ? pattern.pattern() : DEFAULT_PATTERN);
+        if (contentProperty == null) {
+            return null;
+        }
+        DateTimeFormatter formatter = getDateTimeFormatter(contentProperty.getField(), DEFAULT_PATTERN);
         return LocalDateTime.parse(cellData.getStringValue(), formatter);
     }
 
     @Override
     public CellData<String> convertToExcelData(LocalDateTime value, ExcelContentProperty contentProperty, GlobalConfiguration globalConfiguration) {
-        JsonFormat pattern = contentProperty.getField().getAnnotation(JsonFormat.class);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern != null ? pattern.pattern() : DEFAULT_PATTERN);
+        if (value == null || contentProperty == null) {
+            return new CellData<>("");
+        }
+        DateTimeFormatter formatter = getDateTimeFormatter(contentProperty.getField(), DEFAULT_PATTERN);
         return new CellData<>(value.format(formatter));
     }
 }

@@ -15,6 +15,7 @@ import cn.waynechu.springcloud.common.util.PageLoopHelper;
 import cn.waynechu.springcloud.common.util.StringUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.WriteTable;
 import lombok.extern.slf4j.Slf4j;
@@ -282,11 +283,18 @@ public class ExcelHelper {
         }
 
         sheetName = this.encodeFileName(sheetName);
+        ExcelWriterBuilder writerBuilder;
         if (clazz != null) {
-            EasyExcel.write(tempFile, clazz).sheet(sheetName).doWrite(data);
+            writerBuilder = EasyExcel.write(tempFile, clazz);
         } else {
-            EasyExcel.write(tempFile).head(heads).sheet(sheetName).doWrite(data);
+            writerBuilder = EasyExcel.write(tempFile).head(heads);
         }
+        writerBuilder.sheet(sheetName)
+                // 添加 java8 时间类库支持
+                .registerConverter(new LocalTimeConvert())
+                .registerConverter(new LocalDateConvert())
+                .registerConverter(new LocalDateTimeConvert())
+                .doWrite(data);
         return tempFile;
     }
 
