@@ -25,7 +25,7 @@ public class KeyResolverConfig {
     }
 
     /**
-     * 基于IP的限量规则
+     * 基于IP的限流规则
      *
      * @return remoteAddrKeyResolver
      */
