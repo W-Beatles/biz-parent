@@ -19,14 +19,9 @@ public interface GeneratorConnector extends Closeable {
     void connect();
 
     /**
-     * 断开连接
-     */
-    void disconnect();
-
-    /**
-     * 是否正在连接
+     * 是否连接成功
      *
-     * @return true if connecting
+     * @return true if connected
      */
-    boolean isConnecting();
+    boolean isConnected();
 }

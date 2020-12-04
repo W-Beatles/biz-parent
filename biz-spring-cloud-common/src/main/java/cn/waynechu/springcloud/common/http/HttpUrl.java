@@ -71,7 +71,7 @@ public class HttpUrl {
 
             queryParams = HttpUtil.getQueryParameters(query);
         } catch (Exception e) {
-            logger.error("parse url raw error.", e);
+            logger.error("Parse url raw error.", e);
         }
     }
 
@@ -89,7 +89,7 @@ public class HttpUrl {
             path = StringUtil.isEmpty(path) ? "/" : path;
             queryParams = HttpUtil.getQueryParameters(query);
         } catch (Exception e) {
-            logger.error("parse url error.", e);
+            logger.error("Parse url error.", e);
         }
     }
 

@@ -110,6 +110,41 @@ services:
       - 15672:15672
     env_file: .env   #从文件添加环境变量
 
+  zk:
+    image: zookeeper:3.6.2
+    container_name: zk
+    networks:
+      - biz-net
+    ports:
+      - 2181:2181
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
+    depends_on:
+      - zk2
+      - zk3
+  zk2:
+    image: zookeeper:3.6.2
+    container_name: zk2
+    networks:
+      - biz-net
+    ports:
+      - 2182:2181
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
+  zk3:
+    image: zookeeper:3.6.2
+    container_name: zk3
+    networks:
+      - biz-net
+    ports:
+      - 2183:2181
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
+
+
   apollo:
     image: nobodyiam/apollo-quick-start
     container_name: apollo

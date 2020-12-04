@@ -8,7 +8,7 @@ import cn.waynechu.bootstarter.sequence.exception.SequenceException;
  */
 public abstract class BaseGeneratorConnector implements GeneratorConnector {
 
-    protected volatile boolean connecting = false;
+    protected volatile boolean connected = false;
 
     @Override
     public void connect() {
@@ -16,12 +16,7 @@ public abstract class BaseGeneratorConnector implements GeneratorConnector {
     }
 
     @Override
-    public void disconnect() {
-        throw new SequenceException("Unsupported disconnect operation.");
-    }
-
-    @Override
-    public boolean isConnecting() {
-        return connecting;
+    public boolean isConnected() {
+        return connected;
     }
 }

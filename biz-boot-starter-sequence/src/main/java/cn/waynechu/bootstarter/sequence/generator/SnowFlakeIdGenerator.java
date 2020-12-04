@@ -25,50 +25,36 @@ public class SnowFlakeIdGenerator extends BaseGeneratorConnector implements IdGe
 
     @Override
     public void init() {
-        if (!connecting) {
-            connect();
-        }
+        connect();
     }
 
     @Override
     public void connect() {
-        if (!connecting) {
-            long workerId = this.register.register();
+        if (!isConnected()) {
+            long workerId = register.register();
             if (workerId >= 0) {
                 snowFlake = new SnowFlake(workerId);
-                connecting = true;
+                connected = true;
             } else {
-                throw new SequenceException("failed to get worker id");
+                throw new SequenceException("Failed to get worker id");
             }
         }
     }
 
     @Override
-    public void disconnect() {
-        register.logout();
-    }
-
-    @Override
-    public void close() throws IOException {
-        if (connecting) {
-            disconnect();
-        }
-    }
-
-    @Override
     public long nextId() {
-        if (connecting) {
+        if (isConnected()) {
             return snowFlake.nextId();
         }
-        throw new IllegalStateException("worker isn't connecting, registry center may shutdown");
+        throw new IllegalStateException("Worker isn't connected, registry center may shutdown");
     }
 
     @Override
     public long[] nextIds(int size) {
-        if (connecting) {
+        if (isConnected()) {
             return snowFlake.nextIds(size);
         }
-        throw new IllegalStateException("worker isn't connecting, registry center may shutdown");
+        throw new IllegalStateException("Worker isn't connected, registry center may shutdown");
     }
 
     @Override
@@ -88,5 +74,11 @@ public class SnowFlakeIdGenerator extends BaseGeneratorConnector implements IdGe
     @Override
     public String nextFixedStringId() {
         return String.format(FIXED_STRING_FORMAT, nextId());
+    }
+
+    @Override
+    public void close() throws IOException {
+        connected = false;
+        register.logout();
     }
 }

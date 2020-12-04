@@ -2,6 +2,7 @@ package cn.waynechu.bootstarter.sequence;
 
 import cn.waynechu.bootstarter.sequence.generator.SnowFlakeIdGenerator;
 import cn.waynechu.bootstarter.sequence.property.SequenceProperty;
+import cn.waynechu.bootstarter.sequence.register.WorkerRegister;
 import cn.waynechu.bootstarter.sequence.register.zookeeper.ZookeeperWorkerRegister;
 import cn.waynechu.bootstarter.sequence.registry.ZookeeperRegistryCenter;
 import lombok.extern.slf4j.Slf4j;
@@ -29,10 +30,15 @@ public class SequenceAutoConfiguration {
         return new ZookeeperRegistryCenter(sequenceProperty.getZookeeper());
     }
 
+    @Bean
+    @ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
+    public ZookeeperWorkerRegister workerRegister() {
+        return new ZookeeperWorkerRegister(zookeeperRegistryCenter(), sequenceProperty);
+    }
+
     @Bean(initMethod = "init", destroyMethod = "close")
     @ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
-    public SnowFlakeIdGenerator generator() {
-        ZookeeperWorkerRegister zookeeperWorkerRegister = new ZookeeperWorkerRegister(zookeeperRegistryCenter(), sequenceProperty);
-        return new SnowFlakeIdGenerator(zookeeperWorkerRegister);
+    public SnowFlakeIdGenerator generator(WorkerRegister workerRegister) {
+        return new SnowFlakeIdGenerator(workerRegister);
     }
 }

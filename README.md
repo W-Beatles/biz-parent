@@ -85,7 +85,8 @@ SpringCloud微服务开发脚手架
 12. 添加Email发送服务模块，并提供基础SDK  
 13. 添加企业微信通知服务模块，并提供基础SDK  
 14. utility模块添加ip地址反查、手机号归属查询服务  
-15. [perf] gateway使用WebClient优化接口调用，减少NIO请求  
+15. [perf] gateway使用WebClient优化接口调用，减少NIO请求 
+16. sequence支持多渠道生成，单渠道id唯一
 
 ### docker快速启动
 为方便快速启动相关服务，提供`docker-compose`容器编排脚本，使用几个简单的命令即可启动相关服务模块
@@ -108,11 +109,12 @@ docker-compose -h                      # 查看更多相关命令
     
     |  服务            |   服务名                 |  端口        |  帐号/密码         |  地址                                     |
     |------------------|-------------------------|--------------|-------------------|------------------------------------------|
-    |  * 数据库(主)     |   mysql-master          |  3306        |  root/123456  |                                          |
-    |  * 数据库(从)     |   mysql-slave1          |  3307        |  root/123456  |                                          |
-    |  * 数据库(从)     |   mysql-slave2          |  3308        |  root/123456  |                                          |
+    |  * 数据库(主)     |   mysql-master          |  3306        |  root/123456      |                                          |
+    |  * 数据库(从)     |   mysql-slave1          |  3307        |  root/123456      |                                          |
+    |  * 数据库(从)     |   mysql-slave2          |  3308        |  root/123456      |                                          |
     |  * KV缓存        |   redis                 |  6379         |  123456           |                                         |
-    |  * 消息中间件     |   rabbitmq              |  5672        |  waynechu/123456  |  http://localhost:15672                 |
+    |  * 消息中间件     |   rabbitmq              |  5672        |  waynechu/123456  |  http://localhost:15672                  |
+    |  zookeeper       |   zk、zk2、zk3          |  2181-2183    |                   |                                         |
     |  搜索引擎         |  elasticsearch          |  9200        |                   |                                          |
     |  日志分析工具     |  kibana                 |  5601         |                   |  http://localhost:5601                  |
     |  日志收集工具     |  logstash               |  7002         |                   |                                         |
@@ -138,6 +140,7 @@ docker-compose -h                      # 查看更多相关命令
    docker-compose up -d apollo elasticsearch  
    docker-compose up -d skywalking-oap logstash kibana  
    docker-compose up -d eureka  
+   docker-compose up -d zk  
    docker-compose up -d gateway boot-admin skywalking-ui  
    docker-compose up -d {other services}  
    ```
@@ -206,6 +209,10 @@ docker-compose -h                      # 查看更多相关命令
 8. 启动统一认证服务
     ```
     docker-compose up -d oauth-server
+    ```
+9. 启动zk集群(sequence分布式id生成器必须依赖)
+    ```
+    docker-compose up -d zk
     ```
 9. 启动统一其它服务
     ```

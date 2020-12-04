@@ -41,6 +41,9 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      */
     private static final int MAX_LOCK_WAIT_TIME_MS = 30 * 1000;
 
+    /**
+     * 注册中心
+     */
     private final ZookeeperRegistryCenter registryCenter;
 
     /**
@@ -77,11 +80,11 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
             lock = new InterProcessMutex(client, nodePath.getGroupPath());
             int numOfChildren = registryCenter.getNumChildren(nodePath.getWorkerPath());
             if (numOfChildren > MAX_WORKER_NUM) {
-                throw new SequenceException("max worker num reached. register failed");
+                throw new SequenceException("Max worker num reached, register failed");
             }
 
             if (!lock.acquire(MAX_LOCK_WAIT_TIME_MS, TimeUnit.MILLISECONDS)) {
-                String message = String.format("acquire lock failed after %s ms.", MAX_LOCK_WAIT_TIME_MS);
+                String message = String.format("Acquire lock failed after %s ms", MAX_LOCK_WAIT_TIME_MS);
                 throw new TimeoutException(message);
             }
 
@@ -103,7 +106,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
             }
 
             // 无本地信息或者缓存数据不匹配，开始向ZK申请节点机器ID
-            for (int workerId = 0; workerId < MAX_WORKER_NUM; workerId++) {
+            for (int workerId = 1; workerId <= MAX_WORKER_NUM; workerId++) {
                 String workerIdStr = String.valueOf(workerId);
                 if (!children.contains(workerIdStr)) {
                     // 申请成功
@@ -115,7 +118,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
                     return applyNodeInfo.getWorkerId();
                 }
             }
-            throw new SequenceException("max worker num reached. register failed");
+            throw new SequenceException("Max worker num reached. register failed");
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         } finally {
@@ -153,7 +156,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
             }
             return true;
         } catch (Exception e) {
-            log.error("check node info error", e);
+            log.error("Check node info error", e);
             return false;
         }
     }
@@ -173,7 +176,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
                 registryCenter.persistEphemeral(key, jsonizeNodeInfo(nodeInfo));
             }
         } catch (Exception e) {
-            log.debug("update zookeeper node info error", e);
+            log.debug("Update zookeeper node info error", e);
         }
     }
 
@@ -188,7 +191,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
             String nodeInfoJson = jsonizeNodeInfo(nodeInfo);
             FileUtil.writeStringToFile(nodeInfoFile, nodeInfoJson, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            log.error("save node info cache error", e);
+            log.error("Save node info cache error", e);
         }
     }
 
@@ -275,7 +278,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
                 return this.createNodeInfoFromJsonStr(nodeInfoJson);
             }
         } catch (Exception e) {
-            log.error("read node info cache error", e);
+            log.error("Read node info cache error", e);
         }
         return null;
     }
