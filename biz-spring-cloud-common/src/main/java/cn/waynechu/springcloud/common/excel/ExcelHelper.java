@@ -15,6 +15,7 @@ import cn.waynechu.springcloud.common.util.PageLoopHelper;
 import cn.waynechu.springcloud.common.util.StringUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.WriteTable;
 import lombok.extern.slf4j.Slf4j;
@@ -110,27 +111,48 @@ public class ExcelHelper {
      * 导出并获取excel的sid
      *
      * <pre>
-     *     使用list数据导出。适用于数据量比较小的导出，推荐1W行下使用
+     *     使用 list数据 及 自定义model 导出
+     *     适用于数据量比较小的导出，推荐1W行下使用
      *     注意，如果需要查询的数据量较大，会增大获取sid接口耗时
      * </pre>
      *
      * @param fileName 文件名
-     * @param clazz    excel对象类型
      * @param data     要导出的数据
      * @param <T>      excel对象类
+     * @param clazz    excel对象类型
      * @return sid 导出唯一标识
      */
-    public <T> String exportForSid(final String fileName, Class<T> clazz, List<T> data) {
-        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, clazz, data));
+    public <T> String exportForSid(final String fileName, List<T> data, Class<T> clazz) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, data, clazz, null));
     }
 
     /**
      * 导出并获取excel的sid
      *
      * <pre>
-     *      根据查询列表的方法导出excel。
-     *      因为传入查询方法后内部会异步去查询，故该方式不会产生接口超时的问题
+     *     使用 list数据 及 动态标题头 导出
+     *     适用于数据量比较小的导出，推荐1W行下使用
+     *     注意，如果需要查询的数据量较大，会增大获取sid接口耗时
+     * </pre>
+     *
+     * @param fileName 文件名
+     * @param data     要导出的数据
+     * @param <T>      excel对象类
+     * @param heads    标题头。如果标题头无需合并，则list中只用添加一个名称即可
+     * @return sid 导出唯一标识
+     */
+    public <T> String exportForSid(final String fileName, List<T> data, List<List<String>> heads) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, data, null, heads));
+    }
+
+    /**
+     * 导出并获取excel的sid
+     *
+     * <pre>
+     *      根据 查询列表数据方法 及 自定义model 导出
+     *      因为传入查询方法后内部会异步去查询，故该方式不会产生获取sid超时的问题
      *      该方式可复用列表查询的方法，推荐老项目改造时使用该方式
+     *      但要注意如果查询列表方法导出的list数据量很大，仍然会占用较多内存
      * </pre>
      *
      * @param fileName 文件名。无需拼接.xlsx后缀
@@ -139,28 +161,68 @@ public class ExcelHelper {
      * @param <T>      excel对象类
      * @return sid 导出唯一标识
      */
-    public <T> String exportForSid(final String fileName, Class<T> clazz, Supplier<List<T>> supplier) {
-        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, clazz, supplier.get()));
+    public <T> String exportForSid(final String fileName, Supplier<List<T>> supplier, Class<T> clazz) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, supplier.get(), clazz, null));
     }
 
     /**
      * 导出并获取excel的sid
      *
      * <pre>
-     *     根据分页查询的方法导出excel
+     *      根据 查询列表数据方法 及 动态标题头 导出
+     *      因为传入查询方法后内部会异步去查询，故该方式不会产生获取sid超时的问题
+     *      该方式可复用列表查询的方法，推荐老项目改造时使用该方式
+     *      但要注意如果查询列表方法导出的list数据量很大，仍然会占用较多内存
+     * </pre>
+     *
+     * @param fileName 文件名。无需拼接.xlsx后缀
+     * @param supplier 查询数据列表的方法
+     * @param <T>      excel对象类
+     * @param heads    标题头。如果标题头无需合并，则list中只用添加一个名称即可
+     * @return sid 导出唯一标识
+     */
+    public <T> String exportForSid(final String fileName, Supplier<List<T>> supplier, List<List<String>> heads) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, supplier.get(), null, heads));
+    }
+
+    /**
+     * 导出并获取excel的sid
+     *
+     * <pre>
+     *     根据 分页查询的方法 及 自定义model 导出
      *     注意该分页查询的方法入参必须继承 {@code BizPageRequest}，且返回值类型为 {@code BizPageInfo}
      *     该方式可复用列表查询的方法，推荐新项目接入时采用该方式
      * </pre>
      *
      * @param fileName 文件名。无需拼接.xlsx后缀
-     * @param clazz    excel对象类型
      * @param request  查询参数
      * @param supplier 分页查询方法
+     * @param clazz    excel对象类型
      * @param <T>      excel对象类
      * @return sid 导出唯一标识
      */
-    public <T> String exportForSid(final String fileName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
-        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, clazz, request, supplier));
+    public <T> String exportForSid(final String fileName, BizPageRequest request, Supplier<BizPageInfo<T>> supplier, Class<T> clazz) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, request, supplier, clazz, null));
+    }
+
+    /**
+     * 导出并获取excel的sid
+     *
+     * <pre>
+     *     根据 分页查询的方法 及 动态标题头 导出excel
+     *     注意该分页查询的方法入参必须继承 {@code BizPageRequest}，且返回值类型为 {@code BizPageInfo}
+     *     该方式可复用列表查询的方法，推荐新项目接入时采用该方式
+     * </pre>
+     *
+     * @param fileName 文件名。无需拼接.xlsx后缀
+     * @param request  查询参数
+     * @param supplier 分页查询方法
+     * @param <T>      excel对象类
+     * @param heads    标题头。如果标题头无需合并，则list中只用添加一个名称即可
+     * @return sid 导出唯一标识
+     */
+    public <T> String exportForSid(final String fileName, BizPageRequest request, Supplier<BizPageInfo<T>> supplier, List<List<String>> heads) {
+        return exportForSid(fileName, sid -> generateExcelFile(sid, fileName, request, supplier, null, heads));
     }
 
     /**
@@ -206,11 +268,13 @@ public class ExcelHelper {
      *
      * @param sid       导出唯一标识
      * @param sheetName 导出sheet名称
-     * @param clazz     excel对象模型
      * @param data      导出的数据
+     * @param clazz     excel对象类型
+     * @param <T>       excel对象类
+     * @param heads     标题头
      * @return excel文件
      */
-    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, List<T> data) {
+    private <T> File generateExcelFile(String sid, String sheetName, List<T> data, Class<T> clazz, List<List<String>> heads) {
         File tempFile;
         try {
             tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
@@ -218,17 +282,19 @@ public class ExcelHelper {
             throw new RuntimeException(e);
         }
 
-        ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
-
         sheetName = this.encodeFileName(sheetName);
-        WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
+        ExcelWriterBuilder writerBuilder;
+        if (clazz != null) {
+            writerBuilder = EasyExcel.write(tempFile, clazz);
+        } else {
+            writerBuilder = EasyExcel.write(tempFile).head(heads);
+        }
+        writerBuilder.sheet(sheetName)
                 // 添加 java8 时间类库支持
                 .registerConverter(new LocalTimeConvert())
                 .registerConverter(new LocalDateConvert())
                 .registerConverter(new LocalDateTimeConvert())
-                .build();
-        excelWriter.write(data, writeSheet);
-        excelWriter.finish();
+                .doWrite(data);
         return tempFile;
     }
 
@@ -242,7 +308,8 @@ public class ExcelHelper {
      * @param supplier  分页查询方法
      * @return excel文件
      */
-    private <T> File generateExcelFile(String sid, String sheetName, Class<T> clazz, BizPageRequest request, Supplier<BizPageInfo<T>> supplier) {
+    private <T> File generateExcelFile(String sid, String sheetName, BizPageRequest request
+            , Supplier<BizPageInfo<T>> supplier, Class<T> clazz, List<List<String>> heads) {
         File tempFile;
         try {
             tempFile = File.createTempFile(sid, EXPORT_UPLOAD_EXTENSIONS);
@@ -250,10 +317,16 @@ public class ExcelHelper {
             throw new RuntimeException(e);
         }
 
-        ExcelWriter excelWriter = EasyExcel.write(tempFile, clazz).build();
-        // 使用table方式写入，设置sheet不需要头
+        ExcelWriter excelWriter;
+        if (clazz != null) {
+            // 使用table方式写入，设置sheet不需要头
+            excelWriter = EasyExcel.write(tempFile, clazz).needHead(false).build();
+        } else {
+            excelWriter = EasyExcel.write(tempFile).head(heads).build();
+        }
+
         sheetName = this.encodeFileName(sheetName);
-        WriteSheet writeSheet = EasyExcel.writerSheet(sheetName).needHead(Boolean.FALSE)
+        WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
                 // 添加 java8 时间类库支持
                 .registerConverter(new LocalTimeConvert())
                 .registerConverter(new LocalDateConvert())

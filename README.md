@@ -6,19 +6,19 @@ SpringCloud微服务开发脚手架
 ### 模块说明
 > 注: 详细介绍请参考各模块的 **README.md** 文档
 1.  biz-archetype  
-     项目骨架生成模块。包括前端和后端站点、以及项目模版
+     项目骨架生成模块。支持自定义项目模版骨架
      [更多](./biz-archetype/README.md)  
 2.  biz-boot-starter-dynamic-datasource  
-     动态数据源模块。支持读写分离、多数据源动态切换、健康检查
+     动态数据源模块。支持读写分离、多数据源动态切换、健康检查。兼容`seata`分布式事务解决方案
      [更多](./biz-boot-starter-dynamic-datasource/README.md)  
 3.  biz-boot-starter-logger  
-     `elk`&`sentry`日志模块。用于日志上传ELK及Sentry报警
+     `elk`&`sentry`日志模块。用于日志上传`ELK`及`Sentry`错误告警
      [更多](./biz-boot-starter-logger/README.md)
 4.  biz-boot-starter-sequence  
      基于`zookeeper`和`snowflake`算法的分布式id生成器
      [更多](./biz-boot-starter-sequence/README.md)
 5.  biz-facade-common  
-     通用facade模块。包括异常、枚举等基类，以及请求、返回对象基类等
+     通用`facade`模块。包括异常、枚举等基类，以及请求、返回对象基类等
      [更多](./biz-facade-common/README.md)
 6.  biz-spring-boot-admin  
      SpringBoot Admin监控模块
@@ -30,7 +30,7 @@ SpringCloud微服务开发脚手架
      微服务测试模块 - 产品模块
      [更多](./biz-spring-cloud-api-service-product/README.md)
 9. biz-spring-cloud-api-service-utility  
-     公共服务。提供省市区查询、短链生成及重定向、ip地址反查、手机号归属查询等基础服务
+     公共服务。提供excel异步导出服务、短链生成及重定向、省市区查询、ip地址反查、手机号归属查询等基础服务
      [更多](./biz-spring-cloud-api-service-utility/README.md)
 10. biz-spring-cloud-api-starter  
      spring-cloud starter模块。封装MDC过滤器、接口/方法切面、分布式锁等开箱即用的功能
@@ -72,7 +72,7 @@ SpringCloud微服务开发脚手架
    - 支持私有、公有文件上传，接入`云OSS`及`七牛云服务`存储服务，私有文件采用`FastDFS`分布式文件系统存储  
 6. ~~添加统一认证鉴权模块biz-spring-cloud-oauth-server(待完善)~~  
 7. SpringCloud Gateway网关支持多种业务渠道认证和授权。支持多平台，如企业微信、网页、小程序。支持多种登录方式，如密码、验证码、扫码  
-8. ~~SpringCloud Gateway网关支持限流~~
+8. ~~SpringCloud Gateway网关支持限流~~  
 9. 添加分布式任务调度系统模块(扩展xxl-job)  
    - 支持任务前置依赖配置
    - 支持任务优先级配置

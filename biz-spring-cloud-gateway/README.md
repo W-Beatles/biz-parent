@@ -5,12 +5,13 @@
 
 ### 功能点
 - 负载均衡
-- 服务聚合
-- 动态路由
 - 权限控制
+- 服务聚合
+- 动态路由管理
+- 熔断管理
+- 限流管理
 - 版本控制(灰度)
-- 黑白名单
-- 熔断限流
+- 黑白名单控制
 - 链路追踪
 
 ### 网关鉴权
@@ -91,3 +92,23 @@ spring:
 |Query	       |  Query Route Predicate Factory有两个参数：一个必需的参数和一个可选的正则表达式 |
 |RemoteAddr	   |  RemoteAddr Route Predicate Factory采用CIDR符号（IPv4或IPv6）字符串的列表（最小值为1），例如， 192.168.0.1/16（其中192.168.0.1是IP地址，16是子网掩码） |
 	
+
+### TODO
+1. 网关 OAuth2 鉴权接入说明
+2. 添加动态网关管理平台  
+    1. 支持动态添加路由配置(可支持鉴权配置)
+        ```
+        spring.cloud.gateway.routes[0].id = arch-utility-service_56d4ce
+        spring.cloud.gateway.routes[0].order = 0
+        spring.cloud.gateway.routes[0].uri = lb://arch-utility-service
+        spring.cloud.gateway.routes[0].predicates[0] = Path=/utility/**
+        spring.cloud.gateway.routes[0].filters[0] = RewritePath=/utility/v1/callback/(?<remaining>.*), /utility/callback/$\{remaining}
+        spring.cloud.gateway.routes[0].filters[1].name = AuthSoter
+        spring.cloud.gateway.routes[0].filters[1].args.name = archUtilitySoter
+        spring.cloud.gateway.routes[0].filters[1].args.authTypes = oidc,oauth2
+        spring.cloud.gateway.routes[0].filters[1].args.permitUrls = /abc/test,/get-id/uid
+        spring.cloud.gateway.routes[0].filters[1].args.blockUrls = /abc/test2,/get-id/uid2
+        ```
+    2. 支持限流规则动态配置
+    3. 支持熔断规则动态配置 参考: `https://github.com/Netflix/Hystrix/wiki/Configuration`
+    4. 支持查看路由操作日志
