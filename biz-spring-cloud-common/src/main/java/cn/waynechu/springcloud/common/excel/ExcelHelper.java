@@ -319,10 +319,9 @@ public class ExcelHelper {
 
         ExcelWriter excelWriter;
         if (clazz != null) {
-            // 使用table方式写入，设置sheet不需要头
             excelWriter = EasyExcel.write(tempFile, clazz).needHead(false).build();
         } else {
-            excelWriter = EasyExcel.write(tempFile).head(heads).build();
+            excelWriter = EasyExcel.write(tempFile).head(heads).needHead(false).build();
         }
 
         sheetName = this.encodeFileName(sheetName);
