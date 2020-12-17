@@ -73,7 +73,12 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
     }
 
     @Override
-    public long register() {
+    public void init() {
+
+    }
+
+    @Override
+    public long register(String bizTag) {
         InterProcessMutex lock = null;
         try {
             CuratorFramework client = (CuratorFramework) registryCenter.getRawClient();
@@ -118,7 +123,7 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
                     return applyNodeInfo.getWorkerId();
                 }
             }
-            throw new SequenceException("Max worker num reached. register failed");
+            throw new SequenceException("Max worker num reached, register failed");
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         } finally {
@@ -130,6 +135,21 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
                 // do nothing here.
             }
         }
+    }
+
+    @Override
+    public void logout(String bizTag) {
+        CuratorFramework client = (CuratorFramework) registryCenter.getRawClient();
+        if (client != null && client.getState() == CuratorFrameworkState.STARTED) {
+            // 移除注册节点
+            registryCenter.remove(nodePath.getWorkerIdPath());
+        }
+    }
+
+    @Override
+    public void close() {
+        // 关闭连接
+        registryCenter.close();
     }
 
     /**
@@ -239,17 +259,6 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
 
     private String getNodePathKey(NodePath nodePath, Integer workerId) {
         return nodePath.getWorkerPath() + "/" + workerId;
-    }
-
-    @Override
-    public void logout() {
-        CuratorFramework client = (CuratorFramework) registryCenter.getRawClient();
-        if (client != null && client.getState() == CuratorFrameworkState.STARTED) {
-            // 移除注册节点
-            registryCenter.remove(nodePath.getWorkerIdPath());
-            // 关闭连接
-            registryCenter.close();
-        }
     }
 
     /**

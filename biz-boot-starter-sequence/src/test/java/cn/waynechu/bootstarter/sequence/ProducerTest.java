@@ -32,14 +32,10 @@ public class ProducerTest {
             ZookeeperWorkerRegister zookeeperWorkerRegister = new ZookeeperWorkerRegister(zookeeperRegistryCenter, sequenceProperty);
             SnowFlakeIdGenerator generator = new SnowFlakeIdGenerator(zookeeperWorkerRegister);
 
-            generator.init();
-            System.out.println(generator.nextId());
+            System.out.println(generator.nextId("default"));
+            System.out.println(generator.nextId("default"));
             generator.close();
-
-            generator.init();
-            System.out.println(generator.nextId());
-            generator.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

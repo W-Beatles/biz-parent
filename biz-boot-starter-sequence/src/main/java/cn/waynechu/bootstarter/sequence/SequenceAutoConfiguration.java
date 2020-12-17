@@ -36,7 +36,7 @@ public class SequenceAutoConfiguration {
         return new ZookeeperWorkerRegister(zookeeperRegistryCenter(), sequenceProperty);
     }
 
-    @Bean(initMethod = "init", destroyMethod = "close")
+    @Bean(destroyMethod = "close")
     @ConditionalOnProperty(value = SequenceProperty.SEQUENCE_PREFIX + ".enable", havingValue = "true")
     public SnowFlakeIdGenerator generator(WorkerRegister workerRegister) {
         return new SnowFlakeIdGenerator(workerRegister);

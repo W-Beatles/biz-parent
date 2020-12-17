@@ -1,84 +1,80 @@
 package cn.waynechu.bootstarter.sequence.generator;
 
-import cn.waynechu.bootstarter.sequence.connector.BaseGeneratorConnector;
-import cn.waynechu.bootstarter.sequence.exception.SequenceException;
 import cn.waynechu.bootstarter.sequence.register.WorkerRegister;
 import cn.waynechu.bootstarter.sequence.stratagy.SnowFlake;
 
-import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author zhuwei
  * @since 2020/6/11 16:35
  */
-public class SnowFlakeIdGenerator extends BaseGeneratorConnector implements IdGenerator {
+public class SnowFlakeIdGenerator implements IdGenerator {
+
+    protected volatile boolean working;
 
     static final String FIXED_STRING_FORMAT = "%019d";
 
-    private SnowFlake snowFlake;
-
     private WorkerRegister register;
+
+    private Map<String, SnowFlake> flakeHolder = new ConcurrentHashMap<>();
 
     public SnowFlakeIdGenerator(WorkerRegister register) {
         this.register = register;
+        this.working = true;
     }
 
     @Override
-    public void init() {
-        connect();
-    }
-
-    @Override
-    public void connect() {
-        if (!isConnected()) {
-            long workerId = register.register();
-            if (workerId >= 0) {
-                snowFlake = new SnowFlake(workerId);
-                connected = true;
-            } else {
-                throw new SequenceException("Failed to get worker id");
-            }
-        }
-    }
-
-    @Override
-    public long nextId() {
-        if (isConnected()) {
+    public long nextId(String bizTag) {
+        if (working) {
+            SnowFlake snowFlake = this.getSnowFlake(bizTag);
             return snowFlake.nextId();
         }
-        throw new IllegalStateException("Worker isn't connected, registry center may shutdown");
+        throw new IllegalStateException("Generator isn't working, registry center may shutdown");
     }
 
     @Override
-    public long[] nextIds(int size) {
-        if (isConnected()) {
+    public long[] nextIds(String bizTag, int size) {
+        if (working) {
+            SnowFlake snowFlake = this.getSnowFlake(bizTag);
             return snowFlake.nextIds(size);
         }
-        throw new IllegalStateException("Worker isn't connected, registry center may shutdown");
+        throw new IllegalStateException("Generator isn't working, registry center may shutdown");
     }
 
     @Override
-    public String nextStringId() {
-        return String.valueOf(nextId());
+    public String nextStringId(String bizTag) {
+        return String.valueOf(nextId(bizTag));
     }
 
     @Override
-    public String[] nextStringIds(int size) {
+    public String[] nextStringIds(String bizTag, int size) {
         String[] ids = new String[size];
         for (int i = 0; i < size; i++) {
-            ids[i] = nextStringId();
+            ids[i] = nextStringId(bizTag);
         }
         return ids;
     }
 
     @Override
-    public String nextFixedStringId() {
-        return String.format(FIXED_STRING_FORMAT, nextId());
+    public String nextFixedStringId(String bizTag) {
+        return String.format(FIXED_STRING_FORMAT, nextId(bizTag));
     }
 
-    @Override
-    public void close() throws IOException {
-        connected = false;
-        register.logout();
+    public void close() {
+        working = false;
+        flakeHolder.forEach((k, v) -> register.logout(k));
+        register.close();
+    }
+
+    private SnowFlake getSnowFlake(String bizTag) {
+        SnowFlake snowFlake = flakeHolder.get(bizTag);
+        if (snowFlake == null) {
+            long workId = register.register(bizTag);
+            snowFlake = new SnowFlake(workId);
+            flakeHolder.put(bizTag, snowFlake);
+        }
+        return snowFlake;
     }
 }

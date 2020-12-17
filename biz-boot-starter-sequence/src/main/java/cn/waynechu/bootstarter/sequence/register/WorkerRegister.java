@@ -7,14 +7,24 @@ package cn.waynechu.bootstarter.sequence.register;
 public interface WorkerRegister {
 
     /**
+     * 初始化
+     */
+    void init();
+
+    /**
      * 注册workerId
      *
      * @return 返回workId
      */
-    long register();
+    long register(String bizTag);
 
     /**
      * 退出注册
      */
-    void logout();
+    void logout(String bizTag);
+
+    /**
+     * 关闭
+     */
+    void close();
 }
