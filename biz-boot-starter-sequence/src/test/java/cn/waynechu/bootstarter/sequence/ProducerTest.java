@@ -26,9 +26,6 @@ public class ProducerTest {
             zookeeperRegistryCenter.init();
 
             SequenceProperty sequenceProperty = new SequenceProperty();
-            sequenceProperty.setGroup("default_group");
-            sequenceProperty.setDurable(true);
-
             ZookeeperWorkerRegister zookeeperWorkerRegister = new ZookeeperWorkerRegister(zookeeperRegistryCenter, sequenceProperty);
             SnowFlakeIdGenerator generator = new SnowFlakeIdGenerator(zookeeperWorkerRegister);
 

@@ -5,22 +5,24 @@ import cn.waynechu.bootstarter.sequence.property.SequenceProperty;
 import cn.waynechu.bootstarter.sequence.register.WorkerRegister;
 import cn.waynechu.bootstarter.sequence.registry.ZookeeperRegistryCenter;
 import cn.waynechu.bootstarter.sequence.util.FileUtil;
+import cn.waynechu.bootstarter.sequence.util.TagPathUtil;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.imps.CuratorFrameworkState;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
-import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -31,61 +33,41 @@ import java.util.concurrent.TimeoutException;
 @Slf4j
 public class ZookeeperWorkerRegister implements WorkerRegister {
 
-    /**
-     * 最大机器数
-     */
     private static final long MAX_WORKER_NUM = 1024;
 
-    /**
-     * 加锁最大等待时间
-     */
     private static final int MAX_LOCK_WAIT_TIME_MS = 30 * 1000;
 
-    /**
-     * 注册中心
-     */
-    private final ZookeeperRegistryCenter registryCenter;
+    private String registryFilePath;
 
-    /**
-     * 注册文件
-     */
-    private String registryFile;
+    private ScheduledExecutorService senderPool;
 
-    /**
-     * zk节点信息
-     */
-    private NodePath nodePath;
-
-    /**
-     * zk节点是否持久化存储
-     */
-    private boolean durable;
+    private ZookeeperRegistryCenter registryCenter;
 
     public ZookeeperWorkerRegister(ZookeeperRegistryCenter registryCenter, SequenceProperty sequenceProperty) {
+        this.registryFilePath = sequenceProperty.getRegistryFile();
         this.registryCenter = registryCenter;
-        this.nodePath = new NodePath(sequenceProperty.getGroup());
-        this.durable = sequenceProperty.isDurable();
-        if (StringUtils.isEmpty(sequenceProperty.getRegistryFile())) {
-            this.registryFile = getDefaultFilePath(nodePath.getGroupName());
-        } else {
-            this.registryFile = sequenceProperty.getRegistryFile();
-        }
     }
 
     @Override
     public void init() {
-
+        this.senderPool = Executors.newSingleThreadScheduledExecutor(r -> {
+            Thread thread = new Thread(r, "SequenceScheduleThread");
+            thread.setDaemon(true);
+            return thread;
+        });
     }
 
     @Override
-    public long register(String bizTag) {
+    public int register(String bizTag) {
         InterProcessMutex lock = null;
         try {
             CuratorFramework client = (CuratorFramework) registryCenter.getRawClient();
-            lock = new InterProcessMutex(client, nodePath.getGroupPath());
-            int numOfChildren = registryCenter.getNumChildren(nodePath.getWorkerPath());
+            String tagPath = TagPathUtil.getTagPath(bizTag);
+            lock = new InterProcessMutex(client, tagPath);
+            int numOfChildren = registryCenter.getNumChildren(tagPath);
             if (numOfChildren > MAX_WORKER_NUM) {
-                throw new SequenceException("Max worker num reached, register failed");
+                String message = String.format("Tag: %s reach the maximum number of worker, register failed", bizTag);
+                throw new SequenceException(message);
             }
 
             if (!lock.acquire(MAX_LOCK_WAIT_TIME_MS, TimeUnit.MILLISECONDS)) {
@@ -93,34 +75,34 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
                 throw new TimeoutException(message);
             }
 
-            NodeInfo localNodeInfo = this.getLocalNodeInfo();
-            List<String> children = registryCenter.getChildrenKeys(nodePath.getWorkerPath());
-            // 有本地缓存的节点信息，且zk也有该节点信息
+            NodeInfo localNodeInfo = this.getLocalNodeInfo(bizTag);
+            List<String> children = registryCenter.getChildrenKeys(tagPath);
+            // 本地缓存与zk节点信息一致
             if (localNodeInfo != null && children.contains(String.valueOf(localNodeInfo.getWorkerId()))) {
-                String key = this.getNodePathKey(nodePath, localNodeInfo.getWorkerId());
-                String zkNodeInfoJson = registryCenter.get(key);
-                NodeInfo zkNodeInfo = JSON.parseObject(zkNodeInfoJson, NodeInfo.class);
-                if (this.checkNodeInfo(localNodeInfo, zkNodeInfo)) {
-                    nodePath.setWorkerId(zkNodeInfo.getWorkerId());
-                    zkNodeInfo.setUpdateTime(new Date());
+                String workerPath = TagPathUtil.getWorkerPath(bizTag, localNodeInfo.getWorkerId());
+                String workInfoJson = registryCenter.get(workerPath);
+                NodeInfo workInfo = JSON.parseObject(workInfoJson, NodeInfo.class);
+                if (this.checkNodeInfo(localNodeInfo, workInfo)) {
+                    workInfo.setUpdateTime(LocalDateTime.now());
                     // 更新ZK节点信息，保存本地缓存，开启定时上报任务
-                    this.updateZookeeperNodeInfo(key, zkNodeInfo);
-                    this.saveLocalNodeInfo(zkNodeInfo);
-                    return zkNodeInfo.getWorkerId();
+                    this.updateZookeeperNodeInfo(workerPath, workInfo);
+                    this.saveLocalNodeInfo(bizTag, workInfo);
+                    this.scheduleUploadNodeInfo(workerPath, workInfo);
+                    return workInfo.getWorkerId();
                 }
             }
 
-            // 无本地信息或者缓存数据不匹配，开始向ZK申请节点机器ID
+            // 无本地信息或者缓存数据不匹配，重新申请节点ID
             for (int workerId = 1; workerId <= MAX_WORKER_NUM; workerId++) {
-                String workerIdStr = String.valueOf(workerId);
-                if (!children.contains(workerIdStr)) {
+                if (!children.contains(String.valueOf(workerId))) {
                     // 申请成功
-                    NodeInfo applyNodeInfo = initNodeInfo(nodePath.getGroupName(), workerId);
-                    nodePath.setWorkerId(applyNodeInfo.getWorkerId());
+                    NodeInfo workInfo = this.initNodeInfo(bizTag, workerId);
                     // 保存ZK节点信息，保存本地缓存，开启定时上报任务
-                    this.saveZookeeperNodeInfo(nodePath.getWorkerIdPath(), applyNodeInfo);
-                    this.saveLocalNodeInfo(applyNodeInfo);
-                    return applyNodeInfo.getWorkerId();
+                    String workerPath = TagPathUtil.getWorkerPath(bizTag, workerId);
+                    this.saveZookeeperNodeInfo(workerPath, workInfo);
+                    this.saveLocalNodeInfo(bizTag, workInfo);
+                    this.scheduleUploadNodeInfo(workerPath, workInfo);
+                    return workInfo.getWorkerId();
                 }
             }
             throw new SequenceException("Max worker num reached, register failed");
@@ -138,11 +120,11 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
     }
 
     @Override
-    public void logout(String bizTag) {
+    public void logout(String bizTag, Integer workerId) {
         CuratorFramework client = (CuratorFramework) registryCenter.getRawClient();
         if (client != null && client.getState() == CuratorFrameworkState.STARTED) {
             // 移除注册节点
-            registryCenter.remove(nodePath.getWorkerIdPath());
+            registryCenter.remove(TagPathUtil.getWorkerPath(bizTag, workerId));
         }
     }
 
@@ -161,42 +143,22 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      */
     private boolean checkNodeInfo(NodeInfo localNodeInfo, NodeInfo zkNodeInfo) {
         try {
-            // NodeId、IP、HostName、GroupName 相等（本地缓存==ZK数据）
             if (!zkNodeInfo.getNodeId().equals(localNodeInfo.getNodeId())) {
+                return false;
+            }
+            if (!zkNodeInfo.getBizTag().equals(localNodeInfo.getBizTag())) {
+                return false;
+            }
+            if (!zkNodeInfo.getWorkerId().equals(localNodeInfo.getWorkerId())) {
                 return false;
             }
             if (!zkNodeInfo.getIp().equals(localNodeInfo.getIp())) {
                 return false;
             }
-            if (!zkNodeInfo.getHostName().equals(localNodeInfo.getHostName())) {
-                return false;
-            }
-            if (!zkNodeInfo.getGroupName().equals(localNodeInfo.getGroupName())) {
-                return false;
-            }
-            return true;
+            return zkNodeInfo.getHostName().equals(localNodeInfo.getHostName());
         } catch (Exception e) {
             log.error("Check node info error", e);
             return false;
-        }
-    }
-
-    /**
-     * 刷新ZK节点信息（修改updateTime）
-     *
-     * @param key      k
-     * @param nodeInfo 节点信息
-     */
-    private void updateZookeeperNodeInfo(String key, NodeInfo nodeInfo) {
-        try {
-            nodeInfo.setUpdateTime(new Date());
-            if (durable) {
-                registryCenter.persist(key, jsonizeNodeInfo(nodeInfo));
-            } else {
-                registryCenter.persistEphemeral(key, jsonizeNodeInfo(nodeInfo));
-            }
-        } catch (Exception e) {
-            log.debug("Update zookeeper node info error", e);
         }
     }
 
@@ -205,72 +167,14 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      *
      * @param nodeInfo 机器节点信息
      */
-    private void saveLocalNodeInfo(NodeInfo nodeInfo) {
+    private void saveLocalNodeInfo(String bizTag, NodeInfo nodeInfo) {
         try {
-            File nodeInfoFile = new File(registryFile);
-            String nodeInfoJson = jsonizeNodeInfo(nodeInfo);
+            File nodeInfoFile = new File(registryFilePath + File.separator + bizTag + ".cache");
+            String nodeInfoJson = JSONObject.toJSONString(nodeInfo);
             FileUtil.writeStringToFile(nodeInfoFile, nodeInfoJson, StandardCharsets.UTF_8);
         } catch (IOException e) {
             log.error("Save node info cache error", e);
         }
-    }
-
-    private void saveZookeeperNodeInfo(String key, NodeInfo nodeInfo) {
-        if (durable) {
-            registryCenter.persist(key, jsonizeNodeInfo(nodeInfo));
-        } else {
-            registryCenter.persistEphemeral(key, jsonizeNodeInfo(nodeInfo));
-        }
-    }
-
-    private String jsonizeNodeInfo(NodeInfo nodeInfo) {
-        String dateFormat = "yyyy-MM-dd HH:mm:ss";
-        return JSON.toJSONStringWithDateFormat(nodeInfo, dateFormat, SerializerFeature.WriteDateUseDateFormat);
-    }
-
-    /**
-     * 初始化节点信息
-     *
-     * @param groupName 分组名
-     * @param workerId  机器号
-     * @return 节点信息
-     * @throws UnknownHostException e
-     */
-    private NodeInfo initNodeInfo(String groupName, int workerId) throws UnknownHostException {
-        NodeInfo nodeInfo = new NodeInfo();
-        nodeInfo.setNodeId(genNodeId());
-        nodeInfo.setGroupName(groupName);
-        nodeInfo.setWorkerId(workerId);
-        nodeInfo.setIp(InetAddress.getLocalHost().getHostAddress());
-        nodeInfo.setHostName(InetAddress.getLocalHost().getHostName());
-        nodeInfo.setCreateTime(new Date());
-        nodeInfo.setUpdateTime(new Date());
-        return nodeInfo;
-    }
-
-    /**
-     * 获取节点唯一ID （基于UUID）
-     *
-     * @return 节点唯一ID
-     */
-    private String genNodeId() {
-        return UUID.randomUUID().toString().replace("-", "").toLowerCase();
-    }
-
-    private String getNodePathKey(NodePath nodePath, Integer workerId) {
-        return nodePath.getWorkerPath() + "/" + workerId;
-    }
-
-    /**
-     * 获取本地节点缓存文件路径
-     *
-     * @param groupName 分组名
-     * @return 文件路径
-     */
-    private String getDefaultFilePath(String groupName) {
-        return "." + File.separator + "tmp" +
-                File.separator + "sequence" +
-                File.separator + groupName + ".cache";
     }
 
     /**
@@ -278,13 +182,12 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
      *
      * @return 机器节点信息
      */
-    private NodeInfo getLocalNodeInfo() {
+    private NodeInfo getLocalNodeInfo(String bizTag) {
         try {
-            File nodeInfoFile = new File(registryFile);
+            File nodeInfoFile = new File(registryFilePath + File.separator + bizTag + ".cache");
             if (nodeInfoFile.exists()) {
-
                 String nodeInfoJson = FileUtil.readFileToString(nodeInfoFile, StandardCharsets.UTF_8);
-                return this.createNodeInfoFromJsonStr(nodeInfoJson);
+                return JSON.parseObject(nodeInfoJson, NodeInfo.class);
             }
         } catch (Exception e) {
             log.error("Read node info cache error", e);
@@ -293,12 +196,68 @@ public class ZookeeperWorkerRegister implements WorkerRegister {
     }
 
     /**
-     * 通过节点信息JSON字符串反序列化节点信息
+     * 保存zk节点信息
      *
-     * @param jsonStr 节点信息JSON字符串
-     * @return 节点信息
+     * @param key      k
+     * @param nodeInfo 节点信息
      */
-    private NodeInfo createNodeInfoFromJsonStr(String jsonStr) {
-        return JSON.parseObject(jsonStr, NodeInfo.class);
+    private void saveZookeeperNodeInfo(String key, NodeInfo nodeInfo) {
+        String nodeInfoJson = JSONObject.toJSONString(nodeInfo);
+        try {
+            registryCenter.persistEphemeral(key, nodeInfoJson);
+        } catch (Exception e) {
+            log.error("Update zookeeper node info error", e);
+        }
+    }
+
+    /**
+     * 刷新ZK节点信息
+     *
+     * @param key      k
+     * @param nodeInfo 节点信息
+     */
+    private void updateZookeeperNodeInfo(String key, NodeInfo nodeInfo) {
+        nodeInfo.setUpdateTime(LocalDateTime.now());
+        this.saveZookeeperNodeInfo(key, nodeInfo);
+    }
+
+    /**
+     * 更新节点信息
+     *
+     * @param key      k
+     * @param nodeInfo 节点信息
+     */
+    private void scheduleUploadNodeInfo(final String key, final NodeInfo nodeInfo) {
+        senderPool.scheduleAtFixedRate(() -> updateZookeeperNodeInfo(key, nodeInfo),
+                3L, 3L, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 初始化节点信息
+     *
+     * @param bizTag   业务标识
+     * @param workerId 机器号
+     * @return 节点信息
+     * @throws UnknownHostException e
+     */
+    private NodeInfo initNodeInfo(String bizTag, int workerId) throws UnknownHostException {
+        NodeInfo nodeInfo = new NodeInfo();
+        nodeInfo.setNodeId(genNodeId());
+        nodeInfo.setBizTag(bizTag);
+        nodeInfo.setWorkerId(workerId);
+        nodeInfo.setIp(InetAddress.getLocalHost().getHostAddress());
+        nodeInfo.setHostName(InetAddress.getLocalHost().getHostName());
+        nodeInfo.setCreateTime(LocalDateTime.now());
+        nodeInfo.setUpdateTime(LocalDateTime.now());
+        return nodeInfo;
+    }
+
+    /**
+     * 获取节点唯一ID
+     *
+     * @return 节点唯一ID
+     */
+    private String genNodeId() {
+        return UUID.randomUUID().toString().replace("-", "").toLowerCase();
     }
 }

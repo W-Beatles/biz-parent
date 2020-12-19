@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,15 +27,15 @@ public class SequenceController {
 
     @ApiOperation("获取id")
     @GetMapping
-    public BizResponse<Long> generateId() {
-        long id = idGenerator.nextId();
+    public BizResponse<Long> generateId(@RequestParam String bizTag) {
+        long id = idGenerator.nextId(bizTag);
         return BizResponse.success(id);
     }
 
     @ApiOperation("批量获取id")
     @GetMapping("/batch")
-    public BizResponse<List<String>> batchGenerateId(@Valid @Max(1000) @Min(1) @RequestParam Integer quantity) {
-        String[] ids = idGenerator.nextStringIds(quantity);
+    public BizResponse<List<String>> batchGenerateId(@RequestParam String bizTag, @RequestParam Integer quantity) {
+        String[] ids = idGenerator.nextStringIds(bizTag, quantity);
         return BizResponse.success(Arrays.asList(ids));
     }
 }

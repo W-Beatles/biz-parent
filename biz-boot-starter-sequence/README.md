@@ -15,9 +15,8 @@
 2. 添加配置
     ```
     sequence.enable=true
-    sequence.group=default
-    sequence.registryFile=./tmp/sequence/default.cache
-    sequence.zookeeper.serverLists=localhost:2181,localhost:2182
+    sequence.registryFile=./tmp/sequence
+    sequence.zookeeper.serverLists=localhost:2181,localhost:2182,localhost:2183
     sequence.zookeeper.namespace=sequence
     ```
 2. 注入`IdGenerator`对象

@@ -16,12 +16,12 @@ public interface WorkerRegister {
      *
      * @return 返回workId
      */
-    long register(String bizTag);
+    int register(String bizTag);
 
     /**
      * 退出注册
      */
-    void logout(String bizTag);
+    void logout(String bizTag, Integer workerId);
 
     /**
      * 关闭

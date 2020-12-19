@@ -2,7 +2,7 @@ package cn.waynechu.bootstarter.sequence.register.zookeeper;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author zhuwei
@@ -13,7 +13,7 @@ public class NodeInfo {
 
     private String nodeId;
 
-    private String groupName;
+    private String bizTag;
 
     private Integer workerId;
 
@@ -21,7 +21,7 @@ public class NodeInfo {
 
     private String hostName;
 
-    private Date updateTime;
+    private LocalDateTime createTime;
 
-    private Date createTime;
+    private LocalDateTime updateTime;
 }

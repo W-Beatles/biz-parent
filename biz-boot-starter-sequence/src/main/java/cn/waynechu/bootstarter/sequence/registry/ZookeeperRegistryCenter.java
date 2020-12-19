@@ -6,13 +6,12 @@ import cn.waynechu.bootstarter.sequence.exception.SequenceException;
 import cn.waynechu.bootstarter.sequence.property.ZookeeperProperty;
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.ACLProvider;
 import org.apache.curator.framework.recipes.cache.ChildData;
-import org.apache.curator.framework.recipes.cache.CuratorCache;
+import org.apache.curator.framework.recipes.cache.TreeCache;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.utils.CloseableUtils;
 import org.apache.zookeeper.CreateMode;
@@ -35,12 +34,11 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
 
-    @Getter
     private CuratorFramework client;
 
     private ZookeeperProperty zookeeperProperty;
 
-    private final Map<String, CuratorCache> caches = new HashMap<>();
+    private final Map<String, TreeCache> caches = new HashMap<>();
 
     public ZookeeperRegistryCenter(ZookeeperProperty zookeeperProperty) {
         this.zookeeperProperty = zookeeperProperty;
@@ -48,9 +46,13 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
 
     @Override
     public void init() {
-        log.debug("[sequence]: zookeeper registry center init, server lists is: {}", zookeeperProperty.getServerLists());
+        if (client != null) {
+            return;
+        }
+        String serverLists = zookeeperProperty.getServerLists();
+        log.debug("[sequence]: zookeeper registry center init, server lists is: {}", serverLists);
         CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
-                .connectString(zookeeperProperty.getServerLists())
+                .connectString(serverLists)
                 .retryPolicy(new ExponentialBackoffRetry(zookeeperProperty.getBaseSleepTimeMilliseconds(),
                         zookeeperProperty.getMaxRetries(), zookeeperProperty.getMaxSleepTimeMilliseconds()))
                 .namespace(zookeeperProperty.getNamespace());
@@ -78,7 +80,8 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
         client = builder.build();
         client.start();
         try {
-            if (!client.blockUntilConnected(zookeeperProperty.getMaxSleepTimeMilliseconds() * zookeeperProperty.getMaxRetries(), TimeUnit.MILLISECONDS)) {
+            if (!client.blockUntilConnected(zookeeperProperty.getMaxSleepTimeMilliseconds()
+                    * zookeeperProperty.getMaxRetries(), TimeUnit.MILLISECONDS)) {
                 client.close();
                 throw new KeeperException.OperationTimeoutException();
             }
@@ -89,11 +92,16 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
 
     @Override
     public void close() {
-        for (Map.Entry<String, CuratorCache> each : caches.entrySet()) {
+        if (client == null) {
+            return;
+        }
+        for (Map.Entry<String, TreeCache> each : caches.entrySet()) {
             each.getValue().close();
         }
         waitForCacheClose();
         CloseableUtils.closeQuietly(client);
+        // 重置client状态
+        client = null;
     }
 
     /**
@@ -112,17 +120,19 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
 
     @Override
     public String get(String key) {
-        CuratorCache cache = findTreeCache(key);
+        TreeCache cache = findTreeCache(key);
         if (cache == null) {
             return getDirectly(key);
         }
-        Optional<ChildData> childDataOptional = cache.get(key);
-        return childDataOptional.map(childData -> new String(childData.getData(), Charsets.UTF_8))
-                .orElseGet(() -> getDirectly(key));
+        ChildData resultInCache = cache.getCurrentData(key);
+        if (null != resultInCache) {
+            return null == resultInCache.getData() ? null : new String(resultInCache.getData(), StandardCharsets.UTF_8);
+        }
+        return getDirectly(key);
     }
 
-    private CuratorCache findTreeCache(final String key) {
-        for (Map.Entry<String, CuratorCache> entry : caches.entrySet()) {
+    private TreeCache findTreeCache(final String key) {
+        for (Map.Entry<String, TreeCache> entry : caches.entrySet()) {
             if (key.startsWith(entry.getKey())) {
                 return entry.getValue();
             }
@@ -192,9 +202,7 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
     @Override
     public void update(String key, String value) {
         try {
-            client.inTransaction().check().forPath(key)
-                    .and().setData().forPath(key, value.getBytes(Charsets.UTF_8))
-                    .and().commit();
+            client.transactionOp().setData().forPath(key, value.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             RegExceptionHandler.handleException(e);
         }
@@ -259,19 +267,19 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
     }
 
     @Override
-    public void addCacheData(String cachePath) {
-        CuratorCache cache = CuratorCache.build(client, cachePath);
+    public void addCacheData(final String cachePath) {
+        TreeCache cache = new TreeCache(client, cachePath);
         try {
             cache.start();
-        } catch (Exception e) {
-            RegExceptionHandler.handleException(e);
+        } catch (final Exception ex) {
+            RegExceptionHandler.handleException(ex);
         }
         caches.put(cachePath + "/", cache);
     }
 
     @Override
-    public void evictCacheData(String cachePath) {
-        CuratorCache cache = caches.remove(cachePath + "/");
+    public void evictCacheData(final String cachePath) {
+        TreeCache cache = caches.remove(cachePath + "/");
         if (null != cache) {
             cache.close();
         }

@@ -17,22 +17,12 @@ public class SequenceProperty {
     /**
      * 是否开启sequence服务
      */
-    private boolean enable;
-
-    /**
-     * 分组名字，默认default
-     */
-    private String group = "default";
+    private boolean enable = false;
 
     /**
      * zk节点信息本地缓存文件路径
      */
-    private String registryFile;
-
-    /**
-     * zk节点是否持久化存储
-     */
-    private boolean durable;
+    private String registryFile = "./tmp/sequence";
 
     /**
      * zk配置信息

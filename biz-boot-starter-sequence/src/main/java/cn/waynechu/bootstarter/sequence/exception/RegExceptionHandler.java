@@ -21,7 +21,7 @@ public class RegExceptionHandler {
         if (null == cause) {
             return;
         }
-        if (isIgnoredException(cause) || null != cause.getCause() && isIgnoredException(cause.getCause())) {
+        if (isIgnoredException(cause) || (cause.getCause() != null && isIgnoredException(cause.getCause()))) {
             log.debug("Sequence: ignored exception for: {}", cause.getMessage());
         } else if (cause instanceof InterruptedException) {
             Thread.currentThread().interrupt();
@@ -31,6 +31,8 @@ public class RegExceptionHandler {
     }
 
     private static boolean isIgnoredException(final Throwable cause) {
-        return cause instanceof KeeperException.ConnectionLossException || cause instanceof KeeperException.NoNodeException || cause instanceof KeeperException.NodeExistsException;
+        return cause instanceof KeeperException.ConnectionLossException
+                || cause instanceof KeeperException.NoNodeException
+                || cause instanceof KeeperException.NodeExistsException;
     }
 }

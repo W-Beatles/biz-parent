@@ -22,6 +22,7 @@ public class SnowFlakeIdGenerator implements IdGenerator {
 
     public SnowFlakeIdGenerator(WorkerRegister register) {
         this.register = register;
+        register.init();
         this.working = true;
     }
 
@@ -64,14 +65,14 @@ public class SnowFlakeIdGenerator implements IdGenerator {
 
     public void close() {
         working = false;
-        flakeHolder.forEach((k, v) -> register.logout(k));
+        flakeHolder.forEach((k, v) -> register.logout(k, v.getWorkerId()));
         register.close();
     }
 
     private SnowFlake getSnowFlake(String bizTag) {
         SnowFlake snowFlake = flakeHolder.get(bizTag);
         if (snowFlake == null) {
-            long workId = register.register(bizTag);
+            int workId = register.register(bizTag);
             snowFlake = new SnowFlake(workId);
             flakeHolder.put(bizTag, snowFlake);
         }

@@ -111,7 +111,7 @@ services:
     env_file: .env   #从文件添加环境变量
 
   zk:
-    image: zookeeper:3.6.2
+    image: zookeeper:3.5.7
     container_name: zk
     networks:
       - biz-net
@@ -124,7 +124,7 @@ services:
       - zk2
       - zk3
   zk2:
-    image: zookeeper:3.6.2
+    image: zookeeper:3.5.7
     container_name: zk2
     networks:
       - biz-net
@@ -134,7 +134,7 @@ services:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
   zk3:
-    image: zookeeper:3.6.2
+    image: zookeeper:3.5.7
     container_name: zk3
     networks:
       - biz-net
@@ -143,7 +143,6 @@ services:
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
-
 
   apollo:
     image: nobodyiam/apollo-quick-start
@@ -356,6 +355,7 @@ services:
       - mysql-slave1
       - mysql-slave2
       - rabbitmq
+      - zk
       - redis
       - apollo
       - eureka
