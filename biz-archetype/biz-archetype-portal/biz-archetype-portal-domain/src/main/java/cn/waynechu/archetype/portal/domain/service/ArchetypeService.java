@@ -9,6 +9,7 @@ import cn.waynechu.archetype.portal.facade.response.SearchArchetypeResponse;
 import cn.waynechu.facade.common.page.BizPageInfo;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author zhuwei
@@ -79,6 +80,30 @@ public interface ArchetypeService {
      * @return 存在返回原型信息。否则抛出
      */
     ArchetypeDO checkArchetypeExist(Long id);
+
+    /**
+     * 测试单线程循环翻页
+     *
+     * @param request req
+     * @return 原型列表
+     */
+    List<SearchArchetypeResponse> listAllPage(SearchArchetypeRequest request);
+
+    /**
+     * 测试多线程并发翻页
+     *
+     * @param request req
+     * @return 原型列表
+     */
+    List<SearchArchetypeResponse> listAllPageConcurrency(SearchArchetypeRequest request);
+
+    /**
+     * 测试多线程并发翻页
+     *
+     * @param request req
+     * @return 原型列表
+     */
+    List<SearchArchetypeResponse> listAllPageConcurrency2(SearchArchetypeRequest request);
 }
 
 

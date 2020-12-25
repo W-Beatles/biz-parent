@@ -33,6 +33,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
@@ -63,6 +65,9 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
     @Autowired
     private ExcelHelper excelHelper;
 
+    @Autowired
+    private PageLoopHelper pageLoopHelper;
+
     @Override
     public void afterPropertiesSet() {
         this.initWorkingPath(workingRootPath);
@@ -78,6 +83,23 @@ public class ArchetypeServiceImpl implements ArchetypeService, InitializingBean 
         List<ArchetypeDO> archetypeDOList = archetypeRepository.listByCondition(condition);
         List<SearchArchetypeResponse> list = ArchetypeConvert.toSearchArchetypeResponse(archetypeDOList);
         return BizPageInfo.of(archetypeDOList).replace(list);
+    }
+
+    @Override
+    public List<SearchArchetypeResponse> listAllPage(SearchArchetypeRequest request) {
+        return pageLoopHelper.listAllPage(request, () -> search(request));
+    }
+
+    @Override
+    public List<SearchArchetypeResponse> listAllPageConcurrency(SearchArchetypeRequest request) {
+        return pageLoopHelper.listAllPage(request, 2, this::search);
+    }
+
+    @Override
+    public List<SearchArchetypeResponse> listAllPageConcurrency2(SearchArchetypeRequest request) {
+        List<SearchArchetypeResponse> returnValue = Collections.synchronizedList(new ArrayList<>());
+        pageLoopHelper.listAllPage(request, 2, this::search, returnValue::addAll);
+        return returnValue;
     }
 
     @Override
