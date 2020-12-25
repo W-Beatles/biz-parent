@@ -72,9 +72,14 @@ public class SnowFlakeIdGenerator implements IdGenerator {
     private SnowFlake getSnowFlake(String bizTag) {
         SnowFlake snowFlake = flakeHolder.get(bizTag);
         if (snowFlake == null) {
-            int workId = register.register(bizTag);
-            snowFlake = new SnowFlake(workId);
-            flakeHolder.put(bizTag, snowFlake);
+            synchronized (this) {
+                snowFlake = flakeHolder.get(bizTag);
+                if (snowFlake == null) {
+                    int workId = register.register(bizTag);
+                    snowFlake = new SnowFlake(workId);
+                    flakeHolder.put(bizTag, snowFlake);
+                }
+            }
         }
         return snowFlake;
     }
