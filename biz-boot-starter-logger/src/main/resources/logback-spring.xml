@@ -53,18 +53,21 @@
     <springProperty scope="context" name="elkKafkaRetries"
                     source="elk.kafka.retries" defaultValue="2"/>
 
-    <!-- 引入自定义日志配置 -->
+    <!-- 自定义日志配置 -->
     <include file="src/main/resources/logback-custom-spring.xml"/>
 
+    <!-- ConsoleAppender -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
+    <!-- SentryAppender -->
     <if condition='property("sentryEnable").contains("true")'>
         <then>
             <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+                <!--只记录ERROR级别及以上的日志 -->
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                     <level>ERROR</level>
                 </filter>
@@ -72,6 +75,7 @@
         </then>
     </if>
 
+    <!-- AmqpAppender -->
     <if condition='property("elkRabbitmqEnable").contains("true")'>
         <then>
             <appender name="ELK_RABBITMQ" class="cn.waynechu.bootstarter.logger.appender.AmqpAppender">
@@ -98,6 +102,7 @@
         </then>
     </if>
 
+    <!-- KafkaAppender -->
     <if condition='property("elkKafkaEnable").contains("true")'>
         <then>
             <appender name="ELK_KAFKA" class="com.github.danielwegener.logback.kafka.KafkaAppender">

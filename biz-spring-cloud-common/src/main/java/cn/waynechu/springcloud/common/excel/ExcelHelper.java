@@ -226,13 +226,15 @@ public class ExcelHelper {
     }
 
     /**
-     * 导出并获取excel的sid
+     * 导出并获取sid
+     * <p>
+     * 该方法适用于异步下载的所有场景
      *
      * @param fileName             文件名
-     * @param generateFileFunction 生成excel文件的方法
+     * @param generateFileFunction 生成文件的方法。入参为sid, 出参为{@code File}类型
      * @return sid 导出唯一标识
      */
-    private <T> String exportForSid(final String fileName, Function<String, File> generateFileFunction) {
+    public String exportForSid(final String fileName, Function<String, File> generateFileFunction) {
         final String sid = UUID.randomUUID().toString();
         this.syncExportResult(sid, fileName, ExportStatusEnum.GENERATED, null);
 
@@ -241,19 +243,19 @@ public class ExcelHelper {
             ExportStatusEnum exportStatus = ExportStatusEnum.FAIL;
             String url = null;
             try {
-                // 生成excel
+                // 生成文件
                 tempFile = generateFileFunction.apply(sid);
-                // 上传excel
-                url = this.uploadExcelFile(tempFile);
+                // 上传文件
+                url = this.uploadFile(tempFile);
                 if (StringUtil.isNotEmpty(url)) {
                     exportStatus = ExportStatusEnum.SUCCESS;
                 }
             } catch (Exception e) {
-                log.error("导出失败", e);
+                log.error("[ExcelHelper] 导出失败", e);
             } finally {
                 // 同步导出状态
                 this.syncExportResult(sid, fileName, exportStatus, url);
-                // 删除临时excel文件
+                // 删除临时文件
                 if (tempFile != null && tempFile.exists()) {
                     // noinspection ResultOfMethodCallIgnored
                     tempFile.delete();
@@ -282,7 +284,7 @@ public class ExcelHelper {
             throw new RuntimeException(e);
         }
 
-        sheetName = this.encodeFileName(sheetName);
+        sheetName = this.encodeSheetName(sheetName);
         ExcelWriterBuilder writerBuilder;
         if (clazz != null) {
             writerBuilder = EasyExcel.write(tempFile, clazz);
@@ -290,7 +292,7 @@ public class ExcelHelper {
             writerBuilder = EasyExcel.write(tempFile).head(heads);
         }
         writerBuilder.sheet(sheetName)
-                // 添加 java8 时间类库支持
+                // 默认添加 java8 时间类库支持
                 .registerConverter(new LocalTimeConvert())
                 .registerConverter(new LocalDateConvert())
                 .registerConverter(new LocalDateTimeConvert())
@@ -324,9 +326,9 @@ public class ExcelHelper {
             excelWriter = EasyExcel.write(tempFile).head(heads).needHead(false).build();
         }
 
-        sheetName = this.encodeFileName(sheetName);
+        sheetName = this.encodeSheetName(sheetName);
         WriteSheet writeSheet = EasyExcel.writerSheet(sheetName)
-                // 添加 java8 时间类库支持
+                // 默认添加 java8 时间类库支持
                 .registerConverter(new LocalTimeConvert())
                 .registerConverter(new LocalDateConvert())
                 .registerConverter(new LocalDateTimeConvert())
@@ -356,24 +358,24 @@ public class ExcelHelper {
     }
 
     /**
-     * 文件名转义
+     * sheet名转义
      *
      * <pre>
      *     防止excel的sheet名出现不支持的字符抛出异常
      *     如 "订单明细 1899-12-31 23:54:17"，其中冒号就是sheet名无法支持字符
      * </pre>
      *
-     * @param fileName 文件名
-     * @return 转义后的文件名
+     * @param sheetName sheet名
+     * @return 转义后的sheet名
      */
-    private String encodeFileName(String fileName) {
-        String encodeFileName = null;
+    private String encodeSheetName(String sheetName) {
+        String encodeSheetName = "";
         try {
-            encodeFileName = URLEncoder.encode(fileName, "UTF-8");
+            encodeSheetName = URLEncoder.encode(sheetName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             // do nothing here.
         }
-        return encodeFileName;
+        return encodeSheetName;
     }
 
     /**
@@ -381,14 +383,14 @@ public class ExcelHelper {
      *
      * @param file 文件
      */
-    private String uploadExcelFile(File file) {
+    private String uploadFile(File file) {
         String url = null;
 
         FileSystemResource resource = new FileSystemResource(file);
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
         params.add("file", resource);
 
-        // 上传excel文件
+        // 上传文件
         ResponseEntity<BizResponse<String>> responseEntity = restTemplate.exchange(FILE_UPLOAD_URL, HttpMethod.POST
                 , new HttpEntity<>(params), new ParameterizedTypeReference<BizResponse<String>>() {
                 });
@@ -404,14 +406,14 @@ public class ExcelHelper {
      * @param sid        导出唯一标识
      * @param fileName   导出文件名
      * @param statusEnum 导出状态
-     * @param url        导出的excel文件地址
+     * @param url        导出的文件地址
      */
     private void syncExportResult(String sid, String fileName, ExportStatusEnum statusEnum, String url) {
         ExportResultResponse exportResultResponse = new ExportResultResponse();
-        exportResultResponse.setStatus(statusEnum.getCode());
-        exportResultResponse.setFileName(fileName + EXPORT_UPLOAD_EXTENSIONS);
-        exportResultResponse.setUrl(url);
         exportResultResponse.setSid(sid);
+        exportResultResponse.setFileName(fileName + EXPORT_UPLOAD_EXTENSIONS);
+        exportResultResponse.setStatus(statusEnum.getCode());
+        exportResultResponse.setUrl(url);
 
         String key = EXPORT_CACHE_KEY + sid;
         String value = JsonBinder.toJson(exportResultResponse);

@@ -160,7 +160,7 @@ docker-compose -h                      # 查看更多相关命令
    ```
 
 2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  
-    **如果是在window环境，启动前需修改`/script/*/*.sh`下的脚本为linux格式。否则服务器无法执行初始化脚本而报错**
+    **重要：如果是在window环境，启动前需修改`/script/*/*.sh`下的脚本为linux格式。否则MySQL无法执行初始化脚本导致主从链路建立失败**
     ```
     vim ./init-master.sh  (vim ./init-slave.sh)
     :set ff=unix
