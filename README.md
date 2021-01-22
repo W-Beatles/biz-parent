@@ -1,4 +1,6 @@
-# biz-parent
+biz-parent
+============
+![build](https://github.com/W-Beatles/biz-parent/workflows/build/badge.svg)
 
 ### 项目介绍
 SpringCloud微服务开发脚手架
