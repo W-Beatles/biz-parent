@@ -1,3 +1,3 @@
 [submodule "biz-boot-starter-sequence"]
 	path = biz-boot-starter-sequence
-	url = https://github.com/apache/skywalking-data-collect-protocol.git
+	url = https://github.com/W-Beatles/biz-boot-starter-sequence.git
