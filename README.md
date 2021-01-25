@@ -9,16 +9,16 @@ SpringCloud微服务开发脚手架
 > 注: 详细介绍请参考各模块的 **README.md** 文档
 1.  biz-archetype  
      项目骨架生成模块。支持自定义项目模版骨架
-     [更多](./biz-archetype/README.md)  
+     [更多](https://github.com/W-Beatles/biz-archetype/blob/main/README.md)  
 2.  biz-boot-starter-dynamic-datasource  
      动态数据源模块。支持读写分离、多数据源动态切换、健康检查。兼容`seata`分布式事务解决方案
-     [更多](./biz-boot-starter-dynamic-datasource/README.md)  
+     [更多](https://github.com/W-Beatles/biz-boot-starter-dynamic-datasource/blob/main/README.md)  
 3.  biz-boot-starter-logger  
      `elk`&`sentry`日志模块。用于日志上传`ELK`及`Sentry`错误告警
-     [更多](./biz-boot-starter-logger/README.md)
+     [更多](https://github.com/W-Beatles/biz-boot-starter-logger/blob/main/README.md)
 4.  biz-boot-starter-sequence  
      基于`zookeeper`和`snowflake`算法的分布式id生成器
-     [更多](./biz-boot-starter-sequence/README.md)
+     [更多](https://github.com/W-Beatles/biz-boot-starter-sequence/blob/main/README.md)
 5.  biz-facade-common  
      通用`facade`模块。包括异常、枚举等基类，以及请求、返回对象基类等
      [更多](./biz-facade-common/README.md)

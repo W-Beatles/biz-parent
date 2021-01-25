@@ -4,6 +4,9 @@
 [submodule "biz-boot-starter-dynamic-datasource"]
 	path = biz-boot-starter-dynamic-datasource
 	url = https://github.com/W-Beatles/biz-boot-starter-dynamic-datasource.git
+[submodule "biz-boot-starter-logger"]
+	path = biz-boot-starter-logger
+	url = https://github.com/W-Beatles/biz-boot-starter-logger.git
 [submodule "biz-boot-starter-sequence"]
 	path = biz-boot-starter-sequence
 	url = https://github.com/W-Beatles/biz-boot-starter-sequence.git

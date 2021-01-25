@@ -25,9 +25,9 @@ RabbitMQ、output为elasticsearch即可将日志收集到ES中并在Kibana中展
     ```
     示例：`requestId`追踪微服务调用日志
 
-    ![调用链路追踪](../docs/elk-1.png "调用链路追踪")
+    ![调用链路追踪](./docs/elk-1.png "调用链路追踪")
     
-    ![ELK记录信息](../docs/elk-2.png "ELK记录信息")
+    ![ELK记录信息](./docs/elk-2.png "ELK记录信息")
 
 ### 调用链路追踪
 1. MDCFilter过滤器
