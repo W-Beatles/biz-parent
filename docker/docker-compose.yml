@@ -200,7 +200,7 @@ services:
       - eureka
 
   elasticsearch:
-    image: elasticsearch:7.5.1
+    image: elasticsearch:7.10.1
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
@@ -220,7 +220,7 @@ services:
       - 9300:9300
 
   kibana:
-    image: kibana:7.5.1
+    image: kibana:7.10.1
     container_name: kibana
     volumes:
       - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
@@ -232,7 +232,7 @@ services:
       - elasticsearch
 
   logstash:
-    image: logstash:7.5.1
+    image: logstash:7.10.1
     container_name: logstash
     volumes:
       - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
@@ -256,7 +256,7 @@ services:
       - eureka.client.service-url.defaultZone=http://eureka:8080/eureka/,http://apollo:8080/eureka/
 
   skywalking-oap:
-    image: apache/skywalking-oap-server:7.0.0-es7
+    image: apache/skywalking-oap-server:8.3.0-es7
     container_name: skywalking-oap
     networks:
       - biz-net
@@ -271,7 +271,7 @@ services:
       - elasticsearch
 
   skywalking-ui:
-    image: apache/skywalking-ui:7.0.0
+    image: apache/skywalking-ui:8.3.0
     container_name: skywalking-ui
     networks:
       - biz-net
