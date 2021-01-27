@@ -153,6 +153,8 @@ docker-compose -h                      # 查看更多相关命令
     ```
     # 进入项目根目录
     cd ./biz-parent
+    # 拉取子模块
+    git submodule update --init --recursive
     # 打包所有模块并构建docker镜像
     mvn clean install -Ddockerfile.skip=false
     ```
