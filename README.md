@@ -158,10 +158,12 @@ docker-compose -h                      # 查看更多相关命令
     # 打包所有模块并构建docker镜像
     mvn clean install -Ddockerfile.skip=false
     ```
-   注: 如果只更改了单个模块的代码，可手动为该模块单独重新构建镜像
-   ```
-   docker build -t waynechu/biz-archetype-portal:1.0.0-SNAPSHOT . --build-arg JAR_FILE=./target/biz-archetype-portal-api-1.0.0-SNAPSHOT.jar
-   ```
+   注:   
+   1. 如果只更改了单个模块的代码，可手动为该模块单独重新构建镜像
+       ```
+       docker build -t waynechu/biz-archetype-portal:1.0.0-SNAPSHOT . --build-arg JAR_FILE=./target/biz-archetype-portal-api-1.0.0-SNAPSHOT.jar
+       ```
+   2. `dockerfile-maven-plugin` 抛出 `HttpHostConnectException: Connect to localhost:2375` 异常，需要检查你本地的docker服务是否开启2375端口的服务
 
 2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  
     **重要：如果是在window环境，启动前需修改`/script/*/*.sh`下的脚本为linux格式。否则MySQL无法执行初始化脚本导致主从链路建立失败**

@@ -1,7 +1,7 @@
 version: '3'
 services:
   mysql-master:
-    image: mysql:8.0.12   #镜像
+    image: mysql:${MYSQL_TAG}   #镜像
     container_name: mysql-master   #容器名
     restart: always    #重启容器策略: 1.null 默认策略,退出后不重启  2.on-failure 非正常退出会重启,on-failure:3还能指定尝试重启次数  3.always 容器退出时总是重启  4.unless-stopped 在容器退出时总是重启容器,但是不考虑在Docker守护进程启动时就已经停止了的容器
     networks:   #配置容器连接的网络,引用顶级networks下的条目
@@ -17,7 +17,7 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=${MASTER_MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MASTER_MYSQL_ROOT_PWD}
     command: [
       "--server-id=${MASTER_SERVER_ID}",
       "--character-set-server=utf8mb4",
@@ -28,7 +28,7 @@ services:
     ]
 
   mysql-slave1:
-    image: mysql:8.0.12
+    image: mysql:${MYSQL_TAG}
     container_name: mysql-slave1
     restart: always
     networks:
@@ -44,7 +44,7 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PWD}
     depends_on:   #容器依赖关系
       - mysql-master
     command: [
@@ -57,7 +57,7 @@ services:
     ]
 
   mysql-slave2:
-    image: mysql:8.0.12
+    image: mysql:${MYSQL_TAG}
     container_name: mysql-slave2
     restart: always
     networks:
@@ -73,7 +73,7 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PWD}
     depends_on:
       - mysql-master
     command: [
@@ -86,19 +86,21 @@ services:
     ]
 
   redis:
-    image: redis:latest
+    image: redis:${REDIS_TAG}
     container_name: redis
     restart: always
-    command: redis-server --requirepass 123456
 #      volumes:
 #    - ./data/redis:/data
     networks:
       - biz-net
     ports:
       - 6379:6379
+    env_file:
+      - .env
+    command: redis-server --requirepass ${REDIS_DEFAULT_PWD}
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:${RABBITMQ_TAG}
     container_name: rabbitmq
     restart: always
 #      volumes:
@@ -111,12 +113,14 @@ services:
     env_file: .env   #从文件添加环境变量
 
   zk:
-    image: zookeeper:3.5.7
+    image: zookeeper:${ZOOKEEPER_TAG}
     container_name: zk
     networks:
       - biz-net
     ports:
       - 2181:2181
+    env_file:
+      - .env
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
@@ -124,17 +128,19 @@ services:
       - zk2
       - zk3
   zk2:
-    image: zookeeper:3.5.7
+    image: zookeeper:${ZOOKEEPER_TAG}
     container_name: zk2
     networks:
       - biz-net
     ports:
       - 2182:2181
+    env_file:
+      - .env
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
   zk3:
-    image: zookeeper:3.5.7
+    image: zookeeper:${ZOOKEEPER_TAG}
     container_name: zk3
     networks:
       - biz-net
@@ -143,9 +149,11 @@ services:
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
+    env_file:
+      - .env
 
   apollo:
-    image: nobodyiam/apollo-quick-start
+    image: nobodyiam/apollo-quick-start:${APOLLO_QUICK_START_TAG}
     container_name: apollo
     networks:
       - biz-net
@@ -154,10 +162,14 @@ services:
       - 8070:8070
     depends_on:
       - apollo-db
+    env_file:
+      - .env
 
   apollo-db:
     image: mysql:5.7
     container_name: apollo-db
+    env_file:
+      - .env
     environment:
       TZ: Asia/Shanghai
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
@@ -168,6 +180,100 @@ services:
     volumes:
 #      - ./data/apollo/mysql:/var/lib/mysql
       - ./config/apollo:/docker-entrypoint-initdb.d
+
+  elasticsearch:
+    image: elasticsearch:${ELK_TAG}
+    container_name: elasticsearch
+    env_file:
+      - .env
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - TZ=Asia/Shanghai
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+#    volumes:
+#      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+#      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
+    networks:
+      - biz-net
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  kibana:
+    image: kibana:${ELK_TAG}
+    container_name: kibana
+    volumes:
+      - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      - biz-net
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    env_file:
+      - .env
+
+  logstash:
+    image: logstash:${ELK_TAG}
+    container_name: logstash
+    volumes:
+      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    networks:
+      - biz-net
+    ports:
+      - 7002:7002
+    depends_on:
+      - elasticsearch
+      - kibana
+    env_file:
+      - .env
+
+  skywalking-oap:
+    image: apache/skywalking-oap-server:${SKYWALKING_OAP_SERVER_TAG}
+    container_name: skywalking-oap
+    networks:
+      - biz-net
+    ports:
+      - 11800:11800
+      - 12800:12800
+    env_file:
+      - .env
+    environment:
+      - SW_STORAGE=elasticsearch7
+      - TZ=Asia/Shanghai
+      - SW_STORAGE_ES_CLUSTER_NODES=elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+  skywalking-ui:
+    image: apache/skywalking-ui:${SKYWALKING_UI_SERVER_TAG}
+    container_name: skywalking-ui
+    networks:
+      - biz-net
+    ports:
+      - 8090:8080
+    env_file:
+      - .env
+    environment:
+      - SW_OAP_ADDRESS=skywalking-oap:12800
+      - TZ=Asia/Shanghai
+    depends_on:
+      - skywalking-oap
+
+  eureka:
+    image: waynechu/biz-spring-cloud-eureka:1.0.0-RELEASE
+    networks:
+      - biz-net
+    ports:
+      - 9001-9009:8080
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=biz-spring-cloud-eureka
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://eureka:8080/eureka/,http://apollo:8080/eureka/
 
   gateway:
     image: waynechu/biz-spring-cloud-gateway:1.0.0-RELEASE
@@ -198,90 +304,6 @@ services:
     depends_on:
       - apollo
       - eureka
-
-  elasticsearch:
-    image: elasticsearch:7.10.1
-    container_name: elasticsearch
-    environment:
-      - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - TZ=Asia/Shanghai
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-#    volumes:
-#      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
-#      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
-    networks:
-      - biz-net
-    ports:
-      - 9200:9200
-      - 9300:9300
-
-  kibana:
-    image: kibana:7.10.1
-    container_name: kibana
-    volumes:
-      - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-    networks:
-      - biz-net
-    ports:
-      - 5601:5601
-    depends_on:
-      - elasticsearch
-
-  logstash:
-    image: logstash:7.10.1
-    container_name: logstash
-    volumes:
-      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-    networks:
-      - biz-net
-    ports:
-      - 7002:7002
-    depends_on:
-      - elasticsearch
-      - kibana
-
-  eureka:
-    image: waynechu/biz-spring-cloud-eureka:1.0.0-RELEASE
-    networks:
-      - biz-net
-    ports:
-      - 9001-9009:8080
-    environment:
-      - JAVA_OPTS=-Dspring.profiles.active=prd -Denv=DEV -Dapollo.configService=http://apollo:8080 -Ddev_meta=http://apollo:8080 -server -Xms256m -Xmx256m -Xmn100m -Xss256k -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly -XX:AutoBoxCacheMax=20000 -XX:-OmitStackTraceInFastThrow -Djava.rmi.server.hostname=local_ip -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=12345 -javaagent:/opt/skywalking-agent/skywalking-agent.jar -Dskywalking.collector.backend_service=skywalking-oap:11800 -Dskywalking.agent.service_name=biz-spring-cloud-eureka
-      - server.port=8080
-      - eureka.client.service-url.defaultZone=http://eureka:8080/eureka/,http://apollo:8080/eureka/
-
-  skywalking-oap:
-    image: apache/skywalking-oap-server:8.3.0-es7
-    container_name: skywalking-oap
-    networks:
-      - biz-net
-    ports:
-      - 11800:11800
-      - 12800:12800
-    environment:
-      - SW_STORAGE=elasticsearch7
-      - TZ=Asia/Shanghai
-      - SW_STORAGE_ES_CLUSTER_NODES=elasticsearch:9200
-    depends_on:
-      - elasticsearch
-
-  skywalking-ui:
-    image: apache/skywalking-ui:8.3.0
-    container_name: skywalking-ui
-    networks:
-      - biz-net
-    ports:
-      - 8090:8080
-    environment:
-      - SW_OAP_ADDRESS=skywalking-oap:12800
-      - TZ=Asia/Shanghai
-    depends_on:
-      - skywalking-oap
 
   oauth-server:
     image: waynechu/biz-spring-cloud-oauth-server:1.0.0-SNAPSHOT

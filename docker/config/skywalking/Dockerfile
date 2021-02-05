@@ -7,4 +7,4 @@ RUN apk update \
     && apk add tzdata \
     && cp /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone
-ADD /apache-skywalking-apm-bin/agent/ /opt/skywalking-agent/
+ADD /skywalking-agent/ /opt/skywalking-agent/
