@@ -166,11 +166,6 @@ docker-compose -h                      # 查看更多相关命令
    2. `dockerfile-maven-plugin` 抛出 `HttpHostConnectException: Connect to localhost:2375` 异常，需要检查你本地的docker服务是否开启2375端口的服务
 
 2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  
-    **重要：如果是在window环境，启动前需修改`/script/*/*.sh`下的脚本为linux格式。否则MySQL无法执行初始化脚本导致主从链路建立失败**
-    ```
-    vim ./init-master.sh  (vim ./init-slave.sh)
-    :set ff=unix
-    ```
     ```
     docker-compose up -d mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db
     ```
