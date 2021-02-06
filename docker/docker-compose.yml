@@ -17,7 +17,7 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=${MASTER_MYSQL_ROOT_PWD}
+      - MYSQL_ROOT_PASSWORD=${MASTER_MYSQL_ROOT_PASSWORD}
     command: [
       "--server-id=${MASTER_SERVER_ID}",
       "--character-set-server=utf8mb4",
@@ -44,7 +44,7 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PWD}
+      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PASSWORD}
     depends_on:   #容器依赖关系
       - mysql-master
     command: [
@@ -73,7 +73,7 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PWD}
+      - MYSQL_ROOT_PASSWORD=${SLAVES_MYSQL_ROOT_PASSWORD}
     depends_on:
       - mysql-master
     command: [
@@ -97,7 +97,7 @@ services:
       - 6379:6379
     env_file:
       - .env
-    command: redis-server --requirepass ${REDIS_DEFAULT_PWD}
+    command: redis-server --requirepass ${REDIS_DEFAULT_PASSWORD}
 
   rabbitmq:
     image: rabbitmq:${RABBITMQ_TAG}

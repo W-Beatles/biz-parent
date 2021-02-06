@@ -163,10 +163,11 @@ docker-compose -h                      # 查看更多相关命令
        ```
        docker build -t waynechu/biz-archetype-portal:1.0.0-SNAPSHOT . --build-arg JAR_FILE=./target/biz-archetype-portal-api-1.0.0-SNAPSHOT.jar
        ```
-   2. `dockerfile-maven-plugin` 抛出 `HttpHostConnectException: Connect to localhost:2375` 异常，需要检查你本地的docker服务是否开启2375端口的服务
+   2. 如果`dockerfile-maven-plugin` 抛出 `HttpHostConnectException: Connect to localhost:2375` 异常，需要检查你本地的docker服务是否开启2375端口的服务
 
-2. 启动基础服务。包括主从库、apollo数据库、rabbitmq等  
+2. 启动基础服务。包括主从库、Redis、rabbitmq、apollo数据库等  
     ```
+    cd ./docker
     docker-compose up -d mysql-master mysql-slave1 mysql-slave2 redis rabbitmq apollo-db
     ```
     注：可使用 `docker-compose logs -f --tail=10` 查看`compose`日志，然后等待基础服务启动完成
