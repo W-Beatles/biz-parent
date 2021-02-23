@@ -66,7 +66,7 @@
         <biz-spring-cloud-common.version>1.0.0-RELEASE</biz-spring-cloud-common.version>
         <biz-spring-cloud-api-starter.version>1.0.0-RELEASE</biz-spring-cloud-api-starter.version>
         <biz-boot-starter-dynamic-datasource.version>1.0.0-RELEASE</biz-boot-starter-dynamic-datasource.version>
-        <biz-boot-starter-logger.version>1.0.0-RELEASE</biz-boot-starter-logger.version>
+        <biz-boot-starter-logger.version>1.0.1-RELEASE</biz-boot-starter-logger.version>
         <biz-boot-starter-sequence.version>1.0.0-RELEASE</biz-boot-starter-sequence.version>
     </properties>
 

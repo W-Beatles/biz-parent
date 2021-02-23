@@ -2,10 +2,12 @@ package cn.waynechu.springcloud.test.agent.bytebuddy;
 
 /**
  * 测试基于bytebuddy的java agent
- * <p>
- * 1.添加启动参数:
- * -javaagent:D:\workspace\biz-parent\biz-spring-cloud-test\target\biz-spring-cloud-test-1.0.0-RELEASE.jar
- * 2. pom Premain-Class 切换
+ * <pre>
+ * 1. 添加启动参数:
+ *   -javaagent:D:\workspace\biz-parent\biz-spring-cloud-test\target\biz-spring-cloud-test-1.0.0-RELEASE.jar
+ * 2. 修改 pom Premain-Class
+ * </pre>
+ *
  * @author zhuwei
  * @since 2021/1/28 13:51
  */
