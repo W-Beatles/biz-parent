@@ -14,7 +14,7 @@ SpringCloud微服务开发脚手架
      动态数据源模块。支持读写分离、多数据源动态切换、健康检查。兼容`seata`分布式事务解决方案
      [更多](https://github.com/W-Beatles/biz-boot-starter-dynamic-datasource/blob/main/README.md)  
 3.  biz-boot-starter-logger  
-     `elk`&`sentry`日志模块。用于日志上传`ELK`及`Sentry`错误告警
+     日志模块。用于日志上传`ELK`、`Sentry`错误告警、`SkyWalking`
      [更多](https://github.com/W-Beatles/biz-boot-starter-logger/blob/main/README.md)
 4.  biz-boot-starter-sequence  
      基于`zookeeper`和`snowflake`算法的分布式id生成器
@@ -89,6 +89,7 @@ SpringCloud微服务开发脚手架
 14. utility模块添加ip地址反查、手机号归属查询服务  
 15. [perf] gateway使用WebClient优化接口调用，减少NIO请求 
 16. sequence支持多渠道生成，单渠道id唯一
+17. 支持nacos注册中心(见alibaba分支)
 
 ### docker快速启动
 为方便快速启动相关服务，提供`docker-compose`容器编排脚本，使用几个简单的命令即可启动相关服务模块
