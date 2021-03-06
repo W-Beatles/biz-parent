@@ -1,10 +1,7 @@
 package cn.waynechu.springcloud.gateway.swagger;
 
-import cn.waynechu.springcloud.common.util.StringUtil;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
-import com.netflix.discovery.shared.Application;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
@@ -12,7 +9,9 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * SwaggerResources提供方
@@ -30,27 +29,33 @@ import java.util.List;
 public class SwaggerProvider implements SwaggerResourcesProvider {
 
     @Resource
-    private EurekaClient eurekaClient;
+    private RouteLocator routeLocator;
+
+    private static final String API_URI = "/v2/api-docs";
 
     @Value("${gateway.swagger.exclude-applications}")
     private List<String> excludeApplications;
 
     @Override
     public List<SwaggerResource> get() {
-        List<Application> registeredApplications = eurekaClient.getApplications().getRegisteredApplications();
         List<SwaggerResource> resources = new ArrayList<>();
 
-        registeredApplications.forEach(application -> {
-            String applicationName = application.getName().toLowerCase();
-            List<InstanceInfo> instances = application.getInstances();
+        List<String> routeHosts = new ArrayList<>();
+        // 获取所有可用的host:serviceId
+        routeLocator.getRoutes()
+                .filter(route -> route.getUri().getHost() != null)
+                .filter(route -> !excludeApplications.contains(route.getUri().getHost()))
+                .subscribe(route -> routeHosts.add(route.getUri().getHost()));
 
-            if (!instances.isEmpty()) {
-                String swaggerName = instances.get(0).getMetadata().get("swagger-name");
-                if (StringUtil.isNotEmpty(swaggerName)) {
-                    resources.add(swaggerResource(swaggerName, "/" + applicationName + "/v2/api-docs"));
-                } else if (!excludeApplications.contains(applicationName)) {
-                    resources.add(swaggerResource(applicationName, "/" + applicationName + "/v2/api-docs"));
-                }
+        // 记录已经添加过的server，存在同一个应用注册了多个服务在nacos上
+        Set<String> routeHostSet = new HashSet<>();
+        routeHosts.forEach(instance -> {
+            // 拼接url，样式为/serviceId/v2/api-info，当网关调用这个接口时，会自动通过负载均衡寻找对应的主机
+            String url = "/" + instance + API_URI;
+            if (!routeHostSet.contains(url)) {
+                routeHostSet.add(url);
+                SwaggerResource swaggerResource = swaggerResource(instance, url);
+                resources.add(swaggerResource);
             }
         });
         return resources;

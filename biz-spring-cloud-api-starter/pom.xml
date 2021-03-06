@@ -43,17 +43,9 @@
             <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
 
-        <!-- SpringCloud -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <exclusions>
-                <!-- 解决与Swagger包依赖的guava:20.0冲突 -->
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
         <dependency>
