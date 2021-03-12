@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @UtilityClass
 public class ProtoStuffSerializeUtil {
 
-    private static Map<Class<?>, RuntimeSchema<?>> cachedRuntimeSchema = new ConcurrentHashMap<>();
+    private static Map<Class<?>, RuntimeSchema<?>> CACHED_RUNTIME_SCHEMA = new ConcurrentHashMap<>();
 
     /**
      * 获取相应类型的runtimeSchema
@@ -30,7 +30,7 @@ public class ProtoStuffSerializeUtil {
      */
     @SuppressWarnings({"unchecked"})
     private <T> RuntimeSchema<T> getSchema(Class<T> clazz) {
-        return (RuntimeSchema<T>) cachedRuntimeSchema.computeIfAbsent(clazz, RuntimeSchema::createFrom);
+        return (RuntimeSchema<T>) CACHED_RUNTIME_SCHEMA.computeIfAbsent(clazz, RuntimeSchema::createFrom);
     }
 
     /**

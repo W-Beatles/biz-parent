@@ -30,9 +30,4 @@ public class PinyinUtil {
             return s.toString().toLowerCase();
         }
     }
-
-    public static void main(String[] args) {
-        String pinyin = toPinyin("上海市");
-        System.out.println(pinyin);
-    }
 }

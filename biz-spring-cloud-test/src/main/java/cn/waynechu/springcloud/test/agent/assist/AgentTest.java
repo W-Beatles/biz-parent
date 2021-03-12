@@ -1,6 +1,7 @@
 package cn.waynechu.springcloud.test.agent.assist;
 
 import cn.hutool.core.thread.ThreadUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 测试基于javassist的java agent
@@ -11,6 +12,7 @@ import cn.hutool.core.thread.ThreadUtil;
  * @author zhuwei
  * @since 2021/1/23 14:46
  */
+@Slf4j
 public class AgentTest {
 
     public static void main(String[] args) {
@@ -18,7 +20,7 @@ public class AgentTest {
     }
 
     public static void testAgent() {
-        System.out.println("testAgent执行中");
+        log.info("testAgent执行中");
         ThreadUtil.sleep(1000);
     }
 }

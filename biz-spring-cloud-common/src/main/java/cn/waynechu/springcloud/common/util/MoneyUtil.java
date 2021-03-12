@@ -46,8 +46,4 @@ public class MoneyUtil {
         rs = new StringBuilder(rs.toString().replaceAll("亿万", "亿"));
         return rs.toString();
     }
-
-    public static void main(String[] args) {
-        System.out.println(MoneyUtil.toChinese(12356789.9845));
-    }
 }

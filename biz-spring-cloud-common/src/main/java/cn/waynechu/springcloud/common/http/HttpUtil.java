@@ -7,8 +7,14 @@ import org.springframework.util.StreamUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -383,38 +389,5 @@ public class HttpUtil {
             returnValue = true;
         }
         return returnValue;
-    }
-
-    public static void main(String[] args) {
-//        src:http://www.waynechu.cn:8080/aaa/bbb.xml?p=0&q=1#ref001
-//        HOST:www.waynechu.cn
-//        FILE:/aaa/bbb.xml?ZH_PATTERN=0&q=1
-//        PATH:/aaa/bbb.xml
-//        AUTH:www.waynechu.cn:8080
-//        PORT:8080
-//        PROTOCOL:http
-//        QUERY:ZH_PATTERN=0&q=1
-//        REF:ref001
-//        URI:http://www.waynechu.cn:8080/aaa/bbb.xml?p=0&q=1#ref001
-
-        String src = "http://www.waynechu.cn:8080/aaa/bbb.xml?ZH_PATTERN=0&q=1#ref001";
-
-        try {
-            URL url = new URL(src);
-
-            System.out.println("HOST:" + url.getHost());
-            System.out.println("FILE:" + url.getFile());
-            System.out.println("PATH:" + url.getPath());
-            System.out.println("AUTH:" + url.getAuthority());
-            System.out.println("PORT:" + url.getPort());
-            System.out.println("PROTOCOL:" + url.getProtocol());
-            System.out.println("QUERY:" + url.getQuery());
-            System.out.println("REF:" + url.getRef());
-            System.out.println("URI:" + url.toURI().toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
     }
 }

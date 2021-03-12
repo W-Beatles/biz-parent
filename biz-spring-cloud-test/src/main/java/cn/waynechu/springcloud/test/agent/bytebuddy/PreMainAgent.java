@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.test.agent.bytebuddy;
 
+import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.dynamic.DynamicType;
@@ -13,10 +14,11 @@ import java.lang.instrument.Instrumentation;
  * @author zhuwei
  * @since 2021/1/28 13:48
  */
+@Slf4j
 public class PreMainAgent {
 
     public static void premain(String args, Instrumentation instrumentation) {
-        System.out.println("------------------ bytebuddy PreMainAgent ------------------");
+        log.info("------------------ bytebuddy PreMainAgent ------------------");
 
         AgentBuilder.Transformer transformer = new AgentBuilder.Transformer() {
             @Override

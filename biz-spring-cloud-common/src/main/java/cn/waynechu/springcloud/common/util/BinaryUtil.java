@@ -177,19 +177,4 @@ public class BinaryUtil {
         }
         return -1;
     }
-
-    public static void main(String[] args) {
-        String s = convert10to62(Integer.MAX_VALUE);
-        System.out.println(s);
-
-        long ud2 = convert62to10("2lkCB1");
-        System.out.println(ud2);
-
-        System.out.println("7 -> " + toList(7));
-        System.out.println("7 -> " + toBinaryList(7));
-        System.out.println("8 -> " + toList(8));
-        System.out.println("8 -> " + toBinaryList(8));
-        System.out.println("13 -> " + toList(13));
-        System.out.println("13 -> " + toBinaryList(13));
-    }
 }

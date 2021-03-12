@@ -18,7 +18,7 @@ public class IDCardValidateUtil {
     /**
      * 省 & 直辖市代码表
      */
-    protected static String[][] codeAndCity = {{"11", "北京"}, {"12", "天津"},
+    protected static String[][] CODE_AND_CITY = {{"11", "北京"}, {"12", "天津"},
             {"13", "河北"}, {"14", "山西"}, {"15", "内蒙古"}, {"21", "辽宁"},
             {"22", "吉林"}, {"23", "黑龙江"}, {"31", "上海"}, {"32", "江苏"},
             {"33", "浙江"}, {"34", "安徽"}, {"35", "福建"}, {"36", "江西"},
@@ -29,7 +29,7 @@ public class IDCardValidateUtil {
             {"65", "新疆"}, {"71", "台湾"}, {"81", "香港"}, {"82", "澳门"},
             {"91", "国外"}};
 
-    private static String[] cityCode = {"11", "12", "13", "14", "15", "21", "22",
+    private static String[] CITY_CODE = {"11", "12", "13", "14", "15", "21", "22",
             "23", "31", "32", "33", "34", "35", "36", "37", "41", "42", "43",
             "44", "45", "46", "50", "51", "52", "53", "54", "61", "62", "63",
             "64", "65", "71", "81", "82", "91"};
@@ -37,12 +37,12 @@ public class IDCardValidateUtil {
     /**
      * 每位加权因子
      */
-    private static int[] power = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+    private static int[] POWER = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
 
     /**
      * 第18位校检码
      */
-    private static String[] verifyCode = {"1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"};
+    private static String[] VERIFY_CODE = {"1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"};
 
     /**
      * 验证所有的身份证的合法性
@@ -50,7 +50,7 @@ public class IDCardValidateUtil {
      * @param idCard 身份证号
      * @return 合法 true
      */
-    public boolean isValidatedAllIdcard(String idCard) {
+    public boolean isValidatedAllIdCard(String idCard) {
         if (idCard.length() == 15) {
             idCard = convertIdCarBy15bit(idCard);
         }
@@ -88,8 +88,8 @@ public class IDCardValidateUtil {
      * 5.通过上面得知如果余数是2，就会在身份证的第18位数字上出现罗马数字的Ⅹ。如果余数是10，身份证的最后一位号码就是2。
      * </p>
      *
-     * @param idCard
-     * @return
+     * @param idCard 身份证
+     * @return true if 合法
      */
     public static boolean isValidate18IdCard(String idCard) {
         // 非18位为假
@@ -127,9 +127,9 @@ public class IDCardValidateUtil {
      * 验证15位身份证的合法性,该方法验证不准确，最好是将15转为18位后再判断，该类中已提供。
      *
      * @param idCard 15位身份证
-     * @return
+     * @return true if 合法
      */
-    public boolean isValidate15Idcard(String idCard) {
+    public boolean isValidate15IdCard(String idCard) {
         // 非15位为假
         if (idCard.length() != 15) {
             return false;
@@ -145,7 +145,7 @@ public class IDCardValidateUtil {
 
             // 判断是否为合法的省份
             boolean flag = false;
-            for (String id : cityCode) {
+            for (String id : CITY_CODE) {
                 if (id.equals(provinceid)) {
                     flag = true;
                     break;
@@ -172,7 +172,7 @@ public class IDCardValidateUtil {
                     .substring(2));
 
             // 判断该年份的两位表示法，小于50的和大于当前年份的，为假
-            if ((year < 50 && year > year2bit)) {
+            if (year < 50 && year > year2bit) {
                 return false;
             }
 
@@ -193,21 +193,21 @@ public class IDCardValidateUtil {
                 case 8:
                 case 10:
                 case 12:
-                    mflag = (day >= 1 && day <= 31);
+                    mflag = day >= 1 && day <= 31;
                     break;
                 // 公历的2月非闰年有28天,闰年的2月是29天。
                 case 2:
                     if (curDay.isLeapYear(curDay.get(Calendar.YEAR))) {
-                        mflag = (day >= 1 && day <= 29);
+                        mflag = day >= 1 && day <= 29;
                     } else {
-                        mflag = (day >= 1 && day <= 28);
+                        mflag = day >= 1 && day <= 28;
                     }
                     break;
                 case 4:
                 case 6:
                 case 9:
                 case 11:
-                    mflag = (day >= 1 && day <= 30);
+                    mflag = day >= 1 && day <= 30;
                     break;
                 default:
                     break;
@@ -221,19 +221,19 @@ public class IDCardValidateUtil {
     /**
      * 将15位的身份证转成18位身份证
      *
-     * @param idcard
-     * @return
+     * @param idCard 身份证
+     * @return 18位身份证
      */
-    public static String convertIdCarBy15bit(String idcard) {
-        String idcard17;
+    public static String convertIdCarBy15bit(String idCard) {
+        String idCard17;
         // 非15位身份证
-        if (idcard.length() != 15) {
+        if (idCard.length() != 15) {
             return null;
         }
 
-        if (isDigital(idcard)) {
+        if (isDigital(idCard)) {
             // 获取出生年月日
-            String birthday = idcard.substring(6, 12);
+            String birthday = idCard.substring(6, 12);
             Date birthdate = null;
             try {
                 birthdate = new SimpleDateFormat("yyMMdd").parse(birthday);
@@ -244,9 +244,9 @@ public class IDCardValidateUtil {
             cday.setTime(birthdate);
             String year = String.valueOf(cday.get(Calendar.YEAR));
 
-            idcard17 = idcard.substring(0, 6) + year + idcard.substring(8);
+            idCard17 = idCard.substring(0, 6) + year + idCard.substring(8);
 
-            char[] c = idcard17.toCharArray();
+            char[] c = idCard17.toCharArray();
             String checkCode = "";
 
             int[] bit;
@@ -263,51 +263,51 @@ public class IDCardValidateUtil {
                 return null;
             }
             // 将前17位与第18位校验码拼接
-            idcard17 += checkCode;
+            idCard17 += checkCode;
         } else { // 身份证包含数字
             return null;
         }
-        return idcard17;
+        return idCard17;
     }
 
     /**
      * 15位和18位身份证号码的基本数字和位数验校
      *
-     * @param idcard
-     * @return
+     * @param idCard 身份证号
+     * @return true if success
      */
-    public boolean isIdcard(String idcard) {
-        return idcard != null && !"".equals(idcard)
-                && Pattern.matches("(^\\d{15}$)|(\\d{17}(?:\\d|X)$)", idcard);
+    public boolean isIdCard(String idCard) {
+        return idCard != null && !"".equals(idCard)
+                && Pattern.matches("(^\\d{15}$)|(\\d{17}(?:\\d|X)$)", idCard);
     }
 
     /**
      * 15位身份证号码的基本数字和位数验校
      *
-     * @param idcard
-     * @return
+     * @param idCard 身份证号
+     * @return true if success
      */
-    public boolean is15Idcard(String idcard) {
-        return idcard != null && !"".equals(idcard)
-                && Pattern.matches("^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$", idcard);
+    public boolean is15IdCard(String idCard) {
+        return idCard != null && !"".equals(idCard)
+                && Pattern.matches("^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$", idCard);
     }
 
     /**
      * 18位身份证号码的基本数字和位数验校
      *
-     * @param idcard
-     * @return
+     * @param idCard 身份证号
+     * @return true if success
      */
-    public boolean is18Idcard(String idcard) {
+    public boolean is18IdCard(String idCard) {
         return Pattern.matches(
-                "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([\\d|X]{1})$", idcard);
+                "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([\\d|X]{1})$", idCard);
     }
 
     /**
      * 数字验证
      *
      * @param str 字符串
-     * @return
+     * @return true if success
      */
     public static boolean isDigital(String str) {
         return str != null && !"".equals(str) && str.matches("^[0-9]*$");
@@ -316,20 +316,20 @@ public class IDCardValidateUtil {
     /**
      * 将身份证的每位和对应位的加权因子相乘之后，再得到和值
      *
-     * @param bit
-     * @return
+     * @param bit bit
+     * @return true if success
      */
     public static int getPowerSum(int[] bit) {
         int sum = 0;
 
-        if (power.length != bit.length) {
+        if (POWER.length != bit.length) {
             return sum;
         }
 
         for (int i = 0; i < bit.length; i++) {
-            for (int j = 0; j < power.length; j++) {
+            for (int j = 0; j < POWER.length; j++) {
                 if (i == j) {
-                    sum = sum + bit[i] * power[j];
+                    sum = sum + bit[i] * POWER[j];
                 }
             }
         }
@@ -339,7 +339,7 @@ public class IDCardValidateUtil {
     /**
      * 将和值与11取模得到余数进行校验码判断
      *
-     * @param sum17
+     * @param sum17 sum17
      * @return 校验位
      */
     public static String getCheckCodeBySum(int sum17) {
@@ -397,10 +397,5 @@ public class IDCardValidateUtil {
             a[k++] = Integer.parseInt(String.valueOf(temp));
         }
         return a;
-    }
-
-    public static void main(String[] args) {
-        String a = "52242619811105565X";
-        System.out.println(IDCardValidateUtil.isValidate18IdCard(a));
     }
 }

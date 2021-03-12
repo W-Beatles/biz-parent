@@ -1,6 +1,10 @@
 package cn.waynechu.springcloud.test.agent.assist;
 
-import javassist.*;
+import javassist.CannotCompileException;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
+import javassist.NotFoundException;
 
 import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
@@ -29,10 +33,10 @@ public class SimpleClassFileTransformer implements ClassFileTransformer {
             method.addLocalVariable("beginTime", CtClass.longType);
             // 在main方法之前增加代码
             method.insertBefore("long beginTime = System.currentTimeMillis();");
-            method.insertBefore("System.out.println(\"开始调用\");");
+            method.insertBefore("log.info(\"开始调用\");");
             // 在main方法之后打印出耗时长短
-            method.insertAfter("System.out.println(\"调用结束\");");
-            method.insertAfter("System.out.println(\"总共耗时：\" + (System.currentTimeMillis() - beginTime) + \"ms\");");
+            method.insertAfter("log.info(\"调用结束\");");
+            method.insertAfter("log.info(\"总共耗时：\" + (System.currentTimeMillis() - beginTime) + \"ms\");");
             // 返回修改过后的字节码数据
             return ctClass.toBytecode();
         } catch (NotFoundException e) {

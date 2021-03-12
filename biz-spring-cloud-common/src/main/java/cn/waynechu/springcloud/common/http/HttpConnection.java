@@ -1,6 +1,10 @@
 package cn.waynechu.springcloud.common.http;
 
-import org.apache.http.*;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -24,7 +28,7 @@ import java.util.List;
  * @since 2018/11/6 18:51
  */
 public class HttpConnection {
-    private static final Logger logger = LoggerFactory.getLogger(HttpConnection.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpConnection.class);
 
     public static final int MAX_TRY_TIMES = 3;
     public static final int RETRY_WAIT_MSECS = 5000;
@@ -80,14 +84,14 @@ public class HttpConnection {
                             return request(redirectUrl, paramPairs, headerPairs, method, triedTimes);
                         }
                     } else {
-                        logger.error("HttpConnection loop redirect.");
+                        LOGGER.error("HttpConnection loop redirect.");
                     }
                 }
                 success = true;
             } catch (Exception e) {
                 success = false;
 
-                logger.error("HttpConnection", e.getMessage(), e);
+                LOGGER.error("HttpConnection", e.getMessage(), e);
 
                 if (triedTimes >= (retryTimes - 1)) {
                     throw e;
@@ -162,13 +166,13 @@ public class HttpConnection {
                             return request(redirectUrl, content, headerPairs, triedTimes, method);
                         }
                     } else {
-                        logger.error("HttpConnection loop redirect.");
+                        LOGGER.error("HttpConnection loop redirect.");
                     }
                 }
                 success = true;
             } catch (Exception e) {
                 success = false;
-                logger.error("HttpConnection", e.getMessage(), e);
+                LOGGER.error("HttpConnection", e.getMessage(), e);
 
                 if (triedTimes >= (retryTimes - 1)) {
                     throw e;
@@ -192,10 +196,8 @@ public class HttpConnection {
                 }
             }
         } while (!success && triedTimes < retryTimes);
-
         return returnBuffer;
     }
-
 
     public static HttpUriRequest generateHttpRequest(final String url, final List<HttpEntity> entities) {
         //  the post method

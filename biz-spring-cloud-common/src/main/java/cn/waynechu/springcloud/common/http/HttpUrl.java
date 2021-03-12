@@ -14,7 +14,7 @@ import java.util.Map;
  * @since 2018/11/6 18:51
  */
 public class HttpUrl {
-    private static final Logger logger = LoggerFactory.getLogger(HttpUrl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpUrl.class);
 
     private String raw;
     private URL url;
@@ -71,7 +71,7 @@ public class HttpUrl {
 
             queryParams = HttpUtil.getQueryParameters(query);
         } catch (Exception e) {
-            logger.error("Parse url raw error.", e);
+            LOGGER.error("Parse url raw error.", e);
         }
     }
 
@@ -89,7 +89,7 @@ public class HttpUrl {
             path = StringUtil.isEmpty(path) ? "/" : path;
             queryParams = HttpUtil.getQueryParameters(query);
         } catch (Exception e) {
-            logger.error("Parse url error.", e);
+            LOGGER.error("Parse url error.", e);
         }
     }
 

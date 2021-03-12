@@ -137,10 +137,4 @@ public class StringUtil {
         }
         return result.toString();
     }
-
-    public static void main(String[] args) {
-        String str = "trace-app-ids";
-        String camelStr = toCamel(str, "-");
-        System.out.println(camelStr);
-    }
 }

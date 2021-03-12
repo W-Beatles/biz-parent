@@ -1,5 +1,7 @@
 package cn.waynechu.springcloud.test.agent.bytebuddy;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 测试基于bytebuddy的java agent
  * <pre>
@@ -11,15 +13,16 @@ package cn.waynechu.springcloud.test.agent.bytebuddy;
  * @author zhuwei
  * @since 2021/1/28 13:51
  */
+@Slf4j
 public class AgentTest {
 
     private void fun1() throws Exception {
-        System.out.println("this is fun 1.");
+        log.info("this is fun 1.");
         Thread.sleep(500);
     }
 
     private void fun2() throws Exception {
-        System.out.println("this is fun 2.");
+        log.info("this is fun 2.");
         Thread.sleep(500);
     }
 

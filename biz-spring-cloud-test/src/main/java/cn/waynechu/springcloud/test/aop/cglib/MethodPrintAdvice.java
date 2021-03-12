@@ -1,7 +1,6 @@
 package cn.waynechu.springcloud.test.aop.cglib;
 
 import cn.waynechu.springcloud.common.annotation.MethodLog;
-import cn.waynechu.springcloud.common.util.JsonBinder;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -24,7 +23,7 @@ public class MethodPrintAdvice implements MethodInterceptor {
         Object returnValue;
 
         // 获取目标类
-        Class<?> targetClass = (invocation.getThis() != null ? AopUtils.getTargetClass(invocation.getThis()) : null);
+        Class<?> targetClass = invocation.getThis() != null ? AopUtils.getTargetClass(invocation.getThis()) : null;
         // 获取指定方法
         Method specificMethod = ClassUtils.getMostSpecificMethod(invocation.getMethod(), targetClass);
         // 获取真正执行的方法,可能存在桥接方法

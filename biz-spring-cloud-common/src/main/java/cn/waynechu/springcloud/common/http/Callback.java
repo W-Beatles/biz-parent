@@ -15,7 +15,7 @@ public interface Callback {
     /**
      * Callback the method when there is an exception when http connecting.
      *
-     * @param exception
+     * @param exception e
      */
     void exception(Exception exception);
 }

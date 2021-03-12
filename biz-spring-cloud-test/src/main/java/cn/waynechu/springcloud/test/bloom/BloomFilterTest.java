@@ -2,11 +2,13 @@ package cn.waynechu.springcloud.test.bloom;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author zhuwei
  * @since 2020-04-20 22:56
  */
+@Slf4j
 public class BloomFilterTest {
 
     public static void main(String[] args) {
@@ -18,9 +20,7 @@ public class BloomFilterTest {
         for (int i = 0; i < size; i++) {
             filter.put(i);
         }
-        System.out.println("init");
-
-        System.out.println(filter.mightContain(10));
-        System.out.println(filter.mightContain(20));
+        log.info(String.valueOf(filter.mightContain(10)));
+        log.info(String.valueOf(filter.mightContain(20)));
     }
 }

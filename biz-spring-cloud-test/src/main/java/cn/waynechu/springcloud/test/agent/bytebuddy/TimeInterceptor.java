@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.test.agent.bytebuddy;
 
+import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.implementation.bind.annotation.Origin;
 import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import net.bytebuddy.implementation.bind.annotation.SuperCall;
@@ -11,6 +12,7 @@ import java.util.concurrent.Callable;
  * @author zhuwei
  * @since 2021/1/28 13:49
  */
+@Slf4j
 public class TimeInterceptor {
 
     @RuntimeType
@@ -21,7 +23,7 @@ public class TimeInterceptor {
             // 原有函数执行
             return callable.call();
         } finally {
-            System.out.println(method + ": took " + (System.currentTimeMillis() - start) + "ms");
+            log.info(method + ": took " + (System.currentTimeMillis() - start) + "ms");
         }
     }
 }

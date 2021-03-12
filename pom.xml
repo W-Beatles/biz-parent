@@ -62,6 +62,9 @@
         <jetcache-starter-redis-lettuce.version>2.5.14</jetcache-starter-redis-lettuce.version>
         <xxl-job-core.version>2.1.0</xxl-job-core.version>
 
+        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+
+        <build-tools.version>1.0.0-RELEASE</build-tools.version>
         <biz-facade-common.version>1.0.0-RELEASE</biz-facade-common.version>
         <biz-spring-cloud-common.version>1.0.0-RELEASE</biz-spring-cloud-common.version>
         <biz-spring-cloud-api-starter.version>1.0.0-RELEASE</biz-spring-cloud-api-starter.version>
@@ -71,6 +74,7 @@
     </properties>
 
     <modules>
+        <module>build-tools</module>
         <module>biz-facade-common</module>
 
         <module>biz-archetype</module>
@@ -421,6 +425,35 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>cn.waynechu</groupId>
+                        <artifactId>build-tools</artifactId>
+                        <version>${build-tools.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <configLocation>style/checkStyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>

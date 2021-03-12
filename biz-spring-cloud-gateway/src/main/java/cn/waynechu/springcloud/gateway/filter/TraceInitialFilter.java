@@ -16,7 +16,19 @@ import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
-import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.*;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_ORIGIN_URL;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_REQUEST_ID;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_SC_CLIENT_IP;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_TRACE_APP_IDS;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_TRACE_APP_NAMES;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_TRACE_HOST_ADDRESSES;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.HEADER_KEY_TRACE_HOST_NAMES;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_REQUEST_ID;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_SC_CLIENT_IP;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_TRACE_APP_IDS;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_TRACE_APP_NAMES;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_TRACE_HOST_ADDRESSES;
+import static cn.waynechu.bootstarter.logger.constant.TraceKeyConstant.MDC_KEY_TRACE_HOST_NAMES;
 
 /**
  * 初始化requestId以及trace信息过滤器

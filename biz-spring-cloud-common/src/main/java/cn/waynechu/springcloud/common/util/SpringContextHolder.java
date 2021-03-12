@@ -8,13 +8,13 @@ import org.springframework.context.ApplicationContextAware;
  * @since 2018/11/7 12:33
  */
 public class SpringContextHolder implements ApplicationContextAware {
-    private static ApplicationContext applicationContext = null;
-    private static boolean isMocked;
+    private static ApplicationContext APPLICATION_CONTEXT = null;
+    private static boolean IS_MOCKED;
 
     @Override
     public void setApplicationContext(ApplicationContext context) {
-        if (SpringContextHolder.applicationContext == null) {
-            applicationContext = context;
+        if (SpringContextHolder.APPLICATION_CONTEXT == null) {
+            APPLICATION_CONTEXT = context;
         }
     }
 
@@ -24,16 +24,16 @@ public class SpringContextHolder implements ApplicationContextAware {
      * @param mockApplicationContext mockContext
      */
     public static synchronized void setApplicationContextForTest(ApplicationContext mockApplicationContext) {
-        applicationContext = mockApplicationContext;
-        isMocked = true;
+        APPLICATION_CONTEXT = mockApplicationContext;
+        IS_MOCKED = true;
     }
 
     public static ApplicationContext getApplicationContext() {
-        return applicationContext;
+        return APPLICATION_CONTEXT;
     }
 
     public static Object getBean(String name) {
-        return applicationContext.getBean(name);
+        return APPLICATION_CONTEXT.getBean(name);
     }
 
     /**
@@ -44,7 +44,7 @@ public class SpringContextHolder implements ApplicationContextAware {
      * @return bean
      */
     public static <T> T getBean(Class<T> clazz) {
-        return applicationContext.getBean(clazz);
+        return APPLICATION_CONTEXT.getBean(clazz);
     }
 
     /**
@@ -56,14 +56,14 @@ public class SpringContextHolder implements ApplicationContextAware {
      * @return bean
      */
     public static <T> T getBean(String name, Class<T> clazz) {
-        return applicationContext.getBean(name, clazz);
+        return APPLICATION_CONTEXT.getBean(name, clazz);
     }
 
     public static void clearHolder() {
-        applicationContext = null;
+        APPLICATION_CONTEXT = null;
     }
 
     public static boolean isMocked() {
-        return isMocked;
+        return IS_MOCKED;
     }
 }

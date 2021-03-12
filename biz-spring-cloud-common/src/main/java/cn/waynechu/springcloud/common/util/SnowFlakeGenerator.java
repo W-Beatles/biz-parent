@@ -90,9 +90,4 @@ public class SnowFlakeGenerator {
     private static long timeGen() {
         return System.currentTimeMillis();
     }
-
-    public static void main(String[] args) {
-        long id = new SnowFlakeGenerator(11, 22).nextId();
-        System.out.println(id);
-    }
 }

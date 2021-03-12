@@ -5,7 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author zhuwei
@@ -18,16 +26,16 @@ public class BeanUtil {
     private static final String NEW_INSTANCE_INSTANTIATION_ERROR = "New instance error. Is it an abstract class?";
     private static final String NEW_INSTANCE_ILLEGAL_ACCESS_ERROR = "New instance error. Is the constructor accessible?";
 
-    private static Map<String, BeanStructure> beanStructureCache = new HashMap<>();
+    private static Map<String, BeanStructure> BEAN_STRUCTURE_CACHE = new HashMap<>();
 
     /**
-     * 转换<X>源类型对象为<Y>目标类型对象
+     * 转换X源类型对象为Y目标类型对象
      *
      * @param srcObject   源对象
      * @param targetClass 目标类
-     * @param <X>         <X>源对象类型
-     * @param <Y>         <Y>目标对象类型
-     * @return <Y>类型对象
+     * @param <X>         X源对象类型
+     * @param <Y>         Y目标对象类型
+     * @return Y类型对象
      */
     public static <X, Y> Y beanTransfer(X srcObject, Class<Y> targetClass) {
         Y returnValue = null;
@@ -50,8 +58,8 @@ public class BeanUtil {
      *
      * @param srcMapData  源map数据
      * @param targetClass 目标类
-     * @param <T>         <T>目标类型
-     * @return <T>类型对象
+     * @param <T>         T目标类型
+     * @return T类型对象
      */
     public static <T> T beanTransfer(Map<String, Object> srcMapData, Class<T> targetClass) {
         T returnValue = null;
@@ -71,13 +79,13 @@ public class BeanUtil {
     }
 
     /**
-     * 转换<X>源类型列表对象为<Y>目标类型列表对象
+     * 转换X源类型列表对象为Y目标类型列表对象
      *
      * @param srcObjects  转换列表对象
      * @param targetClass 目标类
-     * @param <X>         <X>源类型
-     * @param <Y>         <Y>目标类型
-     * @return <Y>目标类型列表对象
+     * @param <X>         X源类型
+     * @param <Y>         Y目标类型
+     * @return Y目标类型列表对象
      */
     public static <X, Y> List<Y> beanListTransfer(List<X> srcObjects, Class<Y> targetClass) {
         List<Y> returnValue = null;
@@ -183,7 +191,7 @@ public class BeanUtil {
     }
 
     /**
-     * 获取对象属性值并转化成<T>目标类型
+     * 获取对象属性值并转化成T目标类型
      *
      * @param object       源对象
      * @param propertyName 属性名称
@@ -234,7 +242,7 @@ public class BeanUtil {
      * @return 属性结构
      */
     public static BeanStructure getBeanStructure(Class<?> clazz) {
-        BeanStructure returnValue = beanStructureCache.get(clazz.getName());
+        BeanStructure returnValue = BEAN_STRUCTURE_CACHE.get(clazz.getName());
         if (returnValue != null) {
             return returnValue;
         }
@@ -268,7 +276,7 @@ public class BeanUtil {
             }
             returnValue.getProperties().put(entry.getKey(), beanProperty);
         }
-        beanStructureCache.put(clazz.getName(), returnValue);
+        BEAN_STRUCTURE_CACHE.put(clazz.getName(), returnValue);
         return returnValue;
     }
 

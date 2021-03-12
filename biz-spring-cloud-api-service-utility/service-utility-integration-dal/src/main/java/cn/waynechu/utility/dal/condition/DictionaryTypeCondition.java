@@ -3,8 +3,6 @@ package cn.waynechu.utility.dal.condition;
 import cn.waynechu.utility.dal.dataobject.DictionaryTypeDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author zhuwei

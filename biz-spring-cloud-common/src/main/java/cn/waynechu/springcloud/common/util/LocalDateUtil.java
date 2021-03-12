@@ -3,7 +3,11 @@ package cn.waynechu.springcloud.common.util;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -157,15 +161,5 @@ public class LocalDateUtil {
         polishRange.setEndTime(endTime);
         returnValue.add(polishRange);
         return returnValue;
-    }
-
-    public static void main(String[] args) {
-        LocalDateTimeRange range = new LocalDateTimeRange();
-        range.setStartTime(LocalDateTime.of(2018, 10, 1, 0, 0));
-        range.setEndTime(LocalDateTime.of(2019, 10, 1, 0, 0));
-        List<LocalDateTimeRange> localDateTimeRanges = splitLocalDateTime(range, 90);
-        for (LocalDateTimeRange localDateTimeRange : localDateTimeRanges) {
-            System.out.println(localDateTimeRange);
-        }
     }
 }

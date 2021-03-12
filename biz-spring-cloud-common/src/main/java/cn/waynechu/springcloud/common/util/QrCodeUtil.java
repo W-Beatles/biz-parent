@@ -65,9 +65,4 @@ public class QrCodeUtil {
         }
         return image;
     }
-
-    public static void main(String[] args) {
-        String qrCode = generateRrCode("http://www.waynechu.cn", 1000, 1000);
-        System.out.println("data:image/jpg;base64," + qrCode);
-    }
 }

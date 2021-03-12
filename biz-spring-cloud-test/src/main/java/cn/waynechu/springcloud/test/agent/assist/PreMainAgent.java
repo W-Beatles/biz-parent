@@ -1,5 +1,7 @@
 package cn.waynechu.springcloud.test.agent.assist;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.instrument.Instrumentation;
 
 /**
@@ -20,10 +22,11 @@ import java.lang.instrument.Instrumentation;
  * @author zhuwei
  * @since 2021/1/23 14:15
  */
+@Slf4j
 public class PreMainAgent {
 
     public static void premain(String args, Instrumentation instrumentation) {
-        System.out.println("------------------ assist PreMainAgent ------------------");
+        log.info("------------------ assist PreMainAgent ------------------");
         instrumentation.addTransformer(new SimpleClassFileTransformer());
     }
 }

@@ -6,20 +6,30 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.connection.convert.Converters;
-import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.core.DefaultTypedTuple;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author zhuwei
  * @since 2020/4/20 17:24
  */
-public class AbstractOperations<K,V> {
+public class AbstractOperations<K, V> {
 
     // utility methods for the template internal methods
     abstract class ValueDeSerializingRedisCallback implements RedisCallback<V> {
@@ -102,19 +112,17 @@ public class AbstractOperations<K,V> {
     }
 
     byte[][] rawValues(Object... values) {
-
         byte[][] rawValues = new byte[values.length][];
         int i = 0;
         for (Object value : values) {
             rawValues[i++] = rawValue(value);
         }
-
         return rawValues;
     }
 
     /**
      * @param values must not be {@literal empty} nor contain {@literal null} values.
-     * @return
+     * @return byte
      * @since 1.5
      */
     byte[][] rawValues(Collection<V> values) {
@@ -208,7 +216,7 @@ public class AbstractOperations<K,V> {
         return set;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     ZSetOperations.TypedTuple<V> deserializeTuple(RedisZSetCommands.Tuple tuple) {
         Object value = tuple.getValue();
         if (valueSerializer() != null) {
@@ -285,8 +293,8 @@ public class AbstractOperations<K,V> {
     }
 
     /**
-     * @param keys
-     * @return
+     * @param keys keys
+     * @return byte
      * @since 1.7
      */
     Set<K> deserializeKeys(Set<byte[]> keys) {
@@ -313,7 +321,7 @@ public class AbstractOperations<K,V> {
         return (String) stringSerializer().deserialize(value);
     }
 
-    @SuppressWarnings({ "unchecked" })
+    @SuppressWarnings({"unchecked"})
     <HK> HK deserializeHashKey(byte[] value) {
         if (hashKeySerializer() == null) {
             return (HK) value;

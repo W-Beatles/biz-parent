@@ -25,7 +25,7 @@ public class DesensitizeUtil {
      * [姓名] 只显示第一个汉字，其他隐藏为星号
      *
      * @param fullName 姓名
-     * @return <示例：李**>
+     * @return 示例: 李**
      */
     public static String chineseName(String fullName) {
         if (StringUtils.isBlank(fullName)) {
@@ -39,7 +39,7 @@ public class DesensitizeUtil {
      * [身份证号] 显示最后四位，其他隐藏。共计18位或者15位
      *
      * @param idCardNum 身份证号
-     * @return <示例：*************5762>
+     * @return 示例: *************5762
      */
     public static String idCardNum(String idCardNum) {
         if (StringUtils.isBlank(idCardNum)) {
@@ -53,7 +53,7 @@ public class DesensitizeUtil {
      * [手机号码] 前三位，后四位，其他隐藏
      *
      * @param num 手机号码
-     * @return <示例:138******1234>
+     * @return 示例: 138******1234
      */
     public static String mobilePhone(String num) {
         if (StringUtils.isBlank(num)) {
@@ -68,7 +68,7 @@ public class DesensitizeUtil {
      * [银行卡号] 前六位，后四位，其他用星号隐藏每位1个星号
      *
      * @param cardNum 银行卡号
-     * @return <示例:6222600**********1234>
+     * @return 示例: 6222600**********1234
      */
     public static String bankCard(String cardNum) {
         if (StringUtils.isBlank(cardNum)) {
@@ -84,7 +84,7 @@ public class DesensitizeUtil {
      * [密码] 用六位星号隐藏
      *
      * @param password 密码
-     * @return <示例:******>
+     * @return 示例: ******
      */
     public static String password(String password) {
         if (StringUtils.isBlank(password)) {
@@ -136,7 +136,7 @@ public class DesensitizeUtil {
     /**
      * 判断从字符串msg获取的key值是否为单词，index为key在msg中的索引值
      *
-     * @return
+     * @return true if success
      */
     private static boolean isWordChar(String msg, String key, int index) {
         // 必须确定key是一个单词
@@ -159,7 +159,7 @@ public class DesensitizeUtil {
      *
      * @param msg        要查找的字符串
      * @param valueStart 查找的开始位置
-     * @return
+     * @return value值的开始位置
      */
     private static int getValueStartIndex(String msg, int valueStart) {
         // 寻找值的开始位置
@@ -187,7 +187,7 @@ public class DesensitizeUtil {
     /**
      * 获取value值的结束位置
      *
-     * @return
+     * @return value值的结束位置
      */
     private static int getValueEndIndex(String msg, int valueEnd) {
         do {
@@ -241,14 +241,5 @@ public class DesensitizeUtil {
             return DesensitizeUtil.password(submsg);
         }
         return "";
-    }
-
-    public static void main(String[] args) {
-        String tempMsg = "{sign=f88898b2677e62f1ad54b9e330c0a27e, idcard=130333198901192762, realname=%E5%BE%90%E5%BD%A6%E5%A8%9C, key=c5d34d4c3c71cc45c88f32b4f13da887, mobile=13210141605, bankcard=6226430106137525}";
-        String tempMsg1 = "{\"reason\":\"成功 \",\"result\":{\"jobid\":\"JH2131171027170837443588J6\",\"realname\":\"李哪娜\",\"bankcard\":\"6226430106137525\",\"idcard\":\"130333198901192762\",\"mobile\":\"13210141605\",\"password\":\"123456\",\"message\":\"验证成功\"},\"error_code\":0}";
-        String[] keysArray = {DesensitizeUtil.BANKCARD, DesensitizeUtil.IDCARD, DesensitizeUtil.MOBILE,
-                DesensitizeUtil.PASSWORD, DesensitizeUtil.PWD};
-        System.out.println(desensitize(tempMsg, keysArray));
-        System.out.println(desensitize(tempMsg1, keysArray));
     }
 }

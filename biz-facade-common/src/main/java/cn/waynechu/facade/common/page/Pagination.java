@@ -42,7 +42,6 @@ public class Pagination implements Serializable {
         calculate();
     }
 
-
     public void setTotalRows(int total) {
         totalRows = total;
         calculate();

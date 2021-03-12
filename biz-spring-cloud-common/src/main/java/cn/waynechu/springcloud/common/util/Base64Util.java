@@ -83,10 +83,4 @@ public class Base64Util {
         Base64.Encoder encoder = Base64.getEncoder();
         return encoder.encodeToString(data.toByteArray());
     }
-
-    public static void main(String[] args) {
-        String imageUrl = "https://upload.jianshu.io/users/upload_avatars/2378056/9a011f6ce0c4.jpg";
-        String imageStr = netImageToBase64(imageUrl);
-        System.out.println("data:image/jpg;base64," + imageStr);
-    }
 }
