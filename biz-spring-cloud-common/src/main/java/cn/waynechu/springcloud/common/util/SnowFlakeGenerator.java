@@ -1,5 +1,7 @@
 package cn.waynechu.springcloud.common.util;
 
+import java.util.Random;
+
 /**
  * Twitter_Snowflake ID生成器
  *
@@ -37,11 +39,15 @@ public class SnowFlakeGenerator {
     private static final long DATA_CENTER_ID_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS;
     private static final long TIMESTAMP_LEFT_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS + DATA_CENTER_ID_BITS;
     private static final long SEQUENCE_MASK = ~(-1L << SEQUENCE_BITS);
+    private static final Random RANDOM = new Random();
 
-    private long workerId;
-    private long dataCenterId;
+    private final long workerId;
+    private final long dataCenterId;
     private long sequence = 0L;
     private long lastTimestamp = -1L;
+
+    private long lastShiftTimestamp;
+    private int lastShiftValue;
 
     /**
      * @param dataCenterId 数据中心ID
@@ -59,24 +65,29 @@ public class SnowFlakeGenerator {
     }
 
     public synchronized long nextId() {
-        long timestamp = timeGen();
-        // 如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
-        if (timestamp < lastTimestamp) {
-            throw new RuntimeException(String.format("Clock moved backwards. Refusing to generate id for %d milliseconds", lastTimestamp - timestamp));
+        long currentTimeMillis = timeGen();
+        // 处理系统时钟回退
+        if (currentTimeMillis < lastTimestamp) {
+            if (lastShiftTimestamp != currentTimeMillis) {
+                lastShiftValue++;
+                lastShiftTimestamp = currentTimeMillis;
+            }
+            currentTimeMillis = lastShiftValue;
         }
         // 如果是同一时间生成的，则进行毫秒内序列
-        if (lastTimestamp == timestamp) {
+        else if (currentTimeMillis == lastTimestamp) {
             sequence = (sequence + 1) & SEQUENCE_MASK;
             // 毫秒内序列溢出
             if (sequence == 0) {
                 // 阻塞到下一个毫秒，获得新的时间戳
-                timestamp = tilNextMillis(lastTimestamp);
+                currentTimeMillis = tilNextMillis(lastTimestamp);
             }
         } else {
-            sequence = 0L;
+            // 时间戳改变，毫秒内序列重置。避免低并发的情况下id都为偶数
+            sequence = RANDOM.nextInt(10);
         }
-        lastTimestamp = timestamp;
-        return ((timestamp - TWEPOCH) << TIMESTAMP_LEFT_SHIFT) | (dataCenterId << DATA_CENTER_ID_SHIFT) | (workerId << WORKER_ID_SHIFT) | sequence;
+        lastTimestamp = currentTimeMillis;
+        return ((currentTimeMillis - TWEPOCH) << TIMESTAMP_LEFT_SHIFT) | (dataCenterId << DATA_CENTER_ID_SHIFT) | (workerId << WORKER_ID_SHIFT) | sequence;
     }
 
     private static long tilNextMillis(long lastTimestamp) {
