@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author zhuwei@tuhu.cn
+ * @author zhuwei
  * @since 2021/5/8 17:47
  */
 public class SnowFlakeGeneratorTest {
