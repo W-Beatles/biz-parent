@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.common.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @author zhuwei
  * @since 2021/5/8 17:47
  */
+@Slf4j
 public class SnowFlakeGeneratorTest {
 
     private SnowFlakeGenerator generator;
@@ -27,7 +29,7 @@ public class SnowFlakeGeneratorTest {
                 int j = 0;
                 while (j++ < 9999) {
                     long id = generator.nextId();
-                    System.out.println(id);
+                    log.info(String.valueOf(id));
                 }
             }).start();
         }
@@ -37,7 +39,7 @@ public class SnowFlakeGeneratorTest {
         SnowFlakeGenerator generator = new SnowFlakeGenerator(1, 1);
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
             long id = generator.nextId();
-            System.out.println(id);
+            log.info(String.valueOf(id));
         }, 0, 1, TimeUnit.SECONDS);
     }
 }
