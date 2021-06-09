@@ -1,7 +1,13 @@
 package cn.waynechu.order.api.runner;
 
+import cn.hutool.bloomfilter.BitMapBloomFilter;
 import cn.waynechu.springcloud.apistarter.cache.BloomOperations;
 import cn.waynechu.springcloud.apistarter.cache.RedisHelper;
+import com.alibaba.fastjson.JSONObject;
+import com.carrotsearch.sizeof.RamUsageEstimator;
+import com.google.common.base.Charsets;
+import com.google.common.hash.BloomFilter;
+import com.google.common.hash.Funnels;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -49,5 +55,65 @@ public class BloomFilterRunner implements ApplicationRunner {
         // 6.删除布隆过滤器
         Boolean delete = bloomOperations.delete(key);
         log.info("test delete result: {}", delete);
+    }
+
+    public void testHuToolBloomFilter() {
+        // 初始化
+        BitMapBloomFilter filter = new BitMapBloomFilter(10);
+        filter.add("123");
+        filter.add("abc");
+        filter.add("ddd");
+
+        // 查找
+        boolean flag = filter.contains("abc");
+        System.out.println(flag);
+    }
+
+    public void testGuavaBloomFilter() {
+        int size = 3000000;
+        BloomFilter<String> filter = BloomFilter.create(
+                Funnels.stringFunnel(Charsets.UTF_8), size, 0.1);
+
+        for (int i = 0; i < size; i++) {
+            TaskCreateBO taskCreateBO = TaskCreateBO.builder()
+                    .shopId(i).processor("10000" + i).role(i)
+                    .build();
+            filter.put(JSONObject.toJSONString(taskCreateBO));
+        }
+
+        log.info(String.valueOf(RamUsageEstimator.sizeOf(filter)));
+        log.info(String.valueOf(getMb(filter)));
+
+        TaskCreateBO taskCreateBO = TaskCreateBO.builder()
+                .shopId(1).processor("10000" + 1).role(1)
+                .build();
+        log.info(String.valueOf(filter.mightContain(JSONObject.toJSONString(taskCreateBO))));
+    }
+
+    public static void main(String[] args) {
+        BloomFilterRunner bloomFilterRunner = new BloomFilterRunner();
+        bloomFilterRunner.testHuToolBloomFilter();
+
+        bloomFilterRunner.testGuavaBloomFilter();
+    }
+
+    private int getMb(Object obj) {
+
+        if (obj == null) {
+            return 0;
+        }
+        //计算指定对象本身在堆空间的大小，单位字节
+        long byteCount = RamUsageEstimator.shallowSizeOf(obj);
+        if (byteCount == 0) {
+            return 0;
+        }
+        double oneMb = 1 * 1024 * 1024;
+
+        if (byteCount < oneMb) {
+            return 1;
+        }
+
+        Double v = Double.valueOf(byteCount) / oneMb;
+        return v.intValue();
     }
 }
