@@ -36,8 +36,6 @@
         <apollo-client.version>1.4.0</apollo-client.version>
         <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
         <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
-        <dubbo.version>3.0.4</dubbo.version>
-        <zookeeper.version>3.5.7</zookeeper.version>
         <curator.version>4.3.0</curator.version>
         <hutool-core.version>5.3.8</hutool-core.version>
         <poi.version>3.17</poi.version>
@@ -47,9 +45,7 @@
         <fastjson.version>1.2.71</fastjson.version>
         <zxing.version>3.4.0</zxing.version>
         <druid.version>1.1.20</druid.version>
-        <fescar-all.version>0.4.2</fescar-all.version>
         <transmittable-thread-local.version>2.11.4</transmittable-thread-local.version>
-        <com.microsoft.sqlserver.version>4.0</com.microsoft.sqlserver.version>
         <mybatis-plus-boot-starter.version>3.4.0</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.4.0</mybatis-plus-generator.version>
         <velocity-engine-core.version>2.2</velocity-engine-core.version>
@@ -59,7 +55,7 @@
         <sentry-logback.version>1.7.27</sentry-logback.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <jetcache-starter-redis-lettuce.version>2.5.14</jetcache-starter-redis-lettuce.version>
-        <xxl-job-core.version>2.3.0</xxl-job-core.version>
+        <xxl-job-core.version>2.2.0</xxl-job-core.version>
 
         <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
 
@@ -101,7 +97,7 @@
         <repository>
             <id>Aliyun</id>
             <name>Nexus Aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
         </repository>
     </repositories>
 
@@ -109,7 +105,7 @@
         <pluginRepository>
             <id>Aliyun</id>
             <name>Nexus Aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -149,26 +145,6 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
                 <version>${spring-boot-admin.version}</version>
-            </dependency>
-
-            <!-- Dubbo -->
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-
-            <!-- Zookeeper -->
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>${zookeeper.version}</version>
             </dependency>
 
             <!-- Curator -->
@@ -228,12 +204,6 @@
 
             <!-- DB -->
             <dependency>
-                <groupId>com.microsoft.sqlserver</groupId>
-                <artifactId>sqljdbc4</artifactId>
-                <version>${com.microsoft.sqlserver.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
@@ -243,12 +213,6 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba.fescar</groupId>
-                <artifactId>fescar-all</artifactId>
-                <version>${fescar-all.version}</version>
             </dependency>
 
             <dependency>
@@ -324,12 +288,6 @@
 
             <!-- Job -->
             <dependency>
-                <groupId>com.dangdang</groupId>
-                <artifactId>elastic-job-lite-spring</artifactId>
-                <version>${elastic-job-lite-spring.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job-core.version}</version>
@@ -340,12 +298,6 @@
                 <groupId>cn.waynechu</groupId>
                 <artifactId>biz-facade-common</artifactId>
                 <version>${biz-facade-common.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.waynechu</groupId>
-                <artifactId>biz-boot-starter-datasource-frame</artifactId>
-                <version>${biz-boot-starter-datasource-frame.version}</version>
             </dependency>
 
             <dependency>
