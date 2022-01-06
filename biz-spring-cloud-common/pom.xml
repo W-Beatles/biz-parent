@@ -27,6 +27,19 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- jmh -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.23</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.23</version>
+        </dependency>
+
         <dependency>
             <groupId>cn.waynechu</groupId>
             <artifactId>biz-facade-common</artifactId>

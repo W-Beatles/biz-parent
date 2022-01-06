@@ -35,9 +35,6 @@ public class BitMap {
     /**
      * 标记指定数字（num）在bitmap中的值，标记其已经出现过
      * 将1左移position后，那个位置自然就是1，然后和以前的数据做|，这样，那个位置就替换成1了
-     *
-     * @param bits
-     * @param num
      */
     public void add(byte[] bits, int num) {
         bits[getIndex(num)] |= 1 << getPosition(num);
@@ -46,10 +43,6 @@ public class BitMap {
     /**
      * 判断指定数字num是否存在<br/>
      * 将1左移position后，那个位置自然就是1，然后和以前的数据做&，判断是否为0即可
-     *
-     * @param bits
-     * @param num
-     * @return
      */
     public boolean contains(byte[] bits, int num) {
         return (bits[getIndex(num)] & 1 << getPosition(num)) != 0;
@@ -57,9 +50,6 @@ public class BitMap {
 
     /**
      * num/8得到byte[]的index
-     *
-     * @param num
-     * @return
      */
     public int getIndex(int num) {
         return num >> 3;
@@ -67,9 +57,6 @@ public class BitMap {
 
     /**
      * num%8得到在byte[index]的位置
-     *
-     * @param num
-     * @return
      */
     public int getPosition(int num) {
         return num & 0x07;
@@ -78,9 +65,6 @@ public class BitMap {
     /**
      * 重置某一数字对应在bitmap中的值<br/>
      * 对1进行左移，然后取反，最后与byte[index]作与操作。
-     *
-     * @param bits
-     * @param num
      */
     public void clear(byte[] bits, int num) {
         bits[getIndex(num)] &= ~(1 << getPosition(num));
@@ -97,15 +81,10 @@ public class BitMap {
             b = (byte) (b >> 1);
         }
 
+        StringBuilder sb = new StringBuilder();
         for (byte b1 : array) {
-            System.out.print(b1);
-            System.out.print(" ");
+            sb.append(b1).append(" ");
         }
-        System.out.println();
-    }
-
-    public static void main(String[] args) {
-        int n = 100;
-        new BitMap().create(n);
+        log.info(sb.toString());
     }
 }

@@ -11,22 +11,14 @@ import java.util.BitSet;
 public class SimpleBloomFilter {
 
     private static final int DEFAULT_SIZE = 2 << 24;
-    private static final int[] seeds = new int[]{7, 11, 13, 31, 37, 61,};
+    private static final int[] SEEDS = new int[]{7, 11, 13, 31, 37, 61};
 
-    private BitSet bits = new BitSet(DEFAULT_SIZE);
-    private SimpleHash[] func = new SimpleHash[seeds.length];
-
-    public static void main(String[] args) {
-        String value = "waynechu@waynechu.cn";
-        SimpleBloomFilter filter = new SimpleBloomFilter();
-        System.out.println(filter.contains(value));
-        filter.add(value);
-        System.out.println(filter.contains(value));
-    }
+    private final BitSet bits = new BitSet(DEFAULT_SIZE);
+    private final SimpleHash[] func = new SimpleHash[SEEDS.length];
 
     public SimpleBloomFilter() {
-        for (int i = 0; i < seeds.length; i++) {
-            func[i] = new SimpleHash(DEFAULT_SIZE, seeds[i]);
+        for (int i = 0; i < SEEDS.length; i++) {
+            func[i] = new SimpleHash(DEFAULT_SIZE, SEEDS[i]);
         }
     }
 
@@ -48,8 +40,8 @@ public class SimpleBloomFilter {
     }
 
     public static class SimpleHash {
-        private int cap;
-        private int seed;
+        private final int cap;
+        private final int seed;
 
         public SimpleHash(int cap, int seed) {
             this.cap = cap;

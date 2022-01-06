@@ -1,5 +1,6 @@
 package cn.waynechu.springcloud.common.util;
 
+import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
  * @author zhuwei
  * @since 2019/4/9 17:13
  */
+@UtilityClass
 public class DesensitizeUtil {
     public static final String IDCARD = "idcard";
     public static final String MOBILE = "mobile";
@@ -20,6 +22,9 @@ public class DesensitizeUtil {
     public static final String PASSWORD = "password";
 
     private static Pattern pattern = Pattern.compile("[0-9a-zA-Z]");
+
+    public static final String PHONE_11_REGEX = "(\\d{3})(\\d{4})(\\d{4})";
+    public static final String PHONE_11_REPLACE_REGEX = "$1****$3";
 
     /**
      * [姓名] 只显示第一个汉字，其他隐藏为星号
@@ -53,7 +58,7 @@ public class DesensitizeUtil {
      * [手机号码] 前三位，后四位，其他隐藏
      *
      * @param num 手机号码
-     * @return 示例: 138******1234
+     * @return 示例: 138****1234
      */
     public static String mobilePhone(String num) {
         if (StringUtils.isBlank(num)) {
@@ -62,6 +67,22 @@ public class DesensitizeUtil {
         return StringUtils.left(num, 3).concat(
                 StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(num, 4), StringUtils.length(num), "*"),
                         "***"));
+    }
+
+    /**
+     * 手机号脱敏
+     *
+     * @param phone 手机号
+     * @return 脱敏后的手机号
+     */
+    public static String phone11(String phone) {
+        if (StringUtils.isEmpty(phone)) {
+            return phone;
+        }
+
+        // 11位手机号
+        phone = phone.replaceAll(PHONE_11_REGEX, PHONE_11_REPLACE_REGEX);
+        return phone;
     }
 
     /**
