@@ -55,7 +55,7 @@
         <sentry-logback.version>1.7.27</sentry-logback.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <jetcache-starter-redis-lettuce.version>2.5.14</jetcache-starter-redis-lettuce.version>
-        <xxl-job-core.version>2.3.0</xxl-job-core.version>
+        <xxl-job-core.version>2.3.1</xxl-job-core.version>
 
         <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
 
