@@ -37,7 +37,7 @@
         <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
         <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
         <curator.version>4.3.0</curator.version>
-        <hutool-core.version>5.8.19</hutool-core.version>
+        <hutool-core.version>5.8.24</hutool-core.version>
         <poi.version>3.17</poi.version>
         <xmlbeans.version>3.1.0</xmlbeans.version>
         <protostuff.version>1.6.0</protostuff.version>
